@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
+import { LogoComponent } from './logo/logo.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [],
+  declarations: [LogoComponent],
   imports: [
+    BrowserModule
   ],
-  exports: []
+  exports: [LogoComponent]
 })
 export class WorldskillsAngularLibModule { }
