@@ -13,6 +13,9 @@ export * from './lib/models/role-model';
 export * from './lib/models/user.model';
 export * from './lib/models/ws-entity-model';
 
+// converters
+export * from './lib/converters/date-converter';
+
 // services
 export * from './lib/services/base.service';
 export * from './lib/services/base-crud.service';
