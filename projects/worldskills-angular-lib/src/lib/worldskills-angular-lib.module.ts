@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { WorldskillsAngularLibComponent } from './worldskills-angular-lib.component';
 
 @NgModule({
-  declarations: [WorldskillsAngularLibComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [WorldskillsAngularLibComponent]
+  exports: []
 })
 export class WorldskillsAngularLibModule { }
