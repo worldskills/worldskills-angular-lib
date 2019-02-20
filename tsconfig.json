@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "worldskills-angular-lib": [
+        "dist/worldskills-angular-lib"
+      ],
+      "worldskills-angular-lib/*": [
+        "dist/worldskills-angular-lib/*"
+      ]
+    }
   }
 }
