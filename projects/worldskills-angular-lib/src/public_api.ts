@@ -3,6 +3,7 @@
  */
 
 // components
+export * from './lib/breadcrumbs/breadcrumbs.component';
 export * from './lib/logo/logo.component';
 
 // modules

@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { LogoComponent } from './logo/logo.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [LogoComponent],
+  declarations: [BreadcrumbsComponent, LogoComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule
   ],
-  exports: [LogoComponent]
+  exports: [BreadcrumbsComponent, LogoComponent]
 })
 export class WorldskillsAngularLibModule { }
