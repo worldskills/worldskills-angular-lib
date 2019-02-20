@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-md ws-navbar-main ws-navbar-stripe wsmember-navbar-main wsmember-bg-pink">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <wsi-logo mode='default'></wsi-logo>
+      <span class="ml-1 text-white">{{ appName }}</span>
+    </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}" *ngFor="let item of menuItems | wsiMenuAccesssFilter: isLoggedIn: userRoleIds()">
+          <a class="nav-link" [routerLink]="[item.url, item.params]">
+              {{ item.label }}
+          </a>
+        </li>
+      </ul>
+      <a class="btn btn-light btn-sm ml-2" (click)="login();" *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
+      <a class="btn btn-light btn-sm ml-2" (click)="logout();" *ngIf="showLoginAndLogoutButtons && isLoggedIn">Log Out</a>
+
+    </div>
+  </div>
+</nav>
+<!-- <nav class="navbar navbar-expand-md ws-navbar-sub">
+  <div class="container">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" target="_self">Competitions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" target="_self">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" target="_self">Conference</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+

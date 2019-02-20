@@ -31,7 +31,6 @@ export class BreadcrumbsComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         const root: ActivatedRoute = this.activatedRoute.root;
         this.breadcrumbs = this.getBreadcrumbs(root);
-        console.log(this.breadcrumbs);
       }
     });
   }

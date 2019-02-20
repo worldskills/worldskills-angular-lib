@@ -1,28 +1,169 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<div class="container">
-  <wsi-breadcrumbs showHomeItem="true" homeItemText="Home" homeItemRoute="/"></wsi-breadcrumbs>
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
-<div style="background-color:#000; padding: 20px;">
-  <wsi-logo mode='default'></wsi-logo>
-  <br /><br />
-  <wsi-logo mode='fancy'></wsi-logo>
-</div>
+    <header>
+      <wsi-header
+      [appName]="Tester"
+      [isLoggedIn]="isLoggedIn"
+      [showLoginAndLogoutButtons]="true"
+      [menuItems]="menuItems"
+      [currentUser]="currentUser"
+      (loginClick)="login()"
+      (logoutClick)="logout()"
+    ></wsi-header>
+    </header>
+
+    <section class="ws-hero ws-hero-image " style="background-image: url(https://preview.worldskills.org/application/files/thumbnails/large/4015/3251/4399/champions-trust-header.jpg)">
+      <h1 class="ws-hero-title">News</h1>
+      <div class="ws-hero-desc">
+        <p>WorldSkills Competitions are the gold standard of skills excellence. They inspire young Competitors to reach new heights, helping them turn their passion into a profession.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <wsi-breadcrumbs showHomeItem="true" homeItemText="Home" homeItemRoute="/"></wsi-breadcrumbs>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-8">
+              <ul class="ws-linklist">
+                <li class="ws-linklist-item">
+                  <img class="ws-linklist-thumb" src="https://preview.worldskills.org/application/files/thumbnails/landscape/2615/3296/4540/UAE_Flag.jpg" alt=""/>
+                  <div class="ws-linklist-body">
+                    <h2 class="ws-linklist-title">
+                      <a href="#">                              WorldSkills Flag Returns to the UAE as part of its global tour                    </a>
+                    </h2>
+                    <p class="ws-linklist-desc">The WorldSkills Flag Relay was in Abu Dhabi in UAE, the place where the Flag Relay initially started less than a year ago.</p>
+                    <p class="ws-linklist-desc ws-linklist-desc-sm">30 July 2018</p>
+                  </div>
+                </li>
+                <li class="ws-linklist-item">
+                  <img class="ws-linklist-thumb" src="https://preview.worldskills.org/application/files/thumbnails/landscape/2115/3251/0482/Korea_flag_relay.jpg" alt=""/>
+                  <div class="ws-linklist-body">
+                    <h2 class="ws-linklist-title">
+                      <a href="#">                              Flag Relay Reaches Seoul Korea                    </a>
+                    </h2>
+                    <p class="ws-linklist-desc">On the 500th day until the next global skills Competition – WorldSkills Kazan 2019 – the WorldSkills Flag Relay reached Seoul, Korea. </p>
+                    <p class="ws-linklist-desc ws-linklist-desc-sm">25 July 2018</p>
+                  </div>
+                </li>
+                <li class="ws-linklist-item">
+                  <img class="ws-linklist-thumb" src="https://preview.worldskills.org/application/files/thumbnails/landscape/8415/3200/0191/IMG_4769.jpg" alt=""/>
+                  <div class="ws-linklist-body">
+                    <h2 class="ws-linklist-title">
+                      <a href="#">                              A Proud Moment For Oman                    </a>
+                    </h2>
+                    <p class="ws-linklist-desc">Oman has celebrated its most successful skills competition to date.      The third Oman Vocational Skills Competition brought together some fifty young Competitors to demonstrate their expertise across seven different disciplines. </p>
+                    <p class="ws-linklist-desc ws-linklist-desc-sm">19 July 2018</p>
+                  </div>
+                </li>
+              </ul>
+              <ul class="pagination">
+                <li class="page-item prev disabled">
+                  <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item active">
+                  <span class="page-link">1 <span class="sr-only">(current)</span></span>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">4</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">5</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">6</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">7</a>
+                </li>
+                <li class="page-item disabled">
+                  <span class="page-link">…</span>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">94</a>
+                </li>
+                <li class="page-item next">
+                  <a class="page-link" href="#" rel="next">Next</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="ws-page-footer">
+      <div class="container">
+        <div class="ws-page-footer-row">
+          <aside class="ws-page-footer-col-sm">
+            <h1>About</h1>
+
+            <ul>
+              <li><a href="#">History</a></li>
+              <li><a href="#">Partners</a></li>
+              <li><a href="#">Board of Directors</a></li>
+            </ul>
+          </aside>
+          <aside class="ws-page-footer-col-sm">
+            <h1>Resources</h1>
+            <ul>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Brand guidelines</a></li>
+            </ul>
+          </aside>
+          <aside class="ws-page-footer-col-sm">
+            <h1>Internal</h1>
+            <ul>
+              <li><a href="#">Member Area</a></li>
+              <li><a href="#">People</a></li>
+              <li><a href="#">Events</a></li>
+            </ul>
+          </aside>
+          <aside class="ws-page-footer-col-sm">
+            <h1>Social</h1>
+            <ul>
+                <li><a href="https://www.facebook.com/WorldSkills" target="_blank"><i class="fa fa-facebook-official mr-3"></i>Facebook</a></li>
+                <li><a href="https://twitter.com/WorldSkills" target="_blank"><i class="fa fa-twitter mr-3"></i>Twitter</a></li>
+                <li><a href="https://www.youtube.com/user/WorldSkillsTV" target="_blank"><i class="fa fa-youtube-play mr-3"></i>YouTube</a></li>
+                <li><a href="https://www.flickr.com/photos/worldskills/collections/" target="_blank"><i class="fa fa-flickr mr-3"></i>Flickr</a></li>
+                <li><a href="http://instagram.com/worldskills/" target="_blank"><i class="fa fa-instagram mr-3"></i>Instagram</a></li>
+            </ul>
+          </aside>
+          <aside class="ws-page-footer-col-md">
+            <h1>Search</h1>
+            <form action="#" method="get" class="search-form" role="search">
+              <input type="text" name="query" class="form-control" id="page-footer-search" placeholder="Begin typing…">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <div class="text-right mt-5">
+                <wsi-logo mode='fancy'></wsi-logo>
+            </div>
+          </aside>
+        </div>
+        <div class="ws-page-footer-row">
+          <div class="ws-page-footer-col-lg">
+            <ul class="list-inline">
+              <li class="list-inline-item">© WorldSkills Member</li>
+              <li class="list-inline-item"><a href="#">Privacy</a></li>
+              <li class="list-inline-item"><a href="#">Terms</a></li>
+              <li class="list-inline-item"><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="ws-page-footer-col-lg">
+            <p class="text-md-right">
+              <a href="#">Log in</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
