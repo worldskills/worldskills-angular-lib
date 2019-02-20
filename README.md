@@ -1,26 +1,27 @@
 # WorldskillsAngularLib
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
-
-## Development server
-
-Run `ng serve {project_name}` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project={project_name}` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name --project worldskills-angular-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project worldskills-angular-lib`.
+> Note: Don't forget to add `--project worldskills-angular-lib` or else it will be added to the default project in your `angular.json` file.
 
 ## Build
 
-Run `ng build {project_name}` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build worldskills-angular-lib` or `npm run build_lib` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Packaging
+
+Run `npm run package` to create the tgz package (a node module) in the `dist/worldskills-angular-lib` directory.
+
+## Publishing
+
+After building your library with `ng build worldskills-angular-lib`, go to the dist folder `cd dist/worldskills-angular-lib` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test {project_name}` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng test worldskills-angular-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 
