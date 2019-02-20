@@ -37,6 +37,134 @@
           }
         }
       }
+    },
+    "worldskills-angular-lib-tester": {
+      "root": "projects/worldskills-angular-lib-tester/",
+      "sourceRoot": "projects/worldskills-angular-lib-tester/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/worldskills-angular-lib-tester",
+            "index": "projects/worldskills-angular-lib-tester/src/index.html",
+            "main": "projects/worldskills-angular-lib-tester/src/main.ts",
+            "polyfills": "projects/worldskills-angular-lib-tester/src/polyfills.ts",
+            "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.app.json",
+            "assets": [
+              "projects/worldskills-angular-lib-tester/src/favicon.ico",
+              "projects/worldskills-angular-lib-tester/src/assets"
+            ],
+            "styles": [
+              "projects/worldskills-angular-lib-tester/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/worldskills-angular-lib-tester/src/environments/environment.ts",
+                  "with": "projects/worldskills-angular-lib-tester/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "worldskills-angular-lib-tester:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "worldskills-angular-lib-tester:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "worldskills-angular-lib-tester:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/worldskills-angular-lib-tester/src/test.ts",
+            "polyfills": "projects/worldskills-angular-lib-tester/src/polyfills.ts",
+            "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.spec.json",
+            "karmaConfig": "projects/worldskills-angular-lib-tester/karma.conf.js",
+            "styles": [
+              "projects/worldskills-angular-lib-tester/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/worldskills-angular-lib-tester/src/favicon.ico",
+              "projects/worldskills-angular-lib-tester/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/worldskills-angular-lib-tester/tsconfig.app.json",
+              "projects/worldskills-angular-lib-tester/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "worldskills-angular-lib-tester-e2e": {
+      "root": "projects/worldskills-angular-lib-tester-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/worldskills-angular-lib-tester-e2e/protractor.conf.js",
+            "devServerTarget": "worldskills-angular-lib-tester:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "worldskills-angular-lib-tester:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/worldskills-angular-lib-tester-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "worldskills-angular-lib"
