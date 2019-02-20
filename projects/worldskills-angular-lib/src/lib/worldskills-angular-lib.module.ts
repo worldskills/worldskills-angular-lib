@@ -7,10 +7,12 @@ import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
+    FooterComponent,
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe
@@ -21,6 +23,12 @@ import { MenuAccessPipe } from './pipes/menu-access.pipe';
     HttpClientModule,
     RouterModule
   ],
-  exports: [BreadcrumbsComponent, HeaderComponent, LogoComponent, MenuAccessPipe]
+  exports: [
+    BreadcrumbsComponent,
+    FooterComponent,
+    HeaderComponent,
+    LogoComponent,
+    MenuAccessPipe
+  ]
 })
 export class WorldskillsAngularLibModule { }
