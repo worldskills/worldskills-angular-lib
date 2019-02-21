@@ -8,9 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build_lib": "ng build worldskills-angular-lib",
-    "npm_pack": "cd dist/worldskills-angular-lib && npm pack",
-    "package": "npm run build_lib && npm run npm_pack"
+    "wsi_build_lib": "ng build worldskills-angular-lib",
+    "wsi_npm_pack": "cd dist/worldskills-angular-lib && npm pack",
+    "wsi_package": "npm run wsi_build_lib && npm run wsi_npm_pack"
   },
   "private": true,
   "dependencies": {

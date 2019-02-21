@@ -20,8 +20,10 @@ export * from './lib/pipes/menu-access.pipe';
 export * from './lib/converters/date-converter';
 
 // services
+export * from './lib/services/auth.service';
 export * from './lib/services/base.service';
 export * from './lib/services/base-crud.service';
+export * from './lib/services/user.service';
 
 // components
 export * from './lib/breadcrumbs/breadcrumbs.component';
