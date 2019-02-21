@@ -28,7 +28,7 @@ export class AuthService {
     // }
   }
 
-  private keepAlive(): void {
+  public keepAlive(): void {
     localStorage.setItem('user.timestamp', new Date().getTime().toString());
   }
 
