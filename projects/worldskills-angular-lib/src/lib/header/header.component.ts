@@ -35,7 +35,11 @@ export class HeaderComponent implements OnInit {
   }
 
   userRoleIds() {
-    if (this.currentUser === undefined) {
+    if (this.currentUser === undefined || this.currentUser === null) {
+      return [];
+    }
+
+    if (this.currentUser.roles === undefined || this.currentUser.roles === null) {
       return [];
     }
 
