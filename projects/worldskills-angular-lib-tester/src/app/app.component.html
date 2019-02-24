@@ -23,83 +23,22 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-8">
-              <ul class="ws-linklist">
-                <li class="ws-linklist-item">
-                  <img class="ws-linklist-thumb" src="https://preview.worldskills.org/application/files/thumbnails/landscape/2615/3296/4540/UAE_Flag.jpg" alt=""/>
-                  <div class="ws-linklist-body">
-                    <h2 class="ws-linklist-title">
-                      <a href="#">                              WorldSkills Flag Returns to the UAE as part of its global tour                    </a>
-                    </h2>
-                    <p class="ws-linklist-desc">The WorldSkills Flag Relay was in Abu Dhabi in UAE, the place where the Flag Relay initially started less than a year ago.</p>
-                    <p class="ws-linklist-desc ws-linklist-desc-sm">30 July 2018</p>
-                  </div>
-                </li>
-                <li class="ws-linklist-item">
-                  <img class="ws-linklist-thumb" src="https://preview.worldskills.org/application/files/thumbnails/landscape/2115/3251/0482/Korea_flag_relay.jpg" alt=""/>
-                  <div class="ws-linklist-body">
-                    <h2 class="ws-linklist-title">
-                      <a href="#">                              Flag Relay Reaches Seoul Korea                    </a>
-                    </h2>
-                    <p class="ws-linklist-desc">On the 500th day until the next global skills Competition – WorldSkills Kazan 2019 – the WorldSkills Flag Relay reached Seoul, Korea. </p>
-                    <p class="ws-linklist-desc ws-linklist-desc-sm">25 July 2018</p>
-                  </div>
-                </li>
-                <li class="ws-linklist-item">
-                  <img class="ws-linklist-thumb" src="https://preview.worldskills.org/application/files/thumbnails/landscape/8415/3200/0191/IMG_4769.jpg" alt=""/>
-                  <div class="ws-linklist-body">
-                    <h2 class="ws-linklist-title">
-                      <a href="#">                              A Proud Moment For Oman                    </a>
-                    </h2>
-                    <p class="ws-linklist-desc">Oman has celebrated its most successful skills competition to date.      The third Oman Vocational Skills Competition brought together some fifty young Competitors to demonstrate their expertise across seven different disciplines. </p>
-                    <p class="ws-linklist-desc ws-linklist-desc-sm">19 July 2018</p>
-                  </div>
-                </li>
-              </ul>
-              <ul class="pagination">
-                <li class="page-item prev disabled">
-                  <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item active">
-                  <span class="page-link">1 <span class="sr-only">(current)</span></span>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">4</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">5</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">6</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">7</a>
-                </li>
-                <li class="page-item disabled">
-                  <span class="page-link">…</span>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">94</a>
-                </li>
-                <li class="page-item next">
-                  <a class="page-link" href="#" rel="next">Next</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-sm-4">
-            </div>
-          </div>
+      <wsi-content>
+        <div main>
+          <wsi-modal
+            [name]="'sample-modal'"
+            [title]="'Sample Modal'"
+            [showCloseButton]="true"
+            [showSaveButton]="true"
+            [closeModalOnSave]="true"
+            (saveFn)="saveFn()">
+          </wsi-modal>
+          <button class="btn" data-toggle="modal" data-target="#sample-modal">
+              <i class="fa fa-plus" style="color:green"> Create Modal Test</i>
+          </button>
         </div>
-      </div>
+        <div side>Side</div>
+      </wsi-content>
     </div>
 <wsi-footer>
   <div left>

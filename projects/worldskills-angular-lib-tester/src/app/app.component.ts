@@ -36,4 +36,8 @@ export class AppComponent {
     this.isLoggedIn = false;
     this.currentUser = new UserModel();
   }
+
+  saveFn() {
+    console.log('saved');
+  }
 }

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ContentComponent } from './content/content.component';
     FooterComponent,
     HeaderComponent,
     LogoComponent,
-    MenuAccessPipe
+    MenuAccessPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { ContentComponent } from './content/content.component';
     FooterComponent,
     HeaderComponent,
     LogoComponent,
-    MenuAccessPipe
+    MenuAccessPipe,
+    ModalComponent
   ]
 })
 export class WorldskillsAngularLibModule { }
