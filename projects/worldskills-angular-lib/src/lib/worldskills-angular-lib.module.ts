@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
 import { FooterComponent } from './footer/footer.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
+    ContentComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
@@ -25,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     BreadcrumbsComponent,
+    ContentComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
