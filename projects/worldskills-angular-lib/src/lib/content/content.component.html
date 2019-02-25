@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-sm-12">
-      <div class="row">
-        <div class="col-sm-8">
+      <div id="layout" class="row wrapper {{ collapsed ? 'collapsed' : '' }}">
+        <div id="content">
             <ng-content select="[main]"></ng-content>
-          </div>
-        <div class="col-sm-4">
+        </div>
+        <div id="sidebar">
             <ng-content select="[side]"></ng-content>
         </div>
-      </div>
     </div>
   </div>
+</div>
