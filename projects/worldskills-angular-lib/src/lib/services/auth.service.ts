@@ -17,15 +17,6 @@ export class AuthService {
     console.log(this.oAuthService.authorizationHeader());
     this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('user.current')));
     this.currentUser = this.currentUserSubject.asObservable();
-
-    // below should be done by the instatiating object
-    // this.loadUserProfile();
-
-    // if (this.isCacheValid()) {
-    //   this.keepAlive();
-    // } else {
-    //   this.login();
-    // }
   }
 
   public keepAlive(): void {
