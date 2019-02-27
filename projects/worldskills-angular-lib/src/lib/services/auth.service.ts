@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 
 // TODO: This class can be cleanup up and optimized
+// TODO: Generate auth state
 @Injectable({
   providedIn: 'root'
 })

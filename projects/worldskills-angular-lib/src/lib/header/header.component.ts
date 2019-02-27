@@ -4,7 +4,7 @@ import { IMenuItem } from '../interfaces/menu-item.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'wsi-header',
+  selector: 'ws-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })

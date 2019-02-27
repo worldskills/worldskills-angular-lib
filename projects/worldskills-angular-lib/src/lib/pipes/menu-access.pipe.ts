@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import { IMenuItem } from '../interfaces/menu-item.interface';
 
 @Pipe ({
-   name : 'wsiMenuAccesssFilter'
+   name : 'wsMenuAccesssFilter'
 })
 export class MenuAccessPipe implements PipeTransform {
    transform(items: IMenuItem[], isLoggedIn: boolean, roles: number[]): IMenuItem[] {

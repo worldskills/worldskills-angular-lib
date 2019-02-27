@@ -18,6 +18,7 @@ export class AppComponent {
   constructor() {
     this.isLoggedIn = false;
     this.menuItems = [
+      // TODO: requiredRoles by rolename and application code
       { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
       { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: [] }
     ];

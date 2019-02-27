@@ -1,6 +1,6 @@
 
     <header>
-      <wsi-header
+      <ws-header
       [appName]="Tester"
       [isLoggedIn]="isLoggedIn"
       [showLoginAndLogoutButtons]="true"
@@ -8,7 +8,7 @@
       [currentUser]="currentUser"
       (loginClick)="login()"
       (logoutClick)="logout()"
-    ></wsi-header>
+    ></ws-header>
     </header>
 
     <section class="ws-hero ws-hero-image " style="background-image: url(https://preview.worldskills.org/application/files/thumbnails/large/4015/3251/4399/champions-trust-header.jpg)">
@@ -19,28 +19,13 @@
     </section>
 
     <div class="container">
-      <wsi-breadcrumbs showHomeItem="true" homeItemText="Home" homeItemRoute="/"></wsi-breadcrumbs>
+      <ws-breadcrumbs showHomeItem="true" homeItemText="Home" homeItemRoute="/"></ws-breadcrumbs>
     </div>
 
     <div class="container">
-      <wsi-content>
-        <div main>
-          <wsi-modal
-            [name]="'sample-modal'"
-            [title]="'Sample Modal'"
-            [showCloseButton]="true"
-            [showSaveButton]="true"
-            [closeModalOnSave]="true"
-            (saveFn)="saveFn()">
-          </wsi-modal>
-          <button class="btn" data-toggle="modal" data-target="#sample-modal">
-              <i class="fa fa-plus" style="color:green"> Create Modal Test</i>
-          </button>
-        </div>
-        <div side>Side</div>
-      </wsi-content>
+      Content here
     </div>
-<wsi-footer>
+<ws-footer>
   <div left>
       <ul class="list-inline">
         <li class="list-inline-item mb-0">&copy; 2019 <a href="https://www.worldskills.org/" target="_blank">WorldSkills International</a></li>
@@ -50,6 +35,6 @@
       </ul>
   </div>
   <div right style="float:right">
-    <wsi-logo mode="fancy"></wsi-logo>
+    <ws-logo mode="fancy"></ws-logo>
   </div>
-</wsi-footer>
+</ws-footer>

@@ -26,7 +26,6 @@ export * from './lib/services/base-crud.service';
 export * from './lib/services/user.service';
 
 // components
-export * from './lib/content/content.component';
 export * from './lib/breadcrumbs/breadcrumbs.component';
 export * from './lib/header/header.component';
 export * from './lib/logo/logo.component';

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md ws-navbar-main ws-navbar-stripe wsmember-navbar-main wsmember-bg-pink">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <wsi-logo mode='default'></wsi-logo>
+      <ws-logo mode='wordmark'></ws-logo>
       <span class="ml-1 text-white">{{ appName }}</span>
     </a>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +9,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}" *ngFor="let item of menuItems | wsiMenuAccesssFilter: isLoggedIn: userRoleIds()">
+        <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}" *ngFor="let item of menuItems | wsMenuAccesssFilter: isLoggedIn: userRoleIds()">
           <a class="nav-link" [routerLink]="[item.url, item.params]">
               {{ item.label }}
           </a>

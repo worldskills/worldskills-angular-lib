@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd, PRIMARY_OUTLET } from '@angular/
 import { IBreadcrumb } from '../interfaces/breadcrumb.interface';
 
 @Component({
-  selector: 'wsi-breadcrumbs',
+  selector: 'ws-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.css']
 })

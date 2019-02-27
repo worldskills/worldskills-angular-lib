@@ -7,7 +7,7 @@
       "root": "projects/worldskills-angular-lib",
       "sourceRoot": "projects/worldskills-angular-lib/src",
       "projectType": "library",
-      "prefix": "wsi",
+      "prefix": "ws",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

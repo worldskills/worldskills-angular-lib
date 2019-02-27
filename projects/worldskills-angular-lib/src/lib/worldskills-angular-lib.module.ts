@@ -8,18 +8,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
 import { FooterComponent } from './footer/footer.component';
-import { ContentComponent } from './content/content.component';
-import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
-    ContentComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
-    MenuAccessPipe,
-    ModalComponent
+    MenuAccessPipe
   ],
   imports: [
     BrowserModule,
@@ -29,12 +25,10 @@ import { ModalComponent } from './modal/modal.component';
   ],
   exports: [
     BreadcrumbsComponent,
-    ContentComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
-    MenuAccessPipe,
-    ModalComponent
+    MenuAccessPipe
   ]
 })
 export class WorldskillsAngularLibModule { }
