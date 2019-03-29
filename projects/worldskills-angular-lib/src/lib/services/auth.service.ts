@@ -4,6 +4,7 @@ import { UserModel } from '../models/user.model';
 import { OAuthService, OAuthModule } from 'angular-oauth2-oidc';
 import { UserService } from './user.service';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+import { ModuleConfigService } from '../config/module-config.service';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state
@@ -14,7 +15,8 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<UserModel>;
   public currentUser: Observable<UserModel>;
 
-  constructor(private oAuthService: OAuthService, private userService: UserService) {
+  constructor(private configService: ModuleConfigService, private oAuthService: OAuthService, private userService: UserService) {
+    this.configureAuth();
     console.log(this.oAuthService.authorizationHeader());
     this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('user.current')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -52,12 +54,12 @@ export class AuthService {
     this.oAuthService.initImplicitFlow();
   }
 
-  loadUserProfile(userInfoURI: string) {
+  loadUserProfile() {
     if (this.isValid()) {
       const token = this.oAuthService.getAccessToken();
       this.keepAlive();
       localStorage.setItem('user.token', token);
-      this.userService.getLoggedInUser(userInfoURI).then(result => {
+      this.userService.getLoggedInUser().then(result => {
         const converter = new JsonConvert();
         converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
         const currentUser = new UserModel(converter.deserialize(result, UserModel));
@@ -74,13 +76,13 @@ export class AuthService {
     this.currentUserSubject.next(null);
   }
 
-  public configureAuth(loginURI: string, clientId: string, userInfoURI: string): void {
+  private configureAuth(): void {
     this.oAuthService.configure({
-      loginUrl: loginURI,
-      clientId,
-      oidc: false,
+      loginUrl: this.configService.oAuthConfig.loginURI,
+      clientId: this.configService.oAuthConfig.clientId,
+      oidc: this.configService.oAuthConfig.oidc,
       redirectUri: window.location.origin,
-      userinfoEndpoint: userInfoURI
+      userinfoEndpoint: this.configService.serviceConfig.userInfoUri('false')
     });
 
     this.oAuthService.setStorage(sessionStorage);

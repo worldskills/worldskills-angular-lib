@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.model';
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
-import { NameModel } from '../../../worldskills-angular-lib/src/lib/models/name-model';
+import { ModuleConfigService } from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,13 @@ export class AppComponent {
   menuItems: Array<IMenuItem>;
   currentUser: UserModel;
 
-  constructor() {
+  appCode: number;
+  cliendId: string;
+
+  constructor(private moduleConfigService: ModuleConfigService) {
+    this.appCode = moduleConfigService.serviceConfig.appCode;
+    this.cliendId = moduleConfigService.oAuthConfig.clientId;
+
     this.isLoggedIn = false;
     this.menuItems = [
       // TODO: requiredRoles by rolename and application code

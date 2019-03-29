@@ -1,6 +1,12 @@
+import { from } from 'rxjs';
+
 /*
  * Public API Surface of worldskills-angular-lib
  */
+
+// config
+export * from './lib/config/service-config';
+export * from './lib/config/oauth-config';
 
 // interfaces
 export * from './lib/interfaces/breadcrumb.interface';
@@ -20,6 +26,7 @@ export * from './lib/pipes/menu-access.pipe';
 export * from './lib/converters/date-converter';
 
 // services
+export * from './lib/config/module-config.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/base.service';
 export * from './lib/services/base-crud.service';

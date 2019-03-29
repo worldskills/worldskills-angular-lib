@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { BaseService } from './base.service';
+import { ModuleConfigService } from '../config/module-config.service';
 
 // TODO: Find a better way to handle apiAuthCode and UserInfoUrl
 // TODO: Re-look authneticate method
@@ -11,32 +12,34 @@ import { BaseService } from './base.service';
   providedIn: 'root'
 })
 export class UserService extends BaseService {
+  private appCode: number;
+  private endpoint: string;
 
-  constructor(protected http: HttpClient, protected oAuthService: OAuthService) {
+  constructor(protected configService: ModuleConfigService, protected http: HttpClient, protected oAuthService: OAuthService) {
     super(http, oAuthService);
+    this.appCode = this.configService.serviceConfig.appCode;
+    this.endpoint = this.configService.serviceConfig.userServiceEndpoint;
   }
 
-  public async getLoggedInUser(userInfoURI: string) {
+  public async getLoggedInUser(showChildRoles: boolean = false) {
     const headers = this.getDefaultHeaders();
-
-    return await this.http.get(userInfoURI, {
+    const url =  this.configService.serviceConfig.userInfoUri(String(showChildRoles));
+    return await this.http.get(url, {
       headers
     }).toPromise();
   }
 
   // check if a user has at least one listed permission
   // TODO: more robustness needed. right now it's just an OR function
-  public hasPermission(user: UserModel, authCode: number, permissions: string[]) {
+  public hasPermission(user: UserModel, permissions: string[]) {
     const result = user.roles.filter(role => {
-      if (permissions.indexOf(role.name) > -1 && role.roleApplication.applicationCode === authCode) {
-        return true;
-      }
+      return permissions.indexOf(role.name) > -1 && role.roleApplication.applicationCode === this.appCode;
     });
 
     return result;
   }
 
-  public authenticate(apiAuthCode: number, user: UserModel) {
-    return this.hasPermission(user, apiAuthCode, ['Admin', 'CreateResource']).length > 0;
+  public authenticate(user: UserModel, roles: []) {
+    return this.hasPermission(user, roles).length > 0;
   }
 }

@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
 import { FooterComponent } from './footer/footer.component';
+import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken } from './config/module-config.service';
+import { ServiceConfig } from './config/service-config';
+import { OAuthConfig } from './config/oauth-config';
 
 @NgModule({
   declarations: [
@@ -31,4 +34,49 @@ import { FooterComponent } from './footer/footer.component';
     MenuAccessPipe
   ]
 })
-export class WorldskillsAngularLibModule { }
+export class WorldskillsAngularLibModule {
+
+  static forConfig(serviceConfig: ServiceConfig, oAuthConfig: OAuthConfig) {
+
+    return {
+      ngModule: WorldskillsAngularLibModule,
+      providers: [
+        ModuleConfigService,
+        {
+          provide: ServiceConfigToken,
+          useValue: serviceConfig
+        },
+        {
+          provide: OAuthConfigToken,
+          useValue: oAuthConfig
+        }
+      ]
+    };
+  }
+}
+
+
+/*
+@NgModule({
+  declarations: [
+    BreadcrumbsComponent,
+    FooterComponent,
+    HeaderComponent,
+    LogoComponent,
+    MenuAccessPipe
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    HttpClientModule,
+    RouterModule
+  ],
+  exports: [
+    BreadcrumbsComponent,
+    FooterComponent,
+    HeaderComponent,
+    LogoComponent,
+    MenuAccessPipe
+  ]
+})
+*/
