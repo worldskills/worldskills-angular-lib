@@ -12,26 +12,9 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'home' }
 ];
 
-/*
-export class TestServicConfig implements ServiceConfig {
-  authCode: number;
-  userServiceUrl: string;
-
-  constructor(authCode: number, userServiceUrl: string) {
-    this.authCode = authCode;
-    this.userServiceUrl = userServiceUrl;
-  }
-}
-
-const serviceConfig = new TestServicConfig(1, 'http://something/auth');
-*/
-const serviceConfig = new ServiceConfig();
-serviceConfig.appCode = 1;
-serviceConfig.userServiceEndpoint = 'http://someurl/auth';
-
-const oAuthConfig = new OAuthConfig();
-oAuthConfig.clientId = 'some_client_id';
-oAuthConfig.loginURI = 'http://someurl/login';
+// these should ideally exist wtihin the environment.ts
+const serviceConfig = new ServiceConfig(1, 'http://someurl/auth');
+const oAuthConfig = new OAuthConfig('http://someurl/login', 'some_client_id');
 
 @NgModule({
   declarations: [

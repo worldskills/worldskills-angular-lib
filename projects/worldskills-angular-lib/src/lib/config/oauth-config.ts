@@ -3,7 +3,9 @@ export class OAuthConfig {
   public clientId: string;
   public oidc: boolean;
 
-  constructor() {
+  constructor(loginURI: string, clientId: string) {
+    this.loginURI = loginURI;
+    this.clientId = clientId;
     this.oidc = false;
   }
 }

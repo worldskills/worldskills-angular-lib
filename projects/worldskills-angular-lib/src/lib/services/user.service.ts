@@ -21,6 +21,13 @@ export class UserService extends BaseService {
     this.endpoint = this.configService.serviceConfig.userServiceEndpoint;
   }
 
+  public async ping() {
+    const headers = this.getDefaultHeaders();
+    const url = `${this.endpoint}ping`;
+
+    return await this.http.get(url, {headers} ).toPromise();
+  }
+
   public async getLoggedInUser(showChildRoles: boolean = false) {
     const headers = this.getDefaultHeaders();
     const url =  this.configService.serviceConfig.userInfoUri(String(showChildRoles));
