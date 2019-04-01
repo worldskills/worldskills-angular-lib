@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { WorldskillsAngularLibModule, ServiceConfig, OAuthConfig } from 'worldskills-angular-lib';
 import { Routes, RouterModule } from '@angular/router';
+import { config } from '../environments/environment';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 const appRoutes: Routes = [
@@ -12,17 +14,14 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'home' }
 ];
 
-// these should ideally exist wtihin the environment.ts
-const serviceConfig = new ServiceConfig(1, 'http://someurl/auth');
-const oAuthConfig = new OAuthConfig('http://someurl/login', 'some_client_id');
-
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig),
+    OAuthModule.forRoot(),
+    WorldskillsAngularLibModule.forConfig(config.service, config.oauth),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

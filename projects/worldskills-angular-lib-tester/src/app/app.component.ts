@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.model';
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
-import { ModuleConfigService } from 'worldskills-angular-lib';
+import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,11 @@ export class AppComponent {
   appCode: number;
   cliendId: string;
 
-  constructor(private moduleConfigService: ModuleConfigService) {
+  constructor(
+    private moduleConfigService: ModuleConfigService,
+    private authService: AuthService) {
     this.appCode = moduleConfigService.serviceConfig.appCode;
     this.cliendId = moduleConfigService.oAuthConfig.clientId;
-
     this.isLoggedIn = false;
     this.menuItems = [
       // TODO: requiredRoles by rolename and application code
@@ -29,19 +31,26 @@ export class AppComponent {
       { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: [] }
     ];
     this.currentUser = new UserModel();
+
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
+    this.authService.loadUserProfile();
   }
 
   login() {
-    this.isLoggedIn = true;
-    this.currentUser = new UserModel();
-    this.currentUser.id = 1;
-    this.currentUser.firstName = 'Test';
-    this.currentUser.lastName = 'User';
+    this.authService.login();
+    this.isLoggedIn = this.currentUser != null;
+    // this.isLoggedIn = true;
+    // this.currentUser = new UserModel();
+    // this.currentUser.id = 1;
+    // this.currentUser.firstName = 'Test';
+    // this.currentUser.lastName = 'User';
   }
 
   logout() {
-    this.isLoggedIn = false;
-    this.currentUser = new UserModel();
+    this.authService.logout();
+
+    // this.isLoggedIn = false;
+    // this.currentUser = new UserModel();
   }
 
   saveFn() {

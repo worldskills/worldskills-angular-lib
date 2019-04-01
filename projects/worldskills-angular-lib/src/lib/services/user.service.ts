@@ -21,19 +21,19 @@ export class UserService extends BaseService {
     this.endpoint = this.configService.serviceConfig.userServiceEndpoint;
   }
 
-  public async ping() {
+  public ping() {
     const headers = this.getDefaultHeaders();
     const url = `${this.endpoint}ping`;
 
-    return await this.http.get(url, {headers} ).toPromise();
+    return this.http.get(url, {headers} );
   }
 
-  public async getLoggedInUser(showChildRoles: boolean = false) {
+  public getLoggedInUser(showChildRoles: boolean = false) {
     const headers = this.getDefaultHeaders();
     const url =  this.configService.serviceConfig.userInfoUri(String(showChildRoles));
-    return await this.http.get(url, {
+    return this.http.get(url, {
       headers
-    }).toPromise();
+    });
   }
 
   // check if a user has at least one listed permission

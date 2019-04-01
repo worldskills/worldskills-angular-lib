@@ -1,9 +1,25 @@
+import { OAuthConfig, ServiceConfig } from 'worldskills-angular-lib';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false
+};
+
+const serviceConfig = new ServiceConfig();
+serviceConfig.appCode = 500;
+serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
+
+const oAuthConfig = new OAuthConfig();
+oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
+oAuthConfig.clientId = 'b4fe5608e0d7';
+oAuthConfig.oidc = false;
+
+export const config = {
+  service: serviceConfig,
+  oauth: oAuthConfig
 };
 
 /*

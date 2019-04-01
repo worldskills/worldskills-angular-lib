@@ -22,56 +22,46 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public keepAlive(): void {
-    localStorage.setItem('user.timestamp', new Date().getTime().toString());
+  public async keepAlive() {
+    this.userService.ping().subscribe(
+      result => {},
+      error => {
+        this.logout();
+      }
+    );
   }
 
   public get currentUserValue(): UserModel {
     return this.currentUserSubject.value;
   }
 
-  public isValid() {
+  public isLoggedIn() {
     return this.oAuthService.hasValidAccessToken();
   }
 
-  public isLoggedIn(authExpireMinutes: number) {
-    return this.isValid() && this.isCacheValid(authExpireMinutes);
+  public async loadUserProfile() {
+    this.userService.getLoggedInUser().subscribe(
+      result => {
+        if (result != null) {
+          const converter = new JsonConvert();
+          converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
+          const currentUser = new UserModel(converter.deserialize(result, UserModel));
+          localStorage.setItem('user.current', JSON.stringify(currentUser));
+          this.currentUserSubject.next(currentUser);
+        }
+      },
+      error => {
+        this.currentUser = null;
+      }
+    );
   }
 
-  public getToken() {
-    return this.isValid() ? localStorage.getItem('user.token') : '';
-  }
-
-  public isCacheValid(authExpireMinutes: number) {
-    const ts = Number.parseInt(localStorage.getItem('user.timestamp').toString(), 10);
-    const now = new Date();
-    const expiry = new Date();
-    expiry.setMinutes(now.getMinutes() + authExpireMinutes);
-    return ts === undefined || ts === null ? false : ts < expiry.getTime();
-  }
-
-  login() {
+  public login() {
     this.oAuthService.initImplicitFlow();
   }
 
-  loadUserProfile() {
-    if (this.isValid()) {
-      const token = this.oAuthService.getAccessToken();
-      this.keepAlive();
-      localStorage.setItem('user.token', token);
-      this.userService.getLoggedInUser().then(result => {
-        const converter = new JsonConvert();
-        converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
-        const currentUser = new UserModel(converter.deserialize(result, UserModel));
-        localStorage.setItem('user.current', JSON.stringify(currentUser));
-        this.currentUserSubject.next(currentUser);
-      });
-    }
-  }
-
-  logout() {
+  public logout() {
     localStorage.removeItem('user.current');
-    localStorage.removeItem('user.token');
     this.oAuthService.logOut();
     this.currentUserSubject.next(null);
   }
