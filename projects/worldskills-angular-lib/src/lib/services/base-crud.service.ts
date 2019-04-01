@@ -11,19 +11,19 @@ export class BaseCrudService extends BaseService {
     super(http, oAuthService);
   }
 
-  public async getAll() {
+  public getAll() {
     const headers = this.getDefaultHeaders();
-    return await this.http.get(this.endpoint, {
+    return this.http.get(this.endpoint, {
       headers
-    }).toPromise();
+    });
   }
 
-  public async get(id: any) {
+  public get(id: any) {
     const headers = this.getDefaultHeaders();
     const ep = this.endpoint + '/' + id;
-    return await this.http.get(ep, {
+    return this.http.get(ep, {
       headers
-    }).toPromise();
+    });
   }
 
   public async update(id: any, model: object) {
@@ -34,28 +34,28 @@ export class BaseCrudService extends BaseService {
     converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
     const data = converter.serialize(model);
 
-    return await this.http.put(ep, data, {
+    return this.http.put(ep, data, {
       headers,
-    }).toPromise();
+    });
   }
 
-  public async create(model: object) {
+  public create(model: object) {
     const headers = this.getDefaultHeaders();
     const converter = new JsonConvert();
     converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
     const data = converter.serialize(model);
 
-    return await this.http.post(this.endpoint, data, {
+    return this.http.post(this.endpoint, data, {
       headers
-    }).toPromise();
+    });
   }
 
-  public async delete(id: any) {
+  public delete(id: any) {
     const headers = this.getDefaultHeaders();
     const ep = this.endpoint + '/' + id;
 
-    return await this.http.delete(ep, {
+    return this.http.delete(ep, {
       headers
-    }).toPromise();
+    });
   }
 }
