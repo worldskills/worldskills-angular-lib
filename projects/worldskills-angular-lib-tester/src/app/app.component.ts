@@ -32,13 +32,15 @@ export class AppComponent {
     ];
     this.currentUser = new UserModel();
 
-    this.authService.currentUser.subscribe(x => this.currentUser = x);
+    this.authService.currentUser.subscribe(x => {
+      this.currentUser = x;
+      this.isLoggedIn = this.currentUser != null;
+    });
     this.authService.loadUserProfile();
   }
 
   login() {
     this.authService.login();
-    this.isLoggedIn = this.currentUser != null;
     // this.isLoggedIn = true;
     // this.currentUser = new UserModel();
     // this.currentUser.id = 1;

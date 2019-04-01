@@ -11,15 +11,16 @@ export class BaseCrudService extends BaseService {
     super(http, oAuthService);
   }
 
-  public getAll() {
-    const headers = this.getDefaultHeaders();
+  public getAll(params: {}) {
+    const headers = this.getHeaders();
     return this.http.get(this.endpoint, {
-      headers
+      headers,
+      params
     });
   }
 
   public get(id: any) {
-    const headers = this.getDefaultHeaders();
+    const headers = this.getHeaders();
     const ep = this.endpoint + '/' + id;
     return this.http.get(ep, {
       headers
@@ -28,7 +29,7 @@ export class BaseCrudService extends BaseService {
 
   public async update(id: any, model: object) {
     const ep = this.endpoint + '/' + id.toString();
-    const headers = this.getDefaultHeaders();
+    const headers = this.getHeaders();
 
     const converter = new JsonConvert();
     converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
@@ -40,7 +41,7 @@ export class BaseCrudService extends BaseService {
   }
 
   public create(model: object) {
-    const headers = this.getDefaultHeaders();
+    const headers = this.getHeaders();
     const converter = new JsonConvert();
     converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
     const data = converter.serialize(model);
@@ -51,7 +52,7 @@ export class BaseCrudService extends BaseService {
   }
 
   public delete(id: any) {
-    const headers = this.getDefaultHeaders();
+    const headers = this.getHeaders();
     const ep = this.endpoint + '/' + id;
 
     return this.http.delete(ep, {

@@ -22,14 +22,14 @@ export class UserService extends BaseService {
   }
 
   public ping() {
-    const headers = this.getDefaultHeaders();
+    const headers = this.getHeaders();
     const url = `${this.endpoint}ping`;
 
     return this.http.get(url, {headers} );
   }
 
   public getLoggedInUser(showChildRoles: boolean = false) {
-    const headers = this.getDefaultHeaders();
+    const headers = this.getHeaders();
     const url =  this.configService.serviceConfig.userInfoUri(String(showChildRoles));
     return this.http.get(url, {
       headers
