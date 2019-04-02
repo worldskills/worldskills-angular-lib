@@ -35,6 +35,7 @@ export * from './lib/services/user.service';
 // components
 export * from './lib/breadcrumbs/breadcrumbs.component';
 export * from './lib/header/header.component';
+export * from './lib/footer/footer.component';
 export * from './lib/logo/logo.component';
 
 // modules
