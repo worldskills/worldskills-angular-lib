@@ -6,6 +6,10 @@ import { IMenuItem } from '../interfaces/menu-item.interface';
 })
 export class MenuAccessPipe implements PipeTransform {
    transform(items: IMenuItem[], isLoggedIn: boolean, roles: number[]): IMenuItem[] {
+     if (items === null || items === undefined) {
+       return [];
+     }
+
      return items.filter(item => {
       // item doesn't exist, don't display it
       if (item === undefined) {
