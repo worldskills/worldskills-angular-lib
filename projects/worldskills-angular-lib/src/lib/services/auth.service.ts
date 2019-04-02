@@ -22,10 +22,10 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public async keepAlive() {
+  public keepAlive() {
     this.userService.ping().subscribe(
-      result => {},
       error => {
+        console.log(error);
         this.logout();
       }
     );
@@ -42,6 +42,7 @@ export class AuthService {
   public async loadUserProfile() {
     this.userService.getLoggedInUser().subscribe(
       result => {
+        console.log(result);
         if (result != null) {
           const converter = new JsonConvert();
           converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;

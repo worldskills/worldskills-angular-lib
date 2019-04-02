@@ -8,7 +8,6 @@ import { OAuthService, UrlHelperService, OAuthLogger } from 'angular-oauth2-oidc
 import { HttpClientTestingModule,
   HttpTestingController } from '@angular/common/http/testing';
 import { UserModel } from '../models/user.model';
-import { userInfo } from 'os';
 import { RoleModel } from '../models/role-model';
 import { RoleApplicationModel } from '../models/role-application-model';
 
@@ -21,8 +20,6 @@ describe('UserService', () => {
   serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
   const oAuthConfig = new OAuthConfig();
   oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
-  oAuthConfig.clientId = 'b4fe5608e0d7';
-  oAuthConfig.oidc = false;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -73,12 +70,16 @@ describe('UserService', () => {
   it('should get logged in user', () => {
     const returnObject = new UserModel();
     returnObject.id = 1;
+    returnObject.firstName = 'Joe';
+    returnObject.lastName = 'Blogs';
+    returnObject.personId = 2;
 
     httpTestingController = TestBed.get(HttpTestingController);
     const service: UserService = TestBed.get(UserService);
     service.getLoggedInUser().subscribe(x => {
       const model = x as UserModel;
       expect(model.id).toEqual(1);
+      expect(model.fullname).toEqual('Joe Blogs');
     });
     const req = httpTestingController.expectOne('http://localhost:8081/auth/users/loggedIn?show_child_roles=false&app_code=500');
     expect(req.request.method).toEqual('GET');
@@ -110,7 +111,7 @@ describe('UserService', () => {
     adminRole.roleApplication.applicationCode = 500;
     adminRole.name = 'ViewAll';
 
-    const user = new UserModel();
+    const user = new UserModel({});
     user.id = 1;
     user.roles.push(adminRole);
     const service: UserService = TestBed.get(UserService);
