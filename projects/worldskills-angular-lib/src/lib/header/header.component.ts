@@ -26,13 +26,10 @@ export class HeaderComponent implements OnInit {
     this.currentUser = new UserModel();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // tslint:disable-next-line:use-life-cycle-interface
-  ngOnChanges() {
-
-  }
+  ngOnChanges() {}
 
   userRoleIds() {
     if (this.currentUser === undefined || this.currentUser === null) {

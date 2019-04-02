@@ -30,6 +30,7 @@ describe('HeaderComponent', () => {
 
 
   it('should create', () => {
+    component.ngOnChanges();
     expect(component).toBeTruthy();
   });
 
@@ -70,12 +71,15 @@ describe('HeaderComponent', () => {
   });
 
   it('should return user Role Ids - missing user', () => {
+    component.currentUser = null;
+    fixture.detectChanges();
     const result = component.userRoleIds();
     expect(result === []);
   });
 
   it('should return user Role Ids - missing roles', () => {
     component.currentUser = new UserModel();
+    component.currentUser.roles = null;
     fixture.detectChanges();
     const result = component.userRoleIds();
     expect(result === []);

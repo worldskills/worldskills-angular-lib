@@ -21,7 +21,8 @@
           "options": {
             "main": "projects/worldskills-angular-lib/src/test.ts",
             "tsConfig": "projects/worldskills-angular-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/worldskills-angular-lib/karma.conf.js"
+            "karmaConfig": "projects/worldskills-angular-lib/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {
