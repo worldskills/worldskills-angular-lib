@@ -27,7 +27,7 @@ export class BaseCrudService extends BaseService {
     });
   }
 
-  public async update(id: any, model: object) {
+  public update(id: any, model: object) {
     const ep = this.endpoint + '/' + id.toString();
     const headers = this.getHeaders();
 

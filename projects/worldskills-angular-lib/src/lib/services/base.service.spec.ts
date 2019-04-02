@@ -3,7 +3,7 @@ import { async, TestBed } from '@angular/core/testing';
 import { BaseService } from './base.service';
 import { HttpClient, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 // NOTE: TestBed only works on Injectable classes, this is Base Class
 describe('BaseService', () => {
