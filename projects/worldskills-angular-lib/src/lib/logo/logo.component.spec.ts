@@ -23,6 +23,14 @@ describe('LogoComponent', () => {
   });
 
   it('should create', () => {
+    component.ngOnChanges();
+    expect(component).toBeTruthy();
+  });
+
+  it('should create - default check', () => {
+    component.mode = '';
+    fixture.detectChanges();
+    component.ngOnChanges();
     expect(component).toBeTruthy();
   });
 });
