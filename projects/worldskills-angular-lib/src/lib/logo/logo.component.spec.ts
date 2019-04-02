@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LogoComponent } from './logo.component';
 
@@ -8,6 +9,7 @@ describe('LogoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ LogoComponent ]
     })
     .compileComponents();
@@ -16,6 +18,7 @@ describe('LogoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;
+    component.mode = 'default';
     fixture.detectChanges();
   });
 
