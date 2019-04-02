@@ -15,8 +15,8 @@
           </a>
         </li>
       </ul>
-      <a class="btn btn-light btn-sm ml-2" (click)="login();" *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
-      <a class="btn btn-light btn-sm ml-2" (click)="logout();" *ngIf="showLoginAndLogoutButtons && isLoggedIn">Log Out</a>
+      <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="login();" *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
+      <a class="btn btn-light btn-sm ml-2 wsi-logout" (click)="logout();" *ngIf="showLoginAndLogoutButtons && isLoggedIn">Log Out</a>
 
     </div>
   </div>
