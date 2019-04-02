@@ -23,8 +23,7 @@ export class UserService extends BaseService {
 
   public ping() {
     const headers = this.getHeaders();
-    const url = `${this.endpoint}ping`;
-
+    const url = `${this.endpoint}/ping`;
     return this.http.get(url, {headers} );
   }
 
@@ -46,7 +45,7 @@ export class UserService extends BaseService {
     return result;
   }
 
-  public authenticate(user: UserModel, roles: []) {
+  public authenticate(user: UserModel, roles: string[]) {
     return this.hasPermission(user, roles).length > 0;
   }
 }
