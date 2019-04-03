@@ -12,6 +12,7 @@ export * from './lib/config/oauth-config';
 export * from './lib/interfaces/breadcrumb.interface';
 
 // models
+export * from './lib/models/collection-model';
 export * from './lib/models/link-model';
 export * from './lib/models/name-model';
 export * from './lib/models/role-application-model';
