@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { UserModel } from '../models/user.model';
 import { OAuthService, OAuthModule } from 'angular-oauth2-oidc';
 import { UserService } from './user.service';
@@ -39,7 +40,7 @@ export class AuthService {
     return this.oAuthService.hasValidAccessToken();
   }
 
-  public async loadUserProfile() {
+  public async loadUserProfile(callback: (error: any) => any) {
     this.userService.getLoggedInUser().subscribe(
       result => {
         console.log(result);
@@ -49,10 +50,12 @@ export class AuthService {
           const currentUser = new UserModel(converter.deserialize(result, UserModel));
           localStorage.setItem('user.current', JSON.stringify(currentUser));
           this.currentUserSubject.next(currentUser);
+          callback(null);
         }
       },
       error => {
         this.currentUser = null;
+        callback(error);
       }
     );
   }

@@ -117,7 +117,9 @@ describe('AuthService', () => {
 
     httpTestingController = TestBed.get(HttpTestingController);
     const service: AuthService = TestBed.get(AuthService);
-    service.loadUserProfile();
+    service.loadUserProfile((error: any) => {
+      console.log(error);
+    });
     const req = httpTestingController.expectOne('http://localhost:8081/auth/users/loggedIn?show_child_roles=false&app_code=500');
     expect(req.request.method).toEqual('GET');
     req.flush(returnObject);
@@ -128,7 +130,9 @@ describe('AuthService', () => {
     const returnObject = { status: 500, statusText: 'Internal Server Error' };
     httpTestingController = TestBed.get(HttpTestingController);
     const service: AuthService = TestBed.get(AuthService);
-    service.loadUserProfile();
+    service.loadUserProfile((error: any) => {
+      console.log(error);
+    });
     const req = httpTestingController.expectOne('http://localhost:8081/auth/users/loggedIn?show_child_roles=false&app_code=500');
     expect(req.request.method).toEqual('GET');
     req.flush('', returnObject);

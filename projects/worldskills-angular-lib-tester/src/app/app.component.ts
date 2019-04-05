@@ -36,7 +36,9 @@ export class AppComponent {
       this.currentUser = x;
       this.isLoggedIn = this.currentUser != null;
     });
-    this.authService.loadUserProfile();
+    this.authService.loadUserProfile((error: any) => {
+      console.log(error);
+    });
   }
 
   login() {
