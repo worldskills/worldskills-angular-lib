@@ -16,4 +16,12 @@ export class CollectionModel<TModel> {
 
   @JsonProperty('total', Number)
   total: number;
+
+  constructor(obj?: any) {
+    this.offset = obj && obj.offset || 0;
+    this.limit = obj && obj.limit || 0;
+    this.items = obj && obj.items || [];
+    this.count = obj && obj.count || 0;
+    this.total = obj && obj.total || 0;
+  }
 }
