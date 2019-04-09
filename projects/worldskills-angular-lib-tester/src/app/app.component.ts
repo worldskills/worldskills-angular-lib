@@ -3,6 +3,7 @@ import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { ToggleButtonModel } from 'projects/worldskills-angular-lib/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,8 @@ export class AppComponent {
 
   appCode: number;
   cliendId: string;
+
+  toggleButtons: Array<ToggleButtonModel>;
 
   constructor(
     private moduleConfigService: ModuleConfigService,
@@ -39,6 +42,28 @@ export class AppComponent {
     this.authService.loadUserProfile((error: any) => {
       console.log(error);
     });
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit() {
+    const yesButton = new ToggleButtonModel();
+    yesButton.name = 'yes';
+    yesButton.text = 'yes';
+    yesButton.active = true;
+
+    const noButton = new ToggleButtonModel();
+    noButton.name = 'no';
+    noButton.text = 'no';
+    noButton.active = false;
+    this.toggleButtons = new Array<ToggleButtonModel>(yesButton, noButton);
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnChanges() {
+  }
+
+  onButtonClicked(button: ToggleButtonModel) {
+    console.log(button);
   }
 
   login() {

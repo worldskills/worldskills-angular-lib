@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken } from './config/module-config.service';
 import { ServiceConfig } from './config/service-config';
 import { OAuthConfig } from './config/oauth-config';
+import { ButtonToggleComponent } from './button-toggle/button-toggle.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OAuthConfig } from './config/oauth-config';
     FooterComponent,
     HeaderComponent,
     LogoComponent,
-    MenuAccessPipe
+    MenuAccessPipe,
+    ButtonToggleComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { OAuthConfig } from './config/oauth-config';
   ],
   exports: [
     BreadcrumbsComponent,
+    ButtonToggleComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,

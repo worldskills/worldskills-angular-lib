@@ -12,6 +12,7 @@ export * from './lib/config/oauth-config';
 export * from './lib/interfaces/breadcrumb.interface';
 
 // models
+export * from './lib/models/toggle-button-model';
 export * from './lib/models/collection-model';
 export * from './lib/models/link-model';
 export * from './lib/models/name-model';
@@ -35,6 +36,7 @@ export * from './lib/services/user.service';
 
 // components
 export * from './lib/breadcrumbs/breadcrumbs.component';
+export * from './lib/button-toggle/button-toggle.component';
 export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 export * from './lib/logo/logo.component';
