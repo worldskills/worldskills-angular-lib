@@ -6,8 +6,11 @@ export class ToggleButtonModel {
   active: boolean;
   htmlClass: string;
 
-  constructor() {
-    this.htmlClass = 'btn btn-primary btn-sm';
+  constructor(obj?: any) {
+    this.name = obj && obj.name || '';
+    this.text = obj && obj.text || '';
+    this.active = obj && obj.active || false;
+    this.htmlClass = obj && obj.htmlClass || 'btn btn-primary btn-sm';
   }
 
   get buttonClass() {

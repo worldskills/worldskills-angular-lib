@@ -1,7 +1,3 @@
-button stuff<br />
-bttons: {{ this.buttons }}<br />
-buttons size: {{ this.buttons.length }}
-
 <div class="btn-group">
   <button *ngFor="let item of this.buttons" (click)="buttonClicked(item)"
   class="{{ item.buttonClass }}">{{ item.text }}</button>
