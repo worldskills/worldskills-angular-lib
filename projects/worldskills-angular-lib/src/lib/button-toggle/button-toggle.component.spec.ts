@@ -22,16 +22,16 @@ describe('ButtonToggleComponent', () => {
     fixture = TestBed.createComponent(ButtonToggleComponent);
     component = fixture.componentInstance;
     component.buttons = buttons;
+    component.activeButtonName = 'yes';
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.ngOnChanges();
     expect(component).toBeTruthy();
   });
 
   it('should change active to: no', () => {
-
-    const expected = {name: 'no', active: true};
     // spy on event emitter
     spyOn(component.buttonClickedEvent, 'emit');
     // trigger the click
@@ -41,7 +41,19 @@ describe('ButtonToggleComponent', () => {
     fixture.detectChanges();
     console.log(component.buttonClickedEvent.emit);
     expect(component.buttonClickedEvent.emit).toHaveBeenCalled();
-    expect(component.buttons.find(x => x.name === 'yes').active).toBe(false);
-    expect(component.buttons.find(x => x.name === 'no').active).toBe(true);
+    expect(component.activeButtonName).toBe('no');
  });
+
+  it('should not change active', () => {
+    // spy on event emitter
+    spyOn(component.buttonClickedEvent, 'emit');
+    // trigger the click
+    const yesButton = fixture.nativeElement.querySelectorAll('.btn')[0];
+    console.log(yesButton);
+    yesButton.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    console.log(component.buttonClickedEvent.emit);
+    expect(component.buttonClickedEvent.emit).toHaveBeenCalled();
+    expect(component.activeButtonName).toBe('yes');
+  });
 });

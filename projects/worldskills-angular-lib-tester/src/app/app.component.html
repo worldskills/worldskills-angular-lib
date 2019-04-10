@@ -23,7 +23,7 @@
       <ws-breadcrumbs showHomeItem="true" homeItemText="Home" homeItemRoute="/"></ws-breadcrumbs>
         The Injected App Code is {{ appCode }}<br />
         The Injected Client ID is {{ cliendId }}
-        <ws-button-toggle [buttons]="toggleButtons" (buttonClickedEvent)="onButtonClicked($event)"></ws-button-toggle>
+        <ws-button-toggle [activeButtonName]="activeToggleButton" [buttons]="toggleButtons" (buttonClickedEvent)="onButtonClicked($event)"></ws-button-toggle>
 
     </div>
 

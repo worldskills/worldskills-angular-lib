@@ -10,7 +10,11 @@ export class ButtonToggleComponent implements OnInit {
 
   @Input() buttons: Array<ToggleButtonModel>;
 
+  @Input() activeButtonName: string;
+
+
   @Output() buttonClickedEvent: EventEmitter<ToggleButtonModel> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -20,17 +24,14 @@ export class ButtonToggleComponent implements OnInit {
   ngOnChanges() {}
 
   buttonClicked(model: ToggleButtonModel) {
-    if (model.active) {
-      return;
-    }
-
-    this.buttons.forEach(item => {
-      item.active = item.name === model.name;
-    });
-
-    model.active = true;
-
+    this.activeButtonName = model.name;
     this.buttonClickedEvent.emit(model);
+  }
+
+  buttonClass(model: ToggleButtonModel) {
+    return this.activeButtonName === model.name
+      ? model.htmlClass + ' active'
+      : model.htmlClass;
   }
 
 }

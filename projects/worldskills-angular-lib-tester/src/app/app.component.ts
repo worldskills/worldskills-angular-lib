@@ -22,6 +22,8 @@ export class AppComponent {
 
   toggleButtons: Array<ToggleButtonModel>;
 
+  activeToggleButton: string;
+
   constructor(
     private moduleConfigService: ModuleConfigService,
     private authService: AuthService) {
@@ -46,16 +48,14 @@ export class AppComponent {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    const yesButton = new ToggleButtonModel();
-    yesButton.name = 'yes';
-    yesButton.text = 'yes';
-    yesButton.active = true;
+    this.initToggleButtons();
+  }
 
-    const noButton = new ToggleButtonModel();
-    noButton.name = 'no';
-    noButton.text = 'no';
-    noButton.active = false;
+  initToggleButtons() {
+    const yesButton = new ToggleButtonModel({name: 'yes', text: 'yes'});
+    const noButton = new ToggleButtonModel({name: 'no', text: 'no'});
     this.toggleButtons = new Array<ToggleButtonModel>(yesButton, noButton);
+    this.activeToggleButton = 'no';
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -64,6 +64,7 @@ export class AppComponent {
 
   onButtonClicked(button: ToggleButtonModel) {
     console.log(button);
+    this.activeToggleButton = button.name; // switch active state on the toggle button
   }
 
   login() {

@@ -18,7 +18,7 @@ describe('AuthService', () => {
   serviceConfig.appCode = 500;
   serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
   const oAuthConfig = new OAuthConfig();
-  oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
+  oAuthConfig.loginURI = '';
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -43,6 +43,7 @@ describe('AuthService', () => {
   }));
 
   it('should be created', () => {
+
     httpTestingController = TestBed.get(HttpTestingController);
     const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
