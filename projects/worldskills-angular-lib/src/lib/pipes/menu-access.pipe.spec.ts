@@ -6,7 +6,7 @@ describe('Pipe: MenuAccess', () => {
   const menuItems = [
     // TODO: requiredRoles by rolename and application code
     { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
-    { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: [2, 4, 6] },
+    { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: ['Admin', 'ViewAll'] },
     { label: 'Hidden', url: '/', hidden: true, requireLogin: false, requiredRoles: [] }
   ];
 
@@ -17,10 +17,10 @@ describe('Pipe: MenuAccess', () => {
   it('User Logged In and Has Roles', () => {
     const expected = [
       { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
-      { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: [2, 4, 6] },
+      { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: ['Admin', 'ViewAll'] },
     ];
-    const result = pipe.transform(menuItems, true, [2, 4, 6]);
-    expect(result === expected);
+    const result = pipe.transform(menuItems, true, ['Admin', 'ViewAll']);
+    expect(result).toEqual(expected);
   });
 
   it('User Logged In and Has no Roles', () => {
@@ -35,18 +35,18 @@ describe('Pipe: MenuAccess', () => {
     const expected = [
       { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] }
     ];
-    const result = pipe.transform(menuItems, false, [2, 4, 6]);
-    expect(result === expected);
+    const result = pipe.transform(menuItems, false, ['Admin', 'ViewAll']);
+    expect(result).toEqual(expected);
   });
 
   it('Undefined Menu Items', () => {
-    const result = pipe.transform([undefined], false, [2, 4, 6]);
-    expect(result === []);
+    const result = pipe.transform([undefined], false, ['Admin', 'ViewAll']);
+    expect(result).toEqual([]);
   });
 
   it('null Menu Items', () => {
-    const result = pipe.transform(null, false, [2, 4, 6]);
-    expect(result === []);
+    const result = pipe.transform(null, false, ['Admin', 'ViewAll']);
+    expect(result).toEqual([]);
   });
 });
 

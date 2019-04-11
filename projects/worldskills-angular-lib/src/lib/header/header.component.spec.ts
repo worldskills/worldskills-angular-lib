@@ -62,37 +62,38 @@ describe('HeaderComponent', () => {
 
   it('should have active route', () => {
     const result = component.isRouteActive('/');
-    expect(result === true);
+    expect(result).toBe(true);
   });
 
   it('should not have active route', () => {
     const result = component.isRouteActive('/somewhere');
-    expect(result === false);
+    expect(result).toBe(false);
   });
 
   it('should return user Role Ids - missing user', () => {
     component.currentUser = null;
     fixture.detectChanges();
-    const result = component.userRoleIds();
-    expect(result === []);
+    const result = component.userRoles();
+    expect(result).toEqual([]);
   });
 
   it('should return user Role Ids - missing roles', () => {
     component.currentUser = new UserModel();
     component.currentUser.roles = null;
     fixture.detectChanges();
-    const result = component.userRoleIds();
-    expect(result === []);
+    const result = component.userRoles();
+    expect(result).toEqual([]);
   });
 
   it('should return user Role Ids', () => {
     const role = new RoleModel();
     role.id = 1;
+    role.name = 'Admin';
     component.currentUser = new UserModel();
     component.currentUser.roles = [];
     component.currentUser.roles.push(role);
     fixture.detectChanges();
-    const result = component.userRoleIds();
-    expect(result === [1]);
+    const result = component.userRoles();
+    expect(result).toEqual(['Admin']);
   });
 });
