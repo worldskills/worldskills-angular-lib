@@ -5,14 +5,14 @@ import { IMenuItem } from '../interfaces/menu-item.interface';
    name : 'wsMenuAccesssFilter'
 })
 export class MenuAccessPipe implements PipeTransform {
-   transform(items: IMenuItem[], isLoggedIn: boolean, roles: number[]): IMenuItem[] {
+   transform(items: IMenuItem[], isLoggedIn: boolean, roles: string[]): IMenuItem[] {
      if (items === null || items === undefined) {
        return [];
      }
 
      return items.filter(item => {
       // item doesn't exist, don't display it
-      if (item === undefined) {
+      if (item === undefined || item === null) {
         return false;
       }
 
@@ -33,9 +33,9 @@ export class MenuAccessPipe implements PipeTransform {
 
       // item requires role permissions
       let show = false;
-      item.requiredRoles.forEach(roleId => {
+      item.requiredRoles.forEach(roleName => {
         show = false;
-        const index = roles.findIndex(userRoleId => userRoleId === roleId);
+        const index = roles.findIndex(userRoleName => userRoleName === roleName);
         if (index !== -1) {
           show = true;
           return; // end loop

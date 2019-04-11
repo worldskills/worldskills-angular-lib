@@ -30,10 +30,12 @@ export class AppComponent {
     this.appCode = moduleConfigService.serviceConfig.appCode;
     this.cliendId = moduleConfigService.oAuthConfig.clientId;
     this.isLoggedIn = false;
+    console.log(this.currentUser);
     this.menuItems = [
       // TODO: requiredRoles by rolename and application code
       { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
-      { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: [] }
+      { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: ['EditForums'] },
+      { label: 'Admin', url: '/', hidden: false, requireLogin: true, requiredRoles: ['Admin'] }
     ];
     this.currentUser = new UserModel();
 

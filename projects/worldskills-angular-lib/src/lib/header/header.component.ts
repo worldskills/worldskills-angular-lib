@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges() {}
 
-  userRoleIds() {
+  userRoles() {
     if (this.currentUser === undefined || this.currentUser === null) {
       return [];
     }
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     }
 
     return this.currentUser.roles.map(item => {
-      return item.id;
+      return item.name;
     });
   }
 

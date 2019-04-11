@@ -6,6 +6,6 @@ export interface IMenuItem {
   url: string;
   hidden: boolean;
   requireLogin: boolean;
-  requiredRoles: number[];
+  requiredRoles: string[];
 
 }
