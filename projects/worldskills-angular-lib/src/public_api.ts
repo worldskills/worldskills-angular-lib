@@ -41,5 +41,8 @@ export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 export * from './lib/logo/logo.component';
 
+// security
+export * from './lib/security/ws-auth-guard';
+
 // modules
 export * from './lib/worldskills-angular-lib.module';
