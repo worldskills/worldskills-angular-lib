@@ -36,7 +36,8 @@ import { PagerComponent } from './pager/pager.component';
     FooterComponent,
     HeaderComponent,
     LogoComponent,
-    MenuAccessPipe
+    MenuAccessPipe,
+    PagerComponent
   ]
 })
 export class WorldskillsAngularLibModule {

@@ -55,6 +55,6 @@ export class WSAuthGuard implements CanActivate {
   }
 
   protected error(message: string) {
-    console.log(console.error());
+    console.log(message);
   }
 }
