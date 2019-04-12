@@ -12,6 +12,7 @@ import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken } from './con
 import { ServiceConfig } from './config/service-config';
 import { OAuthConfig } from './config/oauth-config';
 import { ButtonToggleComponent } from './button-toggle/button-toggle.component';
+import { PagerComponent } from './pager/pager.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ButtonToggleComponent } from './button-toggle/button-toggle.component';
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
-    ButtonToggleComponent
+    ButtonToggleComponent,
+    PagerComponent
   ],
   imports: [
     BrowserModule,
