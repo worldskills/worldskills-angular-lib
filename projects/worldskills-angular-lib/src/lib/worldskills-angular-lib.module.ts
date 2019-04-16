@@ -13,16 +13,18 @@ import { ServiceConfig } from './config/service-config';
 import { OAuthConfig } from './config/oauth-config';
 import { ButtonToggleComponent } from './button-toggle/button-toggle.component';
 import { PagerComponent } from './pager/pager.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
+    ButtonToggleComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
-    ButtonToggleComponent,
-    PagerComponent
+    PagerComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { PagerComponent } from './pager/pager.component';
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
-    PagerComponent
+    PagerComponent,
+    SortPipe
   ]
 })
 export class WorldskillsAngularLibModule {

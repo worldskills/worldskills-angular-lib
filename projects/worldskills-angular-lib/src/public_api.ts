@@ -24,6 +24,7 @@ export * from './lib/models/ws-entity-model';
 
 // pipes
 export * from './lib/pipes/menu-access.pipe';
+export * from './lib/pipes/sort.pipe';
 
 // converters
 export * from './lib/converters/date-converter';
