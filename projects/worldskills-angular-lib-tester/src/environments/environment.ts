@@ -1,4 +1,4 @@
-import { OAuthConfig, ServiceConfig } from 'worldskills-angular-lib';
+import { OAuthConfig, ServiceConfig, EncoderConfig } from 'worldskills-angular-lib';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -17,9 +17,13 @@ oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
 oAuthConfig.clientId = 'b4fe5608e0d7';
 oAuthConfig.oidc = false;
 
+const encoderConfig = new EncoderConfig();
+encoderConfig.uriPatterns = [];
+
 export const config = {
   service: serviceConfig,
-  oauth: oAuthConfig
+  oauth: oAuthConfig,
+  encoder: encoderConfig
 };
 
 /*
