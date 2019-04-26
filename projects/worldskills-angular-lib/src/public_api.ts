@@ -4,9 +4,18 @@ import { from } from 'rxjs';
  * Public API Surface of worldskills-angular-lib
  */
 
+// encoders
+export * from './lib/encoders/ws-http-encoder';
+
+// utils
+export * from './lib/util/array-util';
+export * from './lib/util/date-util';
+export * from './lib/util/generic-util';
+
 // config
 export * from './lib/config/service-config';
 export * from './lib/config/oauth-config';
+export * from './lib/config/encoder-config';
 
 // interfaces
 export * from './lib/interfaces/breadcrumb.interface';
@@ -29,12 +38,18 @@ export * from './lib/pipes/sort.pipe';
 // converters
 export * from './lib/converters/date-converter';
 
+// handlers
+export * from './lib/handlers/sentry-error-handler';
+
 // services
 export * from './lib/config/module-config.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/base.service';
 export * from './lib/services/base-crud.service';
 export * from './lib/services/user.service';
+
+// interceptors
+export * from './lib/interceptors/ws-http-interceptor';
 
 // components
 export * from './lib/breadcrumbs/breadcrumbs.component';

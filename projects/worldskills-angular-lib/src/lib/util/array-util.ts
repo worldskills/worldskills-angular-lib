@@ -1,10 +1,11 @@
-export class GenericUtil {
+export class ArrayUtil {
   // since array concat doesn't trigger UI updates
   static pushMany(first: any[], second: any[]) {
     second.forEach(item => first.push(item));
+    return first;
   }
 
-  static dedupe(arr: any[]) {
+  static dedupePrimitive(arr: any[]) {
     const clean = [];
     arr.forEach(item => {
       if (clean.indexOf(item) === -1) {

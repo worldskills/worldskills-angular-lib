@@ -8,12 +8,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
 import { FooterComponent } from './footer/footer.component';
-import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken } from './config/module-config.service';
+import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken, EncoderConfigToken } from './config/module-config.service';
 import { ServiceConfig } from './config/service-config';
 import { OAuthConfig } from './config/oauth-config';
 import { ButtonToggleComponent } from './button-toggle/button-toggle.component';
 import { PagerComponent } from './pager/pager.component';
 import { SortPipe } from './pipes/sort.pipe';
+import { EncoderConfig } from './config/encoder-config';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { SortPipe } from './pipes/sort.pipe';
 })
 export class WorldskillsAngularLibModule {
 
-  static forConfig(serviceConfig: ServiceConfig, oAuthConfig: OAuthConfig) {
+  static forConfig(serviceConfig: ServiceConfig, oAuthConfig: OAuthConfig, encoderConfig: EncoderConfig) {
 
     return {
       ngModule: WorldskillsAngularLibModule,
@@ -58,6 +59,10 @@ export class WorldskillsAngularLibModule {
         {
           provide: OAuthConfigToken,
           useValue: oAuthConfig
+        },
+        {
+          provide: EncoderConfigToken,
+          useValue: encoderConfig
         }
       ]
     };

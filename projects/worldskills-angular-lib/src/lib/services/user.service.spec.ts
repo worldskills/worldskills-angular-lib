@@ -1,7 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
-import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken } from '../config/module-config.service';
+import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken, EncoderConfigToken } from '../config/module-config.service';
 import { ServiceConfig } from '../config/service-config';
 import { OAuthConfig } from '../config/oauth-config';
 import { OAuthService, UrlHelperService, OAuthLogger } from 'angular-oauth2-oidc';
@@ -10,6 +10,7 @@ import { HttpClientTestingModule,
 import { UserModel } from '../models/user.model';
 import { RoleModel } from '../models/role-model';
 import { RoleApplicationModel } from '../models/role-application-model';
+import { EncoderConfig } from '../config/encoder-config';
 
 // since our service is injectable, we can make use of angular test suite
 describe('UserService', () => {
@@ -20,6 +21,7 @@ describe('UserService', () => {
   serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
   const oAuthConfig = new OAuthConfig();
   oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
+  const encoderConfig = new EncoderConfig();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,6 +39,10 @@ describe('UserService', () => {
         {
           provide: OAuthConfigToken,
           useValue: oAuthConfig
+        },
+        {
+          provide: EncoderConfigToken,
+          useValue: encoderConfig
         }
       ]
     })

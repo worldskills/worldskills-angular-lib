@@ -4,7 +4,7 @@ import { SortPipe } from './sort.pipe';
 describe('Pipe: MenuAccess', () => {
   let pipe: SortPipe;
 
-  const stringData = ['Red', 'Green', 'White', 'Blue'];
+  const stringData = ['Red', 'Green', 'White', 'Blue', 'Green'];
   const numberData = [5, 1, 3, 2];
   const dateData = [
     new Date(2019, 5, 1, 10, 5, 0),
@@ -24,13 +24,13 @@ describe('Pipe: MenuAccess', () => {
   });
 
   it('String Sort Ascending', () => {
-    const expected = ['Blue', 'Green', 'Red', 'White'];
+    const expected = ['Blue', 'Green', 'Green', 'Red', 'White'];
     const result = pipe.transform(stringData);
     expect(result).toEqual(expected);
   });
 
   it('String Sort Descending', () => {
-    const expected = ['White', 'Red', 'Green', 'Blue'];
+    const expected = ['White', 'Red', 'Green', 'Green', 'Blue'];
     const result = pipe.transform(stringData, 'desc');
     expect(result).toEqual(expected);
   });
