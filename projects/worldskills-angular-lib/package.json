@@ -10,6 +10,7 @@
     "@angular/router": "7.2.11",
     "angular-oauth2-oidc": "^5.0.2",
     "json2typescript": "^1.1.1",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.3.3",
+    "@sentry/browser": "^5.1.0"
   }
 }
