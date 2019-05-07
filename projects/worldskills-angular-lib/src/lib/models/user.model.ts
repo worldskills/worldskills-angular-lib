@@ -55,7 +55,7 @@ export class UserModel {
 
   constructor(obj?: any) {
     this.id = obj && Number(obj.id) || 0;
-    this.personId = obj && Number(obj.person_id) || 0;
+    this.personId = obj && Number(obj.personId) || 0;
     this.legacyId = obj && Number(obj.legacyId) || 0;
     this.firstName = obj && obj.firstName || '';
     this.lastName = obj && obj.lastName || '';
