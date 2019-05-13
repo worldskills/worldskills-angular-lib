@@ -17,9 +17,12 @@ export class BreadcrumbsComponent implements OnInit {
 
   public routeDataTag: string;
 
+  public hiddenDataTag: string;
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.breadcrumbs = [];
     this.routeDataTag = 'breadcrumb';
+    this.hiddenDataTag = 'hidden';
     this.showHomeItem = false;
     this.homeItemRoute = '/';
     this.homeItemText = 'Home';
@@ -48,6 +51,11 @@ export class BreadcrumbsComponent implements OnInit {
     for (const child of children) {
       // verify primary route
       if (child.outlet !== PRIMARY_OUTLET) {
+        continue;
+      }
+
+      // if the child component contains the hidden tag - skip the breadcrumb display
+      if (child.snapshot.data.hasOwnProperty(this.hiddenDataTag)) {
         continue;
       }
 

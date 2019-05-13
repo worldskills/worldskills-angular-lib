@@ -6,17 +6,20 @@ import { WorldskillsAngularLibModule, ServiceConfig, OAuthConfig } from 'worldsk
 import { Routes, RouterModule } from '@angular/router';
 import { config } from '../environments/environment';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { SampleComponent } from './sample/sample.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: AppComponent },
+  { path: 'sample', component: SampleComponent, data: { breadcrumb: 'Sample', hidden: '' } },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SampleComponent
   ],
   imports: [
     BrowserModule,
