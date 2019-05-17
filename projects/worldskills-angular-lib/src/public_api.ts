@@ -15,7 +15,7 @@ export * from './lib/util/generic-util';
 // config
 export * from './lib/config/service-config';
 export * from './lib/config/oauth-config';
-export * from './lib/config/encoder-config';
+export * from './lib/config/ws-http-config';
 
 // interfaces
 export * from './lib/interfaces/breadcrumb.interface';

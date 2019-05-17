@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     OAuthModule.forRoot(),
-    WorldskillsAngularLibModule.forConfig(config.service, config.oauth, config.encoder),
+    WorldskillsAngularLibModule.forConfig(config.service, config.oauth, config.http),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

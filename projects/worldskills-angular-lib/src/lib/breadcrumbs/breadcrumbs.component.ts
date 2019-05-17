@@ -54,7 +54,7 @@ export class BreadcrumbsComponent implements OnInit {
         continue;
       }
 
-      // if the child component contains the hidden tag - skip the breadcrumb display
+      // if the child component contains the hidden tag - skip
       if (child.snapshot.data.hasOwnProperty(this.hiddenDataTag)) {
         continue;
       }
