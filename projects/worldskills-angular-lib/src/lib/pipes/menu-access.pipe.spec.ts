@@ -23,6 +23,15 @@ describe('Pipe: MenuAccess', () => {
     expect(result).toEqual(expected);
   });
 
+  it('User Logged In and Has one of the required roles', () => {
+    const expected = [
+      { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
+      { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: ['Admin', 'ViewAll'] },
+    ];
+    const result = pipe.transform(menuItems, true, ['Admin']);
+    expect(result).toEqual(expected);
+  });
+
   it('User Logged In and Has no Roles', () => {
     const expected = [
       { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] }

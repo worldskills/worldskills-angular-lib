@@ -33,14 +33,14 @@ export class MenuAccessPipe implements PipeTransform {
 
       // item requires role permissions
       let show = false;
-      item.requiredRoles.forEach(roleName => {
-        show = false;
-        const index = roles.findIndex(userRoleName => userRoleName === roleName);
-        if (index !== -1) {
-          show = true;
-          return; // end loop
+      for (const roleName of item.requiredRoles) {
+        show = roles.findIndex(userRoleName => userRoleName === roleName) !== -1;
+
+        if (show) {
+          break;
         }
-      });
+      }
+
       return show;
      });
    }
