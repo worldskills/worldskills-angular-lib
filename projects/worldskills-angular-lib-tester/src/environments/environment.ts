@@ -8,24 +8,23 @@ export const environment = {
   production: false
 };
 
-const serviceConfig = new ServiceConfig();
-serviceConfig.appCode = 500;
-serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
-
-const oAuthConfig = new OAuthConfig();
-oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
-oAuthConfig.clientId = 'b4fe5608e0d7';
-oAuthConfig.oidc = false;
-
-const httpConfig = new WSHttpConfig();
-httpConfig.encoderUriPatterns = [];
-httpConfig.authUriPatterns = [];
-
-export const config = {
-  service: serviceConfig,
-  oauth: oAuthConfig,
-  http: httpConfig
+export const serviceConfig = {
+  appCode: 500,
+  userServiceEndpoint: 'http://localhost:8081/auth'
 };
+
+export const oAuthConfig = {
+  loginURI: 'http://localhost:50300/oauth/authorize',
+  clientId: 'b4fe5608e0d7',
+  oidc: false
+};
+
+export const httpConfig = {
+  encoderUriPatterns: [],
+  authUriPatterns: []
+};
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

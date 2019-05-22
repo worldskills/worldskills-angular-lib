@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { WorldskillsAngularLibModule, ServiceConfig, OAuthConfig } from 'worldskills-angular-lib';
+import { WorldskillsAngularLibModule } from 'worldskills-angular-lib';
 import { Routes, RouterModule } from '@angular/router';
-import { config } from '../environments/environment';
+import { serviceConfig, oAuthConfig, httpConfig } from '../environments/environment';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { SampleComponent } from './sample/sample.component';
 
@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     OAuthModule.forRoot(),
-    WorldskillsAngularLibModule.forConfig(config.service, config.oauth, config.http),
+    WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

@@ -46,7 +46,7 @@ import { WSHttpConfig } from './config/ws-http-config';
 })
 export class WorldskillsAngularLibModule {
 
-  static forConfig(serviceConfig: ServiceConfig, oAuthConfig: OAuthConfig, encoderConfig: WSHttpConfig) {
+  static forConfig(serviceConfig: any, oAuthConfig: any, httpConfig: any) {
 
     return {
       ngModule: WorldskillsAngularLibModule,
@@ -54,15 +54,15 @@ export class WorldskillsAngularLibModule {
         ModuleConfigService,
         {
           provide: ServiceConfigToken,
-          useValue: serviceConfig
+          useValue: new ServiceConfig(serviceConfig)
         },
         {
           provide: OAuthConfigToken,
-          useValue: oAuthConfig
+          useValue: new OAuthConfig(oAuthConfig)
         },
         {
           provide: WSHttpConfigToken,
-          useValue: encoderConfig
+          useValue: new WSHttpConfig(httpConfig)
         }
       ]
     };
