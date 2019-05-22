@@ -29,7 +29,7 @@ export class UserService extends BaseService {
 
   public getLoggedInUser(showChildRoles: boolean = false) {
     const headers = this.getHeaders();
-    const url =  this.configService.serviceConfig.userInfoUri(String(showChildRoles));
+    const url = `${this.endpoint}/users/loggedIn?show_child_roles=${showChildRoles}&app_code=${String(this.appCode)}`;
     return this.http.get(url, {
       headers
     });

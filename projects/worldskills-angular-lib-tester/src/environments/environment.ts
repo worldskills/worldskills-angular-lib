@@ -1,4 +1,3 @@
-import { OAuthConfig, ServiceConfig, WSHttpConfig } from 'worldskills-angular-lib';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -11,18 +10,18 @@ export const environment = {
 export const serviceConfig = {
   appCode: 500,
   userServiceEndpoint: 'http://localhost:8081/auth'
-};
+} as ServiceConfig;
 
 export const oAuthConfig = {
   loginURI: 'http://localhost:50300/oauth/authorize',
   clientId: 'b4fe5608e0d7',
   oidc: false
-};
+} as OAuthConfig;
 
 export const httpConfig = {
   encoderUriPatterns: [],
   authUriPatterns: []
-};
+} as WSHttpConfig;
 
 
 
@@ -34,3 +33,6 @@ export const httpConfig = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import { ServiceConfig } from '../../../worldskills-angular-lib/src/lib/config/service-config';
+import { OAuthConfig } from '../../../worldskills-angular-lib/src/lib/config/oauth-config';
+import { WSHttpConfig } from '../../../worldskills-angular-lib/src/lib/config/ws-http-config';
