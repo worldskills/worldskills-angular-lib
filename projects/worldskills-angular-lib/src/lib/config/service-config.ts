@@ -7,7 +7,7 @@ export class ServiceConfig {
     this.userServiceEndpoint = obj && obj.userServiceEndpoint || '';
   }
 
-  public userInfoUri = (showChildRoles) => {
+  public userInfoUri(showChildRoles) {
     return `${this.userServiceEndpoint}/users/loggedIn?show_child_roles=${showChildRoles}&app_code=${String(this.appCode)}`;
   }
 }
