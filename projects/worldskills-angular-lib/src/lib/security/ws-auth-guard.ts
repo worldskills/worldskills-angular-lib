@@ -1,5 +1,5 @@
-import { CanActivate } from '@angular/router/src/utils/preactivation';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, CanActivate } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { UserModel } from '../models/user.model';
 import { UserService } from '../services/user.service';
@@ -18,7 +18,7 @@ export class WSAuthGuard implements CanActivate {
     protected userService: UserService
 ) { }
 
-  protected canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authService.currentUserValue;
     if (currentUser) {
       if (this.userService.authenticate(currentUser, this.roles)) {

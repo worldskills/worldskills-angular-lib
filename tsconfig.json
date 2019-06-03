@@ -24,7 +24,10 @@
       ],
       "worldskills-angular-lib/*": [
         "dist/worldskills-angular-lib/*"
-      ]
+      ],
+      "core-js/es7/reflect": [
+        "node_modules/core-js/proposals/reflect-metadata"
+    ]
     }
   }
 }

@@ -69,28 +69,3 @@ export class WorldskillsAngularLibModule {
   }
 }
 
-
-/*
-@NgModule({
-  declarations: [
-    BreadcrumbsComponent,
-    FooterComponent,
-    HeaderComponent,
-    LogoComponent,
-    MenuAccessPipe
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    RouterModule
-  ],
-  exports: [
-    BreadcrumbsComponent,
-    FooterComponent,
-    HeaderComponent,
-    LogoComponent,
-    MenuAccessPipe
-  ]
-})
-*/
