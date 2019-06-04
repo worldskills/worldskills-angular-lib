@@ -20,7 +20,9 @@ describe('UserService', () => {
   serviceConfig.appCode = 500;
   serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
   const oAuthConfig = new OAuthConfig();
-  oAuthConfig.loginURI = 'http://localhost:50300/oauth/authorize';
+  oAuthConfig.loginUrl = 'http://localhost:50300/oauth/authorize';
+  oAuthConfig.redirectUri = '';
+  oAuthConfig.userinfoEndpoint = '';
   const encoderConfig = new WSHttpConfig();
 
   beforeEach(async(() => {

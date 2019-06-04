@@ -19,7 +19,9 @@ describe('AuthService', () => {
   serviceConfig.appCode = 500;
   serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
   const oAuthConfig = new OAuthConfig();
-  oAuthConfig.loginURI = '';
+  oAuthConfig.loginUrl = '';
+  oAuthConfig.userinfoEndpoint = '';
+  oAuthConfig.redirectUri = '';
   const encoderConfig = new WSHttpConfig();
   beforeEach(async(() => {
     TestBed.configureTestingModule({

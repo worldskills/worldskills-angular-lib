@@ -71,16 +71,7 @@ export class AuthService {
   }
 
   private configureAuth(): void {
-    const baseUrl = this.configService.serviceConfig.userServiceEndpoint;
-    const appCode = this.configService.serviceConfig.appCode;
-    const url = `${baseUrl}/users/loggedIn?show_child_roles=false&app_code=${String(appCode)}`;
-    this.oAuthService.configure({
-      loginUrl: this.configService.oAuthConfig.loginURI,
-      clientId: this.configService.oAuthConfig.clientId,
-      oidc: this.configService.oAuthConfig.oidc,
-      redirectUri: window.location.origin,
-      userinfoEndpoint: url
-    });
+    this.oAuthService.configure(this.configService.oAuthConfig);
 
     this.oAuthService.setStorage(sessionStorage);
     this.oAuthService.tryLogin();

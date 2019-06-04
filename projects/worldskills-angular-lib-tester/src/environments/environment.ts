@@ -13,8 +13,10 @@ export const serviceConfig = {
 } as ServiceConfig;
 
 export const oAuthConfig = {
-  loginURI: 'http://localhost:50300/oauth/authorize',
+  loginUrl: 'http://localhost:50300/oauth/authorize',
   clientId: 'b4fe5608e0d7',
+  redirectUri: 'http://localhost:4200/home/',
+  userinfoEndpoint: 'http://localhost:8082/users/loggedIn?show_child_roles=false&app_code=500',
   oidc: false
 } as OAuthConfig;
 
