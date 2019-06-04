@@ -18,7 +18,7 @@ export const oAuthConfig = {
   redirectUri: 'http://localhost:4200/home/',
   userinfoEndpoint: 'http://localhost:8082/users/loggedIn?show_child_roles=false&app_code=500',
   oidc: false
-} as OAuthConfig;
+} as AuthConfig;
 
 export const httpConfig = {
   encoderUriPatterns: [],
@@ -36,5 +36,6 @@ export const httpConfig = {
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 import { ServiceConfig } from '../../../worldskills-angular-lib/src/lib/config/service-config';
-import { OAuthConfig } from '../../../worldskills-angular-lib/src/lib/config/oauth-config';
 import { WSHttpConfig } from '../../../worldskills-angular-lib/src/lib/config/ws-http-config';
+import { AuthConfig } from 'angular-oauth2-oidc';
+

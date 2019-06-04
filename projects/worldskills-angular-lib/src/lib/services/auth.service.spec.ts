@@ -2,10 +2,10 @@ import { async, TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
-import { ModuleConfigService, ServiceConfigToken, OAuthConfigToken, WSHttpConfigToken } from '../config/module-config.service';
+import { ModuleConfigService, ServiceConfigToken, WSHttpConfigToken, AuthConfigToken } from '../config/module-config.service';
 import { ServiceConfig } from '../config/service-config';
-import { OAuthConfig } from '../config/oauth-config';
-import { OAuthService, UrlHelperService, OAuthLogger } from 'angular-oauth2-oidc';
+
+import { OAuthService, UrlHelperService, OAuthLogger, AuthConfig } from 'angular-oauth2-oidc';
 import { HttpClientTestingModule,
   HttpTestingController } from '@angular/common/http/testing';
 import { UserModel } from '../models/user.model';
@@ -18,7 +18,7 @@ describe('AuthService', () => {
   const serviceConfig = new ServiceConfig();
   serviceConfig.appCode = 500;
   serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
-  const oAuthConfig = new OAuthConfig();
+  const oAuthConfig = new AuthConfig();
   oAuthConfig.loginUrl = '';
   oAuthConfig.userinfoEndpoint = '';
   oAuthConfig.redirectUri = '';
@@ -38,7 +38,7 @@ describe('AuthService', () => {
           useValue: serviceConfig
         },
         {
-          provide: OAuthConfigToken,
+          provide: AuthConfigToken,
           useValue: oAuthConfig
         },
         {

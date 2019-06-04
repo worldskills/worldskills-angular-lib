@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.model';
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { ToggleButtonModel } from 'projects/worldskills-angular-lib/src/public_api';
 
 @Component({
@@ -28,7 +27,7 @@ export class AppComponent {
     private moduleConfigService: ModuleConfigService,
     private authService: AuthService) {
     this.appCode = moduleConfigService.serviceConfig.appCode;
-    this.cliendId = moduleConfigService.oAuthConfig.clientId;
+    this.cliendId = moduleConfigService.authConfig.clientId;
     this.isLoggedIn = false;
     console.log(this.currentUser);
     this.menuItems = [

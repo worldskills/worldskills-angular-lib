@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { UserModel } from '../models/user.model';
-import { OAuthService, OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { UserService } from './user.service';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 import { ModuleConfigService } from '../config/module-config.service';
@@ -71,7 +70,7 @@ export class AuthService {
   }
 
   private configureAuth(): void {
-    this.oAuthService.configure(this.configService.oAuthConfig);
+    this.oAuthService.configure(this.configService.authConfig);
 
     this.oAuthService.setStorage(sessionStorage);
     this.oAuthService.tryLogin();
