@@ -43,7 +43,6 @@ export * from './lib/handlers/sentry-error-handler';
 // services
 export * from './lib/config/module-config.service';
 export * from './lib/services/auth.service';
-export * from './lib/services/base.service';
 export * from './lib/services/base-crud.service';
 export * from './lib/services/user.service';
 

@@ -1,62 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { BaseService } from './base.service';
 
 
-export class BaseCrudService extends BaseService {
+export class BaseCrudService {
   endpoint: string;
 
   constructor(protected http: HttpClient, protected oAuthService: OAuthService) {
-    super(http, oAuthService);
   }
 
   public getAll(params: {}) {
-    const headers = this.getHeaders();
     return this.http.get(this.endpoint, {
-      headers,
       params
     });
   }
 
   public get(id: any) {
-    const headers = this.getHeaders();
     const ep = this.endpoint + '/' + id;
-    return this.http.get(ep, {
-      headers
-    });
+    return this.http.get(ep, {});
   }
 
   public update(id: any, model: object) {
     const ep = this.endpoint + '/' + id.toString();
-    const headers = this.getHeaders();
 
     const converter = new JsonConvert();
     converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
     const data = converter.serialize(model);
 
-    return this.http.put(ep, data, {
-      headers,
-    });
+    return this.http.put(ep, data, {});
   }
 
   public create(model: object) {
-    const headers = this.getHeaders();
     const converter = new JsonConvert();
     converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
     const data = converter.serialize(model);
 
-    return this.http.post(this.endpoint, data, {
-      headers
-    });
+    return this.http.post(this.endpoint, data, {});
   }
 
   public delete(id: any) {
-    const headers = this.getHeaders();
     const ep = this.endpoint + '/' + id;
 
-    return this.http.delete(ep, {
-      headers
-    });
+    return this.http.delete(ep, {});
   }
 }

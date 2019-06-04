@@ -14,15 +14,17 @@ export const serviceConfig = {
 
 export const oAuthConfig = {
   loginUrl: 'http://localhost:50300/oauth/authorize',
-  clientId: 'b4fe5608e0d7',
-  redirectUri: 'http://localhost:4200/home/',
-  userinfoEndpoint: 'http://localhost:8082/users/loggedIn?show_child_roles=false&app_code=500',
+  clientId: '11cb270afcc0',
+  redirectUri: 'http://localhost:4200/home',
+  userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
   oidc: false
 } as AuthConfig;
 
 export const httpConfig = {
   encoderUriPatterns: [],
-  authUriPatterns: []
+  authUriPatterns: [
+    'http://localhost:8081'
+  ]
 } as WSHttpConfig;
 
 
