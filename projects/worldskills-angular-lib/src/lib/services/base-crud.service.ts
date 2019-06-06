@@ -6,7 +6,15 @@ import { OAuthService } from 'angular-oauth2-oidc';
 export class BaseCrudService {
   endpoint: string;
 
+  public serializeData = true;
+
   constructor(protected http: HttpClient, protected oAuthService: OAuthService) {
+  }
+
+  public serialize(model: object): any {
+    const converter = new JsonConvert();
+    converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
+    return converter.serialize(model);
   }
 
   public getAll(params: {}) {
@@ -22,19 +30,12 @@ export class BaseCrudService {
 
   public update(id: any, model: object) {
     const ep = this.endpoint + '/' + id.toString();
-
-    const converter = new JsonConvert();
-    converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
-    const data = converter.serialize(model);
-
+    const data = this.serializeData ? this.serialize(model) : model;
     return this.http.put(ep, data, {});
   }
 
   public create(model: object) {
-    const converter = new JsonConvert();
-    converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL && ValueCheckingMode.ALLOW_OBJECT_NULL;
-    const data = converter.serialize(model);
-
+    const data = this.serializeData ? this.serialize(model) : model;
     return this.http.post(this.endpoint, data, {});
   }
 
