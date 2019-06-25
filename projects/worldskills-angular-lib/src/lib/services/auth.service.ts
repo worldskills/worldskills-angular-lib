@@ -17,7 +17,6 @@ export class AuthService {
 
   constructor(private configService: ModuleConfigService, private oAuthService: OAuthService, private userService: UserService) {
     this.configureAuth();
-    console.log(this.oAuthService.authorizationHeader());
     this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('user.current')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -42,7 +41,6 @@ export class AuthService {
   public async loadUserProfile(callback: (error: any) => any) {
     this.userService.getLoggedInUser().subscribe(
       result => {
-        console.log(result);
         if (result != null) {
           const converter = new JsonConvert();
           converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
