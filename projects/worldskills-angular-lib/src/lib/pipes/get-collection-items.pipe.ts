@@ -10,6 +10,10 @@ import { CollectionModel } from '../models/collection-model';
 })
 export class GetCollectionItemsPipe implements PipeTransform {
    transform<TModel>(collection: CollectionModel<TModel>): TModel[] {
-     return collection ? collection.items : [];
+     if (collection) {
+       return collection.items || [];
+     }
+
+     return [];
    }
 }

@@ -9,6 +9,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class GetObjectPropertyPipe implements PipeTransform {
    transform(obj: object, prop: string, defaultValue: any): any {
-    return obj ? obj[prop] : defaultValue;
+     if (obj && obj[prop]) {
+       return obj[prop];
+     }
+
+     return defaultValue;
    }
 }
