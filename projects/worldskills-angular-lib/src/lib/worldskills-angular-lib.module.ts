@@ -15,12 +15,16 @@ import { PagerComponent } from './pager/pager.component';
 import { SortPipe } from './pipes/sort.pipe';
 import { WSHttpConfig } from './config/ws-http-config';
 import { AuthConfig } from 'angular-oauth2-oidc';
+import { GetCollectionItemsPipe } from './pipes/get-collection-items.pipe';
+import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
     ButtonToggleComponent,
     FooterComponent,
+    GetCollectionItemsPipe,
+    GetObjectPropertyPipe,
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
@@ -37,11 +41,13 @@ import { AuthConfig } from 'angular-oauth2-oidc';
     BreadcrumbsComponent,
     ButtonToggleComponent,
     FooterComponent,
+    GetCollectionItemsPipe,
+    GetObjectPropertyPipe,
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
     PagerComponent,
-    SortPipe
+    SortPipe,
   ]
 })
 export class WorldskillsAngularLibModule {

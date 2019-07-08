@@ -31,6 +31,8 @@ export * from './lib/models/user.model';
 export * from './lib/models/ws-entity-model';
 
 // pipes
+export * from './lib/pipes/get-collection-items.pipe';
+export * from './lib/pipes/get-object-property.pipe';
 export * from './lib/pipes/menu-access.pipe';
 export * from './lib/pipes/sort.pipe';
 
