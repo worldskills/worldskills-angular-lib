@@ -47,7 +47,7 @@ export class AuthService {
           const currentUser = new UserModel(converter.deserialize(result, UserModel));
           localStorage.setItem('user.current', JSON.stringify(currentUser));
           this.currentUserSubject.next(currentUser);
-          callback(null);
+          callback(currentUser);
         }
       },
       error => {
