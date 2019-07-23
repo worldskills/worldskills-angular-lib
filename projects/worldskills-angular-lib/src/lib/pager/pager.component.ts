@@ -10,12 +10,9 @@ import { CollectionModel } from '../models/collection-model';
 export class PagerComponent<TModel> implements OnInit {
 
   page: number;
-
-  // inouts   @Input() itemsPerPage: number;
   @Input() collection: CollectionModel<TModel>;
   @Input() itemsPerPage: number;
-
-  // events
+  @Input() autoJumpToPage: boolean;
   @Output() public jumpToPageEvent: EventEmitter<PageModel> = new EventEmitter();
 
   pageList = (n: number) => Array.from({length: n}, (value, key) => key + 1);
@@ -26,7 +23,11 @@ export class PagerComponent<TModel> implements OnInit {
   jumptToPage(page: number) {
     this.page = page;
     const pageModel = new PageModel(page, this.itemsPerPage);
-    this.jumpToPageEvent.emit(pageModel);
+
+    // determine weather or not to fire the first page event
+    if (this.autoJumpToPage) {
+      this.jumpToPageEvent.emit(pageModel);
+    }
   }
 
   nextPage() {
