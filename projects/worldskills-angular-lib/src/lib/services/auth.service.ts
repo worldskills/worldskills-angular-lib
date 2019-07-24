@@ -17,7 +17,7 @@ export class AuthService {
 
   constructor(private configService: ModuleConfigService, private oAuthService: OAuthService, private userService: UserService) {
     this.configureAuth();
-    this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('user.current')));
+    this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(sessionStorage.getItem('user.current')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -45,7 +45,7 @@ export class AuthService {
           const converter = new JsonConvert();
           converter.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
           const currentUser = new UserModel(converter.deserialize(result, UserModel));
-          localStorage.setItem('user.current', JSON.stringify(currentUser));
+          sessionStorage.setItem('user.current', JSON.stringify(currentUser));
           this.currentUserSubject.next(currentUser);
           callback(currentUser);
         }
@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   public logout() {
-    localStorage.removeItem('user.current');
+    sessionStorage.removeItem('user.current');
     this.oAuthService.logOut();
     this.currentUserSubject.next(null);
   }
