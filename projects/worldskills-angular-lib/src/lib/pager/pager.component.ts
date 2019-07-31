@@ -25,9 +25,7 @@ export class PagerComponent<TModel> implements OnInit {
     const pageModel = new PageModel(page, this.itemsPerPage);
 
     // determine weather or not to fire the first page event
-    if (this.autoJumpToPage) {
-      this.jumpToPageEvent.emit(pageModel);
-    }
+    this.jumpToPageEvent.emit(pageModel);
   }
 
   nextPage() {
@@ -88,7 +86,9 @@ export class PagerComponent<TModel> implements OnInit {
   }
 
   ngOnInit() {
-    this.jumptToPage(1);
+    if (this.autoJumpToPage) {
+      this.jumptToPage(1);
+    }
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
