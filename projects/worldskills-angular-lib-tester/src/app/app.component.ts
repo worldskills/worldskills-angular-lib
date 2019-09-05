@@ -3,6 +3,7 @@ import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { ToggleButtonModel } from 'projects/worldskills-angular-lib/src/public_api';
+import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,11 @@ export class AppComponent {
   toggleButtons: Array<ToggleButtonModel>;
 
   activeToggleButton: string;
+
+  collection: CollectionModel<string>;
+
+  itemsPerPage: number;
+  autoJump: boolean;
 
   constructor(
     private moduleConfigService: ModuleConfigService,
@@ -45,6 +51,17 @@ export class AppComponent {
     this.authService.loadUserProfile((error: any) => {
       console.log(error);
     });
+
+    this.itemsPerPage = 10;
+    this.autoJump = true;
+    this.collection = new CollectionModel();
+    this.collection.count = 10;
+    this.collection.offset = 0;
+    this.collection.limit = 10;
+    this.collection.total = 1000;
+    for (let index = 0; index < this.collection.limit; index++) {
+      this.collection.items.push(index.toString());
+    }
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
