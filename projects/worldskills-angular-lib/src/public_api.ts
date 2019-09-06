@@ -57,6 +57,7 @@ export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 export * from './lib/logo/logo.component';
 export * from './lib/pager/pager.component';
+export * from './lib/spinner/spinner.component';
 
 // security
 export * from './lib/security/ws-auth-guard';

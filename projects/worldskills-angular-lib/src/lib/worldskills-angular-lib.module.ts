@@ -17,6 +17,7 @@ import { WSHttpConfig } from './config/ws-http-config';
 import { AuthConfig } from 'angular-oauth2-oidc';
 import { GetCollectionItemsPipe } from './pipes/get-collection-items.pipe';
 import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
     LogoComponent,
     MenuAccessPipe,
     PagerComponent,
-    SortPipe
+    SortPipe,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
     MenuAccessPipe,
     PagerComponent,
     SortPipe,
+    SpinnerComponent
   ]
 })
 export class WorldskillsAngularLibModule {
