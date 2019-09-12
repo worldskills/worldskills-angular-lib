@@ -159,8 +159,6 @@ export class PagerComponent<TModel> implements OnInit {
     if (this.autoJumpToPage) {
       this.jumptToPage(1);
     }
-
-    console.log(this.pages);
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
