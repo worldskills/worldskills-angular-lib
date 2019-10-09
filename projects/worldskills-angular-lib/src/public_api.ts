@@ -24,12 +24,16 @@ export * from './lib/models/alert.model';
 export * from './lib/models/alert.type';
 export * from './lib/models/toggle-button-model';
 export * from './lib/models/collection-model';
+export * from './lib/models/I18n.model';
 export * from './lib/models/link-model';
 export * from './lib/models/name-model';
+export * from './lib/models/pair.model';
 export * from './lib/models/page-model';
+export * from './lib/models/resource-upload.model';
 export * from './lib/models/role-application-model';
 export * from './lib/models/role-model';
 export * from './lib/models/user.model';
+export * from './lib/models/version-create-model';
 export * from './lib/models/ws-entity-model';
 
 // pipes
@@ -46,9 +50,10 @@ export * from './lib/handlers/sentry-error-handler';
 
 // services
 export * from './lib/config/module-config.service';
+export * from './lib/services/alert.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/user.service';
-export * from './lib/services/alert.service';
+export * from './lib/services/upload.service';
 
 // interceptors
 export * from './lib/interceptors/ws-http-interceptor';
