@@ -52,6 +52,7 @@ export * from './lib/handlers/sentry-error-handler';
 export * from './lib/config/module-config.service';
 export * from './lib/services/alert.service';
 export * from './lib/services/auth.service';
+export * from './lib/services/breadcrumb.service';
 export * from './lib/services/user.service';
 export * from './lib/services/upload.service';
 
@@ -59,7 +60,6 @@ export * from './lib/services/upload.service';
 export * from './lib/interceptors/ws-http-interceptor';
 
 // components
-export * from './lib/breadcrumbs/breadcrumbs.component';
 export * from './lib/button-toggle/button-toggle.component';
 export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';

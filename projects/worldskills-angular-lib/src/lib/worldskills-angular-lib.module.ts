@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LogoComponent } from './logo/logo.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
@@ -21,7 +20,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    BreadcrumbsComponent,
     ButtonToggleComponent,
     FooterComponent,
     GetCollectionItemsPipe,
@@ -40,7 +38,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     RouterModule
   ],
   exports: [
-    BreadcrumbsComponent,
     ButtonToggleComponent,
     FooterComponent,
     GetCollectionItemsPipe,
