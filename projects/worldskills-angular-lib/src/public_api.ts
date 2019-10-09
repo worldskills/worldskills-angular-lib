@@ -20,6 +20,8 @@ export * from './lib/config/ws-http-config';
 export * from './lib/interfaces/breadcrumb.interface';
 
 // models
+export * from './lib/models/alert.model';
+export * from './lib/models/alert.type';
 export * from './lib/models/toggle-button-model';
 export * from './lib/models/collection-model';
 export * from './lib/models/link-model';
@@ -46,6 +48,7 @@ export * from './lib/handlers/sentry-error-handler';
 export * from './lib/config/module-config.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/user.service';
+export * from './lib/services/alert.service';
 
 // interceptors
 export * from './lib/interceptors/ws-http-interceptor';
