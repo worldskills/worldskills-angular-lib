@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, CanActivate } from
 import { AuthService } from '../services/auth.service';
 import { UserModel } from '../models/user.model';
 import { UserService } from '../services/user.service';
-import * as Sentry from '@sentry/browser';
 
 export class WSAuthGuard implements CanActivate {
   path: ActivatedRouteSnapshot[];
