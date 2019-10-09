@@ -21,3 +21,4 @@ export class LinkModel {
     this.description = obj && obj.description || null;
   }
 }
+

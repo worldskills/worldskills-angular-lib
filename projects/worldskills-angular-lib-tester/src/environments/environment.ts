@@ -9,7 +9,8 @@ export const environment = {
 
 export const serviceConfig = {
   appCode: 500,
-  userServiceEndpoint: 'http://localhost:8081/auth'
+  userServiceEndpoint: 'http://localhost:8081/auth',
+  resourceApiPath: 'http://localhost/resources'
 } as ServiceConfig;
 
 export const oAuthConfig = {
