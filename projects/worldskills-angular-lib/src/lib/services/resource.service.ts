@@ -16,6 +16,10 @@ export class ResourceService {
     this.url = this.config.serviceConfig.resourceApiPath;
   }
 
+  public search(params: any) {
+    return this.http.get<ResourceModel>(this.url, { params });
+  }
+
   public get(id: number) {
     const url = `${this.url}/${id}`;
     return this.http.get<ResourceModel>(url);
