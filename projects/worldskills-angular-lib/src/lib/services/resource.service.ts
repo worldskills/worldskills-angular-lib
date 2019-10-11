@@ -4,6 +4,7 @@ import { UploadService } from './upload.service';
 import { ResourceModel } from '../models/resource-model';
 import { ModuleConfigService } from '../config/module-config.service';
 import { ResourceUploadModel } from '../models/resource-upload.model';
+import { ResourceSearchModel } from '../models/resource-search-model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,12 @@ export class ResourceService {
     this.url = this.config.serviceConfig.resourceApiPath;
   }
 
-  public search(params: any) {
+  // allow a client to user submit an object directly or use a managed object
+  public search(params: ResourceSearchModel | any) {
+    if (params instanceof ResourceSearchModel) {
+      params = (params as ResourceSearchModel).toParams();
+    }
+
     return this.http.get<ResourceModel>(this.url, { params });
   }
 

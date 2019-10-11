@@ -33,6 +33,7 @@ export * from './lib/models/page-model';
 export * from './lib/models/resource-metadata-model';
 export * from './lib/models/resource-metadata-info-model';
 export * from './lib/models/resource-model';
+export * from './lib/models/resource-search-model';
 export * from './lib/models/resource-upload.model';
 export * from './lib/models/role-application-model';
 export * from './lib/models/role-model';
