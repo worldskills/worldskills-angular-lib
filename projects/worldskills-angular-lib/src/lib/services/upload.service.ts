@@ -8,13 +8,13 @@ export class UploadService {
 
   constructor(private http: HttpClient) { }
 
-  public prepareUpload(url: string, data: FormData, params: HttpParams): HttpRequest<FormData> {
+  public prepareUpload(url: string, data: FormData, params: HttpParams, method = 'POST'): HttpRequest<FormData> {
     const options = {
       params,
       reportProgress: true,
     };
 
-    return new HttpRequest('POST', url, data, options);
+    return new HttpRequest(method, url, data, options);
   }
 
   // Full list of events: https://angular.io/api/common/http/HttpEventType

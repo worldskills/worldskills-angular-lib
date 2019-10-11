@@ -26,12 +26,14 @@ export class ResourceService {
     return this.http.delete(url);
   }
 
-  public upload(data: ResourceUploadModel, file: any): HttpRequest<FormData> {
+  // this more or less saves the resource to the api
+  // the client has control over weather it's a POST or a PUT
+  public upload(data: ResourceUploadModel, file: any, method = 'POST'): HttpRequest<FormData> {
     const formData = new FormData();
     formData.append('key', 'value');
     formData.append('requestData', JSON.stringify(data));
     formData.append('file', file);
 
-    return this.uploader.prepareUpload(this.url, formData, new HttpParams());
+    return this.uploader.prepareUpload(this.url, formData, new HttpParams(), method);
   }
 }

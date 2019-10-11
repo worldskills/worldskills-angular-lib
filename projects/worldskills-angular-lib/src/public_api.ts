@@ -30,6 +30,8 @@ export * from './lib/models/link-model-raw';
 export * from './lib/models/name-model';
 export * from './lib/models/pair.model';
 export * from './lib/models/page-model';
+export * from './lib/models/resource-metadata-model';
+export * from './lib/models/resource-metadata-info-model';
 export * from './lib/models/resource-model';
 export * from './lib/models/resource-upload.model';
 export * from './lib/models/role-application-model';
