@@ -2,6 +2,7 @@ import { I18nModel } from './I18n.model';
 import { LinkModelRaw } from './link-model-raw';
 import { ResourceMetadataModel } from './resource-metadata-model';
 import { WsEntityModel } from './ws-entity-model';
+import { VersionCreateModel } from './version-create-model';
 
 // some fields are intentionally left out
 export class ResourceModel {
@@ -11,6 +12,10 @@ export class ResourceModel {
   links: LinkModelRaw[];
   // tslint:disable-next-line:variable-name
   ws_entity: number;
+  // tslint:disable-next-line:variable-name
+  resource_types: number[];
+  version: VersionCreateModel;
+  tags: string[];
 
 
   constructor(obj?: any) {
@@ -19,5 +24,8 @@ export class ResourceModel {
     this.metadata = obj && obj.metadata || [];
     this.links = obj && obj.links || [];
     this.ws_entity = obj && obj.WsEntityModel || new WsEntityModel();
+    this.resource_types = obj && obj.resource_types || [];
+    this.version = obj && obj.version || new VersionCreateModel();
+    this.tags = obj && obj.tags || [];
   }
 }
