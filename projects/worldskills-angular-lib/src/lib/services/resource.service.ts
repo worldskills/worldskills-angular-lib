@@ -23,7 +23,7 @@ export class ResourceService {
       params = (params as ResourceSearchModel).toParams();
     }
 
-    return this.http.get<ResourceModel>(this.url, { params });
+    return this.http.get<ResourceModel[]>(this.url, { params });
   }
 
   public get(id: number) {
