@@ -5,6 +5,7 @@ import { ResourceModel } from '../models/resource-model';
 import { ModuleConfigService } from '../config/module-config.service';
 import { ResourceUploadModel } from '../models/resource-upload.model';
 import { ResourceSearchModel } from '../models/resource-search-model';
+import { ResourcesContainerModel } from '../models/resources-container-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ResourceService {
       params = (params as ResourceSearchModel).toParams();
     }
 
-    return this.http.get<ResourceModel[]>(this.url, { params });
+    return this.http.get<ResourcesContainerModel[]>(this.url, { params });
   }
 
   public get(id: number) {
