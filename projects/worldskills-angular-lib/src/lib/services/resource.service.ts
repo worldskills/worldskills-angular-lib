@@ -6,6 +6,7 @@ import { ModuleConfigService } from '../config/module-config.service';
 import { ResourceUploadModel } from '../models/resource-upload.model';
 import { ResourceSearchModel } from '../models/resource-search-model';
 import { ResourcesContainerModel } from '../models/resources-container-model';
+import { ResourceMetadataInfoModel } from '../models/resource-metadata-info-model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,33 @@ export class ResourceService {
     formData.append('file', file);
 
     return this.uploader.prepareUpload(this.url, formData, new HttpParams(), method);
+  }
+
+  /*
+    Metadata methods
+  */
+  public listMetadata() {
+    const url = `${this.url}/metadata`;
+    return this.http.get<ResourceMetadataInfoModel[]>(url);
+  }
+
+  public getMetadata(id: number) {
+    const url = `${this.url}/metadata/${id}`;
+    return this.http.get<ResourceMetadataInfoModel>(url);
+  }
+
+  public createMetadata(model: ResourceMetadataInfoModel) {
+    const url = `${this.url}/metadata`;
+    return this.http.post<ResourceMetadataInfoModel>(url, model);
+  }
+
+  public updateMetadata(id: number, model: ResourceMetadataInfoModel) {
+    const url = `${this.url}/metadata/${id}`;
+    return this.http.put<ResourceMetadataInfoModel>(url, model);
+  }
+
+  public deleteMetadata(id: number) {
+    const url = `${this.url}/metadata/${id}`;
+    return this.http.delete(url);
   }
 }
