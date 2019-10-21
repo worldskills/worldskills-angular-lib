@@ -2,6 +2,7 @@ import { I18nModel } from './I18n.model';
 import { VersionCreateModel } from './version-create-model';
 import { ResourceModel } from './resource-model';
 import { TranslastionCreateModel } from './translation-create.model';
+import { ResourceMetadataUpdateModel } from './resource-metadata-update-model';
 
 export class ResourceUploadModel {
   name: I18nModel;
@@ -9,7 +10,7 @@ export class ResourceUploadModel {
   ws_entity: number;
   types: number[];
   version: VersionCreateModel;
-  metadata: object[];
+  metadata: ResourceMetadataUpdateModel[];
   tags: string[];
 
   constructor(obj?: Partial<ResourceUploadModel>) {
@@ -29,8 +30,8 @@ export class ResourceUploadModel {
         name: resource.name,
         ws_entity: resource.ws_entity.id,
         tags: resource.tags,
-        types: resource.resource_types,
-        metadata: resource.metadata,
+        types: resource.resource_types.map(x => x.id),
+        metadata: resource.metadata.map(x => new ResourceMetadataUpdateModel({ id: x.metadata.id, value: x.value})),
         version: new VersionCreateModel(
           {
             name: version.name,
