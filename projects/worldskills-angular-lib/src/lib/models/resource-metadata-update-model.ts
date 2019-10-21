@@ -4,6 +4,6 @@ export class ResourceMetadataUpdateModel {
 
   constructor(obj?: any) {
     this.id = obj && obj.id || null;
-    this.value = obj && obj.value || null;
+    this.value = obj && obj.value || '';
   }
 }
