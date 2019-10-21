@@ -40,13 +40,14 @@ export class ResourceService {
 
   // this more or less saves the resource to the api
   // the client has control over weather it's a POST or a PUT
-  public upload(data: ResourceUploadModel, file: any, method = 'POST'): HttpRequest<FormData> {
+  public upload(data: ResourceUploadModel, file: any, method = 'POST', id = 0): HttpRequest<FormData> {
+    const url = method === 'POST' ? this.url : `${this.url}/${id}`;
     const formData = new FormData();
     formData.append('key', 'value');
     formData.append('requestData', JSON.stringify(data));
     formData.append('file', file);
 
-    return this.uploader.prepareUpload(this.url, formData, new HttpParams(), method);
+    return this.uploader.prepareUpload(url, formData, new HttpParams(), method);
   }
 
   /*
