@@ -38,6 +38,11 @@ export class ResourceService {
     return this.http.delete(url);
   }
 
+  public update(id: number, model: ResourceUploadModel) {
+    const url = `${this.url}/${id}`;
+    return this.http.put<ResourceModel>(url, model);
+  }
+
   // this more or less saves the resource to the api
   // the client has control over weather it's a POST or a PUT
   public upload(data: ResourceUploadModel, file: any, method = 'POST', id = 0): HttpRequest<FormData> {
