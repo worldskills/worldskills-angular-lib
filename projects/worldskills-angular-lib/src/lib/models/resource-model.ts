@@ -12,7 +12,7 @@ export class ResourceModel {
   metadata: ResourceMetadataModel[];
   links: LinkModelRaw[];
   // tslint:disable-next-line:variable-name
-  ws_entity: number;
+  ws_entity: WsEntityModel;
   // tslint:disable-next-line:variable-name
   resource_types: number[];
   versions: VersionModel[];

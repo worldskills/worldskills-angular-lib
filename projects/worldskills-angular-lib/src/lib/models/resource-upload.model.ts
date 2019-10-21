@@ -1,5 +1,7 @@
 import { I18nModel } from './I18n.model';
 import { VersionCreateModel } from './version-create-model';
+import { ResourceModel } from './resource-model';
+import { TranslastionCreateModel } from './translation-create.model';
 
 export class ResourceUploadModel {
   name: I18nModel;
@@ -17,5 +19,34 @@ export class ResourceUploadModel {
     this.types = obj && obj.types || [];
     this.version = obj && obj.version || new VersionCreateModel({name: '1.0'});
     this.metadata = obj && obj.metadata || [];
+  }
+
+  public static fromResource(resource: ResourceModel) {
+    const version = resource.versions[resource.versions.length - 1];
+    const translation = version.translations[version.translations.length - 1];
+    return new ResourceUploadModel(
+      {
+        name: resource.name,
+        ws_entity: resource.ws_entity.id,
+        tags: resource.tags,
+        types: resource.resource_types,
+        metadata: resource.metadata,
+        version: new VersionCreateModel(
+          {
+            name: version.name,
+            date: version.date,
+            tags: version.tags,
+            translation: new TranslastionCreateModel(
+              {
+                version: version.id,
+                lang_code: translation.lang_code,
+                storage_data: translation.storage_data,
+                storage_type: translation.storage_type.id
+              }
+            )
+          }
+        )
+      }
+    );
   }
 }
