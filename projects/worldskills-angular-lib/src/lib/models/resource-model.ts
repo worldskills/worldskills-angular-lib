@@ -3,6 +3,7 @@ import { LinkModelRaw } from './link-model-raw';
 import { ResourceMetadataModel } from './resource-metadata-model';
 import { WsEntityModel } from './ws-entity-model';
 import { VersionCreateModel } from './version-create-model';
+import { VersionModel } from './version-model';
 
 // some fields are intentionally left out
 export class ResourceModel {
@@ -14,7 +15,7 @@ export class ResourceModel {
   ws_entity: number;
   // tslint:disable-next-line:variable-name
   resource_types: number[];
-  version: VersionCreateModel;
+  versions: VersionModel[];
   tags: string[];
 
 
@@ -25,7 +26,7 @@ export class ResourceModel {
     this.links = obj && obj.links || [];
     this.ws_entity = obj && obj.WsEntityModel || new WsEntityModel();
     this.resource_types = obj && obj.resource_types || [];
-    this.version = obj && obj.version || new VersionCreateModel();
+    this.versions = obj && obj.versions || [];
     this.tags = obj && obj.tags || [];
   }
 }

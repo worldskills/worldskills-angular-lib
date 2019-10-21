@@ -38,7 +38,11 @@ export * from './lib/models/resource-search-model';
 export * from './lib/models/resource-upload.model';
 export * from './lib/models/role-application-model';
 export * from './lib/models/role-model';
+export * from './lib/models/storage-type-model';
+export * from './lib/models/translation-model';
+export * from './lib/models/translation-create.model';
 export * from './lib/models/user.model';
+export * from './lib/models/version-model';
 export * from './lib/models/version-create-model';
 export * from './lib/models/ws-entity-model';
 
