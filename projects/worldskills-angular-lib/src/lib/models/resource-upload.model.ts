@@ -31,7 +31,7 @@ export class ResourceUploadModel {
         ws_entity: resource.ws_entity.id,
         tags: resource.tags,
         types: resource.resource_types.map(x => x.id),
-        metadata: resource.metadata.map(x => new ResourceMetadataUpdateModel({ id: x.metadata.id, value: x.value})),
+        metadata: resource.metadata.map(x => new ResourceMetadataUpdateModel({ metadata: x.metadata.id, value: x.value})),
         version: new VersionCreateModel(
           {
             name: version.name,
