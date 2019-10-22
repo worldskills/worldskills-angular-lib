@@ -1,9 +1,9 @@
-import { I18nModel } from './I18n.model';
-import { LinkModelRaw } from './link-model-raw';
+import { I18nModel } from '../I18n.model';
+import { LinkModelRaw } from '../link-model-raw';
 import { ResourceMetadataModel } from './resource-metadata-model';
-import { WsEntityModel } from './ws-entity-model';
-import { VersionCreateModel } from './version-create-model';
-import { VersionModel } from './version-model';
+import { WsEntityModel } from '../ws-entity-model';
+import { VersionCreateModel } from '../version-create-model';
+import { VersionModel } from '../version-model';
 import { ResourceTypeModel } from './resource-type-model';
 
 // some fields are intentionally left out

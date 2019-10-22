@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { UploadService } from './upload.service';
-import { ResourceModel } from '../models/resource-model';
+import { ResourceModel } from '../models/resources/resource-model';
 import { ModuleConfigService } from '../config/module-config.service';
-import { ResourceUploadModel } from '../models/resource-upload.model';
-import { ResourceSearchModel } from '../models/resource-search-model';
-import { ResourcesContainerModel } from '../models/resources-container-model';
-import { ResourceMetadataInfoModel } from '../models/resource-metadata-info-model';
+import { ResourceUploadModel } from '../models/resources/resource-upload.model';
+import { ResourceSearchModel } from '../models/resources/resource-search-model';
+import { ResourcesContainerModel } from '../models/resources/resources-container-model';
+import { ResourceMetadataInfoModel } from '../models/resources/resource-metadata-info-model';
 
 @Injectable({
   providedIn: 'root'

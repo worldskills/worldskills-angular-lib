@@ -1,7 +1,7 @@
-import { I18nModel } from './I18n.model';
-import { VersionCreateModel } from './version-create-model';
+import { I18nModel } from '../I18n.model';
+import { VersionCreateModel } from '../version-create-model';
 import { ResourceModel } from './resource-model';
-import { TranslastionCreateModel } from './translation-create.model';
+import { TranslastionCreateModel } from '../translation-create.model';
 import { ResourceMetadataUpdateModel } from './resource-metadata-update-model';
 
 export class ResourceUploadModel {

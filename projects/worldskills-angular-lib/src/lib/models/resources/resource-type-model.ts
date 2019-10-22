@@ -1,4 +1,4 @@
-import { NameModel } from './name-model';
+import { NameModel } from '../name-model';
 import { ResourceTypeMetadataModel } from './resource-type-metadatamodel';
 export class ResourceTypeModel {
   id: number;

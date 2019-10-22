@@ -1,4 +1,4 @@
-import { I18nModel } from './I18n.model';
+import { I18nModel } from '../I18n.model';
 export class ResourceMetadataInfoModel {
   id: number;
   name: I18nModel;
