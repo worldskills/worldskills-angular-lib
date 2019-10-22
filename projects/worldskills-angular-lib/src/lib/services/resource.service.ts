@@ -7,6 +7,7 @@ import { ResourceUploadModel } from '../models/resources/resource-upload.model';
 import { ResourceSearchModel } from '../models/resources/resource-search-model';
 import { ResourcesContainerModel } from '../models/resources/resources-container-model';
 import { ResourceMetadataInfoModel } from '../models/resources/resource-metadata-info-model';
+import { ResourceTypeModel } from '../models/resources/resource-type-model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class ResourceService {
   constructor(private config: ModuleConfigService, private http: HttpClient, public uploader: UploadService) {
     this.url = this.config.serviceConfig.resourceApiPath;
   }
+
+  /*
+    ResourceResource
+  */
 
   // allow a client to user submit an object directly or use a managed object
   public search(params: ResourceSearchModel | any) {
@@ -55,8 +60,22 @@ export class ResourceService {
     return this.uploader.prepareUpload(url, formData, new HttpParams(), method);
   }
 
-  /*
-    Metadata methods
+  /* /types
+    ResourceTypeResource
+  */
+
+  public listTypes() {
+    const url = `${this.url}/types`;
+    return this.http.get<ResourceTypeModel[]>(url);
+  }
+
+  public getType(id: number) {
+    const url = `${this.url}/types/${id}`;
+    return this.http.get<ResourceTypeModel>(url);
+  }
+
+  /* /metadata
+    MetadataResource
   */
   public listMetadata() {
     const url = `${this.url}/metadata`;
