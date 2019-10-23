@@ -3,7 +3,7 @@ export class ResourceMetadataUpdateModel {
   value: string;
 
   constructor(obj?: any) {
-    this.metadata = obj && obj.id || null;
+    this.metadata = obj && obj.metadata || null;
     this.value = obj && obj.value || '';
   }
 }
