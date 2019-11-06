@@ -31,19 +31,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### package installaion
 
-once you've set up a new angular application install the following libraries
-`npm i angular-oauth2-oidc`
-`npm i json2typescript`
-`npm i popper.js`
-`npm i angular-font-awesome`
+once you've set up a new angular application install the following libraries:  
+`npm i angular-oauth2-oidc`  
+`npm i json2typescript`  
+`npm i popper.js`  
+`npm i angular-font-awesome`  
 `npm i @worldskills/bootstrap`
 
 ### app.module.ts
 
-add the following import statement into your app.module.ts
-`import { WorldskillsAngularLibModule, WsHttpInterceptor } from '@worldskills/worldskills-angular-lib';`
-
-create the following config objects in your app.module.ts
+add the following import statement into your app.module.ts  
+`import { WorldskillsAngularLibModule, WsHttpInterceptor } from '@worldskills/worldskills-angular-lib';`  
+Then create the following config objects in your app.module.ts
 
 ``` typescript
 const serviceConfig = {
@@ -81,13 +80,12 @@ const httpConfig = {
 
 ### Register the library
 
-ensure the following modules are within the `import: { ... }` section of your app.module.ts
-`OAuthModule.forRoot()`
+ensure the following modules are within the `import: { ... }` section of your app.module.ts  
+`OAuthModule.forRoot()`  
 `WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig)`
-
 
 ### http auth injector
 
-The WSHttpInjector will extract the current auth token and inject into in future web requests that match the patterns specified in the httpConfig object
-ensure the following provider is added within the `providers: { ... }` section of your app.module.ts
+The WSHttpInjector will extract the current auth token and inject into in future web requests that match the patterns specified in the httpConfig object.  
+ensure the following provider is added within the `providers: { ... }` section of your app.module.ts  
 `{ provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true }`
