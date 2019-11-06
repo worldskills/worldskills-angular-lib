@@ -6,6 +6,10 @@ export class ResourceSearchModel {
   type: number[];
   sort: string;
   date: string;
+  // tslint:disable-next-line:variable-name
+  meta_text: string;
+  // tslint:disable-next-line:variable-name
+  meta_type: number[];
   offset: number;
   limit: number;
 
@@ -16,6 +20,8 @@ export class ResourceSearchModel {
     this.type = obj && obj.type || null;
     this.sort = obj && obj.sort || null;
     this.date = obj && obj.date || null;
+    this.meta_text = obj && obj.meta_text || null;
+    this.meta_type = obj && obj.meta_type || null;
     this.offset = obj && obj.offset || null;
     this.limit = obj && obj.limit || null;
   }
