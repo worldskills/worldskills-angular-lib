@@ -21,6 +21,7 @@ import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
+    AlertComponent,
     ButtonToggleComponent,
     FooterComponent,
     GetCollectionItemsPipe,
@@ -31,7 +32,6 @@ import { AlertComponent } from './alert/alert.component';
     PagerComponent,
     SortPipe,
     SpinnerComponent,
-    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +40,7 @@ import { AlertComponent } from './alert/alert.component';
     RouterModule
   ],
   exports: [
+    AlertComponent,
     ButtonToggleComponent,
     FooterComponent,
     GetCollectionItemsPipe,
