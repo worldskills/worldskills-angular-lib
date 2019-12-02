@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService, GenericUtil, AlertModel } from 'worldskills-angular-lib/public_api';
+import { AlertService } from '../services/alert.service';
+import { GenericUtil } from '../util/generic-util';
+import { AlertModel } from '../models/alert.model';
+
 
 @Component({
   selector: 'ws-alert',
@@ -8,7 +11,7 @@ import { AlertService, GenericUtil, AlertModel } from 'worldskills-angular-lib/p
 })
 export class AlertComponent implements OnInit {
 
-  constructor(private alertService: AlertService) { }
+  constructor(public alertService: AlertService) { }
 
   ngOnInit() {
   }
