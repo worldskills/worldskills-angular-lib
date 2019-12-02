@@ -17,6 +17,7 @@ import { AuthConfig } from 'angular-oauth2-oidc';
 import { GetCollectionItemsPipe } from './pipes/get-collection-items.pipe';
 import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MenuAccessPipe,
     PagerComponent,
     SortPipe,
-    SpinnerComponent
+    SpinnerComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
