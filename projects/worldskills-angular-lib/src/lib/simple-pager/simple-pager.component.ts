@@ -59,13 +59,14 @@ export class SimplePagerComponent implements OnInit {
   }
 
   get counter() {
-    if (this.maxPages < 3) {
-      const pages = [];
-      for (let i = 1; i <= this.maxPages; i++) {
-        pages.push(1);
-      }
-      return pages;
+    if (this.maxPages === 1) {
+      return [1];
     }
+
+    if (this.maxPages === 2) {
+      return [1, 2];
+    }
+
     if (this.model.page === 1 || this.maxPages === 3) {
       return [1, 2, 3];
     }
