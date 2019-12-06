@@ -1,0 +1,47 @@
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+
+    <!-- prev page button -->
+    <li *ngIf="showPrevPageButton" class="page-item">
+      <a (click)="prevPage(); false;" class="page-link" href="#">Previous</a>
+    </li>
+
+    <!-- first page -->
+    <li class="page-item" *ngIf="firstPageNotInRange">
+      <a (click)="changePage(1); false;" class="page-link" href="#">
+        1
+      </a>
+    </li>
+
+    <!-- elipses -->
+    <li class="page-item" *ngIf="showPrevElipses">
+      ...
+    </li>
+
+    <!-- pages -->
+    <li *ngFor='let i of counter;' class="page-item {{ model.page === i ? 'active' : '' }}">
+      <a (click)="changePage(i); false;" class="page-link" href="#">
+        {{ i }}
+        <span *ngIf="model.page === i" class="sr-only">(current)</span>
+      </a>
+    </li>
+
+    <!-- elipses -->
+    <li class="page-item" *ngIf="showNextElipses">
+      ...
+    </li>
+
+    <!-- last page -->
+    <li class="page-item" *ngIf="lastPageNotInRange">
+      <a (click)="changePage(maxPages); false;" class="page-link" href="#">
+        {{ maxPages }}
+      </a>
+    </li>
+
+    <!-- next page button -->
+    <li *ngIf="showNextPageButton" class="page-item">
+      <a (click)="nextPage(); false;" class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>

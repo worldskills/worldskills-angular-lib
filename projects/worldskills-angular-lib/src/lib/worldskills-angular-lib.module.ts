@@ -18,6 +18,7 @@ import { GetCollectionItemsPipe } from './pipes/get-collection-items.pipe';
 import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AlertComponent } from './alert/alert.component';
+import { SimplePagerComponent } from './simple-pager/simple-pager.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AlertComponent } from './alert/alert.component';
     PagerComponent,
     SortPipe,
     SpinnerComponent,
+    SimplePagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { AlertComponent } from './alert/alert.component';
     MenuAccessPipe,
     PagerComponent,
     SortPipe,
-    SpinnerComponent
+    SpinnerComponent,
+    SimplePagerComponent
   ]
 })
 export class WorldskillsAngularLibModule {

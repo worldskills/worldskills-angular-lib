@@ -4,6 +4,7 @@ import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/m
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { ToggleButtonModel } from 'projects/worldskills-angular-lib/src/public_api';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
+import { PageModel } from '../../../worldskills-angular-lib/src/lib/models/page-model';
 
 @Component({
   selector: 'app-root',
@@ -103,5 +104,9 @@ export class AppComponent {
 
   saveFn() {
     console.log('saved');
+  }
+
+  pageChanged(event: PageModel) {
+    console.log(event);
   }
 }
