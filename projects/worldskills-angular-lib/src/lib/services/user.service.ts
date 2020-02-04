@@ -32,6 +32,7 @@ export class UserService {
   // check if a user has at least one listed permission
   // TODO: more robustness needed. right now it's just an OR function
   public hasPermission(user: UserModel, permissions: string[]) {
+    permissions = permissions || [];
     const result = user.roles.filter(role => {
       return permissions.indexOf(role.name) > -1 && role.roleApplication.applicationCode === this.appCode;
     });
