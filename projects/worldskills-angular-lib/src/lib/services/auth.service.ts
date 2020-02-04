@@ -62,9 +62,15 @@ export class AuthService {
   }
 
   public logout() {
-    sessionStorage.removeItem('user.current');
-    this.oAuthService.logOut();
-    this.currentUserSubject.next(null);
+    this.userService.logout().subscribe(result => {
+      sessionStorage.removeItem('nonce');
+      sessionStorage.removeItem('user.current');
+      sessionStorage.removeItem('access_token_stored_at');
+      sessionStorage.removeItem('access_token');
+      sessionStorage.removeItem('token');
+      this.oAuthService.logOut();
+      this.currentUserSubject.next(null);
+    });
   }
 
   private configureAuth(): void {

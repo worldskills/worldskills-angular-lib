@@ -42,4 +42,10 @@ export class UserService {
   public authenticate(user: UserModel, roles: string[]) {
     return this.hasPermission(user, roles).length > 0;
   }
+
+  public logout() {
+    const authUrl = `${this.configService.serviceConfig.authApiPath}/sessions/logout`;
+    return this.http.post(authUrl, {});
+
+  }
 }
