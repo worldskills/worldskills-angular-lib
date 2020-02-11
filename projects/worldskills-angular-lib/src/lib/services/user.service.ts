@@ -49,4 +49,29 @@ export class UserService {
     return this.http.post(authUrl, {});
 
   }
+
+
+  public addRole(userId: number, roleId: number) {
+    // 'https://api.worldskills.org/auth/users/${userid}/roles';
+    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles`;
+    const data = { role_id: roleId };
+    return this.http.post(url, data);
+  }
+  public addRoleWithEntity(userId: number, roleId: number, entityId: number) {
+    // 'https://api.worldskills.org/auth/users/${userid}/roles';
+    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles`;
+    const data = { role_id: roleId, ws_entity_id: entityId };
+    return this.http.post(url, data);
+  }
+
+  public deleteRole(userId: number, roleId: number) {
+    // 'https://api.worldskills.org/auth/users/${userid}/roles/${roleId}';
+    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles/${roleId}`;
+    return this.http.delete(url);
+  }
+  public deleteRoleWithEntity(userId: number, roleId: number, entityId: number) {
+    // 'https://api.worldskills.org/auth/users/${userid}/roles/${roleId}?ws_entity_id=';
+    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles/${roleId}?ws_entity_id=${entityId}`;
+    return this.http.delete(url);
+  }
 }
