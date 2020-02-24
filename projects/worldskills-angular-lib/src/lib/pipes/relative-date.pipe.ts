@@ -1,21 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 // based of: http://www.angulartutorial.net/2017/10/how-to-show-date-is-today-or-yesterday.html
 
 @Pipe({
   name: 'relativeDate',
 })
 export class RelativeDatePipe implements PipeTransform {
-  transform(value: Date, format?: string) {
+  transform(value: Date, format?: string, locale?: string) {
     format = format || 'MMM-dd-yyyy';
+    locale = locale || 'en';
     const v = Number(value);
     const dif = Math.floor(((Date.now() - v) / 1000) / 86400);
 
     if (dif < 30) {
       return convertToNiceDate(value);
     } else {
-      return value.toString();
+      return formatDate(value, format, locale);
     }
   }
 }

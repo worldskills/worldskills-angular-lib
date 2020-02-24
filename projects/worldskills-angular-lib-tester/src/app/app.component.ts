@@ -82,9 +82,7 @@ export class AppComponent {
     this.dates.push(new Date(dt.setDate(dt.getDate() - 2)));
     this.dates.push(new Date(dt.setDate(dt.getDate() - 7)));
     this.dates.push(new Date(dt.setDate(dt.getDate() - 15)));
-
-
-
+    this.dates.push(new Date(dt.setDate(dt.getDate() - 60)));
 
   }
 
