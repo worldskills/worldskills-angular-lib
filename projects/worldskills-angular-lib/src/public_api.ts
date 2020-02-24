@@ -53,6 +53,7 @@ export * from './lib/models/ws-entity-model';
 export * from './lib/pipes/get-collection-items.pipe';
 export * from './lib/pipes/get-object-property.pipe';
 export * from './lib/pipes/menu-access.pipe';
+export * from './lib/pipes/relative-date.pipe';
 export * from './lib/pipes/sort.pipe';
 
 // converters

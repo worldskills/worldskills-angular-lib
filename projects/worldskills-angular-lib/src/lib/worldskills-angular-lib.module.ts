@@ -19,6 +19,7 @@ import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AlertComponent } from './alert/alert.component';
 import { SimplePagerComponent } from './simple-pager/simple-pager.component';
+import { RelativeDatePipe } from './pipes/relative-date.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SimplePagerComponent } from './simple-pager/simple-pager.component';
     LogoComponent,
     MenuAccessPipe,
     PagerComponent,
+    RelativeDatePipe,
     SortPipe,
     SpinnerComponent,
     SimplePagerComponent,
@@ -51,6 +53,7 @@ import { SimplePagerComponent } from './simple-pager/simple-pager.component';
     LogoComponent,
     MenuAccessPipe,
     PagerComponent,
+    RelativeDatePipe,
     SortPipe,
     SpinnerComponent,
     SimplePagerComponent

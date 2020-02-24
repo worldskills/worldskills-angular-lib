@@ -30,6 +30,8 @@ export class AppComponent {
   itemsPerPage: number;
   autoJump: boolean;
 
+  dates: Date[];
+
   constructor(
     private moduleConfigService: ModuleConfigService,
     private authService: AuthService) {
@@ -63,6 +65,27 @@ export class AppComponent {
     for (let index = 0; index < this.collection.limit; index++) {
       this.collection.items.push(index.toString());
     }
+
+    const dt = new Date();
+    this.dates = [];
+    this.dates.push(dt);
+    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 1)));
+    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 5)));
+    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 10)));
+    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 15)));
+    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 30)));
+    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 45)));
+    this.dates.push(new Date(dt.setHours(dt.getHours() - 1)));
+    this.dates.push(new Date(dt.setHours(dt.getHours() - 5)));
+    this.dates.push(new Date(dt.setHours(dt.getHours() - 20)));
+    this.dates.push(new Date(dt.setDate(dt.getDate() - 1)));
+    this.dates.push(new Date(dt.setDate(dt.getDate() - 2)));
+    this.dates.push(new Date(dt.setDate(dt.getDate() - 7)));
+    this.dates.push(new Date(dt.setDate(dt.getDate() - 15)));
+
+
+
+
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

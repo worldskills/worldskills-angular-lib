@@ -30,6 +30,11 @@
     <div class="container">
       Content here
 
+      <h3>Relative date test</h3>
+      <div *ngFor="let dt of dates">
+        <span>{{ dt | relativeDate }}</span>
+      </div>
+
       <ws-spinner></ws-spinner>
       <!-- <ws-pager [collection]="collection" [itemsPerPage]="itemsPerPage" [autoJumpToPage]="autoJump">
 
