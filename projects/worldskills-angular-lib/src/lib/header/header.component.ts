@@ -57,4 +57,18 @@ export class HeaderComponent implements OnInit {
     this.logoutClick.emit();
   }
 
+  getInitials() {
+    let s = '';
+    if (this.currentUser) {
+      if (this.currentUser.firstName) {
+        s = this.currentUser.firstName.substr(0, 1);
+      }
+
+      if (this.currentUser.lastName) {
+        s += this.currentUser.lastName.substr(0, 1);
+      }
+    }
+
+    return s.toUpperCase();
+  }
 }

@@ -16,7 +16,7 @@ export const serviceConfig = {
 
 export const oAuthConfig = {
   loginUrl: 'http://localhost:50300/oauth/authorize',
-  clientId: '11cb270afcc0',
+  clientId: '7221138f6772',
   redirectUri: 'http://localhost:4200/home',
   userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
   oidc: false

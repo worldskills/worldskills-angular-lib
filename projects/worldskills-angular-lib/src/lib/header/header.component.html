@@ -15,9 +15,17 @@
           </a>
         </li>
       </ul>
-      <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="login();" *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
-      <a class="btn btn-light btn-sm ml-2 wsi-logout" (click)="logout();" *ngIf="showLoginAndLogoutButtons && isLoggedIn">Log Out</a>
-
+      <div class="dropdown ml-2" *ngIf="showLoginAndLogoutButtons && isLoggedIn">
+        <button class="btn btn-white rounded-pill" type="button" data-toggle="dropdown">
+          {{ getInitials() }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" (click)="logout(); false;">Logout</a>
+        </div>
+      </div>
+      <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="login(); false;" *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
     </div>
   </div>
 </nav>
