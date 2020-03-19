@@ -12,36 +12,37 @@
     ></ws-header>
     </header>
 
+
+
     <section class="ws-hero ws-hero-image " style="background-image: url(https://preview.worldskills.org/application/files/thumbnails/large/4015/3251/4399/champions-trust-header.jpg)">
       <h1 class="ws-hero-title">News</h1>
       <div class="ws-hero-desc">
         <p>WorldSkills Competitions are the gold standard of skills excellence. They inspire young Competitors to reach new heights, helping them turn their passion into a profession.</p>
       </div>
     </section>
-
     <div class="container">
-      <!-- <ws-breadcrumbs showHomeItem="true" homeItemText="Home" homeItemRoute="/"></ws-breadcrumbs> -->
-        The Injected App Code is {{ appCode }}<br />
-        The Injected Client ID is {{ cliendId }}
-        <ws-button-toggle [activeButtonName]="activeToggleButton" [buttons]="toggleButtons" (buttonClickedEvent)="onButtonClicked($event)"></ws-button-toggle>
-
+      <ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'" [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
     </div>
 
     <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- <div class="container">
       Content here
 
       <h3>Relative date test</h3>
       <div *ngFor="let dt of dates">
         <span>{{ dt | relativeDate }}</span>
-      </div>
+      </div> -->
 
-      <ws-spinner></ws-spinner>
+      <!-- <ws-spinner></ws-spinner> -->
       <!-- <ws-pager [collection]="collection" [itemsPerPage]="itemsPerPage" [autoJumpToPage]="autoJump">
 
-      </ws-pager> -->
+      </ws-pager>
 
       <ws-simple-pager [itemsPerPage]="10" [totalItems]="20" [startingPage]="1" [fireInitialPageChange]="true" (pageChanged)="pageChanged($event)"></ws-simple-pager>
-    </div>
+    </div> -->
 <ws-footer>
   <div left>
       <ul class="list-inline">

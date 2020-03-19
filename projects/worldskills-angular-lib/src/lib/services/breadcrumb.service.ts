@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IBreadcrumb } from '../interfaces/breadcrumb.interface';
 import { ActivatedRoute } from '@angular/router';
+import { KeyValue } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class BreadcrumbService {
 
   public targetOutlet: string;
 
+  public replacements: KeyValue<string, string>[];
+
   constructor() {
+    this.replacements = [];
   }
 
   public build(route: ActivatedRoute, url: string = '') {
@@ -28,6 +32,12 @@ export class BreadcrumbService {
           params: route.snapshot.params,
           url
         };
+
+        // handle key replacements before breadcrumbs are initialized
+        const replacementIndex = this.replacements.findIndex(r => r.key === breadcrumb.label);
+        if (replacementIndex !== -1) {
+          breadcrumb.label = this.replacements[replacementIndex].value;
+        }
 
         this.breadcrumbs.push(breadcrumb);
       }
@@ -44,11 +54,19 @@ export class BreadcrumbService {
     }
   }
 
-  public inject(key: string, value: string) {
-    const index = this.breadcrumbs.findIndex(x => x.label === key);
-    if (index !== -1) {
-      this.breadcrumbs[index].label = value;
+  public replace(key: string, value: string) {
+    if (this.breadcrumbs) {
+      // if breadcrumbs already initialized perform a live replacement
+      const index = this.breadcrumbs.findIndex(x => x.label === key);
+      if (index !== -1) {
+        this.breadcrumbs[index].label = value;
+      }
+    } else {
+      // if breadrcrumbs are not yet initialized
+      const replacement = { key, value };
+      this.replacements.push(replacement);
     }
+
   }
 
 }

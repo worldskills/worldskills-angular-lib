@@ -20,10 +20,12 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { AlertComponent } from './alert/alert.component';
 import { SimplePagerComponent } from './simple-pager/simple-pager.component';
 import { RelativeDatePipe } from './pipes/relative-date.pipe';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
     AlertComponent,
+    BreadcrumbsComponent,
     ButtonToggleComponent,
     FooterComponent,
     GetCollectionItemsPipe,
@@ -35,7 +37,7 @@ import { RelativeDatePipe } from './pipes/relative-date.pipe';
     RelativeDatePipe,
     SortPipe,
     SpinnerComponent,
-    SimplePagerComponent,
+    SimplePagerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ import { RelativeDatePipe } from './pipes/relative-date.pipe';
   ],
   exports: [
     AlertComponent,
+    BreadcrumbsComponent,
     ButtonToggleComponent,
     FooterComponent,
     GetCollectionItemsPipe,

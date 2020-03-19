@@ -32,13 +32,17 @@ export class AppComponent {
 
   dates: Date[];
 
+  // breadcrumbs
+  showHomeItem = true;
+  defaultRoute = '/home';
+
   constructor(
     private moduleConfigService: ModuleConfigService,
     private authService: AuthService) {
     this.appCode = moduleConfigService.serviceConfig.appCode;
     this.cliendId = moduleConfigService.authConfig.clientId;
     this.isLoggedIn = false;
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
     this.menuItems = [
       // TODO: requiredRoles by rolename and application code
       { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
