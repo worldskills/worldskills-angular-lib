@@ -15,7 +15,12 @@
             "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.json",
             "project": "projects/worldskills-angular-lib/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -49,6 +54,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/worldskills-angular-lib-tester",
             "index": "projects/worldskills-angular-lib-tester/src/index.html",
             "main": "projects/worldskills-angular-lib-tester/src/main.ts",
@@ -92,6 +98,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }

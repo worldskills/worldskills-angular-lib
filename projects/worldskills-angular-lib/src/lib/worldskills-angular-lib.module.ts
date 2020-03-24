@@ -64,26 +64,25 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 })
 export class WorldskillsAngularLibModule {
 
-  static forConfig(serviceConfig: ServiceConfig, authConfig: AuthConfig, encoderConfig: WSHttpConfig) {
-
+  static forConfig(serviceConfig: ServiceConfig, authConfig: AuthConfig, encoderConfig: WSHttpConfig): ModuleWithProviders<WorldskillsAngularLibModule> {
     return {
-      ngModule: WorldskillsAngularLibModule,
-      providers: [
-        ModuleConfigService,
-        {
-          provide: ServiceConfigToken,
-          useValue: serviceConfig
-        },
-        {
-          provide: AuthConfigToken,
-          useValue: authConfig
-        },
-        {
-          provide: WSHttpConfigToken,
-          useValue: encoderConfig
-        }
-      ]
+        ngModule: WorldskillsAngularLibModule,
+        providers: [
+            ModuleConfigService,
+            {
+                provide: ServiceConfigToken,
+                useValue: serviceConfig
+            },
+            {
+                provide: AuthConfigToken,
+                useValue: authConfig
+            },
+            {
+                provide: WSHttpConfigToken,
+                useValue: encoderConfig
+            }
+        ]
     };
-  }
+}
 }
 
