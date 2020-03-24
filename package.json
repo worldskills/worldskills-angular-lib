@@ -26,7 +26,7 @@
     "@angular/router": "^9.0.7",
     "@sentry/browser": "^5.15.0",
     "@worldskills/bootstrap": "github:worldskills/bootstrap",
-    "angular-oauth2-oidc": "^8.0.4",
+    "angular-oauth2-oidc": "^9.1.0",
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
     "jquery": "^3.4.1",
