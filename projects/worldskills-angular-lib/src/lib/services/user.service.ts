@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ModuleConfigService } from '../config/module-config.service';
+import { RoleModel } from '../models/role-model';
 
 // TODO: Find a better way to handle apiAuthCode and UserInfoUrl
 // TODO: Re-look authneticate method
@@ -49,7 +50,6 @@ export class UserService {
     return this.http.post(authUrl, {});
 
   }
-
 
   public addRole(userId: number, roleId: number) {
     // 'https://api.worldskills.org/auth/users/${userid}/roles';

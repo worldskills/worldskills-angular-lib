@@ -4,7 +4,6 @@ import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/m
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { ToggleButtonModel } from 'projects/worldskills-angular-lib/src/public_api';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
-import { PageModel } from '../../../worldskills-angular-lib/src/lib/models/page-model';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +26,6 @@ export class AppComponent {
 
   collection: CollectionModel<string>;
 
-  itemsPerPage: number;
   autoJump: boolean;
 
   dates: Date[];
@@ -59,7 +57,6 @@ export class AppComponent {
       console.log(error);
     });
 
-    this.itemsPerPage = 10;
     this.autoJump = true;
     this.collection = new CollectionModel();
     this.collection.count = 10;
@@ -131,7 +128,4 @@ export class AppComponent {
     console.log('saved');
   }
 
-  pageChanged(event: PageModel) {
-    console.log(event);
-  }
 }
