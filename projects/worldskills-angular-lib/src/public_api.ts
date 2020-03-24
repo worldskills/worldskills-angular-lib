@@ -77,12 +77,9 @@ export * from './lib/interceptors/ws-http-interceptor';
 // components
 export * from './lib/alert/alert.component';
 export * from './lib/breadcrumbs/breadcrumbs.component';
-export * from './lib/button-toggle/button-toggle.component';
 export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 export * from './lib/logo/logo.component';
-export * from './lib/pager/pager.component';
-export * from './lib/spinner/spinner.component';
 
 // security
 export * from './lib/security/ws-auth-guard';
