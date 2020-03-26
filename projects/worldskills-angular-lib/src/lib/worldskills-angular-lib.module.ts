@@ -1,5 +1,4 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { LogoComponent } from './logo/logo.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +18,8 @@ import { RelativeDatePipe } from './pipes/relative-date.pipe';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { PuppeteerBannerComponent } from './banners/puppeteer-banner/puppeteer-banner.component';
 import { StagingBannerComponent } from './banners/staging-banner/staging-banner.component';
+import { WordmarkComponent } from './logos/wordmark/wordmark.component';
+import { LogoComponent } from './logos/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -28,18 +29,19 @@ import { StagingBannerComponent } from './banners/staging-banner/staging-banner.
     GetCollectionItemsPipe,
     GetObjectPropertyPipe,
     HeaderComponent,
-    LogoComponent,
     MenuAccessPipe,
     RelativeDatePipe,
     SortPipe,
     PuppeteerBannerComponent,
     StagingBannerComponent,
+    WordmarkComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     AlertComponent,
@@ -48,12 +50,13 @@ import { StagingBannerComponent } from './banners/staging-banner/staging-banner.
     GetCollectionItemsPipe,
     GetObjectPropertyPipe,
     HeaderComponent,
-    LogoComponent,
     MenuAccessPipe,
     RelativeDatePipe,
     SortPipe,
     PuppeteerBannerComponent,
     StagingBannerComponent,
+    WordmarkComponent,
+    LogoComponent,
   ]
 })
 export class WorldskillsAngularLibModule {

@@ -80,7 +80,8 @@ export * from './lib/banners/staging-banner/staging-banner.component';
 export * from './lib/breadcrumbs/breadcrumbs.component';
 export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
-export * from './lib/logo/logo.component';
+export * from './lib/logos/logo/logo.component';
+export * from './lib/logos/wordmark/wordmark.component';
 
 // security
 export * from './lib/security/ws-auth-guard';
