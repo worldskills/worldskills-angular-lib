@@ -17,6 +17,8 @@ import { GetObjectPropertyPipe } from './pipes/get-object-property.pipe';
 import { AlertComponent } from './alert/alert.component';
 import { RelativeDatePipe } from './pipes/relative-date.pipe';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { PuppeteerBannerComponent } from './banners/puppeteer-banner/puppeteer-banner.component';
+import { StagingBannerComponent } from './banners/staging-banner/staging-banner.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     MenuAccessPipe,
     RelativeDatePipe,
     SortPipe,
+    PuppeteerBannerComponent,
+    StagingBannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     MenuAccessPipe,
     RelativeDatePipe,
     SortPipe,
+    PuppeteerBannerComponent,
+    StagingBannerComponent,
   ]
 })
 export class WorldskillsAngularLibModule {

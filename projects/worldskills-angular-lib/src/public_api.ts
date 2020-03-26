@@ -75,6 +75,8 @@ export * from './lib/interceptors/ws-http-interceptor';
 
 // components
 export * from './lib/alert/alert.component';
+export * from './lib/banners/puppeteer-banner/puppeteer-banner.component';
+export * from './lib/banners/staging-banner/staging-banner.component';
 export * from './lib/breadcrumbs/breadcrumbs.component';
 export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
