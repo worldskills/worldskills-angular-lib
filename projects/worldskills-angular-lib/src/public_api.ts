@@ -22,7 +22,7 @@ export * from './lib/interfaces/breadcrumb.interface';
 // models
 export * from './lib/models/alert.model';
 export * from './lib/models/alert.type';
-export * from './lib/models/toggle-button-model';
+export * from './lib/models/api-error';
 export * from './lib/models/collection-model';
 export * from './lib/models/I18n.model';
 export * from './lib/models/link-model';
