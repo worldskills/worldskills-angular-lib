@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {FetchParams, FULL, LOADER_ONLY, MulticastOptions, WsArgsP1, WsArgsP2, WsArgsP3, RequestOptions, WsService} from './ws.service';
+import {FetchParams, FULL, LOADER_ONLY, MulticastOptions, WsServiceRequestP1, WsServiceRequestP2, WsServiceRequestP3, RequestOptions, WsService} from './ws.service';
 import {Observable, of} from 'rxjs';
 import * as faker from 'faker';
 
@@ -45,7 +45,7 @@ describe('WsComponent', () => {
     fetch(params: FetchParams, rOpt?: RequestOptions): Observable<WsServiceArgs>;
     fetch(mOpt: MulticastOptions, rOpt?: RequestOptions): Observable<WsServiceArgs>;
     fetch(params: FetchParams, mOpt: MulticastOptions, rOpt?: RequestOptions): Observable<WsServiceArgs>;
-    fetch(p1: WsArgsP1, p2?: WsArgsP2, p3?: WsArgsP3): Observable<WsServiceArgs> {
+    fetch(p1: WsServiceRequestP1, p2?: WsServiceRequestP2, p3?: WsServiceRequestP3): Observable<WsServiceArgs> {
       const {fetchParams, multicastOptions, requestOptions} = this.resolveArgs(p1, p2, p3, FULL);
       const observable = of({fetchParams, multicastOptions, requestOptions});
       return this.request(observable, multicastOptions);
@@ -55,7 +55,7 @@ describe('WsComponent', () => {
     fetchMany(params: FetchParams, rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
     fetchMany(mOpt: MulticastOptions, rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
     fetchMany(params: FetchParams, mOpt: MulticastOptions, rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
-    fetchMany(p1: WsArgsP1, p2?: WsArgsP2, p3?: WsArgsP3): Observable<Array<WsServiceArgs>> {
+    fetchMany(p1: WsServiceRequestP1, p2?: WsServiceRequestP2, p3?: WsServiceRequestP3): Observable<Array<WsServiceArgs>> {
       const {fetchParams, multicastOptions, requestOptions} = this.resolveArgs(p1, p2, p3, FULL);
       const observables = [];
       observables.push(of({fetchParams, multicastOptions, requestOptions}));

@@ -47,9 +47,9 @@ export function isRequestOptions(object: any): object is RequestOptions {
   return object && ('url' in object);
 }
 
-export type WsArgsP1 = FetchParams | MulticastOptions | RequestOptions;
-export type WsArgsP2 = MulticastOptions | RequestOptions;
-export type WsArgsP3 = RequestOptions;
+export type WsServiceRequestP1 = FetchParams | MulticastOptions | RequestOptions;
+export type WsServiceRequestP2 = MulticastOptions | RequestOptions;
+export type WsServiceRequestP3 = RequestOptions;
 
 export const FULL: MulticastOptions = {
   subject: true,
@@ -78,9 +78,9 @@ export abstract class WsService<T, U extends FetchParams = FetchParams> {
   }
 
   protected resolveArgs(
-    p1: WsArgsP1,
-    p2: WsArgsP2,
-    p3: WsArgsP3,
+    p1: WsServiceRequestP1,
+    p2: WsServiceRequestP2,
+    p3: WsServiceRequestP3,
     defaultMulticastOptions: MulticastOptions,
     defaultFetchParams?: U
   ): {
