@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/worldskills-angular-lib",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "A library to help speed up the building of worldskills angular applications",
   "peerDependencies": {
     "@angular/common": "^9.0.7",
