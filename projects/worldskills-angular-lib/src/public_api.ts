@@ -11,6 +11,8 @@ export * from './lib/encoders/ws-http-encoder';
 export * from './lib/util/array-util';
 export * from './lib/util/date-util';
 export * from './lib/util/generic-util';
+export * from './lib/util/ws.component';
+export * from './lib/util/ws.service';
 
 // config
 export * from './lib/config/service-config';

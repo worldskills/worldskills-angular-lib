@@ -2,10 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { HeaderComponent } from './header.component';
-import { LogoComponent } from '../logo/logo.component';
 import { MenuAccessPipe } from '../pipes/menu-access.pipe';
 import { UserModel } from '../models/user.model';
 import { RoleModel } from '../models/role-model';
+import { LogoComponent } from '../logos/logo/logo.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
