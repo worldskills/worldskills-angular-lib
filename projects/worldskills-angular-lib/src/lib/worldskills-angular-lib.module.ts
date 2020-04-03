@@ -20,6 +20,9 @@ import { PuppeteerBannerComponent } from './banners/puppeteer-banner/puppeteer-b
 import { StagingBannerComponent } from './banners/staging-banner/staging-banner.component';
 import { WordmarkComponent } from './logos/wordmark/wordmark.component';
 import { LogoComponent } from './logos/logo/logo.component';
+import { DateRangeComponent } from './date-range/date-range.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -36,12 +39,14 @@ import { LogoComponent } from './logos/logo/logo.component';
     StagingBannerComponent,
     WordmarkComponent,
     LogoComponent,
+    DateRangeComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
     RouterModule,
+    NgbModule
   ],
   exports: [
     AlertComponent,
@@ -57,6 +62,7 @@ import { LogoComponent } from './logos/logo/logo.component';
     StagingBannerComponent,
     WordmarkComponent,
     LogoComponent,
+    DateRangeComponent,
   ]
 })
 export class WorldskillsAngularLibModule {

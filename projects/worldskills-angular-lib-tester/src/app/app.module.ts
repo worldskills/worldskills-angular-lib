@@ -11,6 +11,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SimpleRouterComponent } from './simple-router/simple-router.component';
 import { HomeComponent } from './home/home.component';
 import { KeyChangeComponent } from './key-change/key-change.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+
 
 
 const appRoutes: Routes = [
@@ -37,7 +40,9 @@ const appRoutes: Routes = [
     BrowserModule,
     OAuthModule.forRoot(),
     WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true },

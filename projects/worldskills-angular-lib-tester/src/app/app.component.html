@@ -30,16 +30,11 @@
       <router-outlet></router-outlet>
     </div>
 
-    <!-- <div class="container">
-      Content here
+    <div class="container">
+      <h3>Date Range Test</h3>
+      <ws-date-range [(ngModel)]="dateRange" (change)="rangeSelected($event)"></ws-date-range>
+    </div>
 
-      <h3>Relative date test</h3>
-      <div *ngFor="let dt of dates">
-        <span>{{ dt | relativeDate }}</span>
-      </div>
-
-
-    </div> -->
 <ws-footer>
   <div left>
       <ul class="list-inline">

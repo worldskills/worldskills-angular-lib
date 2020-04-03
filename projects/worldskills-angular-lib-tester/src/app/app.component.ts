@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.model';
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
-import { ToggleButtonModel } from 'projects/worldskills-angular-lib/src/public_api';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
+import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +20,13 @@ export class AppComponent {
   appCode: number;
   cliendId: string;
 
-  toggleButtons: Array<ToggleButtonModel>;
-
   activeToggleButton: string;
 
   collection: CollectionModel<string>;
 
   autoJump: boolean;
 
-  dates: Date[];
+  dateRange: DateRange;
 
   // breadcrumbs
   showHomeItem = true;
@@ -67,46 +65,25 @@ export class AppComponent {
       this.collection.items.push(index.toString());
     }
 
-    const dt = new Date();
-    this.dates = [];
-    this.dates.push(dt);
-    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 1)));
-    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 5)));
-    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 10)));
-    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 15)));
-    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 30)));
-    this.dates.push(new Date(dt.setMinutes(dt.getMinutes() - 45)));
-    this.dates.push(new Date(dt.setHours(dt.getHours() - 1)));
-    this.dates.push(new Date(dt.setHours(dt.getHours() - 5)));
-    this.dates.push(new Date(dt.setHours(dt.getHours() - 20)));
-    this.dates.push(new Date(dt.setDate(dt.getDate() - 1)));
-    this.dates.push(new Date(dt.setDate(dt.getDate() - 2)));
-    this.dates.push(new Date(dt.setDate(dt.getDate() - 7)));
-    this.dates.push(new Date(dt.setDate(dt.getDate() - 15)));
-    this.dates.push(new Date(dt.setDate(dt.getDate() - 60)));
+
 
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    this.initToggleButtons();
+    this.dateRange = new DateRange();
+    this.dateRange.start = new Date();
+    const endDate = new Date();
+    endDate.setDate(this.dateRange.start.getDate() + 4);
+    this.dateRange.end = endDate;
   }
 
-  initToggleButtons() {
-    const yesButton = new ToggleButtonModel({name: 'yes', text: 'yes'});
-    const noButton = new ToggleButtonModel({name: 'no', text: 'no'});
-    this.toggleButtons = new Array<ToggleButtonModel>(yesButton, noButton);
-    this.activeToggleButton = 'no';
-  }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges() {
   }
 
-  onButtonClicked(button: ToggleButtonModel) {
-    console.log(button);
-    this.activeToggleButton = button.name; // switch active state on the toggle button
-  }
+
 
   login() {
     this.authService.login();
@@ -126,6 +103,10 @@ export class AppComponent {
 
   saveFn() {
     console.log('saved');
+  }
+
+  rangeSelected(event) {
+    console.log(event);
   }
 
 }
