@@ -1,4 +1,6 @@
-# 6.0.0
+# Chaangelog
+
+## 6.0.0
 
 Rework of the footer component.
 
