@@ -53,7 +53,7 @@
       </div>
       <div class="ws-page-footer-col-lg">
         <p *ngIf="isLoggedIn" class="text-md-right">
-          {{ currentUser.firstName }} {{ currentUser.lastName }}, <a href="#" (click)="logout(); false;">Log in</a>
+          {{ currentUser.firstName }} {{ currentUser.lastName }}, <a href="#" (click)="logout(); false;">Log out</a>
         </p>
         <p *ngIf="!isLoggedIn" class="text-md-right">
           <a href="#" (click)="login(); false;">Log in</a>
