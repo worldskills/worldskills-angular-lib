@@ -2,6 +2,10 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
+## changelog
+
+Notable changes can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/master/changelog.md).
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project worldskills-angular-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project worldskills-angular-lib`.
