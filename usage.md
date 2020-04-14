@@ -42,7 +42,7 @@ The footer component has been made with 6 columns that can be overriden when nee
 </ws-footer>
 ```
 
-### all overridble columns
+### all overridable columns
 
 * `col1Template`
 * `col2Template`
