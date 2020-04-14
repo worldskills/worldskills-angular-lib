@@ -42,7 +42,7 @@ The footer component has been made with 6 columns that can be overriden when nee
 </ws-footer>
 ```
 
-### all overridable columns
+### All overridable columns
 
 * `col1Template`
 * `col2Template`
@@ -51,12 +51,12 @@ The footer component has been made with 6 columns that can be overriden when nee
 * `col5Template`
 * `col6Template`
 
-### input properties
+### Input properties
 
 * `currentUser`: the current logged in user.
 * `isLoggedIn`: indicate if the current user is logged in
 
-### output events
+### Output events
 
 * `loginClick`: when the login button is clicked.
 * `logoutClick`: when the logout button is clicked
