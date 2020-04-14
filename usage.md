@@ -9,7 +9,12 @@ The footer component has been made with 6 columns that can be overriden when nee
 ### Default usage
 
 ```HTML
-<ws-footer></ws-footer>
+<ws-footer
+  [currentUser]="user"
+  (loginClick)="login()"
+  (logoutClick)="logout()"
+  [isLoggedIn]="isLoggedIn">
+</ws-footer>
 ```
 
 ### Overriding a single column
@@ -28,18 +33,34 @@ The footer component has been made with 6 columns that can be overriden when nee
 </ng-template>
 
 <!-- Inject the custom template into the component -->
-<ws-footer [col5Template]="override5"></ws-footer>
+<ws-footer
+  [currentUser]="user"
+  (loginClick)="login()"
+  (logoutClick)="logout()"
+  [isLoggedIn]="isLoggedIn"
+  [col5Template]="override5">
+</ws-footer>
 ```
 
 ### all overridble columns
 
-* col1Template
-* col2Template
-* col3Template
-* col4Template
-* col5Template
-* col6Template
+* `col1Template`
+* `col2Template`
+* `col3Template`
+* `col4Template`
+* `col5Template`
+* `col6Template`
 
-## To be continued...
+### input properties
+
+* `currentUser`: the current logged in user.
+* `isLoggedIn`: indicate if the current user is logged in
+
+### output events
+
+* `loginClick`: when the login button is clicked.
+* `logoutClick`: when the logout button is clicked
+
+## To be continued
 
 As we touch more parts of the library more documentation would be added.
