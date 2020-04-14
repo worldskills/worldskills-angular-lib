@@ -35,16 +35,13 @@
       <ws-date-range [(ngModel)]="dateRange" (change)="rangeSelected($event)"></ws-date-range>
     </div>
 
-<ws-footer>
-  <div left>
-      <ul class="list-inline">
-        <li class="list-inline-item mb-0">&copy; 2019 <a href="https://www.worldskills.org/" target="_blank">WorldSkills International</a></li>
-        <li class="list-inline-item mb-0"><a href="https://www.worldskills.org/site/privacy/" target="_blank">Privacy</a></li>
-        <li class="list-inline-item mb-0"><a href="https://www.worldskills.org/site/terms/" target="_blank">Terms</a></li>
-        <li class="list-inline-item mb-0"><a href="https://www.worldskills.org/site/contact/" target="_blank">Contact</a></li>
-      </ul>
+<ng-template #ovveride1>
+  <div class="text-right mt-5">
+    <a href="https://worldskills.org/" target="_blank">
+      <ws-logo mode="default"></ws-logo>
+    </a>
   </div>
-  <div right style="float:right">
-    <ws-wordmark></ws-wordmark>
-  </div>
-</ws-footer>
+</ng-template>
+<ws-footer [col3Template]="ovveride1"></ws-footer>
+
+

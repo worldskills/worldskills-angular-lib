@@ -1,14 +1,64 @@
+<ng-template #col1DefaultTemplate>
+  <h1><a href="https://worldskills.org/internal/" target="_blank">myWorldSkills</a></h1>
+  <ul>
+    <li><a href="https://worldskills.org/internal/wiw/" target="_blank">Who-is-Who</a></li>
+    <li><a href="https://glossary.worldskills.org/" target="_blank">Glossary</a></li>
+    <li><a href="https://registrations.worldskills.org/" target="_blank">Registrations</a></li>
+    <li><a href="https://forums.worldskills.org/" target="_blank">Forums</a></li>
+    <li><a href="https://il.worldskills.org/" target="_blank">Infrastructure Lists</a></li>
+    <li><a href="https://skill-management.worldskills.org/" target="_blank">Skill Management</a></li>
+  </ul>
+</ng-template>
+<ng-template #col6DefaultTemplate>
+  <div class="text-right mt-5">
+    <a href="https://worldskills.org/" target="_blank">
+      <ws-logo mode="default"></ws-logo>
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #colDefaultTemplate>
+</ng-template>
+
 <footer class="ws-page-footer">
-    <div class="container-fluid">
-        <div class="row align-items-end py-3 px-2 px-md-3">
-            <div class="col-lg order-lg-2">
-                <ng-content select="[right]"></ng-content>
-            </div>
-            <div class="col-lg order-lg-1">
-                <div class="ws-content">
-                    <ng-content select="[left]"></ng-content>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="ws-page-footer-row">
+      <aside class="ws-page-footer-col-sm">
+        <ng-container *ngTemplateOutlet="col1Template ? col1Template : col1DefaultTemplate"></ng-container>
+      </aside>
+      <aside class="ws-page-footer-col-sm">
+        <ng-container *ngTemplateOutlet="col2Template ? col2Template : colDefaultTemplate"></ng-container>
+      </aside>
+      <aside class="ws-page-footer-col-sm">
+        <ng-container *ngTemplateOutlet="col3Template? col3Template : colDefaultTemplate"></ng-container>
+      </aside>
+      <aside class="ws-page-footer-col-sm">
+        <ng-container *ngTemplateOutlet="col4Template? col4Template : colDefaultTemplate"></ng-container>
+      </aside>
+      <aside class="ws-page-footer-col-sm">
+        <ng-container *ngTemplateOutlet="col5Template? col5Template : colDefaultTemplate"></ng-container>
+      </aside>
+      <aside class="ws-page-footer-col-sm">
+        <ng-container *ngTemplateOutlet="col6Template? col6Template : col6DefaultTemplate"></ng-container>
+      </aside>
     </div>
+    <div class="ws-page-footer-row">
+      <div class="ws-page-footer-col-lg">
+        <ul class="list-inline">
+          <li class="list-inline-item">© {{date | date:'yyyy'}} WorldSkills International</li>
+          <li class="list-inline-item"><a href="https://worldskills.org/site/privacy/" target="_blank">Privacy</a></li>
+          <li class="list-inline-item"><a href="https://worldskills.org/site/terms/" target="_blank">Terms</a></li>
+          <li class="list-inline-item"><a href="https://worldskills.org/site/contact/" target="_blank">Contact</a></li>
+        </ul>
+      </div>
+      <div class="ws-page-footer-col-lg">
+        <p *ngIf="isLoggedIn" class="text-md-right">
+          {{ currentUser.firstName }} {{ currentUser.lastName }}, <a href="#" (click)="logout(); false;">Log in</a>
+        </p>
+        <p *ngIf="!isLoggedIn" class="text-md-right">
+          <a href="#" (click)="login(); false;">Log in</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>
