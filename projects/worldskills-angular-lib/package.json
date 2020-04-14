@@ -7,8 +7,7 @@
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",
     "@angular/platform-browser":"^9.0.7",
-
-    "@angular/router": "9.0.7",
+    "@angular/router": "^9.0.7",
     "angular-oauth2-oidc": "^9.1.0",
     "json2typescript": "^1.2.5",
     "rxjs": "^6.5.4",
