@@ -79,6 +79,7 @@ export * from './lib/services/breadcrumb.service';
 export * from './lib/services/resource.service';
 export * from './lib/services/user.service';
 export * from './lib/services/upload.service';
+export * from './lib/services/poll.service';
 
 // interceptors
 export * from './lib/interceptors/ws-http-interceptor';
