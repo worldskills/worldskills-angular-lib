@@ -17,7 +17,7 @@ export class ResourceService {
   private url: string;
 
   constructor(private config: ModuleConfigService, private http: HttpClient, public uploader: UploadService) {
-    this.url = this.config.serviceConfig.resourceApiPath;
+    this.url = this.config.serviceConfig.apiEndpoint + '/resources';
   }
 
   /*

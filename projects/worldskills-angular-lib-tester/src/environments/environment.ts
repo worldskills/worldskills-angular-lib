@@ -9,9 +9,7 @@ export const environment = {
 
 export const serviceConfig = {
   appCode: 500,
-  userServiceEndpoint: 'http://localhost:8081/auth',
-  resourceApiPath: 'http://localhost/resources',
-  authApiPath: 'http://localhost:8081/auth'
+  apiEndpoint: 'http://localhost:8081',
 } as ServiceConfig;
 
 export const oAuthConfig = {
@@ -28,8 +26,6 @@ export const httpConfig = {
     'http://localhost:8081'
   ]
 } as WSHttpConfig;
-
-
 
 /*
  * For easier debugging in development mode, you can import the following file

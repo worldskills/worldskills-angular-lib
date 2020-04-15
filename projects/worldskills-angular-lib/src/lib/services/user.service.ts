@@ -17,7 +17,7 @@ export class UserService {
 
   constructor(protected configService: ModuleConfigService, protected http: HttpClient, protected oAuthService: OAuthService) {
     this.appCode = this.configService.serviceConfig.appCode;
-    this.endpoint = this.configService.serviceConfig.userServiceEndpoint;
+    this.endpoint = this.configService.serviceConfig.apiEndpoint + '/auth';
   }
 
   public ping() {
@@ -46,32 +46,32 @@ export class UserService {
   }
 
   public logout() {
-    const authUrl = `${this.configService.serviceConfig.authApiPath}/sessions/logout`;
+    const authUrl = `${this.endpoint}/sessions/logout`;
     return this.http.post(authUrl, {});
 
   }
 
   public addRole(userId: number, roleId: number) {
     // 'https://api.worldskills.org/auth/users/${userid}/roles';
-    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles`;
+    const url = `${this.endpoint}/users/${userId}/roles`;
     const data = { role_id: roleId };
     return this.http.post(url, data);
   }
   public addRoleWithEntity(userId: number, roleId: number, entityId: number) {
     // 'https://api.worldskills.org/auth/users/${userid}/roles';
-    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles`;
+    const url = `${this.endpoint}/users/${userId}/roles`;
     const data = { role_id: roleId, ws_entity_id: entityId };
     return this.http.post(url, data);
   }
 
   public deleteRole(userId: number, roleId: number) {
     // 'https://api.worldskills.org/auth/users/${userid}/roles/${roleId}';
-    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles/${roleId}`;
+    const url = `${this.endpoint}/users/${userId}/roles/${roleId}`;
     return this.http.delete(url);
   }
   public deleteRoleWithEntity(userId: number, roleId: number, entityId: number) {
     // 'https://api.worldskills.org/auth/users/${userid}/roles/${roleId}?ws_entity_id=';
-    const url = `${this.configService.serviceConfig.authApiPath}/users/${userId}/roles/${roleId}?ws_entity_id=${entityId}`;
+    const url = `${this.endpoint}/users/${userId}/roles/${roleId}?ws_entity_id=${entityId}`;
     return this.http.delete(url);
   }
 }

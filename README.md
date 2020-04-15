@@ -55,8 +55,7 @@ Then create the following config objects in your app.module.ts
 ``` typescript
 const serviceConfig = {
   appCode: 1000,
-  userServiceEndpoint: 'https://api.worldskills.show/auth',
-  resourceApiPath: 'https://api.worldskills.show/resources'
+  apiEndpoint: 'https://api.worldskills.show',
 };
 
 // oauth client app configuration

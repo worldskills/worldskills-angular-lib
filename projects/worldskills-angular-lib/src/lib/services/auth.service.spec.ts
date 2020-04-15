@@ -17,7 +17,7 @@ describe('AuthService', () => {
 
   const serviceConfig = new ServiceConfig();
   serviceConfig.appCode = 500;
-  serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
+  serviceConfig.apiEndpoint = 'http://localhost:8081';
   const oAuthConfig = new AuthConfig();
   oAuthConfig.loginUrl = '';
   oAuthConfig.userinfoEndpoint = '';
