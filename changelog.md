@@ -1,5 +1,9 @@
 # Chaangelog
 
+## 7.2.0
+
+introduced the poll service and related models
+
 ## 7.1.0
 
 Introduced the vote-control and related models

@@ -50,6 +50,8 @@ export * from './lib/models/user.model';
 export * from './lib/models/version-model';
 export * from './lib/models/votes/created-by-view';
 export * from './lib/models/votes/option-view';
+export * from './lib/models/votes/page-view';
+export * from './lib/models/votes/poll-reset-view';
 export * from './lib/models/votes/poll-view';
 export * from './lib/models/votes/result-view';
 export * from './lib/models/votes/voted-view';
