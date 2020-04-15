@@ -17,6 +17,7 @@ export class VoteControlComponent implements OnInit {
   @Input() voted: VotedView;
   @Output() viewChange: EventEmitter<string> = new EventEmitter();
   @Output() voteSelected: EventEmitter<number> = new EventEmitter();
+  @Output() voteRemoved: EventEmitter<number> = new EventEmitter();
 
   max: number;
   view: string;
@@ -47,9 +48,12 @@ export class VoteControlComponent implements OnInit {
     if (this.voted.hasVoted) {
       alert('You have already voted');
     } else {
-      const option = this.poll.options.find(x => x.id === this.selectedOptionId);
-      this.voteSelected.emit(option.id);
+      this.voteSelected.emit(this.selectedOptionId);
     }
+  }
+
+  unvote() {
+    this.voteRemoved.emit(this.selectedOptionId);
   }
 
   onVoteSelect(option: OptionView) {

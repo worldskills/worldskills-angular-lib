@@ -68,8 +68,8 @@ export class PollService {
     return this.http.post<OptionView>(url, model);
   }
 
-  public unvote(resultId: number, pollId: number, optionId: number) {
-    const url = `${this.endpoint}/${pollId}/options/${optionId}/results/${resultId}`;
+  public unvote(pollId: number, optionId: number) {
+    const url = `${this.endpoint}/${pollId}/options/${optionId}/results/removeVote`;
     return this.http.delete(url);
   }
 

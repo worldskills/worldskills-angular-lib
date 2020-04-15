@@ -30,8 +30,9 @@
       </div>
       <hr />
       <a *ngIf="voted && !voted.hasVoted && view === 'question'" class="btn btn-success" href="#" (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</a>&nbsp;
+      <a *ngIf="voted && voted.hasVoted && view === 'question' && poll.allowingReVote" class="btn btn-warning" href="#" (click)="unvote(); false;"><i class="fa fa-close"></i>&nbsp; Clear Vote</a>&nbsp;
       <a *ngIf="viewResultsState()" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</a>
       <a *ngIf="view === 'result'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</a>
-
+      <!-- allowingReVote -->
   </div>
 </div>
