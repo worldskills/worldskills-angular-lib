@@ -17,7 +17,7 @@ The footer component has been made with 6 columns that can be overriden when nee
 </ws-footer>
 ```
 
-### Overriding a single column
+### Footer Overriding a single column
 
 ```HTML
 <!-- Create the template -->
@@ -42,7 +42,7 @@ The footer component has been made with 6 columns that can be overriden when nee
 </ws-footer>
 ```
 
-### All overridable columns
+### Footer All overridable columns
 
 * `col1Template`
 * `col2Template`
@@ -51,15 +51,45 @@ The footer component has been made with 6 columns that can be overriden when nee
 * `col5Template`
 * `col6Template`
 
-### Input properties
+### Footer Input properties
 
 * `currentUser`: the current logged in user.
 * `isLoggedIn`: indicate if the current user is logged in
 
-### Output events
+### Footer Output events
 
 * `loginClick`: when the login button is clicked.
 * `logoutClick`: when the logout button is clicked
+
+## Vote Control
+
+### Default Usage
+
+```HTML
+<app-vote-control
+  [poll]="poll"
+  [results]="results"
+  [voted]="voted"
+  (viewChange)="viewChanged($event)"
+  (voteSelected)="voteSelected($event)">
+  </app-vote-control>
+```
+
+### Vote Control Input properties
+
+* `poll`: an instance off poll-view.
+* `results`: an array of result-view instances
+* `voted`: an intance of the voted-view
+
+### Vote Control Output events
+
+* `viewChange`: triggers when the view changes.
+  * `viewChange(view: string)`
+  * view names:
+    * `question`: the question view the lists options
+    * `result`: the view that shows the results
+* `voteSelected`: trigger when the user votes
+  * `voteSelected(optionId: number)`
 
 ## To be continued
 

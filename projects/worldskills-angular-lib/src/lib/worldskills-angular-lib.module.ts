@@ -22,6 +22,8 @@ import { WordmarkComponent } from './logos/wordmark/wordmark.component';
 import { LogoComponent } from './logos/logo/logo.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VoteControlComponent } from './votes/vote-control/vote-control.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -40,10 +42,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     WordmarkComponent,
     LogoComponent,
     DateRangeComponent,
+    VoteControlComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    FormsModule,
     HttpClientModule,
     RouterModule,
     NgbModule
@@ -63,6 +67,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     WordmarkComponent,
     LogoComponent,
     DateRangeComponent,
+    VoteControlComponent,
   ]
 })
 export class WorldskillsAngularLibModule {

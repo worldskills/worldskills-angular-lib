@@ -1,0 +1,37 @@
+<div class="card" *ngIf="poll">
+  <div class="card-header">
+      {{ poll.title.text }}<br />
+  </div>
+  <div class="card-body">
+      <h5 class="card-title">{{ poll.question.text }}</h5>
+      <div class="card-text" *ngIf="view === 'question'">
+          <em *ngIf="voted.hasVoted">You have already voted!</em>
+          <ul class="list-group">
+              <li *ngFor="let option of poll.options | wsSort: 'asc': 'id'" class="list-group-item" [ngClass]="{active: voted.hasVoted && selectedOptionId ? selectedOptionId === option.id : false }">
+                  <div class="form-check">
+                      <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="questions"
+                              [disabled]="voted.hasVoted"
+                              [checked]="selectedOptionId ? selectedOptionId === option.id : false"
+                              [value]="option.id" [(ngModel)]="selectedOptionId"
+                              (click)="onVoteSelect(option)" />{{ option.text.text }}
+                      </label>
+                  </div>
+              </li>
+          </ul>
+      </div>
+      <div class="card-text" *ngIf="view === 'result'">
+          <div *ngIf="results">
+              <p *ngFor="let option of poll.options">
+                  <strong>{{ option.text.text }}</strong><br />
+                  <ngb-progressbar [showValue]="false" type="success" [value]="countVotesPercentage(option)" [max]="100">{{ countVotes(option) }}</ngb-progressbar>
+              </p>
+          </div>
+      </div>
+      <hr />
+      <a *ngIf="voted && !voted.hasVoted && view === 'question'" class="btn btn-success" href="#" (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</a>&nbsp;
+      <a *ngIf="viewResultsState()" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</a>
+      <a *ngIf="view === 'result'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</a>
+
+  </div>
+</div>

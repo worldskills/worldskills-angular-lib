@@ -48,6 +48,11 @@ export * from './lib/models/translation-model';
 export * from './lib/models/translation-create.model';
 export * from './lib/models/user.model';
 export * from './lib/models/version-model';
+export * from './lib/models/votes/created-by-view';
+export * from './lib/models/votes/option-view';
+export * from './lib/models/votes/poll-view';
+export * from './lib/models/votes/result-view';
+export * from './lib/models/votes/voted-view';
 export * from './lib/models/version-create-model';
 export * from './lib/models/ws-entity-model';
 
@@ -86,6 +91,7 @@ export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 export * from './lib/logos/logo/logo.component';
 export * from './lib/logos/wordmark/wordmark.component';
+export * from './lib/votes/vote-control/vote-control.component';
 
 // security
 export * from './lib/security/ws-auth-guard';
