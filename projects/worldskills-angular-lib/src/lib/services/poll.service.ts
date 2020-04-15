@@ -63,13 +63,13 @@ export class PollService {
     return this.http.put(url, model);
   }
 
-  public addVote(model: OptionView, voteId: number, optionId: number): Observable<OptionView> {
-    const url = `${this.endpoint}/${voteId}/options/${optionId}/results/addVote`;
+  public addVote(model: OptionView, pollId: number, optionId: number): Observable<OptionView> {
+    const url = `${this.endpoint}/${pollId}/options/${optionId}/results/addVote`;
     return this.http.post<OptionView>(url, model);
   }
 
-  public unvote(resultId: number, voteId: number, optionId: number) {
-    const url = `${this.endpoint}/${voteId}/options/${optionId}/results/${resultId}`;
+  public unvote(resultId: number, pollId: number, optionId: number) {
+    const url = `${this.endpoint}/${pollId}/options/${optionId}/results/${resultId}`;
     return this.http.delete(url);
   }
 
