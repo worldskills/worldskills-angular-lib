@@ -45,5 +45,11 @@
     <li><a href="http://instagram.com/worldskills/" target="_blank"><i class="fa fa-instagram mr-3"></i>Instagram</a></li>
   </ul>
 </ng-template>
-<ws-footer [col5Template]="override5"></ws-footer>
+<ws-footer
+  [currentUser]="currentUser"
+  [isLoggedIn]="isLoggedIn"
+  (loginClick)="login()"
+  (logoutClick)="logout()"
+  [col5Template]="override5">
+</ws-footer>
 
