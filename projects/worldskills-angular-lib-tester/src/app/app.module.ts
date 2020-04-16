@@ -41,6 +41,8 @@ const appRoutes: Routes = [
     OAuthModule.forRoot(),
     WorldskillsAngularLibModule.forFn(mod => {
       mod.service = serviceConfig;
+      mod.auth = oAuthConfig;
+      mod.encoder = httpConfig;
       return mod;
     }),
     RouterModule.forRoot(appRoutes),

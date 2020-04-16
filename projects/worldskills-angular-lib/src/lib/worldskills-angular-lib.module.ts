@@ -117,7 +117,7 @@ export class WorldskillsAngularLibModule {
         },
         {
             provide: WSHttpConfigToken,
-            useValue: this.auth
+            useValue: this.encoder
         },
         {
           provide: AppConfigToken,
