@@ -1,5 +1,10 @@
 # Chaangelog
 
+## 7.4.0
+
+introduced `forFn` method to allow for optional configuration.
+NOTE: the `forConfig` method will be falling away in the future.
+
 ## 7.3.0
 
 Added unvote feature to the vote control
