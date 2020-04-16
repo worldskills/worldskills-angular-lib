@@ -88,8 +88,19 @@ const httpConfig = {
 ### Register the library
 
 ensure the following modules are within the `import: { ... }` section of your app.module.ts  
-`OAuthModule.forRoot()`  
-`WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig)`
+
+```TypeScript
+WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig)
+```
+
+Alternatively you don't need all the config, you can use `forFn` instead of `forConfig`
+
+```TypeScript
+WorldskillsAngularLibModule.forFn(mod => {
+  mod.service = serviceConfig;
+  return mod;
+}),
+```
 
 ### http auth injector
 

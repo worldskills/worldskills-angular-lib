@@ -25,7 +25,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VoteControlComponent } from './votes/vote-control/vote-control.component';
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AlertComponent,
@@ -72,26 +71,51 @@ import { FormsModule } from '@angular/forms';
 })
 export class WorldskillsAngularLibModule {
 
-  static forConfig(serviceConfig: ServiceConfig, authConfig: AuthConfig, encoderConfig: WSHttpConfig)
+  service: ServiceConfig;
+  auth: AuthConfig;
+  encoder: WSHttpConfig;
+
+  constructor() {
+    this.service = new ServiceConfig();
+    this.auth = new AuthConfig();
+    this.encoder = new WSHttpConfig();
+  }
+
+  static forConfig(service: ServiceConfig, auth: AuthConfig, encoder: WSHttpConfig)
          : ModuleWithProviders<WorldskillsAngularLibModule> {
+
+    const instance = new WorldskillsAngularLibModule();
+    instance.service = service;
+    instance.auth = auth;
+    instance.encoder = encoder;
+    return instance.build();
+  }
+
+  static forFn(callback: (obj: WorldskillsAngularLibModule) => WorldskillsAngularLibModule)
+  : ModuleWithProviders<WorldskillsAngularLibModule> {
+    const instance = new WorldskillsAngularLibModule();
+    return callback(instance).build();
+  }
+
+  build(): ModuleWithProviders<WorldskillsAngularLibModule>  {
     return {
-        ngModule: WorldskillsAngularLibModule,
-        providers: [
-            ModuleConfigService,
-            {
-                provide: ServiceConfigToken,
-                useValue: serviceConfig
-            },
-            {
-                provide: AuthConfigToken,
-                useValue: authConfig
-            },
-            {
-                provide: WSHttpConfigToken,
-                useValue: encoderConfig
-            }
-        ]
+      ngModule: WorldskillsAngularLibModule,
+      providers: [
+        ModuleConfigService,
+        {
+          provide: ServiceConfigToken,
+          useValue: this.service
+        },
+        {
+            provide: AuthConfigToken,
+            useValue: this.auth
+        },
+        {
+            provide: WSHttpConfigToken,
+            useValue: this.auth
+        }
+      ]
     };
-}
+  }
 }
 

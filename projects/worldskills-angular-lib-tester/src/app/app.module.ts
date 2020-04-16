@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { WorldskillsAngularLibModule, WsHttpInterceptor } from 'worldskills-angular-lib';
 import { Routes, RouterModule } from '@angular/router';
 import { serviceConfig, oAuthConfig, httpConfig } from '../environments/environment';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule, AuthConfig } from 'angular-oauth2-oidc';
 import { SampleComponent } from './sample/sample.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SimpleRouterComponent } from './simple-router/simple-router.component';
@@ -39,7 +39,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     OAuthModule.forRoot(),
-    WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig),
+    WorldskillsAngularLibModule.forFn(mod => {
+      mod.service = serviceConfig;
+      return mod;
+    }),
     RouterModule.forRoot(appRoutes),
     NgbModule,
     FormsModule
