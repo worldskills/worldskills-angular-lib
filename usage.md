@@ -2,6 +2,40 @@
 
 This will contain examples of how components are used.
 
+## App Auth Guard
+
+the app auth guard is a generic role-checking auth guard than can be used.
+
+## Default usage
+
+The App Auth Guard is applicable on Routes only. you can pass through multiple roles per route as well
+
+```TpyeScript
+{ path: 'feed', component: FeedComponent,
+  canActivate: [AppAuthGuard], data: {roles: ['Admin', 'Manager', 'User'}
+},
+{ path: 'manage', component: ManageComponent,
+  canActivate: [AppAuthGuard], data: {roles: ['Admin', 'Manager' }
+}
+```
+
+if the users role does not match the provided roles then ueer will be kicked to an unauthorized page.
+the default route is `/not-authorized`
+
+## overriding the not-authoried route
+
+you will need to use the `forFn` method when registering the module and overide the AppConfig instance.
+
+```TypeScript
+WorldskillsAngularLibModule.forFn(mod => {
+  mod.service = new ServiceConfig();
+  mod.auth = new AuthConfig();
+  mod.encoder = new WSHttpConfig();
+  mod.app = new AppConfig({notAuthorizedRoute: ['/error']});
+  return mod;
+}),
+```
+
 ## Footer
 
 The footer component has been made with 6 columns that can be overriden when needed. overriding a column is optional.
@@ -63,7 +97,7 @@ The footer component has been made with 6 columns that can be overriden when nee
 
 ## Vote Control
 
-### Default Usage
+### Default usage
 
 ```HTML
 <app-vote-control

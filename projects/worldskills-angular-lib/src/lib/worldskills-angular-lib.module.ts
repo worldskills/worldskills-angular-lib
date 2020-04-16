@@ -24,6 +24,7 @@ import { DateRangeComponent } from './date-range/date-range.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VoteControlComponent } from './votes/vote-control/vote-control.component';
 import { FormsModule } from '@angular/forms';
+import { AppConfig } from './config/app-config';
 
 @NgModule({
   declarations: [
@@ -74,11 +75,13 @@ export class WorldskillsAngularLibModule {
   service: ServiceConfig;
   auth: AuthConfig;
   encoder: WSHttpConfig;
+  app: AppConfig;
 
   constructor() {
     this.service = new ServiceConfig();
     this.auth = new AuthConfig();
     this.encoder = new WSHttpConfig();
+    this.app = new AppConfig();
   }
 
   static forConfig(service: ServiceConfig, auth: AuthConfig, encoder: WSHttpConfig)
