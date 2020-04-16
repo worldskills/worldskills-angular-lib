@@ -1,5 +1,9 @@
 # Chaangelog
 
+## 7.5.0
+
+Added a generic AppAuthGuard
+
 ## 7.4.0
 
 introduced `forFn` method to allow for optional configuration.

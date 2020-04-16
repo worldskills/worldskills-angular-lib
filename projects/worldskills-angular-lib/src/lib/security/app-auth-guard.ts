@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { serviceConfig } from 'projects/worldskills-angular-lib-tester/src/environments/environment';
 import { AuthService } from '../services/auth.service';
 import { GenericUtil } from '../util/generic-util';
 import { UserModel } from '../models/user.model';
@@ -33,7 +32,8 @@ export class AppAuthGuard implements CanActivate {
       const roles = route.data.roles as Array<string>;
 
       // ensure user has the correct role
-      if (userModel.roles.findIndex(x => roles.includes(x.name) && x.roleApplication.applicationCode === serviceConfig.appCode) === -1) {
+      if (userModel.roles
+        .findIndex(x => roles.includes(x.name) && x.roleApplication.applicationCode === this.config.serviceConfig.appCode) === -1) {
           this.router.navigate(this.config.appConfig.notAuthorizedRoute);
           return false;
       }

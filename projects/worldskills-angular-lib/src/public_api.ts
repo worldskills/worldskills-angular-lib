@@ -17,6 +17,7 @@ export * from './lib/util/ws.service';
 // config
 export * from './lib/config/service-config';
 export * from './lib/config/ws-http-config';
+export * from './lib/config/app-config';
 
 // interfaces
 export * from './lib/interfaces/breadcrumb.interface';
@@ -98,6 +99,7 @@ export * from './lib/votes/vote-control/vote-control.component';
 
 // security
 export * from './lib/security/ws-auth-guard';
+export * from './lib/security/app-auth-guard';
 
 // modules
 export * from './lib/worldskills-angular-lib.module';
