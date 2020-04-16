@@ -6,7 +6,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuAccessPipe } from './pipes/menu-access.pipe';
 import { FooterComponent } from './footer/footer.component';
-import { ModuleConfigService, ServiceConfigToken, WSHttpConfigToken, AuthConfigToken } from './config/module-config.service';
+import {
+  ModuleConfigService, ServiceConfigToken, WSHttpConfigToken, AuthConfigToken, AppConfigToken
+} from './config/module-config.service';
 import { ServiceConfig } from './config/service-config';
 import { SortPipe } from './pipes/sort.pipe';
 import { WSHttpConfig } from './config/ws-http-config';
@@ -116,6 +118,10 @@ export class WorldskillsAngularLibModule {
         {
             provide: WSHttpConfigToken,
             useValue: this.auth
+        },
+        {
+          provide: AppConfigToken,
+          useValue: this.app
         }
       ]
     };
