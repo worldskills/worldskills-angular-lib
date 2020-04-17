@@ -27,6 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VoteControlComponent } from './votes/vote-control/vote-control.component';
 import { FormsModule } from '@angular/forms';
 import { AppConfig } from './config/app-config';
+import { PollResultGraphComponent } from './votes/poll-result-graph/poll-result-graph.component';
+import { StandardPollComponent } from './votes/standard-poll/standard-poll.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { AppConfig } from './config/app-config';
     LogoComponent,
     DateRangeComponent,
     VoteControlComponent,
+    PollResultGraphComponent,
+    StandardPollComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +74,8 @@ import { AppConfig } from './config/app-config';
     LogoComponent,
     DateRangeComponent,
     VoteControlComponent,
+    PollResultGraphComponent,
+    StandardPollComponent,
   ]
 })
 export class WorldskillsAngularLibModule {

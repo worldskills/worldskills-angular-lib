@@ -1,9 +1,10 @@
+import { AddVoteEntryView } from './add-vote-entry-view';
 export class VotedView {
   hasVoted: boolean;
-  optionId: number;
+  votes: AddVoteEntryView[];
 
   constructor(obj?) {
       this.hasVoted = obj && obj.hasVoted || false;
-      this.optionId = obj && obj.optionId || null;
+      this.votes = obj && obj.votes || [];
   }
 }
