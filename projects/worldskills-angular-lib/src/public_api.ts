@@ -49,6 +49,8 @@ export * from './lib/models/translation-model';
 export * from './lib/models/translation-create.model';
 export * from './lib/models/user.model';
 export * from './lib/models/version-model';
+export * from './lib/models/votes/add-vote-entry-view';
+export * from './lib/models/votes/add-vote-view';
 export * from './lib/models/votes/created-by-view';
 export * from './lib/models/votes/option-view';
 export * from './lib/models/votes/page-view';
