@@ -6,9 +6,12 @@
     <h5 class="card-title">{{ poll.question.text }}</h5>
     <div class="card-text" *ngIf="view === 'question'">
       <em *ngIf="voted.hasVoted">You have already voted!</em>
-      <ws-standard-poll [poll]="poll" [voted]="voted" [initialSelection]="selection"
+      <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
         (optionSelected)="selected($event)">
       </ws-standard-poll>
+      <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+      (optionSelected)="selected($event)">
+    </ws-weighted-poll>
     </div>
     <div class="card-text" *ngIf="view === 'result'">
       <ws-poll-result-graph *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result-graph>

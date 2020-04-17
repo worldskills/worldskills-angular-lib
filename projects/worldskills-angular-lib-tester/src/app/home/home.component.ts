@@ -4,7 +4,6 @@ import { ResultView } from '../../../../worldskills-angular-lib/src/lib/models/v
 import { VotedView } from '../../../../worldskills-angular-lib/src/lib/models/votes/voted-view';
 import { CreatedByView, WsEntityModel, NameModel, OptionView } from 'projects/worldskills-angular-lib/src/public_api';
 import { I18nModel } from '../../../../worldskills-angular-lib/src/lib/models/I18n.model';
-import { AddVoteEntryView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-entry-view';
 import { AddVoteView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-view';
 
 @Component({
@@ -41,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.poll.start = new Date();
     this.poll.expiry = new Date();
     this.poll.expiry.setDate(this.poll.start.getDate() + 7);
-    this.poll.numberOfSelections = 1;
+    this.poll.numberOfSelections = 3;
     this.poll.options = [
        new OptionView({ id: 1, deleted: false, text: new I18nModel({lang_code: 'en', text: 'Option 1'})}),
        new OptionView({ id: 2, deleted: false, text: new I18nModel({lang_code: 'en', text: 'Option 2'})}),
@@ -50,7 +49,7 @@ export class HomeComponent implements OnInit {
     ];
     this.poll.question = new I18nModel({lang_code: 'en', text: 'Which option will you choose ?'});
     this.poll.title = new I18nModel({lang_code: 'en', text: 'Choices...' });
-    this.poll.type = 'standard';
+    this.poll.type = 'weighted';
 
     this.results = [
       new ResultView({id: 1, count: 6, option: this.poll.options[0]}),

@@ -29,6 +29,7 @@ import { FormsModule } from '@angular/forms';
 import { AppConfig } from './config/app-config';
 import { PollResultGraphComponent } from './votes/poll-result-graph/poll-result-graph.component';
 import { StandardPollComponent } from './votes/standard-poll/standard-poll.component';
+import { WeightedPollComponent } from './votes/weighted-poll/weighted-poll.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { StandardPollComponent } from './votes/standard-poll/standard-poll.compo
     VoteControlComponent,
     PollResultGraphComponent,
     StandardPollComponent,
+    WeightedPollComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { StandardPollComponent } from './votes/standard-poll/standard-poll.compo
     VoteControlComponent,
     PollResultGraphComponent,
     StandardPollComponent,
+    WeightedPollComponent
   ]
 })
 export class WorldskillsAngularLibModule {

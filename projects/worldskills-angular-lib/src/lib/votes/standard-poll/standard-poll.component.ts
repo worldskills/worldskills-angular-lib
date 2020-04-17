@@ -61,5 +61,4 @@ export class StandardPollComponent implements OnInit {
     const model = new AddVoteView({ votes: [entry] });
     this.optionSelected.emit(model);
   }
-
 }

@@ -97,7 +97,10 @@ export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 export * from './lib/logos/logo/logo.component';
 export * from './lib/logos/wordmark/wordmark.component';
+export * from './lib/votes/poll-result-graph/poll-result-graph.component';
+export * from './lib/votes/standard-poll/standard-poll.component';
 export * from './lib/votes/vote-control/vote-control.component';
+export * from './lib/votes/weighted-poll/weighted-poll.component';
 
 // security
 export * from './lib/security/ws-auth-guard';
