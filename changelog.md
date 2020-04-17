@@ -1,10 +1,14 @@
 # Chaangelog
 
+## 7.7.0
+
+* Introduced weigted voting Interface.
+
 ## 7.6.0
 
 * The vote control is now modular.
-* The poll results graph is now available as a seperate component
-* The standard poll mechanism is now available as a seperte component
+* The poll results graph is now available as a seperate component.
+* The standard poll mechanism is now available as a seperte component.
 
 ## 7.5.0
 
@@ -17,15 +21,15 @@
 
 ## 7.3.0
 
-* Added unvote feature to the vote control
+* Added unvote feature to the vote control.
 
 ## 7.2.0
 
-* Introduced the poll service and related models
+* Introduced the poll service and related models.
 
 ## 7.1.0
 
-* Introduced the vote-control and related models
+* Introduced the vote-control and related models.
 
 ## 7.0.0
 
