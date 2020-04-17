@@ -33,6 +33,8 @@ export class StandardPollComponent implements OnInit {
   init() {
     if (this.initialSelection) {
       this.selection = this.initialSelection.votes[0];
+    } else {
+      this.selection = new AddVoteEntryView();
     }
   }
 
