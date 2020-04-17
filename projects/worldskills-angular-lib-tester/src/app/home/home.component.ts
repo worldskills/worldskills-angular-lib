@@ -59,9 +59,10 @@ export class HomeComponent implements OnInit {
       new ResultView({id: 4, count: 5, option: this.poll.options[3]})
     ];
 
-    this.voted = new VotedView({hasVoted: true, votes: [new AddVoteEntryView({rank: 1, optionId: 1})]});
+    this.voted = new VotedView({hasVoted: false, votes: []});
+    // this.voted = new VotedView({hasVoted: true, votes: [new AddVoteEntryView({rank: 1, optionId: 1})]});
     this.selected = new AddVoteView();
-    this.selected.votes = this.voted.votes;
+    // this.selected.votes = this.voted.votes;
   }
 
   voteSelected(result: AddVoteView) {

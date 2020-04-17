@@ -32,10 +32,20 @@ export class StandardPollComponent implements OnInit {
 
   init() {
     if (this.initialSelection) {
-      this.selection = this.initialSelection.votes[0];
+      if (this.initialSelection.votes.length > 0) {
+        this.selection = this.initialSelection.votes[0];
+      } else {
+        this.loadDefaultSelection();
+      }
     } else {
-      this.selection = new AddVoteEntryView();
+      this.loadDefaultSelection();
     }
+  }
+
+  loadDefaultSelection() {
+    this.selection = new AddVoteEntryView();
+    this.selection.rank = 1;
+    this.selection.optionId = this.poll.options[0].id;
   }
 
   isSelected(option: OptionView) {
