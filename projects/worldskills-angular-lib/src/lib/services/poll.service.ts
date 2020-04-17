@@ -8,6 +8,7 @@ import { PollView } from '../models/votes/poll-view';
 import { ResultView } from '../models/votes/result-view';
 import { VotedView } from '../models/votes/voted-view';
 import { OptionView } from '../models/votes/option-view';
+import { AddVoteView } from '../models/votes/add-vote-view';
 
 @Injectable({
   providedIn: 'root'
@@ -63,13 +64,13 @@ export class PollService {
     return this.http.put(url, model);
   }
 
-  public addVote(model: OptionView, pollId: number, optionId: number): Observable<OptionView> {
-    const url = `${this.endpoint}/${pollId}/options/${optionId}/results/addVote`;
+  public addVote(pollId: number, model: AddVoteView): Observable<OptionView> {
+    const url = `${this.endpoint}/${pollId}/addVote`;
     return this.http.post<OptionView>(url, model);
   }
 
-  public unvote(pollId: number, optionId: number) {
-    const url = `${this.endpoint}/${pollId}/options/${optionId}/results/removeVote`;
+  public unvote(pollId: number) {
+    const url = `${this.endpoint}/${pollId}/removeVote`;
     return this.http.delete(url);
   }
 
