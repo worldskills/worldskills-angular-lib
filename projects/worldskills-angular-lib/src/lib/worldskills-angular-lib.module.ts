@@ -98,11 +98,28 @@ export class WorldskillsAngularLibModule {
   static forConfig(service: ServiceConfig, auth: AuthConfig, encoder: WSHttpConfig)
          : ModuleWithProviders<WorldskillsAngularLibModule> {
 
-    const instance = new WorldskillsAngularLibModule();
-    instance.service = service;
-    instance.auth = auth;
-    instance.encoder = encoder;
-    return instance.build();
+    return {
+      ngModule: WorldskillsAngularLibModule,
+      providers: [
+        ModuleConfigService,
+        {
+          provide: ServiceConfigToken,
+          useValue: service
+        },
+        {
+            provide: AuthConfigToken,
+            useValue: auth
+        },
+        {
+            provide: WSHttpConfigToken,
+            useValue: encoder
+        },
+        {
+          provide: AppConfigToken,
+          useValue: new AppConfig()
+        }
+      ]
+    };
   }
 
   static forFn(callback: (obj: WorldskillsAngularLibModule) => WorldskillsAngularLibModule)
