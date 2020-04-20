@@ -3,7 +3,7 @@ import { JsonObject, JsonProperty, Any } from 'json2typescript';
 import { WsEntityModel } from './ws-entity-model';
 import { NameModel } from './name-model';
 
-@JsonObject(RoleModel)
+@JsonObject('RoleModel')
 export class RoleModel {
   @JsonProperty('id', Number)
   id: number;

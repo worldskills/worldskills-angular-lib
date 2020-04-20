@@ -2,7 +2,7 @@ import { LinkModel } from './link-model';
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { NameModel } from './name-model';
 
-@JsonObject(RoleApplicationModel)
+@JsonObject('RoleApplicationModel')
 export class RoleApplicationModel {
   @JsonProperty('id', Number)
   id: number;

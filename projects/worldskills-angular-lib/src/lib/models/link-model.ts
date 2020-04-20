@@ -1,6 +1,6 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 
-@JsonObject(LinkModel)
+@JsonObject('LinkModel')
 export class LinkModel {
   @JsonProperty('rel', String)
   rel: string;

@@ -1,6 +1,6 @@
 import { JsonObject, JsonProperty, Any } from 'json2typescript';
 
-@JsonObject(CollectionModel)
+@JsonObject('CollectionModel')
 export class CollectionModel<TModel> {
   @JsonProperty('offset', Number)
   offset: number;

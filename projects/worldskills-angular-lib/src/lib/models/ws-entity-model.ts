@@ -1,7 +1,7 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { NameModel } from './name-model';
 
-@JsonObject(WsEntityModel)
+@JsonObject('WsEntityModel')
 export class WsEntityModel {
   @JsonProperty('id',  Number)
   id: number;
