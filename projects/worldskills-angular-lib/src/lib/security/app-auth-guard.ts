@@ -17,16 +17,14 @@ export class AppAuthGuard implements CanActivate {
 
       // ensure the user session exists
       if (GenericUtil.isNullOrUndefined(user)) {
-          this.authService.login();
-          return false;
+          this.login(state);
       }
 
       const userModel = new UserModel(JSON.parse(user));
 
       // ensure the user model is valid
       if (GenericUtil.isNullOrUndefined(userModel)) {
-          this.authService.login();
-          return false;
+          this.login(state);
       }
 
       const roles = route.data.roles as Array<string>;
@@ -39,5 +37,11 @@ export class AppAuthGuard implements CanActivate {
       }
 
       return true;
+  }
+
+  login(state: RouterStateSnapshot): boolean {
+    sessionStorage.setItem('returnUrl', state.url);
+    this.authService.login();
+    return false;
   }
 }
