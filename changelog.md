@@ -1,5 +1,9 @@
 # Chaangelog
 
+## 7.8.0
+
+* session key `returnUrl` is now populated by the `AppAuthGuard` when a user tries to access a route while not logged in. this gives the app an oppertunity to act on this `returnUrl` if that app chooses to.
+
 ## 7.7.0
 
 * Introduced weigted voting Interface.
