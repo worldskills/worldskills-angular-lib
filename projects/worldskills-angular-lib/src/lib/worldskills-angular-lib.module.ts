@@ -95,7 +95,7 @@ export class WorldskillsAngularLibModule {
     this.app = new AppConfig();
   }
 
-  static forConfig(service: ServiceConfig, auth: AuthConfig, encoder: WSHttpConfig)
+  static forConfig(service: ServiceConfig, auth: AuthConfig, encoder: WSHttpConfig, app?: AppConfig)
          : ModuleWithProviders<WorldskillsAngularLibModule> {
 
     return {
@@ -107,16 +107,16 @@ export class WorldskillsAngularLibModule {
           useValue: service
         },
         {
-            provide: AuthConfigToken,
-            useValue: auth
+          provide: AuthConfigToken,
+          useValue: auth
         },
         {
-            provide: WSHttpConfigToken,
-            useValue: encoder
+          provide: WSHttpConfigToken,
+          useValue: encoder
         },
         {
           provide: AppConfigToken,
-          useValue: new AppConfig()
+          useValue: app
         }
       ]
     };
