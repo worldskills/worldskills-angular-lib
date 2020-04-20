@@ -17,14 +17,14 @@ export class AppAuthGuard implements CanActivate {
 
       // ensure the user session exists
       if (GenericUtil.isNullOrUndefined(user)) {
-          this.login(state);
+          return this.login(state);
       }
 
       const userModel = new UserModel(JSON.parse(user));
 
       // ensure the user model is valid
       if (GenericUtil.isNullOrUndefined(userModel)) {
-          this.login(state);
+          return this.login(state);
       }
 
       const roles = route.data.roles as Array<string>;
