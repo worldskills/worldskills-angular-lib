@@ -31,7 +31,6 @@ export * from './lib/models/date-range';
 export * from './lib/models/I18n.model';
 export * from './lib/models/link-model';
 export * from './lib/models/link-model-raw';
-export * from './lib/models/name-model';
 export * from './lib/models/pair.model';
 export * from './lib/models/resources/resource-metadata-model';
 export * from './lib/models/resources/resource-metadata-info-model';

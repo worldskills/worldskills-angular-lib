@@ -25,6 +25,11 @@ export class PollService {
     return this.http.get<PageView<PollView>>(this.endpoint, {params});
   }
 
+  public select(params: any): Observable<PollView[]> {
+    const url = `${this.endpoint}/select`;
+    return this.http.get<PollView[]>(url, {params});
+  }
+
   public get(id: number): Observable<PollView> {
     const url = `${this.endpoint}/${id}`;
     return this.http.get<PollView>(url);
