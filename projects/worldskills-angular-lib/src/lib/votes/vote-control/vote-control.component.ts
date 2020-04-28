@@ -4,6 +4,7 @@ import { PollView } from '../../models/votes/poll-view';
 import { ResultView } from '../../models/votes/result-view';
 import { VotedView } from '../../models/votes/voted-view';
 import { AddVoteView } from '../../models/votes/add-vote-view';
+import { GenericUtil } from '../../util/generic-util';
 
 @Component({
   selector: 'ws-vote-control',
@@ -45,7 +46,6 @@ export class VoteControlComponent implements OnInit {
 
   selected(model: AddVoteView) {
     this.selection = model;
-    this.vote();
   }
 
   vote() {
@@ -92,6 +92,14 @@ export class VoteControlComponent implements OnInit {
         return new Date(value);
     }
     return value;
+  }
+
+  hasVotesSelected() {
+    if (GenericUtil.isNullOrUndefined(this.selection)) {
+      return true;
+    }
+
+    return this.selection.votes.length === 0;
   }
 
 }

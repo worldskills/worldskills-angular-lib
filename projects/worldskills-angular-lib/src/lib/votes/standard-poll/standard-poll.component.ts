@@ -45,7 +45,7 @@ export class StandardPollComponent implements OnInit {
   loadDefaultSelection() {
     this.selection = new AddVoteEntryView();
     this.selection.rank = 1;
-    this.selection.optionId = this.poll.options[0].id;
+    // this.selection.optionId = this.poll.options[0].id;
   }
 
   isSelected(option: OptionView) {

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PollView } from '../../../../worldskills-angular-lib/src/lib/models/votes/poll-view';
 import { ResultView } from '../../../../worldskills-angular-lib/src/lib/models/votes/result-view';
 import { VotedView } from '../../../../worldskills-angular-lib/src/lib/models/votes/voted-view';
-import { CreatedByView, WsEntityModel, NameModel, OptionView } from 'projects/worldskills-angular-lib/src/public_api';
+import { CreatedByView, WsEntityModel, OptionView } from 'projects/worldskills-angular-lib/src/public_api';
 import { I18nModel } from '../../../../worldskills-angular-lib/src/lib/models/I18n.model';
 import { AddVoteView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-view';
+import { NameModel } from 'projects/worldskills-angular-lib/src/lib/models/name-model';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   results: ResultView[];
   voted: VotedView;
 
-  selected: AddVoteView;
+  // selected: AddVoteView;
 
   constructor() { }
 
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
     ];
     this.poll.question = new I18nModel({lang_code: 'en', text: 'Which option will you choose ?'});
     this.poll.title = new I18nModel({lang_code: 'en', text: 'Choices...' });
-    this.poll.type = 'weighted';
+    this.poll.type = 'standard';
 
     this.results = [
       new ResultView({id: 1, count: 6, option: this.poll.options[0]}),
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
 
     this.voted = new VotedView({hasVoted: false, votes: []});
     // this.voted = new VotedView({hasVoted: true, votes: [new AddVoteEntryView({rank: 1, optionId: 1})]});
-    this.selected = new AddVoteView();
+    // this.selected = new AddVoteView();
     // this.selected.votes = this.voted.votes;
   }
 
@@ -68,7 +69,7 @@ export class HomeComponent implements OnInit {
     console.log(result);
     this.voted.hasVoted = true;
     this.voted.votes = result.votes;
-    this.selected.votes = this.voted.votes;
+    // this.selected.votes = this.voted.votes;
   }
 
   viewChange(view: string) {
@@ -79,7 +80,7 @@ export class HomeComponent implements OnInit {
     console.log(result);
     this.voted.hasVoted = false;
     this.voted.votes = [];
-    this.selected = new AddVoteView();
+    // this.selected = new AddVoteView();
   }
 
 }
