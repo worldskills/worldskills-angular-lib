@@ -45,6 +45,7 @@ export class VoteControlComponent implements OnInit {
 
   selected(model: AddVoteView) {
     this.selection = model;
+    this.vote();
   }
 
   vote() {
