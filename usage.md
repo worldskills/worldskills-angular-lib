@@ -101,19 +101,28 @@ The footer component has been made with 6 columns that can be overriden when nee
 
 ```HTML
 <app-vote-control
+  [showEditButton]="true"
+  [showResetButton]="true"
+  [showDeleteButton]="true"
   [poll]="poll"
   [results]="results"
   [voted]="voted"
   (viewChange)="viewChanged($event)"
-  (voteSelected)="voteSelected($event)">
+  (voteSelected)="voteSelected($event)"
+  (edit)="edit($event)"
+  (reset)="reset($event)"
+  (delete)="delete($event)">
   </app-vote-control>
 ```
 
 ### Vote Control Input properties
 
 * `poll`: an instance off poll-view.
-* `results`: an array of result-view instances
-* `voted`: an intance of the voted-view
+* `results`: an array of result-view instances.
+* `voted`: an intance of the voted-view.
+* `showEditButton`: weather or not the edit button will show.
+* `showResetButton`: weather or not the reset button will show.
+* `showDeleteButton`: weather or not the delete button will show.
 
 ### Vote Control Output events
 
@@ -124,6 +133,12 @@ The footer component has been made with 6 columns that can be overriden when nee
     * `result`: the view that shows the results
 * `voteSelected`: trigger when the user votes
   * `voteSelected(optionId: number)`
+* `edit`: triggers when the edit button is clicked
+  * `edit(poll: PollView)`
+* `reset`: triggers when the reset button is clicked
+  * `reset(poll: PollView)`
+* `delete`: triggers when the delete button is clicked
+  * `delete(poll: PollView)`
 
 ## To be continued
 
