@@ -13,9 +13,21 @@ import { GenericUtil } from '../../util/generic-util';
 })
 export class VoteControlComponent implements OnInit {
 
+  // button flags
+  @Input() showEditButton: boolean;
+  @Input() showResetButton: boolean;
+  @Input() showDeleteButton: boolean;
+
+  // input models
   @Input() poll: PollView;
   @Input() results: ResultView[];
   @Input() voted: VotedView;
+
+  // events
+  @Output() edit: EventEmitter<PollView> = new EventEmitter();
+  @Output() reset: EventEmitter<PollView> = new EventEmitter();
+  @Output() delete: EventEmitter<PollView> = new EventEmitter();
+
   @Output() viewChange: EventEmitter<string> = new EventEmitter();
   @Output() voteSelected: EventEmitter<AddVoteView> = new EventEmitter();
   @Output() voteRemoved: EventEmitter<AddVoteView> = new EventEmitter();
@@ -100,6 +112,18 @@ export class VoteControlComponent implements OnInit {
     }
 
     return this.selection.votes.length === 0;
+  }
+
+  editClick(poll: PollView) {
+    this.edit.emit(poll);
+  }
+
+  resetClick(poll: PollView) {
+    this.reset.emit(poll);
+  }
+
+  deleteClick(poll: PollView) {
+    this.delete.emit(poll);
   }
 
 }

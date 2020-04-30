@@ -6,6 +6,7 @@ import { CreatedByView, WsEntityModel, OptionView } from 'projects/worldskills-a
 import { I18nModel } from '../../../../worldskills-angular-lib/src/lib/models/I18n.model';
 import { AddVoteView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-view';
 import { NameModel } from 'projects/worldskills-angular-lib/src/lib/models/name-model';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -81,6 +82,18 @@ export class HomeComponent implements OnInit {
     this.voted.hasVoted = false;
     this.voted.votes = [];
     // this.selected = new AddVoteView();
+  }
+
+  edit(poll: PollView) {
+    console.log('edit');
+  }
+
+  reset(poll: PollView) {
+    console.log('reset');
+  }
+
+  delete(poll: PollView) {
+    console.log('delete');
   }
 
 }

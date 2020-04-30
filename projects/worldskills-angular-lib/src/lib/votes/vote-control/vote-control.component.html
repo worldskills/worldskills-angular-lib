@@ -23,8 +23,15 @@
     <button *ngIf="voted && voted.hasVoted && view === 'question' && poll.allowingReVote" class="btn btn-warning" href="#"
       (click)="unvote(); false;"><i class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
     <button *ngIf="viewResultsState()" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i
-        class="fa fa-area-chart"></i>&nbsp; View Results</button>
+        class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
     <button *ngIf="view === 'result'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i
-        class="fa fa-question-circle"></i>&nbsp; View Choices</button>
+        class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
+
+    <button *ngIf="showEditButton" class="btn btn-secondary" href="#" (click)="editClick(poll); false;"><i
+      class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
+    <button *ngIf="showResetButton" class="btn btn-warning" href="#" (click)="resetClick(poll); false;"><i
+      class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
+    <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
+      class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
   </div>
 </div>
