@@ -81,4 +81,21 @@ export class WeightedPollComponent implements OnInit {
 
     return '';
   }
+
+  getRank(item: CheckBoxItem) {
+    const index = this.selection.findIndex(x => x.id === item.data.id);
+    if (index === -1) {
+      return null;
+    }
+    return this.numberToWord(index + 1);
+  }
+
+  // convert this to an algorithm if the design works out
+  numberToWord(num: number) {
+    if (num < 0 ) {
+      return null;
+    }
+    const word = ['zero', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eight', 'ninth', 'tenth' ];
+    return word[num];
+  }
 }

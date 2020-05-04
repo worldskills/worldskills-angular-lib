@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     ];
     this.poll.question = new I18nModel({lang_code: 'en', text: 'Which option will you choose ?'});
     this.poll.title = new I18nModel({lang_code: 'en', text: 'Choices...' });
-    this.poll.type = 'standard';
+    this.poll.type = 'weighted';
 
     this.results = [
       new ResultView({id: 1, count: 6, option: this.poll.options[0]}),

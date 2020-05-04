@@ -1,37 +1,46 @@
 <div class="card" *ngIf="poll">
   <div class="card-header">
-    {{ poll.title.text }}<br />
+    {{ poll.title.text }}
+    <br />
+    <small class="text-muted">Created By: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{ poll.question.text }}</h5>
+    <div class="card-title">{{ poll.question.text }}</div>
     <div class="card-text" *ngIf="view === 'question'">
       <em *ngIf="voted.hasVoted">You have already voted!</em>
       <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
         (optionSelected)="selected($event)">
       </ws-standard-poll>
       <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
-      (optionSelected)="selected($event)">
-    </ws-weighted-poll>
+        (optionSelected)="selected($event)">
+      </ws-weighted-poll>
     </div>
     <div class="card-text" *ngIf="view === 'result'">
       <ws-poll-result-graph *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result-graph>
     </div>
     <hr />
 
-    <button [disabled]="hasVotesSelected()" *ngIf="voted && !voted.hasVoted && view === 'question'" class="btn btn-success" href="#"
-      (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
-    <button *ngIf="voted && voted.hasVoted && view === 'question' && poll.allowingReVote" class="btn btn-warning" href="#"
-      (click)="unvote(); false;"><i class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
-    <button *ngIf="viewResultsState()" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i
-        class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
-    <button *ngIf="view === 'result'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i
-        class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
-
-    <button *ngIf="showEditButton" class="btn btn-secondary" href="#" (click)="editClick(poll); false;"><i
-      class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
-    <button *ngIf="showResetButton" class="btn btn-warning" href="#" (click)="resetClick(poll); false;"><i
-      class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
-    <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
-      class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
+    <div class="pull-left">
+      <button [disabled]="hasVotesSelected()" *ngIf="voted && !voted.hasVoted && view === 'question'"
+        class="btn btn-success" href="#" (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
+      <button *ngIf="voted && voted.hasVoted && view === 'question' && poll.allowingReVote" class="btn btn-warning"
+        href="#" (click)="unvote(); false;"><i class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
+      <button *ngIf="viewResultsState()" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i
+          class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
+      <button *ngIf="view === 'result'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i
+          class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
+    </div>
+    <div class="pull-right">
+      <button *ngIf="showEditButton" class="btn btn-secondary" href="#" (click)="editClick(poll); false;"><i
+          class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
+      <button *ngIf="showResetButton" class="btn btn-warning" href="#" (click)="resetClick(poll); false;"><i
+          class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
+      <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
+          class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <small class="text-muted"><strong>Started:</strong> {{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>&nbsp;
+    <small class="text-muted"><strong>Finishes:</strong> {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
   </div>
 </div>
