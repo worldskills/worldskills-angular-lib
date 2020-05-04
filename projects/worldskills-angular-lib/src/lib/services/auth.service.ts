@@ -5,6 +5,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { UserService } from './user.service';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 import { ModuleConfigService } from '../config/module-config.service';
+import { Router } from '@angular/router';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state
@@ -15,7 +16,11 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<UserModel>;
   public currentUser: Observable<UserModel>;
 
-  constructor(private configService: ModuleConfigService, private oAuthService: OAuthService, private userService: UserService) {
+  public returnUrlKey: string;
+
+  constructor(private configService: ModuleConfigService, private oAuthService: OAuthService, private router: Router,
+              private userService: UserService) {
+    this.returnUrlKey = 'returnUrl';
     this.configureAuth();
     this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(sessionStorage.getItem('user.current')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -78,5 +83,33 @@ export class AuthService {
 
     this.oAuthService.setStorage(sessionStorage);
     this.oAuthService.tryLogin();
+  }
+
+  public redirectOrReturn(redirectRoute: string[]) {
+    if (!this.isLoggedIn()) {
+      this.login();
+    } else {
+      if (this.hasReturnUrl()) {
+        this.handleReturnUrl();
+      } else {
+        this.loadUserProfile(result => {
+          sessionStorage.removeItem(this.returnUrlKey);
+          this.router.navigate(redirectRoute);
+        });
+      }
+    }
+  }
+
+  public hasReturnUrl() {
+    const returnUrl = sessionStorage.getItem(this.returnUrlKey);
+    return returnUrl !== null && returnUrl !== undefined && returnUrl !== 'undefined';
+  }
+
+  public handleReturnUrl() {
+    const returnUrl = sessionStorage.getItem(this.returnUrlKey);
+    sessionStorage.removeItem(this.returnUrlKey);
+    this.loadUserProfile(() => {
+      this.router.navigateByUrl(returnUrl);
+    });
   }
 }

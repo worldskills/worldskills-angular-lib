@@ -6,7 +6,8 @@ import { CreatedByView, WsEntityModel, OptionView } from 'projects/worldskills-a
 import { I18nModel } from '../../../../worldskills-angular-lib/src/lib/models/I18n.model';
 import { AddVoteView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-view';
 import { NameModel } from 'projects/worldskills-angular-lib/src/lib/models/name-model';
-import { CheckboxControlValueAccessor } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +22,24 @@ export class HomeComponent implements OnInit {
 
   // selected: AddVoteView;
 
-  constructor() { }
+  constructor(private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.route.queryParams.subscribe(
+      params => {
+        if (!this.authService.hasReturnUrl()) {
+          sessionStorage.setItem('returnUrl', params.returnUrl);
+        }
+      }
+    );
+
+    this.authService.redirectOrReturn(['/home']);
+
+  }
+
+  init() {
+
     this.poll = new PollView();
     this.poll.id = 1;
     this.poll.allowingReVote = true;

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { WorldskillsAngularLibModule, WsHttpInterceptor } from 'worldskills-angular-lib';
+import { WorldskillsAngularLibModule, WsHttpInterceptor, AppAuthGuard } from 'worldskills-angular-lib';
 import { Routes, RouterModule } from '@angular/router';
 import { serviceConfig, oAuthConfig, httpConfig } from '../environments/environment';
 import { OAuthModule, AuthConfig } from 'angular-oauth2-oidc';
@@ -24,6 +24,9 @@ const appRoutes: Routes = [
     { path: 'sample', component: SampleComponent, data: { breadcrumb: 'Sample' } },
     { path: 'change', component: KeyChangeComponent, data: { breadcrumb: '[key]' } },
   ] },
+  { path: 'manage', component: SampleComponent,
+    canActivate: [AppAuthGuard], data: {roles: ['Admin'] }
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
