@@ -1,5 +1,14 @@
-<ul class="list-group" *ngIf="checkboxes">
-  <li *ngFor="let item of checkboxes | wsSort: 'asc': 'data.optionId'" class="list-group-item"
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let num of numSelections">
+    <select class="form-control" [(ngModel)]="models[num]" (change)="change($event, num)" [disabled]="voted.hasVoted">
+      <option value="0">{{ numberToWord(num + 1) }} selection</option>
+      <option *ngFor="let option of poll.options" value="{{ option.id }}">{{ option.text.text }}</option>
+    </select>
+  </li>
+</ul>
+
+
+<!-- <li *ngFor="let item of checkboxes | wsSort: 'asc': 'data.optionId'" class="list-group-item"
     [ngClass]="{active: voted.hasVoted && isOptionSelected(item.data)}">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" [(ngModel)]="item.selected" (change)="onOptionChange(item)" [disabled]="isDisabled(item)"  />
@@ -8,5 +17,4 @@
         {{ getText(item) }}
       </label>
     </div>
-  </li>
-</ul>
+  </li> -->

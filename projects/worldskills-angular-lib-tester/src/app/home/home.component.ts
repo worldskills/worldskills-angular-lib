@@ -7,7 +7,7 @@ import { I18nModel } from '../../../../worldskills-angular-lib/src/lib/models/I1
 import { AddVoteView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-view';
 import { NameModel } from 'projects/worldskills-angular-lib/src/lib/models/name-model';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'worldskills-angular-lib';
+import { AuthService, AddVoteEntryView } from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
     );
 
     this.authService.redirectOrReturn(['/home']);
+
+    this.init();
 
   }
 
@@ -77,7 +79,15 @@ export class HomeComponent implements OnInit {
     ];
 
     this.voted = new VotedView({hasVoted: false, votes: []});
-    // this.voted = new VotedView({hasVoted: true, votes: [new AddVoteEntryView({rank: 1, optionId: 1})]});
+    // this.voted = new VotedView({
+    //   hasVoted: true,
+    //   votes: [
+    //     new AddVoteEntryView({rank: 1, optionId: 1}),
+    //     new AddVoteEntryView({rank: 2, optionId: 4}),
+    //     new AddVoteEntryView({rank: 3, optionId: 2})
+
+    //   ]
+    // });
     // this.selected = new AddVoteView();
     // this.selected.votes = this.voted.votes;
   }

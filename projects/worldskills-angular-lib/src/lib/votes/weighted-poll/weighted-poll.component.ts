@@ -3,8 +3,6 @@ import { PollView } from '../../models/votes/poll-view';
 import { VotedView } from '../../models/votes/voted-view';
 import { AddVoteView } from '../../models/votes/add-vote-view';
 import { AddVoteEntryView } from '../../models/votes/add-vote-entry-view';
-import { OptionView } from '../../models/votes/option-view';
-import { CheckBoxItem } from '../../models/checkbox-item';
 
 @Component({
   selector: 'ws-weighted-poll',
@@ -18,9 +16,11 @@ export class WeightedPollComponent implements OnInit {
   @Input() initialSelection: AddVoteView;
   @Output() optionSelected: EventEmitter<AddVoteView> = new EventEmitter();
 
-  checkboxes: CheckBoxItem[];
+  // selection: OptionView[];
 
-  selection: OptionView[];
+  numSelections: number[];
+
+  models: string[];
 
   constructor() { }
 
@@ -29,65 +29,49 @@ export class WeightedPollComponent implements OnInit {
   }
 
   init() {
-    this.selection = [];
-    this.checkboxes = this.poll.options.map(
-      option => new CheckBoxItem({
-        value: option.id,
-        selected: this.initialSelection.votes.findIndex(x => x.optionId === option.id) !== -1,
-        data: option
-      })
-    );
+    // this.selection = [];
+    // ensure variables
+    this.numSelections = [];
+    this.models = [];
+
+    // loop for number of select boxes to show
+    this.numSelections = Array(this.poll.numberOfSelections).fill(0).map((x, i) => i);
+
+    // ensure each select box has a model to bind to
+    this.numSelections.forEach(num => {
+      const selected = this.initialSelection.votes.find(x => x.rank === num + 1);
+      if (selected) {
+        this.models.push(selected.optionId.toString()); // handle initial selection
+      } else {
+        this.models.push('0'); // ensure the selection text is displayed
+      }
+    });
   }
 
-  onOptionChange(checkbox: CheckBoxItem) {
-    if (checkbox.selected) {
-      this.selection.push(checkbox.data);
-    } else {
-      const index = this.selection.findIndex(x => x.id === checkbox.data.id);
-      if (index !== -1) {
-        this.selection.splice(index, 1);
+  change(event: any, index) {
+    // ensure we are not dealing with an unset action
+    if (event.target.value !== '0') {
+      const idx = this.models.findIndex(x => x === event.target.value);
+      // if an option was selected twice from different drop downs. unset the older selection
+      if (idx !== index && idx !== -1) {
+        this.models[idx] = '0';
       }
     }
 
-    const model = new AddVoteView();
-    let counter = 1;
-    this.selection.forEach((option, i) => {
-      const entry = new AddVoteEntryView({rank: counter, optionId: option.id});
-      model.votes.push(entry);
-      counter++;
-    });
-
+    // emit selection only if all options are selected
     if (this.hasMaxSelections()) {
-      this.optionSelected.emit(model);
+      const output = new AddVoteView();
+      this.models.forEach((id, i) => {
+        const entry = new AddVoteEntryView({rank: i + 1, optionId: id});
+        output.votes.push(entry);
+      });
+      this.optionSelected.emit(output);
     }
   }
 
   hasMaxSelections() {
-    return this.selection.length >= this.poll.numberOfSelections;
-  }
-
-  isOptionSelected(option: OptionView) {
-    return this.selection.findIndex(x => x.id === option.id) !== -1;
-  }
-
-  isDisabled(checkbox: CheckBoxItem) {
-    return this.voted.hasVoted ? true : this.hasMaxSelections() && this.selection.findIndex(x => x.id === checkbox.data.id) === -1;
-  }
-
-  getText(item: CheckBoxItem) {
-    if (item) {
-      return item.data.text.text;
-    }
-
-    return '';
-  }
-
-  getRank(item: CheckBoxItem) {
-    const index = this.selection.findIndex(x => x.id === item.data.id);
-    if (index === -1) {
-      return null;
-    }
-    return this.numberToWord(index + 1);
+    // if there are no unset options, we have max selection
+    return this.models.filter(x => x === '0').length === 0;
   }
 
   // convert this to an algorithm if the design works out
