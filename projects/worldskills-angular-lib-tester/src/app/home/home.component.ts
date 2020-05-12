@@ -59,7 +59,8 @@ export class HomeComponent implements OnInit {
     this.poll.entity.name = new NameModel({ lang_code: 'en', text: 'Worldkills International' });
     this.poll.start = new Date();
     this.poll.expiry = new Date();
-    this.poll.expiry.setDate(this.poll.start.getDate() + 7);
+    // this.poll.start.setDate(this.poll.start.getDate() + 30);
+    this.poll.expiry.setDate(this.poll.expiry.getDate() + 7);
     this.poll.numberOfSelections = 3;
     this.poll.options = [
        new OptionView({ id: 1, deleted: false, text: new I18nModel({lang_code: 'en', text: 'Option 1'})}),

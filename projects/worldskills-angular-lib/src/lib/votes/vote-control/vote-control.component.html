@@ -21,13 +21,13 @@
     <hr />
 
     <div class="pull-left">
-      <button [disabled]="hasVotesSelected()" *ngIf="voted && !voted.hasVoted && view === 'question'"
+      <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()"
         class="btn btn-success" href="#" (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
-      <button *ngIf="voted && voted.hasVoted && view === 'question' && poll.allowingReVote" class="btn btn-warning"
+      <button *ngIf="showClearVoteButton()" class="btn btn-warning"
         href="#" (click)="unvote(); false;"><i class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
-      <button *ngIf="viewResultsState()" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i
+      <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#" (click)="changeView('result'); false;"><i
           class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
-      <button *ngIf="view === 'result'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i
+      <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#" (click)="changeView('question'); false;"><i
           class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
     </div>
     <div class="pull-right">
@@ -40,6 +40,7 @@
     </div>
   </div>
   <div class="card-footer text-muted">
+    <small class="text-muted"><strong>Stateus:</strong> {{ state }} </small>&nbsp;|&nbsp;
     <small class="text-muted"><strong>Started:</strong> {{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>&nbsp;
     <small class="text-muted"><strong>Finishes:</strong> {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
   </div>

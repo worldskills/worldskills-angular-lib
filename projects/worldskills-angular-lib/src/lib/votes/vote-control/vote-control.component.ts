@@ -6,6 +6,7 @@ import { VotedView } from '../../models/votes/voted-view';
 import { AddVoteView } from '../../models/votes/add-vote-view';
 import { GenericUtil } from '../../util/generic-util';
 
+// TODO: Move logic out into a `handler` class to allow better overrides
 @Component({
   selector: 'ws-vote-control',
   templateUrl: './vote-control.component.html',
@@ -34,7 +35,7 @@ export class VoteControlComponent implements OnInit {
 
   view: string;
   subscription: Subscription;
-
+  state: string;
   selection: AddVoteView;
 
   constructor() { }
@@ -53,7 +54,28 @@ export class VoteControlComponent implements OnInit {
   init() {
     if (this.poll && this.results && this.voted) {
       this.selection = new AddVoteView({votes: this.voted.votes });
+      this.calculateState();
     }
+  }
+
+  calculateState() {
+    this.state = 'running';
+    const now = new Date();
+    const start = this.parseDate(this.poll.start);
+    const expiry = this.parseDate(this.poll.expiry);
+
+    if (now < start) {
+      this.state = 'Not yet started';
+      this.view = 'result';
+      return;
+    }
+
+    if (now > expiry) {
+      this.state = 'expired';
+      this.view = 'result';
+      return;
+    }
+    this.view = 'question';
   }
 
   selected(model: AddVoteView) {
@@ -124,6 +146,15 @@ export class VoteControlComponent implements OnInit {
 
   deleteClick(poll: PollView) {
     this.delete.emit(poll);
+  }
+
+  showVoteButton() {
+    return this.voted && !this.voted.hasVoted && this.view === 'question' && this.state === 'running';
+  }
+
+  showClearVoteButton() {
+    return this.poll && this.voted && this.voted.hasVoted && this.view === 'question' && this.poll.allowingReVote
+        && this.state === 'running';
   }
 
 }
