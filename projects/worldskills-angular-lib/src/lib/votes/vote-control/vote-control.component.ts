@@ -75,7 +75,6 @@ export class VoteControlComponent implements OnInit {
       this.view = 'result';
       return;
     }
-    this.view = 'question';
   }
 
   selected(model: AddVoteView) {
