@@ -16,7 +16,7 @@ describe('AuthService', () => {
   let httpTestingController: HttpTestingController;
 
   const serviceConfig = new ServiceConfig();
-  serviceConfig.appCode = 500;
+  serviceConfig.appCode = [500];
   serviceConfig.apiEndpoint = 'http://localhost:8081';
   const oAuthConfig = new AuthConfig();
   oAuthConfig.loginUrl = '';

@@ -16,8 +16,8 @@ describe('UserService', () => {
   let httpTestingController: HttpTestingController;
 
   const serviceConfig = new ServiceConfig();
-  serviceConfig.appCode = 500;
-  serviceConfig.userServiceEndpoint = 'http://localhost:8081/auth';
+  serviceConfig.appCode = [500];
+  serviceConfig.apiEndpoint = 'http://localhost:8081';
   const oAuthConfig = new AuthConfig();
   oAuthConfig.loginUrl = 'http://localhost:50300/oauth/authorize';
   oAuthConfig.redirectUri = '';

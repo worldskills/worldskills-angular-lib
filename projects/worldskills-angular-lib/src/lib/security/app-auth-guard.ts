@@ -31,7 +31,7 @@ export class AppAuthGuard implements CanActivate {
 
       // ensure user has the correct role
       if (userModel.roles
-        .findIndex(x => roles.includes(x.name) && x.roleApplication.applicationCode === this.config.serviceConfig.appCode) === -1) {
+        .findIndex(x => roles.includes(x.name) && this.config.serviceConfig.appCode.includes(x.roleApplication.applicationCode)) === -1) {
           this.router.navigate(this.config.appConfig.notAuthorizedRoute);
           return false;
       }

@@ -54,7 +54,7 @@ Then create the following config objects in your app.module.ts
 
 ``` typescript
 const serviceConfig = {
-  appCode: 1000,
+  appCode: [1000],
   apiEndpoint: 'https://api.worldskills.show',
 };
 

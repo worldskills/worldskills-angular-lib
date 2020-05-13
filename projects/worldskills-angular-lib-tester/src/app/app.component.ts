@@ -17,7 +17,7 @@ export class AppComponent {
   menuItems: Array<IMenuItem>;
   currentUser: UserModel;
 
-  appCode: number;
+  appCode: number[];
   cliendId: string;
 
   activeToggleButton: string;

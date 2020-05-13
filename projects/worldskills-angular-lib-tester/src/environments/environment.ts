@@ -8,9 +8,9 @@ export const environment = {
 };
 
 export const serviceConfig = {
-  appCode: 500,
+  appCode: [500, 3600],
   apiEndpoint: 'http://localhost:8081',
-} as ServiceConfig;
+};
 
 export const oAuthConfig = {
   loginUrl: 'http://localhost:50300/oauth/authorize',
@@ -18,14 +18,14 @@ export const oAuthConfig = {
   redirectUri: 'http://localhost:4200/home',
   userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
   oidc: false
-} as AuthConfig;
+};
 
 export const httpConfig = {
   encoderUriPatterns: [],
   authUriPatterns: [
     'http://localhost:8081'
   ]
-} as WSHttpConfig;
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
@@ -35,7 +35,3 @@ export const httpConfig = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-import { ServiceConfig } from '../../../worldskills-angular-lib/src/lib/config/service-config';
-import { WSHttpConfig } from '../../../worldskills-angular-lib/src/lib/config/ws-http-config';
-import { AuthConfig } from 'angular-oauth2-oidc';
-

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ModuleConfigService } from '../config/module-config.service';
@@ -12,7 +12,7 @@ import { RoleModel } from '../models/role-model';
   providedIn: 'root'
 })
 export class UserService {
-  private appCode: number;
+  private appCode: number[];
   private endpoint: string;
 
   constructor(protected configService: ModuleConfigService, protected http: HttpClient, protected oAuthService: OAuthService) {
@@ -26,8 +26,18 @@ export class UserService {
   }
 
   public getLoggedInUser(showChildRoles: boolean = false) {
-    const url = `${this.endpoint}/users/loggedIn?show_child_roles=${showChildRoles}&app_code=${String(this.appCode)}`;
-    return this.http.get(url, {});
+
+    let params = new HttpParams();
+    params = params.set('show_child_roles', String(showChildRoles));
+    this.appCode.forEach(code => {
+      if (params.has('app_code')) {
+        params = params.append('app_code', String(code));
+      } else {
+        params = params.set('app_code', String(code));
+      }
+    });
+    const url = `${this.endpoint}/users/loggedIn`;
+    return this.http.get(url, {params});
   }
 
   // check if a user has at least one listed permission
@@ -35,7 +45,7 @@ export class UserService {
   public hasPermission(user: UserModel, permissions: string[]) {
     permissions = permissions || [];
     const result = user.roles.filter(role => {
-      return permissions.indexOf(role.name) > -1 && role.roleApplication.applicationCode === this.appCode;
+      return permissions.indexOf(role.name) > -1 && this.appCode.includes(role.roleApplication.applicationCode);
     });
 
     return result;
