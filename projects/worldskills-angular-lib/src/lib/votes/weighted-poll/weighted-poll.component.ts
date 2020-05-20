@@ -82,4 +82,12 @@ export class WeightedPollComponent implements OnInit {
     const word = ['zero', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eight', 'ninth', 'tenth' ];
     return word[num];
   }
+
+  calcPointsForItem(num: number) {
+    return this.poll.numberOfSelections - num;
+  }
+
+  isSelected(optionId: number) {
+    return this.models.findIndex(x => x === String(optionId)) !== -1;
+  }
 }

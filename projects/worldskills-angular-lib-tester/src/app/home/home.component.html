@@ -4,7 +4,7 @@
 <!-- <ws-poll-result-graph [poll]="poll" [results]="results"></ws-poll-result-graph> -->
 <!-- <ws-standard-poll *ngIf="poll && voted" [poll]="poll" [voted]="voted" [initialSelection]="selected" (optionSelected)="optionSelected($event)"></ws-standard-poll> -->
 <ws-vote-control
-  [showEditButton]="true" [showResetButton]="true" [showDeleteButton]="true"
+  [showEditButton]="true" [showExtendButton]="true" [showResetButton]="true" [showDeleteButton]="true"
   [poll]="poll" [results]="results" [voted]="voted"
   (viewChange)="viewChange($event)" (voteSelected)="voteSelected($event)" (voteRemoved)="voteRemoved($event)"
   (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)">

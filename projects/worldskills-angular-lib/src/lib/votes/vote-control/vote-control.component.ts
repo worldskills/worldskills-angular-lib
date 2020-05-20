@@ -16,6 +16,7 @@ export class VoteControlComponent implements OnInit {
 
   // button flags
   @Input() showEditButton: boolean;
+  @Input() showExtendButton: boolean;
   @Input() showResetButton: boolean;
   @Input() showDeleteButton: boolean;
 
@@ -26,6 +27,7 @@ export class VoteControlComponent implements OnInit {
 
   // events
   @Output() edit: EventEmitter<PollView> = new EventEmitter();
+  @Output() extend: EventEmitter<PollView> = new EventEmitter();
   @Output() reset: EventEmitter<PollView> = new EventEmitter();
   @Output() delete: EventEmitter<PollView> = new EventEmitter();
 
@@ -137,6 +139,10 @@ export class VoteControlComponent implements OnInit {
 
   editClick(poll: PollView) {
     this.edit.emit(poll);
+  }
+
+  extendClick(poll: PollView) {
+    this.extend.emit(poll);
   }
 
   resetClick(poll: PollView) {
