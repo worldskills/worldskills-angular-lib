@@ -71,7 +71,7 @@ export class PollService {
   }
 
   public extend(id: number, model: PollExtendView) {
-    const url = `${this.endpoint}/${id}/reset`;
+    const url = `${this.endpoint}/${id}/extend`;
     return this.http.put(url, model);
   }
 
