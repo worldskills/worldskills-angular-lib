@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PollResetView } from '../models/votes/poll-reset-view';
 import { PageView } from '../models/votes/page-view';
@@ -9,6 +9,7 @@ import { ResultView } from '../models/votes/result-view';
 import { VotedView } from '../models/votes/voted-view';
 import { OptionView } from '../models/votes/option-view';
 import { AddVoteView } from '../models/votes/add-vote-view';
+import { PollExtendView } from '../models/votes/poll-extend-view';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,11 @@ export class PollService {
   }
 
   public reset(id: number, model: PollResetView) {
+    const url = `${this.endpoint}/${id}/reset`;
+    return this.http.put(url, model);
+  }
+
+  public extend(id: number, model: PollExtendView) {
     const url = `${this.endpoint}/${id}/reset`;
     return this.http.put(url, model);
   }

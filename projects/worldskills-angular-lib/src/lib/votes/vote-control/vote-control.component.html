@@ -31,12 +31,12 @@
         (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
     </div>
     <div class="pull-right">
-      <button *ngIf="showEditButton" class="btn btn-primary" href="#" (click)="editClick(poll); false;"><i
-          class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
+      <button *ngIf="showResetButton" class="btn btn-primary" href="#" (click)="resetClick(poll); false;"><i
+        class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
       <button *ngIf="showExtendButton" class="btn btn-primary" href="#" (click)="extendClick(poll); false;"><i
           class="fa fa-arrows-h"></i>&nbsp; Extend</button>&nbsp;
-      <button *ngIf="showResetButton" class="btn btn-warning" href="#" (click)="resetClick(poll); false;"><i
-          class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
+      <button *ngIf="showEditButton" class="btn btn-primary" href="#" (click)="editClick(poll); false;"><i
+          class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
       <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
           class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
     </div>

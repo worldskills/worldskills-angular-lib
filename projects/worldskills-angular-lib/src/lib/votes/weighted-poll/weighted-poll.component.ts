@@ -79,6 +79,7 @@ export class WeightedPollComponent implements OnInit {
     if (num < 0 ) {
       return null;
     }
+    // TODO: Convert this to an algo
     const word = ['zero', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eight', 'ninth', 'tenth' ];
     return word[num];
   }

@@ -53,6 +53,7 @@ export * from './lib/models/votes/add-vote-view';
 export * from './lib/models/votes/created-by-view';
 export * from './lib/models/votes/option-view';
 export * from './lib/models/votes/page-view';
+export * from './lib/models/votes/poll-extend-view';
 export * from './lib/models/votes/poll-reset-view';
 export * from './lib/models/votes/poll-view';
 export * from './lib/models/votes/result-view';
