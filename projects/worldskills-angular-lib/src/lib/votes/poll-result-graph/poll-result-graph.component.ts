@@ -17,20 +17,16 @@ export class PollResultGraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.max = this.results.map(x => x.count).reduce((sum, current) => sum + current, 0);
+    this.init();
   }
 
-  countVotesPercentage(option: OptionView) {
-    if (!this.poll || !this.results) {
-      return 0;
-    }
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnChanges(): void {
+    this.init();
+  }
 
-    if (this.max === 0) {
-      return 0;
-    }
-
-    const result = this.results.find(x => x.option.id === option.id);
-    return result ? Math.round((result.count / this.max) * 100).toFixed(2) : 0;
+  init() {
+    this.max = this.results.map(x => x.count).reduce((sum, current) => sum + current, 0);
   }
 
   countVotes(option: OptionView) {

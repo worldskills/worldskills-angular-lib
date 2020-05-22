@@ -1,7 +1,7 @@
 <div *ngIf="results">
   <p *ngFor="let option of poll.options | wsSort: 'asc': 'id'">
     <strong>{{ option.text.text }}</strong><br />
-    <ngb-progressbar [showValue]="false" type="success" [value]="countVotesPercentage(option)" [max]="100">
+    <ngb-progressbar [showValue]="false" type="success" [value]="countVotes(option)" [max]="max">
       {{ countVotes(option) }}</ngb-progressbar>
   </p>
 </div>

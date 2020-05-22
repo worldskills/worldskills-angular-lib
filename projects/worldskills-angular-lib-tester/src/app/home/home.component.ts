@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
     this.poll.entity.name = new NameModel({ lang_code: 'en', text: 'Worldkills International' });
     this.poll.start = new Date();
     this.poll.expiry = new Date();
-    // this.poll.start.setDate(this.poll.start.getDate() + 30);
-    this.poll.expiry.setDate(this.poll.expiry.getDate() + 7);
+    this.poll.start.setDate(this.poll.start.getDate() - 30);
+    this.poll.expiry.setDate(this.poll.start.getDate() - 7);
     this.poll.numberOfSelections = 3;
     this.poll.options = [
        new OptionView({ id: 1, deleted: false, text: new I18nModel({lang_code: 'en', text: 'Option 1'})}),
@@ -73,11 +73,20 @@ export class HomeComponent implements OnInit {
     this.poll.type = 'weighted';
 
     this.results = [
-      new ResultView({id: 1, count: 6, option: this.poll.options[0]}),
+      new ResultView({id: 1, count: 0, option: this.poll.options[0]}),
       new ResultView({id: 2, count: 3, option: this.poll.options[1]}),
-      new ResultView({id: 3, count: 4, option: this.poll.options[2]}),
-      new ResultView({id: 4, count: 5, option: this.poll.options[3]})
+      new ResultView({id: 3, count: 1, option: this.poll.options[2]}),
+      new ResultView({id: 4, count: 2, option: this.poll.options[3]})
     ];
+
+    setTimeout(() => {
+      this.results = [
+        new ResultView({id: 5, count: 5, option: this.poll.options[0]}),
+        new ResultView({id: 6, count: 6, option: this.poll.options[1]}),
+        new ResultView({id: 7, count: 3, option: this.poll.options[2]}),
+        new ResultView({id: 8, count: 2, option: this.poll.options[3]})
+      ];
+    }, 5000);
 
     this.voted = new VotedView({hasVoted: false, votes: []});
     // this.voted = new VotedView({
