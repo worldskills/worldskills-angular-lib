@@ -1,5 +1,35 @@
 # Chaangelog
 
+## 8.3.0
+
+* Added template positions to the vote control.
+* Added default templates to vote control.
+
+## 8.2.0
+
+* Visual and wording tweaks to the vote control.
+* Improved vote control logic.
+
+## 8.1.0
+
+* Added `Extend` button to the vote control
+
+## 8.0.0
+
+* Allow multiple App Codes
+
+## 7.11.0
+
+* Introduced methods for handing the returnUrl
+
+## 7.10.0
+
+* Conditions edit, delete, and reset buttons for the vote control.
+
+## 7.9.0
+
+* Introduced the poll server
+
 ## 7.8.0
 
 * session key `returnUrl` is now populated by the `AppAuthGuard` when a user tries to access a route while not logged in. this gives the app an oppertunity to act on this `returnUrl` if that app chooses to.
