@@ -1,12 +1,30 @@
+<ng-template #voteControlEmptyTemplate>
+</ng-template>
+<ng-template #voteControlDefaultTitleTemplate>
+  {{ poll.title.text }}
+  <br />
+  <small class="text-muted">Created By: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
+</ng-template>
+<ng-template #voteControlDefaultFooterTemplate>
+  <small class="text-muted"><strong>Status:</strong> {{ state }} </small>&nbsp;|&nbsp;
+  <small class="text-muted"><strong>Started:</strong>
+    {{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>&nbsp;
+  <small class="text-muted"><strong>Finishes:</strong> {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
+</ng-template>
+<ng-template #voteControlDefaultQuestionTemplate>
+  {{ poll.question.text }}
+</ng-template>
+
 <div class="card" *ngIf="poll">
   <div class="card-header">
-    {{ poll.title.text }}
-    <br />
-    <small class="text-muted">Created By: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
+    <ng-container *ngTemplateOutlet="titleTemplate ? titleTemplate : voteControlDefaultTitleTemplate"></ng-container>
   </div>
   <div class="card-body">
-    <div class="card-title">{{ poll.question.text }}</div>
+    <div class="card-title">
+      <ng-container *ngTemplateOutlet="questionTemplate ? questionTemplate : voteControlDefaultQuestionTemplate"></ng-container>
+    </div>
     <div class="card-text" *ngIf="view === 'question'">
+      <ng-container *ngTemplateOutlet="beforeOptionsTemplate ? beforeOptionsTemplate : voteControlEmptyTemplate"></ng-container>
       <em *ngIf="voted.hasVoted">You have already voted!</em>
       <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
         (optionSelected)="selected($event)">
@@ -14,9 +32,12 @@
       <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
         (optionSelected)="selected($event)">
       </ws-weighted-poll>
+      <ng-container *ngTemplateOutlet="afterOptionsTemplate ? afterOptionsTemplate : voteControlEmptyTemplate"></ng-container>
     </div>
     <div class="card-text" *ngIf="view === 'result'">
+      <ng-container *ngTemplateOutlet="beforeResultTemplate ? beforeResultTemplate : voteControlEmptyTemplate"></ng-container>
       <ws-poll-result-graph *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result-graph>
+      <ng-container *ngTemplateOutlet="afterResultTemplate ? afterResultTemplate : voteControlEmptyTemplate"></ng-container>
     </div>
     <hr />
 
@@ -42,9 +63,6 @@
     </div>
   </div>
   <div class="card-footer text-muted">
-    <small class="text-muted"><strong>Status:</strong> {{ state }} </small>&nbsp;|&nbsp;
-    <small class="text-muted"><strong>Started:</strong>
-      {{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>&nbsp;
-    <small class="text-muted"><strong>Finishes:</strong> {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
+    <ng-container *ngTemplateOutlet="footerTemplate ? footerTemplate : voteControlDefaultFooterTemplate"></ng-container>
   </div>
 </div>

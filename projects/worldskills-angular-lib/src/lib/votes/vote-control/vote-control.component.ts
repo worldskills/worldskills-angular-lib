@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PollView } from '../../models/votes/poll-view';
 import { ResultView } from '../../models/votes/result-view';
@@ -7,6 +7,7 @@ import { AddVoteView } from '../../models/votes/add-vote-view';
 import { GenericUtil } from '../../util/generic-util';
 
 // TODO: Move logic out into a `handler` class to allow better overrides
+// TODO: Implement custom template refs to make buttons overidable with their output events
 @Component({
   selector: 'ws-vote-control',
   templateUrl: './vote-control.component.html',
@@ -24,6 +25,15 @@ export class VoteControlComponent implements OnInit {
   @Input() poll: PollView;
   @Input() results: ResultView[];
   @Input() voted: VotedView;
+
+  // templates
+  @Input() beforeOptionsTemplate: TemplateRef<any>;
+  @Input() afterOptionsTemplate: TemplateRef<any>;
+  @Input() beforeResultTemplate: TemplateRef<any>;
+  @Input() afterResultTemplate: TemplateRef<any>;
+  @Input() titleTemplate: TemplateRef<any>;
+  @Input() footerTemplate: TemplateRef<any>;
+  @Input() questionTemplate: TemplateRef<any>;
 
   // events
   @Output() edit: EventEmitter<PollView> = new EventEmitter();

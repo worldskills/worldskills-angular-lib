@@ -1,3 +1,7 @@
+<ng-template #test>
+  Template Test
+</ng-template>
+
 <p>home works!</p>
 
 <h3>Poll</h3>
@@ -6,6 +10,10 @@
 <ws-vote-control
   [showEditButton]="true" [showExtendButton]="true" [showResetButton]="true" [showDeleteButton]="true"
   [poll]="poll" [results]="results" [voted]="voted"
+  [beforeOptionsTemplate]="test"
+  [afterOptionsTemplate]="test"
+  [beforeResultTemplate]="test"
+  [afterResultTemplate]="test"
   (viewChange)="viewChange($event)" (voteSelected)="voteSelected($event)" (voteRemoved)="voteRemoved($event)"
   (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)">
 </ws-vote-control>

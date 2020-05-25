@@ -124,6 +124,16 @@ The footer component has been made with 6 columns that can be overriden when nee
 * `showResetButton`: weather or not the reset button will show.
 * `showDeleteButton`: weather or not the delete button will show.
 
+### Vote Control Overridable templates
+
+* `beforeOptionsTemplate` - appears before the options are dispalyed
+* `afterOptionsTemplate` - appears after the options are displayed
+* `beforeResultTemplate` - appears before the results are dispalys
+* `afterResultTemplate` - appears after the results are displayed
+* `titleTemplate` - replaces the default title template
+* `footerTemplate` - replaces the default footer template
+* `questionTemplate` - replaces the default question template
+
 ### Vote Control Output events
 
 * `viewChange`: triggers when the view changes.
