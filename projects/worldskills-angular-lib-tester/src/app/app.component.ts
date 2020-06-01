@@ -4,6 +4,7 @@ import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/m
 import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
+import { DatetimeModel } from '../../../worldskills-angular-lib/src/lib/models/datetime.model';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,8 @@ export class AppComponent {
   autoJump: boolean;
 
   dateRange: DateRange;
+
+  dateTime: DatetimeModel;
 
   // breadcrumbs
   showHomeItem = true;
@@ -65,8 +68,7 @@ export class AppComponent {
       this.collection.items.push(index.toString());
     }
 
-
-
+    this.dateTime = DatetimeModel.asToday();
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -83,6 +85,11 @@ export class AppComponent {
   ngOnChanges() {
   }
 
+
+  dateTimeChange(dateTime: DatetimeModel) {
+    console.log(dateTime);
+    // console.log(this.dateTime);
+  }
 
 
   login() {

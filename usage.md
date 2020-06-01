@@ -150,6 +150,14 @@ The footer component has been made with 6 columns that can be overriden when nee
 * `delete`: triggers when the delete button is clicked
   * `delete(poll: PollView)`
 
+## Datetime Picker
+
+### Default Usage
+
+```HTML
+  <ws-datetime-picker [(ngModel)]="dateTime" (change)="dateTimeChange($event)"></ws-datetime-picker>
+```
+
 ## To be continued
 
 As we touch more parts of the library more documentation would be added.

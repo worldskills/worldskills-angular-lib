@@ -30,6 +30,7 @@ import { AppConfig } from './config/app-config';
 import { PollResultGraphComponent } from './votes/poll-result-graph/poll-result-graph.component';
 import { StandardPollComponent } from './votes/standard-poll/standard-poll.component';
 import { WeightedPollComponent } from './votes/weighted-poll/weighted-poll.component';
+import { DatetimePickerComponent } from './datetime-picker/datetime-picker.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { WeightedPollComponent } from './votes/weighted-poll/weighted-poll.compo
     PollResultGraphComponent,
     StandardPollComponent,
     WeightedPollComponent,
+    DatetimePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import { WeightedPollComponent } from './votes/weighted-poll/weighted-poll.compo
     VoteControlComponent,
     PollResultGraphComponent,
     StandardPollComponent,
-    WeightedPollComponent
+    WeightedPollComponent,
+    DatetimePickerComponent,
   ]
 })
 export class WorldskillsAngularLibModule {

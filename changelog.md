@@ -1,5 +1,9 @@
 # Chaangelog
 
+## 8.4.0
+
+* Added DateTime Picker
+
 ## 8.3.0
 
 * Added template positions to the vote control.

@@ -31,6 +31,11 @@
     </div>
 
     <div class="container">
+      <h3>Date Time Picker</h3>
+      <ws-datetime-picker [(ngModel)]="dateTime" (change)="dateTimeChange($event)"></ws-datetime-picker>
+    </div>
+
+    <div class="container">
       <h3>Date Range Test</h3>
       <ws-date-range [(ngModel)]="dateRange" (change)="rangeSelected($event)"></ws-date-range>
     </div>
