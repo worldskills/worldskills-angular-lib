@@ -42,9 +42,9 @@
         <ng-container *ngTemplateOutlet="col6Template? col6Template : col6DefaultTemplate"></ng-container>
       </aside>
     </div>
-    <div class="ws-page-footer-row">
+    <div class="ws-page-footer-row pb-3">
       <div class="ws-page-footer-col-lg">
-        <ul class="list-inline">
+        <ul class="list-inline mt-2">
           <li class="list-inline-item">© {{date | date:'yyyy'}} WorldSkills International</li>
           <li class="list-inline-item"><a href="https://worldskills.org/site/privacy/" target="_blank">Privacy</a></li>
           <li class="list-inline-item"><a href="https://worldskills.org/site/terms/" target="_blank">Terms</a></li>
@@ -52,12 +52,18 @@
         </ul>
       </div>
       <div class="ws-page-footer-col-lg">
-        <p *ngIf="isLoggedIn" class="text-md-right">
-          {{ currentUser.firstName }} {{ currentUser.lastName }}, <a href="#" (click)="logout(); false;">Log out</a>
-        </p>
-        <p *ngIf="!isLoggedIn" class="text-md-right">
-          <a href="#" (click)="login(); false;">Log in</a>
-        </p>
+        <div class="btn-toolbar justify-content-end">
+          <div class="btn-group btn-group-sm dropup">
+            <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Language
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#">English</a>
+              <a class="dropdown-item" href="#">French</a>
+              <a class="dropdown-item" href="#">Japanese</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
