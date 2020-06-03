@@ -18,7 +18,7 @@ export class RoleModel {
   description: string;
 
   @JsonProperty('apply_per_entity', Boolean)
-  applyPerEntity: false;
+  applyPerEntity: boolean;
 
   @JsonProperty('ws_entity', WsEntityModel)
   wsEntity: WsEntityModel;
