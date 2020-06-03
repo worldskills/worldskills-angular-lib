@@ -58,9 +58,9 @@
               Language
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">English</a>
-              <a class="dropdown-item" href="#">French</a>
-              <a class="dropdown-item" href="#">Japanese</a>
+              <a *ngFor="let language of (languages ? languages : defaultLanguages)" (click)="changeLanguage(language); false;" [class.active]="isLanguageSelected(language)" class="dropdown-item">
+                {{ language.name }}
+              </a>
             </div>
           </div>
         </div>

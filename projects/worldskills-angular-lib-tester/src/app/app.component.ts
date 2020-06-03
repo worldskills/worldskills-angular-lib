@@ -5,6 +5,7 @@ import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
 import { DatetimeModel } from '../../../worldskills-angular-lib/src/lib/models/datetime.model';
+import { LanguageModel } from '../../../worldskills-angular-lib/src/lib/models/language.model';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,8 @@ export class AppComponent {
   dateRange: DateRange;
 
   dateTime: DatetimeModel;
+
+  languages: LanguageModel[];
 
   // breadcrumbs
   showHomeItem = true;
@@ -73,6 +76,11 @@ export class AppComponent {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
+    this.languages = [];
+    this.languages.push(new LanguageModel('en', 'English'));
+    this.languages.push(new LanguageModel('fr', 'French'));
+    this.languages.push(new LanguageModel('de', 'Dutch'));
+
     this.dateRange = new DateRange();
     this.dateRange.start = new Date();
     const endDate = new Date();
