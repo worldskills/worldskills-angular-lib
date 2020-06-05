@@ -4,15 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { WorldskillsAngularLibModule, WsHttpInterceptor, AppAuthGuard } from 'worldskills-angular-lib';
 import { Routes, RouterModule } from '@angular/router';
-import { serviceConfig, oAuthConfig, httpConfig } from '../environments/environment';
-import { OAuthModule, AuthConfig } from 'angular-oauth2-oidc';
+import { serviceConfig, oAuthConfig, httpConfig, appConfig } from '../environments/environment';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { SampleComponent } from './sample/sample.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SimpleRouterComponent } from './simple-router/simple-router.component';
 import { HomeComponent } from './home/home.component';
 import { KeyChangeComponent } from './key-change/key-change.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -41,13 +42,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     OAuthModule.forRoot(),
-    WorldskillsAngularLibModule.forFn(mod => {
-      mod.service = serviceConfig;
-      mod.auth = oAuthConfig;
-      mod.encoder = httpConfig;
-      return mod;
-    }),
+    WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig, appConfig),
     RouterModule.forRoot(appRoutes),
     NgbModule,
     FormsModule
