@@ -58,7 +58,7 @@
               Language
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a *ngFor="let language of (languages ? languages : defaultLanguages)" (click)="changeLanguage(language); false;" [class.active]="isLanguageSelected(language)" class="dropdown-item">
+              <a *ngFor="let language of (languages ? languages : defaultLanguages)" (click)="changeLanguage(language); false;" [class.active]="isLanguageSelected(language)" class="dropdown-item" href="#">
                 {{ language.name }}
               </a>
             </div>
