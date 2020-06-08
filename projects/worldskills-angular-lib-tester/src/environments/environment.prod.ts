@@ -17,3 +17,7 @@ export const httpConfig = {
   encoderUriPatterns: [],
   authUriPatterns: []
 };
+
+export const appConfig = {
+  notAuthorizedRoute: ['/not-authorized'],
+};

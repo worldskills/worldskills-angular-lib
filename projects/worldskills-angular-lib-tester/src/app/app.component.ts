@@ -5,7 +5,11 @@ import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
 import { DatetimeModel } from '../../../worldskills-angular-lib/src/lib/models/datetime.model';
+import { UserListView } from '../../../worldskills-angular-lib/src/lib/models/auth/user-list-view';
+import { UserService } from '../../../worldskills-angular-lib/src/lib/services/user.service';
+import { GetUsersParams } from '../../../worldskills-angular-lib/src/lib/models/auth/get-users-params';
 import { LanguageModel } from '../../../worldskills-angular-lib/src/lib/models/language.model';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +36,11 @@ export class AppComponent {
 
   dateTime: DatetimeModel;
 
+  userList: UserListView;
+
+  entityId: number;
   languages: LanguageModel[];
+  userAppCode: number;
 
   // breadcrumbs
   showHomeItem = true;
@@ -86,6 +94,9 @@ export class AppComponent {
     const endDate = new Date();
     endDate.setDate(this.dateRange.start.getDate() + 4);
     this.dateRange.end = endDate;
+    this.userList = new UserListView();
+    this.entityId = 1;
+    this.userAppCode = 300;
   }
 
 
@@ -93,6 +104,20 @@ export class AppComponent {
   ngOnChanges() {
   }
 
+  loadUserList() {
+    const filter = new GetUsersParams({
+      ws_entity: this.entityId,
+      app_code: this.userAppCode,
+      role: 'ViewForum',
+      offset: 0,
+      limit: 20
+    });
+
+    this.authService.userService.listUsers(filter).pipe(take(1)).subscribe(
+      next => this.userList = next,
+      error => console.log(error)
+    );
+  }
 
   dateTimeChange(dateTime: DatetimeModel) {
     console.log(dateTime);

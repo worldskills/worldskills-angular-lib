@@ -4,6 +4,8 @@ import { UserModel } from '../models/user.model';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ModuleConfigService } from '../config/module-config.service';
 import { RoleModel } from '../models/role-model';
+import { GetUsersParams } from '../models/auth/get-users-params';
+import { UserListView } from '../models/auth/user-list-view';
 
 // TODO: Find a better way to handle apiAuthCode and UserInfoUrl
 // TODO: Re-look authneticate method
@@ -15,7 +17,7 @@ export class UserService {
   private appCode: number[];
   private endpoint: string;
 
-  constructor(protected configService: ModuleConfigService, protected http: HttpClient, protected oAuthService: OAuthService) {
+  constructor(private configService: ModuleConfigService, protected http: HttpClient, protected oAuthService: OAuthService) {
     this.appCode = this.configService.serviceConfig.appCode;
     this.endpoint = this.configService.serviceConfig.apiEndpoint + '/auth';
   }
@@ -59,6 +61,15 @@ export class UserService {
     const authUrl = `${this.endpoint}/sessions/logout`;
     return this.http.post(authUrl, {});
 
+  }
+
+  public listUsers(search: GetUsersParams) {
+    let params = new HttpParams();
+    search.toParams().forEach((param) => {
+      params = params.set(param.name, param.value);
+    });
+    const url = `${this.endpoint}/users`;
+    return this.http.get<UserListView>(url, {params});
   }
 
   public addRole(userId: number, roleId: number) {

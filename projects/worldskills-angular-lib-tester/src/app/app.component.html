@@ -40,6 +40,17 @@
       <ws-date-range [(ngModel)]="dateRange" (change)="rangeSelected($event)"></ws-date-range>
     </div>
 
+    <div class="container">
+      <h3>User List Test</h3>
+      <div>
+        <input type="number" [(ngModel)]="userAppCode" placeholder="App Code">&nbsp;
+        <input type="number" [(ngModel)]="entityId" placeholder="Entity ID">&nbsp;
+        <button class="btn btn-primary" (click)="loadUserList()">Load User List</button>
+        <br />
+        {{ userList | json }}
+      </div>
+    </div>
+
 <ng-template #override5>
   <h1>Social</h1>
   <ul>

@@ -19,7 +19,7 @@ export class AuthService {
   public returnUrlKey: string;
 
   constructor(private configService: ModuleConfigService, private oAuthService: OAuthService, private router: Router,
-              private userService: UserService) {
+              public userService: UserService) {
     this.returnUrlKey = 'returnUrl';
     this.configureAuth();
     this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(sessionStorage.getItem('user.current')));

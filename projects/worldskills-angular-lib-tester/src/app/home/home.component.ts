@@ -7,7 +7,8 @@ import { I18nModel } from '../../../../worldskills-angular-lib/src/lib/models/I1
 import { AddVoteView } from '../../../../worldskills-angular-lib/src/lib/models/votes/add-vote-view';
 import { NameModel } from 'projects/worldskills-angular-lib/src/lib/models/name-model';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService, AddVoteEntryView } from 'worldskills-angular-lib';
+import { AuthService, UserService, AddVoteEntryView } from 'worldskills-angular-lib';
+
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   // selected: AddVoteView;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 

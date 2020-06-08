@@ -1,5 +1,10 @@
 # Chaangelog
 
+## 8.5.0
+
+* Intoruced models for WS Auth Servicce
+* Introduce the listUsers service method onto the UserService
+
 ## 8.4.0
 
 * Added DateTime Picker
