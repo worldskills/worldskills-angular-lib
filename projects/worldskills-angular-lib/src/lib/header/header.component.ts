@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isRouteActive(route) {
-    return this.router.url.includes(route);
+    return route === this.router.url;
   }
 
   login() {

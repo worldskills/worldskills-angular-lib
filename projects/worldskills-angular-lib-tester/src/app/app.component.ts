@@ -55,9 +55,10 @@ export class AppComponent {
     // console.log(this.currentUser);
     this.menuItems = [
       // TODO: requiredRoles by rolename and application code
-      { label: 'Home', url: '/', hidden: false, requireLogin: false, requiredRoles: [] },
-      { label: 'Other', url: '/', hidden: false, requireLogin: true, requiredRoles: ['EditForums'] },
-      { label: 'Admin', url: '/', hidden: false, requireLogin: true, requiredRoles: ['Admin'] }
+      { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+      { label: 'Other', url: '/sample', hidden: false, requireLogin: true, requiredRoles: [] },
+      { label: 'Admin', url: '/simple', hidden: false, requireLogin: true, requiredRoles: [] },
+      { label: 'Sample', url: '/simple/sample', hidden: false, requireLogin: true, requiredRoles: [] }
     ];
     this.currentUser = new UserModel();
 
