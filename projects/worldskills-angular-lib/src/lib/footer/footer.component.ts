@@ -21,8 +21,6 @@ export class FooterComponent implements OnInit {
   @Input() languages: LanguageModel[];
   @Input() selectedLanguage: LanguageModel;
 
-  defaultLanguages: LanguageModel[];
-
   @ViewChild('#col1DefaultTemplate')
   col1DefaultTemplate: TemplateRef<any>;
 
@@ -45,8 +43,6 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.defaultLanguages = [];
-    this.defaultLanguages.push(new LanguageModel('en', 'English'));
   }
 
   login() {

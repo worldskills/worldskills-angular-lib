@@ -52,13 +52,13 @@
         </ul>
       </div>
       <div class="ws-page-footer-col-lg">
-        <div class="btn-toolbar justify-content-end">
+        <div class="btn-toolbar justify-content-end" *ngIf="languages">
           <div class="btn-group btn-group-sm dropup">
             <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Language
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a *ngFor="let language of (languages ? languages : defaultLanguages)" (click)="changeLanguage(language); false;" [class.active]="isLanguageSelected(language)" class="dropdown-item" href="#">
+              <a *ngFor="let language of languages" (click)="changeLanguage(language); false;" [class.active]="isLanguageSelected(language)" class="dropdown-item" href="#">
                 {{ language.name }}
               </a>
             </div>
