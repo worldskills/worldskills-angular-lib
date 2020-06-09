@@ -6,9 +6,9 @@ import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
 import { DatetimeModel } from '../../../worldskills-angular-lib/src/lib/models/datetime.model';
 import { UserListView } from '../../../worldskills-angular-lib/src/lib/models/auth/user-list-view';
-import { UserService } from '../../../worldskills-angular-lib/src/lib/services/user.service';
 import { GetUsersParams } from '../../../worldskills-angular-lib/src/lib/models/auth/get-users-params';
 import { take } from 'rxjs/operators';
+import { ILanguageModel } from '../../../worldskills-angular-lib/src/lib/models/ilanguage';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +38,7 @@ export class AppComponent {
   userList: UserListView;
 
   entityId: number;
+  languages: ILanguageModel[];
   userAppCode: number;
 
   // breadcrumbs
@@ -83,6 +84,11 @@ export class AppComponent {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
+    this.languages = [];
+    this.languages.push({ code: 'en', name: 'English'});
+    this.languages.push({ code: 'fr', name: 'French'});
+    this.languages.push({ code: 'de', name: 'Dutch'});
+
     this.dateRange = new DateRange();
     this.dateRange.start = new Date();
     const endDate = new Date();

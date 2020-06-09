@@ -1,5 +1,9 @@
 # Chaangelog
 
+## 8.6.0
+
+* Introduced configurable language selector
+
 ## 8.5.0
 
 * Intoruced models for WS Auth Servicce
