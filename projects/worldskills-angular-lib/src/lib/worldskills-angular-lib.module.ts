@@ -31,6 +31,8 @@ import { PollResultGraphComponent } from './votes/poll-result-graph/poll-result-
 import { StandardPollComponent } from './votes/standard-poll/standard-poll.component';
 import { WeightedPollComponent } from './votes/weighted-poll/weighted-poll.component';
 import { DatetimePickerComponent } from './datetime-picker/datetime-picker.component';
+import { EntityTreeSelectComponent } from './entity-tree-select/entity-tree-select.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { DatetimePickerComponent } from './datetime-picker/datetime-picker.compo
     StandardPollComponent,
     WeightedPollComponent,
     DatetimePickerComponent,
+    EntityTreeSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { DatetimePickerComponent } from './datetime-picker/datetime-picker.compo
     FormsModule,
     HttpClientModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ],
   exports: [
     AlertComponent,
@@ -82,6 +86,7 @@ import { DatetimePickerComponent } from './datetime-picker/datetime-picker.compo
     StandardPollComponent,
     WeightedPollComponent,
     DatetimePickerComponent,
+    EntityTreeSelectComponent
   ]
 })
 export class WorldskillsAngularLibModule {

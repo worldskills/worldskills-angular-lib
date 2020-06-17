@@ -84,6 +84,7 @@ export * from './lib/services/resource.service';
 export * from './lib/services/user.service';
 export * from './lib/services/upload.service';
 export * from './lib/services/poll.service';
+export * from './lib/services/entity-tree.service';
 
 // interceptors
 export * from './lib/interceptors/ws-http-interceptor';
@@ -103,6 +104,7 @@ export * from './lib/votes/poll-result-graph/poll-result-graph.component';
 export * from './lib/votes/standard-poll/standard-poll.component';
 export * from './lib/votes/vote-control/vote-control.component';
 export * from './lib/votes/weighted-poll/weighted-poll.component';
+export * from './lib/entity-tree-select/entity-tree-select.component';
 
 // security
 export * from './lib/security/ws-auth-guard';

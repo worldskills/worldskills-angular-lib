@@ -1,0 +1,126 @@
+<ng-template #wrapperControl let-template>
+  <div class="btn-group btn-group-sm" role="group">
+    <ng-template [ngTemplateOutlet]="template"></ng-template>
+  </div>
+</ng-template>
+<ng-template #expandControl let-enabled="enabled" let-click="click">
+  <button [disabled]="!enabled" class="btn btn-primary" (click)="$event.preventDefault(); click()">Expand</button>
+</ng-template>
+<ng-template #expandAllControl let-click="click">
+  <button class="btn btn-primary" (click)="click()">Expand all</button>
+</ng-template>
+<ng-template #collapseControl let-enabled="enabled" let-click="click">
+  <button [disabled]="!enabled" class="btn btn-primary" (click)="click()">Collapse</button>
+</ng-template>
+<ng-template #collapseAllControl let-click="click">
+  <button class="btn btn-primary" (click)="$event.preventDefault(); click()">Collapse all</button>
+</ng-template>
+<ng-template #separatorControl></ng-template>
+<ng-template #showingControl let-showing="showing" let-total="total">
+  Showing {{showing}} of {{total}}
+</ng-template>
+
+<ng-template #controlsWrapper>
+  <ng-template [ngTemplateOutlet]="controls.collapse"
+               [ngTemplateOutletContext]="{enabled: currentMarkedEntity && isExpandable(currentMarkedEntity) && isExpanded(currentMarkedEntity), click: collapseFn(currentMarkedEntity)}"></ng-template>
+  <ng-template [ngTemplateOutlet]="controls.separator"></ng-template>
+  <ng-template [ngTemplateOutlet]="controls.expand"
+               [ngTemplateOutletContext]="{enabled: currentMarkedEntity && isExpandable(currentMarkedEntity) && isCollapsed(currentMarkedEntity), click: expandFn(currentMarkedEntity)}"></ng-template>
+  <ng-template [ngTemplateOutlet]="controls.separator"></ng-template>
+  <ng-template [ngTemplateOutlet]="controls.collapseAll"
+               [ngTemplateOutletContext]="{click: collapseAllFn()}"></ng-template>
+  <ng-template [ngTemplateOutlet]="controls.separator"></ng-template>
+  <ng-template [ngTemplateOutlet]="controls.expandAll"
+               [ngTemplateOutletContext]="{click: expandAllFn()}"></ng-template>
+</ng-template>
+
+<ng-select
+	#ngSelectComponent
+    [appendTo]="appendTo"
+    [closeOnSelect]="closeOnSelect"
+    [clearAllText]="labels.clearAllText"
+    [clearable]="clearable"
+    [clearOnBackspace]="clearOnBackspace"
+    [compareWith]="compareWith"
+    [dropdownPosition]="dropdownPosition"
+    [loadingText]="labels.loadingText"
+    [markFirst]="markFirst"
+    [isOpen]="isOpen"
+    [maxSelectedItems]="maxSelectedItems"
+    [hideSelected]="hideSelected"
+    [multiple]="multiple"
+    [notFoundText]="labels.notFoundText"
+    [searchable]="searchable"
+    [readonly]="readonly"
+    [searchFn]="searchFn"
+    [searchWhileComposing]="searchWhileComposing"
+    [selectOnTab]="selectOnTab"
+    [openOnEnter]="openOnEnter"
+    [typeToSearchText]="labels.typeToSearchText"
+    [placeholder]="labels.placeholder"
+    [virtualScroll]="virtualScroll"
+    [inputAttrs]="inputAttrs"
+    [loading]="loading"
+    [tabIndex]="tabIndex"
+    (blur)="hasFocus = false; blur.emit($event)"
+    (focus)="hasFocus = true; focus.emit($event)"
+    (change)="onChange($event)"
+    (open)="onOpen($event)"
+    (close)="close.emit($event)"
+    (search)="onSearch($event)"
+    (clear)="onClear($event)"
+    (add)="add.emit($event)"
+    (remove)="remove.emit($event)"
+    (scroll)="scroll.emit($event)"
+    (scrollToEnd)="scrollToEnd.emit($event)"
+    [trackByFn]="trackByFn"
+>
+  <ng-template #entityOption let-entity let-depth="depth" let-visible="visible">
+    <ng-container *ngIf="showControls && !!treeEntities">
+      <ng-template ng-header-tmp>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <div>
+            <ng-template
+              [ngTemplateOutlet]="controls.showing"
+              [ngTemplateOutletContext]="{showing: filtered, total: total}"></ng-template>
+          </div>
+          <div>
+            <ng-template
+              [ngTemplateOutlet]="controls.wrapper"
+              [ngTemplateOutletContext]="{$implicit: controlsWrapper}"></ng-template>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-template ng-label-tmp let-entity="item" let-clear="clear">
+      <span class="{{multiple ? 'px-2' : ''}}">{{showFullPath ? renderLabel(entity) : entity.name.text}}</span>
+      <ng-container *ngIf="multiple">
+        <span style="cursor: pointer" class="font-weight-bold px-2 border-left" (click)="clear(entity)">×</span>
+      </ng-container>
+    </ng-template>
+    <ng-option [value]="entity" [disabled]="!entity.selectable">
+      <div
+        [id]="getDomIdentifier('entity-' + entity.id)"
+        [ngClass]="{'item-wrapper': true, 'level-0': depth === 0, 'level-1': depth === 1, 'level-2': depth === 2, 'level-3': depth === 3, 'level-4': depth === 4, 'level-5': depth === 5, 'level-6': depth === 6, 'expanded': isExpandable(entity) && isExpanded(entity), 'collapsed': isExpandable(entity) && isCollapsed(entity)}">
+        <div class="expander">
+          <div class="arrow" [attr.data-entity-expander-id]="getDomIdentifier(entity.id)">
+            {{isExpandable(entity) && isExpanded(entity) ? 'expanded' : (isExpandable(entity) && isCollapsed(entity) ? 'collapsed' : '')}}
+          </div>
+        </div>
+        <div class="item">{{entity.name.text}}</div>
+      </div>
+    </ng-option>
+    <ng-container *ngFor="let child of entity.children">
+      <ng-template
+        [ngTemplateOutlet]="entityOption"
+        [ngTemplateOutletContext]="{$implicit: child, depth: depth + 1}">
+      </ng-template>
+    </ng-container>
+  </ng-template>
+  <ng-container *ngFor="let entity of (treeEntities || [])">
+    <ng-template
+      [ngTemplateOutlet]="entityOption"
+      [ngTemplateOutletContext]="{$implicit: entity, depth: 0}">
+    </ng-template>
+  </ng-container>
+</ng-select>
