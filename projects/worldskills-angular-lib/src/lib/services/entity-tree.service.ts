@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ModuleConfigService} from '../config/module-config.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {EntityTreeListView} from '../models/auth/entity-tree-view';
 
 export interface EntityFetchParams {
@@ -21,6 +21,7 @@ export interface EntityFetchParams {
 export class EntityTreeService {
 
   public endpoint: string;
+  public subject: BehaviorSubject<EntityTreeListView> = new BehaviorSubject<EntityTreeListView>(null);
 
   constructor(protected configService: ModuleConfigService, protected http: HttpClient) {
     this.endpoint = `${configService.serviceConfig.apiEndpoint}/auth/ws_entities`;
@@ -52,6 +53,8 @@ export class EntityTreeService {
     if (params.sort !== undefined) {
       httpParams = httpParams.set('sort', params.sort.toString());
     }
-    return this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams});
+    const observable = this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams});
+    observable.subscribe(value => this.subject.next(value));
+    return observable;
   }
 }

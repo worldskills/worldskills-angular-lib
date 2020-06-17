@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
+  forwardRef,
   Input,
   OnDestroy,
   OnInit,
@@ -9,11 +10,12 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {EntityTreeService} from '../services/entity-tree.service';
+import {EntityFetchParams, EntityTreeService} from '../services/entity-tree.service';
 import {DropdownPosition, NgSelectComponent} from '@ng-select/ng-select';
 import {EntityTreeView} from '../models/auth/entity-tree-view';
 import {Subject} from 'rxjs';
 import {v4 as uuidv4} from 'uuid';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 const DEFAULT_LABELS = {
   clearAllText: 'Clear all',
@@ -23,16 +25,41 @@ const DEFAULT_LABELS = {
   placeholder: 'Select entity'
 };
 
+function isTreeEntity(obj: any): obj is TreeEntity {
+  return obj && 'type' in obj && obj.type === 'treeEntity';
+}
+
 type TreeEntity =
   Omit<EntityTreeView, 'children'>
-  & { parent: TreeEntity, children: TreeEntity[], paths: Array<string>, allPaths: Array<string>, selectable: boolean, filtered: boolean };
+  & {
+  parent: TreeEntity,
+  children: TreeEntity[],
+  paths: Array<string>,
+  allPaths: Array<string>,
+  selectable: boolean,
+  filtered: boolean,
+  type: 'treeEntity'
+};
+
+export enum FetchMode {
+  DEFAULT,
+  FORCE,
+  NEVER
+}
 
 @Component({
   selector: 'ws-entity-tree-select',
   templateUrl: './entity-tree-select.component.html',
-  styleUrls: ['./entity-tree-select.component.css']
+  styleUrls: ['./entity-tree-select.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => EntityTreeSelectComponent),
+      multi: true
+    }
+  ]
 })
-export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewInit {
+export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 
   /** labels for ng-select */
   @Input() labels: {
@@ -53,19 +80,16 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     showing?: TemplateRef<{ showing: number, total: number }>;
   } = {};
   /** query parameters to scope the available entities */
-  @Input() query: {
-    member_of?: number,
-    name?: string,
-    role?: string,
-    roleApp?: number,
-    sort?: 'name' | 'name_desc'
-  };
+  @Input() query: Omit<EntityFetchParams, 'limit' | 'offset' | 'depth'>;
   /** entities input array */
   @Input() entities: Array<any>;
   /** whether or not to show the full path for selected entities */
   @Input() showFullPath = true;
   /** whether or not to show the header controls */
   @Input() showControls = true;
+  /** when set to FORCE always get fresh instances, when set to NEVER, never update fresh instance */
+  /** default is set to DEFAULT which only fetches if nothing else is fetch yet */
+  @Input() refreshMode = FetchMode.DEFAULT;
   private expandedSearch: Array<number> = [];
   private flattenedEntities: Array<any>;
   private lastTerm = ' ';
@@ -115,7 +139,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
   @Output() scroll: EventEmitter<{ start: number; end: number; }> = new EventEmitter<{ start: number; end: number; }>();
   @Output() scrollToEnd: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('ngSelectComponent') ngSelectComponent: NgSelectComponent;
+  @ViewChild('ngSelectComponent', {static: true}) ngSelectComponent: NgSelectComponent;
   @ViewChild('wrapperControl') wrapperControl: TemplateRef<void>;
   @ViewChild('expandControl') expandControl: TemplateRef<{ enabled: boolean, click: () => void }>;
   @ViewChild('expandAllControl') expandAllControl: TemplateRef<{ click: () => void }>;
@@ -151,16 +175,25 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
 
   ngOnInit(): void {
     this.labels = {...DEFAULT_LABELS, ...this.labels};
-    this.entityTreeService.list({limit: 9999, depth: 10, ...this.query} as any).subscribe(entities => {
-      this.flattenedEntities = this.flatten(this.entities);
-      this.treeEntities = entities.ws_entity_list.map(entity => this.deepCopyEntity(entity as TreeEntity));
-      this.setSelectable(this.treeEntities, this.flattenedEntities.map(entity => entity.id));
-      this.clearUnselectableTrees(this.treeEntities);
-      this.setParentsForEntities(this.treeEntities);
-      this.setPathNames(this.treeEntities);
-      this.loading = false;
-      if (this.hasFocus) {
-        setTimeout(() => this.update.next(null));
+    this.entityTreeService.subject.subscribe(entities => {
+      if (this.refreshMode === FetchMode.FORCE) {
+        this.refreshMode = FetchMode.DEFAULT;
+        this.entityTreeService.list({limit: 9999, depth: 10, ...this.query});
+      } else {
+        if (entities !== null) {
+          this.flattenedEntities = this.flatten(this.entities || []);
+          this.treeEntities = entities.ws_entity_list.map(entity => this.deepCopyEntity(entity as TreeEntity));
+          this.setSelectable(this.treeEntities, this.flattenedEntities.map(entity => entity.id));
+          this.clearUnselectableTrees(this.treeEntities);
+          this.setParentsForEntities(this.treeEntities);
+          this.setPathNamesAndTypes(this.treeEntities);
+          this.loading = false;
+          if (this.hasFocus) {
+            setTimeout(() => this.update.next(null));
+          }
+        } else if (this.refreshMode === FetchMode.DEFAULT) {
+          this.entityTreeService.list({limit: 9999, depth: 10, ...this.query});
+        }
       }
     });
 
@@ -221,7 +254,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     });
   }
 
-  private setPathNames(entities: Array<TreeEntity>) {
+  private setPathNamesAndTypes(entities: Array<TreeEntity>) {
     entities.forEach(e => {
       const paths = [];
       let p = e;
@@ -232,7 +265,8 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
       e.allPaths = paths.reverse();
       e.paths = [...e.allPaths];
       e.paths.pop();
-      this.setPathNames(e.children);
+      e.type = 'treeEntity';
+      this.setPathNamesAndTypes(e.children);
     });
   }
 
@@ -468,11 +502,10 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   onChange(entity: TreeEntity | Array<TreeEntity>) {
-    if (Array.isArray(entity)) {
-      this.change.emit(entity.map(e => this.getEntityFromInput(e)));
-    } else {
-      this.change.emit(this.getEntityFromInput(entity));
-    }
+    const value = this.multiple ?
+      (entity as Array<TreeEntity>).map(e => this.getEntityFromInput(e)) :
+      this.getEntityFromInput(entity as TreeEntity);
+    this.change.emit(value);
   }
 
   private getEntityFromInput(entity: TreeEntity) {
@@ -562,6 +595,32 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
 
   private getFiltered(entities: Array<TreeEntity>) {
     return entities.reduce((acc, e) => (e.filtered ? acc + 1 : acc) + this.getFiltered(e.children), 0);
+  }
+
+  registerOnChange(fn: any): void {
+    this.ngSelectComponent.registerOnChange(
+      obj => {
+        const value = this.multiple ?
+          (obj as Array<any>).map(e => isTreeEntity(e) ? this.getEntityFromInput(e) : e) :
+          (isTreeEntity(obj) ? this.getEntityFromInput(obj) : obj);
+        fn(value);
+      }
+    );
+  }
+
+  registerOnTouched(fn: any): void {
+    this.ngSelectComponent.registerOnTouched(fn);
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.ngSelectComponent.setDisabledState(isDisabled);
+  }
+
+  writeValue(obj: any): void {
+    const value = this.multiple ?
+      (obj as Array<any>).map(e => isTreeEntity(e) ? this.getEntityFromInput(e) : e) :
+      (isTreeEntity(obj) ? this.getEntityFromInput(obj) : obj);
+    this.ngSelectComponent.writeValue(value);
   }
 
 }
