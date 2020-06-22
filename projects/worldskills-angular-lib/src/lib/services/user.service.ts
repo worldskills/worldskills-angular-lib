@@ -6,6 +6,7 @@ import { ModuleConfigService } from '../config/module-config.service';
 import { RoleModel } from '../models/role-model';
 import { GetUsersParams } from '../models/auth/get-users-params';
 import { UserListView } from '../models/auth/user-list-view';
+import { UserView } from '../models/auth/user-view';
 
 // TODO: Find a better way to handle apiAuthCode and UserInfoUrl
 // TODO: Re-look authneticate method
@@ -70,6 +71,16 @@ export class UserService {
     });
     const url = `${this.endpoint}/users`;
     return this.http.get<UserListView>(url, {params});
+  }
+
+  public getUser(id: number) {
+    const url = `${this.endpoint}/users/${id}`;
+    return this.http.get<UserView>(url);
+  }
+
+  public getUserByPerson(id: number) {
+    const url = `${this.endpoint}/users/person/${id}`;
+    return this.http.get<UserView>(url);
   }
 
   public addRole(userId: number, roleId: number) {

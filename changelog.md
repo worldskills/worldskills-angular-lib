@@ -1,8 +1,10 @@
-# Chaangelog
+# Changelog
 
 ## 8.7.0
 
 * Cross Browser date helper functions
+* userService.getUser
+* userService.getUserByPerson
 
 ## 8.6.0
 
