@@ -27,7 +27,7 @@ export class EntityTreeService {
     this.endpoint = `${configService.serviceConfig.apiEndpoint}/auth/ws_entities`;
   }
 
-  public list(params: EntityFetchParams = {}): Observable<EntityTreeListView> {
+  public list(params: EntityFetchParams = {}, updateSubject = true): Observable<EntityTreeListView> {
     let httpParams = new HttpParams();
     if (params.limit !== undefined) {
       httpParams = httpParams.set('limit', params.limit.toString());
@@ -54,7 +54,9 @@ export class EntityTreeService {
       httpParams = httpParams.set('sort', params.sort.toString());
     }
     const observable = this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams});
-    observable.subscribe(value => this.subject.next(value));
+    if (updateSubject) {
+      observable.subscribe(value => this.subject.next(value));
+    }
     return observable;
   }
 }

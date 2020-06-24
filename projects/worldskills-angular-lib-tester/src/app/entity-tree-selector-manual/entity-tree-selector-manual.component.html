@@ -1,0 +1,22 @@
+<!-- The 4 selects below will all share the same entity dropdown data -->
+<!-- The loading of the data is done externally in the component definition by calling entityTreeService.list -->
+<ws-entity-tree-select
+  [entities]="this.entities1"
+  [refreshMode]="EntityTreeSelectRefreshMode.NEVER"
+>
+</ws-entity-tree-select>
+<ws-entity-tree-select
+  [entities]="this.entities2"
+  [refreshMode]="EntityTreeSelectRefreshMode.NEVER"
+>
+</ws-entity-tree-select>
+<ws-entity-tree-select
+  [entities]="this.entities3"
+  [refreshMode]="EntityTreeSelectRefreshMode.NEVER"
+>
+</ws-entity-tree-select>
+<ws-entity-tree-select
+  [entities]="this.entities4"
+  [refreshMode]="EntityTreeSelectRefreshMode.NEVER"
+>
+</ws-entity-tree-select>

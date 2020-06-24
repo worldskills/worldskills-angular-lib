@@ -1,0 +1,40 @@
+<ws-entity-tree-select
+  [entities]="this.entities"
+  [labels]="this.labels"
+  [controls]="this.controls"
+>
+</ws-entity-tree-select>
+
+<ng-template #wrapper let-template>
+  <p>START WRAPPER</p>
+  <ng-template [ngTemplateOutlet]="template"></ng-template>
+  <p>END WRAPPER</p>
+</ng-template>
+<ng-template #expand let-enabled="enabled" let-click="click">
+  <ng-container *ngIf="enabled">
+    <span (click)="click()">EXPAND</span>
+  </ng-container>
+  <ng-container *ngIf="!enabled">
+    CANNOT EXPAND
+  </ng-container>
+</ng-template>
+<ng-template #expandAll let-click="click">
+  <span (click)="click()">EXPAND</span>
+</ng-template>
+<ng-template #collapse let-enabled="enabled" let-click="click">
+  <ng-container *ngIf="enabled">
+    <span (click)="click()">COLLAPSE</span>
+  </ng-container>
+  <ng-container *ngIf="!enabled">
+    CANNOT COLLAPSE
+  </ng-container>
+</ng-template>
+<ng-template #collapseAll let-click="click">
+  <span (click)="click()">COLLAPSE</span>
+</ng-template>
+<ng-template #separator>
+  SEPARATOR
+</ng-template>
+<ng-template #showing let-showing="showing" let-total="total">
+  SHOWING {{showing}} OF {{total}}
+</ng-template>

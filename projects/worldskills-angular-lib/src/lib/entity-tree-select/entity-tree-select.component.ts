@@ -1,12 +1,13 @@
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
   forwardRef,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -26,7 +27,7 @@ const DEFAULT_LABELS = {
 };
 
 function isTreeEntity(obj: any): obj is TreeEntity {
-  return obj && 'type' in obj && obj.type === 'treeEntity';
+  return obj && typeof obj === 'object' && 'type' in obj && obj.type === 'treeEntity';
 }
 
 type TreeEntity =
@@ -34,6 +35,7 @@ type TreeEntity =
   & {
   parent: TreeEntity,
   children: TreeEntity[],
+  fullPathName: string,
   paths: Array<string>,
   allPaths: Array<string>,
   selectable: boolean,
@@ -41,10 +43,28 @@ type TreeEntity =
   type: 'treeEntity'
 };
 
-export enum FetchMode {
+export enum EntityTreeSelectRefreshMode {
   DEFAULT,
   FORCE,
   NEVER
+}
+
+export interface EntityTreeSelectLabels {
+  clearAllText?: string;
+  loadingText?: string;
+  notFoundText?: string;
+  typeToSearchText?: string;
+  placeholder?: string;
+}
+
+export interface EntityTreeSelectControls {
+  wrapper?: TemplateRef<{ $implicit: TemplateRef<void> }>;
+  expand?: TemplateRef<{ enabled: boolean, click: () => void }>;
+  expandAll?: TemplateRef<{ click: () => void }>;
+  collapse?: TemplateRef<{ enabled: boolean, click: () => void }>;
+  collapseAll?: TemplateRef<{ click: () => void }>;
+  separator?: TemplateRef<void>;
+  showing?: TemplateRef<{ showing: number, total: number }>;
 }
 
 @Component({
@@ -59,103 +79,17 @@ export enum FetchMode {
     }
   ]
 })
-export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
-
-  /** labels for ng-select */
-  @Input() labels: {
-    clearAllText?: string,
-    loadingText?: string,
-    notFoundText?: string,
-    typeToSearchText?: string,
-    placeholder?: string,
-  } = {};
-  /** control templates for the toolbar buttons */
-  @Input() controls: {
-    wrapper?: TemplateRef<void>;
-    expand?: TemplateRef<{ enabled: boolean, click: () => void }>;
-    expandAll?: TemplateRef<{ click: () => void }>;
-    collapse?: TemplateRef<{ enabled: boolean, click: () => void }>;
-    collapseAll?: TemplateRef<{ click: () => void }>;
-    separator?: TemplateRef<void>;
-    showing?: TemplateRef<{ showing: number, total: number }>;
-  } = {};
-  /** query parameters to scope the available entities */
-  @Input() query: Omit<EntityFetchParams, 'limit' | 'offset' | 'depth'>;
-  /** entities input array */
-  @Input() entities: Array<any>;
-  /** whether or not to show the full path for selected entities */
-  @Input() showFullPath = true;
-  /** whether or not to show the header controls */
-  @Input() showControls = true;
-  /** when set to FORCE always get fresh instances, when set to NEVER, never update fresh instance */
-  /** default is set to DEFAULT which only fetches if nothing else is fetch yet */
-  @Input() refreshMode = FetchMode.DEFAULT;
-  private expandedSearch: Array<number> = [];
-  private flattenedEntities: Array<any>;
-  private lastTerm = ' ';
-  private lastSearch;
-  private refreshing = false;
-  private update = new Subject<TreeEntity>();
-  private htmlId: string;
-  hasFocus = false;
-  loading = true;
-  treeEntities: Array<TreeEntity>;
-  expanded: Array<number> = [];
-
-  /** supported ng-select inputs and outputs */
-  @Input() appendTo = null;
-  @Input() closeOnSelect = true;
-  @Input() clearable = true;
-  @Input() clearOnBackspace = true;
-  @Input() dropdownPosition: DropdownPosition = 'auto';
-  @Input() markFirst = true;
-  @Input() isOpen: boolean = undefined;
-  @Input() maxSelectedItems = undefined;
-  @Input() hideSelected = false;
-  @Input() multiple = false;
-  @Input() searchable = true;
-  @Input() readonly = false;
-  @Input() searchWhileComposing = true;
-  @Input() selectOnTab = false;
-  @Input() openOnEnter = true;
-  @Input() virtualScroll = false;
-  @Input() inputAttrs: { [key: string]: string } = undefined;
-  @Input() tabIndex: number = undefined;
-  // tslint:disable-next-line:no-output-native
-  @Output() blur: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-native
-  @Output() focus: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-native
-  @Output() change: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-native
-  @Output() open: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-native
-  @Output() close: EventEmitter<any> = new EventEmitter<any>();
-  @Output() search: EventEmitter<{ term: string; items: TreeEntity[]; }> = new EventEmitter<{ term: string; items: TreeEntity[]; }>();
-  @Output() clear: EventEmitter<any> = new EventEmitter<any>();
-  @Output() add: EventEmitter<any> = new EventEmitter<any>();
-  @Output() remove: EventEmitter<any> = new EventEmitter<any>();
-  // tslint:disable-next-line:no-output-native
-  @Output() scroll: EventEmitter<{ start: number; end: number; }> = new EventEmitter<{ start: number; end: number; }>();
-  @Output() scrollToEnd: EventEmitter<any> = new EventEmitter<any>();
-
-  @ViewChild('ngSelectComponent', {static: true}) ngSelectComponent: NgSelectComponent;
-  @ViewChild('wrapperControl') wrapperControl: TemplateRef<void>;
-  @ViewChild('expandControl') expandControl: TemplateRef<{ enabled: boolean, click: () => void }>;
-  @ViewChild('expandAllControl') expandAllControl: TemplateRef<{ click: () => void }>;
-  @ViewChild('collapseControl') collapseControl: TemplateRef<{ enabled: boolean, click: () => void }>;
-  @ViewChild('collapseAllControl') collapseAllControl: TemplateRef<{ click: () => void }>;
-  @ViewChild('separatorControl') separatorControl: TemplateRef<void>;
-  @ViewChild('showingControl') showingControl: TemplateRef<{ showing: number, total: number }>;
-  /** the id callback function for the Input entities */
-  @Input() entityIdCallback: (entity: any) => number = (entity: any) => entity.id;
-  /** compare function for ng-select */
-  @Input() compareWith: (a: any, b: any) => boolean = (a, b) => a === b;
+export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
 
   constructor(
     private entityTreeService: EntityTreeService
   ) {
     this.htmlId = uuidv4();
+    this.compareWith = this.compareWith || ((a, b) => {
+      const aId = this.toId(a);
+      const bId = this.toId(b);
+      return aId && bId && aId === bId;
+    });
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onClick = this.onClick.bind(this);
     this.searchFn = this.searchFn.bind(this);
@@ -173,27 +107,155 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     return this.ngSelectComponent.itemsList.items.length;
   }
 
+  /** labels for ng-select */
+  @Input() labels: EntityTreeSelectLabels = {};
+  /** control templates for the toolbar buttons */
+  @Input() controls: EntityTreeSelectControls = {};
+  /** query parameters to scope the available entities */
+  @Input() query: Omit<EntityFetchParams, 'limit' | 'offset' | 'depth'>;
+  /** entities input array */
+  @Input() entities: Array<any>;
+  /** always make children selectable of passed entities */
+  @Input() selectableChildren = true;
+  /** show unselectable parents */
+  @Input() showUnselectableParents = true;
+  /** whether or not to show the full path for selected entities */
+  @Input() showFullPath = true;
+  /** whether or not to show the header controls */
+  @Input() showControls = true;
+  /** when set to FORCE always get fresh instances, when set to NEVER, never update fresh instance */
+  /** default is set to DEFAULT which only fetches if nothing else is fetch yet */
+  @Input() refreshMode = EntityTreeSelectRefreshMode.DEFAULT;
+  /** if the tree is expanded by default */
+  @Input() defaultExpand = false;
+  private expandedSearch: Array<number> = [];
+  private flattenedEntities: Array<any> = [];
+  private flattenedTreeEntities: Array<TreeEntity> = [];
+  private lastTerm = ' ';
+  private lastSearch;
+  private refreshing = false;
+  private update = new Subject<TreeEntity>();
+  private htmlId: string;
+  private fetchedTreeEntities: Array<TreeEntity> = [];
+  private cachedWriteValue: any;
+  hasFocus = false;
+  loading = true;
+  treeEntities: Array<TreeEntity> = [];
+  expanded: Array<number> = [];
+
+  /** ng-select input */
+  @Input() appendTo = null;
+  /** ng-select input */
+  @Input() closeOnSelect = true;
+  /** ng-select input */
+  @Input() clearable = true;
+  /** ng-select input */
+  @Input() clearOnBackspace = true;
+  /** ng-select input */
+  @Input() dropdownPosition: DropdownPosition = 'auto';
+  /** ng-select input */
+  @Input() markFirst = true;
+  /** ng-select input */
+  @Input() isOpen: boolean = undefined;
+  /** ng-select input */
+  @Input() maxSelectedItems: number = undefined;
+  /** ng-select input */
+  @Input() hideSelected = false;
+  /** ng-select input */
+  @Input() multiple = false;
+  /** ng-select input */
+  @Input() searchable = true;
+  /** ng-select input */
+  @Input() readonly = false;
+  /** ng-select input */
+  @Input() searchWhileComposing = true;
+  /** ng-select input */
+  @Input() selectOnTab = false;
+  /** ng-select input */
+  @Input() openOnEnter = true;
+  /** ng-select input */
+  @Input() virtualScroll = false;
+  /** ng-select input */
+  @Input() inputAttrs: { [key: string]: string } = undefined;
+  /** ng-select input */
+  @Input() tabIndex: number = undefined;
+  /** ng-select output */
+    // tslint:disable-next-line:no-output-native
+  @Output() blur: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+    // tslint:disable-next-line:no-output-native
+  @Output() focus: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+    // tslint:disable-next-line:no-output-native
+  @Output() change: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+    // tslint:disable-next-line:no-output-native
+  @Output() open: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+    // tslint:disable-next-line:no-output-native
+  @Output() close: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+  @Output() search: EventEmitter<{ term: string; items: TreeEntity[]; }> = new EventEmitter<{ term: string; items: TreeEntity[]; }>();
+  /** ng-select output */
+  @Output() clear: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+  @Output() add: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+  @Output() remove: EventEmitter<any> = new EventEmitter<any>();
+  /** ng-select output */
+    // tslint:disable-next-line:no-output-native
+  @Output() scroll: EventEmitter<{ start: number; end: number; }> = new EventEmitter<{ start: number; end: number; }>();
+  /** ng-select output */
+  @Output() scrollToEnd: EventEmitter<any> = new EventEmitter<any>();
+
+  @ViewChild('ngSelectComponent', {static: true}) ngSelectComponent: NgSelectComponent;
+  @ViewChild('wrapperControl', {static: true}) wrapperControl: TemplateRef<{ $implicit: TemplateRef<void> }>;
+  @ViewChild('expandControl', {static: true}) expandControl: TemplateRef<{ enabled: boolean, click: () => void }>;
+  @ViewChild('expandAllControl', {static: true}) expandAllControl: TemplateRef<{ click: () => void }>;
+  @ViewChild('collapseControl', {static: true}) collapseControl: TemplateRef<{ enabled: boolean, click: () => void }>;
+  @ViewChild('collapseAllControl', {static: true}) collapseAllControl: TemplateRef<{ click: () => void }>;
+  @ViewChild('separatorControl', {static: true}) separatorControl: TemplateRef<void>;
+  @ViewChild('showingControl', {static: true}) showingControl: TemplateRef<{ showing: number, total: number }>;
+  /** compare function for ng-select */
+  @Input() compareWith: (a: any, b: any) => boolean;
+  /** the id callback function for the Input entities */
+  @Input() entityIdCallback: (entity: any) => number = (entity: any) => entity ? entity.id : undefined;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('entities' in changes) {
+      this.createTreeEntities();
+    }
+  }
+
   ngOnInit(): void {
     this.labels = {...DEFAULT_LABELS, ...this.labels};
-    this.entityTreeService.subject.subscribe(entities => {
-      if (this.refreshMode === FetchMode.FORCE) {
-        this.refreshMode = FetchMode.DEFAULT;
+    this.controls = {
+      wrapper: this.wrapperControl,
+      expand: this.expandControl,
+      expandAll: this.expandAllControl,
+      collapse: this.collapseControl,
+      collapseAll: this.collapseAllControl,
+      separator: this.separatorControl,
+      showing: this.showingControl,
+      ...this.controls
+    };
+    let observable;
+    if (this.refreshMode === EntityTreeSelectRefreshMode.FORCE) {
+      observable = this.entityTreeService.list({limit: 9999, depth: 10, ...this.query}, false);
+    } else {
+      observable = this.entityTreeService.subject;
+    }
+
+    observable.subscribe(entities => {
+      if (!!entities) {
+        this.fetchedTreeEntities = entities.ws_entity_list.map(entity => this.deepCopyEntity(entity as TreeEntity));
+        this.createTreeEntities();
+        this.ngSelectComponent.writeValue(this.multiple ?
+          ((this.cachedWriteValue || []) as Array<any>).map(o => this.toTreeEntity(o)).filter(o => !!o) :
+          this.toTreeEntity(this.cachedWriteValue));
+        this.loading = false;
+      } else if (this.refreshMode === EntityTreeSelectRefreshMode.DEFAULT) {
         this.entityTreeService.list({limit: 9999, depth: 10, ...this.query});
-      } else {
-        if (entities !== null) {
-          this.flattenedEntities = this.flatten(this.entities || []);
-          this.treeEntities = entities.ws_entity_list.map(entity => this.deepCopyEntity(entity as TreeEntity));
-          this.setSelectable(this.treeEntities, this.flattenedEntities.map(entity => entity.id));
-          this.clearUnselectableTrees(this.treeEntities);
-          this.setParentsForEntities(this.treeEntities);
-          this.setPathNamesAndTypes(this.treeEntities);
-          this.loading = false;
-          if (this.hasFocus) {
-            setTimeout(() => this.update.next(null));
-          }
-        } else if (this.refreshMode === FetchMode.DEFAULT) {
-          this.entityTreeService.list({limit: 9999, depth: 10, ...this.query});
-        }
       }
     });
 
@@ -207,21 +269,30 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     document.addEventListener('keydown', this.onKeyDown, true);
   }
 
-  private deepCopyEntity(entity: TreeEntity) {
-    return {...entity, children: entity.children.map(e => this.deepCopyEntity(e))};
+  private createTreeEntities() {
+    this.treeEntities = this.fetchedTreeEntities.map(e => this.deepCopyEntity(e));
+    this.flattenedEntities = this.flatten(this.entities || []);
+    this.setSelectable(this.treeEntities, this.flattenedEntities.map(entity => entity.id));
+    if (this.selectableChildren) {
+      this.setSelectableForChildren(this.treeEntities);
+    }
+    this.clearUnselectableTrees(this.treeEntities);
+    this.setParentsForEntities(this.treeEntities);
+    this.setPathNamesAndTypes(this.treeEntities);
+    if (!this.showUnselectableParents) {
+      this.treeEntities = this.flattenUnselectableParents(this.treeEntities);
+    }
+    this.flattenedTreeEntities = this.flatten(this.treeEntities);
+    if (this.defaultExpand) {
+      this.expandAll(this.treeEntities, false);
+    }
+    if (this.hasFocus) {
+      setTimeout(() => this.update.next(null));
+    }
   }
 
-  ngAfterViewInit(): void {
-    this.controls = {
-      wrapper: this.wrapperControl,
-      expand: this.expandControl,
-      expandAll: this.expandAllControl,
-      collapse: this.collapseControl,
-      collapseAll: this.collapseAllControl,
-      separator: this.separatorControl,
-      showing: this.showingControl,
-      ...this.controls
-    };
+  private deepCopyEntity(entity: TreeEntity) {
+    return {...entity, children: entity.children.map(e => this.deepCopyEntity(e))};
   }
 
   ngOnDestroy(): void {
@@ -259,13 +330,16 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
       const paths = [];
       let p = e;
       while (p) {
-        paths.push(p.name.text.toLowerCase());
+        paths.push(p.name.text);
         p = p.parent;
       }
       e.allPaths = paths.reverse();
+      e.fullPathName = e.allPaths.join(' > ');
+      e.allPaths = e.allPaths.map(n => n.toLowerCase());
       e.paths = [...e.allPaths];
       e.paths.pop();
       e.type = 'treeEntity';
+
       this.setPathNamesAndTypes(e.children);
     });
   }
@@ -275,6 +349,17 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
       e.filtered = true;
       e.selectable = selectables.includes(e.id);
       this.setSelectable(e.children, selectables);
+    });
+  }
+
+  private setSelectableForChildren(entities: Array<TreeEntity>) {
+    entities.forEach(e => {
+      if (e.selectable) {
+        e.children.forEach(c => {
+          c.selectable = true;
+        });
+      }
+      this.setSelectableForChildren(e.children);
     });
   }
 
@@ -306,6 +391,30 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
+  private flattenUnselectableParents(entities: Array<TreeEntity>) {
+    entities = [...entities];
+    let modified = true;
+    while (modified) {
+      modified = false;
+      for (let i = 0; i < entities.length; i++) {
+        if (!entities[i].selectable) {
+          const children: Array<TreeEntity> = [...entities[i].children];
+          children.forEach(c => {
+            c.parent = entities[i].parent;
+          });
+          entities.splice(i, 1, ...children);
+          modified = true;
+          break;
+        }
+      }
+    }
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < entities.length; i++) {
+      entities[i].children = this.flattenUnselectableParents(entities[i].children);
+    }
+    return entities;
+  }
+
   isExpandable(entity: TreeEntity) {
     return entity.children.length > 0;
   }
@@ -325,14 +434,16 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     return () => this.expandAll(this.treeEntities);
   }
 
-  expandAll(entities: Array<TreeEntity>) {
+  expandAll(entities: Array<TreeEntity>, update = true) {
     entities.forEach(entity => {
       if (this.isExpandable(entity) && !this.expanded.includes(entity.id)) {
         this.expanded.push(entity.id);
       }
-      this.expandAll(entity.children);
+      this.expandAll(entity.children, false);
     });
-    this.update.next(null);
+    if (update) {
+      this.update.next(null);
+    }
   }
 
   expandArray(entities: Array<TreeEntity>) {
@@ -383,14 +494,16 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     return () => this.collapseAll(this.treeEntities);
   }
 
-  collapseAll(entities: Array<TreeEntity>) {
+  collapseAll(entities: Array<TreeEntity>, update = true) {
     entities.forEach(entity => {
       if (this.isExpandable(entity) && this.expanded.includes(entity.id)) {
         this.expanded.splice(this.expanded.findIndex(e => e === entity.id), 1);
       }
-      this.collapseAll(entity.children);
+      this.collapseAll(entity.children, false);
     });
-    this.update.next(null);
+    if (update) {
+      this.update.next(null);
+    }
   }
 
   toggleExpanded(entity: TreeEntity) {
@@ -502,14 +615,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   onChange(entity: TreeEntity | Array<TreeEntity>) {
-    const value = this.multiple ?
-      (entity as Array<TreeEntity>).map(e => this.getEntityFromInput(e)) :
-      this.getEntityFromInput(entity as TreeEntity);
-    this.change.emit(value);
-  }
-
-  private getEntityFromInput(entity: TreeEntity) {
-    return this.flattenedEntities.find(e => this.entityIdCallback(e) === entity.id);
+    this.change.emit(this.multiple ? (entity as Array<any>).map(o => this.toId(o)) : this.toId(entity));
   }
 
   onClick(event: Event) {
@@ -580,31 +686,13 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
-  renderLabel(entity: TreeEntity) {
-    const paths = [];
-    paths.push(entity.name.text);
-
-    let parent = entity.parent;
-    while (parent) {
-      paths.push(parent.name.text);
-      parent = parent.parent;
-    }
-
-    return paths.reverse().join(' > ');
-  }
-
   private getFiltered(entities: Array<TreeEntity>) {
     return entities.reduce((acc, e) => (e.filtered ? acc + 1 : acc) + this.getFiltered(e.children), 0);
   }
 
   registerOnChange(fn: any): void {
     this.ngSelectComponent.registerOnChange(
-      obj => {
-        const value = this.multiple ?
-          (obj as Array<any>).map(e => isTreeEntity(e) ? this.getEntityFromInput(e) : e) :
-          (isTreeEntity(obj) ? this.getEntityFromInput(obj) : obj);
-        fn(value);
-      }
+      obj => fn(this.multiple ? (obj as Array<any>).map(o => this.toId(o)) : this.toId(obj))
     );
   }
 
@@ -617,10 +705,43 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   writeValue(obj: any): void {
-    const value = this.multiple ?
-      (obj as Array<any>).map(e => isTreeEntity(e) ? this.getEntityFromInput(e) : e) :
-      (isTreeEntity(obj) ? this.getEntityFromInput(obj) : obj);
-    this.ngSelectComponent.writeValue(value);
+    this.cachedWriteValue = obj;
+  }
+
+  toId(obj: any) {
+    if (isTreeEntity(obj)) {
+      return obj.id;
+    } else if (typeof obj === 'number') {
+      return obj;
+    } else if (typeof obj === 'object') {
+      return this.entityIdCallback(obj);
+    } else {
+      return null;
+    }
+  }
+
+  toTreeEntity(obj: any) {
+    if (isTreeEntity(obj)) {
+      return this.flattenedTreeEntities.find(e => e.id === obj.id);
+    } else if (typeof obj === 'number') {
+      return this.flattenedTreeEntities.find(e => e.id === obj);
+    } else if (typeof obj === 'object') {
+      return this.flattenedTreeEntities.find(e => e.id === this.entityIdCallback(obj));
+    } else {
+      return null;
+    }
+  }
+
+  toEntity(obj: any) {
+    if (isTreeEntity(obj)) {
+      return this.flattenedEntities.find(e => this.entityIdCallback(e) === obj.id);
+    } else if (typeof obj === 'number') {
+      return this.flattenedEntities.find(e => this.entityIdCallback(e) === obj);
+    } else if (typeof obj === 'object') {
+      return this.flattenedEntities.find(e => this.entityIdCallback(e) === this.entityIdCallback(obj));
+    } else {
+      return null;
+    }
   }
 
 }

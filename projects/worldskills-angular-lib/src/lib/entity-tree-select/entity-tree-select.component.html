@@ -93,7 +93,7 @@
       </ng-template>
     </ng-container>
     <ng-template ng-label-tmp let-entity="item" let-clear="clear">
-      <span class="{{multiple ? 'px-2' : ''}}">{{showFullPath ? renderLabel(entity) : entity.name.text}}</span>
+      <span class="{{multiple ? 'px-2' : ''}}">{{showFullPath ? entity.fullPathName : entity.name.text}}</span>
       <ng-container *ngIf="multiple">
         <span style="cursor: pointer" class="font-weight-bold px-2 border-left" (click)="clear(entity)">×</span>
       </ng-container>
@@ -117,7 +117,7 @@
       </ng-template>
     </ng-container>
   </ng-template>
-  <ng-container *ngFor="let entity of (treeEntities || [])">
+  <ng-container *ngFor="let entity of treeEntities">
     <ng-template
       [ngTemplateOutlet]="entityOption"
       [ngTemplateOutletContext]="{$implicit: entity, depth: 0}">

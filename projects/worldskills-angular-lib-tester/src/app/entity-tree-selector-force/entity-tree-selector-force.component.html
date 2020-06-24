@@ -1,0 +1,28 @@
+<!-- When using force mode, the result is not cached and always requested -->
+<!-- This is ideal for situations where you have multiple selects where you want to scope out different parents -->
+<!-- In the example below 4 different selects will be displayed where each select will have have a different tree because of the member_of query param -->
+<!-- Query params control which entities will be shown in the select dropdown -->
+<ws-entity-tree-select
+  [entities]="this.entities1"
+  [refreshMode]="EntityTreeSelectRefreshMode.FORCE"
+  [query]="{member_of: 1}"
+>
+</ws-entity-tree-select>
+<ws-entity-tree-select
+  [entities]="this.entities2"
+  [refreshMode]="EntityTreeSelectRefreshMode.FORCE"
+  [query]="{member_of: 2}"
+>
+</ws-entity-tree-select>
+<ws-entity-tree-select
+  [entities]="this.entities3"
+  [refreshMode]="EntityTreeSelectRefreshMode.FORCE"
+  [query]="{member_of: 3}"
+>
+</ws-entity-tree-select>
+<ws-entity-tree-select
+  [entities]="this.entities4"
+  [refreshMode]="EntityTreeSelectRefreshMode.FORCE"
+  [query]="{member_of: 4}"
+>
+</ws-entity-tree-select>
