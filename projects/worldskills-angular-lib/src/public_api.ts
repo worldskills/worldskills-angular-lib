@@ -110,3 +110,6 @@ export * from './lib/security/app-auth-guard';
 
 // modules
 export * from './lib/worldskills-angular-lib.module';
+
+// helpers
+export * from './lib/helper/date-helper';

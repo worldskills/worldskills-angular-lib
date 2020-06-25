@@ -1,5 +1,9 @@
 # Chaangelog
 
+## 8.7.0
+
+* Cross Browser date helper functions
+
 ## 8.6.0
 
 * Introduced configurable language selector

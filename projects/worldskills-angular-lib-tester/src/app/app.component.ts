@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.model';
 import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
-import { AuthService, ModuleConfigService } from 'worldskills-angular-lib';
+import { AuthService, ModuleConfigService, isDate, toDate } from 'worldskills-angular-lib';
 import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
 import { DatetimeModel } from '../../../worldskills-angular-lib/src/lib/models/datetime.model';
@@ -97,6 +97,9 @@ export class AppComponent {
     this.userList = new UserListView();
     this.entityId = 1;
     this.userAppCode = 300;
+
+    const dtString = '2020-01-01';
+    const dt = toDate(dtString);
   }
 
 
