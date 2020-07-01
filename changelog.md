@@ -2,6 +2,7 @@
 
 ## 8.7.0
 
+* Added entity tree select component
 * Cross Browser date helper functions
 * userService.getUser
 * userService.getUserByPerson
@@ -12,7 +13,7 @@
 
 ## 8.5.0
 
-* Intoruced models for WS Auth Servicce
+* Introduced models for WS Auth Service
 * Introduce the listUsers service method onto the UserService
 
 ## 8.4.0
@@ -51,17 +52,17 @@
 
 ## 7.8.0
 
-* session key `returnUrl` is now populated by the `AppAuthGuard` when a user tries to access a route while not logged in. this gives the app an oppertunity to act on this `returnUrl` if that app chooses to.
+* session key `returnUrl` is now populated by the `AppAuthGuard` when a user tries to access a route while not logged in. this gives the app an opportunity to act on this `returnUrl` if that app chooses to.
 
 ## 7.7.0
 
-* Introduced weigted voting Interface.
+* Introduced weighted voting Interface.
 
 ## 7.6.0
 
 * The vote control is now modular.
-* The poll results graph is now available as a seperate component.
-* The standard poll mechanism is now available as a seperte component.
+* The poll results graph is now available as a separate component.
+* The standard poll mechanism is now available as a separate component.
 
 ## 7.5.0
 
@@ -74,7 +75,7 @@
 
 ## 7.3.0
 
-* Added unvote feature to the vote control.
+* Added un-vote feature to the vote control.
 
 ## 7.2.0
 
@@ -92,5 +93,5 @@
 
 * Rework of the footer component.
 * Footer now has 6 columns that ng-templates can be injected into.
-* The first and last columns have  default templates that can be overriden.
-* The columns inbetween are blank by default
+* The first and last columns have  default templates that can be overridden.
+* The columns in-between are blank by default
