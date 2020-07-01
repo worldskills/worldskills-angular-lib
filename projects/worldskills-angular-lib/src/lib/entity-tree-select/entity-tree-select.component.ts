@@ -114,7 +114,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   /** query parameters to scope the available entities */
   @Input() query: Omit<EntityFetchParams, 'limit' | 'offset' | 'depth'>;
   /** entities input array */
-  @Input() entities: Array<any>;
+  @Input() entities: Array<any> = null;
   /** always make children selectable of passed entities */
   @Input() selectableChildren = true;
   /** show unselectable parents */
@@ -272,7 +272,10 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   private createTreeEntities() {
     this.treeEntities = this.fetchedTreeEntities.map(e => this.deepCopyEntity(e));
     this.flattenedEntities = this.flatten(this.entities || []);
-    this.setSelectable(this.treeEntities, this.flattenedEntities.map(entity => entity.id));
+    this.setSelectable(
+      this.treeEntities,
+      this.entities === null ? true : this.flattenedEntities.map(entity => entity.id)
+    );
     if (this.selectableChildren) {
       this.setSelectableForChildren(this.treeEntities);
     }
@@ -344,10 +347,10 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
     });
   }
 
-  private setSelectable(entities: Array<TreeEntity>, selectables: Array<number>) {
+  private setSelectable(entities: Array<TreeEntity>, selectables: Array<number> | true) {
     entities.forEach(e => {
       e.filtered = true;
-      e.selectable = selectables.includes(e.id);
+      e.selectable = selectables === true ? true : selectables.includes(e.id);
       this.setSelectable(e.children, selectables);
     });
   }
