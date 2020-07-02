@@ -1,10 +1,14 @@
 # Changelog
 
+## 8.8.0
+
+* Cross Browser date helper functions
+* Added simplified `wsSelect` directive for easy `ng-select` setups
+* fixes and services behaviour input to entity tree
+
 ## 8.7.0
 
-* Added simplified `wsSelect` directive for easy `ng-select` setups
 * Added entity tree select component
-* Cross Browser date helper functions
 * userService.getUser
 * userService.getUserByPerson
 
