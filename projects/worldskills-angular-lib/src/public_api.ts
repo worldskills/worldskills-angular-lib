@@ -1,5 +1,3 @@
-import { from } from 'rxjs';
-
 /*
  * Public API Surface of worldskills-angular-lib
  */
@@ -26,6 +24,18 @@ export * from './lib/interfaces/breadcrumb.interface';
 export * from './lib/models/alert.model';
 export * from './lib/models/alert.type';
 export * from './lib/models/api-error';
+export * from './lib/models/auth/dynamic-role-view';
+export * from './lib/models/auth/entity-tree-view';
+export * from './lib/models/auth/get-users-params';
+export * from './lib/models/auth/profile-role-view';
+export * from './lib/models/auth/profile-view';
+export * from './lib/models/auth/role-application-view';
+export * from './lib/models/auth/role-view';
+export * from './lib/models/auth/user-list-view';
+export * from './lib/models/auth/user-profiles-view';
+export * from './lib/models/auth/user-view';
+export * from './lib/models/auth/ws-entity-summary-view';
+export * from './lib/models/auth/ws-entity-view';
 export * from './lib/models/collection-model';
 export * from './lib/models/date-range';
 export * from './lib/models/datetime.model';
@@ -69,6 +79,9 @@ export * from './lib/pipes/menu-access.pipe';
 export * from './lib/pipes/relative-date.pipe';
 export * from './lib/pipes/sort.pipe';
 
+// directives
+export * from './lib/directives/select/select.directive';
+
 // converters
 export * from './lib/converters/date-converter';
 
@@ -84,6 +97,7 @@ export * from './lib/services/resource.service';
 export * from './lib/services/user.service';
 export * from './lib/services/upload.service';
 export * from './lib/services/poll.service';
+export * from './lib/services/entity-tree.service';
 
 // interceptors
 export * from './lib/interceptors/ws-http-interceptor';
@@ -103,6 +117,7 @@ export * from './lib/votes/poll-result-graph/poll-result-graph.component';
 export * from './lib/votes/standard-poll/standard-poll.component';
 export * from './lib/votes/vote-control/vote-control.component';
 export * from './lib/votes/weighted-poll/weighted-poll.component';
+export * from './lib/entity-tree-select/entity-tree-select.component';
 
 // security
 export * from './lib/security/ws-auth-guard';
