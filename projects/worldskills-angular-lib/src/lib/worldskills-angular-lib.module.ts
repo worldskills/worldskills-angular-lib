@@ -32,7 +32,8 @@ import { StandardPollComponent } from './votes/standard-poll/standard-poll.compo
 import { WeightedPollComponent } from './votes/weighted-poll/weighted-poll.component';
 import { DatetimePickerComponent } from './datetime-picker/datetime-picker.component';
 import { EntityTreeSelectComponent } from './entity-tree-select/entity-tree-select.component';
-import {NgSelectModule} from '@ng-select/ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { SelectDirective } from './directives/select/select.directive';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     WeightedPollComponent,
     DatetimePickerComponent,
     EntityTreeSelectComponent,
+    SelectDirective,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
     StandardPollComponent,
     WeightedPollComponent,
     DatetimePickerComponent,
-    EntityTreeSelectComponent
+    EntityTreeSelectComponent,
+    SelectDirective,
   ]
 })
 export class WorldskillsAngularLibModule {

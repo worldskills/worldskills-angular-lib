@@ -1,5 +1,3 @@
-import { from } from 'rxjs';
-
 /*
  * Public API Surface of worldskills-angular-lib
  */
@@ -80,6 +78,9 @@ export * from './lib/pipes/get-object-property.pipe';
 export * from './lib/pipes/menu-access.pipe';
 export * from './lib/pipes/relative-date.pipe';
 export * from './lib/pipes/sort.pipe';
+
+// directives
+export * from './lib/directives/select/select.directive';
 
 // converters
 export * from './lib/converters/date-converter';

@@ -19,6 +19,7 @@ import { EntityTreeSelectorManualComponent } from './entity-tree-selector-manual
 import { EntityTreeSelectorCustomizationsComponent } from './entity-tree-selector-customizations/entity-tree-selector-customizations.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EntityTreeSelectorForceComponent } from './entity-tree-selector-force/entity-tree-selector-force.component';
+import { SelectComponent } from './select/select.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     EntityTreeSelectorCacheComponent,
     EntityTreeSelectorManualComponent,
     EntityTreeSelectorCustomizationsComponent,
-    EntityTreeSelectorForceComponent
+    EntityTreeSelectorForceComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,42 @@
+<ng-select
+  [appWsSelector]
+  valueReader="x"
+  [labelReader]="r"
+  (change)="onOriginalChange($event)"
+  (wsChange)="onChange($event)"
+  [items]="items"
+></ng-select>
+
+<ng-select
+  [appWsSelector]
+  valueReader="x"
+  labelReader="y.a"
+  (change)="onOriginalChange($event)"
+  (wsChange)="onChange($event)"
+  [items]="items"
+></ng-select>
+
+<ng-select
+  [appWsSelector]
+  valueReader="x"
+  [labelReader]="['y', 'a']"
+  (change)="onOriginalChange($event)"
+  (wsChange)="onChange($event)"
+  [items]="items"
+></ng-select>
+
+<ng-select
+  [appWsSelector]
+  valueReader="x"
+  [labelReader]="labelReader"
+  (change)="onOriginalChange($event)"
+  (wsChange)="onChange($event)"
+  [items]="items"
+></ng-select>
+
+<ng-select
+  [appWsSelector]="['x', 'y.a']"
+  (change)="onOriginalChange($event)"
+  (wsChange)="onChange($event)"
+  [items]="items"
+></ng-select>
