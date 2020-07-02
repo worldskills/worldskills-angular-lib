@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.8.1
+
+* Small fix for wsSelect items (accept undefined items during initialization)
+* Added grouping function to wsSelect
+
 ## 8.8.0
 
 * Cross Browser date helper functions

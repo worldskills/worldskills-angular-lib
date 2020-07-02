@@ -30,11 +30,23 @@ export interface WsSelectChangeEvent<T = any, U = any> {
 })
 export class SelectDirective implements OnInit, OnChanges {
 
-  @Input('wsSelect') entryReader: [EntryReader, EntryReader] | { labelReader: EntryReader, valueReader: EntryReader };
+  @Input('wsSelect') entryReader: [
+    EntryReader,
+    EntryReader,
+    EntryReader | undefined
+  ] | [
+    EntryReader,
+    EntryReader
+  ] | {
+    labelReader: EntryReader,
+    valueReader: EntryReader,
+    groupReader?: EntryReader
+  };
   @Input() items: any;
   @Output() wsChange: EventEmitter<WsSelectChangeEvent> = new EventEmitter<WsSelectChangeEvent>();
   @Input() labelReader: EntryReader;
   @Input() valueReader: EntryReader;
+  @Input() groupReader: EntryReader;
   private originalItems: Array<any>;
 
   constructor(
@@ -43,8 +55,8 @@ export class SelectDirective implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.ngSelectComponent && changes.items && changes.items.isFirstChange()) {
-      this.updateItems(changes.items.currentValue);
+    if (this.ngSelectComponent && changes.items) {
+      this.updateItems(changes.items.currentValue, changes.items.isFirstChange());
     }
   }
 
@@ -52,21 +64,31 @@ export class SelectDirective implements OnInit, OnChanges {
     if (this.ngSelectComponent) {
       let labelReaderFromMainSelector;
       let valueReaderFromMainSelector;
+      let groupReaderFromMainSelector;
       if (this.entryReader) {
         if (Array.isArray(this.entryReader)) {
-          const [valueReaderFromMainArray, labelReaderFromMainArray] = this.entryReader;
+          const [valueReaderFromMainArray, labelReaderFromMainArray, groupReaderFromMainArray] = this.entryReader;
           labelReaderFromMainSelector = labelReaderFromMainArray;
           valueReaderFromMainSelector = valueReaderFromMainArray;
+          groupReaderFromMainSelector = groupReaderFromMainArray;
         } else {
-          const {labelReader: labelReaderFromMainObject, valueReader: valueReaderFromMainObject} = this.entryReader;
+          const {
+            labelReader: labelReaderFromMainObject,
+            valueReader: valueReaderFromMainObject,
+            groupReader: groupReaderFromMainObject
+          } = this.entryReader;
           labelReaderFromMainSelector = labelReaderFromMainObject;
           valueReaderFromMainSelector = valueReaderFromMainObject;
+          groupReaderFromMainSelector = groupReaderFromMainObject;
         }
         if (!this.labelReader) {
           this.labelReader = labelReaderFromMainSelector;
         }
         if (!this.valueReader) {
           this.valueReader = valueReaderFromMainSelector;
+        }
+        if (!this.groupReader) {
+          this.groupReader = groupReaderFromMainSelector;
         }
       }
       if (!this.labelReader || !this.valueReader) {
@@ -83,15 +105,23 @@ export class SelectDirective implements OnInit, OnChanges {
       this.ngSelectComponent.bindLabel = 'label';
       this.ngSelectComponent.bindValue = 'value';
 
+      if (this.groupReader) {
+        this.ngSelectComponent.groupBy = 'group';
+      }
+
       if (this.wsChange) {
         const currentChangeEvent = this.ngSelectComponent.changeEvent;
         const newEventEmitter = new EventEmitter<any>();
         newEventEmitter.subscribe(original => {
-          this.wsChange.emit({
-            item: this.originalItems.find(i => this.readObjectValue(i) === original.value),
-            original,
-            value: original.value
-          });
+          if (original) {
+            this.wsChange.emit({
+              item: this.originalItems.find(i => this.readObjectValue(i) === original.value),
+              original,
+              value: original.value
+            });
+          } else {
+            this.wsChange.emit(null);
+          }
         });
         if (currentChangeEvent) {
           const overrideEventEmitter = new EventEmitter<any>();
@@ -109,13 +139,16 @@ export class SelectDirective implements OnInit, OnChanges {
     }
   }
 
-  private updateItems(items: Array<any>) {
-    this.originalItems = [...items];
-    this.ngSelectComponent.items = items.map(obj => ({
-      label: this.readObjectLabel(obj),
-      value: this.readObjectValue(obj),
-    }));
-    this.ngSelectComponent.ngOnChanges({items: new SimpleChange(null, this.ngSelectComponent.items, true)});
+  private updateItems(items: Array<any>, firstChange = false) {
+    if (items) {
+      this.originalItems = [...items];
+      this.ngSelectComponent.items = items.map(obj => ({
+        label: this.readObjectLabel(obj),
+        value: this.readObjectValue(obj),
+        group: this.groupReader ? this.readObjectGroup(obj) : undefined
+      }));
+      this.ngSelectComponent.ngOnChanges({items: new SimpleChange(null, this.ngSelectComponent.items, firstChange)});
+    }
   }
 
   private readObjectLabel(obj: any) {
@@ -156,6 +189,26 @@ export class SelectDirective implements OnInit, OnChanges {
       value = this.valueReader(obj);
     }
     return value;
+  }
+
+  private readObjectGroup(obj: any) {
+    let group;
+    if (Array.isArray(this.groupReader)) {
+      if (this.groupReader.length === 1) {
+        group = obj[this.groupReader[0]];
+      } else {
+        group = obj;
+        for (const entry of this.groupReader) {
+          group = group[entry];
+          if (group === undefined) {
+            break;
+          }
+        }
+      }
+    } else if (typeof this.groupReader === 'function') {
+      group = this.groupReader(obj);
+    }
+    return group;
   }
 
 }
