@@ -44,7 +44,12 @@ once you've set up a new angular application install the following libraries:
 `npm i json2typescript`  
 `npm i popper.js`  
 `npm i angular-font-awesome`  
+`npm i ng-select`  
 `npm i @worldskills/bootstrap`
+
+### angular.json
+
+add `node_modules/@ng-select/ng-select/themes/default.theme.css` to the style definitions.
 
 ### app.module.ts
 
