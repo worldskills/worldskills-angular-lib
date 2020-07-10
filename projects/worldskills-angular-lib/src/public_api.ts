@@ -19,6 +19,7 @@ export * from './lib/config/app-config';
 
 // interfaces
 export * from './lib/interfaces/breadcrumb.interface';
+export * from './lib/interfaces/ws-select-change-event';
 
 // models
 export * from './lib/models/alert.model';

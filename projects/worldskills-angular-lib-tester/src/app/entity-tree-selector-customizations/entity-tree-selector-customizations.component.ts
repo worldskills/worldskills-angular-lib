@@ -1,8 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {
-  EntityTreeSelectControls,
-  EntityTreeSelectLabels
-} from '../../../../worldskills-angular-lib/src/lib/entity-tree-select/entity-tree-select.component';
+import { EntityTreeSelectControls, EntityTreeSelectLabels } from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-entity-tree-selector-customizations',

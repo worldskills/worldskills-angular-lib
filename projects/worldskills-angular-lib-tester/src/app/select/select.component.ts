@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {WsSelectChangeEvent} from '../../../../worldskills-angular-lib/src/lib/directives/select/select.directive';
+import { WsSelectChangeEvent } from 'worldskills-angular-lib/lib/interfaces/ws-select-change-event';
 
 interface ExampleDataStructure {
   x: number;
@@ -16,6 +16,8 @@ interface ExampleDataStructure {
 export class SelectComponent implements OnInit {
 
   items: Array<ExampleDataStructure> = [{x: 1, y: {a: 'a'}}, {x: 2, y: {a: 'b'}}, {x: 3, y: {a: 'c'}}];
+
+  r = 'r';
 
   constructor() {
   }

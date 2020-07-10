@@ -16,7 +16,9 @@ import { FormsModule } from '@angular/forms';
 import { EntityTreeSelectorComponent } from './entity-tree-selector/entity-tree-selector.component';
 import { EntityTreeSelectorCacheComponent } from './entity-tree-selector-cache/entity-tree-selector-cache.component';
 import { EntityTreeSelectorManualComponent } from './entity-tree-selector-manual/entity-tree-selector-manual.component';
-import { EntityTreeSelectorCustomizationsComponent } from './entity-tree-selector-customizations/entity-tree-selector-customizations.component';
+import {
+  EntityTreeSelectorCustomizationsComponent
+} from './entity-tree-selector-customizations/entity-tree-selector-customizations.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EntityTreeSelectorForceComponent } from './entity-tree-selector-force/entity-tree-selector-force.component';
 import { SelectComponent } from './select/select.component';

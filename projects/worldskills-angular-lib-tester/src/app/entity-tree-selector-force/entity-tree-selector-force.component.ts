@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EntityTreeSelectRefreshMode} from '../../../../worldskills-angular-lib/src/lib/entity-tree-select/entity-tree-select.component';
+import { EntityTreeSelectRefreshMode } from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-entity-tree-selector-force',
@@ -7,7 +7,6 @@ import {EntityTreeSelectRefreshMode} from '../../../../worldskills-angular-lib/s
   styleUrls: ['./entity-tree-selector-force.component.css']
 })
 export class EntityTreeSelectorForceComponent implements OnInit {
-
   EntityTreeSelectRefreshMode = EntityTreeSelectRefreshMode;
   entities1: Array<{ id: number }>;
   entities2: Array<{ id: number }>;

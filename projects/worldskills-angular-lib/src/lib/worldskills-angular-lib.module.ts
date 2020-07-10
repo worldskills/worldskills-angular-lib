@@ -34,6 +34,7 @@ import { DatetimePickerComponent } from './datetime-picker/datetime-picker.compo
 import { EntityTreeSelectComponent } from './entity-tree-select/entity-tree-select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SelectDirective } from './directives/select/select.directive';
+import { WsSelectChangeEvent } from '../../../../dist/worldskills-angular-lib/lib/interfaces/ws-select-change-event';
 
 @NgModule({
   declarations: [

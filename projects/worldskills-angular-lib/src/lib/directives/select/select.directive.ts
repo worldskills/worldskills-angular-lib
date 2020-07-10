@@ -12,18 +12,10 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {NgSelectComponent} from '@ng-select/ng-select';
+import { WsSelectChangeEvent } from '../../interfaces/ws-select-change-event';
+
 
 export type EntryReader<T = any, U = any> = string | Array<string> | ((obj: T) => U);
-
-export interface WsSelectChangeEvent<T = any, U = any> {
-  item: T;
-  original: {
-    label: string,
-    value: U,
-    [key: string]: any,
-  };
-  value: U;
-}
 
 @Directive({
   selector: '[wsSelect]'

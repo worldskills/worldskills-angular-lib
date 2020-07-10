@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EntityTreeSelectRefreshMode} from '../../../../worldskills-angular-lib/src/lib/entity-tree-select/entity-tree-select.component';
+import {EntityTreeSelectRefreshMode} from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-entity-tree-selector-cache',

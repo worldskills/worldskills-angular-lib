@@ -7,9 +7,12 @@
 </ng-template>
 <ng-template #voteControlDefaultFooterTemplate>
   <small class="text-muted"><strong>Status:</strong> {{ state }} </small>&nbsp;|&nbsp;
-  <small class="text-muted"><strong>Started:</strong>
+  <small *ngIf="state != 'Not yet started'" class="text-muted"><strong>Started:</strong>
+  <small *ngIf="state == 'Not yet started'" class="text-muted"><strong>Starts:</strong></small>
     {{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>&nbsp;
-  <small class="text-muted"><strong>Finishes:</strong> {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
+  <small *ngIf="state != 'expired'" class="text-muted"><strong>Finishes:</strong>
+  <small *ngIf="state == 'expired'" class="text-muted"><strong>Finished:</strong></small>
+  {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
 </ng-template>
 <ng-template #voteControlDefaultQuestionTemplate>
   {{ poll.question.text }}
