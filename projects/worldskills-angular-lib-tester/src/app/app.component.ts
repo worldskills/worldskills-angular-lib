@@ -100,6 +100,22 @@ export class AppComponent {
 
     const dtString = '2020-01-01';
     const dt = toDate(dtString);
+
+    if (this.currentUser != null) {
+      const roles = [
+        { appCode: 500, name: 'Admin' },
+        { appCode: 3600, name: 'Admin' }
+      ];
+
+      console.log(roles);
+      console.log(this.currentUser.roles);
+
+      const userRoles = this.currentUser.roles
+        .filter( x =>
+          roles.findIndex(y => y.appCode === x.roleApplication.applicationCode && y.name === x.name) !== -1
+        );
+      console.log(userRoles);
+    }
   }
 
 

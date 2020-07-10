@@ -25,14 +25,14 @@ import { SelectComponent } from './select/select.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'sample', component: SampleComponent, data: { breadcrumb: 'Sample' } },
+  { path: 'sample', component: SampleComponent, data: { breadcrumb: 'Sample', roles: [{ appCode: 500, name: 'Admin' }] } },
   { path: 'simple', component: SimpleRouterComponent, data: { breadcrumb: 'Simple' }, children: [
     { path: '', component: SampleComponent },
     { path: 'sample', component: SampleComponent, data: { breadcrumb: 'Sample' } },
     { path: 'change', component: KeyChangeComponent, data: { breadcrumb: '[key]' } },
   ] },
   { path: 'manage', component: SampleComponent,
-    canActivate: [AppAuthGuard], data: {roles: ['Admin'] }
+    canActivate: [AppAuthGuard], data: {roles: [{ appCode: 500, name: 'Admin' }] }
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }

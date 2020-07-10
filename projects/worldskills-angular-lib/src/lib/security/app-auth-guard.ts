@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { GenericUtil } from '../util/generic-util';
 import { UserModel } from '../models/user.model';
 import { ModuleConfigService } from '../config/module-config.service';
+import { AuthGuardAccess } from '../interfaces/auth-guard-access';
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +28,18 @@ export class AppAuthGuard implements CanActivate {
           return this.login(state);
       }
 
-      const roles = route.data.roles as Array<string>;
+      const roles = route.data.roles as AuthGuardAccess[];
 
-      // ensure user has the correct role
-      if (userModel.roles
-        .findIndex(x => roles.includes(x.name) && this.config.serviceConfig.appCode.includes(x.roleApplication.applicationCode)) === -1) {
-          this.router.navigate(this.config.appConfig.notAuthorizedRoute);
-          return false;
+      if (GenericUtil.isNullOrUndefined(roles)) {
+        return false;
       }
 
-      return true;
+      const userRoles = userModel.roles
+        .filter( x =>
+          roles.findIndex(y => y.appCode === x.roleApplication.applicationCode && y.name === x.name) !== -1
+        );
+
+      return userRoles.length > 0;
   }
 
   login(state: RouterStateSnapshot): boolean {

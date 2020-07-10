@@ -12,10 +12,10 @@ The App Auth Guard is applicable on Routes only. you can pass through multiple r
 
 ```TpyeScript
 { path: 'feed', component: FeedComponent,
-  canActivate: [AppAuthGuard], data: {roles: ['Admin', 'Manager', 'User'}
+  canActivate: [AppAuthGuard], data: {roles: [{ appCode: 500, name: 'Admin' }}
 },
 { path: 'manage', component: ManageComponent,
-  canActivate: [AppAuthGuard], data: {roles: ['Admin', 'Manager' }
+  canActivate: [AppAuthGuard], data: {roles: [{ appCode: 500, name: 'Admin' }, { appCode: 3600, name: 'Admin' } }
 }
 ```
 
