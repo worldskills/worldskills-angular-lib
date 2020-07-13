@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {EntityTreeSelectRefreshMode} from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-entity-tree-selector-cache',
@@ -8,7 +7,6 @@ import {EntityTreeSelectRefreshMode} from 'worldskills-angular-lib';
 })
 export class EntityTreeSelectorCacheComponent implements OnInit {
 
-  EntityTreeSelectRefreshMode = EntityTreeSelectRefreshMode;
   entities1: Array<{ id: number }>;
   entities2: Array<{ id: number }>;
   entities3: Array<{ id: number }>;
