@@ -20,14 +20,59 @@ export interface EntityFetchParams {
 })
 export class EntityTreeService {
 
-  public endpoint: string;
-  public subject: BehaviorSubject<EntityTreeListView> = new BehaviorSubject<EntityTreeListView>(null);
-
   constructor(protected configService: ModuleConfigService, protected http: HttpClient) {
     this.endpoint = `${configService.serviceConfig.apiEndpoint}/auth/ws_entities`;
   }
 
-  public list(params: EntityFetchParams = {}, updateSubject = true): Observable<EntityTreeListView> {
+  private subjects: Array<{
+    params: EntityFetchParams,
+    subject: BehaviorSubject<EntityTreeListView>,
+  }> = [];
+  public endpoint: string;
+  public subject: BehaviorSubject<EntityTreeListView> = new BehaviorSubject<EntityTreeListView>(null);
+
+  public static equals(a: EntityFetchParams, b: EntityFetchParams) {
+    return (
+      a.limit === b.limit &&
+      a.offset === b.offset &&
+      a.depth === b.depth &&
+      a.member_of === b.member_of &&
+      a.name === b.name &&
+      a.role === b.role &&
+      a.roleApp === b.roleApp &&
+      a.sort === b.sort
+    );
+  }
+
+  public clearCache(params: EntityFetchParams = null) {
+    if (params === null) {
+      this.subjects = [];
+    } else {
+      const cacheEntryIndex = this.subjects.findIndex(cE => EntityTreeService.equals(cE.params, params));
+      if (cacheEntryIndex >= 0) {
+        this.subjects.splice(cacheEntryIndex, 1);
+      }
+    }
+  }
+
+  public getCachedSubject(params: EntityFetchParams = {}, fetchOnCreate = true) {
+    const cacheEntry = this.subjects.find(cE => EntityTreeService.equals(cE.params, params));
+    if (cacheEntry) {
+      return cacheEntry.subject;
+    } else {
+      const newCacheEntry = {
+        params,
+        subject: new BehaviorSubject<EntityTreeListView>(null),
+      };
+      this.subjects.push(newCacheEntry);
+      if (fetchOnCreate) {
+        this.list(params);
+      }
+      return newCacheEntry.subject;
+    }
+  }
+
+  public list(params: EntityFetchParams = {}): Observable<EntityTreeListView> {
     let httpParams = new HttpParams();
     if (params.limit !== undefined) {
       httpParams = httpParams.set('limit', params.limit.toString());
@@ -54,9 +99,11 @@ export class EntityTreeService {
       httpParams = httpParams.set('sort', params.sort.toString());
     }
     const observable = this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams});
-    if (updateSubject) {
-      observable.subscribe(value => this.subject.next(value));
+    const cacheEntry = this.subjects.find(cE => EntityTreeService.equals(cE.params, params));
+    if (cacheEntry) {
+      observable.subscribe(value => cacheEntry.subject.next(value));
     }
+    observable.subscribe(value => this.subject.next(value));
     return observable;
   }
 }

@@ -14,7 +14,7 @@ import {
 import {EntityFetchParams, EntityTreeService} from '../services/entity-tree.service';
 import {DropdownPosition, NgSelectComponent} from '@ng-select/ng-select';
 import {EntityTreeView} from '../models/auth/entity-tree-view';
-import {Subject} from 'rxjs';
+import {combineLatest, Subject, Subscription} from 'rxjs';
 import {v4 as uuidv4} from 'uuid';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -42,12 +42,6 @@ type TreeEntity =
   filtered: boolean,
   type: 'treeEntity'
 };
-
-export enum EntityTreeSelectRefreshMode {
-  DEFAULT,
-  FORCE,
-  NEVER
-}
 
 export interface EntityTreeSelectLabels {
   clearAllText?: string;
@@ -81,32 +75,6 @@ export interface EntityTreeSelectControls {
 })
 export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
 
-  constructor(
-    private entityTreeService: EntityTreeService
-  ) {
-    this.htmlId = uuidv4();
-    this.compareWith = this.compareWith || ((a, b) => {
-      const aId = this.toId(a);
-      const bId = this.toId(b);
-      return aId && bId && aId === bId;
-    });
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.searchFn = this.searchFn.bind(this);
-  }
-
-  get currentMarkedEntity(): TreeEntity {
-    return (this.ngSelectComponent.itemsList.markedItem ? this.ngSelectComponent.itemsList.markedItem.value : null) as TreeEntity;
-  }
-
-  get filtered(): number {
-    return this.getFiltered(this.treeEntities);
-  }
-
-  get total(): number {
-    return this.ngSelectComponent.itemsList.items.length;
-  }
-
   /** labels for ng-select */
   @Input() labels: EntityTreeSelectLabels = {};
   /** control templates for the toolbar buttons */
@@ -123,9 +91,8 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   @Input() showFullPath = true;
   /** whether or not to show the header controls */
   @Input() showControls = true;
-  /** when set to FORCE always get fresh instances, when set to NEVER, never update fresh instance */
-  /** default is set to DEFAULT which only fetches if nothing else is fetch yet */
-  @Input() refreshMode = EntityTreeSelectRefreshMode.DEFAULT;
+  /** whether to use api caching or not, caching is done per query request object, see EntityTreeService for more details */
+  @Input() cache = true;
   /** if the tree is expanded by default */
   @Input() defaultExpand = false;
   private expandedSearch: Array<number> = [];
@@ -137,7 +104,9 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   private update = new Subject<TreeEntity>();
   private htmlId: string;
   private fetchedTreeEntities: Array<TreeEntity> = [];
-  private cachedWriteValue: any;
+  private cachedWriteValueSubject = new Subject<any>();
+  private treeEntitiesSubject = new Subject<void>();
+  private writeValueSubscription: Subscription;
   hasFocus = false;
   loading = true;
   treeEntities: Array<TreeEntity> = [];
@@ -221,6 +190,36 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   /** the id callback function for the Input entities */
   @Input() entityIdCallback: (entity: any) => number = (entity: any) => entity ? entity.id : undefined;
 
+  constructor(
+    private entityTreeService: EntityTreeService
+  ) {
+    this.htmlId = uuidv4();
+    this.compareWith = this.compareWith || ((a, b) => {
+      const aId = this.toId(a);
+      const bId = this.toId(b);
+      return aId && bId && aId === bId;
+    });
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.searchFn = this.searchFn.bind(this);
+  }
+
+  get currentMarkedEntity(): TreeEntity {
+    return (this.ngSelectComponent.itemsList.markedItem ? this.ngSelectComponent.itemsList.markedItem.value : null) as TreeEntity;
+  }
+
+  get filtered(): number {
+    return this.getFiltered(this.treeEntities);
+  }
+
+  get total(): number {
+    return this.ngSelectComponent.itemsList.items.length;
+  }
+
+  get queryParams(): EntityFetchParams {
+    return {limit: 9999, depth: 10, ...this.query};
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('entities' in changes) {
       this.createTreeEntities();
@@ -240,22 +239,25 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
       ...this.controls
     };
     let observable;
-    if (this.refreshMode === EntityTreeSelectRefreshMode.FORCE) {
-      observable = this.entityTreeService.list({limit: 9999, depth: 10, ...this.query}, false);
+    if (this.cache === false) {
+      observable = this.entityTreeService.list(this.queryParams);
     } else {
-      observable = this.entityTreeService.subject;
+      observable = this.entityTreeService.getCachedSubject(this.queryParams);
     }
+
+    this.writeValueSubscription = combineLatest([
+      this.cachedWriteValueSubject,
+      this.treeEntitiesSubject,
+    ]).subscribe(([value]) => this.ngSelectComponent.writeValue(this.multiple ?
+      ((value || []) as Array<any>).map(o => this.toTreeEntity(o)).filter(o => !!o) :
+      this.toTreeEntity(value)));
 
     observable.subscribe(entities => {
       if (!!entities) {
         this.fetchedTreeEntities = entities.ws_entity_list.map(entity => this.deepCopyEntity(entity as TreeEntity));
         this.createTreeEntities();
-        this.ngSelectComponent.writeValue(this.multiple ?
-          ((this.cachedWriteValue || []) as Array<any>).map(o => this.toTreeEntity(o)).filter(o => !!o) :
-          this.toTreeEntity(this.cachedWriteValue));
         this.loading = false;
-      } else if (this.refreshMode === EntityTreeSelectRefreshMode.DEFAULT) {
-        this.entityTreeService.list({limit: 9999, depth: 10, ...this.query});
+        this.treeEntitiesSubject.next();
       }
     });
 
@@ -299,6 +301,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   }
 
   ngOnDestroy(): void {
+    this.writeValueSubscription.unsubscribe();
     document.removeEventListener('click', this.onClick, true);
     document.removeEventListener('keydown', this.onKeyDown, true);
   }
@@ -708,7 +711,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
   }
 
   writeValue(obj: any): void {
-    this.cachedWriteValue = obj;
+    this.cachedWriteValueSubject.next(obj);
   }
 
   toId(obj: any) {
