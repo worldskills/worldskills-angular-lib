@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.1.0
+
+* You can now overwrite the redirect functionality when user logs and and the there is no return URL
+
 ## 8.8.1
 
 * Small fix for wsSelect items (accept undefined items during initialization)

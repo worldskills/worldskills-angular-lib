@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 import { ModuleConfigService } from '../config/module-config.service';
 import { Router } from '@angular/router';
+import { GenericUtil } from '../util/generic-util';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state
@@ -85,17 +86,22 @@ export class AuthService {
     this.oAuthService.tryLogin();
   }
 
-  public redirectOrReturn(redirectRoute: string[]) {
+  // NOTE: That in this case the callback overrides the default functionality
+  public redirectOrReturn(redirectRoute: string[], callback?: (redirectRoute: string[]) => void) {
     if (!this.isLoggedIn()) {
       this.login();
     } else {
       if (this.hasReturnUrl()) {
         this.handleReturnUrl();
       } else {
-        this.loadUserProfile(result => {
-          sessionStorage.removeItem(this.returnUrlKey);
-          this.router.navigate(redirectRoute);
-        });
+        if (!GenericUtil.isNullOrUndefined(callback)) {
+          callback(redirectRoute);
+        } else {
+          this.loadUserProfile(result => {
+            sessionStorage.removeItem(this.returnUrlKey);
+            this.router.navigate(redirectRoute);
+          });
+        }
       }
     }
   }
