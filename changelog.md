@@ -4,6 +4,10 @@
 
 * You can now overwrite the redirect functionality when user logs and and the there is no return URL
 
+## 9.0.0
+
+* fixes to entity tree selector
+
 ## 8.8.1
 
 * Small fix for wsSelect items (accept undefined items during initialization)
