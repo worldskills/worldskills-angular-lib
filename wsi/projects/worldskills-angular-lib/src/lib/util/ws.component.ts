@@ -8,6 +8,7 @@ export abstract class WsComponent implements OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  // tslint:disable-next-line:typedef
   protected subscribe(...teardowns: Array<TeardownLogic>) {
     teardowns.forEach(teardown => this.subscriptions.add(teardown));
   }

@@ -25,6 +25,7 @@ function mockRequestOptions(): RequestOptions {
   };
 }
 
+// tslint:disable-next-line:typedef
 function assertWsServiceArgs<T = WsServiceArgs>(done: DoneFn, assert: (wsServiceArgs: T) => void) {
   return {
     next: (wsServiceArgs: T) => {
@@ -57,6 +58,7 @@ describe('WsComponent', () => {
 
     fetchMany(rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
     fetchMany(params: FetchParams, rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
+    // tslint:disable-next-line:unified-signatures
     fetchMany(mOpt: MulticastOptions, rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
     fetchMany(params: FetchParams, mOpt: MulticastOptions, rOpt?: RequestOptions): Observable<Array<WsServiceArgs>>;
     fetchMany(p1: WsServiceRequestP1, p2?: WsServiceRequestP2, p3?: WsServiceRequestP3): Observable<Array<WsServiceArgs>> {
