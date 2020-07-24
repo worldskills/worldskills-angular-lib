@@ -17,20 +17,16 @@ export class WsiNgAuthService {
 
   constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService, private router: Router,
               public service: WsiAuthService) {
-    this.configureAuth();
     this.loadExternalConfig();
 
   }
 
-  protected configureAuth(): void {
-    this.oAuthService.configure(this.wsi.authConfig);
-    this.oAuthService.setStorage(sessionStorage);
-    this.oAuthService.tryLogin();
-  }
-
   protected loadExternalConfig(): void {
+    this.oAuthService.configure(this.wsi.authConfig);
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('user.current')));
     this.currentUser = this.currentUserSubject.asObservable();
+    this.oAuthService.setStorage(sessionStorage);
+    this.oAuthService.tryLogin();
   }
 
   public keepAlive(): void {
@@ -75,16 +71,21 @@ export class WsiNgAuthService {
   }
 
   public logout(): void {
-    this.loadExternalConfig();
-    this.service.logout().subscribe(result => {
-      sessionStorage.removeItem('nonce');
-      sessionStorage.removeItem('user.current');
-      sessionStorage.removeItem('access_token_stored_at');
-      sessionStorage.removeItem('access_token');
-      sessionStorage.removeItem('token');
-      this.oAuthService.logOut();
-      this.currentUserSubject.next(null);
-    });
+    this.service.logout().subscribe(
+      result => this.clearSession(),
+      error => this.clearSession(),
+      () => {}
+    );
+  }
+
+  protected clearSession(): void {
+    sessionStorage.removeItem('nonce');
+    sessionStorage.removeItem('user.current');
+    sessionStorage.removeItem('access_token_stored_at');
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('token');
+    this.oAuthService.logOut();
+    this.currentUserSubject.next(null);
   }
 
 

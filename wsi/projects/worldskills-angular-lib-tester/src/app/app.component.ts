@@ -4,6 +4,7 @@ import { AlertType } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
 import { WsiNgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/wsi-ng-auth.service';
 import { WsiAuthService } from '../../../worldskills-angular-lib/src/lib/auth/wsi-auth.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { WsiAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ws
 export class AppComponent {
   title = 'worldskills-angular-lib-tester';
 
-  constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private ngAuth: WsiNgAuthService) {
+  constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
+              private ngAuth: WsiNgAuthService) {
   }
 
 
@@ -21,20 +23,25 @@ export class AppComponent {
   // tslint:disable-next-line:typedef use-lifecycle-interface
   ngOnInit() {
     this.configureLib();
-    console.log(this.wsi.serviceConfig);
     this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
-    if (!this.ngAuth.isLoggedIn) {
-      this.ngAuth.login();
-    } else {
-      this.ngAuth.loadUserProfile(
-        user => console.log(user),
-        error => console.log(error)
-      );
-    }
+
+    // this.oauth.tryLogin();
+    this.ngAuth.loadUserProfile(
+      user => console.log(user),
+      error => console.log(error)
+    );
+  }
+
+  login(): void {
+    this.ngAuth.login();
+  }
+
+  logout(): void {
+    this.ngAuth.logout();
   }
 
   configureLib(): void {
-    this.wsi.serviceConfig.appCode = [300, 500];
+    this.wsi.serviceConfig.appCode = [500];
     this.wsi.serviceConfig.apiEndpoint = 'http://localhost:8081';
     this.wsi.authConfig = {
       loginUrl: 'http://localhost:50300/oauth/authorize',

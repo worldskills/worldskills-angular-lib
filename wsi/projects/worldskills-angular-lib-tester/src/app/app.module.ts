@@ -7,8 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
 
 
 const routerOptions: ExtraOptions = {
@@ -39,8 +40,9 @@ const appRoutes: Routes = [
     WorldskillsAngularLibModule,
     NgbModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true },
+  ],  bootstrap: [AppComponent]
 })
 export class AppModule {
 

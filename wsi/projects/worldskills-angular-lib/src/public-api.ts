@@ -56,3 +56,13 @@ export * from './lib/auth/models/user';
 export * from './lib/auth/models/ws-entity';
 export * from './lib/auth/wsi-auth.service';
 export * from './lib/auth/wsi-ng-auth.service';
+
+/*
+  Encoders
+*/
+export * from './lib/encoders/ws-http.encoder';
+
+/*
+  Interceptors
+*/
+export * from './lib/interceptors/ws-http.interceptor';

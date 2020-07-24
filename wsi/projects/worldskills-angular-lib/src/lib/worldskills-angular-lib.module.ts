@@ -3,6 +3,7 @@ import { WorldskillsAngularLibComponent } from './worldskills-angular-lib.compon
 import { AlertComponent } from './alerts/alert/alert.component';
 import { AlertsComponent } from './alerts/alerts/alerts.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 
@@ -10,7 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [WorldskillsAngularLibComponent, AlertComponent, AlertsComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    OAuthModule.forRoot()
   ],
   exports: [WorldskillsAngularLibComponent, AlertComponent, AlertsComponent]
 })
