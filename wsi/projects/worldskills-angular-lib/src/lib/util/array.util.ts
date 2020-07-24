@@ -14,4 +14,9 @@ export class ArrayUtil {
     });
     return clean;
   }
+
+  static isArray(obj): boolean {
+    return toString.call(obj) === '[object Array]';
+  }
+
 }
