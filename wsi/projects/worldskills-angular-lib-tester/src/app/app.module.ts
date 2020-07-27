@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
 import { AnotherPageComponent } from './another-page/another-page.component';
 import { Breadcrumb } from '../../../../dist/worldskills-angular-lib/lib/breadcrumbs/breadcrumb';
+import { AnotherRouteComponent } from './another-route/another-route.component';
+import { NestedPageComponent } from './nested-page/nested-page.component';
 
 
 const routerOptions: ExtraOptions = {
@@ -29,6 +31,21 @@ const appRoutes: Routes = [
       breadcrumb: { key: 'another', label: 'Another' }
     }
   },
+
+  { path: 'nest', component: AnotherRouteComponent,
+    children: [
+      { path: '', component: AnotherPageComponent,
+        data: {
+          breadcrumb: { key: 'another', label: 'Another' }
+        }
+      },
+      { path: 'nested', component: NestedPageComponent,
+        data: {
+          breadcrumb: { key: 'nested', label: 'Nested Page' }
+        }
+      },
+    ]
+  },
   // { path: 'not-authorized', component: NotAuthorizedComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
@@ -38,7 +55,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    AnotherPageComponent
+    AnotherPageComponent,
+    AnotherRouteComponent,
+    NestedPageComponent
   ],
   imports: [
     BrowserModule,
