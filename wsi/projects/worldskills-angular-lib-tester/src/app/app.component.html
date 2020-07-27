@@ -1,7 +1,10 @@
 
-<ws-alerts></ws-alerts>
+<ws-puppeteer-banner [currentUser]="user"></ws-puppeteer-banner>
+<ws-staging-banner></ws-staging-banner>
 
 <button *ngIf="!user" class="btn btn-success" (click)="login()">Login</button>
 <button *ngIf="user" class="btn btn-success" (click)="logout()">Logout</button>
+<ws-alerts></ws-alerts>
+
 
 <router-outlet></router-outlet>

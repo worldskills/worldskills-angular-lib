@@ -66,3 +66,10 @@ export * from './lib/encoders/ws-http.encoder';
   Interceptors
 */
 export * from './lib/interceptors/ws-http.interceptor';
+
+
+/*
+  Components
+*/
+export * from './lib/banners/puppeteer-banner/puppeteer-banner.component';
+export * from './lib/banners/staging-banner/staging-banner.component';
