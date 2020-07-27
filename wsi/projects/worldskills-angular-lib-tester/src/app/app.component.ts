@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
-import { AlertType } from '../../../worldskills-angular-lib/src/public-api';
+import { AlertType, MenuItem, Language } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
 import { WsiNgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/wsi-ng-auth.service';
-import { WsiAuthService } from '../../../worldskills-angular-lib/src/lib/auth/wsi-auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from '../../../../dist/worldskills-angular-lib/lib/auth/models/user';
 
@@ -14,10 +13,19 @@ import { User } from '../../../../dist/worldskills-angular-lib/lib/auth/models/u
 })
 export class AppComponent {
   title = 'worldskills-angular-lib-tester';
+
+  // auth
   user: User;
 
+  // header
+  isLoggedIn: boolean;
+  menuItems: Array<MenuItem>;
+
+  // breadcrumbs
   showHomeItem = true;
   defaultRoute = '/home';
+
+  languages: Language[];
 
   constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
               private ngAuth: WsiNgAuthService) {
@@ -30,13 +38,23 @@ export class AppComponent {
     this.configureLib();
     this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
 
-    // this.oauth.tryLogin();
+    this.languages = [
+      { code: 'en', name: 'English' }
+    ];
+    this.isLoggedIn = false;
+    this.menuItems = [
+      { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+    ];
     this.ngAuth.loadUserProfile(
       user => {
+        this.isLoggedIn = true;
         console.log(user);
         this.user = user;
       },
-      error => console.log(error)
+      error => {
+        this.isLoggedIn = false;
+        console.log(error);
+      }
     );
   }
 

@@ -76,6 +76,29 @@ export * from './lib/breadcrumbs/breadcrumbs.service';
 export * from './lib/encoders/ws-http.encoder';
 
 /*
+  Footer
+*/
+export * from './lib/footer/footer/footer.component';
+
+/*
+  Header
+*/
+export * from './lib/headers/header/header.component';
+export * from './lib/headers/menu-item';
+export * from './lib/headers/menu-access.pipe';
+
+/*
+  i18n
+*/
+export * from './lib/i18n/language';
+
+/*
   Interceptors
 */
 export * from './lib/interceptors/ws-http.interceptor';
+
+/*
+  Logos
+*/
+export * from './lib/logos/logo/logo.component';
+export * from './lib/logos/wordmark/wordmark.component';

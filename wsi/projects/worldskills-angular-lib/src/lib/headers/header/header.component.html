@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md ws-navbar-main ws-navbar-stripe wsmember-navbar-main wsmember-bg-pink">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <ws-wordmark></ws-wordmark>
+      <span class="ml-1 text-white">{{ appName }}</span>
+    </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}" *ngFor="let item of menuItems | wsMenuAccesssFilter: isLoggedIn: userRoles()">
+          <a class="nav-link" [routerLink]="[item.url, item.params]">
+              {{ item.label }}
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown ml-2" *ngIf="showLoginAndLogoutButtons && isLoggedIn">
+        <button class="btn btn-white rounded-pill" type="button" data-toggle="dropdown">
+          {{ getInitials() }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" (click)="logout(); false;">Logout</a>
+        </div>
+      </div>
+      <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="login(); false;" *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
+    </div>
+  </div>
+</nav>

@@ -11,7 +11,7 @@ export class NestedPageComponent implements OnInit {
   constructor(private breadcrumbs: BreadcrumbsService) { }
 
   ngOnInit(): void {
-    this.breadcrumbs.replace('nested', 'Nested Key Replaced');
+    this.breadcrumbs.replaceLabel('nested', 'Nested Key Replaced');
   }
 
 }
