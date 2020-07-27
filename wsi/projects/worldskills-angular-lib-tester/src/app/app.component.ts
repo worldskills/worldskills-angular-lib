@@ -16,6 +16,9 @@ export class AppComponent {
   title = 'worldskills-angular-lib-tester';
   user: User;
 
+  showHomeItem = true;
+  defaultRoute = '/home';
+
   constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
               private ngAuth: WsiNgAuthService) {
   }

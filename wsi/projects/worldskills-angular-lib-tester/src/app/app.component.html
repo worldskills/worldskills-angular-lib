@@ -4,6 +4,7 @@
 
 <button *ngIf="!user" class="btn btn-success" (click)="login()">Login</button>
 <button *ngIf="user" class="btn btn-success" (click)="logout()">Logout</button>
+<ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'" [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
 <ws-alerts></ws-alerts>
 
 

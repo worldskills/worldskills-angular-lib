@@ -6,20 +6,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { PuppeteerBannerComponent } from './banners/puppeteer-banner/puppeteer-banner.component';
 import { StagingBannerComponent } from './banners/staging-banner/staging-banner.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs/breadcrumbs.component';
 
 
 
 
 @NgModule({
   declarations: [
-    WorldskillsAngularLibComponent, AlertComponent, AlertsComponent, PuppeteerBannerComponent, StagingBannerComponent
+    WorldskillsAngularLibComponent, AlertComponent, AlertsComponent, PuppeteerBannerComponent, StagingBannerComponent, BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
     OAuthModule.forRoot()
   ],
   exports: [
-    WorldskillsAngularLibComponent, AlertComponent, AlertsComponent, PuppeteerBannerComponent, StagingBannerComponent
+    WorldskillsAngularLibComponent, AlertComponent, AlertsComponent, PuppeteerBannerComponent, StagingBannerComponent, BreadcrumbsComponent
   ]
 })
 export class WorldskillsAngularLibModule { }

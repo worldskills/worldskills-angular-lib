@@ -10,6 +10,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
+import { AnotherPageComponent } from './another-page/another-page.component';
+import { Breadcrumb } from '../../../../dist/worldskills-angular-lib/lib/breadcrumbs/breadcrumb';
 
 
 const routerOptions: ExtraOptions = {
@@ -21,6 +23,12 @@ const routerOptions: ExtraOptions = {
 const appRoutes: Routes = [
   // /home
   { path: 'home', component: HomeComponent },
+
+  { path: 'another', component: AnotherPageComponent,
+    data: {
+      breadcrumb: { key: 'another', label: 'Another' }
+    }
+  },
   // { path: 'not-authorized', component: NotAuthorizedComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
@@ -29,7 +37,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AnotherPageComponent
   ],
   imports: [
     BrowserModule,

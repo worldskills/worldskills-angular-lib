@@ -58,6 +58,19 @@ export * from './lib/auth/wsi-auth.service';
 export * from './lib/auth/wsi-ng-auth.service';
 
 /*
+  Banners
+*/
+export * from './lib/banners/puppeteer-banner/puppeteer-banner.component';
+export * from './lib/banners/staging-banner/staging-banner.component';
+
+/*
+  Breadcrumbs
+*/
+export * from './lib/breadcrumbs/breadcrumbs/breadcrumbs.component';
+export * from './lib/breadcrumbs/breadcrumb';
+export * from './lib/breadcrumbs/breadcrumbs.service';
+
+/*
   Encoders
 */
 export * from './lib/encoders/ws-http.encoder';
@@ -66,10 +79,3 @@ export * from './lib/encoders/ws-http.encoder';
   Interceptors
 */
 export * from './lib/interceptors/ws-http.interceptor';
-
-
-/*
-  Components
-*/
-export * from './lib/banners/puppeteer-banner/puppeteer-banner.component';
-export * from './lib/banners/staging-banner/staging-banner.component';
