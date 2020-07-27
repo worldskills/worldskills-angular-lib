@@ -3,7 +3,7 @@ import { KeyValue } from '@angular/common';
 import { Breadcrumb } from './breadcrumb';
 import { ActivatedRoute } from '@angular/router';
 import { GenericUtil } from '../util/generic.util';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +76,7 @@ export class BreadcrumbsService {
     return index;
   }
 
-  public replace(key: string, value: string): void {
+  public replaceLabel(key: string, value: string): void {
     const replacementIndex = this.createOrUpdateReplacement(key, value);
     if (GenericUtil.isNullOrUndefined(this.breadcrumbs)) {
       return;
@@ -92,6 +92,27 @@ export class BreadcrumbsService {
       }
     });
 
+    this.breadcrumbsSubject.next(this.breadcrumbs);
+  }
+
+  // this method should only be used after the breadcrumb is initialized
+  public remove(key: string): void {
+    const index = this.breadcrumbs.findIndex(x => x.key === key);
+    if (index !== -1) {
+      this.breadcrumbs.splice(index, 1);
+      this.breadcrumbsSubject.next(this.breadcrumbs);
+    }
+  }
+
+  // this method should only be used after the breadcrumb is initialized
+  public add(breadcrumb: Breadcrumb): void {
+    const index = this.breadcrumbs.findIndex(x => x.key === breadcrumb.key);
+    if (index !== -1) {
+      throwError(`key "${breadcrumb.key}" already exists`);
+      return;
+    }
+
+    this.breadcrumbs.push(breadcrumb);
     this.breadcrumbsSubject.next(this.breadcrumbs);
   }
 }
