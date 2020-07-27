@@ -12,8 +12,9 @@ export class WsHttpInterceptor implements HttpInterceptor {
   constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const uriPatterns = GenericUtil.getValueOrDefault(this.wsi.httpConfig.authUriPatterns, []);
-    const encoderPatterns = GenericUtil.getValueOrDefault(this.wsi.httpConfig.encoderUriPatterns, []);
+    const config = this.wsi.httpConfigSubject.getValue();
+    const uriPatterns = GenericUtil.getValueOrDefault(config.authUriPatterns, []);
+    const encoderPatterns = GenericUtil.getValueOrDefault(config.encoderUriPatterns, []);
     const authorize = uriPatterns.filter(s => req.url.match(s)).length > 0;
     const rewrite = encoderPatterns.filter(s => req.url.match(s)).length > 0;
 

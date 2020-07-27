@@ -1,7 +1,7 @@
 
 <ws-alerts></ws-alerts>
 
-<button class="btn btn-success" (click)="login()">Login</button>
-<button class="btn btn-success" (click)="logout()">Logout</button>
+<button *ngIf="!user" class="btn btn-success" (click)="login()">Login</button>
+<button *ngIf="user" class="btn btn-success" (click)="logout()">Logout</button>
 
 <router-outlet></router-outlet>

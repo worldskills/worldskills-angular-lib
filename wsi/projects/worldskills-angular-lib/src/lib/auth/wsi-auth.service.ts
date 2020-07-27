@@ -13,26 +13,25 @@ import { HttpUtil } from '../util/http.util';
   providedIn: 'root'
 })
 export class WsiAuthService {
-  private appCode: number[];
-  private endpoint: string;
+  protected appCode: number[];
+  protected endpoint: string;
 
   constructor(protected wsi: WorldskillsAngularLibService, protected http: HttpClient, protected oAuthService: OAuthService) {
-    this.loadConfig();
-  }
-
-  protected loadConfig(): void {
-    this.appCode =  this.wsi.serviceConfig.appCode;
-    this.endpoint = this.wsi.serviceConfig.apiEndpoint + '/auth';
+    // listen for config changes
+    this.wsi.serviceConfigSubject.subscribe(
+      next => {
+        this.appCode = next.appCode;
+        this.endpoint = next.apiEndpoint + '/auth';
+      }
+    );
   }
 
   public ping(): Observable<any> {
-    this.loadConfig();
     const url = `${this.endpoint}/ping`;
     return this.http.get(url, {} );
   }
 
   public getLoggedInUser(showChildRoles: boolean = false): Observable<User> {
-    this.loadConfig();
     let params = new HttpParams();
     params = params.set('show_child_roles', String(showChildRoles));
     this.appCode.forEach(code => {
@@ -47,7 +46,6 @@ export class WsiAuthService {
   }
 
   public logout(): Observable<any> {
-    this.loadConfig();
     const authUrl = `${this.endpoint}/sessions/logout`;
     return this.http.post(authUrl, {});
 
@@ -58,20 +56,17 @@ export class WsiAuthService {
   */
 
   public listUsers(filter: GetUsersParams): Observable<UserList> {
-    this.loadConfig();
     const params = HttpUtil.objectToParams(filter);
     const url = `${this.endpoint}/users`;
     return this.http.get<UserList>(url, {params});
   }
 
   public getUser(id: number): Observable<User> {
-    this.loadConfig();
     const url = `${this.endpoint}/users/${id}`;
     return this.http.get<User>(url);
   }
 
   public getUserByPerson(id: number): Observable<User> {
-    this.loadConfig();
     const url = `${this.endpoint}/users/person/${id}`;
     return this.http.get<User>(url);
   }
@@ -81,25 +76,21 @@ export class WsiAuthService {
   */
 
   public addRole(userId: number, roleId: number): Observable<any> {
-    this.loadConfig();
     const url = `${this.endpoint}/users/${userId}/roles`;
     const data = { role_id: roleId };
     return this.http.post(url, data);
   }
   public addRoleWithEntity(userId: number, roleId: number, entityId: number): Observable<any> {
-    this.loadConfig();
     const url = `${this.endpoint}/users/${userId}/roles`;
     const data = { role_id: roleId, ws_entity_id: entityId };
     return this.http.post(url, data);
   }
 
   public deleteRole(userId: number, roleId: number): Observable<any> {
-    this.loadConfig();
     const url = `${this.endpoint}/users/${userId}/roles/${roleId}`;
     return this.http.delete(url);
   }
   public deleteRoleWithEntity(userId: number, roleId: number, entityId: number): Observable<any> {
-    this.loadConfig();
     const url = `${this.endpoint}/users/${userId}/roles/${roleId}?ws_entity_id=${entityId}`;
     return this.http.delete(url);
   }

@@ -17,20 +17,18 @@ export class WsiNgAuthService {
 
   constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService, private router: Router,
               public service: WsiAuthService) {
-    this.loadExternalConfig();
-
-  }
-
-  protected loadExternalConfig(): void {
-    this.oAuthService.configure(this.wsi.authConfig);
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('user.current')));
-    this.currentUser = this.currentUserSubject.asObservable();
-    this.oAuthService.setStorage(sessionStorage);
-    this.oAuthService.tryLogin();
+    this.wsi.authConfigSubject.subscribe(
+      next => {
+        this.oAuthService.configure(next);
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('user.current')));
+        this.currentUser = this.currentUserSubject.asObservable();
+        this.oAuthService.setStorage(sessionStorage);
+        this.oAuthService.tryLogin();
+      }
+    );
   }
 
   public keepAlive(): void {
-    this.loadExternalConfig();
     this.service.ping().subscribe(
       error => {
         console.log(error);
@@ -44,12 +42,10 @@ export class WsiNgAuthService {
   }
 
   public isLoggedIn(): boolean {
-    this.loadExternalConfig();
     return this.oAuthService.hasValidAccessToken();
   }
 
   public async loadUserProfile(success: (user: User) => void, failure: (error: any) => void): Promise<void> {
-    this.loadExternalConfig();
     this.service.getLoggedInUser().subscribe(
       next => {
         if (next != null) {
@@ -66,7 +62,6 @@ export class WsiNgAuthService {
   }
 
   public login(): void {
-    this.loadExternalConfig();
     this.oAuthService.initImplicitFlow();
   }
 
@@ -87,6 +82,4 @@ export class WsiNgAuthService {
     this.oAuthService.logOut();
     this.currentUserSubject.next(null);
   }
-
-
 }

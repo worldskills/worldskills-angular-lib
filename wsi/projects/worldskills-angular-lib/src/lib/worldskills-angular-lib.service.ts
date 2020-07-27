@@ -3,21 +3,24 @@ import { AppConfig } from './config/app.config';
 import { HttpConfig } from './config/http.config';
 import { ServiceConfig } from './config/service.config';
 import { AuthConfig } from 'angular-oauth2-oidc';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorldskillsAngularLibService {
 
-  public appConfig: AppConfig;
-  public httpConfig: HttpConfig;
-  public serviceConfig: ServiceConfig;
-  public authConfig: AuthConfig;
+  // behaviour subjects to listen for cconfig change
+  public appConfigSubject: BehaviorSubject<AppConfig>;
+  public httpConfigSubject: BehaviorSubject<HttpConfig>;
+  public serviceConfigSubject: BehaviorSubject<ServiceConfig>;
+  public authConfigSubject: BehaviorSubject<AuthConfig>;
 
   constructor() {
-    this.appConfig = { notAuthorizedRoute: ['/not-authorized'] };
-    this.httpConfig = { encoderUriPatterns: [], authUriPatterns: [] };
-    this.serviceConfig = { appCode: [], apiEndpoint: ''};
-    this.authConfig = {};
+    // default configuration
+    this.appConfigSubject = new BehaviorSubject({ notAuthorizedRoute: ['/not-authorized'] });
+    this.httpConfigSubject = new BehaviorSubject({ encoderUriPatterns: [], authUriPatterns: [] });
+    this.serviceConfigSubject = new BehaviorSubject({ appCode: [], apiEndpoint: ''});
+    this.authConfigSubject = new BehaviorSubject({});
   }
 }
