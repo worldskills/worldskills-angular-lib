@@ -48,12 +48,14 @@ export * from './lib/alerts/alert/alert.component';
 */
 
 export * from './lib/auth/handlers/redirect.handler';
+export * from './lib/auth/models/auth-guard-access';
 export * from './lib/auth/models/get-user-params';
 export * from './lib/auth/models/role-application';
 export * from './lib/auth/models/role';
 export * from './lib/auth/models/user-list';
 export * from './lib/auth/models/user';
 export * from './lib/auth/models/ws-entity';
+export * from './lib/auth/app-auth.guard';
 export * from './lib/auth/wsi-auth.service';
 export * from './lib/auth/wsi-ng-auth.service';
 
