@@ -34,14 +34,14 @@ import { VoteControlComponent } from './polls/vote-control/vote-control.componen
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
+    PollResultComponent,
     PuppeteerBannerComponent,
     SortPipe,
     StagingBannerComponent,
-    WordmarkComponent,
-    PollResultComponent,
     StandardPollComponent,
-    WeightedPollComponent,
-    VoteControlComponent
+    VoteControlComponent,
+    WordmarkComponent,
+    WeightedPollComponent
   ],
   imports: [
     BrowserModule,
@@ -60,10 +60,14 @@ import { VoteControlComponent } from './polls/vote-control/vote-control.componen
     HeaderComponent,
     LogoComponent,
     MenuAccessPipe,
+    PollResultComponent,
     PuppeteerBannerComponent,
     SortPipe,
     StagingBannerComponent,
-    WordmarkComponent
+    StandardPollComponent,
+    VoteControlComponent,
+    WordmarkComponent,
+    WeightedPollComponent
   ]
 })
 export class WorldskillsAngularLibModule { }

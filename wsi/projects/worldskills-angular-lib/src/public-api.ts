@@ -114,3 +114,22 @@ export * from './lib/interceptors/ws-http.interceptor';
 */
 export * from './lib/logos/logo/logo.component';
 export * from './lib/logos/wordmark/wordmark.component';
+
+
+/*
+  Polls
+*/
+export * from './lib/polls/models/created-by';
+export * from './lib/polls/models/entity-path';
+export * from './lib/polls/models/entity-path-item';
+export * from './lib/polls/models/option';
+export * from './lib/polls/models/page';
+export * from './lib/polls/models/poll';
+export * from './lib/polls/models/result';
+export * from './lib/polls/models/vote-entry';
+export * from './lib/polls/models/vote';
+export * from './lib/polls/poll-result/poll-result.component';
+export * from './lib/polls/standard-poll/standard-poll.component';
+export * from './lib/polls/vote-control/vote-control.component';
+export * from './lib/polls/weighted-poll/weighted-poll.component';
+export * from './lib/polls/poll.service';

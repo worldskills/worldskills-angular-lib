@@ -39,7 +39,7 @@
     </div>
     <div class="card-text" *ngIf="view === 'result'">
       <ng-container *ngTemplateOutlet="beforeResultTemplate ? beforeResultTemplate : voteControlEmptyTemplate"></ng-container>
-      <ws-poll-result-graph *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result-graph>
+      <ws-poll-result *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result>
       <ng-container *ngTemplateOutlet="afterResultTemplate ? afterResultTemplate : voteControlEmptyTemplate"></ng-container>
     </div>
     <hr />

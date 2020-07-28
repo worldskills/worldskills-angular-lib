@@ -1,4 +1,4 @@
 export interface I18nText {
-  lange_ccode: string;
+  lang_code: string;
   text: string;
 }
