@@ -17,6 +17,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatetimePickerComponent } from './date/datetime-picker/datetime-picker.component';
 import { FormsModule } from '@angular/forms';
 import { SortPipe } from './common/pipes/date-sort.pipe';
+import { PollResultComponent } from './polls/poll-result/poll-result.component';
+import { StandardPollComponent } from './polls/standard-poll/standard-poll.component';
+import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.component';
+import { VoteControlComponent } from './polls/vote-control/vote-control.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { SortPipe } from './common/pipes/date-sort.pipe';
     PuppeteerBannerComponent,
     SortPipe,
     StagingBannerComponent,
-    WordmarkComponent
+    WordmarkComponent,
+    PollResultComponent,
+    StandardPollComponent,
+    WeightedPollComponent,
+    VoteControlComponent
   ],
   imports: [
     BrowserModule,

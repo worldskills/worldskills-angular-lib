@@ -1,0 +1,71 @@
+<ng-template #voteControlEmptyTemplate>
+</ng-template>
+<ng-template #voteControlDefaultTitleTemplate>
+  {{ poll.title.text }}
+  <br />
+  <small class="text-muted">Created By: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
+</ng-template>
+<ng-template #voteControlDefaultFooterTemplate>
+  <small class="text-muted"><strong>Status:</strong> {{ state }} </small>&nbsp;|&nbsp;
+  <small *ngIf="state != 'Not yet started'" class="text-muted"><strong>Started:</strong>
+  <small *ngIf="state == 'Not yet started'" class="text-muted"><strong>Starts:</strong></small>
+    {{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>&nbsp;
+  <small *ngIf="state != 'expired'" class="text-muted"><strong>Finishes:</strong>
+  <small *ngIf="state == 'expired'" class="text-muted"><strong>Finished:</strong></small>
+  {{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}</small>
+</ng-template>
+<ng-template #voteControlDefaultQuestionTemplate>
+  {{ poll.question.text }}
+</ng-template>
+
+<div class="card" *ngIf="poll">
+  <div class="card-header">
+    <ng-container *ngTemplateOutlet="titleTemplate ? titleTemplate : voteControlDefaultTitleTemplate"></ng-container>
+  </div>
+  <div class="card-body">
+    <div class="card-title">
+      <ng-container *ngTemplateOutlet="questionTemplate ? questionTemplate : voteControlDefaultQuestionTemplate"></ng-container>
+    </div>
+    <div class="card-text" *ngIf="view === 'question'">
+      <ng-container *ngTemplateOutlet="beforeOptionsTemplate ? beforeOptionsTemplate : voteControlEmptyTemplate"></ng-container>
+      <em *ngIf="voted.hasVoted">You have already voted!</em>
+      <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+        (optionSelected)="selected($event)">
+      </ws-standard-poll>
+      <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+        (optionSelected)="selected($event)">
+      </ws-weighted-poll>
+      <ng-container *ngTemplateOutlet="afterOptionsTemplate ? afterOptionsTemplate : voteControlEmptyTemplate"></ng-container>
+    </div>
+    <div class="card-text" *ngIf="view === 'result'">
+      <ng-container *ngTemplateOutlet="beforeResultTemplate ? beforeResultTemplate : voteControlEmptyTemplate"></ng-container>
+      <ws-poll-result-graph *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result-graph>
+      <ng-container *ngTemplateOutlet="afterResultTemplate ? afterResultTemplate : voteControlEmptyTemplate"></ng-container>
+    </div>
+    <hr />
+
+    <div class="pull-left">
+      <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
+        (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
+      <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
+          class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
+      <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"
+        (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
+      <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
+        (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
+    </div>
+    <div class="pull-right">
+      <button *ngIf="showResetButton" class="btn btn-primary" href="#" (click)="resetClick(poll); false;"><i
+        class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
+      <button *ngIf="showExtendButton" class="btn btn-primary" href="#" (click)="extendClick(poll); false;"><i
+          class="fa fa-arrows-h"></i>&nbsp; Extend</button>&nbsp;
+      <button *ngIf="showEditButton" class="btn btn-primary" href="#" (click)="editClick(poll); false;"><i
+          class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
+      <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
+          class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <ng-container *ngTemplateOutlet="footerTemplate ? footerTemplate : voteControlDefaultFooterTemplate"></ng-container>
+  </div>
+</div>
