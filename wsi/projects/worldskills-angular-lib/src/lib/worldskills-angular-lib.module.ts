@@ -21,6 +21,9 @@ import { PollResultComponent } from './polls/poll-result/poll-result.component';
 import { StandardPollComponent } from './polls/standard-poll/standard-poll.component';
 import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.component';
 import { VoteControlComponent } from './polls/vote-control/vote-control.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/entity-tree-select.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { VoteControlComponent } from './polls/vote-control/vote-control.componen
     BreadcrumbsComponent,
     DateRangeComponent,
     DatetimePickerComponent,
+    EntityTreeSelectComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
@@ -47,7 +51,8 @@ import { VoteControlComponent } from './polls/vote-control/vote-control.componen
     BrowserModule,
     FormsModule,
     OAuthModule.forRoot(),
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ],
   exports: [
     WorldskillsAngularLibComponent,
@@ -56,6 +61,7 @@ import { VoteControlComponent } from './polls/vote-control/vote-control.componen
     BreadcrumbsComponent,
     DateRangeComponent,
     DatetimePickerComponent,
+    EntityTreeSelectComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,

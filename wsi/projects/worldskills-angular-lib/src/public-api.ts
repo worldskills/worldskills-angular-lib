@@ -61,6 +61,8 @@ export * from './lib/alerts/alert/alert.component';
 */
 export * from './lib/auth/handlers/redirect.handler';
 export * from './lib/auth/models/auth-guard-access';
+export * from './lib/auth/models/entity-tree-view';
+export * from './lib/auth/models/entity-tree-view';
 export * from './lib/auth/models/get-user-params';
 export * from './lib/auth/models/role-application';
 export * from './lib/auth/models/role';
@@ -70,6 +72,21 @@ export * from './lib/auth/models/ws-entity';
 export * from './lib/auth/app-auth.guard';
 export * from './lib/auth/wsi-auth.service';
 export * from './lib/auth/wsi-ng-auth.service';
+
+/*
+  entity-tree
+*/
+// TODO: perhaps look at refactoring entity-tree as there's a lot of overlap with auth
+export * from './lib/entity-tree/consts/default-labels';
+export * from './lib/entity-tree/directives/select.directive';
+export * from './lib/entity-tree/entity-tree-select/entity-tree-select.component';
+export * from './lib/entity-tree/entity-tree.service';
+export * from './lib/entity-tree/models/entity-tree-fetch-params';
+export * from './lib/entity-tree/models/entity-tree-select-controls';
+export * from './lib/entity-tree/models/entity-tree-select-labels';
+export * from './lib/entity-tree/models/ws-select-change-event';
+export * from './lib/entity-tree/types/tree-entity';
+
 
 /*
   Banners
