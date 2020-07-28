@@ -12,6 +12,10 @@ import { LogoComponent } from './logos/logo/logo.component';
 import { WordmarkComponent } from './logos/wordmark/wordmark.component';
 import { MenuAccessPipe } from './headers/menu-access.pipe';
 import { FooterComponent } from './footer/footer/footer.component';
+import { DateRangeComponent } from './date/date-range/date-range.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatetimePickerComponent } from './date/datetime-picker/datetime-picker.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -26,11 +30,14 @@ import { FooterComponent } from './footer/footer/footer.component';
     HeaderComponent,
     LogoComponent, WordmarkComponent,
     MenuAccessPipe,
-    FooterComponent
+    FooterComponent,
+    DateRangeComponent, DatetimePickerComponent
   ],
   imports: [
     BrowserModule,
-    OAuthModule.forRoot()
+    FormsModule,
+    OAuthModule.forRoot(),
+    NgbModule
   ],
   exports: [
     WorldskillsAngularLibComponent,
@@ -41,7 +48,8 @@ import { FooterComponent } from './footer/footer/footer.component';
     HeaderComponent,
     LogoComponent, WordmarkComponent,
     MenuAccessPipe,
-    FooterComponent
+    FooterComponent,
+    DateRangeComponent, DatetimePickerComponent
   ]
 })
 export class WorldskillsAngularLibModule { }

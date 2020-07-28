@@ -1,7 +1,6 @@
 /*
  * Public API Surface of worldskills-angular-lib
  */
-
 export * from './lib/worldskills-angular-lib.service';
 export * from './lib/worldskills-angular-lib.component';
 export * from './lib/worldskills-angular-lib.module';
@@ -17,6 +16,14 @@ export * from './lib/models/i18n-text';
 export * from './lib/config/app.config';
 export * from './lib/config/http.config';
 export * from './lib/config/service.config';
+
+/*
+  Date
+*/
+export * from './lib/date/date-range';
+export * from './lib/date/date-range/date-range.component';
+export * from './lib/date/datetime';
+export * from './lib/date/datetime-picker/datetime-picker.component';
 
 /*
   Util
@@ -36,7 +43,6 @@ export * from './lib/helpers/date.helper';
 /*
   Alerts
 */
-
 export * from './lib/alerts/alert-type';
 export * from './lib/alerts/alert';
 export * from './lib/alerts/alerts/alerts.component';
@@ -46,7 +52,6 @@ export * from './lib/alerts/alert/alert.component';
 /*
   Auth
 */
-
 export * from './lib/auth/handlers/redirect.handler';
 export * from './lib/auth/models/auth-guard-access';
 export * from './lib/auth/models/get-user-params';
