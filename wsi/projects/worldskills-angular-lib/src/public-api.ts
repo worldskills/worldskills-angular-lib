@@ -6,9 +6,11 @@ export * from './lib/worldskills-angular-lib.component';
 export * from './lib/worldskills-angular-lib.module';
 
 /*
-  i18n
+  Shared Models
 */
 export * from './lib/common/models/i18n-text';
+export * from './lib/common/models/link';
+export * from './lib/common/models/pair';
 
 /*
   Config
@@ -114,6 +116,24 @@ export * from './lib/interceptors/ws-http.interceptor';
 */
 export * from './lib/logos/logo/logo.component';
 export * from './lib/logos/wordmark/wordmark.component';
+
+/*
+  Resource
+*/
+export * from './lib/resources/models/resource';
+export * from './lib/resources/models/resource-container';
+export * from './lib/resources/models/resource-metadata';
+export * from './lib/resources/models/resource-metadata-info';
+export * from './lib/resources/models/resource-search';
+export * from './lib/resources/models/resource-type';
+export * from './lib/resources/models/resource-type-metadata';
+export * from './lib/resources/models/resourcec-upload';
+export * from './lib/resources/models/sotrage-type';
+export * from './lib/resources/models/translation';
+export * from './lib/resources/models/translation-create';
+export * from './lib/resources/models/version';
+export * from './lib/resources/models/version-create';
+export * from './lib/resources/resource.service';
 
 
 /*
