@@ -3,9 +3,9 @@ import { CanActivate, Route, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTre
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
 import { WsiNgAuthService } from './wsi-ng-auth.service';
 import { Observable } from 'rxjs';
-import { GenericUtil } from '../util/generic.util';
 import { AuthGuardAccess } from './models/auth-guard-access';
 import { User } from './models/user';
+import { GenericUtil } from '../common/util/generic.util';
 
 @Injectable({
   providedIn: 'root'

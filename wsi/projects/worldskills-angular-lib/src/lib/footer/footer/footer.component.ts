@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { Language } from '../../i18n/language';
-import { GenericUtil } from '../../util/generic.util';
 import { User } from '../../auth/models/user';
+import { GenericUtil } from '../../common/util/generic.util';
 
 @Component({
   selector: 'ws-footer',

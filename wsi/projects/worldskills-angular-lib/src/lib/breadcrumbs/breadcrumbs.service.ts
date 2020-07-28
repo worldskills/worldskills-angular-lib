@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { Breadcrumb } from './breadcrumb';
 import { ActivatedRoute } from '@angular/router';
-import { GenericUtil } from '../util/generic.util';
 import { BehaviorSubject, throwError } from 'rxjs';
+import { GenericUtil } from '../common/util/generic.util';
 
 @Injectable({
   providedIn: 'root'

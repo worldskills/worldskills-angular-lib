@@ -6,9 +6,9 @@ export * from './lib/worldskills-angular-lib.component';
 export * from './lib/worldskills-angular-lib.module';
 
 /*
-  Shared models
+  i18n
 */
-export * from './lib/models/i18n-text';
+export * from './lib/common/models/i18n-text';
 
 /*
   Config
@@ -28,17 +28,22 @@ export * from './lib/date/datetime-picker/datetime-picker.component';
 /*
   Util
 */
-export * from './lib/util/array.util';
-export * from './lib/util/date.util';
-export * from './lib/util/generic.util';
-export * from './lib/util/http.util';
-export * from './lib/util/ws.component';
-export * from './lib/util/ws.service';
+export * from './lib/common/util/array.util';
+export * from './lib/common/util/date.util';
+export * from './lib/common/util/generic.util';
+export * from './lib/common/util/http.util';
+export * from './lib/common/util/ws.component';
+export * from './lib/common/util/ws.service';
 
 /*
   Helpers
 */
-export * from './lib/helpers/date.helper';
+export * from './lib/common/helpers/date.helper';
+
+/*
+  Pipes
+*/
+export * from './lib/common/pipes/date-sort.pipe';
 
 /*
   Alerts
@@ -80,7 +85,7 @@ export * from './lib/breadcrumbs/breadcrumbs.service';
 /*
   Encoders
 */
-export * from './lib/encoders/ws-http.encoder';
+export * from './lib/common/encoders/ws-http.encoder';
 
 /*
   Footer

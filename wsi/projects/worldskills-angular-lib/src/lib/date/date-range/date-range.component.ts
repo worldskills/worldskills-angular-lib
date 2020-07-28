@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding, forwardRef, Output, EventEmitter } from '@angular/core';
-import { toDate } from '../../helpers/date.helper';
+import { toDate } from '../../common/helpers/date.helper';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DateRange } from '../date-range';

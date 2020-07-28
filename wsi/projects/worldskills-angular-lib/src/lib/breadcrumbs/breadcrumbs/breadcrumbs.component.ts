@@ -2,9 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BreadcrumbsService } from '../breadcrumbs.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Breadcrumb } from '../breadcrumb';
-import { ArrayUtil } from '../../util/array.util';
 import { Subscription } from 'rxjs';
-import { GenericUtil } from '../../util/generic.util';
+import { ArrayUtil } from '../../common/util/array.util';
 
 @Component({
   selector: 'ws-breadcrumbs',

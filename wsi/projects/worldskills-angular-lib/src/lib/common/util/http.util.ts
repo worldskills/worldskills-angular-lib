@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { ArrayUtil } from '../util/array.util';
+import { ArrayUtil } from './array.util';
 export class HttpUtil {
   static objectToParams(obj: {}): HttpParams {
     let params = new HttpParams();

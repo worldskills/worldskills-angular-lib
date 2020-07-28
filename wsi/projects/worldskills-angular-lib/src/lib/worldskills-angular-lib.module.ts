@@ -16,22 +16,24 @@ import { DateRangeComponent } from './date/date-range/date-range.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatetimePickerComponent } from './date/datetime-picker/datetime-picker.component';
 import { FormsModule } from '@angular/forms';
-
-
-
+import { SortPipe } from './common/pipes/date-sort.pipe';
 
 @NgModule({
   declarations: [
     WorldskillsAngularLibComponent,
-    AlertComponent, AlertsComponent,
-    PuppeteerBannerComponent,
-    StagingBannerComponent,
+    AlertComponent,
+    AlertsComponent,
     BreadcrumbsComponent,
-    HeaderComponent,
-    LogoComponent, WordmarkComponent,
-    MenuAccessPipe,
+    DateRangeComponent,
+    DatetimePickerComponent,
     FooterComponent,
-    DateRangeComponent, DatetimePickerComponent
+    HeaderComponent,
+    LogoComponent,
+    MenuAccessPipe,
+    PuppeteerBannerComponent,
+    SortPipe,
+    StagingBannerComponent,
+    WordmarkComponent
   ],
   imports: [
     BrowserModule,
@@ -41,15 +43,19 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     WorldskillsAngularLibComponent,
-    AlertComponent, AlertsComponent,
-    PuppeteerBannerComponent,
-    StagingBannerComponent,
+    AlertComponent,
+    AlertsComponent,
     BreadcrumbsComponent,
-    HeaderComponent,
-    LogoComponent, WordmarkComponent,
-    MenuAccessPipe,
+    DateRangeComponent,
+    DatetimePickerComponent,
     FooterComponent,
-    DateRangeComponent, DatetimePickerComponent
+    HeaderComponent,
+    LogoComponent,
+    MenuAccessPipe,
+    PuppeteerBannerComponent,
+    SortPipe,
+    StagingBannerComponent,
+    WordmarkComponent
   ]
 })
 export class WorldskillsAngularLibModule { }

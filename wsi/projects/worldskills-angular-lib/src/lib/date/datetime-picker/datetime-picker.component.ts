@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostBinding, ViewChild, Output, EventEmitter,
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { NgbDate, NgbPopover, NgbPopoverConfig, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { toDate } from '../../helpers/date.helper';
+import { toDate } from '../../common/helpers/date.helper';
 import { Datetime } from '../datetime';
 
 @Component({

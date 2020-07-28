@@ -7,7 +7,7 @@ import { User } from './models/user';
 import { Role } from './models/role';
 import { UserList } from './models/user-list';
 import { GetUsersParams } from './models/get-user-params';
-import { HttpUtil } from '../util/http.util';
+import { HttpUtil } from '../common/util/http.util';
 
 @Injectable({
   providedIn: 'root'

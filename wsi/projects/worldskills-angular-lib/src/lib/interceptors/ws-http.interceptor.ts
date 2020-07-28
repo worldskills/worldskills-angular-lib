@@ -3,8 +3,8 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, Http
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { WsHttpEncoder } from '../encoders/ws-http.encoder';
-import { GenericUtil } from '../util/generic.util';
+import { WsHttpEncoder } from '../common/encoders/ws-http.encoder';
+import { GenericUtil } from '../common/util/generic.util';
 
 @Injectable()
 export class WsHttpInterceptor implements HttpInterceptor {
