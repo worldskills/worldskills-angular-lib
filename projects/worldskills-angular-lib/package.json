@@ -1,12 +1,16 @@
 {
   "name": "worldskills-angular-lib",
-  "version": "0.0.1",
+  "version": "10.0.0",
   "peerDependencies": {
     "@angular/common": "^10.0.4",
     "@angular/core": "^10.0.4",
+    "angular-oauth2-oidc": "^10.0.3",
+    "ng-select": "^1.0.2",
+    "@ng-select/ng-select": "^4.0.4",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@worldskills/bootstrap": "^4.4.1",
-    "bootstrap": "^4.5.0"
+    "bootstrap": "^4.5.0",
+    "font-awesome": "^4.7.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
