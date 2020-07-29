@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ws_build_lib": "ng build worldskills-angular-lib",
+    "ws_npm_pack": "cd dist/worldskills-angular-lib && npm pack",
+    "ws_package": "npm run ws_build_lib && npm run ws_npm_pack"
   },
   "private": true,
   "dependencies": {
