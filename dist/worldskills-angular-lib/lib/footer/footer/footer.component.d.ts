@@ -1,0 +1,30 @@
+import { OnInit, TemplateRef, EventEmitter } from '@angular/core';
+import { Language } from '../../i18n/language';
+import { User } from '../../auth/models/user';
+import * as i0 from "@angular/core";
+export declare class FooterComponent implements OnInit {
+    date: any;
+    languages: Language[];
+    selectedLanguage: Language;
+    isLoggedIn: boolean;
+    currentUser: User;
+    col1Template: TemplateRef<any>;
+    col2Template: TemplateRef<any>;
+    col3Template: TemplateRef<any>;
+    col4Template: TemplateRef<any>;
+    col5Template: TemplateRef<any>;
+    col6Template: TemplateRef<any>;
+    logoutClick: EventEmitter<any>;
+    loginClick: EventEmitter<any>;
+    languageChange: EventEmitter<Language>;
+    col1DefaultTemplate: TemplateRef<any>;
+    col6DefaultTemplate: TemplateRef<any>;
+    colDefaultTemplate: TemplateRef<any>;
+    ngOnInit(): void;
+    login(): void;
+    logout(): void;
+    changeLanguage(model: Language): void;
+    isLanguageSelected(model: Language): boolean;
+    static ɵfac: i0.ɵɵFactoryDef<FooterComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<FooterComponent, "ws-footer", never, { "languages": "languages"; "selectedLanguage": "selectedLanguage"; "isLoggedIn": "isLoggedIn"; "currentUser": "currentUser"; "col1Template": "col1Template"; "col2Template": "col2Template"; "col3Template": "col3Template"; "col4Template": "col4Template"; "col5Template": "col5Template"; "col6Template": "col6Template"; }, { "logoutClick": "logoutClick"; "loginClick": "loginClick"; "languageChange": "languageChange"; }, never, never>;
+}

@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DateUtil = void 0;
+const common_1 = require("@angular/common");
+class DateUtil {
+    // example: '2019-04-25T16:10:25+0200'
+    static toJavaDateString(date, locale) {
+        return common_1.formatDate(date, 'yyyy-MM-ddTHH:mm:ssZ', locale);
+    }
+}
+exports.DateUtil = DateUtil;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0ZS51dGlsLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvd29ybGRza2lsbHMtYW5ndWxhci1saWIvc3JjL2xpYi9jb21tb24vdXRpbC9kYXRlLnV0aWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsNENBQTZDO0FBRTdDLE1BQWEsUUFBUTtJQUNuQixzQ0FBc0M7SUFDdEMsTUFBTSxDQUFDLGdCQUFnQixDQUFDLElBQVUsRUFBRSxNQUFjO1FBQ2hELE9BQU8sbUJBQVUsQ0FBQyxJQUFJLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSxDQUFDLENBQUM7SUFDMUQsQ0FBQztDQUNGO0FBTEQsNEJBS0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBmb3JtYXREYXRlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuZXhwb3J0IGNsYXNzIERhdGVVdGlsIHtcbiAgLy8gZXhhbXBsZTogJzIwMTktMDQtMjVUMTY6MTA6MjUrMDIwMCdcbiAgc3RhdGljIHRvSmF2YURhdGVTdHJpbmcoZGF0ZTogRGF0ZSwgbG9jYWxlOiBzdHJpbmcpOiBzdHJpbmcge1xuICAgIHJldHVybiBmb3JtYXREYXRlKGRhdGUsICd5eXl5LU1NLWRkVEhIOm1tOnNzWicsIGxvY2FsZSk7XG4gIH1cbn1cbiJdfQ==

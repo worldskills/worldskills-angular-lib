@@ -1,0 +1,31 @@
+import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Poll } from './models/poll';
+import { Option } from './models/option';
+import { Page } from './models/page';
+import { Result } from './models/result';
+import { Vote } from './models/vote';
+import { VoteEntry } from './models/vote-entry';
+import * as i0 from "@angular/core";
+export declare class PollService {
+    protected wsi: WorldskillsAngularLibService;
+    protected http: HttpClient;
+    endpoint: string;
+    constructor(wsi: WorldskillsAngularLibService, http: HttpClient);
+    list(params: any): Observable<Page<Poll>>;
+    select(params: any): Observable<Poll[]>;
+    get(id: number): Observable<Poll>;
+    getResults(id: number): Observable<Result[]>;
+    hasVoted(id: number): Observable<Vote>;
+    create(model: Poll): Observable<Poll>;
+    update(id: number, model: Poll): Observable<Poll>;
+    delete(id: number): Observable<any>;
+    undelete(id: number): Observable<any>;
+    reset(id: number, start: Date, expiry: Date): Observable<any>;
+    extend(id: number, expiry: Date): Observable<any>;
+    addVote(pollId: number, votes: VoteEntry): Observable<Option>;
+    unvote(pollId: number): Observable<any>;
+    static ɵfac: i0.ɵɵFactoryDef<PollService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<PollService>;
+}

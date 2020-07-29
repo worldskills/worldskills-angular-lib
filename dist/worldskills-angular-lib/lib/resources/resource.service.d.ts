@@ -1,0 +1,32 @@
+import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
+import { HttpClient, HttpRequest } from '@angular/common/http';
+import { UploadService } from '../common/services/upload.service';
+import { Resource } from './models/resource';
+import { ResourceSearch } from './models/resource-search';
+import { ResourceType } from './models/resource-type';
+import { Observable } from 'rxjs';
+import { ResourceMetadataInfo } from './models/resource-metadata-info';
+import { ResourceContainer } from './models/resource-container';
+import { ResourceUpload } from './models/resourcec-upload';
+import * as i0 from "@angular/core";
+export declare class ResourceService {
+    private wsi;
+    private http;
+    uploader: UploadService;
+    private url;
+    constructor(wsi: WorldskillsAngularLibService, http: HttpClient, uploader: UploadService);
+    search(filter: ResourceSearch): Observable<ResourceContainer>;
+    get(id: number): Observable<Resource>;
+    delete(id: number): Observable<any>;
+    update(id: number, model: ResourceUpload): Observable<Resource>;
+    upload(data: ResourceUpload, file: any, method?: string, id?: number): HttpRequest<FormData>;
+    listTypes(): Observable<ResourceType[]>;
+    getType(id: number): Observable<ResourceType>;
+    listMetadata(): Observable<ResourceMetadataInfo[]>;
+    getMetadata(id: number): Observable<ResourceMetadataInfo>;
+    createMetadata(model: ResourceMetadataInfo): Observable<ResourceMetadataInfo>;
+    updateMetadata(id: number, model: ResourceMetadataInfo): Observable<ResourceMetadataInfo>;
+    deleteMetadata(id: number): Observable<any>;
+    static ɵfac: i0.ɵɵFactoryDef<ResourceService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<ResourceService>;
+}

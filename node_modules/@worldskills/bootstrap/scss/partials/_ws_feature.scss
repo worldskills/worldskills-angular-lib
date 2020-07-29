@@ -1,0 +1,368 @@
+// Feature
+//
+// A 'feature' block has a colored background with some text in it.
+// The colored block generally doesn't stretch the full width of the page.
+// An 'feature-image' alternate includes a large image.
+//
+// They should also probably have a .ws-block class, to set their height,
+// and optionally a block dimension like .ws-block-2x1.
+
+
+// A basic single-column feature block, with the entire thing having a link:
+
+// <article class="ws-block ws-feature">
+//   <a class="ws-feature-inner" href="#">
+//     <div class="ws-feature-content">
+//       <h1 class="ws-feature-title">Title</h1>
+//       <p>Description</p>
+//     </div>
+//   </a>
+// </article>
+
+// A feature-image block, 2 columns wide, with 'my-image.jpg' as a background:
+
+// <article class="ws-block ws-feature ws-feature-image ws-block-2x1 ws-feature-blue-2">
+//   <a href="#" class="ws-feature-inner">
+//     <div class="ws-feature-content">
+//       <h1 class="ws-feature-title">Title</h1>
+//       <p>Description</p>
+//     </div>
+//     <div class="ws-feature-image-content" style="background-image: url(my-image.jpg)";>
+//     </div>
+//   </a>
+// </article>
+
+
+// NOTE: For either, the <a class="ws-feature-inner"> could instead be a div
+// with the same class.
+
+
+.ws-feature {
+  text-rendering: optimizeLegibility;
+
+  .ws-feature-title {
+    font-weight: $font-weight-black;
+    line-height: $headings-line-height;
+    font-size: $font-size-xl;
+    letter-spacing: -0.02em;
+    width: 100%; // For IE11, otherwise the title can go too wide.
+
+    @include media-breakpoint-up(md) {
+      // Smaller at this width, to still allow us to keep the blocks in columns.
+      font-size: $font-size-lg;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-2xl;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  p {
+    width: 100%; // For IE11, otherwise it can go too wide.
+  }
+
+  @include media-breakpoint-only(md) {
+    // Smaller at this width, to still allow us to keep the blocks in columns.
+
+    p {
+      font-size: $font-size-sm;
+    }
+
+    .btn {
+      @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+
+      &.btn-more {
+        @include button-more-size(sm);
+      }
+    }
+  }
+}
+
+.ws-feature-inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+a.ws-feature-inner {
+
+  @include hover {
+    text-decoration: none;
+
+    .ws-feature-title {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// Around the text block with a colored background:
+.ws-feature-content {
+  // $blue is the default background color if none is specified:
+  @include inverse($blue-dark);
+  height: 100%;
+  min-height: $ws-block-min-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.75rem 28px 2.5rem 28px;
+  background-repeat: no-repeat;
+
+  > * {
+    // Stop all elements (like those a.btn's) expanding to full width:
+    align-self: flex-start;
+  }
+
+  // Variations of colour / bg image:
+
+  .ws-feature-blue-2 & {
+    background-image: svg-bg-columns($blue-tint-3);
+    background-repeat: no-repeat;
+    background-position: left bottom -74px;
+  }
+  .ws-feature-blue-3 & {
+    background-image: svg-bg-stripes($blue-tint-2);
+    background-position: top right;
+  }
+  .ws-feature-blue-4 & {
+    background-image: svg-bg-blocks($blue-tint-3);
+    background-position: bottom right;
+  }
+
+  .ws-feature-orange &,
+  .ws-feature-orange-2 & {
+    @include inverse($orange);
+  }
+  .ws-feature-orange-2 & {
+    background-image: svg-bg-squares($yellow-tint-4);
+    background-position: right top;
+  }
+
+  .ws-feature-purple &,
+  .ws-feature-purple-2 & {
+    @include inverse($purple);
+  }
+  .ws-feature-purple & {
+    background-image: svg-bg-blocks($pink-tint-3);
+    background-position: right bottom;
+  }
+  .ws-feature-purple-2 & {
+    background-image: svg-bg-stripes($pink-tint-3);
+    background-position: right top, left bottom;
+  }
+
+  .ws-feature-cyan & {
+    @include inverse($blue);
+    background-image: svg-bg-squares($blue-tint-3);
+    background-position: right top;
+  }
+
+  .ws-feature-pink & {
+    @include inverse($pink);
+    background-image: svg-bg-squares($yellow-tint-4);
+    background-position: right top;
+  }
+}
+
+
+// The ws-feature-quote-* blocks have different HTML elements and a special
+// background.
+.ws-feature-quote {
+
+  .ws-feature-title {
+    margin-bottom: 0.5rem;
+  }
+
+  figcaption {
+    font-family: $font-family-serif;
+
+    .btn {
+      font-family: $font-family-base;
+    }
+  }
+
+  .ws-feature-content {
+    // Less than usual, to allow for quote background image.
+    padding-top: 1.5rem;
+  }
+
+  &.ws-feature-orange .ws-feature-content,
+  &.ws-feature-cyan .ws-feature-content {
+    background-position: -100px center;
+    background-repeat: repeat-x;
+  }
+
+  &.ws-feature-orange .ws-feature-content {
+    background-image: svg-bg-quotes($orange-tint-1);
+  }
+
+  &.ws-feature-cyan .ws-feature-content {
+    background-image: svg-bg-quotes($blue-tint-3);
+  }
+}
+
+// First variant: has quote marks at top of blockquote text.
+.ws-feature-quote-1 {
+  blockquote {
+    padding-top: 40px;
+    background-image: svg-quotemarks($white);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+}
+
+// Second variant. Has an image at its bottom right.
+// Needs some positioning and z-indexes to keep it in place and behind text.
+.ws-feature-quote-2 {
+
+  blockquote {
+    z-index: 10;
+  }
+
+  .ws-feature-content {
+    // Align text to top.
+    justify-content: start;
+    position: relative;
+
+    p,
+    a.btn {
+      position: relative;
+      z-index: 10;
+    }
+
+    img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 50%;
+      width: auto;
+      z-index: 0;
+    }
+  }
+
+  @include media-breakpoint-only(md) {
+    .ws-feature-title {
+      // A bit smaller, to allow more space for image.
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Styles that have an extra div that has a background image.
+// At narrow widths, these are all 100% wide, with .ws-feature-image-content
+// above .ws-feature-content.
+// At wider widths (see further below), they are different depending on their
+// .ws-block size.
+.ws-feature-image {
+  background-color: $gray-100;
+
+  .ws-feature-inner {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ws-feature-content {
+    order: 2;
+  }
+
+  .ws-feature-image-content {
+    // The extra inner element, with a background image.
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    order: 1;
+  }
+}
+
+
+@media (max-width: ($ws-feature-image-breakpoint - 1px)) {
+  // Heights of image blocks at the narrowest-only width.
+  // Here so as not to override the standard .ws-block-* styles at wider
+  // widths.
+
+  .ws-feature-image {
+    height: $ws-block-min-height * 2;
+
+    .ws-feature-content,
+    .ws-feature-image-content {
+      height: 50%;
+    }
+
+    &.ws-block-2x2 {
+      height: $ws-block-min-height * 2.5;
+
+      .ws-feature-content {
+        height: 33.333333%;
+      }
+      .ws-feature-image-content {
+        height: 66.6666667%;
+      }
+    }
+  }
+}
+
+
+@media (min-width: $ws-feature-image-breakpoint) {
+  // Wide enough to put the .ws-feature-content blocks to the side of the
+  // image, instead of underneath.
+
+  .ws-feature-image {
+    .ws-feature-inner {
+      flex-direction: row;
+    }
+
+    .ws-feature-content {
+      width: 50%;
+      order: 1;
+    }
+
+    .ws-feature-image-content {
+      flex-grow: 1;
+      order: 2;
+    }
+
+    &.ws-block-3x1,
+    &.ws-block-2x1 {
+      min-height: $ws-block-min-height;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  // A bit wider still, the 2x2 block's inner goes to bottom-right.
+
+  .ws-feature-image {
+
+    // Two-columns wide, double height.
+    // With the inner block positioned at bottom-right.
+    &.ws-block-2x2 {
+      position: relative;
+
+      .ws-feature-content {
+        width: calc(50% - (#{$grid-gutter-width} / 2));
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: auto;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  // A bit wider still and it's wide enough for 3x1 to take final form.
+
+  .ws-feature-image {
+
+    // Full-3-column-width, with inner taking up 1 column.
+    &.ws-block-3x1 {
+
+      .ws-feature-content {
+        width: 33.33333%;
+      }
+    }
+  }
+}

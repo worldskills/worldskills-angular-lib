@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GenericUtil = void 0;
+class GenericUtil {
+    static isNullOrUndefined(obj) {
+        return obj === undefined || obj === null;
+    }
+    static getValueOrDefault(value, defaultValue) {
+        return GenericUtil.isNullOrUndefined(value) ? defaultValue : value;
+    }
+}
+exports.GenericUtil = GenericUtil;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXJpYy51dGlsLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvd29ybGRza2lsbHMtYW5ndWxhci1saWIvc3JjL2xpYi9jb21tb24vdXRpbC9nZW5lcmljLnV0aWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsTUFBYSxXQUFXO0lBQ3RCLE1BQU0sQ0FBQyxpQkFBaUIsQ0FBQyxHQUFRO1FBQy9CLE9BQU8sR0FBRyxLQUFLLFNBQVMsSUFBSSxHQUFHLEtBQUssSUFBSSxDQUFDO0lBQzNDLENBQUM7SUFFRCxNQUFNLENBQUMsaUJBQWlCLENBQUksS0FBVSxFQUFFLFlBQWU7UUFDckQsT0FBTyxXQUFXLENBQUMsaUJBQWlCLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLFlBQVksQ0FBQyxDQUFDLENBQUMsS0FBSyxDQUFDO0lBQ3JFLENBQUM7Q0FDRjtBQVJELGtDQVFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIEdlbmVyaWNVdGlsIHtcbiAgc3RhdGljIGlzTnVsbE9yVW5kZWZpbmVkKG9iajogYW55KTogYm9vbGVhbiB7XG4gICAgcmV0dXJuIG9iaiA9PT0gdW5kZWZpbmVkIHx8IG9iaiA9PT0gbnVsbDtcbiAgfVxuXG4gIHN0YXRpYyBnZXRWYWx1ZU9yRGVmYXVsdDxUPih2YWx1ZTogYW55LCBkZWZhdWx0VmFsdWU6IFQpOiBUIHtcbiAgICByZXR1cm4gR2VuZXJpY1V0aWwuaXNOdWxsT3JVbmRlZmluZWQodmFsdWUpID8gZGVmYXVsdFZhbHVlIDogdmFsdWU7XG4gIH1cbn1cbiJdfQ==

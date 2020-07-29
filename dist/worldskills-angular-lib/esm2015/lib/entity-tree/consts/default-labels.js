@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_LABELS = void 0;
+exports.DEFAULT_LABELS = {
+    clearAllText: 'Clear all',
+    loadingText: 'Loading entities...',
+    notFoundText: 'No entities found',
+    typeToSearchText: 'Type to search',
+    placeholder: 'Select entity'
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVmYXVsdC1sYWJlbHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy93b3JsZHNraWxscy1hbmd1bGFyLWxpYi9zcmMvbGliL2VudGl0eS10cmVlL2NvbnN0cy9kZWZhdWx0LWxhYmVscy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBYSxRQUFBLGNBQWMsR0FBRztJQUM1QixZQUFZLEVBQUUsV0FBVztJQUN6QixXQUFXLEVBQUUscUJBQXFCO0lBQ2xDLFlBQVksRUFBRSxtQkFBbUI7SUFDakMsZ0JBQWdCLEVBQUUsZ0JBQWdCO0lBQ2xDLFdBQVcsRUFBRSxlQUFlO0NBQzdCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgREVGQVVMVF9MQUJFTFMgPSB7XG4gIGNsZWFyQWxsVGV4dDogJ0NsZWFyIGFsbCcsXG4gIGxvYWRpbmdUZXh0OiAnTG9hZGluZyBlbnRpdGllcy4uLicsXG4gIG5vdEZvdW5kVGV4dDogJ05vIGVudGl0aWVzIGZvdW5kJyxcbiAgdHlwZVRvU2VhcmNoVGV4dDogJ1R5cGUgdG8gc2VhcmNoJyxcbiAgcGxhY2Vob2xkZXI6ICdTZWxlY3QgZW50aXR5J1xufTtcbiJdfQ==
