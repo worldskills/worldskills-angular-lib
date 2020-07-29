@@ -14,6 +14,7 @@ import { AnotherPageComponent } from './another-page/another-page.component';
 import { Breadcrumb } from '../../../../dist/worldskills-angular-lib/lib/breadcrumbs/breadcrumb';
 import { AnotherRouteComponent } from './another-route/another-route.component';
 import { NestedPageComponent } from './nested-page/nested-page.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 const routerOptions: ExtraOptions = {
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, routerOptions),
     WorldskillsAngularLibModule,
     NgbModule,
+    NgSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true },
