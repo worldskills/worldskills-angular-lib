@@ -59,13 +59,13 @@ once you've set up a new angular application install the following libraries:
 Add the following line to an applications `styles.css`
 `@import "~@ng-select/ng-select/themes/default.theme.css";`
 
-
 ### app.module.ts
 
 add the following import statement into your app.module.ts  
 `import { WorldskillsAngularLibModule, WsHttpInterceptor } from '@worldskills/worldskills-angular-lib';`  
 
 ensure the following modules are within the `import: { ... }` section of your app.module.ts  
+
 ```TypeScript
 @NgModule({
   declarations: [
