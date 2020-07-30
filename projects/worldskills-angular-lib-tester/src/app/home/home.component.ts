@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WorldskillsAngularLibService } from '../../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
-import { WsiNgAuthService } from '../../../../worldskills-angular-lib/src/lib/auth/wsi-ng-auth.service';
 import { Poll } from '../../../../worldskills-angular-lib/src/lib/polls/models/poll';
 import { Result } from '../../../../worldskills-angular-lib/src/lib/polls/models/result';
 import { Vote } from '../../../../worldskills-angular-lib/src/lib/polls/models/vote';

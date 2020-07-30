@@ -1,10 +1,10 @@
-import { WsiNgAuthService } from '../wsi-ng-auth.service';
+import { NgAuthService } from '../ng-auth.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 
 export const RETURN_URL_KEY = 'returnUrl';
 export class RedirectHandler {
-  constructor(protected service: WsiNgAuthService, protected router: Router) {
+  constructor(protected service: NgAuthService, protected router: Router) {
   }
 
   public redirectOrReturn(redirectRoute: string[], failure: (error: any) => void): void {

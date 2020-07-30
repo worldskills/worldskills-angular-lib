@@ -71,7 +71,7 @@ export * from './lib/auth/models/user';
 export * from './lib/auth/models/ws-entity';
 export * from './lib/auth/app-auth.guard';
 export * from './lib/auth/wsi-auth.service';
-export * from './lib/auth/wsi-ng-auth.service';
+export * from './lib/auth/ng-auth.service';
 
 /*
   entity-tree

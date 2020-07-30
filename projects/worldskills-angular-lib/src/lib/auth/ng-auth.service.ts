@@ -11,7 +11,7 @@ import { WsiAuthService } from './wsi-auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class WsiNgAuthService {
+export class NgAuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 

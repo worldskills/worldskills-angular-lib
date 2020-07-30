@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Route, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { WsiNgAuthService } from './wsi-ng-auth.service';
+import { NgAuthService } from './ng-auth.service';
 import { Observable } from 'rxjs';
 import { AuthGuardAccess } from './models/auth-guard-access';
 import { User } from './models/user';
@@ -11,7 +11,7 @@ import { GenericUtil } from '../common/util/generic.util';
   providedIn: 'root'
 })
 export class AppAuthGuard implements CanActivate {
-  constructor(protected auth: WsiNgAuthService, protected wsi: WorldskillsAngularLibService, protected router: Route) { }
+  constructor(protected auth: NgAuthService, protected wsi: WorldskillsAngularLibService, protected router: Route) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
       : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
       const user = sessionStorage.getItem('user.current');

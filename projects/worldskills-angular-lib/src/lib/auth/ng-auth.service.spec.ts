@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WsiNgAuthService } from './wsi-ng-auth.service';
+import { NgAuthService } from './ng-auth.service';
 
 describe('WsiNgAuthService', () => {
-  let service: WsiNgAuthService;
+  let service: NgAuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WsiNgAuthService);
+    service = TestBed.inject(NgAuthService);
   });
 
   it('should be created', () => {

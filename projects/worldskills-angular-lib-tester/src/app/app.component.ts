@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
 import { AlertType, MenuItem, Language } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
-import { WsiNgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/wsi-ng-auth.service';
+import { NgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from '../../../../dist/worldskills-angular-lib/lib/auth/models/user';
 
@@ -28,7 +28,7 @@ export class AppComponent {
   languages: Language[];
 
   constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
-              private ngAuth: WsiNgAuthService) {
+              private ngAuth: NgAuthService) {
   }
 
 
