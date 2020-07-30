@@ -1,5 +1,14 @@
 # Changelog
 
+## 10.0.0
+
+* Port to angular 10
+* Changed project structure to be more modular
+* Config is now service based and does not need to be done at the module level
+* Shared code (not specificc to any feature) now exists under a common subfolder
+* Refactor of auth
+* Redirection code has been moved to a handler class - this will be easier to extend and override
+
 ## 9.1.0
 
 * You can now overwrite the redirect functionality when user logs and and the there is no return URL

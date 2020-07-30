@@ -20,27 +20,48 @@ The App Auth Guard is applicable on Routes only. you can pass through multiple r
 ```
 
 if the users role does not match the provided roles then ueer will be kicked to an unauthorized page.
-the default route is `/not-authorized`
+the default route is `/not-authorized` this can be overriden through the config.
 
-## overriding the not-authoried route
+## The Config
 
-you will need to use the `forFn` method when registering the module and overide the AppConfig instance.
+The config service based.
+The ideal place to override config will be from the `app.component.ts' file.
 
 ```TypeScript
-WorldskillsAngularLibModule.forFn(mod => {
-  mod.service = new ServiceConfig();
-  mod.auth = new AuthConfig();
-  mod.encoder = new WSHttpConfig();
-  mod.app = new AppConfig({notAuthorizedRoute: ['/error']});
-  return mod;
-}),
+
+constructor(private wsi: WorldskillsAngularLibService) {
+}
+ngOnInit() {
+    const appConfig = this.wsi.appConfigSubject.getValue();
+    appConfig.notAuthorizedRoute = ['/not-authorized'];
+    this.wsi.appConfigSubject.next(appConfig);
+
+    this.wsi.authConfigSubject.next({
+        loginUrl: 'http://localhost:50300/oauth/authorize',
+        clientId: '7221138f6772',
+        redirectUri: 'http://localhost:4200/home',
+        userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
+        oidc: false
+    });
+
+
+    const httpConfig = this.wsi.httpConfigSubject.getValue();
+    httpConfig.encoderUriPatterns = [];
+    httpConfig.authUriPatterns = ['http://localhost:8081'];
+    this.wsi.httpConfigSubject.next(httpConfig);
+
+    const serviceConfig = this.wsi.serviceConfigSubject.getValue();
+    serviceConfig.appCode = [500];
+    serviceConfig.apiEndpoint = 'http://localhost:8081';
+    this.wsi.serviceConfigSubject.next(serviceConfig);
+}
 ```
 
 ## Footer
 
 The footer component has been made with 6 columns that can be overriden when needed. overriding a column is optional.
 
-### Default usage
+### Default Footer usage
 
 ```HTML
 <ws-footer
@@ -97,7 +118,7 @@ The footer component has been made with 6 columns that can be overriden when nee
 
 ## Vote Control
 
-### Default usage
+### Default Vote Control usage
 
 ```HTML
 <app-vote-control

@@ -1,6 +1,6 @@
-# WorldskillsAngularLib
+# WorldSkills Angular Library
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
 
 ## Changelog
 
@@ -10,10 +10,13 @@ Notable changes can be viewed [here](https://github.com/worldskills/worldskills-
 
 Examples of how library components work can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/master/usage.md).
 
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
 ## Code scaffolding
 
-Run `ng generate component component-name --project worldskills-angular-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project worldskills-angular-lib`.
-> Note: Don't forget to add `--project worldskills-angular-lib` or else it will be added to the default project in your `angular.json` file.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -29,7 +32,11 @@ After building your library with `ng build worldskills-angular-lib`, go to the d
 
 ## Running unit tests
 
-Run `ng test worldskills-angular-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
@@ -40,71 +47,81 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### package installaion
 
 once you've set up a new angular application install the following libraries:  
+`ng add @ng-bootstrap/ng-bootstrap`  
 `npm i angular-oauth2-oidc`  
-`npm i json2typescript`  
 `npm i popper.js`  
 `npm i angular-font-awesome`  
 `npm i ng-select`  
-`npm i @worldskills/bootstrap`
+`npm i @worldskills/bootstrap`  
 
-### angular.json
+### Styleing
 
-add `node_modules/@ng-select/ng-select/themes/default.theme.css` to the style definitions.
+Add the following line to an applications `styles.css`
+`@import "~@ng-select/ng-select/themes/default.theme.css";`
 
 ### app.module.ts
 
 add the following import statement into your app.module.ts  
 `import { WorldskillsAngularLibModule, WsHttpInterceptor } from '@worldskills/worldskills-angular-lib';`  
-Then create the following config objects in your app.module.ts
-
-``` typescript
-const serviceConfig = {
-  appCode: [1000],
-  apiEndpoint: 'https://api.worldskills.show',
-};
-
-// oauth client app configuration
-const oAuthConfig = {
-  // login page URI
-  loginUrl: 'https://auth.worldskills.show/oauth/authorize',
-
-  // this should match your configured redirecctUri in auth admin
-  redirectUri: 'https://my-app.worldskills.show',
-
-  // load the user information object
-  userinfoEndpoint: 'https://api.worldskills.show/auth/users/loggedIn?show_child_roles=false&app_code=1000',
-
-  // this should match the auth admin valiue
-  clientId: '5bc213b7bfef',
-
-  // keep this false
-  oidc: false
-} as AuthConfig;
-
-const httpConfig = {
-  // used to apply custom url parameter encoding for java services
-  encoderUriPatterns: [],
-
-  // used to automagically inject auth tokens in http requests
-  authUriPatterns: ['api.worldskills.org']
-};
-```
-
-### Register the library
 
 ensure the following modules are within the `import: { ... }` section of your app.module.ts  
 
 ```TypeScript
-WorldskillsAngularLibModule.forConfig(serviceConfig, oAuthConfig, httpConfig)
+@NgModule({
+  declarations: [
+    AppComponent,
+    // your components
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    OAuthModule.forRoot(),
+    RouterModule.forRoot(appRoutes, routerOptions),
+    WorldskillsAngularLibModule,
+    NgbModule,
+    NgSelectModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true },
+  ],  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
 ```
 
-Alternatively you don't need all the config, you can use `forFn` instead of `forConfig`
+### configure the module
+
+Add the following to your `app.component.ts` to configure teh module.
+All configuration is optional. this example provides a full set of what's available.
+calling the `next()` method of a config type propogates that config to the module
 
 ```TypeScript
-WorldskillsAngularLibModule.forFn(mod => {
-  mod.service = serviceConfig;
-  return mod;
-}),
+constructor(private wsi: WorldskillsAngularLibService) {
+}
+ngOnInit() {
+    const appConfig = this.wsi.appConfigSubject.getValue();
+    appConfig.notAuthorizedRoute = ['/not-authorized'];
+    this.wsi.appConfigSubject.next(appConfig);
+
+    this.wsi.authConfigSubject.next({
+        loginUrl: 'http://localhost:50300/oauth/authorize',
+        clientId: '7221138f6772',
+        redirectUri: 'http://localhost:4200/home',
+        userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
+        oidc: false
+    });
+
+    const httpConfig = this.wsi.httpConfigSubject.getValue();
+    httpConfig.encoderUriPatterns = [];
+    httpConfig.authUriPatterns = ['http://localhost:8081'];
+    this.wsi.httpConfigSubject.next(httpConfig);
+
+    const serviceConfig = this.wsi.serviceConfigSubject.getValue();
+    serviceConfig.appCode = [500];
+    serviceConfig.apiEndpoint = 'http://localhost:8081';
+    this.wsi.serviceConfigSubject.next(serviceConfig);
+}
 ```
 
 ### http auth injector

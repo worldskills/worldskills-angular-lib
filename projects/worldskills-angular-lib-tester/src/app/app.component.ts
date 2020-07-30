@@ -1,171 +1,98 @@
 import { Component } from '@angular/core';
-import { UserModel } from '../../../worldskills-angular-lib/src/lib/models/user.model';
-import { IMenuItem } from '../../../worldskills-angular-lib/src/lib/interfaces/menu-item.interface';
-import { AuthService, ModuleConfigService, isDate, toDate } from 'worldskills-angular-lib';
-import { CollectionModel } from '../../../worldskills-angular-lib/src/lib/models/collection-model';
-import { DateRange } from '../../../worldskills-angular-lib/src/lib/models/date-range';
-import { DatetimeModel } from '../../../worldskills-angular-lib/src/lib/models/datetime.model';
-import { UserListView } from '../../../worldskills-angular-lib/src/lib/models/auth/user-list-view';
-import { GetUsersParams } from '../../../worldskills-angular-lib/src/lib/models/auth/get-users-params';
-import { take } from 'rxjs/operators';
-import { ILanguageModel } from '../../../worldskills-angular-lib/src/lib/models/ilanguage';
+import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
+import { AlertType, MenuItem, Language } from '../../../worldskills-angular-lib/src/public-api';
+import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
+import { NgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { User } from '../../../../dist/worldskills-angular-lib/lib/auth/models/user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
   title = 'worldskills-angular-lib-tester';
+
+  // auth
+  user: User;
+
+  // header
   isLoggedIn: boolean;
-  menuItems: Array<IMenuItem>;
-  currentUser: UserModel;
-
-  appCode: number[];
-  cliendId: string;
-
-  activeToggleButton: string;
-
-  collection: CollectionModel<string>;
-
-  autoJump: boolean;
-
-  dateRange: DateRange;
-
-  dateTime: DatetimeModel;
-
-  userList: UserListView;
-
-  entityId: number;
-  languages: ILanguageModel[];
-  userAppCode: number;
+  menuItems: Array<MenuItem>;
 
   // breadcrumbs
   showHomeItem = true;
   defaultRoute = '/home';
 
-  constructor(
-    private moduleConfigService: ModuleConfigService,
-    private authService: AuthService) {
-    this.appCode = moduleConfigService.serviceConfig.appCode;
-    this.cliendId = moduleConfigService.authConfig.clientId;
-    this.isLoggedIn = false;
-    // console.log(this.currentUser);
-    this.menuItems = [
-      // TODO: requiredRoles by rolename and application code
-      { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
-      { label: 'Other', url: '/sample', hidden: false, requireLogin: true, requiredRoles: [] },
-      { label: 'Admin', url: '/simple', hidden: false, requireLogin: true, requiredRoles: [] },
-      { label: 'Sample', url: '/simple/sample', hidden: false, requireLogin: true, requiredRoles: [] }
-    ];
-    this.currentUser = new UserModel();
+  languages: Language[];
 
-    this.authService.currentUser.subscribe(x => {
-      this.currentUser = x;
-      this.isLoggedIn = this.currentUser != null;
-    });
-    this.authService.loadUserProfile((error: any) => {
-      console.log(error);
-    });
-
-    this.autoJump = true;
-    this.collection = new CollectionModel();
-    this.collection.count = 10;
-    this.collection.offset = 0;
-    this.collection.limit = 10;
-    this.collection.total = 1000;
-    for (let index = 0; index < this.collection.limit; index++) {
-      this.collection.items.push(index.toString());
-    }
-
-    this.dateTime = DatetimeModel.asToday();
+  constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
+              private ngAuth: NgAuthService) {
   }
 
-  // tslint:disable-next-line:use-life-cycle-interface
+
+
+  // tslint:disable-next-line:typedef use-lifecycle-interface
   ngOnInit() {
-    this.languages = [];
-    this.languages.push({ code: 'en', name: 'English'});
-    this.languages.push({ code: 'fr', name: 'French'});
-    this.languages.push({ code: 'de', name: 'Dutch'});
+    this.configureLib();
+    this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
 
-    this.dateRange = new DateRange();
-    this.dateRange.start = new Date();
-    const endDate = new Date();
-    endDate.setDate(this.dateRange.start.getDate() + 4);
-    this.dateRange.end = endDate;
-    this.userList = new UserListView();
-    this.entityId = 1;
-    this.userAppCode = 300;
-
-    const dtString = '2020-01-01';
-    const dt = toDate(dtString);
-
-    if (this.currentUser != null) {
-      const roles = [
-        { appCode: 500, name: 'Admin' },
-        { appCode: 3600, name: 'Admin' }
-      ];
-
-      console.log(roles);
-      console.log(this.currentUser.roles);
-
-      const userRoles = this.currentUser.roles
-        .filter( x =>
-          roles.findIndex(y => y.appCode === x.roleApplication.applicationCode && y.name === x.name) !== -1
-        );
-      console.log(userRoles);
-    }
-  }
-
-
-  // tslint:disable-next-line:use-life-cycle-interface
-  ngOnChanges() {
-  }
-
-  loadUserList() {
-    const filter = new GetUsersParams({
-      ws_entity: this.entityId,
-      app_code: this.userAppCode,
-      role: 'ViewForum',
-      offset: 0,
-      limit: 20
-    });
-
-    this.authService.userService.listUsers(filter).pipe(take(1)).subscribe(
-      next => this.userList = next,
-      error => console.log(error)
+    this.languages = [
+      { code: 'en', name: 'English' }
+    ];
+    this.isLoggedIn = false;
+    this.menuItems = [
+      { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+    ];
+    this.ngAuth.loadUserProfile(
+      user => {
+        this.isLoggedIn = true;
+        console.log(user);
+        this.user = user;
+      },
+      error => {
+        this.isLoggedIn = false;
+        console.log(error);
+      }
     );
   }
 
-  dateTimeChange(dateTime: DatetimeModel) {
-    console.log(dateTime);
-    // console.log(this.dateTime);
+  login(): void {
+    this.ngAuth.login();
   }
 
-
-  login() {
-    this.authService.login();
-    // this.isLoggedIn = true;
-    // this.currentUser = new UserModel();
-    // this.currentUser.id = 1;
-    // this.currentUser.firstName = 'Test';
-    // this.currentUser.lastName = 'User';
+  logout(): void {
+    this.ngAuth.logout();
   }
 
-  logout() {
-    this.authService.logout();
+  configureLib(): void {
+    /*
+      Overriding all config is completely options.
+      you should probably override AuthConfig at least.
+    */
+    const appConfig = this.wsi.appConfigSubject.getValue();
+    appConfig.notAuthorizedRoute = ['/not-authorized'];
+    this.wsi.appConfigSubject.next(appConfig);
 
-    // this.isLoggedIn = false;
-    // this.currentUser = new UserModel();
+    this.wsi.authConfigSubject.next({
+      loginUrl: 'http://localhost:50300/oauth/authorize',
+      clientId: '7221138f6772',
+      redirectUri: 'http://localhost:4200/home',
+      userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
+      oidc: false
+    });
+
+
+    const httpConfig = this.wsi.httpConfigSubject.getValue();
+    httpConfig.encoderUriPatterns = []; //
+    httpConfig.authUriPatterns = ['http://localhost:8081'];
+    this.wsi.httpConfigSubject.next(httpConfig);
+
+    const serviceConfig = this.wsi.serviceConfigSubject.getValue();
+    serviceConfig.appCode = [500];
+    serviceConfig.apiEndpoint = 'http://localhost:8081';
+    this.wsi.serviceConfigSubject.next(serviceConfig);
+
   }
-
-  saveFn() {
-    console.log('saved');
-  }
-
-  rangeSelected(event) {
-    console.log(event);
-  }
-
 }

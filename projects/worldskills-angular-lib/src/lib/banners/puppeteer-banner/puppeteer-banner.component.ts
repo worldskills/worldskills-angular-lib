@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserModel } from '../../models/user.model';
+import { User } from '../../auth/models/user';
 
 @Component({
   selector: 'ws-puppeteer-banner',
@@ -8,7 +8,7 @@ import { UserModel } from '../../models/user.model';
 })
 export class PuppeteerBannerComponent implements OnInit {
 
-  @Input() currentUser: UserModel;
+  @Input() currentUser: User;
 
   constructor() { }
 

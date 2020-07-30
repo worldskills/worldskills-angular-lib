@@ -1,66 +1,29 @@
 
+  <header>
+    <ws-header
+    [appName]="'Tester'"
+    [isLoggedIn]="isLoggedIn"
+    [showLoginAndLogoutButtons]="true"
+    [menuItems]="menuItems"
+    [currentUser]="user"
+    (loginClick)="login()"
+    (logoutClick)="logout()"
+  ></ws-header>
+  </header>
 
-    <header>
-      <ws-header
-      [appName]="'Tester'"
-      [isLoggedIn]="isLoggedIn"
-      [showLoginAndLogoutButtons]="true"
-      [menuItems]="menuItems"
-      [currentUser]="currentUser"
-      (loginClick)="login()"
-      (logoutClick)="logout()"
-    ></ws-header>
-    </header>
+<div class="container">
+  <ws-puppeteer-banner [currentUser]="user"></ws-puppeteer-banner>
+  <ws-staging-banner></ws-staging-banner>
+</div>
 
-    <ws-puppeteer-banner [currentUser]="currentUser"></ws-puppeteer-banner>
-    <ws-staging-banner></ws-staging-banner>
+<div class="container">
+  <ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'" [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
+</div>
 
-
-    <section class="ws-hero ws-hero-image " style="background-image: url(https://preview.worldskills.org/application/files/thumbnails/large/4015/3251/4399/champions-trust-header.jpg)">
-      <h1 class="ws-hero-title">News</h1>
-      <div class="ws-hero-desc">
-        <p>WorldSkills Competitions are the gold standard of skills excellence. They inspire young Competitors to reach new heights, helping them turn their passion into a profession.</p>
-      </div>
-    </section>
-    <div class="container">
-      <ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'" [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
-    </div>
-
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-
-    <div class="container">
-      <h3>Date Time Picker</h3>
-      <ws-datetime-picker [(ngModel)]="dateTime" (change)="dateTimeChange($event)"></ws-datetime-picker>
-    </div>
-
-    <div class="container">
-      <h3>Date Range Test</h3>
-      <ws-date-range [(ngModel)]="dateRange" (change)="rangeSelected($event)"></ws-date-range>
-    </div>
-
-    <div class="container">
-      <h3>User List Test</h3>
-      <div>
-        <input type="number" [(ngModel)]="userAppCode" placeholder="App Code">&nbsp;
-        <input type="number" [(ngModel)]="entityId" placeholder="Entity ID">&nbsp;
-        <button class="btn btn-primary" (click)="loadUserList()">Load User List</button>
-        <br />
-        {{ userList | json }}
-      </div>
-    </div>
-
-    <div class="container my-5">
-      <h3>Entity Tree Test</h3>
-      <div class="row">
-        <div class="col">
-          <ws-entity-tree-select></ws-entity-tree-select>
-        </div>
-        <div class="col">
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <ws-alerts></ws-alerts>
+  <router-outlet></router-outlet>
+</div>
 
 <ng-template #override5>
   <h1>Social</h1>
@@ -73,11 +36,10 @@
   </ul>
 </ng-template>
 <ws-footer
-  [currentUser]="currentUser"
+  [currentUser]="user"
   [isLoggedIn]="isLoggedIn"
   (loginClick)="login()"
   (logoutClick)="logout()"
   [col5Template]="override5"
   [languages]="languages">
 </ws-footer>
-
