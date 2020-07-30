@@ -12,7 +12,7 @@ import { HttpUtil } from '../common/util/http.util';
 @Injectable({
   providedIn: 'root'
 })
-export class WsiAuthService {
+export class AuthService {
   protected appCode: number[];
   protected endpoint: string;
 

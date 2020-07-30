@@ -1,16 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UploadService } from './upload.service';
+import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
 
-describe('UploadService', () => {
-  let service: UploadService;
+describe('AuthService', () => {
+  let service: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
+      providers: [OAuthLogger, OAuthService, UrlHelperService]
     });
-    service = TestBed.inject(UploadService);
+    service = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {

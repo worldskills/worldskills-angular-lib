@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NgAuthService } from './ng-auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { OAuthModule, OAuthService, UrlHelperService, OAuthLogger } from 'angular-oauth2-oidc';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('WsiNgAuthService', () => {
+describe('NgAuthService', () => {
   let service: NgAuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [OAuthLogger, OAuthService, UrlHelperService]
+    });
     service = TestBed.inject(NgAuthService);
   });
 

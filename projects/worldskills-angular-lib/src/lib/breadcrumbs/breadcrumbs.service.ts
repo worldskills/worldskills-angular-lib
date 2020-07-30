@@ -32,7 +32,7 @@ export class BreadcrumbsService {
     if (route.outlet === this.targetOutlet) {
       const path = route.snapshot.url.map(segment => segment.path).join('/');
       url = `${url}/${path}`;
-      this.isAtHome = path === this.homeItemRoute.replace('/', '');
+      this.isAtHome = GenericUtil.isNullOrUndefined(this.homeItemRoute) ? false :  path === this.homeItemRoute.replace('/', '');
       if (route.snapshot.data.hasOwnProperty('breadcrumb')) {
         const breadcrumb: Breadcrumb = {
           key: route.snapshot.data.breadcrumb.key,

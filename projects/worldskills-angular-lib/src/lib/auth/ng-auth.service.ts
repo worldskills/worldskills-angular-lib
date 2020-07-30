@@ -4,7 +4,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { User } from './models/user';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { WsiAuthService } from './wsi-auth.service';
+import { AuthService } from './auth.service';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state
@@ -16,7 +16,7 @@ export class NgAuthService {
   public currentUser: Observable<User>;
 
   constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService, private router: Router,
-              public service: WsiAuthService) {
+              public service: AuthService) {
     this.wsi.authConfigSubject.subscribe(
       next => {
         this.oAuthService.configure(next);

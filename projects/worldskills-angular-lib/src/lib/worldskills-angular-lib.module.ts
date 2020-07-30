@@ -23,6 +23,7 @@ import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.compo
 import { VoteControlComponent } from './polls/vote-control/vote-control.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/entity-tree-select.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/enti
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     OAuthModule.forRoot(),
     NgbModule,
     NgSelectModule
