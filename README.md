@@ -129,3 +129,14 @@ ngOnInit() {
 The WSHttpInjector will extract the current auth token and inject into in future web requests that match the patterns specified in the httpConfig object.  
 ensure the following provider is added within the `providers: { ... }` section of your app.module.ts  
 `{ provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true }`
+
+## Extending the library
+
+When extending the library follow theese guidelies:
+
+- We've taken a somewhat `feature` design to the approach.
+  - What this means is that eacch folder in the library source `(/src/lib)` is it's own feature.
+  - the only exception is the `common` folder.
+- The common folder contains `shared code` that would be useful to all features.
+- Features may sometimes depend on classes other features, an example would be the `entity-tree-select` feature whicch depends on models from Auth.
+- When you creating a new module, it's alright to keep it self-contained until fully developped then common code can be identified and moved to the `common` folder.
