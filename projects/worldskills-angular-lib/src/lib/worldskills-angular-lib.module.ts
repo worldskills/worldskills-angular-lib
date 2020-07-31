@@ -3,7 +3,6 @@ import { WorldskillsAngularLibComponent } from './worldskills-angular-lib.compon
 import { AlertComponent } from './alerts/alert/alert.component';
 import { AlertsComponent } from './alerts/alerts/alerts.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { PuppeteerBannerComponent } from './banners/puppeteer-banner/puppeteer-banner.component';
 import { StagingBannerComponent } from './banners/staging-banner/staging-banner.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs/breadcrumbs.component';
@@ -24,6 +23,7 @@ import { VoteControlComponent } from './polls/vote-control/vote-control.componen
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/entity-tree-select.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SelectDirective } from './entity-tree/directives/select.directive';
 
 
 @NgModule({
@@ -41,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MenuAccessPipe,
     PollResultComponent,
     PuppeteerBannerComponent,
+    SelectDirective,
     SortPipe,
     StagingBannerComponent,
     StandardPollComponent,
@@ -69,6 +70,7 @@ import { HttpClientModule } from '@angular/common/http';
     MenuAccessPipe,
     PollResultComponent,
     PuppeteerBannerComponent,
+    SelectDirective,
     SortPipe,
     StagingBannerComponent,
     StandardPollComponent,

@@ -18,7 +18,8 @@
     "paths": {
       "worldskills-angular-lib": [
         "dist/worldskills-angular-lib/worldskills-angular-lib",
-        "dist/worldskills-angular-lib"
+        "dist/worldskills-angular-lib",
+        "projects/worldskills-angular-lib/src/public_api.ts"
       ]
     }
   }

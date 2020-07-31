@@ -19,7 +19,8 @@
             "production": {
               "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "vendorSourceMap": true
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -80,7 +81,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
