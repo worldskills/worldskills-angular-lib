@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "ws_copy_css": "mkdir -p dist/worldskills-angular-lib/css/ && cp -R ./projects/worldskills-angular-lib/src/lib/css/ ./dist/worldskills-angular-lib/css/",
-    "ws_build_lib": "ng build worldskills-angular-lib",
+    "ws_build_lib": "ng build --prod worldskills-angular-lib",
     "ws_npm_pack": "cd dist/worldskills-angular-lib && npm pack",
     "ws_package": "npm run ws_build_lib && npm run ws_copy_css && npm run ws_npm_pack"
   },
