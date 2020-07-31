@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WorldskillsAngularLibModule } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
@@ -11,7 +11,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
 import { AnotherPageComponent } from './another-page/another-page.component';
-import { Breadcrumb } from '../../../../dist/worldskills-angular-lib/lib/breadcrumbs/breadcrumb';
 import { AnotherRouteComponent } from './another-route/another-route.component';
 import { NestedPageComponent } from './nested-page/nested-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
