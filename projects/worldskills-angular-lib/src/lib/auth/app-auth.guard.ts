@@ -7,9 +7,7 @@ import { AuthGuardAccess } from './models/auth-guard-access';
 import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AppAuthGuard implements CanActivate {
   constructor(protected auth: NgAuthService, protected wsi: WorldskillsAngularLibService, protected router: Route) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)

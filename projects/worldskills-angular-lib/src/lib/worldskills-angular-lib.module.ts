@@ -52,7 +52,6 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    OAuthModule.forRoot(),
     NgbModule,
     NgSelectModule
   ],
@@ -76,6 +75,7 @@ import { HttpClientModule } from '@angular/common/http';
     VoteControlComponent,
     WordmarkComponent,
     WeightedPollComponent
-  ]
+  ],
+  providers: []
 })
 export class WorldskillsAngularLibModule { }

@@ -13,6 +13,11 @@ export * from './lib/common/models/link';
 export * from './lib/common/models/pair';
 
 /*
+  Shared Services
+*/
+export * from './lib/common/services/upload.service';
+
+/*
   Config
 */
 export * from './lib/config/app.config';
