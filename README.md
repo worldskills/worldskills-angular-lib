@@ -140,3 +140,16 @@ When extending the library follow theese guidelies:
 - The common folder contains `shared code` that would be useful to all features.
 - Features may sometimes depend on classes other features, an example would be the `entity-tree-select` feature whicch depends on models from Auth.
 - When you creating a new module, it's alright to keep it self-contained until fully developped then common code can be identified and moved to the `common` folder.
+- We follow the one-class per file rule. exceptions can be made where it is sensible.
+- When creating a new service that requires config. please hook onto the config cchange event in your service constructor
+
+### Hooking onto the config change events
+
+```TypeScript
+this.wsi.serviceConfigSubject.subscribe(
+  next => {
+    this.appCode = next.appCode;
+    this.endpoint = next.apiEndpoint + '/auth';
+  }
+);
+```
