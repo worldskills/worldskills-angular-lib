@@ -24,6 +24,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/entity-tree-select.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SelectDirective } from './entity-tree/directives/select.directive';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SelectDirective } from './entity-tree/directives/select.directive';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
     NgbModule,
     NgSelectModule
   ],

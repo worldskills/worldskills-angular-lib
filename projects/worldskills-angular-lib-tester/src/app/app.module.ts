@@ -28,7 +28,7 @@ const appRoutes: Routes = [
 
   { path: 'another', component: AnotherPageComponent,
     data: {
-      breadcrumb: { key: 'another', label: 'Another' }
+
     }
   },
 
@@ -36,12 +36,10 @@ const appRoutes: Routes = [
     children: [
       { path: '', component: AnotherPageComponent,
         data: {
-          breadcrumb: { key: 'another', label: 'Another' }
         }
       },
       { path: 'nested', component: NestedPageComponent,
         data: {
-          breadcrumb: { key: 'nested', label: 'Nested Page' }
         }
       },
     ]
