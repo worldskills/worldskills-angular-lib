@@ -13,6 +13,13 @@ export * from './lib/common/models/link';
 export * from './lib/common/models/pair';
 
 /*
+  Shared Pipes
+*/
+export * from './lib/common/pipes/date-sort.pipe';
+export * from './lib/common/pipes/relative-date.pipe';
+
+
+/*
   Shared Services
 */
 export * from './lib/common/services/upload.service';
@@ -46,11 +53,6 @@ export * from './lib/common/util/ws.service';
   Helpers
 */
 export * from './lib/common/helpers/date.helper';
-
-/*
-  Pipes
-*/
-export * from './lib/common/pipes/date-sort.pipe';
 
 /*
   Alerts
@@ -91,7 +93,6 @@ export * from './lib/entity-tree/models/entity-tree-select-controls';
 export * from './lib/entity-tree/models/entity-tree-select-labels';
 export * from './lib/entity-tree/models/ws-select-change-event';
 export * from './lib/entity-tree/types/tree-entity';
-
 
 /*
   Banners
@@ -156,7 +157,6 @@ export * from './lib/resources/models/translation-create';
 export * from './lib/resources/models/version';
 export * from './lib/resources/models/version-create';
 export * from './lib/resources/resource.service';
-
 
 /*
   Polls

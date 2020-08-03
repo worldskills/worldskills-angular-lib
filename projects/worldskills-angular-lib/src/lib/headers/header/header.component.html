@@ -20,7 +20,7 @@
           {{ getInitials() }}
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+          <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.first_name }} {{ currentUser.last_name }}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" (click)="logout(); false;">Logout</a>
         </div>

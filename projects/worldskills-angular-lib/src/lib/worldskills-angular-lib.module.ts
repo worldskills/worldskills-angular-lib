@@ -25,6 +25,7 @@ import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/enti
 import { HttpClientModule } from '@angular/common/http';
 import { SelectDirective } from './entity-tree/directives/select.directive';
 import { RouterModule } from '@angular/router';
+import { RelativeDatePipe } from './common/pipes/relative-date.pipe';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { RouterModule } from '@angular/router';
     MenuAccessPipe,
     PollResultComponent,
     PuppeteerBannerComponent,
+    RelativeDatePipe,
     SelectDirective,
     SortPipe,
     StagingBannerComponent,
@@ -72,6 +74,7 @@ import { RouterModule } from '@angular/router';
     MenuAccessPipe,
     PollResultComponent,
     PuppeteerBannerComponent,
+    RelativeDatePipe,
     SelectDirective,
     SortPipe,
     StagingBannerComponent,
