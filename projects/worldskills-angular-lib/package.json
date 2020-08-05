@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/worldskills-angular-lib",
-  "version": "10.0.7",
+  "version": "10.0.8",
   "peerDependencies": {
     "@angular/common": "^10.0.4",
     "@angular/core": "^10.0.4",

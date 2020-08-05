@@ -28,7 +28,10 @@ export class BreadcrumbsService {
     this.breadcrumbsSubject = new BehaviorSubject([]);
   }
 
-  public build(route: ActivatedRoute, url: string = ''): void {
+  public build(route: ActivatedRoute, url: string = '', first = true): void {
+    if (first) {
+      this.breadcrumbs = [];
+    }
     if (route.outlet === this.targetOutlet) {
       const path = route.snapshot.url.map(segment => segment.path).join('/');
       url = `${url}/${path}`;
@@ -57,7 +60,7 @@ export class BreadcrumbsService {
 
       route.children.forEach(
         child => {
-          this.build(child, url);
+          this.build(child, url, false);
         }
       );
     }

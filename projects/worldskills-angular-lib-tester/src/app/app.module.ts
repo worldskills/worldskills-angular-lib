@@ -30,19 +30,23 @@ const appRoutes: Routes = [
 
   { path: 'another', component: AnotherPageComponent,
     data: {
-
+      breadcrumb: { key: 'another', label: 'Another' }
     }
   },
 
   { path: 'nest', component: AnotherRouteComponent,
+    data: {
+      breadcrumb: { key: 'nest', label: 'Nest' }
+    },
     children: [
       { path: '', component: AnotherPageComponent,
         data: {
         }
       },
       { path: 'nested', component: NestedPageComponent,
-        canActivate: [GuardService],
+        // canActivate: [GuardService],
         data: {
+          breadcrumb: { key: 'nested', label: 'Nested' }
         }
       },
     ]
