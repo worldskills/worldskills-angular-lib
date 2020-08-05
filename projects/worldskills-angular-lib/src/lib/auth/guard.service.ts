@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Route, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
 import { NgAuthService } from './ng-auth.service';
-import { Observable } from 'rxjs';
-import { AuthGuardAccess } from './models/auth-guard-access';
+import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
+import { Route, RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, CanActivate } from '@angular/router';
 import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
+import { AuthGuardAccess } from './models/auth-guard-access';
+import { Observable } from 'rxjs';
 
-export class AppAuthGuard implements CanActivate {
-  constructor(protected auth: NgAuthService, protected wsi: WorldskillsAngularLibService, protected router: Route) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
-      : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+@Injectable({
+  providedIn: 'root'
+})
+export class GuardService implements CanActivate {
+
+  constructor(public auth: NgAuthService, public wsi: WorldskillsAngularLibService) { }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+      console.log('here');
       const user = this.getCurrentUser();
 
       if (user == null) {
         return this.login(state);
       }
 
-      const roles = route.data.roles as AuthGuardAccess[];
+      const roles = next.data.roles as AuthGuardAccess[];
 
       if (GenericUtil.isNullOrUndefined(roles)) {
         return false;

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { WorldskillsAngularLibModule } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
-import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions, Route, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -14,12 +14,8 @@ import { AnotherPageComponent } from './another-page/another-page.component';
 import { AnotherRouteComponent } from './another-route/another-route.component';
 import { NestedPageComponent } from './nested-page/nested-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { AppAuthGuard } from '../../../worldskills-angular-lib/src/lib/auth/app-auth.guard';
+import { GuardService } from '../../../worldskills-angular-lib/src/lib/auth/guard.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-class AppGuard extends AppAuthGuard {}
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -45,7 +41,7 @@ const appRoutes: Routes = [
         }
       },
       { path: 'nested', component: NestedPageComponent,
-        canActivate: [AppGuard],
+        canActivate: [GuardService],
         data: {
         }
       },
