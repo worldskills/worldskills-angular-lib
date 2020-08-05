@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WorldskillsAngularLibModule } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
@@ -14,13 +14,19 @@ import { AnotherPageComponent } from './another-page/another-page.component';
 import { AnotherRouteComponent } from './another-route/another-route.component';
 import { NestedPageComponent } from './nested-page/nested-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AppAuthGuard } from '../../../worldskills-angular-lib/src/lib/auth/app-auth.guard';
 
+@Injectable({
+  providedIn: 'root'
+})
+class AppGuard extends AppAuthGuard {}
 
 const routerOptions: ExtraOptions = {
   useHash: false,
   anchorScrolling: 'enabled',
   // ...any other options you'd like to use
 };
+
 
 const appRoutes: Routes = [
   // /home
@@ -39,6 +45,7 @@ const appRoutes: Routes = [
         }
       },
       { path: 'nested', component: NestedPageComponent,
+        canActivate: [AppGuard],
         data: {
         }
       },

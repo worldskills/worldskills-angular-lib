@@ -7,23 +7,14 @@ import { AuthGuardAccess } from './models/auth-guard-access';
 import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
 
-@Injectable()
 export class AppAuthGuard implements CanActivate {
   constructor(protected auth: NgAuthService, protected wsi: WorldskillsAngularLibService, protected router: Route) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
       : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-      const user = sessionStorage.getItem('user.current');
+      const user = this.getCurrentUser();
 
-      // ensure the user session exists
-      if (GenericUtil.isNullOrUndefined(user)) {
-          return this.login(state);
-      }
-
-      const userModel = JSON.parse(user) as User;
-
-      // ensure the user model is valid
-      if (GenericUtil.isNullOrUndefined(userModel)) {
-          return this.login(state);
+      if (user == null) {
+        return this.login(state);
       }
 
       const roles = route.data.roles as AuthGuardAccess[];
@@ -32,7 +23,7 @@ export class AppAuthGuard implements CanActivate {
         return false;
       }
 
-      const userRoles = userModel.roles
+      const userRoles = user.roles
         .filter( x =>
           roles.findIndex(y => y.appCode === x.role_application.application_code && y.name === x.name) !== -1
         );
@@ -40,7 +31,17 @@ export class AppAuthGuard implements CanActivate {
       return userRoles.length > 0;
   }
 
-  login(state: RouterStateSnapshot): boolean {
+  protected getCurrentUser(): User {
+    const user = sessionStorage.getItem('user.current');
+
+    if (GenericUtil.isNullOrUndefined(user)) {
+       return null;
+    }
+
+    return JSON.parse(user) as User;
+  }
+
+  protected login(state: RouterStateSnapshot): boolean {
     sessionStorage.setItem('returnUrl', state.url);
     this.auth.login();
     return false;
