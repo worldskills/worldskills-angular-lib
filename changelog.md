@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.1.0
+
+* Vote control now supports the `multiselect` type.
+
 ## 10.0.0
 
 * Port to angular 10

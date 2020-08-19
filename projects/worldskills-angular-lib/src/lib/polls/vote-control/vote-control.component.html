@@ -35,6 +35,9 @@
       <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
         (optionSelected)="selected($event)">
       </ws-weighted-poll>
+      <ws-multiselect-poll *ngIf="poll.type === 'multiselect'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+        (optionSelected)="selected($event)">
+      </ws-multiselect-poll>
       <ng-container *ngTemplateOutlet="afterOptionsTemplate ? afterOptionsTemplate : voteControlEmptyTemplate"></ng-container>
     </div>
     <div class="card-text" *ngIf="view === 'result'">

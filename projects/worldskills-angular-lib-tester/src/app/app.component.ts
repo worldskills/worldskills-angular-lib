@@ -115,7 +115,7 @@ export class AppComponent {
       start: new Date(),
       expiry: new Date(),
       numberOfSelections: 3,
-      type: 'weighted',
+      type: 'multiselect',
       question: { lang_code: 'en', text: 'Question ?' },
       title: { lang_code: 'en', text: 'Title' },
       options: [
@@ -140,9 +140,9 @@ export class AppComponent {
 
     this.results = [
       {id: 1, count: 0, option: this.poll.options[0]},
-      {id: 2, count: 3, option: this.poll.options[1]},
-      {id: 3, count: 1, option: this.poll.options[2]},
-      {id: 4, count: 2, option: this.poll.options[3]}
+      {id: 2, count: 0, option: this.poll.options[1]},
+      {id: 3, count: 0, option: this.poll.options[2]},
+      {id: 4, count: 0, option: this.poll.options[3]}
     ];
 
     this.voted = {hasVoted: false, votes: []};
