@@ -15,6 +15,7 @@ export interface Poll {
   allowingReVote: boolean;
   title: I18nText;
   question: I18nText;
+  resultText?: I18nText;
   type: string;
   numberOfSelections: number;
   created: Date;
