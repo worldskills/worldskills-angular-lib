@@ -8,6 +8,13 @@
 * Added form styles for `ng-select` and `ws-entity-tree-select`
 * Updated examples
 * Small fix `datetime-picker`
+* Added `[wsUserRole]` directive
+* Refactored code base
+* Added `html` util
+* Added `i18n` util
+* Added `router` util
+* Added `rxjs` util
+* Added `user-role` util
 
 ## 10.0.0
 

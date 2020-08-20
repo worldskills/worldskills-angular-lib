@@ -19,4 +19,8 @@ export class ArrayUtil {
     return Array.isArray(obj);
   }
 
+  static  flatten<T extends { children?: Array<any> } = {children?: Array<any>}>(entities: Array<T>): Array<T> {
+    return entities.reduce((acc, entity) => entity.children ? [...acc, entity, ...entity.children] : [...acc, entity], []);
+  }
+
 }

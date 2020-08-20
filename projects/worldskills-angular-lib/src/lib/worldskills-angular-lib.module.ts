@@ -28,6 +28,7 @@ import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-p
 import { EntityTreeSelectComponent } from './entity-tree-select/components/entity-tree-select.component';
 import { SelectDirective } from './select/directives/select.directive';
 import { SelectAsyncHeaderComponent } from './select/components/select-async-header.component';
+import { UserRoleDirective } from './common/directives/user-role.directive';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { SelectAsyncHeaderComponent } from './select/components/select-async-hea
     VoteControlComponent,
     WordmarkComponent,
     WeightedPollComponent,
-    MultiselectPollComponent
+    MultiselectPollComponent,
+    UserRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ import { SelectAsyncHeaderComponent } from './select/components/select-async-hea
     StandardPollComponent,
     VoteControlComponent,
     WordmarkComponent,
-    WeightedPollComponent
+    WeightedPollComponent,
+    UserRoleDirective
   ],
   providers: []
 })

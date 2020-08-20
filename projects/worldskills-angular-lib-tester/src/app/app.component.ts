@@ -296,4 +296,30 @@ export class AppComponent {
   onSelectValid(valid: boolean): void {
     console.log('is select search length valid', valid);
   }
+
+  get fakeUser(): User {
+    return {
+      roles: [
+        {
+          name: 'roleA',
+          apply_per_entity: true,
+          ws_entity: {id: 1},
+          role_application: {application_code: 100},
+        },
+        {
+          name: 'roleB',
+          apply_per_entity: true,
+          ws_entity: {id: 1},
+          role_application: {application_code: 100},
+        },
+        {
+          name: 'roleC',
+          apply_per_entity: true,
+          ws_entity: {id: 2},
+          role_application: {application_code: 200},
+        }
+      ]
+    } as Partial<User> as User;
+  }
+
 }

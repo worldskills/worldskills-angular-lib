@@ -46,8 +46,14 @@ export * from './lib/common/util/array.util';
 export * from './lib/common/util/date.util';
 export * from './lib/common/util/generic.util';
 export * from './lib/common/util/http.util';
-export * from './lib/common/util/ws.component';
-export * from './lib/common/util/ws.service';
+export * from './lib/common/util/html.util';
+export * from './lib/common/util/i18n.util';
+export * from './lib/common/util/router.util';
+export * from './lib/common/util/rxjs.util';
+export * from './lib/common/util/user-role.util';
+export * from './lib/common/components/ws.component';
+export * from './lib/common/services/ws.service';
+export * from './lib/common/directives/user-role.directive';
 
 /*
   Helpers
