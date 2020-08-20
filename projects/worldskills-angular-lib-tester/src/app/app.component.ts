@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
-import { AlertType, MenuItem, Language, Poll, Result, Vote } from '../../../worldskills-angular-lib/src/public-api';
+import {
+  AlertType,
+  MenuItem,
+  Language,
+  Poll,
+  Result,
+  Vote,
+  User,
+  VoteEntry,
+} from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
 import { NgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { User } from '../../../../dist/worldskills-angular-lib/lib/auth/models/user';
-import { VoteEntry } from '../../../../dist/worldskills-angular-lib/lib/polls/models/vote-entry';
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
+import { from } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +44,48 @@ export class AppComponent {
 
   datetime: Datetime;
 
-  constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
-              private ngAuth: NgAuthService) {
+  // wsSelect
+  @ViewChild('form', {static: true}) form: NgForm;
+  selectChange1 = '';
+  wsSelectChange1 = '';
+  selectChange2 = '';
+  wsSelectChange2 = '';
+  selectChange3 = '';
+  wsSelectChange3 = '';
+  selectChange4 = '';
+  wsSelectChange4 = '';
+  asyncSearchItems = [];
+  asyncSearchSubscription: (value: string) => void;
+  ngSelectItems = [
+    {
+      key: 1,
+      label: {lang: 'en', name: 'A'},
+    },
+    {
+      key: 2,
+      label: {lang: 'en', name: 'B'},
+    },
+    {
+      key: 3,
+      label: {lang: 'en', name: 'C'},
+    },
+    {
+      key: 4,
+      label: {lang: 'en', name: 'D'},
+    },
+    {
+      key: 5,
+      label: {lang: 'en', name: 'E'},
+    },
+  ];
+
+  constructor(
+      private alerts: AlertService,
+      private wsi: WorldskillsAngularLibService,
+      private oauth: OAuthService,
+      private ngAuth: NgAuthService
+  ) {
   }
-
-
 
   // tslint:disable-next-line:typedef use-lifecycle-interface
   ngOnInit() {
@@ -65,7 +111,15 @@ export class AppComponent {
         console.log(error);
       }
     );
+    this.asyncSearchSubscription = (value: string) => {
+      const observable = from(this.asyncSearchFn(value));
+      observable.subscribe(items => {
+        this.asyncSearchItems = items;
+      });
+      return observable;
+    };
     this.pollInit();
+    this.form.ngSubmit.emit();
   }
 
   login(): void {
@@ -96,12 +150,12 @@ export class AppComponent {
 
     const httpConfig = this.wsi.httpConfigSubject.getValue();
     httpConfig.encoderUriPatterns = []; //
-    httpConfig.authUriPatterns = ['http://localhost:8081'];
+    httpConfig.authUriPatterns = ['api.worldskills.show'];
     this.wsi.httpConfigSubject.next(httpConfig);
 
     const serviceConfig = this.wsi.serviceConfigSubject.getValue();
     serviceConfig.appCode = [500];
-    serviceConfig.apiEndpoint = 'http://localhost:8081';
+    serviceConfig.apiEndpoint = 'https://api.worldskills.show';
     this.wsi.serviceConfigSubject.next(serviceConfig);
 
   }
@@ -180,5 +234,66 @@ export class AppComponent {
 
   delete(poll: Poll): void {
     console.log('delete');
+  }
+
+  selectChange(selection: object, field: string): void {
+    this[field] = JSON.stringify(selection);
+  }
+
+  labelReader(item: {key: number, label: {lang: string, name: string}}): string {
+    return `${item.label.name} (${item.label.lang})`;
+  }
+
+  valueReader(item: {key: number, label: {lang: string, name: string}}): string {
+    return `VALUE-${item.key}`;
+  }
+
+  asyncSearchFn(searchTerm: string): Promise<Array<{id: number, name: string}>> {
+    return new Promise<Array<{id: number, name: string}>>(resolve => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: 1,
+            name: 'Apple',
+          },
+          {
+            id: 2,
+            name: 'Banana',
+          },
+          {
+            id: 3,
+            name: 'Lemon',
+          },
+          {
+            id: 4,
+            name: 'Orange',
+          },
+          {
+            id: 5,
+            name: 'Kiwi',
+          },
+          {
+            id: 6,
+            name: 'Nectarine',
+          },
+          {
+            id: 7,
+            name: 'Apricot',
+          },
+          {
+            id: 8,
+            name: 'Pear',
+          },
+          {
+            id: 9,
+            name: 'Mango',
+          },
+        ].filter(f => f.name.toLowerCase().includes(searchTerm.toLowerCase())));
+      }, 2000);
+    });
+  }
+
+  onSelectValid(valid: boolean): void {
+    console.log('is select search length valid', valid);
   }
 }

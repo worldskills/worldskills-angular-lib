@@ -21,12 +21,13 @@ import { StandardPollComponent } from './polls/standard-poll/standard-poll.compo
 import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.component';
 import { VoteControlComponent } from './polls/vote-control/vote-control.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { EntityTreeSelectComponent } from './entity-tree/entity-tree-select/entity-tree-select.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SelectDirective } from './entity-tree/directives/select.directive';
 import { RouterModule } from '@angular/router';
 import { RelativeDatePipe } from './common/pipes/relative-date.pipe';
 import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-poll.component';
+import { EntityTreeSelectComponent } from './entity-tree-select/components/entity-tree-select.component';
+import { SelectDirective } from './select/directives/select.directive';
+import { SelectAsyncHeaderComponent } from './select/components/select-async-header.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-p
     PuppeteerBannerComponent,
     RelativeDatePipe,
     SelectDirective,
+    SelectAsyncHeaderComponent,
     SortPipe,
     StagingBannerComponent,
     StandardPollComponent,
@@ -78,6 +80,7 @@ import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-p
     PuppeteerBannerComponent,
     RelativeDatePipe,
     SelectDirective,
+    SelectAsyncHeaderComponent,
     SortPipe,
     StagingBannerComponent,
     StandardPollComponent,

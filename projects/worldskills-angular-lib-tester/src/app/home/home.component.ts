@@ -3,7 +3,6 @@ import { WorldskillsAngularLibService } from '../../../../worldskills-angular-li
 import { Poll } from '../../../../worldskills-angular-lib/src/lib/polls/models/poll';
 import { Result } from '../../../../worldskills-angular-lib/src/lib/polls/models/result';
 import { Vote } from '../../../../worldskills-angular-lib/src/lib/polls/models/vote';
-import { VoteEntry } from '../../../../../dist/worldskills-angular-lib/lib/polls/models/vote-entry';
 import { NgAuthService } from '../../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
 import { Router } from '@angular/router';
 import { RedirectHandler } from '../../../../worldskills-angular-lib/src/lib/auth/handlers/redirect.handler';

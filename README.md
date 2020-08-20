@@ -56,8 +56,9 @@ once you've set up a new angular application install the following libraries:
 
 ### Styleing
 
-Add the following line to an applications `styles.css`
-`@import "~@ng-select/ng-select/themes/default.theme.css";`
+Add the following line to an applications `styles.css`  
+`@import "~@ng-select/ng-select/themes/default.theme.css";`  
+`@import "~@worldskills/worldskills-angular-lib/assets/styles/index.css";`  
 
 ### app.module.ts
 

@@ -1,0 +1,20 @@
+/* entity tree select */
+
+ws-entity-tree-select.ng-invalid .ng-select-container {
+    border-color: #dc3545;
+}
+
+ws-entity-tree-select.ng-valid .ng-select-container {
+    border-color: #28a745;
+}
+
+/* ng-select */
+
+ng-select.ng-invalid .ng-select-container {
+    border-color: #dc3545;
+}
+
+ng-select.ng-valid .ng-select-container {
+    border-color: #28a745;
+}
+
