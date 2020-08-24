@@ -8,6 +8,7 @@ import { Page } from './models/page';
 import { Result } from './models/result';
 import { Vote } from './models/vote';
 import { VoteEntry } from './models/vote-entry';
+import { Track } from './models/track';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,11 @@ export class PollService {
   public getResults(id: number): Observable<Result[]> {
     const url = `${this.endpoint}/${id}/results`;
     return this.http.get<Result[]>(url);
+  }
+
+  public getTrackRecords(id: number): Observable<Track[]> {
+    const url = `${this.endpoint}/${id}/tracks`;
+    return this.http.get<Track[]>(url);
   }
 
   public hasVoted(id: number): Observable<Vote> {

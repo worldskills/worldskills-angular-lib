@@ -168,6 +168,7 @@ export * from './lib/polls/models/option';
 export * from './lib/polls/models/page';
 export * from './lib/polls/models/poll';
 export * from './lib/polls/models/result';
+export * from './lib/polls/models/track';
 export * from './lib/polls/models/vote-entry';
 export * from './lib/polls/models/vote';
 export * from './lib/polls/poll-result/poll-result.component';
