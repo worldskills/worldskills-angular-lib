@@ -6,6 +6,7 @@ import { NgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ng-
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from '../../../../dist/worldskills-angular-lib/lib/auth/models/user';
 import { VoteEntry } from '../../../../dist/worldskills-angular-lib/lib/polls/models/vote-entry';
+import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,8 @@ export class AppComponent {
   results: Result[];
   voted: Vote;
 
+  datetime: Datetime;
+
   constructor(private alerts: AlertService, private wsi: WorldskillsAngularLibService, private oauth: OAuthService,
               private ngAuth: NgAuthService) {
   }
@@ -40,6 +43,7 @@ export class AppComponent {
 
   // tslint:disable-next-line:typedef use-lifecycle-interface
   ngOnInit() {
+    this.datetime = new Datetime();
     this.configureLib();
     this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
 
