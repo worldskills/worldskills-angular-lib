@@ -3,7 +3,7 @@ import { ArrayUtil } from './array.util';
 export class HttpUtil {
   static objectToParams(obj: {}): HttpParams {
     let params = new HttpParams();
-    Object.getOwnPropertyNames(params).forEach((propName, propIndex) => {
+    Object.getOwnPropertyNames(obj).forEach((propName, propIndex) => {
       const prop = obj[propName];
       if (ArrayUtil.isArray(prop)) {
         (prop as any[]).forEach((item, valueIndex) => {
