@@ -4,7 +4,8 @@ import {filter, map, startWith} from 'rxjs/operators';
 
 export class RouterUtil {
     static lastNavigationEventWithOrInitialObservable(router: Router, name = null): Observable<any> {
-        return router.events.pipe(filter(event => event instanceof NavigationEnd),
+        const result = router.events.pipe(filter(event => event instanceof NavigationEnd),
             startWith(true), map(v => name !== null ? name : v));
+        return result;
     }
 }

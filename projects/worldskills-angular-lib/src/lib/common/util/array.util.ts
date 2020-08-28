@@ -20,7 +20,8 @@ export class ArrayUtil {
   }
 
   static  flatten<T extends { children?: Array<any> } = {children?: Array<any>}>(entities: Array<T>): Array<T> {
-    return entities.reduce((acc, entity) => entity.children ? [...acc, entity, ...entity.children] : [...acc, entity], []);
+    const result = entities.reduce((acc, entity) => entity.children ? [...acc, entity, ...entity.children] : [...acc, entity], []);
+    return result;
   }
 
 }

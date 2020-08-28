@@ -1,6 +1,7 @@
 export class HtmlUtil {
     static txt(html: string): string {
-        return String(html).replace(/<[^>]+>/gm, '');
+        const result = String(html).replace(/<[^>]+>/gm, '');
+        return result;
     }
 
 }
