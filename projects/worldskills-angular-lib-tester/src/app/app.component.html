@@ -1,73 +1,148 @@
-
-  <header>
+<header>
     <ws-header
-    [appName]="'Tester'"
-    [isLoggedIn]="isLoggedIn"
-    [showLoginAndLogoutButtons]="true"
-    [menuItems]="menuItems"
-    [currentUser]="user"
-    (loginClick)="login()"
-    (logoutClick)="logout()"
-  ></ws-header>
-  </header>
+            [appName]="'Tester'"
+            [isLoggedIn]="isLoggedIn"
+            [showLoginAndLogoutButtons]="true"
+            [menuItems]="menuItems"
+            [currentUser]="user"
+            (loginClick)="login()"
+            (logoutClick)="logout()"
+    ></ws-header>
+</header>
 
 <div class="container">
-  <ws-puppeteer-banner [currentUser]="user"></ws-puppeteer-banner>
-  <ws-staging-banner></ws-staging-banner>
+    <ws-puppeteer-banner [currentUser]="user"></ws-puppeteer-banner>
+    <ws-staging-banner></ws-staging-banner>
 </div>
 
 <div class="container">
-  <ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'" [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
+    <ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'"
+                    [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
 </div>
 
 <div class="container">
-  <ws-alerts></ws-alerts>
-  <router-outlet></router-outlet>
+    <ws-alerts></ws-alerts>
+    <router-outlet></router-outlet>
 
+    <ng-template #test>
+        Template Test
+    </ng-template>
 
-<ng-template #test>
-  Template Test
-</ng-template>
+    <p>home works!</p>
 
-<p>home works!</p>
+    <h3>Poll</h3>
+    <!-- <ws-poll-result-graph [poll]="poll" [results]="results"></ws-poll-result-graph> -->
+    <!-- <ws-standard-poll *ngIf="poll && voted" [poll]="poll" [voted]="voted" [initialSelection]="selected" (optionSelected)="optionSelected($event)"></ws-standard-poll> -->
+    <ws-vote-control
+            [showEditButton]="true" [showExtendButton]="true" [showResetButton]="true" [showDeleteButton]="true"
+            [poll]="poll" [results]="results" [voted]="voted"
+            [beforeOptionsTemplate]="test"
+            [afterOptionsTemplate]="test"
+            [beforeResultTemplate]="test"
+            [afterResultTemplate]="test"
+            (viewChange)="viewChange($event)" (voteSelected)="voteSelected($event)" (voteRemoved)="voteRemoved($event)"
+            (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)">
+    </ws-vote-control>
 
-<h3>Poll</h3>
-<!-- <ws-poll-result-graph [poll]="poll" [results]="results"></ws-poll-result-graph> -->
-<!-- <ws-standard-poll *ngIf="poll && voted" [poll]="poll" [voted]="voted" [initialSelection]="selected" (optionSelected)="optionSelected($event)"></ws-standard-poll> -->
-<ws-vote-control
-  [showEditButton]="true" [showExtendButton]="true" [showResetButton]="true" [showDeleteButton]="true"
-  [poll]="poll" [results]="results" [voted]="voted"
-  [beforeOptionsTemplate]="test"
-  [afterOptionsTemplate]="test"
-  [beforeResultTemplate]="test"
-  [afterResultTemplate]="test"
-  (viewChange)="viewChange($event)" (voteSelected)="voteSelected($event)" (voteRemoved)="voteRemoved($event)"
-  (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)">
-</ws-vote-control>
+    <form class="form-horizontal was-validated" #form="ngForm">
+        <h3>Entity Tree Select</h3>
+        <ws-entity-tree-select
+                [ngModel]="null"
+                name="treeSelect"
+                required
+        ></ws-entity-tree-select>
 
-<h3>Date Time Picker</h3>
-<ws-datetime-picker [(ngModel)]="datetime"></ws-datetime-picker>
+        <h3>Date Time Picker</h3>
+        <ws-datetime-picker name="date" [(ngModel)]="datetime"></ws-datetime-picker>
 
-<h3>Entity Tree Select</h3>
-<ws-entity-tree-select></ws-entity-tree-select>
+        <h3>Select (@ng-select/ng-select) [wsSelect]</h3>
+        <ng-select
+                [wsSelect]="['key', 'label.name']"
+                [items]="ngSelectItems"
+                (change)="selectChange($event, 'selectChange1')"
+                (wsChange)="selectChange($event, 'wsSelectChange1')"
+                [ngModel]="null"
+                name="ngSelect1"
+                required
+        ></ng-select>
 
+        <pre>
+change: {{selectChange1}}
+wsChange: {{wsSelectChange1}}
+        </pre>
+
+        <h4>Using custom renderers</h4>
+        <ng-select
+                wsSelect
+                [labelReader]="labelReader"
+                [valueReader]="valueReader"
+                [items]="ngSelectItems"
+                (change)="selectChange($event, 'selectChange2')"
+                (wsChange)="selectChange($event, 'wsSelectChange2')"
+                [ngModel]="null"
+                name="ngSelect2"
+                required
+        ></ng-select>
+        <pre>
+change: {{selectChange2}}
+wsChange: {{wsSelectChange2}}
+        </pre>
+
+        <h4>Async search</h4>
+        <ng-select
+                [wsSelect]="['id', 'name']"
+                [asyncSearch]="asyncSearchSubscription"
+                [items]="asyncSearchItems"
+                (change)="selectChange($event, 'selectChange3')"
+                (wsChange)="selectChange($event, 'wsSelectChange3')"
+                [ngModel]="null"
+                name="ngSelect3"
+                required
+        >
+        </ng-select>
+        <pre>
+change: {{selectChange3}}
+wsChange: {{wsSelectChange3}}
+        </pre>
+
+        <h4>Async search (advanced setup)</h4>
+        <ng-select
+                [wsSelect]="['id', 'name']"
+                [asyncSearch]="{observer: asyncSearchSubscription, minCharacters: 5, debounceTime: 1000, message: 'type 5 chars to start looking', onValid: onSelectValid}"
+                [items]="asyncSearchItems"
+                (change)="selectChange($event, 'selectChange4')"
+                (wsChange)="selectChange($event, 'wsSelectChange4')"
+                [ngModel]="null"
+                name="ngSelect4"
+                required
+        >
+        </ng-select>
+        <pre>
+change: {{selectChange4}}
+wsChange: {{wsSelectChange4}}
+        </pre>
+    </form>
 </div>
 
 <ng-template #override5>
-  <h1>Social</h1>
-  <ul>
-    <li><a href="https://www.facebook.com/WorldSkills" target="_blank"><i class="fa fa-facebook-official mr-3"></i>Facebook</a></li>
-    <li><a href="https://twitter.com/WorldSkills" target="_blank"><i class="fa fa-twitter mr-3"></i>Twitter</a></li>
-    <li><a href="https://www.youtube.com/user/WorldSkillsTV" target="_blank"><i class="fa fa-youtube-play mr-3"></i>YouTube</a></li>
-    <li><a href="https://www.flickr.com/photos/worldskills/collections/" target="_blank"><i class="fa fa-flickr mr-3"></i>Flickr</a></li>
-    <li><a href="http://instagram.com/worldskills/" target="_blank"><i class="fa fa-instagram mr-3"></i>Instagram</a></li>
-  </ul>
+    <h1>Social</h1>
+    <ul>
+        <li><a href="https://www.facebook.com/WorldSkills" target="_blank"><i class="fa fa-facebook-official mr-3"></i>Facebook</a>
+        </li>
+        <li><a href="https://twitter.com/WorldSkills" target="_blank"><i class="fa fa-twitter mr-3"></i>Twitter</a></li>
+        <li><a href="https://www.youtube.com/user/WorldSkillsTV" target="_blank"><i class="fa fa-youtube-play mr-3"></i>YouTube</a>
+        </li>
+        <li><a href="https://www.flickr.com/photos/worldskills/collections/" target="_blank"><i
+                class="fa fa-flickr mr-3"></i>Flickr</a></li>
+        <li><a href="http://instagram.com/worldskills/" target="_blank"><i
+                class="fa fa-instagram mr-3"></i>Instagram</a></li>
+    </ul>
 </ng-template>
 <ws-footer
-  [currentUser]="user"
-  [isLoggedIn]="isLoggedIn"
-  (loginClick)="login()"
-  (logoutClick)="logout()"
-  [col5Template]="override5"
-  [languages]="languages">
+        [currentUser]="user"
+        [isLoggedIn]="isLoggedIn"
+        (loginClick)="login()"
+        (logoutClick)="logout()"
+        [col5Template]="override5"
+        [languages]="languages">
 </ws-footer>

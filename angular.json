@@ -67,9 +67,13 @@
             "styles": [
               "projects/worldskills-angular-lib-tester/src/styles.css",
               "node_modules/@worldskills/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "node_modules/font-awesome/css/font-awesome.css",
+              "projects/worldskills-angular-lib/assets/styles/index.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.slim.js",
+              "node_modules/@worldskills/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
           },
           "configurations": {
             "production": {

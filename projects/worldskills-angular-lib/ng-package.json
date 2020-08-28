@@ -3,5 +3,9 @@
   "dest": "../../dist/worldskills-angular-lib",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "assets/styles/font.css",
+    "assets/styles/form.css"
+  ]
 }

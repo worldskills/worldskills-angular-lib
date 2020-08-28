@@ -3,6 +3,11 @@
 ## 10.1.0
 
 * Vote control now supports the `multiselect` type.
+* Added async search functions for `[wsSelect]`
+* Added `disableEntities` attribute for `ws-entity-tree-select`
+* Added form styles for `ng-select` and `ws-entity-tree-select`
+* Updated examples
+* Small fix `datetime-picker`
 
 ## 10.0.0
 

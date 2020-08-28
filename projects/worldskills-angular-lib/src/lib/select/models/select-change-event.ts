@@ -1,4 +1,4 @@
-export interface WsSelectChangeEvent<T = any, U = any> {
+export interface SelectChangeEvent<T = any, U = any> {
   item: T;
   original: {
     label: string,

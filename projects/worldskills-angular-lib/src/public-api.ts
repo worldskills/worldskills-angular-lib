@@ -81,18 +81,26 @@ export * from './lib/auth/auth.service';
 export * from './lib/auth/ng-auth.service';
 
 /*
-  entity-tree
+  entity-tree-select
 */
 // TODO: perhaps look at refactoring entity-tree as there's a lot of overlap with auth
-export * from './lib/entity-tree/consts/default-labels';
-export * from './lib/entity-tree/directives/select.directive';
-export * from './lib/entity-tree/entity-tree-select/entity-tree-select.component';
-export * from './lib/entity-tree/entity-tree.service';
-export * from './lib/entity-tree/models/entity-tree-fetch-params';
-export * from './lib/entity-tree/models/entity-tree-select-controls';
-export * from './lib/entity-tree/models/entity-tree-select-labels';
-export * from './lib/entity-tree/models/ws-select-change-event';
-export * from './lib/entity-tree/types/tree-entity';
+export * from './lib/entity-tree-select/consts/default-labels';
+export * from './lib/entity-tree-select/components/entity-tree-select.component';
+export * from './lib/entity-tree-select/services/entity-tree.service';
+export * from './lib/entity-tree-select/models/entity-tree-fetch-params';
+export * from './lib/entity-tree-select/models/entity-tree-select-controls';
+export * from './lib/entity-tree-select/models/entity-tree-select-labels';
+export * from './lib/entity-tree-select/types/tree-entity';
+
+/*
+  select
+ */
+export * from './lib/select/directives/select.directive';
+export * from './lib/select/components/select-async-header.component';
+export * from './lib/select/models/select-change-event';
+export * from './lib/select/models/select-async-search-observer-resolver';
+export * from './lib/select/models/select-async-search-settings-advanced';
+export * from './lib/select/models/select-async-search-settings';
 
 /*
   Banners
