@@ -1,13 +1,7 @@
 # Changelog
 
-## 10.1.0
+## 10.3.0
 
-* Vote control now supports the `multiselect` type.
-* Added async search functions for `[wsSelect]`
-* Added `disableEntities` attribute for `ws-entity-tree-select`
-* Added form styles for `ng-select` and `ws-entity-tree-select`
-* Updated examples
-* Small fix `datetime-picker`
 * Added `[wsUserRole]` directive
 * Refactored code base
 * Added `html` util
@@ -15,6 +9,19 @@
 * Added `router` util
 * Added `rxjs` util
 * Added `user-role` util
+
+## 10.2.0
+
+* Poll track records
+* Small fix `datetime-picker`
+
+## 10.1.0
+
+* Vote control now supports the `multiselect` type.
+* Added async search functions for `[wsSelect]`
+* Added `disableEntities` attribute for `ws-entity-tree-select`
+* Added form styles for `ng-select` and `ws-entity-tree-select`
+* Updated examples
 
 ## 10.0.0
 
