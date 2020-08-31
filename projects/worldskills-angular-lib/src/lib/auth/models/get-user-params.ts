@@ -9,4 +9,5 @@ export interface GetUsersParams {
   offset: number;
   limit: number;
   ws_entity?: number;
+  ws_entity_precise?: boolean;
 }
