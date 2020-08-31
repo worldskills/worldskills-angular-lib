@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { WorldskillsAngularLibService } from '../../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
-import { Poll } from '../../../../worldskills-angular-lib/src/lib/polls/models/poll';
-import { Result } from '../../../../worldskills-angular-lib/src/lib/polls/models/result';
-import { Vote } from '../../../../worldskills-angular-lib/src/lib/polls/models/vote';
-import { NgAuthService } from '../../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
 import { Router } from '@angular/router';
 import { RedirectHandler } from '../../../../worldskills-angular-lib/src/lib/auth/handlers/redirect.handler';
+import { AuthService } from '../../../../worldskills-angular-lib/src/lib/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +12,11 @@ export class HomeComponent implements OnInit {
 
   // selected: AddVoteView;
 
-  constructor(protected service: NgAuthService, protected router: Router) { }
+  constructor(protected authService: AuthService, protected router: Router) { }
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
-
-    const handler = new RedirectHandler(this.service, this.router);
+    const handler = new RedirectHandler(this.authService, this.router);
     handler.redirectOrReturn(['/nest'], error => console.log(error));
   }
 

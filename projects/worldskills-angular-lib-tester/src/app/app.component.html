@@ -22,13 +22,13 @@
 
 <div class="container">
     <ws-alerts></ws-alerts>
-    <router-outlet></router-outlet>
+    <div class="alert alert-success my-4">
+        <router-outlet></router-outlet>
+    </div>
 
     <ng-template #test>
         Template Test
     </ng-template>
-
-    <p>home works!</p>
 
     <h3>Poll</h3>
     <!-- <ws-poll-result-graph [poll]="poll" [results]="results"></ws-poll-result-graph> -->

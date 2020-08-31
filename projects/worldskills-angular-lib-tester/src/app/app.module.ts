@@ -34,6 +34,10 @@ const appRoutes: Routes = [
     }
   },
 
+  { path: 'authorized', component: AnotherPageComponent, canActivate: [GuardService], data: {
+    roles: [{appCode: 100, name: 'non-eexisting'}]
+  }},
+
   { path: 'nest', component: AnotherRouteComponent,
     data: {
       breadcrumb: { key: 'nest', label: 'Nest' }
@@ -51,7 +55,7 @@ const appRoutes: Routes = [
       },
     ]
   },
-  // { path: 'not-authorized', component: NotAuthorizedComponent },
+  { path: 'not-authorized', component: AnotherPageComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 

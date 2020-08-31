@@ -24,7 +24,7 @@ export class UserRoleDirective implements OnInit {
 
     ngOnInit(): void {
         if (this.wsUserRoleUser === true) {
-            this.authService.getLoggedInUser(true).subscribe(user => this.renderIfValid(user));
+            this.authService.currentUser.subscribe(user => this.renderIfValid(user));
         } else {
             this.renderIfValid(this.wsUserRoleUser);
         }

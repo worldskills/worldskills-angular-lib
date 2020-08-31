@@ -1,24 +1,32 @@
 import { Injectable } from '@angular/core';
-import { NgAuthService } from './ng-auth.service';
-import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { Route, RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, CanActivate } from '@angular/router';
+import { RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
 import { AuthGuardAccess } from './models/auth-guard-access';
 import { Observable } from 'rxjs';
+import { AuthService, USER_CURRENT_KEY } from './auth.service';
+import { RETURN_URL_KEY } from './handlers/redirect.handler';
+import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
+import { AppConfig } from '../config/app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuardService implements CanActivate {
 
-  constructor(public auth: NgAuthService, public wsi: WorldskillsAngularLibService) { }
+    private config: AppConfig;
+
+  constructor(
+      private authService: AuthService,
+      private wsi: WorldskillsAngularLibService,
+      private router: Router,
+  ) {
+      this.wsi.appConfigSubject.subscribe(config => (this.config = config));
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-      console.log('here');
       const user = this.getCurrentUser();
 
       if (user == null) {
@@ -36,11 +44,18 @@ export class GuardService implements CanActivate {
           roles.findIndex(y => y.appCode === x.role_application.application_code && y.name === x.name) !== -1
         );
 
-      return userRoles.length > 0;
+      const accessible = userRoles.length > 0;
+
+      console.log(this.config, accessible);
+      if (this.config && !accessible) {
+          this.router.navigate(this.config.notAuthorizedRoute, {replaceUrl: true});
+      }
+
+      return accessible;
   }
 
   protected getCurrentUser(): User {
-    const user = sessionStorage.getItem('user.current');
+    const user = sessionStorage.getItem(USER_CURRENT_KEY);
 
     if (GenericUtil.isNullOrUndefined(user)) {
        return null;
@@ -50,8 +65,8 @@ export class GuardService implements CanActivate {
   }
 
   protected login(state: RouterStateSnapshot): boolean {
-    sessionStorage.setItem('returnUrl', state.url);
-    this.auth.login();
+    sessionStorage.setItem(RETURN_URL_KEY, state.url);
+    this.authService.login();
     return false;
   }
 }

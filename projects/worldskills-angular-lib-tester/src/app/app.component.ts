@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
 import {
   AlertType,
@@ -8,11 +8,9 @@ import {
   Result,
   Vote,
   User,
-  VoteEntry,
+  VoteEntry, AuthService,
 } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
-import { NgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
 import { from } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -82,8 +80,7 @@ export class AppComponent {
   constructor(
       private alerts: AlertService,
       private wsi: WorldskillsAngularLibService,
-      private oauth: OAuthService,
-      private ngAuth: NgAuthService
+      private authService: AuthService
   ) {
   }
 
@@ -99,18 +96,19 @@ export class AppComponent {
     this.isLoggedIn = false;
     this.menuItems = [
       { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+      { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
     ];
-    this.ngAuth.loadUserProfile(
-      user => {
-        this.isLoggedIn = true;
-        console.log(user);
-        this.user = user;
-      },
-      error => {
-        this.isLoggedIn = false;
-        console.log(error);
-      }
-    );
+    // this.authService.getLoggedInUser(false).subscribe(
+    //   user => {
+    //     this.isLoggedIn = true;
+    //     console.log(user);
+    //     this.user = user;
+    //   },
+    //   error => {
+    //     this.isLoggedIn = false;
+    //     console.log(error);
+    //   }
+    // );
     this.asyncSearchSubscription = (value: string) => {
       const observable = from(this.asyncSearchFn(value));
       observable.subscribe(items => {
@@ -123,45 +121,38 @@ export class AppComponent {
   }
 
   login(): void {
-    this.ngAuth.login();
+    this.authService.login();
   }
 
   logout(): void {
-    this.ngAuth.logout();
+    this.authService.logout();
   }
 
   configureLib(): void {
-    /*
-      Overriding all config is completely options.
-      you should probably override AuthConfig at least.
-    */
-    const appConfig = this.wsi.appConfigSubject.getValue();
-    appConfig.notAuthorizedRoute = ['/not-authorized'];
-    this.wsi.appConfigSubject.next(appConfig);
+    this.wsi.appConfigSubject.next({
+      notAuthorizedRoute: ['/not-authorized']
+    });
 
     this.wsi.authConfigSubject.next({
-      loginUrl: 'http://localhost:50300/oauth/authorize',
-      clientId: '7221138f6772',
-      redirectUri: 'http://localhost:4200/home',
-      userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
+      loginUrl: 'https://auth.worldskills.show/oauth/authorize',
+      clientId: 'a5bad2b86025',
+      redirectUri: 'http://localhost:4200/',
+      userinfoEndpoint: 'https://auth.worldskills.show/auth/users/loggedIn?show_child_roles=false&app_code=500',
       oidc: false
     });
 
+    this.wsi.httpConfigSubject.next({
+      encoderUriPatterns: [],
+      authUriPatterns: ['api.worldskills.show'],
+    });
 
-    const httpConfig = this.wsi.httpConfigSubject.getValue();
-    httpConfig.encoderUriPatterns = []; //
-    httpConfig.authUriPatterns = ['api.worldskills.show'];
-    this.wsi.httpConfigSubject.next(httpConfig);
-
-    const serviceConfig = this.wsi.serviceConfigSubject.getValue();
-    serviceConfig.appCode = [500];
-    serviceConfig.apiEndpoint = 'https://api.worldskills.show';
-    this.wsi.serviceConfigSubject.next(serviceConfig);
-
+    this.wsi.serviceConfigSubject.next({
+      appCode: [500],
+      apiEndpoint: 'https://api.worldskills.show',
+    });
   }
 
   pollInit(): void {
-
     this.poll = {
       id: 1,
       allowingReVote: true,

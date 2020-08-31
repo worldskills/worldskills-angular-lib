@@ -66,6 +66,7 @@ export * from './lib/common/helpers/date.helper';
 export * from './lib/alerts/alert-type';
 export * from './lib/alerts/alert';
 export * from './lib/alerts/alerts/alerts.component';
+export * from './lib/alerts/alert.service';
 export * from './lib/worldskills-angular-lib.service';
 export * from './lib/alerts/alert/alert.component';
 
@@ -84,7 +85,6 @@ export * from './lib/auth/models/user';
 export * from './lib/auth/models/ws-entity';
 export * from './lib/auth/guard.service';
 export * from './lib/auth/auth.service';
-export * from './lib/auth/ng-auth.service';
 
 /*
   entity-tree-select
@@ -189,4 +189,5 @@ export * from './lib/polls/poll-result/poll-result.component';
 export * from './lib/polls/standard-poll/standard-poll.component';
 export * from './lib/polls/vote-control/vote-control.component';
 export * from './lib/polls/weighted-poll/weighted-poll.component';
+export * from './lib/polls/multiselect-poll/multiselect-poll.component';
 export * from './lib/polls/poll.service';
