@@ -85,6 +85,7 @@ export * from './lib/auth/models/user';
 export * from './lib/auth/models/ws-entity';
 export * from './lib/auth/guard.service';
 export * from './lib/auth/auth.service';
+export * from './lib/auth/ng-auth.service';
 
 /*
   entity-tree-select

@@ -4,10 +4,11 @@ import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
 import { AuthGuardAccess } from './models/auth-guard-access';
 import { Observable } from 'rxjs';
-import { AuthService, USER_CURRENT_KEY } from './auth.service';
+import { USER_CURRENT_KEY } from './auth.service';
 import { RETURN_URL_KEY } from './handlers/redirect.handler';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
 import { AppConfig } from '../config/app.config';
+import { NgAuthService } from './ng-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class GuardService implements CanActivate {
     private config: AppConfig;
 
   constructor(
-      private authService: AuthService,
+      private ngAuthService: NgAuthService,
       private wsi: WorldskillsAngularLibService,
       private router: Router,
   ) {
@@ -46,7 +47,6 @@ export class GuardService implements CanActivate {
 
       const accessible = userRoles.length > 0;
 
-      console.log(this.config, accessible);
       if (this.config && !accessible) {
           this.router.navigate(this.config.notAuthorizedRoute, {replaceUrl: true});
       }
@@ -66,7 +66,7 @@ export class GuardService implements CanActivate {
 
   protected login(state: RouterStateSnapshot): boolean {
     sessionStorage.setItem(RETURN_URL_KEY, state.url);
-    this.authService.login();
+    this.ngAuthService.login();
     return false;
   }
 }

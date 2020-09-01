@@ -8,7 +8,8 @@ import {
   Result,
   Vote,
   User,
-  VoteEntry, AuthService,
+  VoteEntry,
+  NgAuthService,
 } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
@@ -80,7 +81,7 @@ export class AppComponent {
   constructor(
       private alerts: AlertService,
       private wsi: WorldskillsAngularLibService,
-      private authService: AuthService
+      private ngAuthService: NgAuthService
   ) {
   }
 
@@ -98,7 +99,7 @@ export class AppComponent {
       { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
       { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
     ];
-    // this.authService.getLoggedInUser(false).subscribe(
+    // this.ngAuthService.getLoggedInUser(false).subscribe(
     //   user => {
     //     this.isLoggedIn = true;
     //     console.log(user);
@@ -121,11 +122,11 @@ export class AppComponent {
   }
 
   login(): void {
-    this.authService.login();
+    this.ngAuthService.login();
   }
 
   logout(): void {
-    this.authService.logout();
+    this.ngAuthService.logout();
   }
 
   configureLib(): void {

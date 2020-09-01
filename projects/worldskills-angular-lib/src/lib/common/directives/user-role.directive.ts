@@ -1,7 +1,7 @@
 import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {UserRoleUtil} from '../util/user-role.util';
 import {User} from '../../auth/models/user';
-import {AuthService} from '../../auth/auth.service';
+import {NgAuthService} from '../../auth/ng-auth.service';
 
 @Directive({
     selector: '[wsUserRole]',
@@ -11,7 +11,7 @@ export class UserRoleDirective implements OnInit {
     constructor(
         private templateRef: TemplateRef<any>,
         private viewContainerRef: ViewContainerRef,
-        private authService: AuthService,
+        private ngAuthService: NgAuthService,
     ) {
     }
 
@@ -24,7 +24,7 @@ export class UserRoleDirective implements OnInit {
 
     ngOnInit(): void {
         if (this.wsUserRoleUser === true) {
-            this.authService.currentUser.subscribe(user => this.renderIfValid(user));
+            this.ngAuthService.currentUser.subscribe(user => this.renderIfValid(user));
         } else {
             this.renderIfValid(this.wsUserRoleUser);
         }

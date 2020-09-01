@@ -35,7 +35,7 @@ const appRoutes: Routes = [
   },
 
   { path: 'authorized', component: AnotherPageComponent, canActivate: [GuardService], data: {
-    roles: [{appCode: 100, name: 'non-eexisting'}]
+    roles: [{appCode: 100, name: 'non-existing'}]
   }},
 
   { path: 'nest', component: AnotherRouteComponent,

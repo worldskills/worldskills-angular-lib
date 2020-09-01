@@ -1,26 +1,26 @@
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { AuthService } from '../auth.service';
+import { NgAuthService } from '../ng-auth.service';
 
 export const RETURN_URL_KEY = 'returnUrl';
 export class RedirectHandler {
-  constructor(protected authService: AuthService, protected router: Router) {
+  constructor(protected ngAuthService: NgAuthService, protected router: Router) {
   }
 
   public redirectOrReturn(redirectRoute: string[], failure: (error: any) => void): void {
-    if (!this.authService.isLoggedIn()) {
-      this.authService.login();
+    if (!this.ngAuthService.isLoggedIn()) {
+      this.ngAuthService.login();
     } else {
       if (this.hasReturnUrl()) {
         this.handleReturnUrl(error => failure(error));
       } else {
-        this.authService.getLoggedInUser(false).subscribe(
+        this.ngAuthService.getLoggedInUser(false).subscribe(
           next => {
             sessionStorage.removeItem(RETURN_URL_KEY);
             this.redirectUserToRoute(next, redirectRoute);
           },
           error => {
-            this.authService.clearSession();
+            this.ngAuthService.clearSession();
             failure(error);
           }
         );
@@ -36,7 +36,7 @@ export class RedirectHandler {
   public handleReturnUrl(failure: (error: any) => void): void {
     const returnUrl = sessionStorage.getItem(RETURN_URL_KEY);
     sessionStorage.removeItem(RETURN_URL_KEY);
-    this.authService.getLoggedInUser(false).subscribe(
+    this.ngAuthService.getLoggedInUser(false).subscribe(
       next => this.redirectUserToUrl(next, returnUrl),
       error => failure(error)
     );
