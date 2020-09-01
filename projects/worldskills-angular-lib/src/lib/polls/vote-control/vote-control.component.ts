@@ -26,8 +26,12 @@ export class VoteControlComponent implements OnInit {
 
   // templates
   @Input() beforeOptionsTemplate: TemplateRef<any>;
+  @Input() optionsDefaultTemplate: TemplateRef<any>;
+  @Input() optionsTemplate: TemplateRef<any>;
   @Input() afterOptionsTemplate: TemplateRef<any>;
   @Input() beforeResultTemplate: TemplateRef<any>;
+  @Input() resultDefaultTemplate: TemplateRef<any>;
+  @Input() resultTemplate: TemplateRef<any>;
   @Input() afterResultTemplate: TemplateRef<any>;
   @Input() titleTemplate: TemplateRef<any>;
   @Input() footerTemplate: TemplateRef<any>;

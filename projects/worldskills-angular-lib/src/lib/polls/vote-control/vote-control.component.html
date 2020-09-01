@@ -17,6 +17,21 @@
 <ng-template #voteControlDefaultQuestionTemplate>
   {{ poll.question.text }}
 </ng-template>
+<ng-template #optionsDefaultTemplate>
+  <em *ngIf="voted.hasVoted">You have already voted!</em>
+  <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+    (optionSelected)="selected($event)">
+  </ws-standard-poll>
+  <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+    (optionSelected)="selected($event)">
+  </ws-weighted-poll>
+  <ws-multiselect-poll *ngIf="poll.type === 'multiselect'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+    (optionSelected)="selected($event)">
+  </ws-multiselect-poll>
+</ng-template>
+<ng-template #resultDefaultTemplate>
+  <ws-poll-result *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result>
+</ng-template>
 
 <div class="card" *ngIf="poll">
   <div class="card-header">
@@ -28,21 +43,12 @@
     </div>
     <div class="card-text" *ngIf="view === 'question'">
       <ng-container *ngTemplateOutlet="beforeOptionsTemplate ? beforeOptionsTemplate : voteControlEmptyTemplate"></ng-container>
-      <em *ngIf="voted.hasVoted">You have already voted!</em>
-      <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
-        (optionSelected)="selected($event)">
-      </ws-standard-poll>
-      <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
-        (optionSelected)="selected($event)">
-      </ws-weighted-poll>
-      <ws-multiselect-poll *ngIf="poll.type === 'multiselect'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
-        (optionSelected)="selected($event)">
-      </ws-multiselect-poll>
+      <ng-container *ngTemplateOutlet="optionsTemplate ? optionsTemplate : optionsDefaultTemplate"></ng-container>
       <ng-container *ngTemplateOutlet="afterOptionsTemplate ? afterOptionsTemplate : voteControlEmptyTemplate"></ng-container>
     </div>
     <div class="card-text" *ngIf="view === 'result'">
       <ng-container *ngTemplateOutlet="beforeResultTemplate ? beforeResultTemplate : voteControlEmptyTemplate"></ng-container>
-      <ws-poll-result *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result>
+      <ng-container *ngTemplateOutlet="resultTemplate ? resultTemplate : resultDefaultTemplate"></ng-container>
       <ng-container *ngTemplateOutlet="afterResultTemplate ? afterResultTemplate : voteControlEmptyTemplate"></ng-container>
     </div>
     <hr />
