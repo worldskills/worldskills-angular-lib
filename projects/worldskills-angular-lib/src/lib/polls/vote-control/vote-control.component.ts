@@ -33,6 +33,8 @@ export class VoteControlComponent implements OnInit {
   @Input() resultDefaultTemplate: TemplateRef<any>;
   @Input() resultTemplate: TemplateRef<any>;
   @Input() afterResultTemplate: TemplateRef<any>;
+  @Input() controlBarLeftTemplate: TemplateRef<any>;
+  @Input() controlBarRightTemplate: TemplateRef<any>;
   @Input() titleTemplate: TemplateRef<any>;
   @Input() footerTemplate: TemplateRef<any>;
   @Input() questionTemplate: TemplateRef<any>;

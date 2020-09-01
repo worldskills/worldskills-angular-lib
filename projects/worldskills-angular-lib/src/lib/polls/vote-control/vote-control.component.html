@@ -33,6 +33,28 @@
   <ws-poll-result *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result>
 </ng-template>
 
+<ng-template #controlBarLeftDefaultTemplate>
+  <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
+    (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
+  <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
+      class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
+  <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"
+    (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
+  <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
+    (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
+</ng-template>
+
+<ng-template #controlBarRightDefaultTemplate>
+  <button *ngIf="showResetButton" class="btn btn-primary" href="#" (click)="resetClick(poll); false;"><i
+    class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
+  <button *ngIf="showExtendButton" class="btn btn-primary" href="#" (click)="extendClick(poll); false;"><i
+      class="fa fa-arrows-h"></i>&nbsp; Extend</button>&nbsp;
+  <button *ngIf="showEditButton" class="btn btn-primary" href="#" (click)="editClick(poll); false;"><i
+      class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
+  <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
+      class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
+</ng-template>
+
 <div class="card" *ngIf="poll">
   <div class="card-header">
     <ng-container *ngTemplateOutlet="titleTemplate ? titleTemplate : voteControlDefaultTitleTemplate"></ng-container>
@@ -54,24 +76,10 @@
     <hr />
 
     <div class="pull-left">
-      <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
-        (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
-      <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
-          class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
-      <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"
-        (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
-      <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
-        (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
+      <ng-container *ngTemplateOutlet="controlBarLeftTemplate ? controlBarLeftTemplate : controlBarLeftDefaultTemplate"></ng-container>
     </div>
     <div class="pull-right">
-      <button *ngIf="showResetButton" class="btn btn-primary" href="#" (click)="resetClick(poll); false;"><i
-        class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
-      <button *ngIf="showExtendButton" class="btn btn-primary" href="#" (click)="extendClick(poll); false;"><i
-          class="fa fa-arrows-h"></i>&nbsp; Extend</button>&nbsp;
-      <button *ngIf="showEditButton" class="btn btn-primary" href="#" (click)="editClick(poll); false;"><i
-          class="fa fa-edit"></i>&nbsp; Edit</button>&nbsp;
-      <button *ngIf="showDeleteButton" class="btn btn-danger" href="#" (click)="deleteClick(poll); false;"><i
-          class="fa fa-trash"></i>&nbsp; Delete</button>&nbsp;
+      <ng-container *ngTemplateOutlet="controlBarRightTemplate ? controlBarRightTemplate : controlBarRightDefaultTemplate"></ng-container>
     </div>
   </div>
   <div class="card-footer text-muted">

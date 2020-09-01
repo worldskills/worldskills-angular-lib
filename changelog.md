@@ -1,5 +1,13 @@
 # Changelog
 
+## 10.4.0
+
+* Added overidable templates for the vote control
+  * `optionsTemplate` - override the option selection area
+  * `resultTemplate` - override the results display area
+  * `controlBarLeftTemplate` - override the left control buttons
+  * `controlBarRightTemplate` - override the right management buttons
+
 ## 10.3.0
 
 * Added `[wsUserRole]` directive
