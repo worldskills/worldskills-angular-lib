@@ -1,85 +1,88 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { Router } from '@angular/router';
 import { User } from './models/user';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { AuthService } from './auth.service';
+import { AuthService, USER_CURRENT_KEY } from './auth.service';
+import { share } from 'rxjs/operators';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class NgAuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+    currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService, private router: Router,
-              public service: AuthService) {
-    this.wsi.authConfigSubject.subscribe(
-      next => {
-        this.oAuthService.configure(next);
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('user.current')));
-        this.currentUser = this.currentUserSubject.asObservable();
-        this.oAuthService.setStorage(sessionStorage);
-        this.oAuthService.tryLogin();
-      }
-    );
-  }
+    constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService, public authService: AuthService) {
+        combineLatest([
+            this.wsi.authConfigSubject,
+            this.wsi.serviceConfigSubject
+        ])
+        .subscribe(
+            ([next]) => {
+                this.oAuthService.configure(next);
+                const user = JSON.parse(sessionStorage.getItem(USER_CURRENT_KEY));
+                this.currentUser.next(user);
+                this.oAuthService.setStorage(sessionStorage);
+                this.oAuthService.tryLogin();
+            }
+        );
+    }
 
-  public keepAlive(): void {
-    this.service.ping().subscribe(
-      error => {
-        console.log(error);
-        this.logout();
-      }
-    );
-  }
+    public keepAlive(): Observable<any> {
+        const observable = this.authService.ping().pipe(share());
+        observable.subscribe(
+            error => {
+                console.log(error);
+                this.logout();
+            }
+        );
+        return observable;
+    }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
-  }
+    public isLoggedIn(): boolean {
+        return this.oAuthService.hasValidAccessToken();
+    }
 
-  public isLoggedIn(): boolean {
-    return this.oAuthService.hasValidAccessToken();
-  }
+    public getLoggedInUser(showChildRoles: boolean = false): Observable<User> {
+        const observable = this.authService.getLoggedInUser(showChildRoles).pipe(share());
+        observable.subscribe(
+            next => {
+                if (next != null) {
+                    sessionStorage.setItem(USER_CURRENT_KEY, JSON.stringify(next));
+                    this.currentUser.next(next);
+                }
+            },
+            () => {
+                this.currentUser.next(null);
+            },
+        );
 
-  public async loadUserProfile(success: (user: User) => void, failure: (error: any) => void): Promise<void> {
-    this.service.getLoggedInUser().subscribe(
-      next => {
-        if (next != null) {
-          sessionStorage.setItem('user.current', JSON.stringify(next));
-          this.currentUserSubject.next(next);
-        }
-      },
-      error => {
-        this.currentUser = null;
-        failure(error);
-      },
-      () => success(this.currentUserSubject.value)
-    );
-  }
+        return observable;
+    }
 
-  public login(): void {
-    this.oAuthService.initImplicitFlow();
-  }
+    public login(): void {
+        this.oAuthService.initImplicitFlow();
+    }
 
-  public logout(): void {
-    this.service.logout().subscribe(
-      result => this.clearSession(),
-      error => this.clearSession(),
-      () => {}
-    );
-  }
+    public logout(): Observable<any> {
+        const observable = this.authService.logout().pipe(share());
+        observable.subscribe(
+            () => this.clearSession(),
+            () => this.clearSession(),
+            () => {}
+        );
+        return observable;
+    }
 
-  protected clearSession(): void {
-    sessionStorage.removeItem('nonce');
-    sessionStorage.removeItem('user.current');
-    sessionStorage.removeItem('access_token_stored_at');
-    sessionStorage.removeItem('access_token');
-    sessionStorage.removeItem('token');
-    this.oAuthService.logOut();
-    this.currentUserSubject.next(null);
-  }
+    public clearSession(): void {
+        sessionStorage.removeItem('nonce');
+        sessionStorage.removeItem(USER_CURRENT_KEY);
+        sessionStorage.removeItem('access_token_stored_at');
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('token');
+        this.oAuthService.logOut();
+        this.currentUser.next(null);
+    }
 }

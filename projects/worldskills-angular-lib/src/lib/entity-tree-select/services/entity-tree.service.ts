@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {WorldskillsAngularLibService} from '../../worldskills-angular-lib.service';
 import {EntityFetchParams} from '../models/entity-tree-fetch-params';
 import {EntityTreeListView} from '../../auth/models/entity-tree-list-view';
+import {share} from "rxjs/operators";
 
 
 @Injectable({
@@ -93,7 +94,7 @@ export class EntityTreeService {
         if (params.sort !== undefined) {
             httpParams = httpParams.set('sort', params.sort.toString());
         }
-        const observable = this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams});
+        const observable = this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams}).pipe(share());
         const cacheEntry = this.subjects.find(cE => EntityTreeService.equals(cE.params, params));
         if (cacheEntry) {
             observable.subscribe(value => cacheEntry.subject.next(value));

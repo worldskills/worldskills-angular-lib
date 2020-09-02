@@ -320,7 +320,6 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
     }
 
     private setSelectable(entities: Array<TreeEntity>, selectables: Array<number> | true, ignoreables: Array<number> | false): void {
-        console.log(selectables, ignoreables);
         entities.forEach(e => {
             e.filtered = true;
             e.selectable = selectables === true ? true : selectables.includes(e.id);

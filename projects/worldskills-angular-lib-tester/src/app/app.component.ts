@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
 import {
   AlertType,
@@ -11,8 +11,6 @@ import {
   VoteEntry,
 } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
-import { NgAuthService } from '../../../worldskills-angular-lib/src/lib/auth/ng-auth.service';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
 import { from } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -81,9 +79,7 @@ export class AppComponent {
 
   constructor(
       private alerts: AlertService,
-      private wsi: WorldskillsAngularLibService,
-      private oauth: OAuthService,
-      private ngAuth: NgAuthService
+      private wsi: WorldskillsAngularLibService
   ) {
   }
 
@@ -99,18 +95,8 @@ export class AppComponent {
     this.isLoggedIn = false;
     this.menuItems = [
       { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+      { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
     ];
-    this.ngAuth.loadUserProfile(
-      user => {
-        this.isLoggedIn = true;
-        console.log(user);
-        this.user = user;
-      },
-      error => {
-        this.isLoggedIn = false;
-        console.log(error);
-      }
-    );
     this.asyncSearchSubscription = (value: string) => {
       const observable = from(this.asyncSearchFn(value));
       observable.subscribe(items => {
@@ -122,22 +108,10 @@ export class AppComponent {
     this.form.ngSubmit.emit();
   }
 
-  login(): void {
-    this.ngAuth.login();
-  }
-
-  logout(): void {
-    this.ngAuth.logout();
-  }
-
   configureLib(): void {
-    /*
-      Overriding all config is completely options.
-      you should probably override AuthConfig at least.
-    */
-    const appConfig = this.wsi.appConfigSubject.getValue();
-    appConfig.notAuthorizedRoute = ['/not-authorized'];
-    this.wsi.appConfigSubject.next(appConfig);
+    this.wsi.appConfigSubject.next({
+      notAuthorizedRoute: ['/not-authorized']
+    });
 
     this.wsi.authConfigSubject.next({
       loginUrl: 'http://localhost:50300/oauth/authorize',
@@ -147,21 +121,18 @@ export class AppComponent {
       oidc: false
     });
 
+    this.wsi.httpConfigSubject.next({
+      encoderUriPatterns: [],
+      authUriPatterns: ['api.worldskills.show'],
+    });
 
-    const httpConfig = this.wsi.httpConfigSubject.getValue();
-    httpConfig.encoderUriPatterns = []; //
-    httpConfig.authUriPatterns = ['api.worldskills.show'];
-    this.wsi.httpConfigSubject.next(httpConfig);
-
-    const serviceConfig = this.wsi.serviceConfigSubject.getValue();
-    serviceConfig.appCode = [500];
-    serviceConfig.apiEndpoint = 'https://api.worldskills.show';
-    this.wsi.serviceConfigSubject.next(serviceConfig);
-
+    this.wsi.serviceConfigSubject.next({
+      appCode: [500],
+      apiEndpoint: 'https://api.worldskills.show',
+    });
   }
 
   pollInit(): void {
-
     this.poll = {
       id: 1,
       allowingReVote: true,

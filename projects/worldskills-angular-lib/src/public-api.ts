@@ -66,6 +66,7 @@ export * from './lib/common/helpers/date.helper';
 export * from './lib/alerts/alert-type';
 export * from './lib/alerts/alert';
 export * from './lib/alerts/alerts/alerts.component';
+export * from './lib/alerts/alert.service';
 export * from './lib/worldskills-angular-lib.service';
 export * from './lib/alerts/alert/alert.component';
 
@@ -130,11 +131,13 @@ export * from './lib/common/encoders/ws-http.encoder';
   Footer
 */
 export * from './lib/footer/footer/footer.component';
+export * from './lib/footer/auth-footer/auth-footer.component';
 
 /*
   Header
 */
 export * from './lib/headers/header/header.component';
+export * from './lib/headers/auth-header/auth-header.component';
 export * from './lib/headers/menu-item';
 export * from './lib/headers/menu-access.pipe';
 
@@ -189,4 +192,5 @@ export * from './lib/polls/poll-result/poll-result.component';
 export * from './lib/polls/standard-poll/standard-poll.component';
 export * from './lib/polls/vote-control/vote-control.component';
 export * from './lib/polls/weighted-poll/weighted-poll.component';
+export * from './lib/polls/multiselect-poll/multiselect-poll.component';
 export * from './lib/polls/poll.service';

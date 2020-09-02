@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './models/user';
-import { Role } from './models/role';
 import { UserList } from './models/user-list';
 import { GetUsersParams } from './models/get-user-params';
 import { HttpUtil } from '../common/util/http.util';
+import { share } from 'rxjs/operators';
 
+export const USER_CURRENT_KEY = 'user.current';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,19 +16,13 @@ export class AuthService {
   protected appCode: number[];
   protected endpoint: string;
 
-  constructor(protected wsi: WorldskillsAngularLibService, protected http: HttpClient, protected oAuthService: OAuthService) {
-    // listen for config changes
+  constructor(protected wsi: WorldskillsAngularLibService, protected http: HttpClient) {
     this.wsi.serviceConfigSubject.subscribe(
       next => {
         this.appCode = next.appCode;
         this.endpoint = next.apiEndpoint + '/auth';
       }
     );
-  }
-
-  public ping(): Observable<any> {
-    const url = `${this.endpoint}/ping`;
-    return this.http.get(url, {} );
   }
 
   public getLoggedInUser(showChildRoles: boolean = false): Observable<User> {
@@ -42,13 +36,17 @@ export class AuthService {
       }
     });
     const url = `${this.endpoint}/users/loggedIn`;
-    return this.http.get<User>(url, {params});
+    return this.http.get<User>(url, {params}).pipe(share());
   }
 
   public logout(): Observable<any> {
     const authUrl = `${this.endpoint}/sessions/logout`;
     return this.http.post(authUrl, {});
+  }
 
+  public ping(): Observable<any> {
+    const url = `${this.endpoint}/ping`;
+    return this.http.get(url, {});
   }
 
   /*
