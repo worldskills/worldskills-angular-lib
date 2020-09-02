@@ -1,5 +1,12 @@
 # Changelog
 
+## 10.5.0
+
+* added config based not-authorized redirect to GuardService
+* created behavioral user subject to check for latest user on auth service
+* made all configs replay subjects rather than behavioral subjects
+* added zero config header / footer
+
 ## 10.4.0
 
 * Added overidable templates for the vote control
