@@ -131,11 +131,13 @@ export * from './lib/common/encoders/ws-http.encoder';
   Footer
 */
 export * from './lib/footer/footer/footer.component';
+export * from './lib/footer/auth-footer/auth-footer.component';
 
 /*
   Header
 */
 export * from './lib/headers/header/header.component';
+export * from './lib/headers/auth-header/auth-header.component';
 export * from './lib/headers/menu-item';
 export * from './lib/headers/menu-access.pipe';
 

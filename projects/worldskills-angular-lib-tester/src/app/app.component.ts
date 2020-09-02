@@ -9,7 +9,6 @@ import {
   Vote,
   User,
   VoteEntry,
-  NgAuthService,
 } from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
@@ -80,8 +79,7 @@ export class AppComponent {
 
   constructor(
       private alerts: AlertService,
-      private wsi: WorldskillsAngularLibService,
-      private ngAuthService: NgAuthService
+      private wsi: WorldskillsAngularLibService
   ) {
   }
 
@@ -99,17 +97,6 @@ export class AppComponent {
       { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
       { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
     ];
-    // this.ngAuthService.getLoggedInUser(false).subscribe(
-    //   user => {
-    //     this.isLoggedIn = true;
-    //     console.log(user);
-    //     this.user = user;
-    //   },
-    //   error => {
-    //     this.isLoggedIn = false;
-    //     console.log(error);
-    //   }
-    // );
     this.asyncSearchSubscription = (value: string) => {
       const observable = from(this.asyncSearchFn(value));
       observable.subscribe(items => {
@@ -121,24 +108,16 @@ export class AppComponent {
     this.form.ngSubmit.emit();
   }
 
-  login(): void {
-    this.ngAuthService.login();
-  }
-
-  logout(): void {
-    this.ngAuthService.logout();
-  }
-
   configureLib(): void {
     this.wsi.appConfigSubject.next({
       notAuthorizedRoute: ['/not-authorized']
     });
 
     this.wsi.authConfigSubject.next({
-      loginUrl: 'https://auth.worldskills.show/oauth/authorize',
-      clientId: 'a5bad2b86025',
-      redirectUri: 'http://localhost:4200/',
-      userinfoEndpoint: 'https://auth.worldskills.show/auth/users/loggedIn?show_child_roles=false&app_code=500',
+      loginUrl: 'http://localhost:50300/oauth/authorize',
+      clientId: '7221138f6772',
+      redirectUri: 'http://localhost:4200/home',
+      userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
       oidc: false
     });
 

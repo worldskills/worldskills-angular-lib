@@ -69,8 +69,8 @@ export class NgAuthService {
     public logout(): Observable<any> {
         const observable = this.authService.logout().pipe(share());
         observable.subscribe(
-            result => this.clearSession(),
-            error => this.clearSession(),
+            () => this.clearSession(),
+            () => this.clearSession(),
             () => {}
         );
         return observable;
@@ -78,7 +78,7 @@ export class NgAuthService {
 
     public clearSession(): void {
         sessionStorage.removeItem('nonce');
-        sessionStorage.removeItem('user.current');
+        sessionStorage.removeItem(USER_CURRENT_KEY);
         sessionStorage.removeItem('access_token_stored_at');
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('token');

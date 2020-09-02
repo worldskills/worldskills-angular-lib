@@ -9,8 +9,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}" *ngFor="let item of menuItems | wsMenuAccesssFilter: isLoggedIn: userRoles()">
-          <a class="nav-link" [routerLink]="[item.url, item.params]">
+        <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}" *ngFor="let item of menuItems | wsMenuAccessFilter: isLoggedIn: userRoles()">
+          <a class="nav-link" [routerLink]="item.params ? [item.url, item.params] : [item.url]">
               {{ item.label }}
           </a>
         </li>

@@ -1,13 +1,8 @@
 <header>
-    <ws-header
+    <ws-auth-header
             [appName]="'Tester'"
-            [isLoggedIn]="isLoggedIn"
-            [showLoginAndLogoutButtons]="true"
             [menuItems]="menuItems"
-            [currentUser]="user"
-            (loginClick)="login()"
-            (logoutClick)="logout()"
-    ></ws-header>
+    ></ws-auth-header>
 </header>
 
 <div class="container">
@@ -16,8 +11,11 @@
 </div>
 
 <div class="container">
-    <ws-breadcrumbs [showHomeItem]="showHomeItem" [homeItemText]="'Home'"
-                    [homeItemRoute]="defaultRoute"></ws-breadcrumbs>
+    <ws-breadcrumbs
+            [showHomeItem]="showHomeItem"
+            [homeItemText]="'Home'"
+            [homeItemRoute]="defaultRoute">
+    </ws-breadcrumbs>
 </div>
 
 <div class="container">
@@ -124,7 +122,8 @@ wsChange: {{wsSelectChange4}}
     </form>
 
     <h3>User role</h3>
-      examples: <pre>
+    examples:
+    <pre>
     <<!---->tag *wsUserRole="['roleA', 'roleB']; user : authenticatedUser; entity: 1">
       show only if user has roleA OR roleB and entity equals 1 if role has apply_per_entity set to true
     <\tag>
@@ -135,7 +134,8 @@ wsChange: {{wsSelectChange4}}
       show only if user does NOT have roleA OR roleB
     <\tag>
     </pre>
-    <div *wsUserRole="['roleA', 'roleX']; user : fakeUser; all: false; entity: 1; appId: 100">Should be visible (1/7)</div>
+    <div *wsUserRole="['roleA', 'roleX']; user : fakeUser; all: false; entity: 1; appId: 100">Should be visible (1/7)
+    </div>
     <div *wsUserRole="['roleA', 'roleX']; user : fakeUser; all: true; entity: 1; appId: 100">Should not be visible</div>
     <div *wsUserRole="'roleB'; user : fakeUser; entity: 1; appId: 100">Should be visible (2/7)</div>
     <div *wsUserRole="'roleB'; user : fakeUser; entity: 1; appId: 200">Should not be visible</div>
@@ -149,7 +149,9 @@ wsChange: {{wsSelectChange4}}
     <div *wsUserRole="'roleX'; user : fakeUser">Should not be visible</div>
     <div *wsUserRole="'roleX'; user : fakeUser; negate: true">Should be visible (7/7)</div>
     <div *wsUserRole="'roleB'; user : fakeUser; negate: true">Should not be visible</div>
-    <div *wsUserRole="'roleB';">This is probably visible since it only shows if the logged in user does not have  the un-existing role 'roleB'</div>
+    <div *wsUserRole="'roleB';">This is probably visible since it only shows if the logged in user does not have the
+        un-existing role 'roleB'
+    </div>
 
 </div>
 
@@ -167,11 +169,7 @@ wsChange: {{wsSelectChange4}}
                 class="fa fa-instagram mr-3"></i>Instagram</a></li>
     </ul>
 </ng-template>
-<ws-footer
-        [currentUser]="user"
-        [isLoggedIn]="isLoggedIn"
-        (loginClick)="login()"
-        (logoutClick)="logout()"
+<ws-auth-footer
         [col5Template]="override5"
         [languages]="languages">
-</ws-footer>
+</ws-auth-footer>

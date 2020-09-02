@@ -29,6 +29,8 @@ import { EntityTreeSelectComponent } from './entity-tree-select/components/entit
 import { SelectDirective } from './select/directives/select.directive';
 import { SelectAsyncHeaderComponent } from './select/components/select-async-header.component';
 import { UserRoleDirective } from './common/directives/user-role.directive';
+import { AuthHeaderComponent } from './headers/auth-header/auth-header.component';
+import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { UserRoleDirective } from './common/directives/user-role.directive';
     WordmarkComponent,
     WeightedPollComponent,
     MultiselectPollComponent,
-    UserRoleDirective
+    UserRoleDirective,
+    AuthHeaderComponent,
+    AuthFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,8 @@ import { UserRoleDirective } from './common/directives/user-role.directive';
     EntityTreeSelectComponent,
     FooterComponent,
     HeaderComponent,
+    AuthHeaderComponent,
+    AuthFooterComponent,
     LogoComponent,
     MenuAccessPipe,
     PollResultComponent,
