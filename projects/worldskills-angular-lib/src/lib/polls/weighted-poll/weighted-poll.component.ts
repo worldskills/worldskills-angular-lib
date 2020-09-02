@@ -49,11 +49,15 @@ export class WeightedPollComponent implements OnInit {
   change(event: any, index): void {
     // ensure we are not dealing with an unset action
     if (event.target.value !== '0') {
-      const idx = this.models.findIndex(x => x === event.target.value);
-      // if an option was selected twice from different drop downs. unset the older selection
-      if (idx !== index && idx !== -1) {
-        this.models[idx] = '0';
-      }
+      this.models.forEach((model, idx) => {
+        if (idx === index) {
+          this.models[idx] = event.target.value;
+        } else {
+          if (model === event.target.value) {
+            this.models[idx] = '0';
+          }
+        }
+      });
     }
 
     // emit selection only if all options are selected

@@ -23,6 +23,7 @@ export class VoteControlComponent implements OnInit {
   @Input() poll: Poll;
   @Input() results: Result[];
   @Input() voted: Vote;
+  @Input() confirmBeforeVote: boolean;
 
   // templates
   @Input() beforeOptionsTemplate: TemplateRef<any>;
@@ -102,7 +103,21 @@ export class VoteControlComponent implements OnInit {
     if (this.voted.hasVoted) {
       alert('You have already voted');
     } else {
-      this.voteSelected.emit(this.selection);
+
+      if (this.confirmBeforeVote) {
+        const voteSelections = [];
+        this.selection.forEach(selected => {
+          // tslint:disable-next-line:triple-equals
+          const option = this.poll.options.find(x => x.id == selected.optionId);
+          voteSelections.push(option.text.text);
+        });
+
+        if (confirm(`Are you should you want to vote for (${voteSelections.join(',')})`)) {
+          this.voteSelected.emit(this.selection);
+        }
+      } else {
+        this.voteSelected.emit(this.selection);
+      }
     }
   }
 
