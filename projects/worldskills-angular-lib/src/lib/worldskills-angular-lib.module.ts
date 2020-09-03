@@ -92,6 +92,7 @@ import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component'
     SortPipe,
     StagingBannerComponent,
     StandardPollComponent,
+    MultiselectPollComponent,
     VoteControlComponent,
     WordmarkComponent,
     WeightedPollComponent,
