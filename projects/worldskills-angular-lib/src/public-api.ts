@@ -179,9 +179,11 @@ export * from './lib/resources/resource.service';
   Polls
 */
 export * from './lib/polls/models/created-by';
+export * from './lib/polls/models/defaultOptionHandler';
 export * from './lib/polls/models/entity-path';
 export * from './lib/polls/models/entity-path-item';
 export * from './lib/polls/models/option';
+export * from './lib/polls/models/optionHandler';
 export * from './lib/polls/models/page';
 export * from './lib/polls/models/poll';
 export * from './lib/polls/models/result';

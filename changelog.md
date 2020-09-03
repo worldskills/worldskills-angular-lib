@@ -1,19 +1,23 @@
 # Changelog
 
+## 10.6.0
+
+* intorduced a handler for poll option handling.
+
 ## 10.5.0
 
-* added config based not-authorized redirect to GuardService
-* created behavioral user subject to check for latest user on auth service
-* made all configs replay subjects rather than behavioral subjects
-* added zero config header / footer
+* added config based not-authorized redirect to GuardService.
+* created behavioral user subject to check for latest user on auth service.
+* made all configs replay subjects rather than behavioral subjects.
+* added zero config header / footer.
 
 ## 10.4.0
 
-* Added overidable templates for the vote control
-  * `optionsTemplate` - override the option selection area
-  * `resultTemplate` - override the results display area
-  * `controlBarLeftTemplate` - override the left control buttons
-  * `controlBarRightTemplate` - override the right management buttons
+* Added overidable templates for the vote control.
+  * `optionsTemplate` - override the option selection area.
+  * `resultTemplate` - override the results display area.
+  * `controlBarLeftTemplate` - override the left control buttons.
+  * `controlBarRightTemplate` - override the right management buttons.
 
 ## 10.3.0
 

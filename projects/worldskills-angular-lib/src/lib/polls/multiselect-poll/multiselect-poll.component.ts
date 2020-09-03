@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Poll } from '../models/poll';
 import { Vote } from '../models/vote';
 import { VoteEntry } from '../models/vote-entry';
+import { OptionHandler } from '../models/optionHandler';
 
 @Component({
   selector: 'ws-multiselect-poll',
@@ -14,6 +15,7 @@ export class MultiselectPollComponent implements OnInit {
   @Input() voted: Vote;
   @Input() initialSelection: VoteEntry[];
   @Output() optionSelected: EventEmitter<VoteEntry[]> = new EventEmitter();
+  @Input() optionHandler: OptionHandler;
 
   // selection: OptionView[];
 
@@ -49,17 +51,7 @@ export class MultiselectPollComponent implements OnInit {
 
   change(event: any, index): void {
     // ensure we are not dealing with an unset action
-    if (event.target.value !== '0') {
-      this.models.forEach((model, idx) => {
-        if (idx === index) {
-          this.models[idx] = event.target.value;
-        } else {
-          if (model === event.target.value) {
-            this.models[idx] = '0';
-          }
-        }
-      });
-    }
+    this.models = this.optionHandler.onOptionSelect(this.poll.type, this.models, event.target.value, index);
 
     // emit selection only if all options are selected
     if (this.hasMaxSelections()) {

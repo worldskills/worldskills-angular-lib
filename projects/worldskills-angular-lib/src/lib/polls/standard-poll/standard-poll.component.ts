@@ -3,6 +3,7 @@ import { Poll } from '../models/poll';
 import { Vote } from '../models/vote';
 import { VoteEntry } from '../models/vote-entry';
 import { Option } from '../models/option';
+import { OptionHandler } from '../models/optionHandler';
 
 @Component({
   selector: 'ws-standard-poll',
@@ -15,6 +16,8 @@ export class StandardPollComponent implements OnInit {
   @Input() voted: Vote;
   @Input() initialSelection: VoteEntry[];
   @Output() optionSelected: EventEmitter<VoteEntry[]> = new EventEmitter();
+  @Input() optionHandler: OptionHandler;
+
 
   selection: VoteEntry;
 
@@ -54,7 +57,10 @@ export class StandardPollComponent implements OnInit {
   }
 
   onOptionSelect(option: Option): void {
-    const entry = { rank: 1, optionId: option.id };
+    let model = [this.selection.optionId];
+    model = this.optionHandler.onOptionSelect(this.poll.type, model, option.id, 0);
+
+    const entry = { rank: 1, optionId: model[0] };
     this.optionSelected.emit([entry]);
   }
 }

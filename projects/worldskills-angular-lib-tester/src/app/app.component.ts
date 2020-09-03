@@ -14,6 +14,8 @@ import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/s
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
 import { from } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { OptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/optionHandler';
+import { DefaultOptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/defaultOptionHandler';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +39,7 @@ export class AppComponent {
   languages: Language[];
 
   poll: Poll;
+  pollOptionHandler: OptionHandler;
   results: Result[];
   voted: Vote;
 
@@ -132,7 +135,9 @@ export class AppComponent {
     });
   }
 
+
   pollInit(): void {
+    this.pollOptionHandler = new DefaultOptionHandler();
     this.poll = {
       id: 1,
       allowingReVote: true,

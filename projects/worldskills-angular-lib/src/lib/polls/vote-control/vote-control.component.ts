@@ -5,6 +5,7 @@ import { Vote } from '../models/vote';
 import { Subscription } from 'rxjs';
 import { GenericUtil } from '../../common/util/generic.util';
 import { VoteEntry } from '../models/vote-entry';
+import { OptionHandler } from '../models/optionHandler';
 
 @Component({
   selector: 'ws-vote-control',
@@ -24,6 +25,7 @@ export class VoteControlComponent implements OnInit {
   @Input() results: Result[];
   @Input() voted: Vote;
   @Input() confirmBeforeVote: boolean;
+  @Input() optionHandler: OptionHandler;
 
   // templates
   @Input() beforeOptionsTemplate: TemplateRef<any>;
