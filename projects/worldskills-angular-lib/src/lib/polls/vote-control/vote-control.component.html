@@ -18,16 +18,34 @@
   {{ poll.question.text }}
 </ng-template>
 <ng-template #optionsDefaultTemplate>
-  <em *ngIf="voted.hasVoted">You have already voted!</em>
-  <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+  <div *ngIf="voted.hasVoted">
+    <em>You have already voted!</em>
+    <div *ngIf="voted.abstained">
+      <strong>You have chosen to abstain from voting.</strong>
+    </div>
+    <div *ngIf="voted.anonymous">
+      <strong>this vote is anonymous.</strong>
+    </div>
+    <div *ngIf="!voted.abstained && !voted.anonymous">
+      <strong>Your Choice(s):</strong>
+      <ol>
+        <li *ngFor="let entry of voted.votes">
+          {{ getVoteText(entry) }}
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div *ngIf="!voted.hasVoted">
+    <ws-standard-poll *ngIf="poll.type === 'standard'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
     [optionHandler]="optionHandler" (optionSelected)="selected($event)">
-  </ws-standard-poll>
-  <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
-    [optionHandler]="optionHandler" (optionSelected)="selected($event)">
-  </ws-weighted-poll>
-  <ws-multiselect-poll *ngIf="poll.type === 'multiselect'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
-    [optionHandler]="optionHandler" (optionSelected)="selected($event)">
-  </ws-multiselect-poll>
+    </ws-standard-poll>
+    <ws-weighted-poll *ngIf="poll.type === 'weighted'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+      [optionHandler]="optionHandler" (optionSelected)="selected($event)">
+    </ws-weighted-poll>
+    <ws-multiselect-poll *ngIf="poll.type === 'multiselect'" [poll]="poll" [voted]="voted" [initialSelection]="selection"
+      [optionHandler]="optionHandler" (optionSelected)="selected($event)">
+    </ws-multiselect-poll>
+  </div>
 </ng-template>
 <ng-template #resultDefaultTemplate>
   <ws-poll-result *ngIf="results" [poll]="poll" [results]="results"></ws-poll-result>
@@ -36,6 +54,8 @@
 <ng-template #controlBarLeftDefaultTemplate>
   <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
     (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
+  <button *ngIf="showVoteButton()" class="btn btn-success" href="#"
+    (click)="abstain(); false;"><i class="fa fa-check"></i>&nbsp; Abstain</button>&nbsp;
   <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
       class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
   <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"

@@ -144,6 +144,7 @@ export class AppComponent {
       anonymousVoting: false,
       anonymousResults: false,
       showingResults: true,
+      allowingAbstain: true,
       created: new Date(),
       deleted: false,
       start: new Date(),
@@ -179,7 +180,12 @@ export class AppComponent {
       {id: 4, count: 0, option: this.poll.options[3]}
     ];
 
-    this.voted = {hasVoted: false, votes: []};
+    this.voted = {hasVoted: false, votes: [], anonymous: false, abstained: false};
+  }
+
+  abstain(): void {
+    this.voted.hasVoted = true;
+    this.voted.abstained = true;
   }
 
   voteSelected(result: VoteEntry[]): void {

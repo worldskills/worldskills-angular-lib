@@ -1,4 +1,5 @@
 import { Option } from './option';
+import { Abstain } from './abstain';
 export interface Track {
  personId: number;
  firstName: string;
@@ -6,4 +7,5 @@ export interface Track {
  option: Option;
  weight: number;
  timestamp: Date;
+ abstain?: Abstain;
 }

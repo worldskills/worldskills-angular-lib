@@ -178,6 +178,7 @@ export * from './lib/resources/resource.service';
 /*
   Polls
 */
+export * from './lib/polls/models/abstain';
 export * from './lib/polls/models/created-by';
 export * from './lib/polls/models/defaultOptionHandler';
 export * from './lib/polls/models/entity-path';

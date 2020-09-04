@@ -13,6 +13,7 @@ export interface Poll {
   anonymousResults: boolean;
   showingResults: boolean;
   allowingReVote: boolean;
+  allowingAbstain: boolean;
   title: I18nText;
   question: I18nText;
   resultText?: I18nText;

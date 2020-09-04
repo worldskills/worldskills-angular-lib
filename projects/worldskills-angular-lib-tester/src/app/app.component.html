@@ -41,7 +41,7 @@
             [afterResultTemplate]="test"
             [optionHandler]="pollOptionHandler"
             (viewChange)="viewChange($event)" (voteSelected)="voteSelected($event)" (voteRemoved)="voteRemoved($event)"
-            (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)">
+            (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)" (abstainSelected)="abstain()">
     </ws-vote-control>
 
     <form class="form-horizontal was-validated" #form="ngForm">

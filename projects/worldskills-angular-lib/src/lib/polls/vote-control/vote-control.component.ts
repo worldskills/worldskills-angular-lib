@@ -51,6 +51,7 @@ export class VoteControlComponent implements OnInit {
 
   @Output() viewChange: EventEmitter<string> = new EventEmitter();
   @Output() voteSelected: EventEmitter<VoteEntry[]> = new EventEmitter();
+  @Output() abstainSelected: EventEmitter<any> = new EventEmitter();
   @Output() voteRemoved: EventEmitter<VoteEntry[]> = new EventEmitter();
 
   view: string;
@@ -123,6 +124,16 @@ export class VoteControlComponent implements OnInit {
     }
   }
 
+  abstain(): void {
+    if (this.voted.hasVoted) {
+      alert('You have already voted');
+    } else {
+      if (confirm(`Are you should you wish to abstain from voting ?`)) {
+        this.abstainSelected.emit();
+      }
+    }
+  }
+
   unvote(): void {
     this.voteRemoved.emit(this.selection);
   }
@@ -185,8 +196,21 @@ export class VoteControlComponent implements OnInit {
     this.delete.emit(poll);
   }
 
+  getVoteText(entry: VoteEntry): string {
+    // tslint:disable-next-line:triple-equals
+    const option = this.poll.options.find(x => x.id == entry.optionId);
+    if (option == null) {
+      return '';
+    }
+    return option.text.text;
+  }
+
   showVoteButton(): boolean {
     return this.voted && !this.voted.hasVoted && this.view === 'question' && this.state === 'running';
+  }
+
+  showAbstainButton(): boolean {
+    return this.voted && !this.voted.hasVoted && this.poll.allowingAbstain && this.view === 'question' && this.state === 'running';
   }
 
   showClearVoteButton(): boolean {

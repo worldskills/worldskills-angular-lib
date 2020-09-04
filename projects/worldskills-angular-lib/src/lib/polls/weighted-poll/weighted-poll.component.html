@@ -2,7 +2,7 @@
   <li class="list-group-item" *ngFor="let num of numSelections">
     <select class="form-control" [(ngModel)]="models[num]" (change)="change($event, num)" [disabled]="voted.hasVoted">
       <option value="0">{{ numberToWord(num + 1) }} selection ({{ calcPointsForItem(num) }} points)</option>
-      <option *ngFor="let option of poll.options" value="{{ option.id }}">{{ option.text.text }}</option>
+      <option *ngFor="let option of poll.options | wsSort: 'asc': id" value="{{ option.id }}">{{ option.text.text }}</option>
     </select>
   </li>
 </ul>
