@@ -90,8 +90,18 @@ export class PollService {
     return this.http.post<Option>(url, model);
   }
 
+  public addAbstain(pollId: number): Observable<any> {
+    const url = `${this.endpoint}/${pollId}/addAbstain`;
+    return this.http.post(url, {});
+  }
+
   public unvote(pollId: number): Observable<any> {
     const url = `${this.endpoint}/${pollId}/removeVote`;
+    return this.http.delete(url);
+  }
+
+  public unAbstain(pollId: number): Observable<any> {
+    const url = `${this.endpoint}/${pollId}/removeAbstain`;
     return this.http.delete(url);
   }
 }

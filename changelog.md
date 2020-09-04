@@ -1,5 +1,15 @@
 # Changelog
 
+## 10.8.0
+
+* servicec method for abstaining and clearing an abstain.
+
+## 10.7.0
+
+* Abstain mechanism for votes
+* Vote Control result messsages for abained votes and anonymous poll.
+* fixed option ordering on weighed and multi-select votes
+
 ## 10.6.0
 
 * intorduced a handler for poll option handling.
