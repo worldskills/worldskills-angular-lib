@@ -9,6 +9,7 @@ import { Result } from './models/result';
 import { Vote } from './models/vote';
 import { VoteEntry } from './models/vote-entry';
 import { Track } from './models/track';
+import { Abstain } from '../../../../../dist/worldskills-angular-lib/lib/polls/models/abstain';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,9 @@ export class PollService {
     return this.http.get<Poll>(url);
   }
 
-  public getAbstains(id: number): Observable<Result[]> {
+  public getAbstains(id: number): Observable<Abstain[]> {
     const url = `${this.endpoint}/${id}/abstains`;
-    return this.http.get<Result[]>(url);
+    return this.http.get<Abstain[]>(url);
   }
 
   public getResults(id: number): Observable<Result[]> {
