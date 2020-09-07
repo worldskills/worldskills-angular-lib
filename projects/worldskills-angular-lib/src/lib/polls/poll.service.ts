@@ -38,6 +38,11 @@ export class PollService {
     return this.http.get<Poll>(url);
   }
 
+  public getAbstains(id: number): Observable<Result[]> {
+    const url = `${this.endpoint}/${id}/abstains`;
+    return this.http.get<Result[]>(url);
+  }
+
   public getResults(id: number): Observable<Result[]> {
     const url = `${this.endpoint}/${id}/results`;
     return this.http.get<Result[]>(url);
