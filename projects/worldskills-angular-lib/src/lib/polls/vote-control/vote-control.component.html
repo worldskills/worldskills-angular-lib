@@ -54,7 +54,7 @@
 <ng-template #controlBarLeftDefaultTemplate>
   <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
     (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
-  <button *ngIf="showVoteButton()" class="btn btn-success" href="#"
+  <button *ngIf="showAbstainButton()" class="btn btn-success" href="#"
     (click)="abstain(); false;"><i class="fa fa-check"></i>&nbsp; Abstain</button>&nbsp;
   <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
       class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
