@@ -1,5 +1,6 @@
 import {
     Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
     Input,
@@ -9,7 +10,7 @@ import {
     Output,
     SimpleChanges,
     TemplateRef,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 import {DropdownPosition, NgSelectComponent} from '@ng-select/ng-select';
 import {combineLatest, Subject, Subscription} from 'rxjs';
@@ -145,6 +146,7 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
     @Output() scrollToEnd: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChild('ngSelectComponent', {static: true}) ngSelectComponent: NgSelectComponent;
+    @ViewChild('ngSelectComponent', {static: true, read: ElementRef}) ngSelectComponentRef: ElementRef;
     @ViewChild('wrapperControl', {static: true}) wrapperControl: TemplateRef<{ $implicit: TemplateRef<void> }>;
     @ViewChild('expandControl', {static: true}) expandControl: TemplateRef<{ enabled: boolean, click: () => void }>;
     @ViewChild('expandAllControl', {static: true}) expandAllControl: TemplateRef<{ click: () => void }>;
@@ -234,8 +236,8 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
             this.refreshing = false;
         });
 
-        document.addEventListener('click', this.onClick, true);
-        document.addEventListener('keydown', this.onKeyDown, true);
+        this.ngSelectComponentRef.nativeElement.addEventListener('click', this.onClick, true);
+        this.ngSelectComponentRef.nativeElement.addEventListener('keydown', this.onKeyDown, true);
     }
 
     private createTreeEntities(): void {
@@ -270,8 +272,8 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
 
     ngOnDestroy(): void {
         this.writeValueSubscription.unsubscribe();
-        document.removeEventListener('click', this.onClick, true);
-        document.removeEventListener('keydown', this.onKeyDown, true);
+        this.ngSelectComponentRef.nativeElement.removeEventListener('click', this.onClick, true);
+        this.ngSelectComponentRef.nativeElement.removeEventListener('keydown', this.onKeyDown, true);
     }
 
     isDomIdentifier(name: string): boolean {
