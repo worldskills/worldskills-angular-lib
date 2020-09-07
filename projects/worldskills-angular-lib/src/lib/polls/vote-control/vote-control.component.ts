@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { GenericUtil } from '../../common/util/generic.util';
 import { VoteEntry } from '../models/vote-entry';
 import { OptionHandler } from '../models/optionHandler';
+import { toDate } from '../../common/helpers/date.helper';
 
 @Component({
   selector: 'ws-vote-control',
@@ -82,8 +83,8 @@ export class VoteControlComponent implements OnInit {
   calculateState(): void {
     this.state = 'running';
     const now = new Date();
-    const start = this.parseDate(this.poll.start);
-    const expiry = this.parseDate(this.poll.expiry);
+    const start = toDate(this.poll.start);
+    const expiry = toDate(this.poll.expiry);
 
     if (now < start) {
       this.state = 'Not yet started';
@@ -157,7 +158,7 @@ export class VoteControlComponent implements OnInit {
     }
 
     const time = new Date().getTime();
-    const end = this.parseDate(this.poll.expiry).getTime();
+    const end = toDate(this.poll.expiry).getTime();
     if (this.poll.showingResults || time > end) {
       return true;
     }
@@ -165,12 +166,6 @@ export class VoteControlComponent implements OnInit {
     return false;
   }
 
-  parseDate(value: any): Date {
-    if (typeof value === 'string') {
-        return new Date(value);
-    }
-    return value;
-  }
 
   hasVotesSelected(): boolean {
     if (GenericUtil.isNullOrUndefined(this.selection)) {
