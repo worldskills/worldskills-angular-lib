@@ -37,15 +37,23 @@ export class BreadcrumbsService {
       url = `${url}/${path}`;
       this.isAtHome = GenericUtil.isNullOrUndefined(this.homeItemRoute) ? false :  path === this.homeItemRoute.replace('/', '');
       if (route.snapshot.data.hasOwnProperty('breadcrumb')) {
+        let key: string;
+        let label: string;
+        if (typeof route.snapshot.data.breadcrumb === 'string') {
+          key = label = route.snapshot.data.breadcrumb;
+        } else {
+          key = route.snapshot.data.breadcrumb.key;
+          label = route.snapshot.data.breadcrumb.label;
+        }
         const breadcrumb: Breadcrumb = {
-          key: route.snapshot.data.breadcrumb.key,
-          label: route.snapshot.data.breadcrumb.label,
+          key,
+          label,
           params: route.snapshot.params,
           url
         };
 
         // handle key replacements before breadcrumbs are initialized
-        const replacementIndex = this.replacements.findIndex(r => r.key === breadcrumb.label);
+        const replacementIndex = this.replacements.findIndex(r => r.key === breadcrumb.key);
         if (replacementIndex !== -1) {
           breadcrumb.label = this.replacements[replacementIndex].value;
         }
