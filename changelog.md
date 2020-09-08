@@ -3,6 +3,11 @@
 ## 10.9.0
 
 * The breadcrumb home item can now be manipulated by the BreadCrumbSerbice
+* upgraded redirect handler with some new features and some behavioural fixes:  
+  * instead of passing a fail handler, the redirect handler now is returning an observable, which is the angular way of handling async operations  
+  * added an option to only redirect if the route is exact (this way you can nest children in the home component without always redirecting)  
+  * turned into service
+* fixes/additions to custom elements form styles
 
 ## 10.8.0
 
