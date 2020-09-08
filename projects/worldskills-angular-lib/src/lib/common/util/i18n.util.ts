@@ -2,7 +2,7 @@ import { I18nText } from '../models/i18n-text';
 
 export class I18nUtil {
     static instanceOfI18nModel(object: any): object is I18nText {
-        return typeof object === 'object' && object.hasOwnProperty('lang_code') && object.hasOwnProperty('text');
+        return object !== null && typeof object === 'object' && object.hasOwnProperty('lang_code') && object.hasOwnProperty('text');
     }
 
     static setObjectI18n(object: any, langCode: string): any {

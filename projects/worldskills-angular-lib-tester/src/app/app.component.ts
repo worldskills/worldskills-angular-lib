@@ -1,21 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
 import { AlertService } from '../../../worldskills-angular-lib/src/lib/alerts/alert.service';
-import {
-  AlertType,
-  MenuItem,
-  Language,
-  Poll,
-  Result,
-  Vote,
-  User,
-  VoteEntry,
-} from '../../../worldskills-angular-lib/src/public-api';
 import { WorldskillsAngularLibService } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.service';
 import { Datetime } from '../../../worldskills-angular-lib/src/lib/date/datetime';
 import { from } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { OptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/optionHandler';
 import { DefaultOptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/defaultOptionHandler';
+import { User } from '../../../worldskills-angular-lib/src/lib/auth/models/user';
+import { MenuItem } from '../../../worldskills-angular-lib/src/lib/headers/menu-item';
+import { Language } from '../../../worldskills-angular-lib/src/lib/i18n/language';
+import { Poll } from '../../../worldskills-angular-lib/src/lib/polls/models/poll';
+import { Result } from '../../../worldskills-angular-lib/src/lib/polls/models/result';
+import { Vote } from '../../../worldskills-angular-lib/src/lib/polls/models/vote';
+import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert-type';
+import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
 
 @Component({
   selector: 'app-root',
@@ -98,6 +96,7 @@ export class AppComponent {
     this.isLoggedIn = false;
     this.menuItems = [
       { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+      { label: 'Home Nested', url: '/home/nested', hidden: false, requireLogin: false, requiredRoles: [] },
       { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
     ];
     this.asyncSearchSubscription = (value: string) => {
