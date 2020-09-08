@@ -9,7 +9,8 @@ import { Result } from './models/result';
 import { Vote } from './models/vote';
 import { VoteEntry } from './models/vote-entry';
 import { Track } from './models/track';
-import { Abstain } from '../../../../../dist/worldskills-angular-lib/lib/polls/models/abstain';
+import { Abstain } from './models/abstain';
+
 
 @Injectable({
   providedIn: 'root'

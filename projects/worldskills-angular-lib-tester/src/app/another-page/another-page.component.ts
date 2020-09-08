@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreadcrumbsService } from '../../../../worldskills-angular-lib/src/lib/breadcrumbs/breadcrumbs.service';
 
 @Component({
   selector: 'app-another-page',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnotherPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breadcrumbs: BreadcrumbsService) { }
 
   ngOnInit(): void {
+    this.breadcrumbs.linkHomeItem = false;
   }
 
 }

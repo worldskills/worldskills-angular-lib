@@ -22,7 +22,13 @@ export class BreadcrumbsService {
 
   public replacements: KeyValue<string, string>[];
 
+  public showHomeItem: boolean;
+
+  public linkHomeItem: boolean;
+
   constructor() {
+    this.showHomeItem = true;
+    this.linkHomeItem = true;
     this.breadcrumbs = [];
     this.replacements = [];
     this.breadcrumbsSubject = new BehaviorSubject([]);

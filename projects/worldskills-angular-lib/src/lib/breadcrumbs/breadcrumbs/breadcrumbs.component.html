@@ -1,7 +1,8 @@
 <nav aria-label="breadcrumb" *ngIf="breadcrumbs">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item" *ngIf="showHomeItem && !isAtHome">
-      <a href="{{ homeItemRoute }}">{{ homeItemText }}</a>
+    <li class="breadcrumb-item" *ngIf="service.showHomeItem && !isAtHome">
+      <a *ngIf="service.linkHomeItem" href="{{ homeItemRoute }}">{{ homeItemText }}</a>
+      <span *ngIf="!service.linkHomeItem">{{ homeItemText }}</span>
     </li>
     <li class="breadcrumb-item" *ngIf="showHomeItem && isAtHome">
       {{ homeItemText }}

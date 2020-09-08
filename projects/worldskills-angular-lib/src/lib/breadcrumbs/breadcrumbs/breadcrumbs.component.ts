@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Breadcrumb } from '../breadcrumb';
 import { Subscription } from 'rxjs';
 import { ArrayUtil } from '../../common/util/array.util';
+import { GenericUtil } from '../../common/util/generic.util';
 
 @Component({
   selector: 'ws-breadcrumbs',
@@ -40,6 +41,10 @@ export class BreadcrumbsComponent implements OnInit {
     this.service.targetOutlet = 'primary';
     this.service.build(this.route.root);
 
+    if (!GenericUtil.isNullOrUndefined(this.showHomeItem)) {
+      this.service.showHomeItem = true;
+    }
+
     // rebuild on nav change
     this.rebuildSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -51,7 +56,11 @@ export class BreadcrumbsComponent implements OnInit {
 
   // tslint:disable-next-line:use-lifecycle-interface typedef
   ngOnChanges() {
-
+    if (!GenericUtil.isNullOrUndefined(this.showHomeItem)) {
+      this.service.showHomeItem = true;
+    } else {
+      this.service.showHomeItem = this.showHomeItem;
+    }
   }
 
   // tslint:disable-next-line:use-lifecycle-interface typedef

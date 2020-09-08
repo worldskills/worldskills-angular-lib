@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.9.0
+
+* The breadcrumb home item can now be manipulated by the BreadCrumbSerbice
+
 ## 10.8.0
 
 * servicec method for abstaining and clearing an abstain.
