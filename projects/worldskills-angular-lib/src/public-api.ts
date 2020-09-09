@@ -48,6 +48,7 @@ export * from './lib/common/util/generic.util';
 export * from './lib/common/util/http.util';
 export * from './lib/common/util/html.util';
 export * from './lib/common/util/i18n.util';
+export * from './lib/common/util/object.util';
 export * from './lib/common/util/router.util';
 export * from './lib/common/util/rxjs.util';
 export * from './lib/common/util/user-role.util';
