@@ -53,15 +53,20 @@ export class MultiselectPollComponent implements OnInit {
     // ensure we are not dealing with an unset action
     this.models = this.optionHandler.onOptionSelect(this.poll.type, this.models, event.target.value, index);
 
-    // emit selection only if all options are selected
-    if (this.hasMaxSelections()) {
-      const output = [];
-      this.models.forEach((id, i) => {
-        const entry = {rank: i + 1, optionId: id};
-        output.push(entry);
-      });
-      this.optionSelected.emit(output);
+    if (event.target.value === '0') {
+      this.optionSelected.emit([]);
+    } else {
+      // emit selection only if all options are selected
+      if (this.hasMaxSelections()) {
+        const output = [];
+        this.models.forEach((id, i) => {
+          const entry = {rank: i + 1, optionId: id};
+          output.push(entry);
+        });
+        this.optionSelected.emit(output);
+      }
     }
+
   }
 
   hasMaxSelections(): boolean {

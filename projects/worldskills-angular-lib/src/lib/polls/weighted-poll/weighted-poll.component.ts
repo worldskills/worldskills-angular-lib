@@ -51,14 +51,18 @@ export class WeightedPollComponent implements OnInit {
   change(event: any, index): void {
     this.models = this.optionHandler.onOptionSelect(this.poll.type, this.models, event.target.value, 0);
 
-    // emit selection only if all options are selected
-    if (this.hasMaxSelections()) {
-      const output = [];
-      this.models.forEach((id, i) => {
-        const entry = {rank: i + 1, optionId: id};
-        output.push(entry);
-      });
-      this.optionSelected.emit(output);
+    if (event.target.value === '0') {
+      this.optionSelected.emit([]);
+    } else {
+      // emit selection only if all options are selected
+      if (this.hasMaxSelections()) {
+        const output = [];
+        this.models.forEach((id, i) => {
+          const entry = {rank: i + 1, optionId: id};
+          output.push(entry);
+        });
+        this.optionSelected.emit(output);
+      }
     }
   }
 
