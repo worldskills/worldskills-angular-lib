@@ -14,6 +14,7 @@ import { Result } from '../../../worldskills-angular-lib/src/lib/polls/models/re
 import { Vote } from '../../../worldskills-angular-lib/src/lib/polls/models/vote';
 import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert-type';
 import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
+import { DateRange } from '../../../../dist/worldskills-angular-lib/lib/date/date-range';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +43,8 @@ export class AppComponent {
   voted: Vote;
 
   datetime: Datetime;
+
+  range: DateRange;
 
   // wsSelect
   @ViewChild('form', {static: true}) form: NgForm;
@@ -86,6 +89,10 @@ export class AppComponent {
 
   // tslint:disable-next-line:typedef use-lifecycle-interface
   ngOnInit() {
+    this.range = {
+      start: new Date(),
+      end: new Date()
+    };
     this.datetime = new Datetime();
     this.configureLib();
     this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
