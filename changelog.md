@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.10.0
+
+* Template positions for header components
+  * `appNameTemplate`
+  * `menuTemplate`
+
 ## 10.9.0
 
 * The breadcrumb home item can now be manipulated by the BreadCrumbSerbice
