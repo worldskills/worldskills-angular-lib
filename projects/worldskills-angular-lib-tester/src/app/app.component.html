@@ -1,7 +1,14 @@
+<ng-template #appNameTemplateCustom>
+<span class="navbar-brand">
+        <ws-wordmark></ws-wordmark>
+        <span class="ml-1 text-white">Tester</span>
+</span>
+</ng-template>
 <header>
     <ws-auth-header
             [appName]="'Tester'"
             [menuItems]="menuItems"
+            [appNameTemplate]="appNameTemplateCustom"
     ></ws-auth-header>
 </header>
 

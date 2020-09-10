@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, TemplateRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {MenuItem} from '../menu-item';
 import {User} from '../../auth/models/user';
@@ -15,6 +15,8 @@ export class AuthHeaderComponent implements OnInit {
     @Input() menuItems: Array<MenuItem> = [];
     @Input() onLogin: EventEmitter<void> = new EventEmitter<void>();
     @Input() onLogout: EventEmitter<void> = new EventEmitter<void>();
+    @Input() appNameTemplate: TemplateRef<any>;
+    @Input() menuTemplate: TemplateRef<any>;
     currentUser: User;
 
     constructor(private router: Router, private ngAuthService: NgAuthService) {

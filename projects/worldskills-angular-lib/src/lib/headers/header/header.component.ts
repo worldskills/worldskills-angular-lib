@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from '../menu-item';
 import { User } from '../../auth/models/user';
@@ -15,6 +15,9 @@ export class HeaderComponent implements OnInit {
   @Input() public showLoginAndLogoutButtons: boolean;
   @Input() menuItems: Array<MenuItem>;
   @Input() currentUser: User;
+  @Input() linkTitle: boolean;
+  @Input() appNameTemplate: TemplateRef<any>;
+  @Input() menuTemplate: TemplateRef<any>;
   @Output() public logoutClick: EventEmitter<any> = new EventEmitter();
   @Output() public loginClick: EventEmitter<any> = new EventEmitter();
 

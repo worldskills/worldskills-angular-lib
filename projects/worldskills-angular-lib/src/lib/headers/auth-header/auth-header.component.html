@@ -1,35 +1,41 @@
+<ng-template #appNameDefaultTemplate>
+    <a class="navbar-brand" href="#">
+        <ws-wordmark></ws-wordmark>
+        <span class="ml-1 text-white">{{ appName }}</span>
+    </a>
+</ng-template>
+<ng-template #menuDefaultTemplate>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}"
+                *ngFor="let item of menuItems | wsMenuAccessFilter : !!currentUser : userRoles">
+                <a class="nav-link" [routerLink]="item.params ? [item.url, item.params] : [item.url]">
+                    {{ item.label }}
+                </a>
+            </li>
+        </ul>
+        <div class="dropdown ml-2" *ngIf="currentUser">
+            <button class="btn btn-white rounded-pill" type="button" data-toggle="dropdown">
+                {{ initials }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.first_name }}
+                    {{ currentUser.last_name }}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" (click)="$event.preventDefault(); logout()">Logout</a>
+            </div>
+        </div>
+        <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="$event.preventDefault(); login()"
+            *ngIf="!currentUser">Log in</a>
+    </div>
+</ng-template>
 <nav class="navbar navbar-expand-md ws-navbar-main ws-navbar-stripe wsmember-navbar-main wsmember-bg-pink">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <ws-wordmark></ws-wordmark>
-            <span class="ml-1 text-white">{{ appName }}</span>
-        </a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}"
-                    *ngFor="let item of menuItems | wsMenuAccessFilter : !!currentUser : userRoles">
-                    <a class="nav-link" [routerLink]="item.params ? [item.url, item.params] : [item.url]">
-                        {{ item.label }}
-                    </a>
-                </li>
-            </ul>
-            <div class="dropdown ml-2" *ngIf="currentUser">
-                <button class="btn btn-white rounded-pill" type="button" data-toggle="dropdown">
-                    {{ initials }}
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item disabled" href="#"
-                       tabindex="-1">{{ currentUser.first_name }} {{ currentUser.last_name }}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" (click)="$event.preventDefault(); logout()">Logout</a>
-                </div>
-            </div>
-            <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="$event.preventDefault(); login()" *ngIf="!currentUser">Log in</a>
-        </div>
+        <ng-container *ngTemplateOutlet="appNameTemplate ? appNameTemplate : appNameDefaultTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="menuTemplate ? menuTemplate : menuDefaultTemplate"></ng-container>
     </div>
 </nav>
