@@ -1,3 +1,6 @@
+<ws-puppeteer-banner [currentUser]="user"></ws-puppeteer-banner>
+<ws-staging-banner></ws-staging-banner>
+
 <ng-template #appNameTemplateCustom>
 <span class="navbar-brand">
         <ws-wordmark></ws-wordmark>
@@ -11,11 +14,6 @@
             [appNameTemplate]="appNameTemplateCustom"
     ></ws-auth-header>
 </header>
-
-<div class="container">
-    <ws-puppeteer-banner [currentUser]="user"></ws-puppeteer-banner>
-    <ws-staging-banner></ws-staging-banner>
-</div>
 
 <div class="container">
     <ws-breadcrumbs
