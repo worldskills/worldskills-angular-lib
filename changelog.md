@@ -1,6 +1,6 @@
 # Changelog
 
-## Upcoming release
+## 10.10.2
 
 * Add `message` attribute for `ws-staging-banner`
 
