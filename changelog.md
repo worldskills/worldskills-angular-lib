@@ -1,5 +1,9 @@
 # Changelog
 
+## Upcoming release
+
+* Add `message` attribute for `ws-staging-banner`
+
 ## 10.10.0
 
 * Template positions for header components
