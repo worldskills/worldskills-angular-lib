@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ws-staging-banner',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./staging-banner.component.css']
 })
 export class StagingBannerComponent implements OnInit {
+
+  @Input() message: string = 'This is the staging environment. Changes in this environment might get overwritten.';
 
   constructor() { }
 
