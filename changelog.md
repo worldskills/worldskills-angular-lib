@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.10.3
+
+* the `Poll` object now has an option `userVote` property
+
 ## 10.10.2
 
 * Add `message` attribute for `ws-staging-banner`

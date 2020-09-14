@@ -3,6 +3,7 @@ import { I18nText } from '../../common/models/i18n-text';
 import { CreatedBy } from './created-by';
 import { EntityPath } from './entity-path';
 import { Option } from './option';
+import { Vote } from './vote';
 
 export interface Poll {
   id: number;
@@ -24,4 +25,5 @@ export interface Poll {
   expiry: Date;
   createdBy: CreatedBy;
   options: Option[];
+  userVote?: Vote;
 }
