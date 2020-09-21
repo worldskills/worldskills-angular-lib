@@ -1,5 +1,10 @@
 # Changelog
 
+## 10.11.0
+
+* Sub-menu support
+* Fix disabled in date-range
+
 ## 10.10.3
 
 * the `Poll` object now has an option `userVote` property
