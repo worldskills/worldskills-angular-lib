@@ -16,9 +16,9 @@
   <div class="form-group">
     <div class="input-group">
       <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-        [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+        [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)" [disabled]="disabled ? 'disabled' : null">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()" type="button">
+        <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()" type="button" [disabled]="disabled ? 'disabled' : null">
           <i class="fa fa-calendar" aria-hidden="true"></i>
         </button>
       </div>
@@ -27,9 +27,9 @@
   <div class="form-group ml-2">
     <div class="input-group">
       <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate" [value]="formatter.format(toDate)"
-        (input)="toDate = validateInput(toDate, dpToDate.value)">
+        (input)="toDate = validateInput(toDate, dpToDate.value)" [disabled]="disabled ? 'disabled' : null">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()" type="button">
+        <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()" type="button" [disabled]="disabled ? 'disabled' : null">
           <i class="fa fa-calendar" aria-hidden="true"></i>
         </button>
       </div>

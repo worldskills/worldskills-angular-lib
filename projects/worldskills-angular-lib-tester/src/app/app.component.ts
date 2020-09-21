@@ -122,7 +122,7 @@ export class AppComponent {
                 requireLogin: false,
                 requiredRoles: []
             },
-            {label: 'Latest', url: '/latest', hidden: false, requireLogin: false, requiredRoles: []},
+            {label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []},
         ]
         this.asyncSearchSubscription = (value: string) => {
             const observable = from(this.asyncSearchFn(value));
