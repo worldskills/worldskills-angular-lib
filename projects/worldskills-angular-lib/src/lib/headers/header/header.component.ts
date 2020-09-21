@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   @Input() linkTitle: boolean;
   @Input() appNameTemplate: TemplateRef<any>;
   @Input() menuTemplate: TemplateRef<any>;
+  @Input() subMenuTemplate: TemplateRef<any>;
   @Output() public logoutClick: EventEmitter<any> = new EventEmitter();
   @Output() public loginClick: EventEmitter<any> = new EventEmitter();
 

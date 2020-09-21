@@ -20,7 +20,6 @@
             </li>
         </ul>
 
-
         <div class="dropdown ml-2" *ngIf="showLoginAndLogoutButtons && isLoggedIn">
             <button class="btn btn-white rounded-pill" type="button" data-toggle="dropdown">
                 {{ getInitials() }}
@@ -60,6 +59,6 @@
 
 <nav class="navbar navbar-expand-md ws-navbar-sub" *ngIf="getActiveMenu().subMenuItems">
     <div class="container">
-        <ng-container *ngTemplateOutlet="menuTemplate ? menuTemplate : subMenuDefaultTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="subMenuTemplate ? subMenuTemplate : subMenuDefaultTemplate"></ng-container>
     </div>
 </nav>
