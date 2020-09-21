@@ -8,11 +8,18 @@
 </span>
 </ng-template>
 <header>
-    <ws-auth-header
+    <ws-header
             [appName]="'Tester'"
-            [menuItems]="menuItems"
-            [appNameTemplate]="appNameTemplateCustom"
-    ></ws-auth-header>
+            [menuItems]="wsHeaderMenuItems"
+            [showLoginAndLogoutButtons]="true"
+    >
+
+    </ws-header>
+<!--    <ws-auth-header-->
+<!--            [appName]="'Tester'"-->
+<!--            [menuItems]="menuItems"-->
+<!--            [appNameTemplate]="appNameTemplateCustom"-->
+<!--    ></ws-auth-header>-->
 </header>
 
 <div class="container">

@@ -53,6 +53,10 @@ export class HeaderComponent implements OnInit {
     return route === this.router.url;
   }
 
+  getActiveMenu(): MenuItem{
+    return this.menuItems?.find(item => item.url === this.router.url) ?? null;
+  }
+
   login(): void {
     this.loginClick.emit();
   }
