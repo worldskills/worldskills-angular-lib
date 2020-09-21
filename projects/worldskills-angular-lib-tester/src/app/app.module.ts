@@ -1,20 +1,22 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {WorldskillsAngularLibModule} from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HomeComponent} from './home/home.component';
-import {ExtraOptions, RouterModule, Routes} from '@angular/router';
-import {OAuthModule} from 'angular-oauth2-oidc';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {WsHttpInterceptor} from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
-import {AnotherPageComponent} from './another-page/another-page.component';
-import {AnotherRouteComponent} from './another-route/another-route.component';
-import {NestedPageComponent} from './nested-page/nested-page.component';
-import {NgSelectModule} from '@ng-select/ng-select';
-import {GuardService} from '../../../worldskills-angular-lib/src/lib/auth/guard.service';
+import { AppComponent } from './app.component';
+import { WorldskillsAngularLibModule } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
+import { AnotherPageComponent } from './another-page/another-page.component';
+import { AnotherRouteComponent } from './another-route/another-route.component';
+import { NestedPageComponent } from './nested-page/nested-page.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { GuardService } from '../../../worldskills-angular-lib/src/lib/auth/guard.service';
+import { SubpageOneComponent } from "./subpage-one/subpage-one.component";
+import { SubpageTwoComponent } from "./subpage-two/subpage-two.component";
 
 
 const routerOptions: ExtraOptions = {
@@ -33,6 +35,20 @@ const appRoutes: Routes = [
                 // canActivate: [GuardService],
                 data: {
                     breadcrumb: {key: 'nested', label: 'Nested'}
+                }
+            },
+            {
+                path: 'submenu1', component: SubpageOneComponent,
+                // canActivate: [GuardService],
+                data: {
+                    breadcrumb: {key: 'submenu1', label: 'submenu1'}
+                }
+            },
+            {
+                path: 'submenu2', component: SubpageTwoComponent,
+                // canActivate: [GuardService],
+                data: {
+                    breadcrumb: {key: 'submenu2', label: 'submenu2'}
                 }
             },
         ]
@@ -82,7 +98,9 @@ const appRoutes: Routes = [
         HomeComponent,
         AnotherPageComponent,
         AnotherRouteComponent,
-        NestedPageComponent
+        NestedPageComponent,
+        SubpageOneComponent,
+        SubpageTwoComponent
     ],
     imports: [
         BrowserModule,

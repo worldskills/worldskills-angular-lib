@@ -12,7 +12,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }} {{ item.subMenuItems ? 'has-subnav' : ''}}"
+            <li class="nav-item {{ isRouteActive(item) ? 'active' : '' }} {{ item.subMenuItems ? 'has-subnav' : ''}}"
                 *ngFor="let item of menuItems | wsMenuAccessFilter: isLoggedIn: userRoles()">
                 <a class="nav-link" [routerLink]="item.params ? [item.url, item.params] : [item.url]">
                     {{ item.label }}
@@ -40,8 +40,8 @@
 <ng-template #subMenuDefaultTemplate>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item {{ isRouteActive(item.url) ? 'active' : '' }}"
-                *ngFor="let item of getActiveMenu().subMenuItems | wsMenuAccessFilter: isLoggedIn: userRoles()">
+            <li class="nav-item {{ isRouteActive(item) ? 'active' : '' }}"
+                *ngFor="let item of getActiveParentMenu().subMenuItems | wsMenuAccessFilter: isLoggedIn: userRoles()">
                 <a class="nav-link" [routerLink]="item.params ? [item.url, item.params] : [item.url]">
                     {{ item.label }}
                 </a>
@@ -57,7 +57,7 @@
     </div>
 </nav>
 
-<nav class="navbar navbar-expand-md ws-navbar-sub" *ngIf="getActiveMenu().subMenuItems">
+<nav class="navbar navbar-expand-md ws-navbar-sub" *ngIf="getActiveParentMenu().subMenuItems">
     <div class="container">
         <ng-container *ngTemplateOutlet="subMenuTemplate ? subMenuTemplate : subMenuDefaultTemplate"></ng-container>
     </div>

@@ -108,21 +108,19 @@ export class AppComponent {
             {label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []},
         ];
 
-        // the url in submenu is only a dummy link - testing purpose only :)
         this.wsHeaderMenuItems = [
-            {label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: []},
+            {
+                label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [], subMenuItems: [
+                    {label: 'Submenu 1', url: '/home/submenu1', hidden: false, requireLogin: false, requiredRoles: []},
+                    {label: 'Submenu 2', url: '/home/submenu2', hidden: false, requireLogin: false, requiredRoles: []},
+                ]
+            },
             {
                 label: 'Home Nested',
                 url: '/home/nested',
                 hidden: false,
                 requireLogin: false,
-                requiredRoles: [],
-                subMenuItems: [
-                    {label: 'Competitions', url: '/competitions', hidden: false, requireLogin: false, requiredRoles: []},
-                    {label: 'Projects', url: '/projects', hidden: false, requireLogin: false, requiredRoles: []},
-                    {label: 'Conference', url: '/conference', hidden: false, requireLogin: false, requiredRoles: []},
-                    {label: 'Champions Trust', url: '/champions-trust', hidden: false, requireLogin: false, requiredRoles: []},
-                ]
+                requiredRoles: []
             },
             {label: 'Latest', url: '/latest', hidden: false, requireLogin: false, requiredRoles: []},
         ]
