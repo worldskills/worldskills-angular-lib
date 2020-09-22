@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
     }
 
     getActiveParentMenu(): MenuItem {
-        return this.menuItems?.find(item => item.url === this.router.url || item.subMenuItems.some(subItem => subItem.url === this.router.url));
+        return this.menuItems?.find(item => item.url === this.router.url || item?.subMenuItems?.some(subItem => subItem.url === this.router.url));
     }
 
     login(): void {
