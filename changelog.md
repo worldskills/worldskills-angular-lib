@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.11.1
+
+* Allow Nullable sub-menu items on a menu item.
+
 ## 10.11.0
 
 * Sub-menu support
