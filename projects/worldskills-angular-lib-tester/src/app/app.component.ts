@@ -123,7 +123,7 @@ export class AppComponent {
                 requiredRoles: []
             },
             {label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []},
-        ]
+        ];
         this.asyncSearchSubscription = (value: string) => {
             const observable = from(this.asyncSearchFn(value));
             observable.subscribe(items => {
