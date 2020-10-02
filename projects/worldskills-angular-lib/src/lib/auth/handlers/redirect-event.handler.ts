@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 
-export const RETURN_URL_KEY = 'returnUrl';
+const RETURN_URL_KEY = 'returnUrl';
 
 /*
     A lighter verssion of the URL redirect that places more power in the calling application
