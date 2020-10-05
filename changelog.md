@@ -1,5 +1,11 @@
 # Changelog
 
+* FIXED ref to the parent item when the sunmenu is active
+
+## 10.12.4
+
+* FIXED submenu detection
+
 ## 10.12.3
 
 * improved null detection on menu items

@@ -58,7 +58,22 @@ export class HeaderComponent implements OnInit {
     }
 
     getActiveParentMenu(): MenuItem {
-        return this.menuItems.find(item => item.url === this.router.url);
+        let parent = this.menuItems.find(item => item.url === this.router.url);
+        if (GenericUtil.isNullOrUndefined(parent)) {
+
+            // get the parent of the active child item.
+            const parents = this.menuItems.filter(item => !GenericUtil.isNullOrUndefined(item.subMenuItems));
+            parents.forEach(item => {
+                if (GenericUtil.isNullOrUndefined(parent)) {
+                    const match = item.subMenuItems.find(subItem => subItem.url === this.router.url);
+                    if (!GenericUtil.isNullOrUndefined(match)) {
+                        parent = item;
+                    }
+                }
+            });
+        }
+
+        return parent;
     }
 
     hasSubMenuItems(item: MenuItem): boolean {
