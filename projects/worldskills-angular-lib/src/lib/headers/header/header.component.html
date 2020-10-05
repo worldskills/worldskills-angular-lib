@@ -20,7 +20,7 @@
             </li>
         </ul>
 
-        <div class="dropdown ml-2" *ngIf="showLoginAndLogoutButtons && isLoggedIn">
+        <div class="dropdown ml-2" *ngIf="showMenu()">
             <button class="btn btn-white rounded-pill" type="button" data-toggle="dropdown">
                 {{ getInitials() }}
             </button>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="login(); false;"
-           *ngIf="showLoginAndLogoutButtons && !isLoggedIn">Log in</a>
+           *ngIf="showLoginButton()">Log in</a>
     </div>
 </ng-template>
 

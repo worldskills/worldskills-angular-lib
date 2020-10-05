@@ -15,8 +15,8 @@ import { AnotherRouteComponent } from './another-route/another-route.component';
 import { NestedPageComponent } from './nested-page/nested-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { GuardService } from '../../../worldskills-angular-lib/src/lib/auth/guard.service';
-import { SubpageOneComponent } from "./subpage-one/subpage-one.component";
-import { SubpageTwoComponent } from "./subpage-two/subpage-two.component";
+import { SubpageOneComponent } from './subpage-one/subpage-one.component';
+import { SubpageTwoComponent } from './subpage-two/subpage-two.component';
 
 
 const routerOptions: ExtraOptions = {

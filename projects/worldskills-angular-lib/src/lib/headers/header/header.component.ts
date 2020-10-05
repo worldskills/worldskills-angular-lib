@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@an
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from '../menu-item';
 import { User } from '../../auth/models/user';
+import { GenericUtil } from '../../common/util/generic.util';
 
 @Component({
     selector: 'ws-header',
@@ -83,5 +84,14 @@ export class HeaderComponent implements OnInit {
         }
 
         return s.toUpperCase();
+    }
+
+    showMenu(): boolean {
+        return this.showLoginAndLogoutButtons ? this.isLoggedIn || !GenericUtil.isNullOrUndefined(this.currentUser) : false;
+    }
+
+    showLoginButton(): boolean {
+        return this.showLoginAndLogoutButtons ? !this.isLoggedIn || GenericUtil.isNullOrUndefined(this.currentUser) : false;
+
     }
 }

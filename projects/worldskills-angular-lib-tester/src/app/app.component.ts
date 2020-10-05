@@ -150,12 +150,13 @@ export class AppComponent {
 
         this.wsi.httpConfigSubject.next({
             encoderUriPatterns: [],
-            authUriPatterns: ['api.worldskills.show'],
+            authUriPatterns: ['api.worldskills.show', 'localhost:8081'],
         });
 
         this.wsi.serviceConfigSubject.next({
             appCode: [500],
-            apiEndpoint: 'https://api.worldskills.show',
+            // apiEndpoint: 'https://api.worldskills.show',
+            apiEndpoint: 'http://localhost:8081'
         });
     }
 

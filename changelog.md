@@ -1,5 +1,10 @@
 # Changelog
 
+## 10.11.3
+
+* improved null detection on menu items
+* updated redirect examples
+
 ## 10.11.2
 
 * Refactor: constants in the auth feature
