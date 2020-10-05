@@ -4,14 +4,13 @@ import { NgAuthService } from '../ng-auth.service';
 import { Observable } from 'rxjs';
 import { RouterUtil } from '../../common/util/router.util';
 import { Injectable } from '@angular/core';
+import { RETURN_URL_KEY } from '../constants';
 
 export interface RedirectOptions {
   url?: any;
   onlyIfExact?: ActivatedRoute | ActivatedRouteSnapshot;
   showChildRoles?: boolean;
 }
-
-export const RETURN_URL_KEY = 'returnUrl';
 
 @Injectable({
   providedIn: 'root'

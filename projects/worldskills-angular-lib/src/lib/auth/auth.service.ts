@@ -8,7 +8,6 @@ import { GetUsersParams } from './models/get-user-params';
 import { HttpUtil } from '../common/util/http.util';
 import { share } from 'rxjs/operators';
 
-export const USER_CURRENT_KEY = 'user.current';
 @Injectable({
   providedIn: 'root'
 })

@@ -3,8 +3,7 @@ import { NgAuthService } from '../ng-auth.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-
-const RETURN_URL_KEY = 'returnUrl';
+import { RETURN_URL_KEY } from '../constants';
 
 /*
     A lighter verssion of the URL redirect that places more power in the calling application

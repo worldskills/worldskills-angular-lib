@@ -3,8 +3,9 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from './models/user';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { AuthService, USER_CURRENT_KEY } from './auth.service';
+import { AuthService } from './auth.service';
 import { share } from 'rxjs/operators';
+import { USER_CURRENT_KEY } from './constants';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state

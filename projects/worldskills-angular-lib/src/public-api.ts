@@ -74,6 +74,7 @@ export * from './lib/alerts/alert/alert.component';
 /*
   Auth
 */
+export * from './lib/auth/constants';
 export * from './lib/auth/handlers/redirect.handler';
 export * from './lib/auth/handlers/redirect-event.handler';
 export * from './lib/auth/models/auth-guard-access';

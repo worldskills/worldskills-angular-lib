@@ -4,11 +4,10 @@ import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
 import { AuthGuardAccess } from './models/auth-guard-access';
 import { Observable } from 'rxjs';
-import { USER_CURRENT_KEY } from './auth.service';
-import { RETURN_URL_KEY } from './handlers/redirect.handler';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
 import { AppConfig } from '../config/app.config';
 import { NgAuthService } from './ng-auth.service';
+import { RETURN_URL_KEY, USER_CURRENT_KEY } from './constants';
 
 @Injectable({
   providedIn: 'root'
