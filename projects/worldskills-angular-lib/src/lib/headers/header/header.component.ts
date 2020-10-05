@@ -58,9 +58,27 @@ export class HeaderComponent implements OnInit {
     }
 
     getActiveParentMenu(): MenuItem {
-        return this.menuItems?.find(
-            item => item.url === this.router.url || item?.subMenuItems?.some(subItem => subItem.url === this.router.url)
-        );
+        return this.menuItems.find(item => item.url === this.router.url);
+    }
+
+    hasSubMenuItems(item: MenuItem): boolean {
+        if (GenericUtil.isNullOrUndefined(item)) {
+            return false;
+        }
+
+        return !GenericUtil.isNullOrUndefined(item.subMenuItems);
+    }
+
+    getSubMenuItems(item: MenuItem): MenuItem[] {
+        if (GenericUtil.isNullOrUndefined(item)) {
+            return [];
+        }
+
+        if (GenericUtil.isNullOrUndefined(item.subMenuItems)) {
+            return [];
+        }
+
+        return item.subMenuItems;
     }
 
     login(): void {
