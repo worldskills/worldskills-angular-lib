@@ -1,15 +1,15 @@
 # Changelog
 
-## 10.11.3
+## 10.12.3
 
 * improved null detection on menu items
 * updated redirect examples
 
-## 10.11.2
+## 10.12.2
 
 * Refactor: constants in the auth feature
 
-## 10.11.1
+## 10.12.1
 
 * Allow Nullable sub-menu items on a menu item.
 
