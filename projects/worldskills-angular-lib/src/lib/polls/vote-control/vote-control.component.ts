@@ -116,7 +116,7 @@ export class VoteControlComponent implements OnInit {
           voteSelections.push(option.text.text);
         });
 
-        if (confirm(`Are you should you want to vote for (${voteSelections.join(',')})`)) {
+        if (confirm(`Are you sure you want to vote for (${voteSelections.join(',')})`)) {
           this.voteSelected.emit(this.selection);
         }
       } else {
@@ -129,7 +129,7 @@ export class VoteControlComponent implements OnInit {
     if (this.voted.hasVoted) {
       alert('You have already voted');
     } else {
-      if (confirm(`Are you should you wish to abstain from voting ?`)) {
+      if (confirm(`Are you sure you wish to abstain from voting ?`)) {
         this.abstainSelected.emit();
       }
     }

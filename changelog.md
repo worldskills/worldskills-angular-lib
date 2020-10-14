@@ -1,6 +1,9 @@
 # Changelog
 
+## 10.12.5
+
 * FIXED ref to the parent item when the sunmenu is active
+* FIXED typo within the vote control
 
 ## 10.12.4
 
