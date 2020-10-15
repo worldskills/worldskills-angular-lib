@@ -112,8 +112,8 @@ export class PollService {
     return this.http.delete(url);
   }
 
-  public copy(pollId: number): Observable<any> {
+  public copy(pollId: number): Observable<Poll> {
     const url = `${this.endpoint}/${pollId}/copy`;
-    return this.http.delete(url);
+    return this.http.post<Poll>(url, {});
   }
 }
