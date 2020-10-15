@@ -111,4 +111,9 @@ export class PollService {
     const url = `${this.endpoint}/${pollId}/removeAbstain`;
     return this.http.delete(url);
   }
+
+  public copy(pollId: number): Observable<any> {
+    const url = `${this.endpoint}/${pollId}/copy`;
+    return this.http.delete(url);
+  }
 }

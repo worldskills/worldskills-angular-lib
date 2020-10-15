@@ -26,6 +26,7 @@ export class VoteControlComponent implements OnInit {
   @Input() results: Result[];
   @Input() voted: Vote;
   @Input() confirmBeforeVote: boolean;
+  @Input() confirmBeforeAbstain: boolean;
   @Input() optionHandler: OptionHandler;
 
   // templates
@@ -129,7 +130,11 @@ export class VoteControlComponent implements OnInit {
     if (this.voted.hasVoted) {
       alert('You have already voted');
     } else {
-      if (confirm(`Are you sure you wish to abstain from voting ?`)) {
+      if (this.confirmBeforeAbstain) {
+        if (confirm(`Are you sure you wish to abstain from voting ?`)) {
+          this.abstainSelected.emit();
+        }
+      } else {
         this.abstainSelected.emit();
       }
     }

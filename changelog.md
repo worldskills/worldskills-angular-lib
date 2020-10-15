@@ -1,5 +1,10 @@
 # Changelog
 
+## 10.13.0
+
+* Implement Poll Copy api method
+* Vote Control - confirm before abstain is fires is optional
+
 ## 10.12.7
 
 * FIXED typo within the vote control
