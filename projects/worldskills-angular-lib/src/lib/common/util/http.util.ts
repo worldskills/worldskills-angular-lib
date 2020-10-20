@@ -7,13 +7,13 @@ export class HttpUtil {
       const prop = obj[propName];
       if (ArrayUtil.isArray(prop)) {
         (prop as any[]).forEach((item, valueIndex) => {
-          if (valueIndex === 0) {
+          if (valueIndex === 0 && item) {
             params = params.set(propName, item);
-          } else {
+          } else if(item) {
             params = params.append(propName, item);
           }
         });
-      } else {
+      } else if(prop){
         params = params.set(propName, prop);
       }
 
