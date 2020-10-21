@@ -49,8 +49,7 @@ export class WeightedPollComponent implements OnInit {
   }
 
   change(event: any, index): void {
-    this.models = this.optionHandler.onOptionSelect(this.poll.type, this.models, event.target.value, 0);
-
+    this.models = this.optionHandler.onOptionSelect(this.poll.type, this.models, event.target.value, index);
     if (event.target.value === '0') {
       this.optionSelected.emit([]);
     } else {

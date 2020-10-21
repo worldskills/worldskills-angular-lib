@@ -175,7 +175,7 @@ export class AppComponent {
             start: new Date(),
             expiry: new Date(),
             numberOfSelections: 3,
-            type: 'multiselect',
+            type: 'weighted',
             question: {lang_code: 'en', text: 'Question ?'},
             title: {lang_code: 'en', text: 'Title'},
             options: [
