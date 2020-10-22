@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, TemplateRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {MenuItem} from '../menu-item';
 import {User} from '../../auth/models/user';
@@ -13,10 +13,13 @@ export class AuthHeaderComponent implements OnInit {
 
     @Input() appName = 'Application';
     @Input() menuItems: Array<MenuItem> = [];
-    @Input() onLogin: EventEmitter<void> = new EventEmitter<void>();
-    @Input() onLogout: EventEmitter<void> = new EventEmitter<void>();
+    // tslint:disable-next-line:no-output-on-prefix
+    @Output() onLogin: EventEmitter<void> = new EventEmitter<void>();
+    // tslint:disable-next-line:no-output-on-prefix
+    @Output() onLogout: EventEmitter<void> = new EventEmitter<void>();
     @Input() appNameTemplate: TemplateRef<any>;
     @Input() menuTemplate: TemplateRef<any>;
+    @Input() autoLoginOnLogout = false;
     currentUser: User;
 
     constructor(private router: Router, private ngAuthService: NgAuthService) {
@@ -38,7 +41,14 @@ export class AuthHeaderComponent implements OnInit {
     }
 
     logout(): void {
-        this.ngAuthService.logout().subscribe(() => this.onLogout ? this.onLogout.emit() : undefined);
+        this.ngAuthService.logout().subscribe(() => {
+            if (this.onLogout) {
+                this.onLogout.emit();
+            }
+            if (this.autoLoginOnLogout) {
+                this.login();
+            }
+        });
     }
 
     get userRoles(): string[] {
