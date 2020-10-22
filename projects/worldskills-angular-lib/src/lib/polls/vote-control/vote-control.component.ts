@@ -28,6 +28,7 @@ export class VoteControlComponent implements OnInit {
   @Input() confirmBeforeVote: boolean;
   @Input() confirmBeforeAbstain: boolean;
   @Input() optionHandler: OptionHandler;
+  @Input() isOwner: boolean;
 
   // templates
   @Input() beforeOptionsTemplate: TemplateRef<any>;
@@ -160,6 +161,11 @@ export class VoteControlComponent implements OnInit {
 
     if (this.poll.anonymousResults) {
       return false;
+    }
+
+    // allow the owner to view results at anytime
+    if (this.isOwner) {
+      return true;
     }
 
     const time = new Date().getTime();

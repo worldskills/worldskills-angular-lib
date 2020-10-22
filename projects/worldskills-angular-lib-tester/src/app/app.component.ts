@@ -168,7 +168,7 @@ export class AppComponent {
             allowingReVote: true,
             anonymousVoting: false,
             anonymousResults: false,
-            showingResults: true,
+            showingResults: false,
             allowingAbstain: true,
             created: new Date(),
             deleted: false,

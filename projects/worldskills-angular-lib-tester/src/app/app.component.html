@@ -45,7 +45,7 @@
     <!-- <ws-standard-poll *ngIf="poll && voted" [poll]="poll" [voted]="voted" [initialSelection]="selected" (optionSelected)="optionSelected($event)"></ws-standard-poll> -->
     <ws-vote-control
             [showEditButton]="true" [showExtendButton]="true" [showResetButton]="true" [showDeleteButton]="true"
-            [confirmBeforeVote]="true"
+            [confirmBeforeVote]="true" [isOwner]="false"
             [poll]="poll" [results]="results" [voted]="voted"
             [beforeOptionsTemplate]="test"
             [afterOptionsTemplate]="test"
