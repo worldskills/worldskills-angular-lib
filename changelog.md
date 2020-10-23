@@ -1,7 +1,20 @@
 # Changelog
 
-## 10.13.1
+## 10.13.4
+
 * Small fix auth header
+
+## 10.13.3
+
+* Allow Poll Owners to view poll results at any time
+
+## 10.13.2
+
+* FIX option selection on weighted polls
+
+## 10.13.1
+
+* Introduce copy-poll method
 
 ## 10.13.0
 
