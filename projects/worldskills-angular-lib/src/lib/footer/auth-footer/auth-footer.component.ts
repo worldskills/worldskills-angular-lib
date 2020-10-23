@@ -20,11 +20,14 @@ export class AuthFooterComponent implements OnInit {
     @Input() col4Template: TemplateRef<any>;
     @Input() col5Template: TemplateRef<any>;
     @Input() col6Template: TemplateRef<any>;
-    @Input() onLogin: EventEmitter<void> = new EventEmitter<void>();
-    @Input() onLogout: EventEmitter<void> = new EventEmitter<void>();
+    // tslint:disable-next-line:no-output-on-prefix
+    @Output() onLogin: EventEmitter<void> = new EventEmitter<void>();
+    // tslint:disable-next-line:no-output-on-prefix
+    @Output() onLogout: EventEmitter<void> = new EventEmitter<void>();
     @Input() loginLabel = 'Log in';
     @Input() logoutLabel = 'Log out';
     @Output() languageChange: EventEmitter<Language> = new EventEmitter();
+    @Input() autoLoginOnLogout = false;
     currentUser: User;
 
     @ViewChild('#col1DefaultTemplate')
@@ -52,8 +55,16 @@ export class AuthFooterComponent implements OnInit {
     }
 
     logout(): void {
-        this.ngAuthService.logout().subscribe(() => this.onLogout ? this.onLogout.emit() : undefined);
+        this.ngAuthService.logout().subscribe(() => {
+            if (this.onLogout) {
+                this.onLogout.emit();
+            }
+            if (this.autoLoginOnLogout) {
+                this.login();
+            }
+        });
     }
+
 
     changeLanguage(model: Language): void {
         this.selectedLanguage = model;

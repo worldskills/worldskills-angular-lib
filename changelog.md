@@ -1,5 +1,8 @@
 # Changelog
 
+## 10.13.1
+* Small fix auth header
+
 ## 10.13.0
 
 * Implement Poll Copy api method
