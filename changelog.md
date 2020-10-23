@@ -1,67 +1,38 @@
 # Changelog
 
-## 10.13.4
+## 10.14
 
-* Small fix auth header
+* 10.14.0 - Introduced voer images for non-anonymous results
 
-## 10.13.3
+## 10.13
 
-* Allow Poll Owners to view poll results at any time
+* 10.13.4 - Small fix auth header
+* 10.13.3 - Allow Poll Owners to view poll results at any time
+* 10.13.2 - FIX option selection on weighted polls
+* 10.13.1 - Introduce copy-poll method
+* 10.13.0 - Implement Poll Copy api method
+* 10.13.0 - Vote Control - confirm before abstain is fires is optional
 
-## 10.13.2
+## 10.12
 
-* FIX option selection on weighted polls
+* 10.12.7 - FIXED typo within the vote control
+* 10.13.6 - FIXED ref to the parent item when the sunmenu is active
+* 10.12.4 - FIXED submenu detection
+* 10.12.3 - improved null detection on menu items
+* 10.12.3 - updated redirect examples
+* 10.12.2 - Refactor: constants in the auth feature
+* 10.12.1 - Allow Nullable sub-menu items on a menu item.
 
-## 10.13.1
+## 10.11
 
-* Introduce copy-poll method
+* 10.11.0 - Sub-menu support
+* 10.11.0 - Fix disabled in date-range
 
-## 10.13.0
+## 10.10
 
-* Implement Poll Copy api method
-* Vote Control - confirm before abstain is fires is optional
-
-## 10.12.7
-
-* FIXED typo within the vote control
-
-## 10.12.6
-
-* FIXED ref to the parent item when the sunmenu is active
-
-## 10.12.4
-
-* FIXED submenu detection
-
-## 10.12.3
-
-* improved null detection on menu items
-* updated redirect examples
-
-## 10.12.2
-
-* Refactor: constants in the auth feature
-
-## 10.12.1
-
-* Allow Nullable sub-menu items on a menu item.
-
-## 10.11.0
-
-* Sub-menu support
-* Fix disabled in date-range
-
-## 10.10.3
-
-* the `Poll` object now has an option `userVote` property
-
-## 10.10.2
-
-* Add `message` attribute for `ws-staging-banner`
-
-## 10.10.0
-
-* Template positions for header components
+* 10.10.3 - the `Poll` object now has an option `userVote` property
+* 10.10.2 - Add `message` attribute for `ws-staging-banner`
+* 10.10.0 - Template positions for header components
   * `appNameTemplate`
   * `menuTemplate`
 
@@ -143,16 +114,13 @@
 
 * fixes to entity tree selector
 
-## 8.8.1
+## 8.8
 
-* Small fix for wsSelect items (accept undefined items during initialization)
-* Added grouping function to wsSelect
-
-## 8.8.0
-
-* Cross Browser date helper functions
-* Added simplified `wsSelect` directive for easy `ng-select` setups
-* fixes and services behaviour input to entity tree
+* 8.8.1 - Small fix for wsSelect items (accept undefined items during initialization)
+* 8.8.1 - Added grouping function to wsSelect
+* 8.8.0 - Cross Browser date helper functions
+* 8.8.0 - Added simplified `wsSelect` directive for easy `ng-select` setups
+* 8.8.0 - fixes and services behaviour input to entity tree
 
 ## 8.7.0
 

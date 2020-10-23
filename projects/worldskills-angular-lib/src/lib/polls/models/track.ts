@@ -8,4 +8,5 @@ export interface Track {
  weight: number;
  timestamp: Date;
  abstain?: Abstain;
+ imagePath?: string;
 }

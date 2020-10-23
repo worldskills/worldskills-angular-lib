@@ -7,6 +7,7 @@ import { GenericUtil } from '../../common/util/generic.util';
 import { VoteEntry } from '../models/vote-entry';
 import { OptionHandler } from '../models/optionHandler';
 import { toDate } from '../../common/helpers/date.helper';
+import { Track } from '../models/track';
 
 @Component({
   selector: 'ws-vote-control',
@@ -25,6 +26,7 @@ export class VoteControlComponent implements OnInit {
   @Input() poll: Poll;
   @Input() results: Result[];
   @Input() voted: Vote;
+  @Input() tracks: Track[];
   @Input() confirmBeforeVote: boolean;
   @Input() confirmBeforeAbstain: boolean;
   @Input() optionHandler: OptionHandler;

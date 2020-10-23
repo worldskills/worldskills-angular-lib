@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Poll } from '../models/poll';
 import { Result } from '../models/result';
 import { Option } from '../models/option';
+import { Track } from '../models/track';
 
 @Component({
   selector: 'ws-poll-result',
@@ -13,6 +14,7 @@ export class PollResultComponent implements OnInit {
   max: number;
   @Input() poll: Poll;
   @Input() results: Result[];
+  @Input() tracks: Track[];
 
   constructor() { }
 
@@ -27,6 +29,21 @@ export class PollResultComponent implements OnInit {
 
   init(): void {
     this.max = this.results.map(x => x.count).reduce((sum, current) => sum + current, 0);
+  }
+
+  getPeople(option: Option): Track[] {
+    let records = [];
+
+    // if anonymous, option id will be blank
+    if (this.poll && this.tracks && !this.poll.anonymousVoting) {
+      records = this.tracks.filter(t => t.option.id === option.id);
+    }
+
+    return records;
+  }
+
+  getName(track: Track): string {
+    return `${track.firstName} ${track.lastName}`;
   }
 
   countVotes(option: Option): number {

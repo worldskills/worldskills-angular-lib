@@ -1,7 +1,11 @@
-<div *ngIf="results">
+<div *ngIf="results" class="poll-result">
   <p *ngFor="let option of poll.options | wsSort: 'asc': 'id'">
     <strong>{{ option.text.text }}</strong><br />
     <ngb-progressbar [showValue]="false" type="success" [value]="countVotes(option)" [max]="max">
       {{ countVotes(option) }}</ngb-progressbar>
+      <span>
+        <img *ngFor="let track of getPeople(option)"  class="poll-img rounded-circle inline-multiple" width="50px" height="50px" src="{{ track.imagePath }}_square"
+            placement="bottom"  ngbPopover="{{ getName(track) }}" triggers="mouseenter:mouseleave" />
+      </span>
   </p>
 </div>
