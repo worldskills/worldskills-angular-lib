@@ -48,14 +48,14 @@ export class PollResultComponent implements OnInit {
       // TODO need a better solution for this.
       switch (track.relativePosition.name.toLowerCase()) {
         case 'secretariat':
-          return `${track.firstName} ${track.lastName}`;
+          return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
         case 'skill competition manager':
-          return `${track.firstName} ${track.lastName}`;
+          return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
         default:
           if (GenericUtil.isNullOrUndefined(track.relativePosition.memberCode)) {
-            return `${track.firstName} ${track.lastName}`;
+            return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
           } else {
-            return `${track.firstName} ${track.lastName} - ${track.relativePosition.memberCode}`;
+            return `${track.firstName} ${track.lastName} - ${track.relativePosition.memberCode} ${track.relativePosition.name}`;
           }
       }
     }
