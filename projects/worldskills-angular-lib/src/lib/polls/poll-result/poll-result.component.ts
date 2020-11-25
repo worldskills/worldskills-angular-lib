@@ -3,6 +3,7 @@ import { Poll } from '../models/poll';
 import { Result } from '../models/result';
 import { Option } from '../models/option';
 import { Track } from '../models/track';
+import { GenericUtil } from '../../common/util/generic.util';
 
 @Component({
   selector: 'ws-poll-result',
@@ -43,6 +44,21 @@ export class PollResultComponent implements OnInit {
   }
 
   getName(track: Track): string {
+    if (!GenericUtil.isNullOrUndefined(track.relativePosition)) {
+      // TODO need a better solution for this.
+      switch (track.relativePosition.name.toLowerCase()) {
+        case 'secretariat':
+          return `${track.firstName} ${track.lastName}`;
+        case 'skill competition manager':
+          return `${track.firstName} ${track.lastName}`;
+        default:
+          if (GenericUtil.isNullOrUndefined(track.relativePosition.memberCode)) {
+            return `${track.firstName} ${track.lastName}`;
+          } else {
+            return `${track.firstName} ${track.lastName} - ${track.relativePosition.memberCode}`;
+          }
+      }
+    }
     return `${track.firstName} ${track.lastName}`;
   }
 

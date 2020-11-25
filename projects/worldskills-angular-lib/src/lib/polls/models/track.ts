@@ -1,5 +1,6 @@
 import { Option } from './option';
 import { Abstain } from './abstain';
+import { PersonPosition } from './person-position';
 export interface Track {
  personId: number;
  firstName: string;
@@ -9,4 +10,6 @@ export interface Track {
  timestamp: Date;
  abstain?: Abstain;
  imagePath?: string;
+ relativePosition: PersonPosition;
+ positions: PersonPosition[];
 }

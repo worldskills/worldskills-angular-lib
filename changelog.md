@@ -2,6 +2,7 @@
 
 ## 10.14
 
+* 10.14.1 - introduced person specific details in the vote traccking records
 * 10.14.0 - Introduced voer images for non-anonymous results
 
 ## 10.13
