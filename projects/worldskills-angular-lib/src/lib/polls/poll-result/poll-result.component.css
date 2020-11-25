@@ -1,3 +1,21 @@
-.poll-img {
-    margin:5px;
+.member-list {
+    list-style-type: none;
+    padding:0;
+}
+
+.member-list li {
+    padding: 5px;
+}
+
+.member-list li .member {
+    border: 1px solid #CCCC;
+    padding:5px;
+}
+
+.member-list .bg-primary .text {
+    color: #FFF
+}
+
+.member-block {
+    float: left;
 }

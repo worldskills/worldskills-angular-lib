@@ -4,8 +4,15 @@
     <ngb-progressbar [showValue]="false" type="success" [value]="countVotes(option)" [max]="max">
       {{ countVotes(option) }}</ngb-progressbar>
       <span>
-        <img *ngFor="let track of getPeople(option)"  class="poll-img rounded-circle inline-multiple" width="50px" height="50px" src="{{ track.imagePath }}_square"
-            placement="bottom"  ngbPopover="{{ getName(track) }}" triggers="mouseenter:mouseleave" />
+
+      <ul class="member-list row">
+          <li class="member-block" *ngFor="let track of getPeople(option)">
+              <div class="member bg-primary"  ngbPopover="{{ getVoterHover(track) }}"
+              triggers="mouseenter:mouseleave">
+                  <span class="text">{{ getVoter(track) }}</span>
+              </div>
+          </li>
+      </ul>
       </span>
   </p>
 </div>

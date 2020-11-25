@@ -43,20 +43,25 @@ export class PollResultComponent implements OnInit {
     return records;
   }
 
-  getName(track: Track): string {
+  // displays within the voer tile
+  getVoter(track: Track): string {
     if (!GenericUtil.isNullOrUndefined(track.relativePosition)) {
-      // TODO need a better solution for this.
-      switch (track.relativePosition.name.toLowerCase()) {
-        case 'secretariat':
-          return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
-        case 'skill competition manager':
-          return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
-        default:
-          if (GenericUtil.isNullOrUndefined(track.relativePosition.memberCode)) {
-            return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
-          } else {
-            return `${track.firstName} ${track.lastName} - ${track.relativePosition.memberCode} ${track.relativePosition.name}`;
-          }
+      if (!GenericUtil.isNullOrUndefined(track.relativePosition.memberCode)) {
+        return track.relativePosition.memberCode;
+      } else {
+        return `${track.firstName} ${track.lastName}`;
+      }
+    }
+    return `${track.firstName} ${track.lastName}`;
+  }
+
+  // displays when howvering over the voter tile
+  getVoterHover(track: Track): string {
+    if (!GenericUtil.isNullOrUndefined(track.relativePosition)) {
+      if (!GenericUtil.isNullOrUndefined(track.relativePosition.memberCode)) {
+        return `${track.firstName} ${track.lastName} - ${track.relativePosition.memberCode} ${track.relativePosition.name}`;
+      } else {
+        return `${track.firstName} ${track.lastName} - ${track.relativePosition.name}`;
       }
     }
     return `${track.firstName} ${track.lastName}`;
