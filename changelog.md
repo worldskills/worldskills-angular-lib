@@ -2,6 +2,8 @@
 
 ## 10.14
 
+* 10.14.4 - FIX: markup for export button
+* 10.14.3 - introduce poll result expost
 * 10.14.2 - Added position name to poll results hover
 * 10.14.1 - introduced person specific details in the vote traccking records
 * 10.14.0 - Introduced voer images for non-anonymous results
