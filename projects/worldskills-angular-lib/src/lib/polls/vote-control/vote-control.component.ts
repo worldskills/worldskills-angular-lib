@@ -21,6 +21,7 @@ export class VoteControlComponent implements OnInit {
   @Input() showExtendButton: boolean;
   @Input() showResetButton: boolean;
   @Input() showDeleteButton: boolean;
+  @Input() showExportButton: boolean;
 
   // input models
   @Input() poll: Poll;
@@ -58,6 +59,7 @@ export class VoteControlComponent implements OnInit {
   @Output() voteSelected: EventEmitter<VoteEntry[]> = new EventEmitter();
   @Output() abstainSelected: EventEmitter<any> = new EventEmitter();
   @Output() voteRemoved: EventEmitter<VoteEntry[]> = new EventEmitter();
+  @Output() exportClicked: EventEmitter<any> = new EventEmitter();
 
   view: string;
   subscription: Subscription;
@@ -224,6 +226,10 @@ export class VoteControlComponent implements OnInit {
   showClearVoteButton(): boolean {
     return this.poll && this.voted && this.voted.hasVoted && this.view === 'question' && this.poll.allowingReVote
         && this.state === 'running';
+  }
+
+  export(): void {
+    this.exportClicked.emit(new Date());
   }
 
 }

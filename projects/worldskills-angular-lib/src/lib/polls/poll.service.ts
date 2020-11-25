@@ -10,6 +10,7 @@ import { Vote } from './models/vote';
 import { VoteEntry } from './models/vote-entry';
 import { Track } from './models/track';
 import { Abstain } from './models/abstain';
+import { exception } from 'console';
 
 
 @Injectable({
@@ -115,5 +116,19 @@ export class PollService {
   public copy(pollId: number): Observable<Poll> {
     const url = `${this.endpoint}/${pollId}/copy`;
     return this.http.post<Poll>(url, {});
+  }
+
+  public export(id: number): any {
+    this.http.get(`${this.endpoint}/${id}/results_export`, {responseType: 'arraybuffer'})
+      .subscribe(
+        response => {
+          const objectURL = window.URL.createObjectURL(new Blob([response], {type: 'application/octet-stream'}));
+          const downloadLink = document.createElement('a');
+          downloadLink.href = objectURL;
+          downloadLink.setAttribute('download', `poll_results_${id}.xlsx`);
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+        }
+      );
   }
 }
