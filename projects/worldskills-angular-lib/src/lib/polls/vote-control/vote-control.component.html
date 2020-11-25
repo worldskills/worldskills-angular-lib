@@ -60,13 +60,13 @@
       class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
   <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"
     (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
-  <button *ngIf="view === 'result' && showExportButton" class="btn btn-primary" href="#"
-    (click)="export(); false;"><i class="fa fa-download"></i>&nbsp; Export Results</button>&nbsp;
   <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
     (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
 </ng-template>
 
 <ng-template #controlBarRightDefaultTemplate>
+  <button *ngIf="view === 'result' && showExportButton" class="btn btn-primary" href="#"
+  (click)="export(); false;"><i class="fa fa-download"></i>&nbsp; Export Results</button>&nbsp;
   <button *ngIf="showResetButton" class="btn btn-primary" href="#" (click)="resetClick(poll); false;"><i
     class="fa fa-refresh"></i>&nbsp; Reset</button>&nbsp;
   <button *ngIf="showExtendButton" class="btn btn-primary" href="#" (click)="extendClick(poll); false;"><i
