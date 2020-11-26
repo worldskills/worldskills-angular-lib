@@ -2,6 +2,9 @@
 
 ## 10.14
 
+* 10.14.7 - improved results accuracy for multiselect and weighted polls
+* 10.14.6 - cleanup and fixes on the voter summary view
+* 10.14.5 - Minor code refactor + new voter summary view
 * 10.14.4 - FIX: markup for export button
 * 10.14.3 - introduce poll result expost
 * 10.14.2 - Added position name to poll results hover

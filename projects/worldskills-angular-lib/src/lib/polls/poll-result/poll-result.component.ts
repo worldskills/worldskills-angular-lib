@@ -29,7 +29,7 @@ export class PollResultComponent implements OnInit {
   }
 
   init(): void {
-    this.max = this.results.map(x => x.count).reduce((sum, current) => sum + current, 0);
+    this.max = this.tracks.map(x => x.weight).reduce((acc, cur) => acc + cur, 0);
   }
 
   getPeople(option: Option): Track[] {
@@ -78,5 +78,18 @@ export class PollResultComponent implements OnInit {
 
     const result = this.results.find(x => x.option.id === option.id);
     return result ? result.count : 0;
+  }
+
+  countPoints(option: Option): number {
+    if (!this.poll || !this.results) {
+      return 0;
+    }
+
+    if (this.max === 0) {
+      return 0;
+    }
+
+    const points = this.tracks.filter(x => x.option.id === option.id).map(x => x.weight);
+    return points.length > 0 ? points.reduce((acc, cur) => acc + cur, 0) : 0;
   }
 }
