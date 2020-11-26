@@ -92,4 +92,11 @@ export class PollResultComponent implements OnInit {
     const points = this.tracks.filter(x => x.option.id === option.id).map(x => x.weight);
     return points.length > 0 ? points.reduce((acc, cur) => acc + cur, 0) : 0;
   }
+
+  showVoteIndex(): boolean {
+    if (!this.poll) {
+      return false;
+    }
+    return this.poll.type === 'weighted' || this.poll.type === 'multiselect';
+  }
 }

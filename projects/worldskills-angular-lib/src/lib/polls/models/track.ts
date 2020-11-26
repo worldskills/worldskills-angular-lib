@@ -12,4 +12,5 @@ export interface Track {
  imagePath?: string;
  relativePosition: PersonPosition;
  positions: PersonPosition[];
+ voteIndex: number;
 }

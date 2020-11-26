@@ -218,7 +218,8 @@ export class AppComponent {
                 // tslint:disable-next-line:max-line-length
                 imagePath: 'https://images.worldskillsusercontent.show/wsf3/wsd1/30306/wsf3d156d5-9d60-4ff2-894c-94aa125bfeda_accreditation',
                 relativePosition: null,
-                positions: []
+                positions: [],
+                voteIndex: 1
             },
             {
                 personId: 4935, firstName: 'Fabian', lastName: 'Vogler',
@@ -227,7 +228,8 @@ export class AppComponent {
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws8c/ws7d/29431/ws8c7dc020-6131-42da-8fee-cb96e4fce757',
                 relativePosition: null,
-                positions: []
+                positions: [],
+                voteIndex: 1
             },
             {
                 personId: 167, firstName: 'John', lastName: 'Cox',
@@ -236,7 +238,8 @@ export class AppComponent {
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws82/wsa5/22458/ws82a59042-1875-4a07-a0ec-aab95799ae29',
                 relativePosition: null,
-                positions: []
+                positions: [],
+                voteIndex: 1
             },
             {
                 personId: 5705, firstName: 'Waseem', lastName: 'Sabjee',
@@ -253,7 +256,8 @@ export class AppComponent {
                     posId: 12,
                     start: new Date()
                 },
-                positions: []
+                positions: [],
+                voteIndex: 1
             },
             {
                 personId: 238, firstName: 'David', lastName: 'Hoey',
@@ -262,7 +266,8 @@ export class AppComponent {
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws05/wsa4/22452/ws05a4cdfb-620b-4417-b1a1-b2048c12c86c',
                 relativePosition: null,
-                positions: []
+                positions: [],
+                voteIndex: 1
             }
         ];
     }

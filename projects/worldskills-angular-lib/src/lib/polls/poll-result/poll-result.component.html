@@ -10,6 +10,8 @@
               <div class="member bg-primary"  ngbPopover="{{ getVoterHover(track) }}"
               triggers="mouseenter:mouseleave">
                   <span class="text">{{ getVoter(track) }}</span>
+                  <span *ngIf="showVoteIndex">&nbsp;</span>
+                  <span *ngIf="showVoteIndex" class="badge badge-pill badge-dark">{{ track.voteIndex }}</span>
               </div>
           </li>
       </ul>
