@@ -55,6 +55,7 @@ export * from './lib/common/util/user-role.util';
 export * from './lib/common/components/ws.component';
 export * from './lib/common/services/ws.service';
 export * from './lib/common/directives/user-role.directive';
+export * from './lib/common/util/ordinal.util';
 
 /*
   Helpers

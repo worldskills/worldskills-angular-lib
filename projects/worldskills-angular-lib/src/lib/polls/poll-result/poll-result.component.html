@@ -11,7 +11,7 @@
               triggers="mouseenter:mouseleave">
                   <span class="text">{{ getVoter(track) }}</span>
                   <span *ngIf="showVoteIndex">&nbsp;</span>
-                  <span *ngIf="showVoteIndex" class="badge badge-pill badge-dark">{{ track.voteIndex }}</span>
+                  <span *ngIf="showVoteIndex" class="badge badge-pill badge-dark">{{ getVoteIndex(track) }}</span>
               </div>
           </li>
       </ul>

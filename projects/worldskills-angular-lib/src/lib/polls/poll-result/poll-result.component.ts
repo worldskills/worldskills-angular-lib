@@ -4,6 +4,7 @@ import { Result } from '../models/result';
 import { Option } from '../models/option';
 import { Track } from '../models/track';
 import { GenericUtil } from '../../common/util/generic.util';
+import { OrdinalUtil } from '../../common/util/ordinal.util';
 
 @Component({
   selector: 'ws-poll-result',
@@ -98,5 +99,9 @@ export class PollResultComponent implements OnInit {
       return false;
     }
     return this.poll.type === 'weighted' || this.poll.type === 'multiselect';
+  }
+
+  getVoteIndex(track: Track): string {
+    return OrdinalUtil.applyDefault(track.voteIndex);
   }
 }
