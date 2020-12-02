@@ -5,6 +5,7 @@ import { Option } from '../models/option';
 import { Track } from '../models/track';
 import { GenericUtil } from '../../common/util/generic.util';
 import { OrdinalUtil } from '../../common/util/ordinal.util';
+import { ArrayUtil } from '../../common/util/array.util';
 
 @Component({
   selector: 'ws-poll-result',
@@ -30,13 +31,14 @@ export class PollResultComponent implements OnInit {
   }
 
   init(): void {
-    this.max = this.tracks.map(x => x.weight).reduce((acc, cur) => acc + cur, 0);
+    this.max = this.results.map(x => x.points).reduce((acc, cur) => acc + cur, 0);
   }
 
   getPeople(option: Option): Track[] {
     let records = [];
 
-    // if anonymous, option id will be blank
+    // if anonymous, option id will be blank    this.max = this.tracks.map(x => x.weight).reduce((acc, cur) => acc + cur, 0);
+
     if (this.poll && this.tracks && !this.poll.anonymousVoting) {
       records = this.tracks.filter(t => t.option.id === option.id);
     }
@@ -90,7 +92,7 @@ export class PollResultComponent implements OnInit {
       return 0;
     }
 
-    const points = this.tracks.filter(x => x.option.id === option.id).map(x => x.weight);
+    const points = this.results.filter(x => x.option.id === option.id).map(x => x.points);
     return points.length > 0 ? points.reduce((acc, cur) => acc + cur, 0) : 0;
   }
 

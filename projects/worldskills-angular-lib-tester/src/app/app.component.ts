@@ -201,10 +201,10 @@ export class AppComponent {
         this.poll.expiry.setDate(this.poll.start.getDate() + 7);
 
         this.results = [
-            {id: 1, count: 2, option: this.poll.options[0]},
-            {id: 2, count: 0, option: this.poll.options[1]},
-            {id: 3, count: 0, option: this.poll.options[2]},
-            {id: 4, count: 0, option: this.poll.options[3]}
+            {id: 1, count: 2, points: 2, option: this.poll.options[0]},
+            {id: 2, count: 0, points: 0, option: this.poll.options[1]},
+            {id: 3, count: 0, points: 0, option: this.poll.options[2]},
+            {id: 4, count: 0, points: 0, option: this.poll.options[3]}
         ];
 
         this.voted = {hasVoted: false, votes: [], anonymous: false, abstained: false};
