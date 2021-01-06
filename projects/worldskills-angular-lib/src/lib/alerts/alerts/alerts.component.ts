@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Alert } from '../alert';
 import { AlertService } from '../alert.service';
+import { GenericUtil } from "../../common/util/generic.util";
 
 @Component({
   selector: 'ws-alerts',
@@ -8,6 +9,8 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
+
+  @Input() wsAlertComponentId: string = '';
 
   constructor(public alertService: AlertService) { }
 
@@ -17,5 +20,9 @@ export class AlertsComponent implements OnInit {
 
   get hasAlerts(): boolean {
     return this.alertService.alerts.length > 0;
+  }
+
+  getMyAlertList(){
+    return this.alertService.alerts.filter(a => a.wsAlertComponentId === '' ? true:  a.wsAlertComponentId === this.wsAlertComponentId);
   }
 }

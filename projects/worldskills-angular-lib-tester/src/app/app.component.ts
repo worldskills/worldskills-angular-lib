@@ -15,7 +15,7 @@ import { Vote } from '../../../worldskills-angular-lib/src/lib/polls/models/vote
 import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert-type';
 import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/date/date-range';
-import { Track } from '../../../../dist/worldskills-angular-lib/lib/polls/models/track';
+import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/track';
 
 @Component({
     selector: 'app-root',
@@ -137,6 +137,14 @@ export class AppComponent {
         this.form.ngSubmit.emit();
     }
 
+    displayInSecondAlert(): void {
+        this.alerts.setAlert('test', AlertType.warning, 'Alert!', 'Test second alert', false, 'mySecondAlert');
+    }
+
+    displayInAllAlerts(): void {
+        this.alerts.setAlert('test', AlertType.warning, 'Alert!', 'Test second alert', false);
+    }
+
     configureLib(): void {
         this.wsi.appConfigSubject.next({
             notAuthorizedRoute: ['/not-authorized']
@@ -213,7 +221,7 @@ export class AppComponent {
             {
                 personId: 2091, firstName: 'Adam', lastName: 'Walsh',
                 option: {
-                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
+                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 // tslint:disable-next-line:max-line-length
                 imagePath: 'https://images.worldskillsusercontent.show/wsf3/wsd1/30306/wsf3d156d5-9d60-4ff2-894c-94aa125bfeda_accreditation',
@@ -224,7 +232,7 @@ export class AppComponent {
             {
                 personId: 4935, firstName: 'Fabian', lastName: 'Vogler',
                 option: {
-                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
+                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws8c/ws7d/29431/ws8c7dc020-6131-42da-8fee-cb96e4fce757',
                 relativePosition: null,
@@ -234,7 +242,7 @@ export class AppComponent {
             {
                 personId: 167, firstName: 'John', lastName: 'Cox',
                 option: {
-                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
+                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws82/wsa5/22458/ws82a59042-1875-4a07-a0ec-aab95799ae29',
                 relativePosition: null,
@@ -244,7 +252,7 @@ export class AppComponent {
             {
                 personId: 5705, firstName: 'Waseem', lastName: 'Sabjee',
                 option: {
-                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
+                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws24/ws93/30464/ws24939281-57ed-49aa-8dbb-0235e1590af7',
                 relativePosition: {
@@ -262,7 +270,7 @@ export class AppComponent {
             {
                 personId: 238, firstName: 'David', lastName: 'Hoey',
                 option: {
-                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
+                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws05/wsa4/22452/ws05a4cdfb-620b-4417-b1a1-b2048c12c86c',
                 relativePosition: null,
