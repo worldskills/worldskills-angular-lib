@@ -32,6 +32,12 @@
 
 <div class="container">
     <ws-alerts></ws-alerts>
+
+    <hr>
+    <ws-alerts wsAlertComponentId="mySecondAlert"></ws-alerts>
+    <button class="btn btn-sm btn-success" (click)="displayInSecondAlert()">Display Alert In Second WS-Alert</button>
+    <button class="btn btn-sm btn-primary ml-2" (click)="displayInAllAlerts()">Display Alert In All WS-Alert</button>
+    <hr>
     <div class="alert alert-success my-4">
         <router-outlet></router-outlet>
     </div>

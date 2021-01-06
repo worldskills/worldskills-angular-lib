@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Alert } from './alert';
 import { AlertType } from './alert-type';
+import { AlertsComponent } from "./alerts/alerts.component";
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,14 @@ export class AlertService {
     }
   }
 
-  public setAlert(id: string, type: AlertType, title?: string, message?: string, closable?: boolean): void  {
+  public setAlert(id: string, type: AlertType, title?: string, message?: string, closable?: boolean, wsAlertComponentId?: string): void  {
     title = title || '';
     message = message || '';
     closable = closable || false;
+    wsAlertComponentId = wsAlertComponentId || '';
+
     this.alerts.push({
-      id, type, title, message, closable
+      id, type, title, message, closable, wsAlertComponentId
     });
   }
 }
