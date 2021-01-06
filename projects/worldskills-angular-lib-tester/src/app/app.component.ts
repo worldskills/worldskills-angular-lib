@@ -84,8 +84,6 @@ export class AppComponent {
         },
     ];
 
-    @ViewChild('secondWSAlert') secondWSAlert;
-
     constructor(
         private alerts: AlertService,
         private wsi: WorldskillsAngularLibService
