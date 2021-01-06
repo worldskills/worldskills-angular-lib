@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.15
+
+* 10.15.0 - support for multiple alert components and some http util fixes
+
 ## 10.14
 
 * 10.14.10 - Included the points property in the results interface and applied it accordingly
