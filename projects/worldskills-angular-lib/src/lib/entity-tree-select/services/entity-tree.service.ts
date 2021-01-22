@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {WorldskillsAngularLibService} from '../../worldskills-angular-lib.service';
 import {EntityFetchParams} from '../models/entity-tree-fetch-params';
 import {EntityTreeListView} from '../../auth/models/entity-tree-list-view';
-import {share} from "rxjs/operators";
+import {share} from 'rxjs/operators';
 
 
 @Injectable({

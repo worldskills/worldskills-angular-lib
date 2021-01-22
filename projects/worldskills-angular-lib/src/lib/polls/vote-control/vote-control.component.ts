@@ -228,6 +228,11 @@ export class VoteControlComponent implements OnInit {
         && this.state === 'running';
   }
 
+  showManageButton(): boolean {
+    return this.showDeleteButton || this.showEditButton || this.showExtendButton
+        || this.showResetButton || (this.view === 'result' && this.showExportButton);
+  }
+
   export(): void {
     this.exportClicked.emit(new Date());
   }

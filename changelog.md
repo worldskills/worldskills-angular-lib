@@ -2,6 +2,7 @@
 
 ## 10.15
 
+* 10.15.1 - Fix code style in entity tree server + improved managemeent button templates on vote control
 * 10.15.0 - support for multiple alert components and some http util fixes
 
 ## 10.14
