@@ -33,6 +33,12 @@
 <div class="container">
     <ws-alerts></ws-alerts>
 
+    <div class="d-flex flex-row">
+        <ws-file-thumbnail-view class="mr-2" [fileThumbnailView]="fileThumbnailView1"></ws-file-thumbnail-view>
+        <ws-file-thumbnail-view class="mr-2" [fileThumbnailView]="fileThumbnailView2"></ws-file-thumbnail-view>
+    </div>
+
+
     <hr>
     <ws-alerts wsAlertComponentId="mySecondAlert"></ws-alerts>
     <button class="btn btn-sm btn-success" (click)="displayInSecondAlert()">Display Alert In Second WS-Alert</button>

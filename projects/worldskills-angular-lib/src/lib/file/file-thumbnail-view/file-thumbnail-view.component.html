@@ -1,0 +1,29 @@
+<div class="thumbnail card shadow" style="width: 10rem" (mouseenter)="showDetailInfo = true;"
+     (mouseleave)="showDetailInfo = false;">
+    <img class="card-img-top" [src]="fileThumbnailView.thumbnailImageLink" alt="Card image cap">
+
+    <div class="thumbnail-footer card-footer bg-white px-3 align-items-center" style="height: 50px;">
+        <div class="row">
+            <div class="align-items-center justify-content-center text-center file-extension-icon">
+                <img src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_3_pdf_x16.png" alt="">
+            </div>
+            <span class="title-overflow font-weight-bolder text-muted">{{fileThumbnailView.filename}}</span>
+        </div>
+    </div>
+
+    <div class="thumbnail-detail bg-light" style="width: 10rem;" [hidden]="!showDetailInfo">
+        <div class="p-3">
+      <span class="">
+                <img src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_3_pdf_x16.png" alt="">
+          {{fileThumbnailView.filename}}</span>
+
+            <p class="text-muted small">{{isNumber(fileThumbnailView.fileSize) ? (fileThumbnailView.fileSize | fileSize) : fileThumbnailView.fileSize}}</p>
+
+
+            <a [href]="fileThumbnailView.downloadLink" [title]="fileThumbnailView.downloadLink ? 'Download' : ''"
+               routerLinkActive="active" [class.disabled]="fileThumbnailView.downloadLink ? true: null"><span
+                    class="fa fa-download"></span></a>
+        </div>
+    </div>
+
+</div>

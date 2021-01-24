@@ -16,6 +16,7 @@ import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert
 import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/date/date-range';
 import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/track';
+import { FileThumbnailView } from "../../../worldskills-angular-lib/src/lib/file/file-thumbnail-view/file-thumbnail-view.component";
 
 @Component({
     selector: 'app-root',
@@ -84,6 +85,10 @@ export class AppComponent {
         },
     ];
 
+
+    fileThumbnailView1: FileThumbnailView;
+    fileThumbnailView2: FileThumbnailView;
+
     constructor(
         private alerts: AlertService,
         private wsi: WorldskillsAngularLibService
@@ -92,6 +97,21 @@ export class AppComponent {
 
     // tslint:disable-next-line:typedef use-lifecycle-interface
     ngOnInit() {
+        this.fileThumbnailView1 = {
+            fileSize: 1000_000,
+            downloadLink: '',
+            filename: 'WSC2019_21599558244800.pdf',
+            thumbnailImageLink: 'assets/thumbnail_upload_21599558244800.png'
+        };
+
+        this.fileThumbnailView2 = {
+            fileSize: 1000_000,
+            downloadLink: '',
+            filename: 'WSC2019_21599558244800.pdf',
+            // thumbnailImageLink: 'https://picsum.photos/256/256'
+            thumbnailImageLink: 'assets/thumbnail_upload_31599558189164.png'
+        };
+
         this.range = {
             start: new Date(),
             end: new Date()
