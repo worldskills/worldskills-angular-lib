@@ -9,9 +9,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "ws_copy_css": "mkdir -p dist/worldskills-angular-lib/css/ && cp -R ./projects/worldskills-angular-lib/assets/styles/ ./dist/worldskills-angular-lib/assets/styles",
+    "ws_copy_images": "mkdir -p dist/worldskills-angular-lib/images/ && cp -R ./projects/worldskills-angular-lib/assets/images/ ./dist/worldskills-angular-lib/assets/images",
     "ws_build_lib": "ng build --prod worldskills-angular-lib",
     "ws_npm_pack": "cd dist/worldskills-angular-lib && npm pack",
-    "ws_package": "npm run ws_build_lib && npm run ws_copy_css && npm run ws_npm_pack"
+    "ws_package": "npm run ws_build_lib && npm run ws_copy_css && npm run ws_copy_images && npm run ws_npm_pack"
   },
   "private": true,
   "dependencies": {
