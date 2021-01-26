@@ -31,7 +31,7 @@ import { SelectAsyncHeaderComponent } from './select/components/select-async-hea
 import { UserRoleDirective } from './common/directives/user-role.directive';
 import { AuthHeaderComponent } from './headers/auth-header/auth-header.component';
 import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component';
-import { FileThumbnailViewComponent } from './file/file-thumbnail-view/file-thumbnail-view.component';
+import { FileThumbnailPreviewComponent } from './file/file-thumbnail-preview/file-thumbnail-preview.component';
 import { FileSizePipe } from "./file/file-size.pipe";
 
 
@@ -63,7 +63,7 @@ import { FileSizePipe } from "./file/file-size.pipe";
     UserRoleDirective,
     AuthHeaderComponent,
     AuthFooterComponent,
-    FileThumbnailViewComponent,
+    FileThumbnailPreviewComponent,
     FileSizePipe
   ],
   imports: [
@@ -101,7 +101,7 @@ import { FileSizePipe } from "./file/file-size.pipe";
     WordmarkComponent,
     WeightedPollComponent,
     UserRoleDirective,
-    FileThumbnailViewComponent
+    FileThumbnailPreviewComponent
   ],
   providers: []
 })

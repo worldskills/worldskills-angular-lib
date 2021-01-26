@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileThumbnailViewComponent } from './file-thumbnail-view.component';
+import { FileThumbnailPreviewComponent } from './file-thumbnail-preview.component';
 
 describe('FileThumbnailViewComponent', () => {
-  let component: FileThumbnailViewComponent;
-  let fixture: ComponentFixture<FileThumbnailViewComponent>;
+  let component: FileThumbnailPreviewComponent;
+  let fixture: ComponentFixture<FileThumbnailPreviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileThumbnailViewComponent ]
+      declarations: [ FileThumbnailPreviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileThumbnailViewComponent);
+    fixture = TestBed.createComponent(FileThumbnailPreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

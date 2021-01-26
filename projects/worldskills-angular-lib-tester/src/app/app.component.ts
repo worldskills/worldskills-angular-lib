@@ -16,7 +16,7 @@ import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert
 import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/date/date-range';
 import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/track';
-import { FileThumbnailView } from "../../../worldskills-angular-lib/src/lib/file/file-thumbnail-view/file-thumbnail-view.component";
+import { FileThumbnailView } from "../../../worldskills-angular-lib/src/lib/file/file-thumbnail-preview/file-thumbnail-preview.component";
 
 @Component({
     selector: 'app-root',
