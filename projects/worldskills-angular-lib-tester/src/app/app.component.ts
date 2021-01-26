@@ -157,7 +157,7 @@ export class AppComponent {
             downloadLink: '',
             filename: 'file2.png',
             // thumbnailImageLink: 'https://picsum.photos/256/256'
-            thumbnailImageLink: 'assets/thumbnail_upload_31599558189164.png',
+            thumbnailImageLink: 'assets/images/thumbnail_upload_31599558189164.png',
             description: 'here is the description for file 2'
         };
     }

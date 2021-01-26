@@ -33,12 +33,6 @@
 <div class="container">
     <ws-alerts></ws-alerts>
 
-    <div class="d-flex flex-row">
-        <ws-file-thumbnail-preview class="mr-2" [fileThumbnailView]="fileThumbnailView1"></ws-file-thumbnail-preview>
-        <ws-file-thumbnail-preview class="mr-2" [fileThumbnailView]="fileThumbnailView2"></ws-file-thumbnail-preview>
-    </div>
-
-
     <hr>
     <ws-alerts wsAlertComponentId="mySecondAlert"></ws-alerts>
     <button class="btn btn-sm btn-success" (click)="displayInSecondAlert()">Display Alert In Second WS-Alert</button>
@@ -180,6 +174,15 @@ wsChange: {{wsSelectChange4}}
     <div *wsUserRole="'roleB'; user : fakeUser; negate: true">Should not be visible</div>
     <div *wsUserRole="'roleB';">This is probably visible since it only shows if the logged in user does not have the
         un-existing role 'roleB'
+    </div>
+
+
+
+    <hr>
+    <h3>Test - Thumbnail Preview</h3>
+    <div class="d-flex flex-row">
+        <ws-file-thumbnail-preview class="mr-2" [fileThumbnailView]="fileThumbnailView1"></ws-file-thumbnail-preview>
+        <ws-file-thumbnail-preview class="mr-2" [fileThumbnailView]="fileThumbnailView2"></ws-file-thumbnail-preview>
     </div>
 
 </div>
