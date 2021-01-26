@@ -97,20 +97,7 @@ export class AppComponent {
 
     // tslint:disable-next-line:typedef use-lifecycle-interface
     ngOnInit() {
-        this.fileThumbnailView1 = {
-            fileSize: 1000_000,
-            downloadLink: '',
-            filename: 'WSC2019_21599558244800.pdf',
-            thumbnailImageLink: 'assets/thumbnail_upload_21599558244800.png'
-        };
-
-        this.fileThumbnailView2 = {
-            fileSize: 1000_000,
-            downloadLink: '',
-            filename: 'WSC2019_21599558244800.pdf',
-            // thumbnailImageLink: 'https://picsum.photos/256/256'
-            thumbnailImageLink: 'assets/thumbnail_upload_31599558189164.png'
-        };
+        this.testFileThumbnailPreview();
 
         this.range = {
             start: new Date(),
@@ -155,6 +142,24 @@ export class AppComponent {
         };
         this.pollInit();
         this.form.ngSubmit.emit();
+    }
+
+    private testFileThumbnailPreview() {
+        this.fileThumbnailView1 = {
+            fileSize: 1000_000,
+            downloadLink: '',
+            filename: 'file1.pdf',
+            thumbnailImageLink: 'assets/images/thumbnail_upload_21599558244800.png'
+        };
+
+        this.fileThumbnailView2 = {
+            fileSize: 1000_000,
+            downloadLink: '',
+            filename: 'file2.png',
+            // thumbnailImageLink: 'https://picsum.photos/256/256'
+            thumbnailImageLink: 'assets/thumbnail_upload_31599558189164.png',
+            description: 'here is the description for file 2'
+        };
     }
 
     displayInSecondAlert(): void {

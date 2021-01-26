@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { getFilenameExtension } from "../file";
 
 export interface FileThumbnailView {
-    thumbnailImageLink?: string;
     filename: string;
+    thumbnailImageLink?: string;
+    description?: string;
     fileSize?: number | string;
     downloadLink?: string;
 }
@@ -19,7 +20,7 @@ export class FileThumbnailPreviewComponent implements OnInit {
         this._fileThumbnailView = view;
 
         if (!this._fileThumbnailView.thumbnailImageLink) {
-            this._fileThumbnailView.thumbnailImageLink = 'assets/file.png';
+            this._fileThumbnailView.thumbnailImageLink = 'assets/images/default-thumbnail.png';
         }
     }
 

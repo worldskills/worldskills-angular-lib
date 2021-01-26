@@ -14,15 +14,17 @@
     <div class="thumbnail-detail bg-light" style="width: 10rem;" [hidden]="!showDetailInfo">
         <div class="p-3">
             <span>
-                <span [class]="'fa ' + getFileTypeIcon() "></span>
-                {{fileThumbnailView.filename}}
+                <span [class]="'fa ' + getFileTypeIcon() "></span>&nbsp;
+                <span [title]="fileThumbnailView.description ? fileThumbnailView.description : ''">{{fileThumbnailView.filename}}</span>
             </span>
 
             <p class="text-muted small">{{isNumber(fileThumbnailView.fileSize) ? (fileThumbnailView.fileSize | fileSize) : fileThumbnailView.fileSize}}</p>
 
-            <a [href]="fileThumbnailView.downloadLink" [title]="fileThumbnailView.downloadLink ? 'Download' : ''"
-               routerLinkActive="active" [class.disabled]="fileThumbnailView.downloadLink ? true: null"><span
+            <a *ngIf="fileThumbnailView.downloadLink" [href]="fileThumbnailView.downloadLink"
+               [title]="fileThumbnailView.downloadLink ? 'Download' : ''"><span
                     class="fa fa-download"></span></a>
+
+            <a *ngIf="!fileThumbnailView.downloadLink" title="The download link is not provided"><span class="fa fa-download"></span></a>
         </div>
     </div>
 </div>
