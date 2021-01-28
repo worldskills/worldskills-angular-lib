@@ -38,6 +38,8 @@ export * from './lib/date/date-range';
 export * from './lib/date/date-range/date-range.component';
 export * from './lib/date/datetime';
 export * from './lib/date/datetime-picker/datetime-picker.component';
+export * from './lib/date/wsi-date-format';
+export * from './lib/date/wsi-time-format';
 
 /*
   Util
