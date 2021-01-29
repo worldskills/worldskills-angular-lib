@@ -7,14 +7,16 @@
 </ng-template>
 <ng-template #voteControlDefaultFooterTemplate>
   <small class="text-muted"><strong>Status:</strong> {{ state }} </small>&nbsp;|&nbsp;
-  <small *ngIf="state != 'Not yet started'" class="text-muted"><strong>Started:</strong>
-    <small *ngIf="state == 'Not yet started'" class="text-muted"><strong>Starts:</strong></small>&nbsp;
-    <span *ngIf="poll && poll.start" ngbPopover="{{ poll.start | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}" triggers="mouseenter:mouseleave">{{ poll.start | relativeDate: 'EEEE, MMMM d, y, HH:mm zzzz' }}</span>
-  </small>&nbsp;
-  <small *ngIf="state != 'expired'" class="text-muted"><strong>Finishes:</strong>
-    <small *ngIf="state == 'expired'" class="text-muted"><strong>Finished:</strong></small>&nbsp;
-    <span *ngIf="poll && poll.expiry" ngbPopover="{{ poll.expiry | date: 'EEEE, MMMM d, y, HH:mm zzzz' }}" triggers="mouseenter:mouseleave">{{ poll.expiry | relativeDate: 'EEEE, MMMM d, y, HH:mm zzzz' }}</span>
-  </small>
+  <span *ngIf="!useDateRange()">
+    <span *ngIf="poll.start">
+      {{ poll.start | date: dateFormat }} to {{ poll.expiry | date: dateFormat }}
+    </span>
+  </span>
+  <span *ngIf="useDateRange()">
+    <span *ngIf="poll.start" ngbPopover="{{ poll.start | date: dateFormat }} to {{ poll.expiry | date: dateFormat }}" triggers="mouseenter:mouseleave">
+      {{ poll.start | date: 'd' }}-{{ poll.expiry | date: dateFormat }}
+    </span>
+  </span>
 </ng-template>
 <ng-template #voteControlDefaultQuestionTemplate>
   {{ poll.question.text }}

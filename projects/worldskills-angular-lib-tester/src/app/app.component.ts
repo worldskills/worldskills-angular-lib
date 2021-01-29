@@ -205,8 +205,9 @@ export class AppComponent {
             },
             entityPath: {pieces: []}
         };
-        this.poll.start.setDate(this.poll.start.getDate() - 3);
-        this.poll.expiry.setDate(this.poll.start.getDate() + 7);
+        const date = new Date();
+        this.poll.start.setDate(date.getDate() - 5);
+        this.poll.expiry.setDate(date.getDate() + 15);
 
         this.results = [
             {id: 1, count: 2, points: 2, option: this.poll.options[0]},

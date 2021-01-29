@@ -1,5 +1,5 @@
 export enum WSIDateFormat {
-    default = 'dd MMMM YYYY',
-    defaultWithDay = 'EEEE, dd MMMM YYYY',
-    numeric = 'dd.MM.YY'
+    default = 'd MMMM yyyy',
+    defaultWithDay = 'EEEE, d MMMM yyyy',
+    numeric = 'dd.MM.yy'
 }

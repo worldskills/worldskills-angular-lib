@@ -1,19 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { formatDate } from '@angular/common';
 // based of: http://www.angulartutorial.net/2017/10/how-to-show-date-is-today-or-yesterday.html
-
-/*
- @Input() date: Date;
-  angDate: Date;
-  angDateValid: boolean;
-
-  constructor() { }
-
-  ngOnInit() {
-    this.angDate = new Date(this.date);
-    this.angDateValid = this.angDate.toString() !== 'Invalid Date';
-  }
-*/
 @Pipe({
   name: 'relativeDate',
 })

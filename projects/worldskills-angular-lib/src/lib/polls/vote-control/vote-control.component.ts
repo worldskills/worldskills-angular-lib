@@ -8,6 +8,8 @@ import { VoteEntry } from '../models/vote-entry';
 import { OptionHandler } from '../models/optionHandler';
 import { toDate } from '../../common/helpers/date.helper';
 import { Track } from '../models/track';
+import { WSIDateFormat } from '../../date/wsi-date-format';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'ws-vote-control',
@@ -65,12 +67,14 @@ export class VoteControlComponent implements OnInit {
   subscription: Subscription;
   state: string;
   selection: VoteEntry[];
+  dateFormat: string;
 
   constructor() { }
 
 
   ngOnInit(): void {
     this.view = 'question';
+    this.dateFormat = `${WSIDateFormat.default}`;
     this.init();
   }
 
@@ -235,6 +239,16 @@ export class VoteControlComponent implements OnInit {
 
   export(): void {
     this.exportClicked.emit(new Date());
+  }
+
+  useDateRange(): boolean {
+    if (GenericUtil.isNullOrUndefined(this.poll)) {
+      return false;
+    }
+
+    const sameMonth = this.poll.start.getMonth() === this.poll.expiry.getMonth();
+    const sameYear = this.poll.start.getFullYear() === this.poll.expiry.getFullYear();
+    return sameMonth && sameYear;
   }
 
 }
