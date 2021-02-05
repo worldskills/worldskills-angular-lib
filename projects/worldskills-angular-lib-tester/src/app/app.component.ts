@@ -328,6 +328,12 @@ export class AppComponent {
         return `VALUE-${item.key}`;
     }
 
+    getDate(numDays: number): Date {
+        const dt = new Date();
+        dt.setDate(dt.getDate() + numDays);
+        return dt;
+    }
+
     asyncSearchFn(searchTerm: string): Promise<Array<{ id: number, name: string }>> {
         return new Promise<Array<{ id: number, name: string }>>(resolve => {
             setTimeout(() => {

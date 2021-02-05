@@ -48,7 +48,8 @@ function handlePastDate(date: Date): string {
     diff < 86400 && Math.floor(diff / 3600) + ' hours ago') ||
     daydiff === 1 && 'Yesterday' ||
     daydiff < 7 && daydiff + ' days ago' ||
-    daydiff < 31 && Math.ceil(daydiff / 7) + ' week(s) ago';
+    daydiff === 7 && '1 week ago' ||
+    daydiff < 31 && Math.ceil(daydiff / 7) + ' weeks ago';
 }
 
 function handleFutureDate(date: Date): string {
@@ -68,5 +69,6 @@ function handleFutureDate(date: Date): string {
     diff < 86400 && Math.floor(diff / 3600) + ' hours from now') ||
     daydiff === 1 && 'Tomorrow' ||
     daydiff < 7 && daydiff + ' days from now' ||
-    daydiff < 31 && Math.ceil(daydiff / 7) + ' week(s) from now';
+    daydiff === 7 && '1 week from now' ||
+    daydiff < 31 && Math.ceil(daydiff / 7) + ' weeks from now';
 }
