@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.16
+
+* 10.16.0 - support for file thumbnail preview
+
 ## 10.15
 
 * 10.15.2 - Relative date control now supports future dates. vote control now supports relative date.
