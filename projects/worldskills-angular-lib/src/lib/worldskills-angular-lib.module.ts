@@ -31,6 +31,8 @@ import { SelectAsyncHeaderComponent } from './select/components/select-async-hea
 import { UserRoleDirective } from './common/directives/user-role.directive';
 import { AuthHeaderComponent } from './headers/auth-header/auth-header.component';
 import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component';
+import { FileThumbnailPreviewComponent } from './file/file-thumbnail-preview/file-thumbnail-preview.component';
+import { FileSizePipe } from "./file/file-size.pipe";
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component'
     MultiselectPollComponent,
     UserRoleDirective,
     AuthHeaderComponent,
-    AuthFooterComponent
+    AuthFooterComponent,
+    FileThumbnailPreviewComponent,
+    FileSizePipe
   ],
   imports: [
     BrowserModule,
@@ -96,7 +100,8 @@ import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component'
     VoteControlComponent,
     WordmarkComponent,
     WeightedPollComponent,
-    UserRoleDirective
+    UserRoleDirective,
+    FileThumbnailPreviewComponent
   ],
   providers: []
 })
