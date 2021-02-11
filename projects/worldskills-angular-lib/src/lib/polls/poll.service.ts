@@ -10,7 +10,6 @@ import { Vote } from './models/vote';
 import { VoteEntry } from './models/vote-entry';
 import { Track } from './models/track';
 import { Abstain } from './models/abstain';
-import { exception } from 'console';
 
 
 @Injectable({

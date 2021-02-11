@@ -26,4 +26,5 @@ export interface Poll {
   createdBy: CreatedBy;
   options: Option[];
   userVote?: Vote;
+  listId?: number;
 }
