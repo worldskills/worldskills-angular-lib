@@ -2,6 +2,7 @@
 
 ## 10.17
 
+* 10.17.3 - poll_list now contains entityPath
 * 10.17.2 - poll_list.title is now i18n
 * 10.17.1 - export poll_list objects
 * 10.17.0 - Introduce poll_list support
