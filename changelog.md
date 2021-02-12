@@ -2,6 +2,7 @@
 
 ## 10.17
 
+* 10.17.1 - export poll_list objects
 * 10.17.0 - Introduce poll_list support
 
 ## 10.16

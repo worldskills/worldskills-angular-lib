@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
 import { Observable } from 'rxjs';
-import { Page } from '../../../../../dist/worldskills-angular-lib/lib/polls/models/page';
 import { PollList } from './models/poll-list';
+import { Page } from './models/page';
 
 @Injectable({
   providedIn: 'root'
