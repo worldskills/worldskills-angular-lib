@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.18
+
+* 10.18.0 - poll-list get by slug
+
 ## 10.17
 
 * 10.17.3 - poll_list now contains entityPath

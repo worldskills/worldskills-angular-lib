@@ -28,6 +28,11 @@ export class PollListService {
     return this.http.get<PollList>(url);
   }
 
+  public getBySlug(slug: string): Observable<PollList> {
+    const url = `${this.endpoint}/slug/${slug}`;
+    return this.http.get<PollList>(url);
+  }
+
   public create(model: PollList): Observable<PollList> {
     return this.http.post<PollList>(this.endpoint, model);
   }
