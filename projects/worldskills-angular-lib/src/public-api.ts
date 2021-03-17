@@ -46,6 +46,7 @@ export * from './lib/date/wsi-time-format';
 */
 export * from './lib/common/util/array.util';
 export * from './lib/common/util/date.util';
+export * from './lib/common/util/error-util';
 export * from './lib/common/util/generic.util';
 export * from './lib/common/util/http.util';
 export * from './lib/common/util/html.util';

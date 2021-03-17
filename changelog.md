@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.19
+
+* 10.19.0 introduced Error Helper and HTTP methods to help validate a user sessionn
+
 ## 10.18
 
 * 10.18.0 - poll-list get by slug
