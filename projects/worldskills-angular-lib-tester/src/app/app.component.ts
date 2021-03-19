@@ -16,7 +16,7 @@ import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert
 import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/date/date-range';
 import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/track';
-import { FileThumbnailView } from "../../../worldskills-angular-lib/src/lib/file/file-thumbnail-preview/file-thumbnail-preview.component";
+import { FileThumbnailView } from '../../../worldskills-angular-lib/src/lib/file/file-thumbnail-preview/file-thumbnail-preview.component';
 
 @Component({
     selector: 'app-root',
@@ -32,6 +32,7 @@ export class AppComponent {
     // header
     isLoggedIn: boolean;
     menuItems: Array<MenuItem>;
+    dropDownMenuItems: Array<MenuItem>;
     wsHeaderMenuItems: Array<MenuItem>;
 
     // breadcrumbs
@@ -111,6 +112,9 @@ export class AppComponent {
             {code: 'en', name: 'English'}
         ];
         this.isLoggedIn = false;
+        this.dropDownMenuItems = [
+            { label: 'Sample', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []}
+        ];
         this.menuItems = [
             {label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: []},
             {label: 'Home Nested', url: '/home/nested', hidden: false, requireLogin: false, requiredRoles: []},
@@ -410,6 +414,8 @@ export class AppComponent {
 
     get fakeUser(): User {
         return {
+            first_name: 'John',
+            last_name: 'Doe',
             roles: [
                 {
                     name: 'roleA',

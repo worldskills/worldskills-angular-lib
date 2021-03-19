@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.20
+
+* 10.20.0 allow items to be added to the dropdown menu
+
 ## 10.19
 
 * 10.19.0 introduced Error Helper and HTTP methods to help validate a user sessionn

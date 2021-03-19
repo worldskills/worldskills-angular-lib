@@ -28,6 +28,7 @@
                 <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.first_name }}
                     {{ currentUser.last_name }}</a>
                 <div class="dropdown-divider"></div>
+                <a *ngFor="let item of dropDownMenuItems | wsMenuAccessFilter: isLoggedIn: userRoles()" class="dropdown-item" [routerLink]="item.params ? [item.url, item.params] : [item.url]">{{ item.label }}</a>
                 <a class="dropdown-item" href="#" (click)="logout(); false;">Logout</a>
             </div>
         </div>

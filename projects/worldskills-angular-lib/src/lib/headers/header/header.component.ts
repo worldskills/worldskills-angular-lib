@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
     @Input() public isLoggedIn: boolean;
     @Input() public showLoginAndLogoutButtons: boolean;
     @Input() menuItems: Array<MenuItem>;
+    @Input() dropDownMenuItems: Array<MenuItem>;
     @Input() currentUser: User;
     @Input() linkTitle: boolean;
     @Input() appNameTemplate: TemplateRef<any>;
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
         this.isLoggedIn = false;
         this.showLoginAndLogoutButtons = false;
         this.menuItems = [];
+        this.dropDownMenuItems = [];
         this.currentUser = null;
     }
 
