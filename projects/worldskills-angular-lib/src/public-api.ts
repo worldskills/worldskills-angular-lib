@@ -18,6 +18,11 @@ export * from './lib/common/models/pair';
 export * from './lib/common/pipes/date-sort.pipe';
 export * from './lib/common/pipes/relative-date.pipe';
 
+/*
+  Shared Processors
+*/
+export * from './lib/common/processors/relative-date/relative-date-processor';
+export * from './lib/common/processors/relative-date/default-relative-date-processor';
 
 /*
   Shared Services

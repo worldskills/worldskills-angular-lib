@@ -58,14 +58,7 @@
             (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)" (abstainSelected)="abstain()">
     </ws-vote-control>
 
-    <h3>Relative Dates</h3>
-    <div>{{ getDate(-14) | relativeDate: 'HH:mm, d MMM y' }}</div>
-    <div>{{ getDate(-7) | relativeDate: 'HH:mm, d MMM y' }}</div>
-    <div>{{ getDate(-1) | relativeDate: 'HH:mm, d MMM y' }}</div>
-    <div>{{ getDate(0) | relativeDate: 'HH:mm, d MMM y' }}</div>
-    <div>{{ getDate(1) | relativeDate: 'HH:mm, d MMM y' }}</div>
-    <div>{{ getDate(7) | relativeDate: 'HH:mm, d MMM y' }}</div>
-    <div>{{ getDate(14) | relativeDate: 'HH:mm, d MMM y' }}</div>
+   <app-relative-date-demo></app-relative-date-demo>
 
     <form class="form-horizontal was-validated" #form="ngForm">
         <h3>Entity Tree Select</h3>

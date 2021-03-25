@@ -2,6 +2,7 @@
 
 ## 10.20
 
+* 10.20.2 PATCH Allow calling applications to format relative date output if needed
 * 10.20.1 FIX Uppercase terms don't register with entity tree search
 * 10.20.0 allow items to be added to the dropdown menu
 

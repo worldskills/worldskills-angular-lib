@@ -17,6 +17,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { GuardService } from '../../../worldskills-angular-lib/src/lib/auth/guard.service';
 import { SubpageOneComponent } from './subpage-one/subpage-one.component';
 import { SubpageTwoComponent } from './subpage-two/subpage-two.component';
+import { RelativeDateDemoComponent } from './relative-date-demo/relative-date-demo.component';
 
 
 const routerOptions: ExtraOptions = {
@@ -100,7 +101,8 @@ const appRoutes: Routes = [
         AnotherRouteComponent,
         NestedPageComponent,
         SubpageOneComponent,
-        SubpageTwoComponent
+        SubpageTwoComponent,
+        RelativeDateDemoComponent
     ],
     imports: [
         BrowserModule,
