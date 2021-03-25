@@ -17,6 +17,7 @@ import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/date/date-range';
 import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/track';
 import { FileThumbnailView } from '../../../worldskills-angular-lib/src/lib/file/file-thumbnail-preview/file-thumbnail-preview.component';
+import { EntityFetchParams } from 'projects/worldskills-angular-lib/src/lib/entity-tree-select/models/entity-tree-fetch-params';
 
 @Component({
     selector: 'app-root',
@@ -90,6 +91,8 @@ export class AppComponent {
     fileThumbnailView1: FileThumbnailView;
     fileThumbnailView2: FileThumbnailView;
 
+    entitySearchParams: EntityFetchParams;
+
     constructor(
         private alerts: AlertService,
         private wsi: WorldskillsAngularLibService
@@ -99,6 +102,9 @@ export class AppComponent {
     // tslint:disable-next-line:typedef use-lifecycle-interface
     ngOnInit() {
         this.testFileThumbnailPreview();
+        this.entitySearchParams = {
+            sort: 'name'
+        };
 
         this.range = {
             start: new Date(),
@@ -148,7 +154,7 @@ export class AppComponent {
         this.form.ngSubmit.emit();
     }
 
-    private testFileThumbnailPreview() {
+    private testFileThumbnailPreview(): void {
         this.fileThumbnailView1 = {
             fileSize: 1000_000,
             downloadLink: '',

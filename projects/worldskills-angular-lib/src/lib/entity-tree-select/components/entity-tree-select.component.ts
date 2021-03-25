@@ -22,6 +22,7 @@ import {EntityTreeSelectLabels} from '../models/entity-tree-select-labels';
 import {EntityTreeSelectControls} from '../models/entity-tree-select-controls';
 import {TreeEntity} from '../types/tree-entity';
 import {DEFAULT_LABELS} from '../consts/default-labels';
+import { GenericUtil } from '../../common/util/generic.util';
 
 function isTreeEntity(obj: any): obj is TreeEntity {
     return obj && typeof obj === 'object' && 'type' in obj && obj.type === 'treeEntity';
@@ -564,6 +565,9 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
     }
 
     searchFn(term: string, entity: TreeEntity): boolean {
+        if (!GenericUtil.isNullOrUndefined(term)) {
+            term = term.toLowerCase();
+        }
         this.lastTerm = term;
         const terms = !!term.trim() ? term.split(/\s*>\s*/) : [];
         const visible = this.entityContainsSearchTerm(terms, entity);
