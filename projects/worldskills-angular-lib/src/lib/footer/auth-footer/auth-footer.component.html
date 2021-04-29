@@ -73,6 +73,10 @@
                                [class.active]="isLanguageSelected(language)" class="dropdown-item" href="#">
                                 {{ language.name }}
                             </a>
+                            <div class="dropdown-divider"></div>
+                            <a (click)="$event.preventDefault(); languagePrompt();" class="dropdown-item" href="#">
+                               Missing language ?
+                            </a>
                         </div>
                     </div>
                 </div>

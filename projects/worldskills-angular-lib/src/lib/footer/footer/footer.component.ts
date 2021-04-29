@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewChild, TemplateRef, Output, EventEmitter 
 import { Language } from '../../i18n/language';
 import { User } from '../../auth/models/user';
 import { GenericUtil } from '../../common/util/generic.util';
+import { MISSING_LANGUAGE_MESSAGE } from '../footer.const';
+import { WorldskillsAngularLibService } from '../../worldskills-angular-lib.service';
 
 @Component({
   selector: 'ws-footer',
@@ -35,6 +37,14 @@ export class FooterComponent implements OnInit {
   @ViewChild('#colDefaultTemplate')
   colDefaultTemplate: TemplateRef<any>;
 
+  supportEmail?: string;
+
+  constructor(private wsi: WorldskillsAngularLibService) {
+    this.wsi.appConfigSubject.subscribe(appConfig => {
+      this.supportEmail = appConfig.supportEmailAddress;
+    });
+  }
+
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.date = new Date();
@@ -59,6 +69,10 @@ export class FooterComponent implements OnInit {
     }
 
     return model.code === this.selectedLanguage.code;
+  }
+
+  languagePrompt(): void {
+    alert(MISSING_LANGUAGE_MESSAGE(this.supportEmail || this.wsi.defaultSupportEmailAddress));
   }
 
 }

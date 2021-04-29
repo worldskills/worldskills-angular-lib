@@ -3,6 +3,8 @@ import {Language} from '../../i18n/language';
 import {User} from '../../auth/models/user';
 import {GenericUtil} from '../../common/util/generic.util';
 import {NgAuthService} from '../../auth/ng-auth.service';
+import { MISSING_LANGUAGE_MESSAGE } from '../footer.const';
+import { WorldskillsAngularLibService } from '../../worldskills-angular-lib.service';
 
 @Component({
     selector: 'ws-auth-footer',
@@ -39,12 +41,17 @@ export class AuthFooterComponent implements OnInit {
     @ViewChild('#colDefaultTemplate')
     colDefaultTemplate: TemplateRef<any>;
 
-    constructor(private ngAuthService: NgAuthService) {
+    supportEmail?: string;
+
+    constructor(private ngAuthService: NgAuthService, private wsi: WorldskillsAngularLibService) {
     }
 
     ngOnInit(): void {
         this.date = new Date();
         this.ngAuthService.currentUser.subscribe(user => (this.currentUser = user));
+        this.wsi.appConfigSubject.subscribe(appConfig => {
+            this.supportEmail = appConfig.supportEmailAddress;
+        });
     }
 
     login(): void {
@@ -77,6 +84,10 @@ export class AuthFooterComponent implements OnInit {
         }
 
         return model.code === this.selectedLanguage.code;
+    }
+
+    languagePrompt(): void {
+        alert(MISSING_LANGUAGE_MESSAGE(this.supportEmail || this.wsi.defaultSupportEmailAddress));
     }
 
 }

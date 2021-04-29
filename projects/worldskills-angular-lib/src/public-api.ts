@@ -144,6 +144,7 @@ export * from './lib/common/encoders/ws-http.encoder';
 */
 export * from './lib/footer/footer/footer.component';
 export * from './lib/footer/auth-footer/auth-footer.component';
+export * from './lib/footer/footer.const';
 
 /*
   Header

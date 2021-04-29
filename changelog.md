@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.21
+
+* 10.21.0 - introduced support email config along with the translation prompt.
+
 ## 10.20
 
 * 10.20.2 PATCH Allow calling applications to format relative date output if needed
@@ -8,7 +12,7 @@
 
 ## 10.19
 
-* 10.19.0 introduced Error Helper and HTTP methods to help validate a user sessionn
+* 10.19.0 introduced Error Helper and HTTP methods to help validate a user session
 
 ## 10.18
 

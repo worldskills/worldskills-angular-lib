@@ -10,6 +10,8 @@ import { ReplaySubject } from 'rxjs';
 })
 export class WorldskillsAngularLibService {
 
+  public defaultSupportEmailAddress: string;
+
   // behaviour subjects to listen for config change
   public appConfigSubject: ReplaySubject<AppConfig>;
   public httpConfigSubject: ReplaySubject<HttpConfig>;
@@ -18,6 +20,7 @@ export class WorldskillsAngularLibService {
 
   constructor() {
     // default configuration
+    this.defaultSupportEmailAddress = 'webmaster@worldskills.org';
     this.appConfigSubject = new ReplaySubject(1);
     this.httpConfigSubject = new ReplaySubject(1);
     this.serviceConfigSubject = new ReplaySubject(1);
