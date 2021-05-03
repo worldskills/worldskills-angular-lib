@@ -2,6 +2,7 @@
 
 ## 10.21
 
+* 10.21.0 - fixed ng-select dependency
 * 10.21.0 - introduced support email config along with the translation prompt.
 
 ## 10.20
