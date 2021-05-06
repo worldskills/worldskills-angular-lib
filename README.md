@@ -28,6 +28,7 @@ Run `npm run package` to create the tgz package (a node module) in the `dist/wor
 
 ## Publishing
 
+We publish our packages on [npmjs](https://www.npmjs.com/) under the *WorldSkills* organization, [here](https://www.npmjs.com/package/@worldskills/worldskills-angular-lib).
 After building your library with `ng build worldskills-angular-lib`, go to the dist folder `cd dist/worldskills-angular-lib` and run `npm publish`.
 
 ## Running unit tests
@@ -54,7 +55,7 @@ once you've set up a new angular application install the following libraries:
 `npm i ng-select`  
 `npm i @worldskills/bootstrap`  
 
-### Styleing
+### Styling
 
 Add the following line to an applications `styles.css`  
 `@import "~@ng-select/ng-select/themes/default.theme.css";`  
