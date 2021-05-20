@@ -8,6 +8,7 @@ export * from './lib/worldskills-angular-lib.module';
 /*
   Shared Models
 */
+export * from './lib/common/models/api-error';
 export * from './lib/common/models/i18n-text';
 export * from './lib/common/models/link';
 export * from './lib/common/models/pair';

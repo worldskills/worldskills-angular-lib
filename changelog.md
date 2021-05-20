@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.22
+
+* 10.22.0 - linting fixes
+* 10.22.0 - updated http util
+* 10.22.0 - added helper methods for handling errors
+
 ## 10.21
 
 * 10.21.0 - fixed ng-select dependency

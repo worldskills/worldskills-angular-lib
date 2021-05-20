@@ -32,7 +32,7 @@ import { UserRoleDirective } from './common/directives/user-role.directive';
 import { AuthHeaderComponent } from './headers/auth-header/auth-header.component';
 import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component';
 import { FileThumbnailPreviewComponent } from './file/file-thumbnail-preview/file-thumbnail-preview.component';
-import { FileSizePipe } from "./file/file-size.pipe";
+import { FileSizePipe } from './file/file-size.pipe';
 
 
 @NgModule({

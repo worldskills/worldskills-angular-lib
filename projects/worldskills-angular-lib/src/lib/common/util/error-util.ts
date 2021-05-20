@@ -1,24 +1,27 @@
+import { GenericUtil } from './generic.util';
 export class ErrorUtil {
     /*
-     * Determine if an error objects contains a WS API Error
+    * Returns the user message from an instance of a WSI API Error
+    *
+    * @param error - The error object extracted from an Http message
+    * @param defaultErrorMessage - The default message if an error message cannot be extracted
+    * @returns The error message or a default error
     */
-    static hasApiError(error: any): boolean {
-        return error.error && error.error.user_msg;
+    static getErrorMsg(error: any, defaultErrorMessage: string): string {
+        return ErrorUtil.hasApiError(error) ? defaultErrorMessage : error.error.user_msg;
     }
 
     /*
-     * Get the error message from an API Error
+    * Returns if an error is an instance of a WSI API error
+    *
+    * @param error - The error object extracted from an Http message
+    * @returns true if this is an instance of a WSI API error
     */
-    static getErrorMsg(error: any): string {
-        if (error.error) {
-            if (error.error.user_msg) {
-                return error.error.user_msg;
-            }
-            if (error.error.dev_msg) {
-                return error.error.dev_msg;
-            }
+    static hasApiError(error: any): boolean {
+        if (GenericUtil.isNullOrUndefined(error)) {
+            return false;
         }
 
-        return null;
+        return error.error && error.error.user_msg;
     }
 }

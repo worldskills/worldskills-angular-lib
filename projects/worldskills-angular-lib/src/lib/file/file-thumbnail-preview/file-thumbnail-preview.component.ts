@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { getFilenameExtension } from "../file";
+import { getFilenameExtension } from '../file';
 
 export interface FileThumbnailView {
     filename: string;
@@ -29,6 +29,7 @@ export class FileThumbnailPreviewComponent implements OnInit {
     }
 
     showDetailInfo = false;
+    // tslint:disable-next-line:variable-name
     private _fileThumbnailView: FileThumbnailView;
 
     constructor() {
@@ -41,7 +42,7 @@ export class FileThumbnailPreviewComponent implements OnInit {
         return typeof value === 'number';
     }
 
-    getFileTypeIcon() {
+    getFileTypeIcon(): string {
         let defaultIcon: string;
         const ext = getFilenameExtension(this._fileThumbnailView.filename).toLowerCase();
         switch (ext) {
