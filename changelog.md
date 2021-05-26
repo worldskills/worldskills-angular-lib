@@ -2,6 +2,7 @@
 
 ## 10.22
 
+* 10.22.1 - add open/close methods on the poll service
 * 10.22.0 - linting fixes
 * 10.22.0 - updated http util
 * 10.22.0 - added helper methods for handling errors

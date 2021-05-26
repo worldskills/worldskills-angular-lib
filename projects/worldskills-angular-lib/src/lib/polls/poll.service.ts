@@ -69,6 +69,17 @@ export class PollService {
     return this.http.put<Poll>(url, model);
   }
 
+  public open(id: number, start: Date, expiry: Date): Observable<any> {
+    const model = { start, expiry };
+    const url = `${this.endpoint}/${id}/open`;
+    return this.http.put(url, model);
+  }
+
+  public close(id: number): Observable<any> {
+    const url = `${this.endpoint}/${id}/close`;
+    return this.http.put(url, {});
+  }
+
   public delete(id: number): Observable<any> {
     const url = `${this.endpoint}/${id}`;
     return this.http.delete(url);
