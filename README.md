@@ -20,7 +20,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build worldskills-angular-lib` or `npm run build_lib` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run ws_build_lib` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Packaging
 
