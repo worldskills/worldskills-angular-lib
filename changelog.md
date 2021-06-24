@@ -2,6 +2,7 @@
 
 ## 10.22
 
+* 10.22.3 - update font urls
 * 10.22.2 - fix ws-datetime-picker custom datetime format
 * 10.22.1 - add open/close methods on the poll service
 * 10.22.0 - linting fixes
