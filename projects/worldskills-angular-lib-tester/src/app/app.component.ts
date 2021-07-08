@@ -16,7 +16,7 @@ import { AlertType } from '../../../worldskills-angular-lib/src/lib/alerts/alert
 import { VoteEntry } from '../../../worldskills-angular-lib/src/lib/polls/models/vote-entry';
 import { DateRange } from '../../../worldskills-angular-lib/src/lib/date/date-range';
 import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/track';
-import { FileThumbnailView } from '../../../worldskills-angular-lib/src/lib/file/file-thumbnail-preview/file-thumbnail-preview.component';
+import { ResourceThumbnail } from '../../../worldskills-angular-lib/src/lib/file/resource-thumbnail/resource-thumbnail.component';
 import { EntityFetchParams } from 'projects/worldskills-angular-lib/src/lib/entity-tree-select/models/entity-tree-fetch-params';
 
 @Component({
@@ -88,8 +88,8 @@ export class AppComponent {
     ];
 
 
-    fileThumbnailView1: FileThumbnailView;
-    fileThumbnailView2: FileThumbnailView;
+    fileThumbnailView1: ResourceThumbnail;
+    fileThumbnailView2: ResourceThumbnail;
 
     entitySearchParams: EntityFetchParams;
 
@@ -158,8 +158,8 @@ export class AppComponent {
         this.fileThumbnailView1 = {
             fileSize: 1000_000,
             downloadLink: '',
-            filename: 'file1.pdf',
-            thumbnailImageLink: 'assets/images/thumbnail_upload_21599558244800.png'
+            filename: 'WSC2011 Final Report: Competition - Health, Public Services and Care.pdf',
+            thumbnailLink: 'assets/images/thumbnail_upload_21599558244800.png'
         };
 
         this.fileThumbnailView2 = {
@@ -167,7 +167,7 @@ export class AppComponent {
             downloadLink: '',
             filename: 'file2.png',
             // thumbnailImageLink: 'https://picsum.photos/256/256'
-            thumbnailImageLink: 'assets/images/thumbnail_upload_31599558189164.png',
+            thumbnailLink: 'https://api.worldskills.show/resources/thumbnail/13239/14657/15584',
             description: 'here is the description for file 2'
         };
     }

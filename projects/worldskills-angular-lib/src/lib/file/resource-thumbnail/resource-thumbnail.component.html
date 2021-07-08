@@ -1,0 +1,12 @@
+<div class="ws-thumbnail card shadow" style="max-width: 210px; ">
+    <div>
+        <img class="card-img-top" [src]="resourceThumbnail.thumbnailLink" alt="Resource thumbnail image">
+    </div>
+
+    <div class="card-footer bg-white text-center">
+        <div class="title-overflow font-weight-bolder"
+             [title]="resourceThumbnail.filename">{{resourceThumbnail.filename}}</div>
+        <div class="text-muted small">{{isNumber(resourceThumbnail.fileSize) ? (resourceThumbnail.fileSize | fileSize) : resourceThumbnail.fileSize}}</div>
+        <div class="small "><a href="">Download</a></div>
+    </div>
+</div>
