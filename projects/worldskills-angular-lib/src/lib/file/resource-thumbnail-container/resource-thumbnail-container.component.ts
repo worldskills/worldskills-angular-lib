@@ -29,9 +29,6 @@ export class ResourceThumbnailContainerComponent extends WsComponent implements 
     }
 
     ngOnInit(): void {
-        this.resourceService.get(13229).subscribe(res => {
-            console.log(res);
-        });
     }
 
     showDownloadAll(): boolean {
