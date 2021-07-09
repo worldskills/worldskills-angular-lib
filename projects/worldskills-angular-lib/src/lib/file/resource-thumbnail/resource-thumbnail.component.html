@@ -1,12 +1,11 @@
-<div class="ws-thumbnail card shadow" style="max-width: 210px; ">
-    <div>
-        <img class="card-img-top" [src]="resourceThumbnail.thumbnailLink" alt="Resource thumbnail image">
-    </div>
+<div class="ws-thumbnail card shadow" style="max-width: 160px;width: auto; height: auto">
+    <img class="card-img-top" [src]="resourceThumbnail.thumbnailLink" alt="Resource thumbnail image"
+         style="display: block; max-width: 160px;max-height: 160px; width: auto; height: auto">
 
-    <div class="card-footer bg-white text-center">
-        <div class="title-overflow font-weight-bolder"
+    <div class="card-footer bg-white text-center small">
+        <div class="title-overflow font-weight-bolder "
              [title]="resourceThumbnail.filename">{{resourceThumbnail.filename}}</div>
-        <div class="text-muted small">{{isNumber(resourceThumbnail.fileSize) ? (resourceThumbnail.fileSize | fileSize) : resourceThumbnail.fileSize}}</div>
-        <div class="small "><a href="">Download</a></div>
+        <div class="text-muted ">{{isNumber(resourceThumbnail.fileSize) ? (resourceThumbnail.fileSize | fileSize) : resourceThumbnail.fileSize}}</div>
+        <div *ngIf="showDownload()"><a [href]="resourceThumbnail.downloadLink">Download</a></div>
     </div>
 </div>

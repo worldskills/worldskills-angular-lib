@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { getFilenameExtension } from '../file';
 
 export interface ResourceThumbnail {
+    resource_id: number;
     filename: string;
     thumbnailLink?: string;
     description?: string;
@@ -41,6 +42,10 @@ export class ResourceThumbnailComponent implements OnInit {
 
     isNumber(value): boolean {
         return typeof value === 'number';
+    }
+
+    showDownload(): boolean {
+        return this._resourceThumbnail && !!this._resourceThumbnail.downloadLink;
     }
 
     getFileTypeIcon(): string {

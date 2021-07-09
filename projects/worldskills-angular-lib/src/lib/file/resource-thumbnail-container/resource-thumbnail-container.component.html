@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">{{title}}</div>
+            <div class="col-md-6">
+                <button
+                        class="btn btn-link float-right"
+                        [disabled]="isZippingFiles"
+                        (click)="downloadAllResourcesAsZipFile()"
+                        *ngIf="showDownloadAll()">
+                    {{getDownloadAllBtnText}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body d-flex flex-row flex-wrap" style="max-height: 250px;overflow-y: scroll">
+        <ws-resource-thumbnail
+                class="mr-3 mb-3"
+                [resourceThumbnail]="thumbnail"
+                *ngFor="let thumbnail of resourceThumbnailList"></ws-resource-thumbnail>
+    </div>
+</div>

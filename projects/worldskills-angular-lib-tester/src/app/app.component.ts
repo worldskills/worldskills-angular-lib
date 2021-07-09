@@ -156,18 +156,20 @@ export class AppComponent {
 
     private testFileThumbnailPreview(): void {
         this.fileThumbnailView1 = {
-            fileSize: 1000_000,
-            downloadLink: '',
-            filename: 'WSC2011 Final Report: Competition - Health, Public Services and Care.pdf',
-            thumbnailLink: 'assets/images/thumbnail_upload_21599558244800.png'
+            resource_id: 13229,
+            fileSize: 1352705,
+            downloadLink: 'http://localhost:8080/resources/download/13229/14648/15576?l=en',
+            filename: 'WSC2022_WSOS37_Landscape_Gardening (1).pdf',
+            thumbnailLink: 'http://localhost:8080/resources/thumbnail/13229/14648/15576'
         };
 
         this.fileThumbnailView2 = {
-            fileSize: 1000_000,
-            downloadLink: '',
-            filename: 'file2.png',
+            resource_id: 13230,
+            fileSize: 1218597,
+            downloadLink: 'http://localhost:8080/resources/download/13230/14649/15577?l=en',
+            filename: 'WSC2022_WSOS09_IT_Software_Solutions_for_Business.pdf',
             // thumbnailImageLink: 'https://picsum.photos/256/256'
-            thumbnailLink: 'https://api.worldskills.show/resources/thumbnail/13239/14657/15584',
+            thumbnailLink: 'http://localhost:8080/resources/thumbnail/13230/14649/15577',
             description: 'here is the description for file 2'
         };
     }
@@ -189,19 +191,19 @@ export class AppComponent {
             loginUrl: 'http://localhost:50300/oauth/authorize',
             clientId: '7221138f6772',
             redirectUri: 'http://localhost:4200/home',
-            userinfoEndpoint: 'http://localhost:8081/users/loggedIn?show_child_roles=false&app_code=500',
+            userinfoEndpoint: 'http://localhost:8080/users/loggedIn?show_child_roles=false&app_code=500',
             oidc: false
         });
 
         this.wsi.httpConfigSubject.next({
             encoderUriPatterns: [],
-            authUriPatterns: ['api.worldskills.show', 'localhost:8081'],
+            authUriPatterns: ['api.worldskills.show', 'localhost:8080'],
         });
 
         this.wsi.serviceConfigSubject.next({
             appCode: [500],
             // apiEndpoint: 'https://api.worldskills.show',
-            apiEndpoint: 'http://localhost:8081'
+            apiEndpoint: 'http://localhost:8080'
         });
     }
 
