@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { HttpClient, HttpRequest, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { UploadService } from '../common/services/upload.service';
 import { Resource } from './models/resource';
 import { ResourceSearch } from './models/resource-search';
@@ -10,97 +10,114 @@ import { Observable } from 'rxjs';
 import { ResourceMetadataInfo } from './models/resource-metadata-info';
 import { ResourceContainer } from './models/resource-container';
 import { ResourceUpload } from './models/resourcec-upload';
+import { WsService } from '../common/services/ws.service';
+import { share } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class ResourceService {
-  private url: string;
+export class ResourceService extends WsService<any> {
+    private url: string;
 
-  constructor(private wsi: WorldskillsAngularLibService, private http: HttpClient, public uploader: UploadService) {
-    this.wsi.serviceConfigSubject.subscribe(
-      next => {
-        this.url = next.apiEndpoint + '/resources';
-      }
-    );
-  }
+    constructor(private wsi: WorldskillsAngularLibService, private http: HttpClient, public uploader: UploadService) {
+        super();
+        this.wsi.serviceConfigSubject.subscribe(
+            next => {
+                this.url = next.apiEndpoint + '/resources';
+            }
+        );
+    }
 
-  /*
-    ResourceResource
-  */
+    /*
+      ResourceResource
+    */
 
-  // allow a client to user submit an object directly or use a managed object
-  public search(filter: ResourceSearch): Observable<ResourceContainer> {
-    const params = HttpUtil.objectToParams(filter);
-    return this.http.get<ResourceContainer>(this.url, { params });
-  }
+    // allow a client to user submit an object directly or use a managed object
+    public search(filter: ResourceSearch): Observable<ResourceContainer> {
+        const params = HttpUtil.objectToParams(filter);
+        return this.http.get<ResourceContainer>(this.url, {params});
+    }
 
-  public get(id: number): Observable<Resource> {
-    const url = `${this.url}/${id}`;
-    return this.http.get<Resource>(url);
-  }
+    public get(id: number): Observable<Resource> {
+        const url = `${this.url}/${id}`;
+        return this.http.get<Resource>(url);
+    }
 
-  public delete(id: number): Observable<any> {
-    const url = `${this.url}/${id}`;
-    return this.http.delete(url);
-  }
+    public delete(id: number): Observable<any> {
+        const url = `${this.url}/${id}`;
+        return this.http.delete(url);
+    }
 
-  public update(id: number, model: ResourceUpload): Observable<Resource> {
-    const url = `${this.url}/${id}`;
-    return this.http.put<Resource>(url, model);
-  }
+    public update(id: number, model: ResourceUpload): Observable<Resource> {
+        const url = `${this.url}/${id}`;
+        return this.http.put<Resource>(url, model);
+    }
 
-  // this more or less saves the resource to the api
-  // the client has control over weather it's a POST or a PUT
-  public upload(data: ResourceUpload, file: any, method = 'POST', id = 0): HttpRequest<FormData> {
-    const url = method === 'POST' ? this.url : `${this.url}/${id}`;
-    const formData = new FormData();
-    formData.append('key', 'value');
-    formData.append('requestData', JSON.stringify(data));
-    formData.append('file', file);
+    // this more or less saves the resource to the api
+    // the client has control over weather it's a POST or a PUT
+    public upload(data: ResourceUpload, file: any, method = 'POST', id = 0): HttpRequest<FormData> {
+        const url = method === 'POST' ? this.url : `${this.url}/${id}`;
+        const formData = new FormData();
+        formData.append('key', 'value');
+        formData.append('requestData', JSON.stringify(data));
+        formData.append('file', file);
 
-    return this.uploader.prepareUpload(url, formData, new HttpParams(), method);
-  }
+        return this.uploader.prepareUpload(url, formData, new HttpParams(), method);
+    }
 
-  /* /types
-    ResourceTypeResource
-  */
+    /* /types
+      ResourceTypeResource
+    */
 
-  public listTypes(): Observable<ResourceType[]> {
-    const url = `${this.url}/types`;
-    return this.http.get<ResourceType[]>(url);
-  }
+    public listTypes(): Observable<ResourceType[]> {
+        const url = `${this.url}/types`;
+        return this.http.get<ResourceType[]>(url);
+    }
 
-  public getType(id: number): Observable<ResourceType> {
-    const url = `${this.url}/types/${id}`;
-    return this.http.get<ResourceType>(url);
-  }
+    public getType(id: number): Observable<ResourceType> {
+        const url = `${this.url}/types/${id}`;
+        return this.http.get<ResourceType>(url);
+    }
 
-  /* /metadata
-    MetadataResource
-  */
-  public listMetadata(): Observable<ResourceMetadataInfo[]> {
-    const url = `${this.url}/metadata`;
-    return this.http.get<ResourceMetadataInfo[]>(url);
-  }
+    /* /metadata
+      MetadataResource
+    */
+    public listMetadata(): Observable<ResourceMetadataInfo[]> {
+        const url = `${this.url}/metadata`;
+        return this.http.get<ResourceMetadataInfo[]>(url);
+    }
 
-  public getMetadata(id: number): Observable<ResourceMetadataInfo> {
-    const url = `${this.url}/metadata/${id}`;
-    return this.http.get<ResourceMetadataInfo>(url);
-  }
+    public getMetadata(id: number): Observable<ResourceMetadataInfo> {
+        const url = `${this.url}/metadata/${id}`;
+        return this.http.get<ResourceMetadataInfo>(url);
+    }
 
-  public createMetadata(model: ResourceMetadataInfo): Observable<ResourceMetadataInfo> {
-    const url = `${this.url}/metadata`;
-    return this.http.post<ResourceMetadataInfo>(url, model);
-  }
+    public createMetadata(model: ResourceMetadataInfo): Observable<ResourceMetadataInfo> {
+        const url = `${this.url}/metadata`;
+        return this.http.post<ResourceMetadataInfo>(url, model);
+    }
 
-  public updateMetadata(id: number, model: ResourceMetadataInfo): Observable<ResourceMetadataInfo> {
-    const url = `${this.url}/metadata/${id}`;
-    return this.http.put<ResourceMetadataInfo>(url, model);
-  }
+    public updateMetadata(id: number, model: ResourceMetadataInfo): Observable<ResourceMetadataInfo> {
+        const url = `${this.url}/metadata/${id}`;
+        return this.http.put<ResourceMetadataInfo>(url, model);
+    }
 
-  public deleteMetadata(id: number): Observable<any> {
-    const url = `${this.url}/metadata/${id}`;
-    return this.http.delete(url);
-  }
+    public deleteMetadata(id: number): Observable<any> {
+        const url = `${this.url}/metadata/${id}`;
+        return this.http.delete(url);
+    }
+
+    public downloadResources(resourceIds: number[]): Observable<any> {
+        const uniqueResourceIds = new Set(resourceIds);
+        let params = new HttpParams();
+        for (const id of uniqueResourceIds) {
+            params = params.append('resource_ids', id.toString());
+        }
+
+        const observable = this.http.get(`${this.url}/download/resources`, {
+            params,
+            responseType: 'arraybuffer'
+        }).pipe(share());
+        return this.request(observable);
+    }
 }

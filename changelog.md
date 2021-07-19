@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.23
+
+* 10.23.0 - update resource thumbnail and add multiple resource thumbnails container 
+
 ## 10.22
 
 * 10.22.3 - update font urls

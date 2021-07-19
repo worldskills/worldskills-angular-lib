@@ -1,0 +1,20 @@
+.ws-thumbnail {
+    opacity: 1;
+    transition: .5s ease;
+}
+
+.ws-thumbnail:hover .card-img-top, .card-footer {
+    opacity: 0.7;
+}
+
+
+.file-extension-icon {
+    width: 20%;
+}
+
+.title-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}

@@ -30,6 +30,19 @@
     <ws-alerts></ws-alerts>
 
     <hr>
+    <h3>Test - Thumbnail Preview</h3>
+    <div class="mb-5">
+        <ws-resource-thumbnail-container [title]="'test'"
+                                         [resourceThumbnailList]="[fileThumbnailView1, fileThumbnailView2, fileThumbnailView1, fileThumbnailView2, fileThumbnailView1, fileThumbnailView2, fileThumbnailView1, fileThumbnailView2]"></ws-resource-thumbnail-container>
+        <br>
+
+        <ws-resource-thumbnail [resourceThumbnail]="fileThumbnailView1"></ws-resource-thumbnail>
+        <br>
+        <ws-resource-thumbnail [resourceThumbnail]="fileThumbnailView2"></ws-resource-thumbnail>
+    </div>
+
+
+    <hr>
     <ws-alerts wsAlertComponentId="mySecondAlert"></ws-alerts>
     <button class="btn btn-sm btn-success" (click)="displayInSecondAlert()">Display Alert In Second WS-Alert</button>
     <button class="btn btn-sm btn-primary ml-2" (click)="displayInAllAlerts()">Display Alert In All WS-Alert</button>
@@ -41,6 +54,7 @@
     <ng-template #test>
         Template Test
     </ng-template>
+
 
     <h3>Poll</h3>
     <!-- <ws-poll-result-graph [poll]="poll" [results]="results"></ws-poll-result-graph> -->
@@ -58,7 +72,7 @@
             (edit)="edit($event)" (reset)="reset($event)" (delete)="delete($event)" (abstainSelected)="abstain()">
     </ws-vote-control>
 
-   <app-relative-date-demo></app-relative-date-demo>
+    <app-relative-date-demo></app-relative-date-demo>
 
     <form class="form-horizontal was-validated" #form="ngForm">
         <h3>Entity Tree Select</h3>
@@ -73,7 +87,8 @@
         <ws-date-range [(ngModel)]="range" [disabled]="false"></ws-date-range>
 
         <h3>Date Time Picker</h3>
-        <ws-datetime-picker name="date" [(ngModel)]="datetime"></ws-datetime-picker>
+        <ws-datetime-picker name="date" [(ngModel)]="datetime"
+                            inputDatetimeFormat="dd MMM yyyy HH:mm:ss"></ws-datetime-picker>
 
         <h3>Select (@ng-select/ng-select) [wsSelect]</h3>
         <ng-select
@@ -88,7 +103,7 @@
 
         <pre>
 change: {{selectChange1}}
-wsChange: {{wsSelectChange1}}
+            wsChange: {{wsSelectChange1}}
         </pre>
 
         <h4>Using custom renderers</h4>
@@ -105,7 +120,7 @@ wsChange: {{wsSelectChange1}}
         ></ng-select>
         <pre>
 change: {{selectChange2}}
-wsChange: {{wsSelectChange2}}
+            wsChange: {{wsSelectChange2}}
         </pre>
 
         <h4>Async search</h4>
@@ -122,7 +137,7 @@ wsChange: {{wsSelectChange2}}
         </ng-select>
         <pre>
 change: {{selectChange3}}
-wsChange: {{wsSelectChange3}}
+            wsChange: {{wsSelectChange3}}
         </pre>
 
         <h4>Async search (advanced setup)</h4>
@@ -139,7 +154,7 @@ wsChange: {{wsSelectChange3}}
         </ng-select>
         <pre>
 change: {{selectChange4}}
-wsChange: {{wsSelectChange4}}
+            wsChange: {{wsSelectChange4}}
         </pre>
     </form>
 
@@ -175,14 +190,6 @@ wsChange: {{wsSelectChange4}}
         un-existing role 'roleB'
     </div>
 
-
-
-    <hr>
-    <h3>Test - Thumbnail Preview</h3>
-    <div class="d-flex flex-row">
-        <ws-file-thumbnail-preview class="mr-2" [fileThumbnailView]="fileThumbnailView1"></ws-file-thumbnail-preview>
-        <ws-file-thumbnail-preview class="mr-2" [fileThumbnailView]="fileThumbnailView2"></ws-file-thumbnail-preview>
-    </div>
 
 </div>
 

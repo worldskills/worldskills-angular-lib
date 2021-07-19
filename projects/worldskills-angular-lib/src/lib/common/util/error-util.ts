@@ -1,4 +1,7 @@
 import { GenericUtil } from './generic.util';
+import { HttpErrorResponse } from '@angular/common/http';
+import { APIError } from '../models/api-error';
+
 export class ErrorUtil {
     /*
     * Returns the user message from an instance of a WSI API Error
@@ -24,4 +27,10 @@ export class ErrorUtil {
 
         return error.error && error.error.user_msg;
     }
+
+    static arrayBufferToJSON(error: HttpErrorResponse): APIError {
+        const decodedString = String.fromCharCode.apply(null, new Uint8Array(error.error));
+        return JSON.parse(decodedString);
+    }
+
 }
