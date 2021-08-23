@@ -1,4 +1,4 @@
-import { Language } from '../../../../../../dist/worldskills-angular-lib/lib/i18n/language';
+import { Language } from '../../i18n/language';
 export class LangUtil {
     static getDefaultLanguages(): Language[] {
         return [
