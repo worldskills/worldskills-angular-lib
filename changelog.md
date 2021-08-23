@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.24
+
+* 10.24.0 - Translations nonw exist in the lib, backward compatible
+
 ## 10.23
 
 * 10.23.0 - update resource thumbnail and add multiple resource thumbnails container 

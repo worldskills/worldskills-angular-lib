@@ -40,8 +40,6 @@ export class AppComponent {
     showHomeItem = true;
     defaultRoute = '/home';
 
-    languages: Language[];
-
     poll: Poll;
     tracks: Track[];
     pollOptionHandler: OptionHandler;
@@ -114,9 +112,6 @@ export class AppComponent {
         this.configureLib();
         this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
 
-        this.languages = [
-            {code: 'en', name: 'English'}
-        ];
         this.isLoggedIn = false;
         this.dropDownMenuItems = [
             { label: 'Sample', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []}

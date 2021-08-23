@@ -61,21 +61,21 @@
                 </ul>
             </div>
             <div class="ws-page-footer-col-lg">
-                <div class="btn-toolbar justify-content-end" *ngIf="languages">
+                <div class="btn-toolbar justify-content-end" *ngIf="getLanguages()">
                     <div class="btn-group btn-group-sm dropup">
                         <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             Language
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a *ngFor="let language of languages"
+                            <a *ngFor="let language of getLanguages()"
                                (click)="$event.preventDefault(); changeLanguage(language);"
                                [class.active]="isLanguageSelected(language)" class="dropdown-item" href="#">
                                 {{ language.name }}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a (click)="$event.preventDefault(); languagePrompt();" class="dropdown-item" href="#">
-                               Missing language ?
+                               Missing Translation ?
                             </a>
                         </div>
                     </div>
