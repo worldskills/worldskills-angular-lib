@@ -18,6 +18,7 @@ import { GuardService } from '../../../worldskills-angular-lib/src/lib/auth/guar
 import { SubpageOneComponent } from './subpage-one/subpage-one.component';
 import { SubpageTwoComponent } from './subpage-two/subpage-two.component';
 import { RelativeDateDemoComponent } from './relative-date-demo/relative-date-demo.component';
+import { DatePipe } from '@angular/common';
 
 
 const routerOptions: ExtraOptions = {
@@ -116,6 +117,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true},
+        DatePipe
     ], bootstrap: [AppComponent]
 })
 export class AppModule {

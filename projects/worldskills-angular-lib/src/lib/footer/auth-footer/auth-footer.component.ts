@@ -5,6 +5,7 @@ import {GenericUtil} from '../../common/util/generic.util';
 import {NgAuthService} from '../../auth/ng-auth.service';
 import { MISSING_LANGUAGE_MESSAGE } from '../footer.const';
 import { WorldskillsAngularLibService } from '../../worldskills-angular-lib.service';
+import { LangUtil } from '../../common/util/lang.util';
 
 @Component({
     selector: 'ws-auth-footer',
@@ -88,6 +89,15 @@ export class AuthFooterComponent implements OnInit {
 
     languagePrompt(): void {
         alert(MISSING_LANGUAGE_MESSAGE(this.supportEmail || this.wsi.defaultSupportEmailAddress));
+    }
+
+    // get list of languages - backward compatible for apps that still want to define their own language
+    getLanguages(): Language[] {
+        if (GenericUtil.isNullOrUndefined(this.languages) || this.languages.length === 0) {
+            return LangUtil.getDefaultLanguages();
+        }
+
+        return this.languages;
     }
 
 }
