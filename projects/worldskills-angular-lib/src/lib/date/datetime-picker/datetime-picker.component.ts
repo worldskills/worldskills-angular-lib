@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { NgbDate, NgbPopover, NgbPopoverConfig, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { toDate } from '../../common/helpers/date.helper';
 import { Datetime } from '../datetime';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-struct';
 
 @Component({
   selector: 'ws-datetime-picker',
@@ -36,6 +37,10 @@ export class DatetimePickerComponent implements ControlValueAccessor {
   @Input() secondStep = 30;
 
   @Input() seconds = false;
+
+  @Input() maxDate: NgbDateStruct;
+
+  @Input() minDate: NgbDateStruct = new NgbDate(1900, 1, 1);
 
   showTimePickerToggle = false;
 
