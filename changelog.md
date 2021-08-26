@@ -2,6 +2,8 @@
 
 ## 10.25
 
+* 10.25.0 - set default minDate to allow scrollable year options
+* 10.25.0 - use moment.js to convert local string
 * 10.25.0 - minor cleanup
 * 10.25.0 - improved asset copy
 
