@@ -1,5 +1,10 @@
 # Changelog
 
+## 10.25
+
+* 10.25.0 - minor cleanup
+* 10.25.0 - improved asset copy
+
 ## 10.24
 
 * 10.24.0 - Translations nonw exist in the lib, backward compatible

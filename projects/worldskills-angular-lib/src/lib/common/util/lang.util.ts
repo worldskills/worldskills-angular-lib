@@ -12,4 +12,8 @@ export class LangUtil {
             {code: 'tt_RU', name: 'Tatar'},
           ];
     }
+
+    static getDefaultLanguage(): Language {
+        return {code: 'en', name: 'English'};
+    }
 }
