@@ -1,4 +1,5 @@
 import { NgbTimeStruct, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 export interface NgbDatetimeStruct extends NgbDateStruct, NgbTimeStruct { }
 
@@ -31,35 +32,7 @@ export class Datetime implements NgbDatetimeStruct {
   }
 
   public static fromLocalString(dateString: string): Datetime {
-    dateString = dateString.trim();
-    const pieces = dateString.split(' ');
-    let date: Date;
-
-    if (pieces.length > 0) {
-      let dateParts = [];
-      let timeParts = [];
-      if (pieces[0].indexOf('/') > -1) {
-        dateParts = pieces[0].split('/');
-      }
-      if (pieces.length > 1) {
-        timeParts = pieces[1].split(':');
-      }
-      if (timeParts.length === 0) {
-        date = new Date(dateParts[2].substr(0, 4) + '-' + dateParts[1] + '-' + dateParts[0]);
-      } else {
-        date = new Date(dateParts[2].substr(0, 4) + '-' + dateParts[1] + '-' + dateParts[0] + ' ' + timeParts.join(':'));
-      }
-
-    } else {
-      date = new Date(dateString);
-    }
-
-    const isValidDate = !isNaN(date.valueOf());
-
-    if (!dateString || !isValidDate) {
-      return null;
-    }
-
+    const date = moment(dateString).toDate();
     return new Datetime({
       year: date.getFullYear(),
       month: date.getMonth() + 1,
