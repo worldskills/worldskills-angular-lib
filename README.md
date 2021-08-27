@@ -29,7 +29,7 @@ Run `npm run package` to create the tgz package (a node module) in the `dist/wor
 ## Publishing
 
 We publish our packages on [npmjs](https://www.npmjs.com/) under the *WorldSkills* organization, [here](https://www.npmjs.com/package/@worldskills/worldskills-angular-lib).
-After building your library with `ng build worldskills-angular-lib`, go to the dist folder `cd dist/worldskills-angular-lib` and run `npm publish`.
+After building your library with `npm run ws_build_lib`, go to the dist folder `cd dist/worldskills-angular-lib` and run `npm publish`.
 
 ## Running unit tests
 
