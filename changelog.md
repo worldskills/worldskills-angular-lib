@@ -2,6 +2,7 @@
 
 ## 10.25
 
+* 10.25.1 - export resource-thumbnail.component and resource-thumbnail-container.component in public-api.ts
 * 10.25.0 - set default minDate in datetime-picker to allow scrollable year options
 * 10.25.0 - use moment.js to convert local date string
 * 10.25.0 - minor cleanup

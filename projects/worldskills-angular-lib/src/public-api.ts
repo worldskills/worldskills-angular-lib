@@ -188,6 +188,8 @@ export * from './lib/resources/models/translation-create';
 export * from './lib/resources/models/version';
 export * from './lib/resources/models/version-create';
 export * from './lib/resources/resource.service';
+export * from './lib/file/resource-thumbnail/resource-thumbnail.component';
+export * from './lib/file/resource-thumbnail-container/resource-thumbnail-container.component';
 
 /*
   Polls
