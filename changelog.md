@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0
+
+* 11.0.0 baked ngx-translate into the library and is now a dependancy (lib translations need to be in a ts file, this is fine as even as when the JSON files are updates, we need to recompile and publish the library).
+
 ## 10.25
 
 * 10.25.3 - export lang util

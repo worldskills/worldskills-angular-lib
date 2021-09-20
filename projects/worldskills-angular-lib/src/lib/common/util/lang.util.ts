@@ -7,6 +7,7 @@ export class LangUtil {
             {code: 'zh_CN', name: 'Chinese'},
             {code: 'en', name: 'English'},
             {code: 'fr', name: 'French'},
+            {code: 'fi', name: 'Finnish'},
             {code: 'de', name: 'German'},
             {code: 'ru_RU', name: 'Russian'},
             {code: 'tt_RU', name: 'Tatar'},

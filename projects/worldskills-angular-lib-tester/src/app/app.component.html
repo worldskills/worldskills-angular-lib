@@ -41,6 +41,12 @@
         <ws-resource-thumbnail [resourceThumbnail]="fileThumbnailView2"></ws-resource-thumbnail>
     </div>
 
+    <hr />
+    <div>
+        <ws-i18n-textbox [disaableLangChange]="false" (valueChanged)="textboxValueChanged($event)"></ws-i18n-textbox>
+        <ws-i18n-textarea [disaableLangChange]="false" (valueChanged)="textboxValueChanged($event)"> </ws-i18n-textarea>
+    </div>
+
 
     <hr>
     <ws-alerts wsAlertComponentId="mySecondAlert"></ws-alerts>

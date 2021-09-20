@@ -8,7 +8,6 @@ import { OptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/mo
 import { DefaultOptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/defaultOptionHandler';
 import { User } from '../../../worldskills-angular-lib/src/lib/auth/models/user';
 import { MenuItem } from '../../../worldskills-angular-lib/src/lib/headers/menu-item';
-import { Language } from '../../../worldskills-angular-lib/src/lib/i18n/language';
 import { Poll } from '../../../worldskills-angular-lib/src/lib/polls/models/poll';
 import { Result } from '../../../worldskills-angular-lib/src/lib/polls/models/result';
 import { Vote } from '../../../worldskills-angular-lib/src/lib/polls/models/vote';
@@ -19,6 +18,8 @@ import { Track } from '../../../worldskills-angular-lib/src/lib/polls/models/tra
 import { ResourceThumbnail } from '../../../worldskills-angular-lib/src/lib/file/resource-thumbnail/resource-thumbnail.component';
 import { EntityFetchParams } from 'projects/worldskills-angular-lib/src/lib/entity-tree-select/models/entity-tree-fetch-params';
 import { environment } from '../environments/environment';
+import { WsiTranslateService } from '../../../worldskills-angular-lib/src/lib/i18n/wsi-translate.service';
+import { I18nText } from 'projects/worldskills-angular-lib/src/lib/common/models/i18n-text';
 
 // TODO: Cleanup, Each demo should be in its' own componennt
 @Component({
@@ -95,7 +96,8 @@ export class AppComponent {
 
     constructor(
         private alerts: AlertService,
-        private wsi: WorldskillsAngularLibService
+        private wsi: WorldskillsAngularLibService,
+        private wsiTranslator: WsiTranslateService
     ) {
     }
 
@@ -112,7 +114,10 @@ export class AppComponent {
         };
         this.datetime = new Datetime();
         this.configureLib();
-        this.alerts.setAlert('test', AlertType.info, 'Alert!', 'A random alert', false);
+        this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
+            console.log(values);
+            this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, false);
+        });
 
         this.isLoggedIn = false;
         this.dropDownMenuItems = [
@@ -151,6 +156,7 @@ export class AppComponent {
         this.form.ngSubmit.emit();
     }
 
+
     private testFileThumbnailPreview(): void {
         this.fileThumbnailView1 = {
             resource_id: 13229,
@@ -169,6 +175,10 @@ export class AppComponent {
             thumbnailLink: `${environment.apiBaseUrl}/resources/thumbnail/13230/14649/15577`,
             description: 'here is the description for file 2'
         };
+    }
+
+    textboxValueChanged(value: I18nText[]): void {
+        console.log(value);
     }
 
     displayInSecondAlert(): void {

@@ -5,6 +5,7 @@ import { GenericUtil } from '../../common/util/generic.util';
 import { MISSING_LANGUAGE_MESSAGE } from '../footer.const';
 import { WorldskillsAngularLibService } from '../../worldskills-angular-lib.service';
 import { LangUtil } from '../../common/util/lang.util';
+import { WsiTranslateService } from '../../i18n/wsi-translate.service';
 
 @Component({
   selector: 'ws-footer',
@@ -14,8 +15,8 @@ import { LangUtil } from '../../common/util/lang.util';
 export class FooterComponent implements OnInit {
   date;
 
-  @Input() languages: Language[];
-  @Input() selectedLanguage: Language;
+  languages: Language[];
+  selectedLanguage: Language;
   @Input() isLoggedIn: boolean;
   @Input() currentUser: User;
   @Input() col1Template: TemplateRef<any>;
@@ -27,7 +28,6 @@ export class FooterComponent implements OnInit {
 
   @Output() logoutClick: EventEmitter<any> = new EventEmitter();
   @Output() loginClick: EventEmitter<any> = new EventEmitter();
-  @Output() languageChange: EventEmitter<Language> = new EventEmitter();
 
   @ViewChild('#col1DefaultTemplate')
   col1DefaultTemplate: TemplateRef<any>;
@@ -40,7 +40,7 @@ export class FooterComponent implements OnInit {
 
   supportEmail?: string;
 
-  constructor(private wsi: WorldskillsAngularLibService) {
+  constructor(private wsi: WorldskillsAngularLibService, private translator: WsiTranslateService) {
     this.wsi.appConfigSubject.subscribe(appConfig => {
       this.supportEmail = appConfig.supportEmailAddress;
     });
@@ -49,6 +49,8 @@ export class FooterComponent implements OnInit {
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.date = new Date();
+    this.languages = LangUtil.getDefaultLanguages();
+    this.selectedLanguage = this.translator.getSelectedLanguage();
   }
 
   login(): void {
@@ -61,12 +63,12 @@ export class FooterComponent implements OnInit {
 
   changeLanguage(model: Language): void {
     this.selectedLanguage = model;
-    this.languageChange.emit(model);
+    this.translator.init(model.code);
   }
 
   isLanguageSelected(model: Language): boolean {
     if (GenericUtil.isNullOrUndefined(this.selectedLanguage)) {
-      return model.code === 'en';
+      return model.code === LangUtil.getDefaultLanguage().code;
     }
 
     return model.code === this.selectedLanguage.code;

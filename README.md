@@ -155,3 +155,14 @@ this.wsi.serviceConfigSubject.subscribe(
   }
 );
 ```
+
+## Translations
+
+- i18n translations are lazy loaded via json files in `/assets/i18n/lazy-loaded`
+- translationns are issolated so they will not overwrite app transslations
+
+### Upadding translatioons
+
+- the `.json` files mainly exist to support weblate
+- the `json.ts` files are required to transslations to work at a lib level (thiss is a workaround for now)
+- regardless of how the translations are uopdated, we still needd to publissh a new versionn of the lib.

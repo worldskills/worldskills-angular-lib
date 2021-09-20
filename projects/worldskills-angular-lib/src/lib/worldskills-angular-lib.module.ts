@@ -21,7 +21,7 @@ import { StandardPollComponent } from './polls/standard-poll/standard-poll.compo
 import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.component';
 import { VoteControlComponent } from './polls/vote-control/vote-control.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { RelativeDatePipe } from './common/pipes/relative-date.pipe';
 import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-poll.component';
@@ -34,7 +34,23 @@ import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component'
 import { ResourceThumbnailComponent } from './file/resource-thumbnail/resource-thumbnail.component';
 import { FileSizePipe } from './file/file-size.pipe';
 import { ResourceThumbnailContainerComponent } from './file/resource-thumbnail-container/resource-thumbnail-container.component';
+import { I18nTextboxComponent } from './i18n/i18n-textbox/i18n-textbox.component';
+import { I18nTextareaComponent } from './i18n/i18n-textarea/i18n-textarea.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
+}
+
+export const translateConfig = TranslateModule.forChild({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    },
+    isolate: true
+});
 
 @NgModule({
     declarations: [
@@ -66,7 +82,9 @@ import { ResourceThumbnailContainerComponent } from './file/resource-thumbnail-c
         AuthFooterComponent,
         ResourceThumbnailComponent,
         FileSizePipe,
-        ResourceThumbnailContainerComponent
+        ResourceThumbnailContainerComponent,
+        I18nTextboxComponent,
+        I18nTextareaComponent
     ],
     imports: [
         BrowserModule,
@@ -74,7 +92,8 @@ import { ResourceThumbnailContainerComponent } from './file/resource-thumbnail-c
         HttpClientModule,
         RouterModule,
         NgbModule,
-        NgSelectModule
+        NgSelectModule,
+        translateConfig
     ],
     exports: [
         WorldskillsAngularLibComponent,
@@ -104,7 +123,9 @@ import { ResourceThumbnailContainerComponent } from './file/resource-thumbnail-c
         WeightedPollComponent,
         UserRoleDirective,
         ResourceThumbnailComponent,
-        ResourceThumbnailContainerComponent
+        ResourceThumbnailContainerComponent,
+        I18nTextboxComponent,
+        I18nTextareaComponent
     ],
     providers: []
 })

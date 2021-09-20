@@ -6,6 +6,7 @@ import {NgAuthService} from '../../auth/ng-auth.service';
 import { MISSING_LANGUAGE_MESSAGE } from '../footer.const';
 import { WorldskillsAngularLibService } from '../../worldskills-angular-lib.service';
 import { LangUtil } from '../../common/util/lang.util';
+import { WsiTranslateService } from '../../i18n/wsi-translate.service';
 
 @Component({
     selector: 'ws-auth-footer',
@@ -15,8 +16,8 @@ import { LangUtil } from '../../common/util/lang.util';
 export class AuthFooterComponent implements OnInit {
     date;
 
-    @Input() languages: Language[];
-    @Input() selectedLanguage: Language;
+    languages: Language[];
+    selectedLanguage: Language;
     @Input() col1Template: TemplateRef<any>;
     @Input() col2Template: TemplateRef<any>;
     @Input() col3Template: TemplateRef<any>;
@@ -44,7 +45,7 @@ export class AuthFooterComponent implements OnInit {
 
     supportEmail?: string;
 
-    constructor(private ngAuthService: NgAuthService, private wsi: WorldskillsAngularLibService) {
+    constructor(private ngAuthService: NgAuthService, private wsi: WorldskillsAngularLibService, private translator: WsiTranslateService) {
     }
 
     ngOnInit(): void {
@@ -53,6 +54,8 @@ export class AuthFooterComponent implements OnInit {
         this.wsi.appConfigSubject.subscribe(appConfig => {
             this.supportEmail = appConfig.supportEmailAddress;
         });
+        this.languages = LangUtil.getDefaultLanguages();
+        this.selectedLanguage = this.translator.getSelectedLanguage();
     }
 
     login(): void {
@@ -76,12 +79,12 @@ export class AuthFooterComponent implements OnInit {
 
     changeLanguage(model: Language): void {
         this.selectedLanguage = model;
-        this.languageChange.emit(model);
+        this.translator.init(model.code);
     }
 
     isLanguageSelected(model: Language): boolean {
         if (GenericUtil.isNullOrUndefined(this.selectedLanguage)) {
-            return model.code === 'en';
+            return model.code === LangUtil.getDefaultLanguage().code;
         }
 
         return model.code === this.selectedLanguage.code;

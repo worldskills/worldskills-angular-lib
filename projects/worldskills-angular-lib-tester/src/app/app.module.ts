@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { WorldskillsAngularLibModule } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
+import { WorldskillsAngularLibModule, translateConfig } from '../../../worldskills-angular-lib/src/lib/worldskills-angular-lib.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
 import { AnotherPageComponent } from './another-page/another-page.component';
@@ -19,6 +19,8 @@ import { SubpageOneComponent } from './subpage-one/subpage-one.component';
 import { SubpageTwoComponent } from './subpage-two/subpage-two.component';
 import { RelativeDateDemoComponent } from './relative-date-demo/relative-date-demo.component';
 import { DatePipe } from '@angular/common';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 
 const routerOptions: ExtraOptions = {
@@ -94,6 +96,19 @@ const appRoutes: Routes = [
 
 ];
 
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http);
+}
+
+export const appTranslationConfig = TranslateModule.forRoot({
+    loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+    },
+    isolate: true // isolate property is the key point to remember/
+});
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -113,7 +128,8 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes, routerOptions),
         WorldskillsAngularLibModule,
         NgbModule,
-        NgSelectModule
+        NgSelectModule,
+        appTranslationConfig
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true},

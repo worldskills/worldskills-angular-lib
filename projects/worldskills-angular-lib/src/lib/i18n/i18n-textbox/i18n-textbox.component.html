@@ -1,0 +1,28 @@
+<div style="position:relative">
+  <div class="input-group" *ngIf="currentCode">
+    <input type="text" class="form-control" (input)="textChanged($event.target.value)" [(ngModel)]="text">
+    <div class="input-group-append">
+      <button [disabled]="disaableLangChange" (click)="show = !show" class="btn btn-outline-secondary dropdown-toggle" type="button" >{{ getLang(currentCode) }}</button>
+    </div>
+    <div style="position: absolute; top:36px; left: 0; width: 100%;">
+      <div class="dropdown-menu" style="width: 100%;" [ngClass]="{show: show}">
+        <div class="dropdown-item" (click)="selectLang(lang)"  *ngFor="let lang of value" [ngClass]="{active: lang.lang_code === currentCode }" ngbPopover="{{ lang.text }}" triggers="mouseenter:mouseleave" placement="left">
+          <div class="row">
+            <div class="col-sm-10">
+              <span *ngIf="lang.text">{{ lang.text }}</span>
+              <span *ngIf="!lang.text" class="text-muted">
+                <em>(Empty)</em>
+              </span>
+            </div>
+            <div class="col-sm-2">
+              <div class="pull-right">
+                {{ getLang(lang.lang_code) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
