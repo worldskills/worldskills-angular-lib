@@ -54,7 +54,7 @@ export class AppComponent {
     range: DateRange;
 
     // wsSelect
-    @ViewChild('form', {static: true}) form: NgForm;
+    @ViewChild('form', { static: true }) form: NgForm;
     selectChange1 = '';
     wsSelectChange1 = '';
     selectChange2 = '';
@@ -68,23 +68,23 @@ export class AppComponent {
     ngSelectItems = [
         {
             key: 1,
-            label: {lang: 'en', name: 'A'},
+            label: { lang: 'en', name: 'A' },
         },
         {
             key: 2,
-            label: {lang: 'en', name: 'B'},
+            label: { lang: 'en', name: 'B' },
         },
         {
             key: 3,
-            label: {lang: 'en', name: 'C'},
+            label: { lang: 'en', name: 'C' },
         },
         {
             key: 4,
-            label: {lang: 'en', name: 'D'},
+            label: { lang: 'en', name: 'D' },
         },
         {
             key: 5,
-            label: {lang: 'en', name: 'E'},
+            label: { lang: 'en', name: 'E' },
         },
     ];
 
@@ -121,19 +121,19 @@ export class AppComponent {
 
         this.isLoggedIn = false;
         this.dropDownMenuItems = [
-            { label: 'Sample', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []}
+            { label: 'Sample', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] }
         ];
         this.menuItems = [
-            {label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: []},
-            {label: 'Home Nested', url: '/home/nested', hidden: false, requireLogin: false, requiredRoles: []},
-            {label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []},
+            { label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [] },
+            { label: 'Home Nested', url: '/home/nested', hidden: false, requireLogin: false, requiredRoles: [] },
+            { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
         ];
 
         this.wsHeaderMenuItems = [
             {
                 label: 'Home', url: '/home', hidden: false, requireLogin: false, requiredRoles: [], subMenuItems: [
-                    {label: 'Submenu 1', url: '/home/submenu1', hidden: false, requireLogin: false, requiredRoles: []},
-                    {label: 'Submenu 2', url: '/home/submenu2', hidden: false, requireLogin: false, requiredRoles: []},
+                    { label: 'Submenu 1', url: '/home/submenu1', hidden: false, requireLogin: false, requiredRoles: [] },
+                    { label: 'Submenu 2', url: '/home/submenu2', hidden: false, requireLogin: false, requiredRoles: [] },
                 ]
             },
             {
@@ -143,7 +143,7 @@ export class AppComponent {
                 requireLogin: false,
                 requiredRoles: []
             },
-            {label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: []},
+            { label: 'Authorized', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] },
         ];
         this.asyncSearchSubscription = (value: string) => {
             const observable = from(this.asyncSearchFn(value));
@@ -230,13 +230,13 @@ export class AppComponent {
             expiry: new Date(),
             numberOfSelections: 3,
             type: 'weighted',
-            question: {lang_code: 'en', text: 'Question ?'},
-            title: {lang_code: 'en', text: 'Title'},
+            question: { lang_code: 'en', text: 'Question ?' },
+            title: { lang_code: 'en', text: 'Title' },
             options: [
-                {id: 1, deleted: false, text: {lang_code: 'en', text: 'Option 1'}},
-                {id: 2, deleted: false, text: {lang_code: 'en', text: 'Option 2'}},
-                {id: 3, deleted: false, text: {lang_code: 'en', text: 'Option 3'}},
-                {id: 4, deleted: false, text: {lang_code: 'en', text: 'Option 4'}}
+                { id: 1, deleted: false, text: { lang_code: 'en', text: 'Option 1' } },
+                { id: 2, deleted: false, text: { lang_code: 'en', text: 'Option 2' } },
+                { id: 3, deleted: false, text: { lang_code: 'en', text: 'Option 3' } },
+                { id: 4, deleted: false, text: { lang_code: 'en', text: 'Option 4' } }
             ],
             createdBy: {
                 id: 1,
@@ -245,28 +245,28 @@ export class AppComponent {
             },
             entity: {
                 id: 1,
-                name: {lang_code: 'en', text: 'WorldSkills International'}
+                name: { lang_code: 'en', text: 'WorldSkills International' }
             },
-            entityPath: {pieces: []}
+            entityPath: { pieces: [] }
         };
         const date = new Date();
         this.poll.start.setDate(date.getDate() - 5);
         this.poll.expiry.setDate(date.getDate() + 15);
 
         this.results = [
-            {id: 1, count: 2, points: 2, option: this.poll.options[0]},
-            {id: 2, count: 0, points: 0, option: this.poll.options[1]},
-            {id: 3, count: 0, points: 0, option: this.poll.options[2]},
-            {id: 4, count: 0, points: 0, option: this.poll.options[3]}
+            { id: 1, count: 2, points: 2, option: this.poll.options[0] },
+            { id: 2, count: 0, points: 0, option: this.poll.options[1] },
+            { id: 3, count: 0, points: 0, option: this.poll.options[2] },
+            { id: 4, count: 0, points: 0, option: this.poll.options[3] }
         ];
 
-        this.voted = {hasVoted: false, votes: [], anonymous: false, abstained: false};
+        this.voted = { hasVoted: false, votes: [], anonymous: false, abstained: false };
 
         this.tracks = [
             {
                 personId: 2091, firstName: 'Adam', lastName: 'Walsh',
                 option: {
-                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
+                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 // tslint:disable-next-line:max-line-length
                 imagePath: 'https://images.worldskillsusercontent.show/wsf3/wsd1/30306/wsf3d156d5-9d60-4ff2-894c-94aa125bfeda_accreditation',
@@ -277,7 +277,7 @@ export class AppComponent {
             {
                 personId: 4935, firstName: 'Fabian', lastName: 'Vogler',
                 option: {
-                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
+                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws8c/ws7d/29431/ws8c7dc020-6131-42da-8fee-cb96e4fce757',
                 relativePosition: null,
@@ -287,7 +287,7 @@ export class AppComponent {
             {
                 personId: 167, firstName: 'John', lastName: 'Cox',
                 option: {
-                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
+                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws82/wsa5/22458/ws82a59042-1875-4a07-a0ec-aab95799ae29',
                 relativePosition: null,
@@ -297,7 +297,7 @@ export class AppComponent {
             {
                 personId: 5705, firstName: 'Waseem', lastName: 'Sabjee',
                 option: {
-                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
+                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws24/ws93/30464/ws24939281-57ed-49aa-8dbb-0235e1590af7',
                 relativePosition: {
@@ -315,7 +315,7 @@ export class AppComponent {
             {
                 personId: 238, firstName: 'David', lastName: 'Hoey',
                 option: {
-                    id: 1, text: {lang_code: 'en', text: 'Option 1'}, deleted: false
+                    id: 1, text: { lang_code: 'en', text: 'Option 1' }, deleted: false
                 }, weight: 1, timestamp: new Date(2020, 1, 1), abstain: null,
                 imagePath: 'https://images.worldskillsusercontent.show/ws05/wsa4/22452/ws05a4cdfb-620b-4417-b1a1-b2048c12c86c',
                 relativePosition: null,
@@ -429,20 +429,20 @@ export class AppComponent {
                 {
                     name: 'roleA',
                     apply_per_entity: true,
-                    ws_entity: {id: 1},
-                    role_application: {application_code: 100},
+                    ws_entity: { id: 1 },
+                    role_application: { application_code: 100 },
                 },
                 {
                     name: 'roleB',
                     apply_per_entity: true,
-                    ws_entity: {id: 1},
-                    role_application: {application_code: 100},
+                    ws_entity: { id: 1 },
+                    role_application: { application_code: 100 },
                 },
                 {
                     name: 'roleC',
                     apply_per_entity: true,
-                    ws_entity: {id: 2},
-                    role_application: {application_code: 200},
+                    ws_entity: { id: 2 },
+                    role_application: { application_code: 200 },
                 }
             ]
         } as Partial<User> as User;

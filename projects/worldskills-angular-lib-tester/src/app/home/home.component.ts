@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {RedirectHandler} from '../../../../worldskills-angular-lib/src/lib/auth/handlers/redirect.handler';
 import {ActivatedRoute} from '@angular/router';
 import { RedirectEventHandler } from '../../../../worldskills-angular-lib/src/lib/auth/handlers/redirect-event.handler';
 import { GenericUtil } from '../../../../worldskills-angular-lib/src/lib/common/util/generic.util';
@@ -17,14 +16,12 @@ export class HomeComponent implements OnInit {
 
     constructor(
         // private redirectHandler: RedirectHandler,
-        private redirectEvent: RedirectEventHandler,
-        private route: ActivatedRoute,
+        private redirectEvent: RedirectEventHandler
     ) {
     }
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
-
         this.redirectEvent.listen().subscribe(
             next => {
                 console.log(next);
@@ -42,12 +39,6 @@ export class HomeComponent implements OnInit {
 
             }
         );
-        // this.redirectHandler.redirectOrReturn({
-        //     url: ['/nest'],
-        //     onlyIfExact: this.route,
-        // }).subscribe({
-        //     error: error => console.log(error)
-        // });
     }
 
 }
