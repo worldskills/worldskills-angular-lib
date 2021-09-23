@@ -2,6 +2,7 @@
 
 ## 11.0
 
+* 11.0.4 Translattions for header and footer
 * 11.0.3 FIX: onLangChanged inittiatlization
 * 11.0.2 fallback `onLangChanged` event for lazy loaded scenarios
 * 11.0.1 i18n exports

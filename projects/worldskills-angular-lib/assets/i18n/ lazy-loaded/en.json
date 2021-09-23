@@ -1,7 +1,27 @@
 {
-    "footer_Contact": "Contact",
-    "footer_language": "Language",
-    "foooter_missing_translation": "Missing Translation ?",
-    "footer_terms": "Terms",
-    "footer_privacy": "Privacy"
+    "auth": {
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "footer": {
+        "copyright": {
+            "contact": "Contact",
+            "privacy": "Privacy",
+            "terms": "Terms",
+            "wsi": "WorldSkills Internationa"
+        },
+        "links": {
+            "forums": "Forums",
+            "glossary": "Glossary",
+            "infrastructure.lists": "Infrastructure Lists",
+            "my.worldskills": "myWorldSkills",
+            "registrations": "Registrations",
+            "skill.management": "Skill Management",
+            "wiw": "Who-is-Who"
+        },
+        "translation": {
+            "language": "Language",
+            "missing": "Missing Translation ?"
+        }
+    }
 }

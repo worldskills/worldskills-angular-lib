@@ -26,11 +26,11 @@
                 <a class="dropdown-item disabled" href="#" tabindex="-1">{{ currentUser.first_name }}
                     {{ currentUser.last_name }}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" (click)="$event.preventDefault(); logout()">Logout</a>
+                <a class="dropdown-item" href="#" (click)="$event.preventDefault(); logout()">{{ 'auth.logout' | translate }}</a>
             </div>
         </div>
         <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="$event.preventDefault(); login()"
-            *ngIf="!currentUser">Log in</a>
+            *ngIf="!currentUser">{{ 'auth.login' | translate }}</a>
     </div>
 </ng-template>
 <nav class="navbar navbar-expand-md ws-navbar-main ws-navbar-stripe wsmember-navbar-main wsmember-bg-pink">
