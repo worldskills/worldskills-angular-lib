@@ -3,7 +3,7 @@
     <strong>{{ option.text.text }}</strong><br />
     <ngb-progressbar [showValue]="false" type="success" [value]="countPoints(option)" [max]="max" ngbPopover="{{ countPoints(option) }} points, {{ countVotes(option) }} votes"
     triggers="mouseenter:mouseleave">
-      {{ countPoints(option) }} points, {{ countVotes(option) }} votes</ngb-progressbar>
+      {{ countPoints(option) }} {{ 'polls.points' | translate }}, {{ countVotes(option) }} {{ 'polls.votes' | translate }}</ngb-progressbar>
       <span>
 
       <ul class="member-list row">

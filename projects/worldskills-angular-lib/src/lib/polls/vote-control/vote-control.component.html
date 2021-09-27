@@ -3,13 +3,13 @@
 <ng-template #voteControlDefaultTitleTemplate>
   {{ poll.title.text }}
   <br />
-  <small class="text-muted">Created By: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
+  <small class="text-muted">{{ 'polls.created.by' | translate }}: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
 </ng-template>
 <ng-template #voteControlDefaultFooterTemplate>
-  <small class="text-muted"><strong>Status:</strong> {{ state }} </small>&nbsp;|&nbsp;
+  <small class="text-muted"><strong>{{ 'polls.status' | translate }}:</strong> {{ state }} </small>&nbsp;|&nbsp;
   <span *ngIf="!useDateRange()">
     <span *ngIf="poll.start">
-      {{ poll.start | date: dateFormat }} to {{ poll.expiry | date: dateFormat }}
+      {{ poll.start | date: dateFormat }} {{ 'polls.to' | translate }} {{ poll.expiry | date: dateFormat }}
     </span>
   </span>
   <span *ngIf="useDateRange()">
@@ -23,15 +23,15 @@
 </ng-template>
 <ng-template #optionsDefaultTemplate>
   <div *ngIf="voted.hasVoted">
-    <em>You have already voted!</em>
+    <em>{{ 'polls.messages.voted' | translate }}</em>
     <div *ngIf="voted.abstained">
-      <strong>You have chosen to abstain from voting.</strong>
+      <strong>{{ 'polls.messages.abstained' | translate }}</strong>
     </div>
     <div *ngIf="voted.anonymous">
-      <strong>this vote is anonymous.</strong>
+      <strong>{{ 'polls.messages.anon' | translate }}</strong>
     </div>
     <div *ngIf="!voted.abstained && !voted.anonymous">
-      <strong>Your Choice(s):</strong>
+      <strong>{{ 'polls.messages.choices' | translate }}</strong>
       <ol>
         <li *ngFor="let entry of voted.votes">
           {{ getVoteText(entry) }}
@@ -57,15 +57,15 @@
 
 <ng-template #controlBarLeftDefaultTemplate>
   <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
-    (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; Vote</button>&nbsp;
+    (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; {{ 'polls.buttons.vote' | translate }}</button>&nbsp;
   <button *ngIf="showAbstainButton()" class="btn btn-warning" href="#" (click)="abstain(); false;"><i
-      class="fa fa-ban"></i>&nbsp; Abstain</button>&nbsp;
+      class="fa fa-ban"></i>&nbsp; {{ 'polls.buttons.abstain' | translate }}</button>&nbsp;
   <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
-      class="fa fa-close"></i>&nbsp; Clear Vote</button>&nbsp;
+      class="fa fa-close"></i>&nbsp; {{ 'polls.buttons.clear.vote' | translate }}</button>&nbsp;
   <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"
-    (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; View Results</button>&nbsp;
+    (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; {{ 'polls.buttons.view.results' | translate }}</button>&nbsp;
   <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
-    (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; View Choices</button>&nbsp;
+    (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; {{ 'polls.buttons.view.choices' | translate }}</button>&nbsp;
 </ng-template>
 
 <ng-template #controlBarRightDefaultTemplate>
@@ -77,19 +77,19 @@
     </button>
     <div class="dropdown-menu">
       <a *ngIf="view === 'result' && showExportButton" (click)="export(); false;" class="dropdown-item" href="#">
-        <i class="fa fa-download"></i>&nbsp;Export Results
+        <i class="fa fa-download"></i>&nbsp;{{ 'polls.buttons.export.results' | translate }}
       </a>
       <a *ngIf="showResetButton" (click)="resetClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-refresh"></i>&nbsp;Reset
+        <i class="fa fa-refresh"></i>&nbsp;{{ 'polls.buttons.reset' | translate }}
       </a>
       <a *ngIf="showExtendButton" (click)="extendClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-arrows-h"></i>&nbsp;Extend
+        <i class="fa fa-arrows-h"></i>&nbsp;{{ 'polls.buttons.extend' | translate }}
       </a>
       <a *ngIf="showEditButton" (click)="editClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-edit"></i>&nbsp;Edit
+        <i class="fa fa-edit"></i>&nbsp;{{ 'polls.buttons.edit' | translate }}
       </a>
       <a *ngIf="showDeleteButton" (click)="deleteClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-trash"></i>&nbsp;Delete
+        <i class="fa fa-trash"></i>&nbsp;{{ 'polls.buttons.delete' | translate }}
       </a>
     </div>
   </div>
