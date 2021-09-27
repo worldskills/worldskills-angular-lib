@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Alert } from '../alert';
 import { AlertService } from '../alert.service';
-import { GenericUtil } from "../../common/util/generic.util";
 
 @Component({
   selector: 'ws-alerts',
@@ -10,7 +9,8 @@ import { GenericUtil } from "../../common/util/generic.util";
 })
 export class AlertsComponent implements OnInit {
 
-  @Input() wsAlertComponentId: string = '';
+  @Input() wsAlertComponentId = '';
+  @Input() closeStyle = 'cross'; // cross | button
 
   constructor(public alertService: AlertService) { }
 
@@ -22,7 +22,7 @@ export class AlertsComponent implements OnInit {
     return this.alertService.alerts.length > 0;
   }
 
-  getMyAlertList(){
-    return this.alertService.alerts.filter(a => a.wsAlertComponentId === '' ? true:  a.wsAlertComponentId === this.wsAlertComponentId);
+  getMyAlertList(): Alert[] {
+    return this.alertService.alerts.filter(a => a.wsAlertComponentId === '' ? true :  a.wsAlertComponentId === this.wsAlertComponentId);
   }
 }

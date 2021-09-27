@@ -3,6 +3,9 @@ export const en = {
         login: 'Login',
         logout: 'Logout'
     },
+    dialogue: {
+        close: 'Close'
+    },
     footer: {
         copyright: {
             contact: 'Contact',

@@ -43,6 +43,8 @@ export class AppComponent {
     showHomeItem = true;
     defaultRoute = '/home';
 
+    closeStyle = 'button';
+
     poll: Poll;
     tracks: Track[];
     pollOptionHandler: OptionHandler;
@@ -115,8 +117,7 @@ export class AppComponent {
         this.datetime = new Datetime();
         this.configureLib();
         this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
-            console.log(values);
-            this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, false);
+            this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, true);
         });
 
         this.isLoggedIn = false;

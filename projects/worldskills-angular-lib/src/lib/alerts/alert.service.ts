@@ -1,7 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Alert } from './alert';
 import { AlertType } from './alert-type';
-import { AlertsComponent } from "./alerts/alerts.component";
 
 @Injectable({
   providedIn: 'root'

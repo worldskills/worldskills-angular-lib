@@ -11,6 +11,8 @@ export class AlertComponent implements OnInit {
 
   @Input() alert: Alert;
 
+  @Input() closeStyle = 'cross'; // cross | button
+
   constructor(public alertService: AlertService) { }
 
   // tslint:disable-next-line:typedef
