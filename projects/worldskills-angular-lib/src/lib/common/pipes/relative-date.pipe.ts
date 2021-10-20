@@ -7,6 +7,9 @@ import { DefaultRelativeDateProccessor } from '../processors/relative-date/defau
   name: 'relativeDate',
 })
 export class RelativeDatePipe implements PipeTransform {
+  /**
+   * @deprecated The method should not be used. use tthe relative-date component instead
+   */
   transform(value: Date, format?: string, locale?: string, processor?: RelativeDateProcessor): string {
     processor = processor || new DefaultRelativeDateProccessor();
     const dt =  new Date(value);

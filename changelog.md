@@ -1,5 +1,12 @@
 # Changelog
 
+## 11.1
+
+* 11.1.0 user prefered language
+* 11.1.0 Bootstrap Toast notifications
+* 11.1.0 Depreccate relative date pipe - stays in the lib for compatibility but should be removed on the next major version
+* 11.1.0 Convert relative date from pipe to component + translation keys
+
 ## 11.0
 
 * 11.0.6 poll translations

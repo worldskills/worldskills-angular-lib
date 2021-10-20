@@ -15,4 +15,5 @@ export interface User {
   password: any;
   pin: any;
   has_pin: boolean;
+  preferred_lang: string;
 }

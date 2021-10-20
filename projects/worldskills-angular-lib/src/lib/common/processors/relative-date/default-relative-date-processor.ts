@@ -1,5 +1,9 @@
 import { RelativeDateProcessor } from './relative-date-processor';
+
 export class DefaultRelativeDateProccessor implements RelativeDateProcessor {
+    /**
+     * @deprecated The method should not be used. use tthe relative-date component instead
+     */
     handlePastDate(date: Date): string {
         const now = new Date();
         const diff = ((now.getTime() - date.getTime()) / 1000);
@@ -20,6 +24,9 @@ export class DefaultRelativeDateProccessor implements RelativeDateProcessor {
             daydiff === 7 && '1 week ago' ||
             daydiff < 31 && Math.ceil(daydiff / 7) + ' weeks ago';
     }
+    /**
+     * @deprecated The method should not be used. use tthe relative-date component instead
+     */
     handleFutureDate(date: Date): string {
         const now = new Date();
         const diff = (( date.getTime() - now.getTime()) / 1000);

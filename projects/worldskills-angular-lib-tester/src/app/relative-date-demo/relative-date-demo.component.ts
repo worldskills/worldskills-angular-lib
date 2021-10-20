@@ -7,11 +7,10 @@ import { RelativeDateProc } from '../relative-date-proc';
 })
 export class RelativeDateDemoComponent implements OnInit {
 
-  alternateProc: RelativeDateProc;
+  format = 'HH:mm, d MMM y';
   constructor() { }
 
   ngOnInit(): void {
-    this.alternateProc = new RelativeDateProc();
   }
 
   getDate(numDays: number): Date {

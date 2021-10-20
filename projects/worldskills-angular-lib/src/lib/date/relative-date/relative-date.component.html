@@ -1,0 +1,26 @@
+<span *ngIf="!isRelative">{{ output }}</span>
+<span *ngIf="isRelative && isNotValid()"></span>
+<span *ngIf="isRelative && isPastDate">
+    <span *ngIf="diff < 60">{{ 'dates.just_now' | translate }}</span>
+    <span *ngIf="diff > 60 && diff < 120">{{ 'dates.minute_ago' | translate }}</span>
+    <span *ngIf="diff > 120 && diff < 3600">{{ floor(diff / 60) }} {{ 'dates.minutes_ago' | translate }}</span>
+    <span *ngIf="diff > 3600 && diff < 7200">{{ 'dates.hour_ago' | translate }}</span>
+    <span *ngIf="diff > 7200 && diff < 86400">{{ floor(diff / 3600) }} {{ 'dates.hours_ago' | translate }}</span>
+    <span *ngIf="diff >= 86400 && daydiff === 1 ">{{ 'dates.yesterday' | translate }}</span>
+    <span *ngIf="diff > 86400 && daydiff > 1 && daydiff < 7">{{ daydiff }} {{ 'dates.days_ago' | translate }}</span>
+    <span *ngIf="diff > 86400 && daydiff === 7">{{ 'dates.week_ago' | translate }}</span>
+    <span *ngIf="diff > 86400 && daydiff > 7 && daydiff < 31">{{ ceil(daydiff / 7) }} {{ 'dates.weeks_ago' | translate }}</span>
+</span>
+<span *ngIf="isRelative && !isPastDate">
+    <span *ngIf="diff < 60">{{ 'dates.soon' | translate }}</span>
+    <span *ngIf="diff > 60 && diff < 120">{{ 'dates.in_a_minute' | translate }}</span>
+    <span *ngIf="diff > 120 && diff < 3600">{{ 'dates.in_n_minutes' | translate: {number: floor(diff / 60)} }}</span>
+    <span *ngIf="diff > 3600 && diff < 7200">{{ 'dates.in_an_hour' | translate }}</span>
+    <span *ngIf="diff > 7200 && diff < 86400">{{ 'dates.in_n_hours' | translate: {number: floor(diff / 3600)} }}</span>
+    <span *ngIf="diff >= 86400 && daydiff === 1 ">{{ 'dates.tomorrow' | translate }}</span>
+    <span *ngIf="diff > 86400 && daydiff > 1 && daydiff < 7">{{ 'dates.in_n_days' | translate: {number: daydiff} }}</span>
+    <span *ngIf="diff > 86400 && daydiff === 7">{{ 'dates.in_a_week' | translate }}</span>
+    <span *ngIf="diff > 86400 && daydiff > 7 && daydiff < 31">{{ 'dates.in_n_weeks' | translate: {number: ceil(daydiff / 7)} }}</span>
+</span>
+
+

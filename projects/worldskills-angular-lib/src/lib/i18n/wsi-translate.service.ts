@@ -12,6 +12,7 @@ import { tt_RU } from './tt_RU.json';
 import { zh_CN } from './zh_CN.json';
 import { fi } from './fi.json';
 import { Subject } from 'rxjs';
+import { User } from '../auth/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -37,12 +38,27 @@ export class WsiTranslateService {
     });
   }
 
+  /*
+    Initialize a specific lang code
+  */
   public init(code: string): any {
     sessionStorage.setItem('lang', code);
     this.translator.setTranslation(code, this.availableLanguages[code], true);
     this.onLangChanged.next(this.getSelectedLanguage());
   }
 
+  /*
+    Set user preffered language from a user object
+  */
+  public setUserLanguage(user: User): void {
+    if (user && user.preferred_lang) {
+      this.init(user.preferred_lang);
+    }
+  }
+
+  /*
+    Get the sselected language code
+  */
   public getCurrentOrDefaultCode(): string {
     let code = sessionStorage.getItem('lang');
     if (GenericUtil.isNullOrUndefined(code)) {
@@ -51,6 +67,9 @@ export class WsiTranslateService {
     return code;
   }
 
+  /*
+    Get the current selected language
+  */
   public getSelectedLanguage(): Language {
     const code = this.getCurrentOrDefaultCode();
     return LangUtil.getDefaultLanguages().find(x => x.code === code);

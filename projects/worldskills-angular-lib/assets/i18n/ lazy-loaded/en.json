@@ -52,5 +52,25 @@
         "status": "Status",
         "to": "to",
         "votes": "votes"
+    },
+    "dates": {
+        "just_now": "Just now",
+        "minute_ago": "a minute ago",
+        "minutes_ago": "minutes ago",
+        "hour_ago": "an hour ago",
+        "hours_ago": "hours ago",
+        "yesterday": "Yesterday",
+        "days_ago": "days ago",
+        "week_ago": "a week ago",
+        "weeks_ago": "weeks ago",
+        "soon": "Soon",
+        "in_a_minute": "in a minute",
+        "in_n_minutes": "in {{ number }} minutes",
+        "in_an_hour": "in an hour",
+        "in_n_hours": "in {{ number }} hours",
+        "tomorrow": "Tomorrow",
+        "in_n_days": "in {{ number }} days",
+        "in_a_week": "in a week",
+        "in_n_weeks": "in {{ number }} weeks"
     }
 }

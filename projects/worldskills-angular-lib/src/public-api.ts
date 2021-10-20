@@ -44,6 +44,7 @@ export * from './lib/date/date-range';
 export * from './lib/date/date-range/date-range.component';
 export * from './lib/date/datetime';
 export * from './lib/date/datetime-picker/datetime-picker.component';
+export * from './lib/date/relative-date/relative-date.component';
 export * from './lib/date/wsi-date-format';
 export * from './lib/date/wsi-time-format';
 
@@ -81,7 +82,8 @@ export * from './lib/alerts/alerts/alerts.component';
 export * from './lib/alerts/alert.service';
 export * from './lib/worldskills-angular-lib.service';
 export * from './lib/alerts/alert/alert.component';
-
+export * from './lib/alerts/toast/toast.component';
+export * from './lib/alerts//wsi-toast.service';
 /*
   Auth
 */

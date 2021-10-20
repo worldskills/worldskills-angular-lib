@@ -20,6 +20,7 @@ import { EntityFetchParams } from 'projects/worldskills-angular-lib/src/lib/enti
 import { environment } from '../environments/environment';
 import { WsiTranslateService } from '../../../worldskills-angular-lib/src/lib/i18n/wsi-translate.service';
 import { I18nText } from 'projects/worldskills-angular-lib/src/lib/common/models/i18n-text';
+import { WsiToastService } from '../../../worldskills-angular-lib/src/lib/alerts/wsi-toast.service';
 
 // TODO: Cleanup, Each demo should be in its' own componennt
 @Component({
@@ -99,6 +100,7 @@ export class AppComponent {
     constructor(
         private alerts: AlertService,
         private wsi: WorldskillsAngularLibService,
+        private toastService: WsiToastService,
         private wsiTranslator: WsiTranslateService
     ) {
     }
@@ -176,6 +178,37 @@ export class AppComponent {
             thumbnailLink: `${environment.apiBaseUrl}/resources/thumbnail/13230/14649/15577`,
             description: 'here is the description for file 2'
         };
+    }
+
+    showStandard(): void {
+        this.toastService.show('I am a standard toast', {
+            delay: 2000,
+            autohide: true
+        });
+    }
+    showSuccess(): void {
+        this.toastService.show('I am a success toast', {
+            classname: 'bg-success text-light',
+            delay: 2000,
+            autohide: true,
+            headertext: 'Toast Header'
+        });
+    }
+    showError(): void {
+        this.toastService.show('I am a success toast', {
+            classname: 'bg-danger text-light',
+            delay: 2000,
+            autohide: true,
+            headertext: 'Error!!!'
+        });
+    }
+
+    showCustomToast(customTpl): void {
+        this.toastService.show(customTpl, {
+            classname: 'bg-info text-light',
+            delay: 3000,
+            autohide: true
+        });
     }
 
     textboxValueChanged(value: I18nText[]): void {

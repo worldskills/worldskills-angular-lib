@@ -38,6 +38,8 @@ import { I18nTextboxComponent } from './i18n/i18n-textbox/i18n-textbox.component
 import { I18nTextareaComponent } from './i18n/i18n-textarea/i18n-textarea.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RelativeDateComponent } from './date/relative-date/relative-date.component';
+import { ToastComponent } from './alerts/toast/toast.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
@@ -84,7 +86,9 @@ export const translateConfig = TranslateModule.forChild({
         FileSizePipe,
         ResourceThumbnailContainerComponent,
         I18nTextboxComponent,
-        I18nTextareaComponent
+        I18nTextareaComponent,
+        RelativeDateComponent,
+        ToastComponent,
     ],
     imports: [
         BrowserModule,
@@ -125,7 +129,9 @@ export const translateConfig = TranslateModule.forChild({
         ResourceThumbnailComponent,
         ResourceThumbnailContainerComponent,
         I18nTextboxComponent,
-        I18nTextareaComponent
+        I18nTextareaComponent,
+        RelativeDateComponent,
+        ToastComponent
     ],
     providers: []
 })
