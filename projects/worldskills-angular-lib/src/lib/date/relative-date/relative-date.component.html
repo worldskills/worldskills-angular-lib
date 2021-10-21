@@ -22,5 +22,3 @@
     <span *ngIf="diff > 86400 && daydiff === 7">{{ 'dates.in_a_week' | translate }}</span>
     <span *ngIf="diff > 86400 && daydiff > 7 && daydiff < 31">{{ 'dates.in_n_weeks' | translate: {number: ceil(daydiff / 7)} }}</span>
 </span>
-
-

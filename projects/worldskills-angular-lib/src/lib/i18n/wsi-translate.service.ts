@@ -14,6 +14,8 @@ import { fi } from './fi.json';
 import { Subject } from 'rxjs';
 import { User } from '../auth/models/user';
 import { de } from './de.json';
+import { ReturnStatement } from '@angular/compiler';
+import { hasClassName } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Injectable({
   providedIn: 'root'
@@ -46,12 +48,34 @@ export class WsiTranslateService {
     const current = this.getCurrentOrDefaultCode();
 
     sessionStorage.setItem('lang', code);
-    const lang = this.availableLanguages[code];
+    let lang = this.availableLanguages[code];
+    if (code !== 'en') {
+      lang = this.mergeMissingKeys(lang, en);
+    }
 
     this.translator.setTranslation(code, lang, true);
-    if (current !== code) {
+    if (current !== code)
+    {
       this.onLangChanged.next(this.getSelectedLanguage());
     }
+  }
+
+  public mergeMissingKeys(obj, context): any {
+
+    Object.keys(context).forEach(key => {
+      const actual = Object.keys(obj).find(x => x === key);
+      if (!actual) {
+        // replace missing keys or objects
+        obj[key] = context[key];
+      } else {
+        // loop through nested objects that were not replace
+        if (typeof actual === 'object') {
+          obj[key] = this.mergeMissingKeys(obj[key], context[key]);
+        }
+      }
+    });
+
+    return obj;
   }
 
   /*

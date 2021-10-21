@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { WsiTranslateService } from '../../../worldskills-angular-lib/src/lib/i18n/wsi-translate.service';
 import { I18nText } from 'projects/worldskills-angular-lib/src/lib/common/models/i18n-text';
 import { WsiToastService } from '../../../worldskills-angular-lib/src/lib/alerts/wsi-toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 // TODO: Cleanup, Each demo should be in its' own componennt
 @Component({
@@ -101,7 +102,8 @@ export class AppComponent {
         private alerts: AlertService,
         private wsi: WorldskillsAngularLibService,
         private toastService: WsiToastService,
-        private wsiTranslator: WsiTranslateService
+        private wsiTranslator: WsiTranslateService,
+        private translator: TranslateService
     ) {
     }
 
@@ -118,6 +120,14 @@ export class AppComponent {
         };
         this.datetime = new Datetime();
         this.configureLib();
+        this.wsiTranslator.onLangChanged.subscribe(code => {
+            console.log(code);
+            // console.log(this.wsiTranslator.translator.getTranslation(code.code);
+            window.location.reload();
+        });
+        this.translator.setDefaultLang('en');
+        this.translator.use('en');
+        this.wsiTranslator.translator.use('en');
         this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
             this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, true);
         });
