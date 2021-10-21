@@ -2,6 +2,8 @@
 
 ## 11.1
 
+* 11.1.1 FIX: relative date. correct formatting of value
+* 11.1.0 translations: de and fi
 * 11.1.0 user prefered language
 * 11.1.0 Bootstrap Toast notifications
 * 11.1.0 Depreccate relative date pipe - stays in the lib for compatibility but should be removed on the next major version

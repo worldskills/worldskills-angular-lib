@@ -39,6 +39,8 @@ export class RelativeDateComponent implements OnInit {
     if (!isDateValid) {
       this.output = formatDate(this.date, this.format, this.locale);
       return;
+    } else {
+      this.date = dt;
     }
 
     this.format = this.format || 'MMM-dd-yyyy';
