@@ -6,6 +6,7 @@ export class LangUtil {
             {code: 'pt_BR', name: 'Brazilian'},
             {code: 'zh_CN', name: 'Chinese'},
             {code: 'en', name: 'English'},
+            {code: 'de', name: 'German'},
             {code: 'fr', name: 'French'},
             {code: 'fi', name: 'Finnish'},
             {code: 'de', name: 'German'},

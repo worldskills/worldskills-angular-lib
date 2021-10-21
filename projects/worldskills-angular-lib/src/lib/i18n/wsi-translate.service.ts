@@ -44,18 +44,14 @@ export class WsiTranslateService {
   */
   public init(code: string): any {
     const current = this.getCurrentOrDefaultCode();
-    if (current === code) {
-      return; // prevent duplicate processsing
-    }
-    sessionStorage.setItem('lang', code);
-    let lang = this.availableLanguages[code];
 
-    // if we attempt to apply a missing tranlsation set, use en
-    if (GenericUtil.isNullOrUndefined(lang)) {
-      lang = en;
-    }
+    sessionStorage.setItem('lang', code);
+    const lang = this.availableLanguages[code];
+
     this.translator.setTranslation(code, lang, true);
-    this.onLangChanged.next(this.getSelectedLanguage());
+    if (current !== code) {
+      this.onLangChanged.next(this.getSelectedLanguage());
+    }
   }
 
   /*
