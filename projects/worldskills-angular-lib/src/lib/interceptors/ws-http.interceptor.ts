@@ -36,9 +36,12 @@ export class WsHttpInterceptor implements HttpInterceptor {
       // appent language code
       if (includeLanguageParam) {
         // appendd language param to requests
+        const lang = sessionStorage.getItem('lang');
         req = req.clone({
           params: (req.params ? req.params : new HttpParams())
-            .set('l', sessionStorage.getItem('lang'))
+            .set('l', lang),
+          headers: (req.headers ? req.headers : new HttpHeaders())
+            .set('Accept-Language', lang)
         });
       }
 

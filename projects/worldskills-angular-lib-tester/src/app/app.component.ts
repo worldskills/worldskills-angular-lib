@@ -245,6 +245,7 @@ export class AppComponent {
         this.wsi.httpConfigSubject.next({
             encoderUriPatterns: [],
             authUriPatterns: environment.apiHttpPattern,
+            includeLanguageParam: true
         });
 
         this.wsi.serviceConfigSubject.next({
