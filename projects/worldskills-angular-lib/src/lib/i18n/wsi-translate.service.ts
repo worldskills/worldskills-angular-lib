@@ -13,12 +13,13 @@ import { zh_CN } from './zh_CN.json';
 import { fi } from './fi.json';
 import { Subject } from 'rxjs';
 import { User } from '../auth/models/user';
+import { de } from './de.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WsiTranslateService {
-  private availableLanguages = { ar_AE, en, fr, fi, pt_BR, ru_RU, tt_RU, zh_CN };
+  private availableLanguages = { ar_AE, en, de, fr, fi, pt_BR, ru_RU, tt_RU, zh_CN };
 
   // a fallback change event as lazy loaded events may not produce the default on-lang-changed
   // will be fixed inn future angular versions
@@ -42,8 +43,18 @@ export class WsiTranslateService {
     Initialize a specific lang code
   */
   public init(code: string): any {
+    const current = this.getCurrentOrDefaultCode();
+    if (current === code) {
+      return; // prevent duplicate processsing
+    }
     sessionStorage.setItem('lang', code);
-    this.translator.setTranslation(code, this.availableLanguages[code], true);
+    let lang = this.availableLanguages[code];
+
+    // if we attempt to apply a missing tranlsation set, use en
+    if (GenericUtil.isNullOrUndefined(lang)) {
+      lang = en;
+    }
+    this.translator.setTranslation(code, lang, true);
     this.onLangChanged.next(this.getSelectedLanguage());
   }
 
