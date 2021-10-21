@@ -2,8 +2,11 @@
 
 ## 11.1
 
+* 11.1.5 optional: append languagge query param to api requests
+* 11.1.4 auto Merge missing keys into translations
+* 11.1.3 bug fixes on translate keys
+* 11.1.2 translations: de and fi
 * 11.1.1 FIX: relative date. correct formatting of value
-* 11.1.0 translations: de and fi
 * 11.1.0 user prefered language
 * 11.1.0 Bootstrap Toast notifications
 * 11.1.0 Depreccate relative date pipe - stays in the lib for compatibility but should be removed on the next major version

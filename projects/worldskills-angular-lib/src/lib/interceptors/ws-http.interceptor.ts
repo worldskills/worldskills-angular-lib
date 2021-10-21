@@ -20,6 +20,7 @@ export class WsHttpInterceptor implements HttpInterceptor {
     if (this.config) {
       const uriPatterns = GenericUtil.getValueOrDefault(this.config.authUriPatterns, []);
       const encoderPatterns = GenericUtil.getValueOrDefault(this.config.encoderUriPatterns, []);
+      const includeLanguageParam = GenericUtil.getValueOrDefault(this.config.includeLanguageParam, false);
       const authorize = uriPatterns.filter(s => req.url.match(s)).length > 0;
       const rewrite = encoderPatterns.filter(s => req.url.match(s)).length > 0;
 
@@ -29,6 +30,15 @@ export class WsHttpInterceptor implements HttpInterceptor {
           headers: new HttpHeaders({
             Authorization: this.oAuthService.authorizationHeader(),
           })
+        });
+      }
+
+      // appent language code
+      if (includeLanguageParam) {
+        // appendd language param to requests
+        req = req.clone({
+          params: (req.params ? req.params : new HttpParams())
+            .set('l', sessionStorage.getItem('lang'))
         });
       }
 
