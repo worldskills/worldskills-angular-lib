@@ -2,6 +2,8 @@
 
 ## 11.1
 
+* 11.1.6 Accept-language heaader when http params for lang enabled
+* 11.1.6 release latest FI ttranslations 
 * 11.1.5 optional: append languagge query param to api requests
 * 11.1.4 auto Merge missing keys into translations
 * 11.1.3 bug fixes on translate keys
