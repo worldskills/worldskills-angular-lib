@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { WsiTranslateService } from '../../../worldskills-angular-lib/src/lib/i18n/wsi-translate.service';
 import { I18nText } from 'projects/worldskills-angular-lib/src/lib/common/models/i18n-text';
 import { WsiToastService } from '../../../worldskills-angular-lib/src/lib/alerts/wsi-toast.service';
+import { WsiModalService } from '../../../worldskills-angular-lib/src/lib/modals/wsi-modal.service';
 
 // TODO: Cleanup, Each demo should be in its' own componennt
 @Component({
@@ -97,11 +98,16 @@ export class AppComponent {
 
     entitySearchParams: EntityFetchParams;
 
+    lastModalReason = '';
+
+    lastModalResult = '';
+
     constructor(
         private alerts: AlertService,
         private wsi: WorldskillsAngularLibService,
         private toastService: WsiToastService,
         private wsiTranslator: WsiTranslateService,
+        private modalService: WsiModalService
     ) {
     }
 
@@ -163,6 +169,30 @@ export class AppComponent {
         };
         this.pollInit();
         this.form.ngSubmit.emit();
+    }
+
+    modalDemo(name: string, title: string, body: string): void {
+        // get modal
+        const item = this.modalService.modals.find(x => x.name === name);
+
+        // set modala properties
+        item.title = title;
+        item.body = body;
+
+        // relay changess to the modal template
+        this.modalService.updateModal(item.name, item);
+
+        // open modal and listen for closse event
+        this.modalService.open(item).ref.result.then(
+            result => {
+                this.lastModalResult = result;
+                console.log(result);
+            },
+            reason => {
+                this.lastModalReason = reason;
+                console.log(reason);
+            }
+        );
     }
 
 

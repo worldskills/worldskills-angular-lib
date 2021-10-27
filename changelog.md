@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.2
+
+* 11.2.0 Include Default modals and a modal service to ptorgramtaiccally manage these modals. Any application can register their cusstom modalss in this modal service
+
 ## 11.1
 
 * 11.1.6 Accept-language heaader when http params for lang enabled

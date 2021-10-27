@@ -72,5 +72,11 @@
         "in_n_days": "in {{ number }} days",
         "in_a_week": "in a week",
         "in_n_weeks": "in {{ number }} weeks"
+    },
+    "modals": {
+        "cancel": "Cancel",
+        "no": "no",
+        "ok": "Ok",
+        "yes": "Yes"
     }
 }

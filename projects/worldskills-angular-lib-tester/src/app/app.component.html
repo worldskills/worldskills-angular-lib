@@ -29,6 +29,7 @@
 
 <div class="container">
     <ws-alerts></ws-alerts>
+    <ws-modals></ws-modals>
 
     <div class="toast-demo">
         <button class="btn btn-primary" (click)="showStandard()" ngbTooltip="Will disappear in 5s">Standard toast</button>&nbsp;
@@ -43,6 +44,18 @@
                 
     </div>
 
+    <br />
+    <div class="modal-demo">
+        
+        <button class="btn btn-primary" (click)="modalDemo('ok', 'Test Ok', 'This is an OK Modal Test')">Ok Modal</button>&nbsp;
+        <button class="btn btn-primary" (click)="modalDemo('okcancel', 'Test Ok-Cancel', 'This is an Ok-cancel Modal Test')">Ok-Cancel Modal</button>&nbsp;
+        <button class="btn btn-primary" (click)="modalDemo('yes', 'Test Yes', 'This is an Yes Modal Test')">Yes Modal</button>&nbsp;
+        <button class="btn btn-primary" (click)="modalDemo('yesno', 'Test Yes-No', 'This is an Yes-No Modal Test')">Yes-No Modal</button>&nbsp;
+
+
+        <br />
+        <span>Last Reason: {{ lastModalReason }}</span><br />
+        <span>Last Result: {{ lastModalResult }}</span>
     <hr>
     <h3>Test - Thumbnail Preview</h3>
     <div class="mb-5">

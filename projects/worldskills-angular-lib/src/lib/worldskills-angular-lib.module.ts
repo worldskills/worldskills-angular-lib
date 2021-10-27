@@ -40,6 +40,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RelativeDateComponent } from './date/relative-date/relative-date.component';
 import { ToastComponent } from './alerts/toast/toast.component';
+import { ModalsComponent } from './modals/modals/modals.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
@@ -89,6 +90,7 @@ export const translateConfig = TranslateModule.forChild({
         I18nTextareaComponent,
         RelativeDateComponent,
         ToastComponent,
+        ModalsComponent,
     ],
     imports: [
         BrowserModule,
@@ -131,7 +133,8 @@ export const translateConfig = TranslateModule.forChild({
         I18nTextboxComponent,
         I18nTextareaComponent,
         RelativeDateComponent,
-        ToastComponent
+        ToastComponent,
+        ModalsComponent,
     ],
     providers: []
 })

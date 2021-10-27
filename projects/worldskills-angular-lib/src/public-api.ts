@@ -178,6 +178,13 @@ export * from './lib/logos/logo/logo.component';
 export * from './lib/logos/wordmark/wordmark.component';
 
 /*
+  Modals
+*/
+export * from './lib/modals/modal-item';
+export * from './lib/modals/wsi-modal.service';
+export * from './lib/modals/modals/modals.component';
+
+/*
   Resource
 */
 export * from './lib/resources/models/resource';
