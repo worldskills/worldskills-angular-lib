@@ -47,7 +47,12 @@ export class GuardService implements CanActivate {
       const accessible = userRoles.length > 0;
 
       if (this.config && !accessible) {
-          this.router.navigate(this.config.notAuthorizedRoute, {replaceUrl: true});
+        const error = {
+          missingRole: !accessible,
+          url: state.url
+        };
+        sessionStorage.setItem('error', JSON.stringify(error));
+        this.router.navigate(this.config.notAuthorizedRoute, { replaceUrl: true });
       }
 
       return accessible;
