@@ -49,6 +49,9 @@ export class WsiTranslateService {
 
     sessionStorage.setItem('lang', code);
     let lang = this.availableLanguages[code];
+    if (GenericUtil.isNullOrUndefined(lang)) {
+      lang = en;
+    }
     if (code !== 'en') {
       lang = this.mergeMissingKeys(lang, en);
     }
@@ -61,7 +64,9 @@ export class WsiTranslateService {
   }
 
   public mergeMissingKeys(obj, context): any {
-
+    if (GenericUtil.isNullOrUndefined(obj)) {
+      return obj;
+    }
     Object.keys(context).forEach(key => {
       const actual = Object.keys(obj).find(x => x === key);
       if (!actual) {
