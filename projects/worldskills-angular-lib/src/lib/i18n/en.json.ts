@@ -11,7 +11,7 @@ export const en = {
             contact: 'Contact',
             privacy: 'Privacy',
             terms: 'Terms',
-            wsi: 'WorldSkills Internationa'
+            wsi: 'WorldSkills International'
         },
         links: {
             forums: 'Forums',
