@@ -74,6 +74,9 @@
         "in_n_hours": "{{ number }} tunnin päästä"
     },
     "modals": {
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "no": "ei",
+        "ok": "Ok",
+        "yes": "Kyllä"
     }
 }
