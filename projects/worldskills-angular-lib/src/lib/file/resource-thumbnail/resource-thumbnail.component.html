@@ -6,6 +6,6 @@
         <div class="title-overflow font-weight-bolder "
              [title]="resourceThumbnail.filename">{{resourceThumbnail.filename}}</div>
         <div class="text-muted ">{{isNumber(resourceThumbnail.fileSize) ? (resourceThumbnail.fileSize | fileSize) : resourceThumbnail.fileSize}}</div>
-        <div *ngIf="showDownload()"><a [href]="resourceThumbnail.downloadLink">Download</a></div>
+        <div *ngIf="showDownload()"><a [href]="resourceThumbnail.downloadLink" target="_blank" rel="noopener">Download</a></div>
     </div>
 </div>
