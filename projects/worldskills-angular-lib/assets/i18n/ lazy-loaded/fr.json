@@ -1,6 +1,12 @@
 {
     "modals": {
         "yes": "Oui",
-        "no": "Non"
+        "no": "Non",
+        "cancel": "Annuler"
+    },
+    "polls": {
+        "buttons": {
+            "edit": "Modifier"
+        }
     }
 }
