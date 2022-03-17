@@ -29,10 +29,10 @@ export class WsiTranslateService {
 
   constructor(public translator: TranslateService) {
     this.onLangChanged = new Subject();
-    const code = this.getCurrentOrDefaultCode();
+    const lang = this.getSelectedLanguage();
     this.translator.setDefaultLang(LangUtil.getDefaultLanguage().code);
-    this.translator.use(code).subscribe(() => {
-      this.init(code);
+    this.translator.use(lang.code).subscribe(() => {
+      this.init(lang.code);
     });
 
     // update language on changes
