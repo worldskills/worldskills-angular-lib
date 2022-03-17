@@ -72,5 +72,11 @@
         "just_now": "Nyt",
         "days_ago": "päivää sitten",
         "in_n_hours": "{{ number }} tunnin päästä"
+    },
+    "modals": {
+        "cancel": "Annuler",
+        "no": "ei",
+        "ok": "Ok",
+        "yes": "Kyllä"
     }
 }

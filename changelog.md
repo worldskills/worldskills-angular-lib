@@ -6,6 +6,8 @@
 
 ## 11.2
 
+* 11.2.5 Add ability to set DatetimePickerComponent's TextBox to readonly
+* 11.2.4 Open resources links in a new tab
 * 11.2.3 FIX Typo in footer (english)
 * 11.2.2 FIX: potential undefined language selection. deffault to en if requessted language is not defined.
 * 11.2.0 Include Default modals and a modal service to ptorgramtaiccally manage these modals. Any application can register their cusstom modalss in this modal service

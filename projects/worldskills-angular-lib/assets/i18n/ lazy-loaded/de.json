@@ -32,5 +32,10 @@
             "delete": "Löschen",
             "reset": "Zurücksetzen"
         }
+    },
+    "modals": {
+        "yes": "Ja",
+        "no": "Nein",
+        "cancel": "Abbrechen"
     }
 }

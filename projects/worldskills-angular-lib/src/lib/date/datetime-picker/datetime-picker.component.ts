@@ -22,6 +22,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-st
 export class DatetimePickerComponent implements ControlValueAccessor {
 
   @Input() disabled = false;
+  @Input() readonly = false;
   @HostBinding('style.opacity')
   get opacity(): number {
     return this.disabled ? 0.25 : 1;
