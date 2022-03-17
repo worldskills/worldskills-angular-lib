@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.3
+
+* 11.3.0 Allow the mapping of alternate lang codes
+
 ## 11.2
 
 * 11.2.3 FIX Typo in footer (english)
