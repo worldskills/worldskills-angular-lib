@@ -2,20 +2,20 @@ import { Language } from '../../i18n/language';
 export class LangUtil {
     static getDefaultLanguages(): Language[] {
         return [
-            {code: 'ar_AE', name: 'Arabic'},
-            {code: 'pt_BR', name: 'Brazilian'},
-            {code: 'zh_CN', name: 'Chinese'},
-            {code: 'en', name: 'English'},
-            {code: 'de', name: 'German'},
-            {code: 'fr', name: 'French'},
-            {code: 'fi', name: 'Finnish'},
-            {code: 'de', name: 'German'},
-            {code: 'ru_RU', name: 'Russian'},
-            {code: 'tt_RU', name: 'Tatar'},
+            {code: 'ar_AE', name: 'Arabic', alt: []},
+            {code: 'pt_BR', name: 'Brazilian', alt: []},
+            {code: 'zh_CN', name: 'Chinese', alt: [ 'zh' ]},
+            {code: 'en', name: 'English', alt: []},
+            {code: 'de', name: 'German', alt: []},
+            {code: 'fr', name: 'French', alt: []},
+            {code: 'fi', name: 'Finnish', alt: []},
+            {code: 'de', name: 'German', alt: []},
+            {code: 'ru_RU', name: 'Russian', alt: []},
+            {code: 'tt_RU', name: 'Tatar', alt: []},
           ];
     }
 
     static getDefaultLanguage(): Language {
-        return {code: 'en', name: 'English'};
+        return {code: 'en', name: 'English', alt: []};
     }
 }
