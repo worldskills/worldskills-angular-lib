@@ -109,7 +109,7 @@ export class WsiTranslateService {
   public getSelectedLanguage(): Language {
     const code = this.getCurrentOrDefaultCode();
     const matches = LangUtil.getDefaultLanguages().filter(x => x.code === code || x.alt.includes(code));
-    if (!GenericUtil.isNullOrUndefined(matches) || matches.length > 0) {
+    if (!GenericUtil.isNullOrUndefined(matches) && matches.length > 0) {
       return matches[0];
     }
 

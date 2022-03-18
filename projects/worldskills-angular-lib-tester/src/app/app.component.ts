@@ -125,10 +125,10 @@ export class AppComponent {
         this.datetime = new Datetime();
         this.configureLib();
         this.wsiTranslator.onLangChanged.subscribe(code => {
-            console.log(code);
             // console.log(this.wsiTranslator.translator.getTranslation(code.code);
-            window.location.reload();
+            // window.location.reload();
         });
+
         this.wsiTranslator.translator.setDefaultLang('en');
         this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
             this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, true);
