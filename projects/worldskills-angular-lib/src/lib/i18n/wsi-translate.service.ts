@@ -31,9 +31,15 @@ export class WsiTranslateService {
     this.onLangChanged = new Subject();
     const lang = this.getSelectedLanguage();
     this.translator.setDefaultLang(LangUtil.getDefaultLanguage().code);
-    this.translator.use(lang.code).subscribe(() => {
-      this.init(lang.code);
-    });
+    this.translator.use(lang.code).subscribe(
+      next => {},
+      error => {
+        console.warn(`Failed to load lang '${lang.code}', default language will be used`);
+      },
+      () => {
+        this.init(lang.code);
+      }
+    );
 
     // update language on changes
     this.translator.onLangChange.subscribe(newCode => {

@@ -2,6 +2,7 @@
 
 ## 11.3
 
+* 11.3.3 Prevent HTTP 404 errors for unsupported language files, console warning instead
 * 11.3.2 Better handle unsupported languages
 * 11.3.1 Improve Initial language detection so that we do not load json files for language that do not exist
 * 11.3.0 Allow the mapping of alternate lang codes
