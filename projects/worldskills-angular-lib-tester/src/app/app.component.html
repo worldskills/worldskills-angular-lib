@@ -70,6 +70,15 @@
 
     <hr />
     <div>
+      <ws-i18n-text [model]="someText" inputId="something" name="something" placeholder="Something" required="true"></ws-i18n-text>
+    </div>
+    <br />
+    <div>
+      <ws-i18n-text></ws-i18n-text>
+    </div>
+
+    <hr />
+    <div>
         <ws-i18n-textbox [disaableLangChange]="false" (valueChanged)="textboxValueChanged($event)"></ws-i18n-textbox>
         <ws-i18n-textarea [disaableLangChange]="false" (valueChanged)="textboxValueChanged($event)"> </ws-i18n-textarea>
     </div>
