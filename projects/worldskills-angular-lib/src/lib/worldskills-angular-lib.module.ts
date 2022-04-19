@@ -34,6 +34,7 @@ import { AuthFooterComponent } from './footer/auth-footer/auth-footer.component'
 import { ResourceThumbnailComponent } from './file/resource-thumbnail/resource-thumbnail.component';
 import { FileSizePipe } from './file/file-size.pipe';
 import { ResourceThumbnailContainerComponent } from './file/resource-thumbnail-container/resource-thumbnail-container.component';
+import { I18nTextComponent } from './i18n/i18n-text/i18n-text.component';
 import { I18nTextboxComponent } from './i18n/i18n-textbox/i18n-textbox.component';
 import { I18nTextareaComponent } from './i18n/i18n-textarea/i18n-textarea.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -86,6 +87,7 @@ export const translateConfig = TranslateModule.forChild({
         ResourceThumbnailComponent,
         FileSizePipe,
         ResourceThumbnailContainerComponent,
+        I18nTextComponent,
         I18nTextboxComponent,
         I18nTextareaComponent,
         RelativeDateComponent,
@@ -130,6 +132,7 @@ export const translateConfig = TranslateModule.forChild({
         UserRoleDirective,
         ResourceThumbnailComponent,
         ResourceThumbnailContainerComponent,
+        I18nTextComponent,
         I18nTextboxComponent,
         I18nTextareaComponent,
         RelativeDateComponent,

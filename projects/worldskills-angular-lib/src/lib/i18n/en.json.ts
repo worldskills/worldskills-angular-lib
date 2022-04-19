@@ -1,4 +1,8 @@
 export const en = {
+    translations: "Translations",
+    edit_all_translations: "Edit All Translations",
+    add_translation: "Add Translation",
+    remove: "Remove",
     auth: {
         login: 'Login',
         logout: 'Logout'
