@@ -45,6 +45,8 @@ export class AppComponent {
     showHomeItem = true;
     defaultRoute = '/home';
 
+    someText = {lang_code: 'en', text: 'Random', translations: {en: 'Random', de: 'Zufall'}};
+
     closeStyle = 'button';
 
     poll: Poll;
