@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.4
+
+* 11.4.0 Introduction of the i18n text component which supports multiple translations in a single textbox control.
+
 ## 11.3
 
 * 11.3.3 Prevent HTTP 404 errors for unsupported language files, console warning instead
