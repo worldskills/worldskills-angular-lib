@@ -7,7 +7,8 @@
     [name]="name"
     [required]="required"
     [ngModel]="model.translations ? model.translations[model.lang_code] : model.text"
-    (change)="changeTranslation(model.lang_code, $event.target.value)">
+    (change)="changeTranslation(model.lang_code, $event.target.value)"
+    (blur)="blurTranslation()">
   <div *ngIf="model.translations">
     <div class="input-group-append" ngbDropdown placement="bottom-right">
       <button class="btn btn-outline-secondary text-uppercase" style="padding: 0.375rem 0.8rem;" type="button" ngbDropdownToggle>{{model.lang_code}}</button>
@@ -49,7 +50,8 @@
           required
           autocomplete="off"
           [ngModel]="translation.value"
-          (change)="changeTranslation(translation.key, $event.target.value)">
+          (change)="changeTranslation(translation.key, $event.target.value)"
+          (blur)="blurTranslation()">
         </div>
         <div class="col-2">
           <button

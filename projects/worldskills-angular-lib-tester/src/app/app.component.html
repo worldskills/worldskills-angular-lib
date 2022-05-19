@@ -69,12 +69,22 @@
     </div>
 
     <hr />
+    <form class="form-horizontal" #i18nTextForm="ngForm">
     <div>
-      <ws-i18n-text [model]="someText" inputId="something" name="something" placeholder="Something" required="true"></ws-i18n-text>
+      <ws-i18n-text [(ngModel)]="someText" inputId="something" name="something" placeholder="Something" required="true"></ws-i18n-text>
+    </div>
+    {{someText | json}}
+    <br />
+    <div>
+      <ws-i18n-text [ngModel] name="foobar"></ws-i18n-text>
     </div>
     <br />
     <div>
       <ws-i18n-text></ws-i18n-text>
+    </div>
+    </form>
+    <div>
+    {{i18nTextForm.value | json}}
     </div>
 
     <hr />

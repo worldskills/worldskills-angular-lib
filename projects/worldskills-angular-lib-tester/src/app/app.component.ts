@@ -59,6 +59,8 @@ export class AppComponent {
 
     range: DateRange;
 
+    @ViewChild('i18nTextForm') i18nTextForm: NgForm;
+
     // wsSelect
     @ViewChild('form', { static: true }) form: NgForm;
     selectChange1 = '';
