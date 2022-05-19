@@ -2,6 +2,7 @@
 
 ## 11.4
 
+* 11.4.1 Support for ngModel in i18n text component and fixes
 * 11.4.0 Introduction of the i18n text component which supports multiple translations in a single textbox control.
 
 ## 11.3
