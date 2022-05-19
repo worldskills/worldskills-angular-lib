@@ -48,7 +48,7 @@ export class I18nTextComponent implements OnInit, ControlValueAccessor {
   }
 
   getLanguages() {
-    return this.languages.filter(l => l.code in this.model.translations);
+    return this.languages.filter(l => !(l.code in this.model.translations));
   }
 
   changeTranslation(lang_code, text) {
