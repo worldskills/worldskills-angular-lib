@@ -167,8 +167,9 @@ export class VoteControlComponent implements OnInit {
       return false;
     }
 
+    // if results are anonymous, only the owner can view that results
     if (this.poll.anonymousResults) {
-      return false;
+      return this.isOwner;
     }
 
     // allow the owner to view results at anytime
