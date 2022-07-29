@@ -2,6 +2,7 @@
 
 ## 11.4
 
+* 11.4.3 BUG FIX: app_code could potentially be empty when getting logged in user
 * 11.4.2 BUG FIX: When a poll is marked for anonymous results, allow the owner to see the vote results
 * 11.4.1 Support for ngModel in i18n text component and fixes
 * 11.4.0 Introduction of the i18n text component which supports multiple translations in a single textbox control.

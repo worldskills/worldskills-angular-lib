@@ -7,6 +7,7 @@ import { UserList } from './models/user-list';
 import { GetUsersParams } from './models/get-user-params';
 import { HttpUtil } from '../common/util/http.util';
 import { share } from 'rxjs/operators';
+import { GenericUtil } from '../../public-api';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +28,16 @@ export class AuthService {
   public getLoggedInUser(showChildRoles: boolean = false): Observable<User> {
     let params = new HttpParams();
     params = params.set('show_child_roles', String(showChildRoles));
-    this.appCode.forEach(code => {
-      if (params.has('app_code')) {
-        params = params.append('app_code', String(code));
-      } else {
-        params = params.set('app_code', String(code));
-      }
-    });
+    if (!GenericUtil.isNullOrUndefined(this.appCode)) {
+      this.appCode.forEach(code => {
+        if (params.has('app_code')) {
+          params = params.append('app_code', String(code));
+        } else {
+          params = params.set('app_code', String(code));
+        }
+      });
+    }
+    
     const url = `${this.endpoint}/users/loggedIn`;
     return this.http.get<User>(url, {params}).pipe(share());
   }
