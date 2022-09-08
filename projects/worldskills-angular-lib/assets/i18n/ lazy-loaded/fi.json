@@ -79,5 +79,8 @@
         "ok": "Ok",
         "yes": "Kyllä"
     },
-    "remove": "Poista"
+    "remove": "Poista",
+    "edit_all_translations": "Muokkaa kaikkia käännöksiä",
+    "add_translation": "Lisää käännös",
+    "translations": "Käännökset"
 }
