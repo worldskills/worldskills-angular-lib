@@ -82,8 +82,8 @@ export class RedirectHandler {
   }
 
   // override this method to catch a user being redirected to a specific returnUrl (when a user pastes a link in the browser)
-  public redirectUserToUrl(user: User, returnUrl: string): void {
-    this.router.navigateByUrl(returnUrl);
+  public redirectUserToUrl(user: User, returnUrl: string, skipLocationChange = false): void {
+    this.router.navigateByUrl(returnUrl, { skipLocationChange });
   }
 
    // override this method to catch a user being redirected to the homepage route. useful if you need to load the homepage from the DB

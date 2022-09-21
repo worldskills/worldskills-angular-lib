@@ -23,8 +23,9 @@ export class RedirectEventHandler {
       return this.ngAuthService.getLoggedInUser(showRoles);
   }
 
-  public redirectUserToUrl(returnUrl: string): void {
-    this.router.navigateByUrl(returnUrl);
+  public redirectUserToUrl(returnUrl: string, skipLocationChange = false): void {
+    this.router.navigateByUrl(returnUrl, { skipLocationChange });
+
   }
 
   public listen(): Observable<string> {
