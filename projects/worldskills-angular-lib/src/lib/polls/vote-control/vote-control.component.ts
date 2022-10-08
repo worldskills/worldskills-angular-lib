@@ -9,7 +9,6 @@ import { OptionHandler } from '../models/optionHandler';
 import { toDate } from '../../common/helpers/date.helper';
 import { Track } from '../models/track';
 import { WSIDateFormat } from '../../date/wsi-date-format';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'ws-vote-control',
@@ -62,6 +61,9 @@ export class VoteControlComponent implements OnInit {
   @Output() abstainSelected: EventEmitter<any> = new EventEmitter();
   @Output() voteRemoved: EventEmitter<VoteEntry[]> = new EventEmitter();
   @Output() exportClicked: EventEmitter<any> = new EventEmitter();
+  @Output() openClicked: EventEmitter<Poll> = new EventEmitter();
+  @Output() closeClicked: EventEmitter<Poll> = new EventEmitter();
+
 
   view: string;
   subscription: Subscription;
@@ -209,6 +211,14 @@ export class VoteControlComponent implements OnInit {
 
   deleteClick(poll: Poll): void {
     this.delete.emit(poll);
+  }
+
+  openClick(poll: Poll): void {
+    this.openClicked.emit(poll);
+  }
+
+  closeClick(poll: Poll): void {
+    this.closeClicked.emit(poll);
   }
 
   getVoteText(entry: VoteEntry): string {
