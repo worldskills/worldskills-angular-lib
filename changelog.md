@@ -2,6 +2,7 @@
 
 ## 11.4
 
+* 11.4.6 FIX view permissions on Open/Close buttons + translation support
 * 11.4.5 Open/Close voting management buttons
 * 11.4.4 FI Translations + url flexibility on redirect
 * 11.4.3 BUG FIX: app_code could potentially be empty when getting logged in user

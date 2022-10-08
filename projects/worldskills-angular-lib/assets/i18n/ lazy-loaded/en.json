@@ -42,7 +42,9 @@
             "reset": "Reset",
             "view.choices": "View Choices",
             "view.results": "View Results",
-            "vote": "vote"
+            "vote": "vote",
+            "open": "Open",
+            "close": "Close"
         },
         "created.by": "Created By",
         "messages": {

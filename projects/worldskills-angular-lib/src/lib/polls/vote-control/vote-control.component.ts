@@ -23,6 +23,8 @@ export class VoteControlComponent implements OnInit {
   @Input() showResetButton: boolean;
   @Input() showDeleteButton: boolean;
   @Input() showExportButton: boolean;
+  @Input() showOpenButton: boolean;
+  @Input() showCloseButton: boolean;
 
   // input models
   @Input() poll: Poll;

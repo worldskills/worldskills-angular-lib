@@ -91,11 +91,11 @@
       <a *ngIf="showDeleteButton" (click)="deleteClick(poll); false;" class="dropdown-item" href="#">
         <i class="fa fa-trash"></i>&nbsp;{{ 'polls.buttons.delete' | translate }}
       </a>
-      <a *ngIf="state != 'running'" href="#" (click)="openClick(item); false;">
-        <i class="fa fa-play"></i>
+      <a *ngIf="showOpenButton && state != 'running'" class="dropdown-item" href="#" (click)="openClick(item); false;">
+        <i class="fa fa-play"></i>&nbsp;{{ 'polls.buttons.open' | translate }}
       </a>
-      <a *ngIf="state == 'running'" href="#" (click)="closeClick(item); false;">
-          <i class="fa fa-stop"></i>
+      <a *ngIf="showCloseButton && state == 'running'" class="dropdown-item" href="#" (click)="closeClick(item); false;">
+          <i class="fa fa-stop"></i>&nbsp;{{ 'polls.buttons.close' | translate }}
       </a>
     </div>
   </div>
