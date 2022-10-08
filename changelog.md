@@ -2,6 +2,7 @@
 
 ## 11.4
 
+* 11.4.5 Open/Close voting management buttons
 * 11.4.4 FI Translations + url flexibility on redirect
 * 11.4.3 BUG FIX: app_code could potentially be empty when getting logged in user
 * 11.4.2 BUG FIX: When a poll is marked for anonymous results, allow the owner to see the vote results
