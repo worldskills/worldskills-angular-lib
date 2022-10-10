@@ -246,7 +246,7 @@ export class VoteControlComponent implements OnInit {
   }
 
   showAbstainButton(): boolean {
-    return this.voted && !this.voted.hasVoted && this.poll.allowingAbstain && this.view === 'question' && this.state === 'running';
+    return this.isWhiteListed() && this.voted && !this.voted.hasVoted && this.poll.allowingAbstain && this.view === 'question' && this.state === 'running';
   }
 
   showClearVoteButton(): boolean {

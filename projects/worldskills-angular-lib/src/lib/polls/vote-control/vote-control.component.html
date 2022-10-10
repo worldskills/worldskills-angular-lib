@@ -56,10 +56,7 @@
 </ng-template>
 
 <ng-template #controlBarLeftDefaultTemplate>
-  <div *ngIf="!isWhiteListed()" class="vote-not-allowed">
-    {{ 'polls.vote_note_allowed' | translate }}
-  </div>
-  <button [disabled]="hasVotesSelected() && !isWhiteListed()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
+  <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
     (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; {{ 'polls.buttons.vote' | translate }}</button>&nbsp;
   <button *ngIf="showAbstainButton()" class="btn btn-warning" href="#" (click)="abstain(); false;"><i
       class="fa fa-ban"></i>&nbsp; {{ 'polls.buttons.abstain' | translate }}</button>&nbsp;
@@ -69,6 +66,9 @@
     (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; {{ 'polls.buttons.view.results' | translate }}</button>&nbsp;
   <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
     (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; {{ 'polls.buttons.view.choices' | translate }}</button>&nbsp;
+  <span *ngIf="!isWhiteListed()" class="vote-not-allowed">
+    {{ 'polls.vote_note_allowed' | translate }}
+  </span>
 </ng-template>
 
 <ng-template #controlBarRightDefaultTemplate>

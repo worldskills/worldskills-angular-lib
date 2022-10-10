@@ -1,6 +1,8 @@
 # Changelog
 
 ## 11.5.0
+
+* 11.5.3 Alter whitelist message positions + disable abstain button if you are not a whitelisted voter
 * 11.5.2 FIX: Manage button view permissions + added a note for non-whitelisted voters
 * 11.5.1 Export poll-person-model
 * 11.5.0 Whitelist support into vote control
