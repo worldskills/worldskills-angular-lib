@@ -215,6 +215,7 @@ export * from './lib/polls/models/entity-path-item';
 export * from './lib/polls/models/option';
 export * from './lib/polls/models/optionHandler';
 export * from './lib/polls/models/page';
+export * from './lib/polls/models/person';
 export * from './lib/polls/models/poll-list';
 export * from './lib/polls/models/poll';
 export * from './lib/polls/models/result';
