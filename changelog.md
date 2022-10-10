@@ -1,5 +1,8 @@
 # Changelog
 
+## 11.5.0
+* 11.5.0 Whitelist support into vote control
+
 ## 11.4
 
 * 11.4.8 FIX: lib version not picking up

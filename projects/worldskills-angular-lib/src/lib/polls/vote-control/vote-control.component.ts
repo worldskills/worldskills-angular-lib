@@ -16,7 +16,7 @@ import { WSIDateFormat } from '../../date/wsi-date-format';
   styleUrls: ['./vote-control.component.css']
 })
 export class VoteControlComponent implements OnInit {
-
+  @Input() personId; // required for WhiteList polls
   // button flags
   @Input() showEditButton: boolean;
   @Input() showExtendButton: boolean;
@@ -232,8 +232,17 @@ export class VoteControlComponent implements OnInit {
     return option.text.text;
   }
 
+  isWhiteListed(): boolean
+  {
+    if (this.poll.whitelist) {
+      return this.poll.allowedVoters.filter(x => x.id == this.personId).length > 0;
+    }
+    
+    return true;
+  }
+
   showVoteButton(): boolean {
-    return this.voted && !this.voted.hasVoted && this.view === 'question' && this.state === 'running';
+    return this.isWhiteListed() && this.voted && !this.voted.hasVoted && this.view === 'question' && this.state === 'running';
   }
 
   showAbstainButton(): boolean {
