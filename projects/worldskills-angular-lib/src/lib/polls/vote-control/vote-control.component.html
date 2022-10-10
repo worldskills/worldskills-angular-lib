@@ -56,7 +56,10 @@
 </ng-template>
 
 <ng-template #controlBarLeftDefaultTemplate>
-  <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
+  <div *ngIf="!isWhiteListed()" class="vote-not-allowed">
+    {{ 'polls.vote_note_allowed' | translate }}
+  </div>
+  <button [disabled]="hasVotesSelected() && !isWhiteListed()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
     (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; {{ 'polls.buttons.vote' | translate }}</button>&nbsp;
   <button *ngIf="showAbstainButton()" class="btn btn-warning" href="#" (click)="abstain(); false;"><i
       class="fa fa-ban"></i>&nbsp; {{ 'polls.buttons.abstain' | translate }}</button>&nbsp;
@@ -70,7 +73,7 @@
 
 <ng-template #controlBarRightDefaultTemplate>
   <!-- Example single danger button -->
-  <div class="btn-group">
+  <div class="btn-group" *ngIf="showManageButton()">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">
       Manage

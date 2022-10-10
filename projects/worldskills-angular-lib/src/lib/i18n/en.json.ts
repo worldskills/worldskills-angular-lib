@@ -32,6 +32,7 @@ export const en = {
         }
     },
     polls: {
+        "vote_note_allowed": "You are not permitted to vote on this poll",
         buttons: {
             abstain: 'Abstain',
             delete: 'Delete',
