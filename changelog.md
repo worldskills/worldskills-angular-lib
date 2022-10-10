@@ -1,6 +1,7 @@
 # Changelog
 
 ## 11.5.0
+* 11.5.1 Export poll-person-model
 * 11.5.0 Whitelist support into vote control
 
 ## 11.4
