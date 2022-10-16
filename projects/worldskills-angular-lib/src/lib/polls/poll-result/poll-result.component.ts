@@ -18,6 +18,7 @@ export class PollResultComponent implements OnInit {
   @Input() poll: Poll;
   @Input() results: Result[];
   @Input() tracks: Track[];
+  @Input() canSeeWhoVoted;
 
   constructor() { }
 

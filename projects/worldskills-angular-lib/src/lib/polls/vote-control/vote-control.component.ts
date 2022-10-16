@@ -259,6 +259,14 @@ export class VoteControlComponent implements OnInit {
         || this.showResetButton || (this.view === 'result' && this.showExportButton);
   }
 
+  showWhoVoted(): boolean {
+    if (GenericUtil.isNullOrUndefined(this.poll)) {
+      return false;
+    }
+
+    return this.poll.anonymousResults ? this.isOwner : true;
+  }
+
   export(): void {
     this.exportClicked.emit(new Date());
   }
