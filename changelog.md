@@ -2,6 +2,7 @@
 
 ## 11.5.0
 
+* 11.5.5 FIX: correct suffix for "rd" ordinals
 * 11.5.4 When anonymous results ensure that only the owner can view who voted
 * 11.5.3 Alter whitelist message positions + disable abstain button if you are not a whitelisted voter
 * 11.5.2 FIX: Manage button view permissions + added a note for non-whitelisted voters

@@ -13,7 +13,7 @@ export class OrdinalUtil {
         }
 
         if (j === 3 && k !== 13) {
-            return i + 'nd';
+            return i + 'rd';
         }
 
         return i + 'th';
