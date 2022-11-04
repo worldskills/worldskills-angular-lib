@@ -19,7 +19,7 @@ export const fi = {
             'infrastructure.lists': 'Infralistat',
             'my.worldskills': 'Oma profiili',
             registrations: 'Rekisteröinti',
-            'skill.management': 'WorldSkills-tehtäväpankki',
+            'skill.management': 'Lajien hallinta',
             wiw: 'Henkilöhakemisto'
         },
         translation: {
