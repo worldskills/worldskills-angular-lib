@@ -1,4 +1,4 @@
-<div *ngIf="results" class="poll-result">
+<div *ngIf="results && optionResultItems" class="poll-result">
   <p *ngFor="let option of optionResultItems | wsSort: 'desc': 'points'">
     <strong>{{ option.text.text }}</strong><br />
     <ngb-progressbar [showValue]="false" type="success" [value]="option.points" [max]="max" ngbPopover="{{ option.points }} points, {{ option.votes }} votes"

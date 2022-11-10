@@ -1,7 +1,7 @@
 # Changelog
 
 ## 11.5.0
-
+* 11.5.10 Improve null handling in vote control
 * 11.5.8/9 FIX: sorting markup
 * 11.5.7 Order poll options by points
 * 11.5.6 FI translation update

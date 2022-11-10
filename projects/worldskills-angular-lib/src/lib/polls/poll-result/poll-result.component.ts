@@ -5,7 +5,6 @@ import { Option } from '../models/option';
 import { Track } from '../models/track';
 import { GenericUtil } from '../../common/util/generic.util';
 import { OrdinalUtil } from '../../common/util/ordinal.util';
-import { ArrayUtil } from '../../common/util/array.util';
 import { OptionResultView } from '../models/option-result-view';
 
 @Component({
@@ -21,7 +20,7 @@ export class PollResultComponent implements OnInit {
   @Input() tracks: Track[];
   @Input() canSeeWhoVoted;
 
-  optionResultItems: OptionResultView[];
+  optionResultItems: OptionResultView[] = [];
 
   constructor() { }
 
@@ -39,6 +38,7 @@ export class PollResultComponent implements OnInit {
       this.max = this.results.map(x => x.points).reduce((acc, cur) => acc + cur, 0);
       if (!GenericUtil.isNullOrUndefined(this.poll)) {
         if (!GenericUtil.isNullOrUndefined(this.poll.options)) {
+          this.optionResultItems = [];
           this.poll.options.forEach(option => {
             const optionResultItem: OptionResultView = {
               id: option.id,
