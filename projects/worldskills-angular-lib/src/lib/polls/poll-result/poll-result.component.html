@@ -1,9 +1,9 @@
 <div *ngIf="results" class="poll-result">
-  <p *ngFor="let option of poll.options | wsSort: 'asc': 'id'">
+  <p *ngFor="let option of poll.optionResultItem | wsSort: 'desc': 'points'">
     <strong>{{ option.text.text }}</strong><br />
-    <ngb-progressbar [showValue]="false" type="success" [value]="countPoints(option)" [max]="max" ngbPopover="{{ countPoints(option) }} points, {{ countVotes(option) }} votes"
+    <ngb-progressbar [showValue]="false" type="success" [value]="option.points" [max]="max" ngbPopover="{{ option.points }} points, {{ option.votes }} votes"
       triggers="mouseenter:mouseleave">
-      {{ countPoints(option) }} {{ 'polls.points' | translate }}, {{ countVotes(option) }} {{ 'polls.votes' | translate }}</ngb-progressbar>
+      {{ option.points) }} {{ 'polls.points' | translate }}, {{ option.votes }} {{ 'polls.votes' | translate }}</ngb-progressbar>
     <span *ngIf="canSeeWhoVoted">
       <ul class="member-list row">
           <li class="member-block" *ngFor="let track of getPeople(option)">
