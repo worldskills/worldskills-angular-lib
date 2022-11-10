@@ -7,7 +7,7 @@ import { UserList } from './models/user-list';
 import { GetUsersParams } from './models/get-user-params';
 import { HttpUtil } from '../common/util/http.util';
 import { share } from 'rxjs/operators';
-import { GenericUtil } from '../../public-api';
+import { GenericUtil } from '../common/util/generic.util';
 
 @Injectable({
   providedIn: 'root'
