@@ -2,6 +2,7 @@
 
 ## 11.5.0
 
+* 11.5.8 FIX: sorting markup
 * 11.5.7 Order poll options by points
 * 11.5.6 FI translation update
 * 11.5.5 FIX: correct suffix for "rd" ordinals
