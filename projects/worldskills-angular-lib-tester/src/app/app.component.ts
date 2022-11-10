@@ -299,6 +299,7 @@ export class AppComponent {
             anonymousResults: false,
             showingResults: false,
             allowingAbstain: true,
+            whitelist: false,
             created: new Date(),
             deleted: false,
             start: new Date(),
