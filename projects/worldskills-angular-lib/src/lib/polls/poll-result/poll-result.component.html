@@ -3,7 +3,7 @@
     <strong>{{ option.text.text }}</strong><br />
     <ngb-progressbar [showValue]="false" type="success" [value]="option.points" [max]="max" ngbPopover="{{ option.points }} points, {{ option.votes }} votes"
       triggers="mouseenter:mouseleave">
-      {{ option.points) }} {{ 'polls.points' | translate }}, {{ option.votes }} {{ 'polls.votes' | translate }}</ngb-progressbar>
+      {{ option.points }} {{ 'polls.points' | translate }}, {{ option.votes }} {{ 'polls.votes' | translate }}</ngb-progressbar>
     <span *ngIf="canSeeWhoVoted">
       <ul class="member-list row">
           <li class="member-block" *ngFor="let track of getPeople(option)">
