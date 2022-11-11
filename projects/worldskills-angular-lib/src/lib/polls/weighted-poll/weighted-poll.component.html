@@ -1,4 +1,4 @@
-<ul class="list-group" *ngIf="poll">
+<ul class="list-group">
   <li class="list-group-item" *ngFor="let num of numSelections">
     <select class="form-control" [(ngModel)]="models[num]" (change)="change($event, num)" [disabled]="voted.hasVoted">
       <option value="0">{{ numberToWord(num + 1) }} {{ 'polls.selection' | translate }} ({{ calcPointsForItem(num) }} {{ 'polls.points' | translate }})</option>

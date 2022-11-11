@@ -1,6 +1,7 @@
 # Changelog
 
-## 11.5.0
+## 11.5
+* 11.5.12 FIX Vote controller not refreshing
 * 11.5.11 FIX circular dep error
 * 11.5.10 Improve null handling in vote control
 * 11.5.8/9 FIX: sorting markup
