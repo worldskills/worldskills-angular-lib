@@ -1,6 +1,7 @@
 import { GenericUtil } from './generic.util';
 import { HttpErrorResponse } from '@angular/common/http';
 import { APIError } from '../models/api-error';
+import * as Sentry from '@sentry/browser';
 
 export class ErrorUtil {
     /*
@@ -33,4 +34,14 @@ export class ErrorUtil {
         return JSON.parse(decodedString);
     }
 
+
+    /*
+        Capture an API response as an error to sentry
+    */
+    static captureAPIError(type: string, name: string, action: string, error: any, msg: string) {
+        Sentry.setTag(`app_${type}`, name);
+        Sentry.setTag('app_action', action);
+        Sentry.setExtra('app_error', error);
+        Sentry.captureMessage(msg, "error");
+      }
 }

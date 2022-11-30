@@ -1,5 +1,8 @@
 # Changelog
 
+## 11.6
+* 11.6.0 Add sentry as a dependany and include a sentry helper method
+
 ## 11.5
 * 11.5.12 FIX Vote controller not refreshing
 * 11.5.11 FIX circular dep error

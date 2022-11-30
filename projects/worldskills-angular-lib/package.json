@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/worldskills-angular-lib",
-  "version": "11.5.12",
+  "version": "11.6.0",
   "peerDependencies": {
     "@angular/common": "^10.0.3",
     "@angular/core": "^10.0.4",
@@ -12,7 +12,8 @@
     "font-awesome": "^4.7.0",
     "moment": "^2.29.1",
     "@ngx-translate/core": "^13.0.0",
-    "@ngx-translate/http-loader": "^6.0.0"
+    "@ngx-translate/http-loader": "^6.0.0",
+    "@sentry/browser": "^7.22.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
