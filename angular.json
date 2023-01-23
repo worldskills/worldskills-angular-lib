@@ -10,7 +10,7 @@
       "prefix": "ws",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.json",
             "project": "projects/worldskills-angular-lib/ng-package.json"
@@ -91,7 +91,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
