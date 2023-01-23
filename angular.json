@@ -29,18 +29,6 @@
             "tsConfig": "projects/worldskills-angular-lib/tsconfig.spec.json",
             "karmaConfig": "projects/worldskills-angular-lib/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/worldskills-angular-lib/tsconfig.lib.json",
-              "projects/worldskills-angular-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -142,19 +130,6 @@
               "projects/worldskills-angular-lib-tester/src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/worldskills-angular-lib-tester/tsconfig.app.json",
-              "projects/worldskills-angular-lib-tester/tsconfig.spec.json",
-              "projects/worldskills-angular-lib-tester/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
