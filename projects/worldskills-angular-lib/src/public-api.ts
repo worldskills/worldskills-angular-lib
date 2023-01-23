@@ -165,6 +165,7 @@ export * from './lib/i18n/language';
 export * from './lib/i18n/wsi-translate.service';
 export * from './lib/i18n/i18n-textbox/i18n-textbox.component';
 export * from './lib/i18n/i18n-textarea/i18n-textarea.component';
+export * from './lib/i18n/i18n-text/i18n-text.component';
 
 /*
   Interceptors
