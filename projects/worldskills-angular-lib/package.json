@@ -1,21 +1,21 @@
 {
   "name": "@worldskills/worldskills-angular-lib",
-  "version": "11.6.0",
+  "version": "12.0.0",
   "peerDependencies": {
-    "@angular/common": "^10.0.3",
-    "@angular/core": "^10.0.4",
-    "@ng-bootstrap/ng-bootstrap": "^7.0.0",
-    "@ng-select/ng-select": ">=4.0.4 <6.0.0",
-    "@worldskills/bootstrap": "^4.4.1",
-    "angular-oauth2-oidc": "^10.0.3",
-    "bootstrap": "^4.5.0",
+    "@angular/common": "^15.1.1",
+    "@angular/core": "^15.1.1",
+    "@ng-bootstrap/ng-bootstrap": "^14.0.1",
+    "@ng-select/ng-select": "^10.0.3",
+    "@worldskills/bootstrap": "^4.9.1",
+    "angular-oauth2-oidc": "^15.0.1",
+    "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
     "moment": "^2.29.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "@sentry/browser": "^7.22.0"
+    "@sentry/browser": "^7.32.0"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.4.1"
   }
 }

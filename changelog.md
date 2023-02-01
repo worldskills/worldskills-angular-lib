@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0
+* Upgrade to angular 15
+* upgrade libraries to more modern versions
+
 ## 11.6
 * 11.6.0 Add sentry as a dependany and include a sentry helper method
 

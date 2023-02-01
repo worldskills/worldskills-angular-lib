@@ -10,7 +10,7 @@
       "prefix": "ws",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.json",
             "project": "projects/worldskills-angular-lib/ng-package.json"
@@ -28,18 +28,6 @@
             "main": "projects/worldskills-angular-lib/src/test.ts",
             "tsConfig": "projects/worldskills-angular-lib/tsconfig.spec.json",
             "karmaConfig": "projects/worldskills-angular-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/worldskills-angular-lib/tsconfig.lib.json",
-              "projects/worldskills-angular-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
@@ -91,7 +79,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -145,19 +132,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/worldskills-angular-lib-tester/tsconfig.app.json",
-              "projects/worldskills-angular-lib-tester/tsconfig.spec.json",
-              "projects/worldskills-angular-lib-tester/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -171,6 +145,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "worldskills-angular-lib"
+    }
+  }
 }
