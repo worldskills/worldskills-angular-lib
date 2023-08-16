@@ -21,7 +21,7 @@ import { StandardPollComponent } from './polls/standard-poll/standard-poll.compo
 import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.component';
 import { VoteControlComponent } from './polls/vote-control/vote-control.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { RelativeDatePipe } from './common/pipes/relative-date.pipe';
 import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-poll.component';
@@ -42,6 +42,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RelativeDateComponent } from './date/relative-date/relative-date.component';
 import { ToastComponent } from './alerts/toast/toast.component';
 import { ModalsComponent } from './modals/modals/modals.component';
+import { RecipientAwardListComponent } from './awards/components/recipient-award-list/recipient-award-list.component';
+import { RecipientAwardFormComponent } from './awards/components/recipient-award-form/recipient-award-form.component';
+import { WsSpinnerComponent } from './ws-spinner/ws-spinner.component';
+import { ModalComponent } from './awards/components/modal/modal.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
@@ -93,6 +97,10 @@ export const translateConfig = TranslateModule.forChild({
         RelativeDateComponent,
         ToastComponent,
         ModalsComponent,
+        RecipientAwardListComponent,
+        RecipientAwardFormComponent,
+        WsSpinnerComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,
@@ -138,6 +146,10 @@ export const translateConfig = TranslateModule.forChild({
         RelativeDateComponent,
         ToastComponent,
         ModalsComponent,
+        RecipientAwardListComponent,
+        RecipientAwardFormComponent,
+        WsSpinnerComponent,
+        ModalComponent
     ],
     providers: []
 })
