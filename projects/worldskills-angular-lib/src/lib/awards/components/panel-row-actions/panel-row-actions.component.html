@@ -1,0 +1,39 @@
+<a *ngIf="!!edit.observers.length">
+  <button
+    style="width: 30px; height: 30px"
+    type="button"
+    class="btn btn-warning btn-sm ml-1"
+    (click)="edit.emit()"
+    placement="top"
+    [ngbTooltip]="this.editLabel"
+    [disabled]="editDisabled"
+  >
+    <span class="fa fa-edit"></span>
+  </button>
+</a>
+<a *ngIf="!!view.observers.length">
+  <button
+    style="width: 30px; height: 30px"
+    type="button"
+    class="btn btn-warning btn-sm ml-1"
+    (click)="view.emit()"
+    placement="top"
+    [ngbTooltip]="this.viewLabel"
+    [disabled]="viewDisabled"
+  >
+    <span class="fa fa-eye"></span>
+  </button>
+</a>
+<a *ngIf="!!delete.observers.length">
+  <button
+    style="width: 30px; height: 30px"
+    type="button"
+    class="btn btn-danger btn-sm ml-1"
+    (click)="delete.emit()"
+    placement="top"
+    [ngbTooltip]="this.deleteLabel"
+    [disabled]="deleteDisabled"
+  >
+    <span class="fa fa-times"></span>
+  </button>
+</a>

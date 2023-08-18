@@ -85,5 +85,8 @@
         "no": "no",
         "ok": "Ok",
         "yes": "Yes"
+    },
+    "ws-spinner": {
+        "loading_indicator": "Loading..."
     }
 }

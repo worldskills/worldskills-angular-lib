@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.1.0
+
+* Added centralised awards component for PersonAward, MemberAward and OrganizationAward
+
 ## 12.0
 * Upgrade to angular 15
 * upgrade libraries to more modern versions

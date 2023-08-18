@@ -104,6 +104,21 @@ export * from './lib/auth/auth.service';
 export * from './lib/auth/ng-auth.service';
 
 /*
+    Awards
+ */
+
+export * from './lib/awards/components/recipient-award-form/recipient-award-form.component';
+export * from './lib/awards/components/recipient-award-list/recipient-award-list.component';
+export * from './lib/awards/components/modal/modal.component';
+export * from './lib/awards/components/panel-row-actions/panel-row-actions.component';
+export * from './lib/awards/models/award';
+export * from './lib/awards/models/entity';
+export * from './lib/awards/models/member-award';
+export * from './lib/awards/models/organization-award';
+export * from './lib/awards/models/person-award';
+export * from './lib/awards/services/award.service';
+
+/*
   entity-tree-select
 */
 // TODO: perhaps look at refactoring entity-tree as there's a lot of overlap with auth
@@ -230,3 +245,8 @@ export * from './lib/polls/weighted-poll/weighted-poll.component';
 export * from './lib/polls/multiselect-poll/multiselect-poll.component';
 export * from './lib/polls/poll-list.service';
 export * from './lib/polls/poll.service';
+
+/*
+    Spinner
+ */
+export * from './lib/ws-spinner/ws-spinner.component';
