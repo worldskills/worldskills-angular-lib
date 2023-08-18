@@ -12,9 +12,9 @@ import { PersonAward } from '../../models/person-award';
 })
 export class RecipientAwardListComponent implements OnInit {
 
+    @Input() canCreate: boolean;
+    @Input() canUpdate: boolean;
     @Input() canDelete: boolean;
-    @Input() canEdit: boolean;
-    @Input() canAdd: boolean;
     @Input() recipientAwards: PersonAward[] | MemberAward[] | OrganizationAward[];
     @Output() create: EventEmitter<RecipientAwardRequest> = new EventEmitter<RecipientAwardRequest>();
     @Output() update: EventEmitter<RecipientAwardRequest> = new EventEmitter<RecipientAwardRequest>();

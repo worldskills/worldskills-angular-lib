@@ -110,6 +110,7 @@ export * from './lib/auth/ng-auth.service';
 export * from './lib/awards/components/recipient-award-form/recipient-award-form.component';
 export * from './lib/awards/components/recipient-award-list/recipient-award-list.component';
 export * from './lib/awards/components/modal/modal.component';
+export * from './lib/awards/components/panel-row-actions/panel-row-actions.component';
 export * from './lib/awards/models/award';
 export * from './lib/awards/models/entity';
 export * from './lib/awards/models/member-award';

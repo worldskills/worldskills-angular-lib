@@ -31,8 +31,8 @@
                 <td>{{ra.extra_information}}</td>
                 <td>
                   <app-panel-row-actions
-                    [deleteDisabled]="canDelete"
-                    [editDisabled]="canEdit"
+                    [deleteDisabled]="!canDelete"
+                    [editDisabled]="!canUpdate"
                     (delete)="deleteRecipientAward(ra)"
                     (edit)="editRecipientAward = ra"
                   ></app-panel-row-actions>
@@ -64,7 +64,7 @@
         </tbody>
       </table>
 
-      <a (click)="addAward = true" [routerLink]="" *ngIf="canAdd">+ {{'add_award' | translate}}</a>
+      <a (click)="addAward = true" [routerLink]="" *ngIf="canCreate">+ {{'add_award' | translate}}</a>
     </div>
   </div>
 </div>
