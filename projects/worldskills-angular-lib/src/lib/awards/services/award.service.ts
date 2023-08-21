@@ -48,7 +48,7 @@ export class AwardService extends WsService<any> {
     }
 
     public get(awardId: number): Observable<Award> {
-        const observable = this.http.get<Award>(`${this.apiAwardsURL}/${awardId}`).pipe(share());
+        const observable = this.http.get<Award>(`${this.apiAwardsURL}/awards/${awardId}`).pipe(share());
         return this.request(observable);
     }
 
@@ -60,7 +60,7 @@ export class AwardService extends WsService<any> {
         const {fetchParams, multicastOptions, requestOptions} = this.resolveArgs(p1, p2, p3, FULL);
         const params = HttpUtil.objectToParams(fetchParams || {});
         const observable = this.http.post<Award>(
-            requestOptions.url ?? `${this.apiAwardsURL}`, awardRequest, {params}
+            requestOptions.url ?? `${this.apiAwardsURL}/awards`, awardRequest, {params}
         ).pipe(share());
         return this.request(observable, multicastOptions);
     }
@@ -75,12 +75,12 @@ export class AwardService extends WsService<any> {
         const {fetchParams, multicastOptions, requestOptions} = this.resolveArgs(p1, p2, p3, FULL);
         const params = HttpUtil.objectToParams(fetchParams || {});
         const observable = this.http.put<Award>(
-            requestOptions.url ?? `${this.apiAwardsURL}/${awardId}`, awardRequest, {params}
+            requestOptions.url ?? `${this.apiAwardsURL}/awards/${awardId}`, awardRequest, {params}
         ).pipe(share());
         return this.request(observable, multicastOptions);
     }
 
     delete(awardId: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiAwardsURL}/${awardId}`);
+        return this.http.delete<void>(`${this.apiAwardsURL}/awards/${awardId}`);
     }
 }
