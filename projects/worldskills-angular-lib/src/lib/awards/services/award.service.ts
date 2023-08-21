@@ -23,13 +23,13 @@ import { HttpUtil } from '../../common/util/http.util';
 })
 export class AwardService extends WsService<any> {
 
-    private url: string;
+    private apiAwardsURL: string;
 
     constructor(private wsi: WorldskillsAngularLibService, private http: HttpClient) {
         super();
         this.wsi.serviceConfigSubject.subscribe(
             next => {
-                this.url = next.apiEndpoint + '/awards';
+                this.apiAwardsURL = next.apiEndpoint + '/awards';
             }
         );
     }
@@ -39,7 +39,7 @@ export class AwardService extends WsService<any> {
         if (!GenericUtil.isNullOrUndefined(entityId)) {
             params = params.set('entityId', entityId.toString());
         }
-        const observable = this.http.get<AwardContainer>(`${this.url}`, {params}).pipe(share());
+        const observable = this.http.get<AwardContainer>(`${this.apiAwardsURL}/awards`, {params}).pipe(share());
         return this.request(observable);
     }
 
@@ -48,7 +48,7 @@ export class AwardService extends WsService<any> {
     }
 
     public get(awardId: number): Observable<Award> {
-        const observable = this.http.get<Award>(`${this.url}/${awardId}`).pipe(share());
+        const observable = this.http.get<Award>(`${this.apiAwardsURL}/${awardId}`).pipe(share());
         return this.request(observable);
     }
 
@@ -60,7 +60,7 @@ export class AwardService extends WsService<any> {
         const {fetchParams, multicastOptions, requestOptions} = this.resolveArgs(p1, p2, p3, FULL);
         const params = HttpUtil.objectToParams(fetchParams || {});
         const observable = this.http.post<Award>(
-            requestOptions.url ?? `${this.url}`, awardRequest, {params}
+            requestOptions.url ?? `${this.apiAwardsURL}`, awardRequest, {params}
         ).pipe(share());
         return this.request(observable, multicastOptions);
     }
@@ -75,12 +75,12 @@ export class AwardService extends WsService<any> {
         const {fetchParams, multicastOptions, requestOptions} = this.resolveArgs(p1, p2, p3, FULL);
         const params = HttpUtil.objectToParams(fetchParams || {});
         const observable = this.http.put<Award>(
-            requestOptions.url ?? `${this.url}/${awardId}`, awardRequest, {params}
+            requestOptions.url ?? `${this.apiAwardsURL}/${awardId}`, awardRequest, {params}
         ).pipe(share());
         return this.request(observable, multicastOptions);
     }
 
     delete(awardId: number): Observable<void> {
-        return this.http.delete<void>(`${this.url}/${awardId}`);
+        return this.http.delete<void>(`${this.apiAwardsURL}/${awardId}`);
     }
 }
