@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.2.0
+
+* Update Awards components' selector
+
 ## 12.1.0
 
 * Added centralised awards component for PersonAward, MemberAward and OrganizationAward
