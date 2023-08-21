@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, Templ
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-modal',
+    selector: 'ws-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.css']
 })

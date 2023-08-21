@@ -14,7 +14,7 @@ export interface RecipientAwardRequest {
 }
 
 @Component({
-    selector: 'app-recipient-award-form',
+    selector: 'ws-recipient-award-form',
     templateUrl: './recipient-award-form.component.html',
     styleUrls: ['./recipient-award-form.component.css']
 })

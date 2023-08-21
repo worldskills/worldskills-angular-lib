@@ -3,7 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {combineLatest, of} from 'rxjs';
 
 @Component({
-  selector: 'app-panel-row-actions',
+  selector: 'ws-panel-row-actions',
   templateUrl: './panel-row-actions.component.html',
   styleUrls: ['./panel-row-actions.component.css']
 })

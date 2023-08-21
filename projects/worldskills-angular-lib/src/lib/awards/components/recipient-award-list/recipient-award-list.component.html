@@ -30,12 +30,12 @@
                 <td>{{ra.presented_at}}</td>
                 <td>{{ra.extra_information}}</td>
                 <td>
-                  <app-panel-row-actions
+                  <ws-panel-row-actions
                     [deleteDisabled]="!canDelete"
                     [editDisabled]="!canUpdate"
                     (delete)="deleteRecipientAward(ra)"
                     (edit)="editRecipientAward = ra"
-                  ></app-panel-row-actions>
+                  ></ws-panel-row-actions>
                 </td>
               </tr>
               <tr class="p-0 m-0 border-0">
@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<app-modal [open]="addAward || !!editRecipientAward" (onClose)="closeModal()"
+<ws-modal [open]="addAward || !!editRecipientAward" (onClose)="closeModal()"
            [options]="{ size: 'lg' }">
   <ng-container header>
     <h4 *ngIf="addAward">{{'add_new_award' | translate}}</h4>
@@ -77,8 +77,8 @@
   </ng-container>
 
   <ng-container body>
-    <app-recipient-award-form *ngIf="addAward || !!editRecipientAward"
+    <ws-recipient-award-form *ngIf="addAward || !!editRecipientAward"
                               (cancel)="closeModal()" (save)="saveRecipientAward($event)"
-                              [recipientAward]="editRecipientAward"></app-recipient-award-form>
+                              [recipientAward]="editRecipientAward"></ws-recipient-award-form>
   </ng-container>
-</app-modal>
+</ws-modal>

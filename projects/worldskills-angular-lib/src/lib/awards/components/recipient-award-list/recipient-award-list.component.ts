@@ -6,7 +6,7 @@ import { PersonAward } from '../../models/person-award';
 
 
 @Component({
-    selector: 'app-recipient-award-list',
+    selector: 'ws-recipient-award-list',
     templateUrl: './recipient-award-list.component.html',
     styleUrls: ['./recipient-award-list.component.css']
 })
