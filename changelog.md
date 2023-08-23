@@ -2,6 +2,7 @@
 
 ## 12.2
 
+* 12.2.2 Fix RouterLink for RecipientAwardList component and added "GMT+0" in last_updated of PersonAward.
 * 12.2.1 Fix API-Awards URL
 * 12.2.0 Update Awards components' selector
 
