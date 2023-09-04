@@ -1,50 +1,59 @@
 <form class="form-horizontal" [ngClass]="{'was-validated': form.submitted}" novalidate
       (ngSubmit)="saveRecipientAward()" #form="ngForm">
-  <div class="container">
-    <div class="row my-1">
-      <div class="col-4 text-right font-weight-bold">
-        <label for="award">{{'award' | translate}}</label>
-      </div>
-      <div class="col-8">
-        <ng-select id="award"
-                   required
-                   name="award"
-                   [items]="awards"
-                   bindLabel="name.text"
-                   [ngModel]="recipientAward ? recipientAward.award : null"
-        ></ng-select>
-      </div>
-    </div>
-    <div class="row my-1">
-      <div class="col-4 text-right font-weight-bold">
-        <label for="presentedAt">{{'presented_at' | translate}}</label>
-      </div>
-      <div class="col-8">
-        <input type="text" class="form-control" name="presentedAt" id="presentedAt"
-               [ngModel]="recipientAward ? recipientAward.presented_at : null">
-      </div>
-    </div>
-    <div class="row my-1">
-      <div class="col-4 text-right font-weight-bold">
-        <label for="extraInformation">{{'extra_information' | translate}}</label>
-      </div>
-      <div class="col-8">
+    <div class="container">
+        <div class="row my-1">
+            <div class="col-4 text-right font-weight-bold">
+                <label for="award">{{'award' | translate}}</label>
+            </div>
+            <div class="col-8">
+                <ng-select id="award"
+                           [wsSelect]="['id','name.text', awardGroupByRenderer]"
+                           required
+                           name="award"
+                           [items]="awards"
+                           [multiple]="false"
+                           [ngModel]="recipientAward ? recipientAward?.award?.id : null"
+                           [readonly]="recipientAward?.award?.id !== null"
+                           (wsChange)="awardSelectionChange($event)"
+                ></ng-select>
+                {{recipientAward?.award?.id}}
+            </div>
+        </div>
+        <div class="row my-1">
+            <div class="col-4 text-right font-weight-bold">
+                <label for="presentedAt">{{'presented_at' | translate}}</label>
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" name="presentedAt" id="presentedAt"
+                       [ngModel]="recipientAward ? recipientAward.presented_at : null">
+            </div>
+        </div>
+        <div class="row my-1">
+            <div class="col-4 text-right font-weight-bold">
+                <label for="extraInformation">{{'extra_information' | translate}}</label>
+            </div>
+            <div class="col-8">
         <textarea class="form-control"
                   name="extraInformation" id="extraInformation"
                   rows="4"
                   placeholder="{{'extra_information' | translate}}"
                   [ngModel]="recipientAward ? recipientAward.extra_information : null">
         </textarea>
-      </div>
-    </div>
+            </div>
+        </div>
 
-  </div>
-  <div class="row">
-    <div class="col-12 text-right">
-      <button type="button" class="btn btn-warning btn-sm"
-              (click)="cancel.emit()">{{'cancel' | translate}}</button>
-      <button type="submit"
-              class="btn btn-success btn-sm ml-1">{{'save' | translate}}</button>
+        <ng-container *ngIf="certificateEnabled && (selectedAward?.has_certificate || recipientAward?.award?.has_certificate)">
+            <h4>{{'certificates' | translate | titlecase}}</h4>
+            <ws-recipient-award-certificate-form (certificatesEmitter)="certificatesEmitReceiver($event)"
+                                                 [certificates]="recipientAward?.certificates"></ws-recipient-award-certificate-form>
+        </ng-container>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-warning btn-sm"
+                    (click)="cancel.emit()">{{'cancel' | translate}}</button>
+            <button type="submit"
+                    class="btn btn-success btn-sm ml-1">{{'save' | translate}}</button>
+        </div>
+    </div>
 </form>

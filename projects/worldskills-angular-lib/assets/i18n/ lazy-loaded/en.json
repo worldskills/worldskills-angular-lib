@@ -7,6 +7,9 @@
         "login": "Login",
         "logout": "Logout"
     },
+    "awards": {
+        "add_certificate": "Add certificate"
+    },
     "dialogue": {
         "close": "Close"
     },

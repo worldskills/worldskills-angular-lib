@@ -6,12 +6,14 @@ export interface Award {
     name: I18nText;
     description: I18nText;
     entity: AuthEntity;
+    has_certificate: boolean;
 }
 
 export interface AwardRequest {
     name: I18nText;
     description: I18nText;
     entity: AuthEntityRequest;
+    has_certificate: boolean;
 }
 
 export interface AwardContainer {

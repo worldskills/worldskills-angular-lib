@@ -16,6 +16,7 @@ export class RecipientAwardListComponent implements OnInit {
     @Input() canUpdate: boolean;
     @Input() canDelete: boolean;
     @Input() recipientAwards: PersonAward[] | MemberAward[] | OrganizationAward[];
+    @Input() certificateEnabled = false;
     @Output() create: EventEmitter<RecipientAwardRequest> = new EventEmitter<RecipientAwardRequest>();
     @Output() update: EventEmitter<RecipientAwardRequest> = new EventEmitter<RecipientAwardRequest>();
     @Output() delete: EventEmitter<RecipientAwardRequest> = new EventEmitter<RecipientAwardRequest>();

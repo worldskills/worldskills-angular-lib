@@ -1,4 +1,5 @@
 import { Award } from './award';
+import { RecipientAwardCertificate } from './recipient-award-certificate';
 
 export interface OrganizationAward {
     id: number;
@@ -7,4 +8,5 @@ export interface OrganizationAward {
     presented_at: string;
     extra_information: string;
     last_updated: string;
+    certificates?: RecipientAwardCertificate[];
 }
