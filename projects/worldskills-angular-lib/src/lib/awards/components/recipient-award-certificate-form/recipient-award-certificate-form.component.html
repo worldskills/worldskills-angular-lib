@@ -1,0 +1,37 @@
+<button class="btn btn-link btn-sm mb-2" type="button" (click)="addCert()">+ {{'awards.add_certificate' | translate}}</button>
+
+<ng-container *ngFor="let cert of certificates">
+    <div class="row">
+        <div class="col-md-4 text-right font-weight-bold">
+            <label for="certificate_unique_id">{{'certificate_unique_id' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="certificate_unique_id" id="certificate_unique_id"
+                   [(ngModel)]="cert.certificate_unique_id" (ngModelChange)="emitValues()">
+            <button class="btn btn-link btn-sm" type="button" (click)="generateNewUniqueID(cert)">Generate New ID
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-md-4 text-right font-weight-bold">
+            <label for="certificate_dropbox_path">{{'certificate_dropbox_path' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="certificate_dropbox_path" id="certificate_dropbox_path"
+                   [(ngModel)]="cert.certificate_dropbox_path" (ngModelChange)="emitValues()">
+        </div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-md-4 text-right font-weight-bold">
+            <label for="certificate_type">{{'certificate_type' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+            <ng-select id="certificate_type" [items]="certificateTypes" [(ngModel)]="cert.certificate_type"
+                       (ngModelChange)="emitValues()"></ng-select>
+        </div>
+    </div>
+
+    <hr class="m-0 my-3">
+</ng-container>

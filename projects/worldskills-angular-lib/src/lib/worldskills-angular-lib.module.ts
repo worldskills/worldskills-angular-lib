@@ -47,6 +47,9 @@ import { RecipientAwardFormComponent } from './awards/components/recipient-award
 import { WsSpinnerComponent } from './ws-spinner/ws-spinner.component';
 import { ModalComponent } from './awards/components/modal/modal.component';
 import { PanelRowActionsComponent } from './awards/components/panel-row-actions/panel-row-actions.component';
+import {
+    RecipientAwardCertificateFormComponent
+} from './awards/components/recipient-award-certificate-form/recipient-award-certificate-form.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
@@ -102,7 +105,8 @@ export const translateConfig = TranslateModule.forChild({
         RecipientAwardFormComponent,
         WsSpinnerComponent,
         ModalComponent,
-        PanelRowActionsComponent
+        PanelRowActionsComponent,
+        RecipientAwardCertificateFormComponent
     ],
     imports: [
         BrowserModule,
@@ -152,7 +156,8 @@ export const translateConfig = TranslateModule.forChild({
         RecipientAwardFormComponent,
         WsSpinnerComponent,
         ModalComponent,
-        PanelRowActionsComponent
+        PanelRowActionsComponent,
+        RecipientAwardCertificateFormComponent
     ],
     providers: []
 })
