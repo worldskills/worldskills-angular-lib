@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.3
+
+* 12.3.0 Added `ws-recipient-award-certificate-form` component
+
 ## 12.2
 
 * 12.2.2 Fix RouterLink for RecipientAwardList component and added "GMT+0" in last_updated of PersonAward.
