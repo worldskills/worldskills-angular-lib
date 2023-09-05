@@ -2,6 +2,7 @@
 
 ## 12.3
 
+* 12.3.1 Fix RecipientAwardCertificate null handling 
 * 12.3.0 Added `ws-recipient-award-certificate-form` component
 
 ## 12.2
