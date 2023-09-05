@@ -5,8 +5,8 @@ import { PersonAward } from '../../models/person-award';
 import { MemberAward } from '../../models/member-award';
 import { OrganizationAward } from '../../models/organization-award';
 import { AwardService } from '../../services/award.service';
-import { SelectChangeEvent } from 'worldskills-angular-lib';
 import { RecipientAwardCertificate } from '../../models/recipient-award-certificate';
+import { SelectChangeEvent } from '../../../select/models/select-change-event';
 
 export interface RecipientAwardRequest {
     id: number;

@@ -107,6 +107,7 @@ export * from './lib/auth/ng-auth.service';
     Awards
  */
 
+export * from './lib/awards/components/recipient-award-certificate-form/recipient-award-certificate-form.component';
 export * from './lib/awards/components/recipient-award-form/recipient-award-form.component';
 export * from './lib/awards/components/recipient-award-list/recipient-award-list.component';
 export * from './lib/awards/components/modal/modal.component';
