@@ -28,6 +28,7 @@ export class RecipientAwardFormComponent implements OnInit {
     @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
     @ViewChild('form') form: NgForm;
     @Input() certificateEnabled = false;
+    @Input() certificates: RecipientAwardCertificate[] = [];
 
     awards: Award[];
     selectedAward: Award;
@@ -57,7 +58,7 @@ export class RecipientAwardFormComponent implements OnInit {
                 award,
                 presented_at: this.form.value.presentedAt,
                 extra_information: this.form.value.extraInformation,
-                certificates: this.recipientAward.certificates
+                certificates: this.certificates
             };
             this.save.emit(rar);
         }
@@ -68,6 +69,6 @@ export class RecipientAwardFormComponent implements OnInit {
     }
 
     certificatesEmitReceiver(pac: RecipientAwardCertificate[]): void {
-        this.recipientAward.certificates = pac;
+        this.certificates = pac;
     }
 }

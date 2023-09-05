@@ -79,7 +79,10 @@
     <ng-container body>
         <ws-recipient-award-form *ngIf="addAward || !!editRecipientAward"
                                  [certificateEnabled]="certificateEnabled"
-                                 (cancel)="closeModal()" (save)="saveRecipientAward($event)"
-                                 [recipientAward]="editRecipientAward"></ws-recipient-award-form>
+                                 (cancel)="closeModal()"
+                                 (save)="saveRecipientAward($event)"
+                                 [recipientAward]="editRecipientAward"
+                                 [certificates]="editRecipientAward?.certificates ?? []"
+        ></ws-recipient-award-form>
     </ng-container>
 </ws-modal>
