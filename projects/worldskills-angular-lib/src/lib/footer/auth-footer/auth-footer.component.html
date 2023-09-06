@@ -63,7 +63,7 @@
                         <a href="#" (click)="$event.preventDefault(); login()">{{ 'auth.login' | translate }}</a>
                     </li>
                     <li *ngIf="!!currentUser" class="list-inline-item">
-                        <a href="#" (click)="$event.preventDefault(); logout()">'auth.logout'</a>
+                        <a href="#" (click)="$event.preventDefault(); logout()">{{'auth.logout' | translate}}</a>
                     </li>
                 </ul>
             </div>
