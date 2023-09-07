@@ -33,10 +33,10 @@ export class WsHttpInterceptor implements HttpInterceptor {
         });
       }
 
-      // appent language code
+      // append language code
       if (includeLanguageParam) {
-        // appendd language param to requests
-        const lang = sessionStorage.getItem('lang');
+        // append language param to requests
+        const lang = sessionStorage.getItem('lang') ?? 'en';
         req = req.clone({
           params: (req.params ? req.params : new HttpParams())
             .set('l', lang),
