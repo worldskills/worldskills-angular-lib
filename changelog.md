@@ -2,6 +2,10 @@
 
 ## 12.3
 
+* 12.3.2 
+   - Set fallback lang code to 'en' in WsHttpInterceptor
+   - Fix ws-auth-footer translation
+   - Remove printed object value in RecipientAwardForm
 * 12.3.1 Fix RecipientAwardCertificate null handling 
 * 12.3.0 Added `ws-recipient-award-certificate-form` component
 
