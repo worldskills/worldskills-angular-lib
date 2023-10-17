@@ -2,6 +2,7 @@
 
 ## 12.3
 
+* 12.3.3 Added `sort` to award object
 * 12.3.2 
    - Set fallback lang code to 'en' in WsHttpInterceptor
    - Fix ws-auth-footer translation
