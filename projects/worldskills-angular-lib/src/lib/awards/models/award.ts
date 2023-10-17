@@ -7,6 +7,7 @@ export interface Award {
     description: I18nText;
     entity: AuthEntity;
     has_certificate: boolean;
+    sort: number;
 }
 
 export interface AwardRequest {
@@ -14,6 +15,7 @@ export interface AwardRequest {
     description: I18nText;
     entity: AuthEntityRequest;
     has_certificate: boolean;
+    sort: number;
 }
 
 export interface AwardContainer {
