@@ -11,7 +11,7 @@ import { SelectChangeEvent } from '../../../select/models/select-change-event';
 export interface RecipientAwardRequest {
     id: number;
     award: Award;
-    presented_at: string;
+    presented_at: number;
     extra_information?: string;
     certificates?: RecipientAwardCertificate[];
 }
