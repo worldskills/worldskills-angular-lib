@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.0
+
+* 13.0.0 Changed awards `presented_at` from string to number
+
 ## 12.3
 
 * 12.3.3 Added `sort` to award object
