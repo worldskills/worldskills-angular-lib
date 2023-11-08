@@ -24,12 +24,16 @@ Run `npm run ws_build_lib` to build the project. The build artifacts will be sto
 
 ## Packaging
 
-Run `npm run package` to create the tgz package (a node module) in the `dist/worldskills-angular-lib` directory.
+Run `npm run ws_npm_pack` to create the tgz package (a node module) in the `dist/worldskills-angular-lib` directory.
+
+## Build & Package together
+
+Run `npm run ws_package`
 
 ## Publishing
 
 We publish our packages on [npmjs](https://www.npmjs.com/) under the *WorldSkills* organization, [here](https://www.npmjs.com/package/@worldskills/worldskills-angular-lib).
-After building your library with `npm run ws_build_lib`, go to the dist folder `cd dist/worldskills-angular-lib` and run `npm publish`.
+After building and packaging, go to the dist folder `cd dist/worldskills-angular-lib` and run `npm publish`.
 
 ## Running unit tests
 
