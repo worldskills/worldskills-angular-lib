@@ -7,6 +7,7 @@ export interface OrganizationAward {
     award: Award;
     presented_at: number;
     extra_information: string;
+    public_extra_information?: string;
     last_updated: string;
     certificates?: RecipientAwardCertificate[];
 }
