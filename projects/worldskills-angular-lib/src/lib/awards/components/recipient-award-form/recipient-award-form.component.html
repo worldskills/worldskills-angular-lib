@@ -32,12 +32,25 @@
                 <label for="extraInformation">{{'extra_information' | translate}}</label>
             </div>
             <div class="col-8">
-        <textarea class="form-control"
-                  name="extraInformation" id="extraInformation"
-                  rows="4"
-                  placeholder="{{'extra_information' | translate}}"
-                  [ngModel]="recipientAward ? recipientAward.extra_information : null">
-        </textarea>
+                <textarea class="form-control"
+                          name="extraInformation" id="extraInformation"
+                          rows="4"
+                          placeholder="{{'extra_information' | translate}}"
+                          [ngModel]="recipientAward ? recipientAward.extra_information : null">
+                </textarea>
+            </div>
+        </div>
+        <div class="row my-1">
+            <div class="col-4 text-right font-weight-bold">
+                <label for="publicExtraInformation">{{'public_extra_information' | translate}}</label>
+            </div>
+            <div class="col-8">
+                <textarea class="form-control"
+                          name="publicExtraInformation" id="publicExtraInformation"
+                          rows="4"
+                          placeholder="{{'public_extra_information' | translate}}"
+                          [ngModel]="recipientAward ? recipientAward.public_extra_information : null">
+                </textarea>
             </div>
         </div>
 

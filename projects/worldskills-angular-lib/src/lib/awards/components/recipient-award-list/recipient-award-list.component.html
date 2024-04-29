@@ -16,7 +16,7 @@
                 <tr>
                     <th class="border-top-0">{{'award' | translate}}</th>
                     <th class="border-top-0">{{'presented_at' | translate}}</th>
-                    <th class="border-top-0">{{'extra_information' | translate}}</th>
+                    <th class="border-top-0">{{'public_extra_information' | translate}}</th>
                     <th class="border-top-0">{{'action' | translate}}</th>
                 </tr>
                 </thead>
@@ -28,7 +28,7 @@
                             <tr>
                                 <td>{{ra.award.name.text}}</td>
                                 <td>{{ra.presented_at}}</td>
-                                <td>{{ra.extra_information}}</td>
+                                <td>{{ra.public_extra_information}}</td>
                                 <td>
                                     <ws-panel-row-actions
                                             [deleteDisabled]="!canDelete"

@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1
+
+* 13.1.0 Added `public extra information` field to PersonAward
+
 ## 13.0
 
 * 13.0.0 Changed awards `presented_at` from string to number

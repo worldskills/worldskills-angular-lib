@@ -13,6 +13,7 @@ export interface RecipientAwardRequest {
     award: Award;
     presented_at: number;
     extra_information?: string;
+    public_extra_information?: string;
     certificates?: RecipientAwardCertificate[];
 }
 
@@ -58,6 +59,7 @@ export class RecipientAwardFormComponent implements OnInit {
                 award,
                 presented_at: this.form.value.presentedAt,
                 extra_information: this.form.value.extraInformation,
+                public_extra_information: this.form.value.publicExtraInformation,
                 certificates: this.certificates
             };
             this.save.emit(rar);
