@@ -8,4 +8,5 @@ export interface Role {
   apply_per_entity: boolean;
   ws_entity: WsEntityModel;
   role_application: RoleApplicationModel;
+  ws_entity_ids: number[];
 }

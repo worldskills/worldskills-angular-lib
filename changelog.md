@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.2
+* 13.2.0 replace `show__child_roles` with `show_collapsed_child_roles` in the auth service
+* 13.2.0 added `ws_entity_ids` to the Role model and updated the logic in `UserRoleUtil`
+
 ## 13.1
 
 * 13.1.0 Added `public extra information` field to PersonAward

@@ -25,9 +25,9 @@ export class AuthService {
     );
   }
 
-  public getLoggedInUser(showChildRoles: boolean = false): Observable<User> {
+  public getLoggedInUser(showCollapsedChildRoles: boolean = false): Observable<User> {
     let params = new HttpParams();
-    params = params.set('show_child_roles', String(showChildRoles));
+    params = params.set('show_collapsed_child_roles', String(showCollapsedChildRoles));
     if (!GenericUtil.isNullOrUndefined(this.appCode)) {
       this.appCode.forEach(code => {
         if (params.has('app_code')) {

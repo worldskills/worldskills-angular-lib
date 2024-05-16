@@ -506,18 +506,21 @@ export class AppComponent {
                     name: 'roleA',
                     apply_per_entity: true,
                     ws_entity: { id: 1 },
+                    ws_entity_ids: [1, 2],
                     role_application: { application_code: 100 },
                 },
                 {
                     name: 'roleB',
                     apply_per_entity: true,
                     ws_entity: { id: 1 },
+                    ws_entity_ids: [1, 2],
                     role_application: { application_code: 100 },
                 },
                 {
                     name: 'roleC',
                     apply_per_entity: true,
                     ws_entity: { id: 2 },
+                    ws_entity_ids: [1, 2],
                     role_application: { application_code: 200 },
                 }
             ]
