@@ -1,7 +1,8 @@
 # Changelog
 
 ## 13.2
-* 13.2.0 replace `show__child_roles` with `show_collapsed_child_roles` in the auth service
+* 13.2.1 ensure we always set `show_child_roles=false` as the default is set to `true` in the API 
+* 13.2.0 replace `show_child_roles` with `show_colapsed_child_roles` in the auth service
 * 13.2.0 added `ws_entity_ids` to the Role model and updated the logic in `UserRoleUtil`
 
 ## 13.1
