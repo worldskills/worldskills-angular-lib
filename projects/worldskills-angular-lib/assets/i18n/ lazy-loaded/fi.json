@@ -38,7 +38,9 @@
             "reset": "Nollaa",
             "view.choices": "Katso vaihtoehdot",
             "view.results": "Katso tulokset",
-            "vote": "Äänestä"
+            "vote": "Äänestä",
+            "close": "Sulje",
+            "open": "Avaa"
         },
         "created.by": "Luonut",
         "messages": {
@@ -51,7 +53,8 @@
         "selection": "valinta",
         "status": "Tila",
         "to": ">",
-        "votes": "äänet"
+        "votes": "äänet",
+        "vote_note_allowed": "Sinulla ei ole oikeuksia äänestää tässä kyselyssä"
     },
     "dates": {
         "minutes_ago": "minuuttia sitten",
@@ -82,5 +85,11 @@
     "remove": "Poista",
     "edit_all_translations": "Muokkaa kaikkia käännöksiä",
     "add_translation": "Lisää käännös",
-    "translations": "Käännökset"
+    "translations": "Käännökset",
+    "ws-spinner": {
+        "loading_indicator": "Lataa..."
+    },
+    "awards": {
+        "add_certificate": "Lisää sertifikaatti"
+    }
 }
