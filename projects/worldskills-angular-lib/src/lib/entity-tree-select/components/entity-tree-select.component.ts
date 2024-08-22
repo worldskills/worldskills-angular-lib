@@ -544,11 +544,13 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
         this.open.emit(event);
     }
 
+
     onSearch(event: { term: string; items: TreeEntity[]; }): void {
+        const lastSearch = this.lastSearch || '';
         if (!this.refreshing) {
-            if (!!event.term.trim() && !this.lastSearch.trim()) {
+            if (!!event.term.trim() && !lastSearch.trim()) {
                 this.expandedSearch = [...this.expanded];
-            } else if (!event.term.trim() && !!this.lastSearch.trim()) {
+            } else if (!event.term.trim() && !!lastSearch.trim()) {
                 this.expanded = [...this.expandedSearch];
                 this.update.next(null);
             }
