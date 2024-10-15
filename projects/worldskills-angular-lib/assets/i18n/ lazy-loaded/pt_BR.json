@@ -1,1 +1,95 @@
-{}
+{
+    "auth": {
+        "login": "Entrar",
+        "logout": "Sair"
+    },
+    "dialogue": {
+        "close": "Fechar"
+    },
+    "translations": "Traduções",
+    "edit_all_translations": "Editar todas as traduções",
+    "awards": {
+        "add_certificate": "Adicionar certificado"
+    },
+    "footer": {
+        "copyright": {
+            "contact": "Contato",
+            "privacy": "Privacidade",
+            "terms": "Termos",
+            "wsi": "WorldSkills Internacional"
+        },
+        "links": {
+            "wiw": "Quem-é-Quem",
+            "forums": "Fóruns",
+            "glossary": "Glossário",
+            "infrastructure.lists": "Listas de Infraestrutura",
+            "my.worldskills": "minhaWorldSkills",
+            "registrations": "Registros",
+            "skill.management": "Gerenciamento de Habilidades"
+        },
+        "translation": {
+            "language": "Idioma",
+            "missing": "Tradução Ausente?"
+        }
+    },
+    "polls": {
+        "buttons": {
+            "abstain": "Abster-se",
+            "view.choices": "Exibir opções",
+            "view.results": "Exibir resultados",
+            "open": "Abrir",
+            "delete": "Excluir",
+            "edit": "Editar",
+            "export.results": "Exportar resultados",
+            "extend": "Estender",
+            "clear.vote": "Limpar voto",
+            "reset": "Redefinir",
+            "vote": "votar",
+            "close": "Fechar"
+        },
+        "vote_note_allowed": "Você não tem permissão para votar nesta enquete",
+        "created.by": "Criado por",
+        "messages": {
+            "abstained": "Você escolheu se abster de votar.",
+            "anon": "seu voto é anônimo.",
+            "choices": "Sua(s) escolha(s):",
+            "voted": "Você já votou!"
+        },
+        "points": "pontos",
+        "selection": "seleção",
+        "status": "Status",
+        "to": "para",
+        "votes": "votos"
+    },
+    "dates": {
+        "in_a_minute": "em um minuto",
+        "in_n_minutes": "em {{ number }} minutos",
+        "in_an_hour": "em uma hora",
+        "just_now": "Agora mesmo",
+        "minute_ago": "um minuto atrás",
+        "minutes_ago": "minutos atrás",
+        "hour_ago": "uma hora atrás",
+        "hours_ago": "horas atrás",
+        "yesterday": "Ontem",
+        "days_ago": "dias atrás",
+        "week_ago": "uma semana atrás",
+        "weeks_ago": "semanas atrás",
+        "soon": "Em breve",
+        "in_n_hours": "em {{ number }} horas",
+        "tomorrow": "Amanhã",
+        "in_n_days": "em {{ number }} dias",
+        "in_a_week": "em uma semana",
+        "in_n_weeks": "em {{ number }} semanas"
+    },
+    "add_translation": "Adicionar tradução",
+    "remove": "Remover",
+    "modals": {
+        "cancel": "Cancelar",
+        "no": "não",
+        "ok": "Ok",
+        "yes": "Sim"
+    },
+    "ws-spinner": {
+        "loading_indicator": "Carregando..."
+    }
+}
