@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WsHttpInterceptor } from '../../../worldskills-angular-lib/src/lib/interceptors/ws-http.interceptor';
 import { AnotherPageComponent } from './another-page/another-page.component';
@@ -109,8 +109,7 @@ export const appTranslationConfig = TranslateModule.forRoot({
     isolate: true // isolate property is the key point to remember/
 });
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HomeComponent,
         AnotherPageComponent,
@@ -120,21 +119,17 @@ export const appTranslationConfig = TranslateModule.forRoot({
         SubpageTwoComponent,
         RelativeDateDemoComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         FormsModule,
-        HttpClientModule,
         OAuthModule.forRoot(),
         RouterModule.forRoot(appRoutes, routerOptions),
         WorldskillsAngularLibModule,
         NgbModule,
         NgSelectModule,
-        appTranslationConfig
-    ],
-    providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true},
-        DatePipe
-    ], bootstrap: [AppComponent]
-})
+        appTranslationConfig], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true },
+        DatePipe,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }

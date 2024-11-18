@@ -1,8 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ModalComponent} from './modal.component';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
@@ -10,10 +11,10 @@ describe('ModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [],
-      declarations: [ModalComponent]
-    })
+    declarations: [ModalComponent],
+    imports: [RouterTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   }));
 

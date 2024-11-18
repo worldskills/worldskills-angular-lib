@@ -21,7 +21,7 @@ import { StandardPollComponent } from './polls/standard-poll/standard-poll.compo
 import { WeightedPollComponent } from './polls/weighted-poll/weighted-poll.component';
 import { VoteControlComponent } from './polls/vote-control/vote-control.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { RelativeDatePipe } from './common/pipes/relative-date.pipe';
 import { MultiselectPollComponent } from './polls/multiselect-poll/multiselect-poll.component';
@@ -64,8 +64,7 @@ export const translateConfig = TranslateModule.forChild({
     isolate: true
 });
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         WorldskillsAngularLibComponent,
         AlertComponent,
         AlertsComponent,
@@ -108,15 +107,6 @@ export const translateConfig = TranslateModule.forChild({
         PanelRowActionsComponent,
         RecipientAwardCertificateFormComponent
     ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        RouterModule,
-        NgbModule,
-        NgSelectModule,
-        translateConfig
-    ],
     exports: [
         WorldskillsAngularLibComponent,
         AlertComponent,
@@ -158,8 +148,11 @@ export const translateConfig = TranslateModule.forChild({
         ModalComponent,
         PanelRowActionsComponent,
         RecipientAwardCertificateFormComponent
-    ],
-    providers: []
-})
+    ], imports: [BrowserModule,
+        FormsModule,
+        RouterModule,
+        NgbModule,
+        NgSelectModule,
+        translateConfig], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class WorldskillsAngularLibModule {
 }

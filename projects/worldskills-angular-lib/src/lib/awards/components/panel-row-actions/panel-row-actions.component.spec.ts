@@ -1,8 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PanelRowActionsComponent} from './panel-row-actions.component';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('PanelRowActionsComponent', () => {
   let component: PanelRowActionsComponent;
@@ -10,10 +11,10 @@ describe('PanelRowActionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [],
-      declarations: [PanelRowActionsComponent]
-    })
+    declarations: [PanelRowActionsComponent],
+    imports: [RouterTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   }));
 
