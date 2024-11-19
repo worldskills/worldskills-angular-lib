@@ -6,6 +6,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Notable changes can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/master/changelog.md).
 
+## Setup
+Insert the following entry into your `local API_AUTH`
+```
+INSERT INTO client_application
+(name, created_by, client_key, secret, requires_authorization, redirect_uri, logout_redirect_uri, can_perform_authentication, grant_type)
+VALUES
+('WorldSkills Angular Lib', 'WorldSkills International', '6321532f6771', '211b2c58-5dbd-4dca-b4e4-fb506d10972b', 'N', 'http://localhost:4200/home', 'http://localhost:4200/home', 'N', 'IMPLICIT')
+```
+
 ## Usage examples
 
 Examples of how library components work can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/master/usage.md).
