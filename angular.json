@@ -45,7 +45,7 @@
             "outputPath": "dist/worldskills-angular-lib-tester",
             "index": "projects/worldskills-angular-lib-tester/src/index.html",
             "main": "projects/worldskills-angular-lib-tester/src/main.ts",
-            "polyfills": "projects/worldskills-angular-lib-tester/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -119,7 +119,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/worldskills-angular-lib-tester/src/test.ts",
-            "polyfills": "projects/worldskills-angular-lib-tester/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.spec.json",
             "karmaConfig": "projects/worldskills-angular-lib-tester/karma.conf.js",
             "assets": [
