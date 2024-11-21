@@ -1,5 +1,8 @@
 # Changelog
 
+## 14.0
+* 14.0.0 Update to angular 18
+
 ## 13.2
 * 13.2.2 fix `lastSearch` potentially breaking pages
 * 13.2.1 ensure we always set `show_child_roles=false` as the default is set to `true` in the API 
