@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {WorldskillsAngularLibService} from '../../worldskills-angular-lib.service';
 import {EntityFetchParams} from '../models/entity-tree-fetch-params';

@@ -13,8 +13,8 @@
             [appName]="'Tester'"
             [menuItems]="wsHeaderMenuItems"
             [showLoginAndLogoutButtons]="true"
-            [isLoggedIn]="true"
-            [currentUser]="fakeUser"
+            [isLoggedIn]="isLoggedIn"
+            [currentUser]="user"
     >
     </ws-header>
 </header>
@@ -223,21 +223,21 @@ change: {{selectChange4}}
       show only if user does NOT have roleA OR roleB
     <\tag>
     </pre>
-    <div *wsUserRole="['roleA', 'roleX']; user : fakeUser; all: false; entity: 1; appId: 100">Should be visible (1/7)
+    <div *wsUserRole="['roleA', 'roleX']; user : user; all: false; entity: 1; appId: 100">Should be visible (1/7)
     </div>
-    <div *wsUserRole="['roleA', 'roleX']; user : fakeUser; all: true; entity: 1; appId: 100">Should not be visible</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; entity: 1; appId: 100">Should be visible (2/7)</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; entity: 1; appId: 200">Should not be visible</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; entity: 1; appId: 100">Should be visible (3/7)</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; entity: 2; appId: 100">Should not be visible</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; entity: 1">Should be visible (4/7)</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; entity: 2">Should not be visible</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; appId: 100">Should be visible (5/7)</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; appId: 200">Should not be visible</div>
-    <div *wsUserRole="'roleB'; user : fakeUser">Should be visible (6/7)</div>
-    <div *wsUserRole="'roleX'; user : fakeUser">Should not be visible</div>
-    <div *wsUserRole="'roleX'; user : fakeUser; negate: true">Should be visible (7/7)</div>
-    <div *wsUserRole="'roleB'; user : fakeUser; negate: true">Should not be visible</div>
+    <div *wsUserRole="['roleA', 'roleX']; user : user; all: true; entity: 1; appId: 100">Should not be visible</div>
+    <div *wsUserRole="'roleB'; user : user; entity: 1; appId: 100">Should be visible (2/7)</div>
+    <div *wsUserRole="'roleB'; user : user; entity: 1; appId: 200">Should not be visible</div>
+    <div *wsUserRole="'roleB'; user : user; entity: 1; appId: 100">Should be visible (3/7)</div>
+    <div *wsUserRole="'roleB'; user : user; entity: 2; appId: 100">Should not be visible</div>
+    <div *wsUserRole="'roleB'; user : user; entity: 1">Should be visible (4/7)</div>
+    <div *wsUserRole="'roleB'; user : user; entity: 2">Should not be visible</div>
+    <div *wsUserRole="'roleB'; user : user; appId: 100">Should be visible (5/7)</div>
+    <div *wsUserRole="'roleB'; user : user; appId: 200">Should not be visible</div>
+    <div *wsUserRole="'roleB'; user : user">Should be visible (6/7)</div>
+    <div *wsUserRole="'roleX'; user : user">Should not be visible</div>
+    <div *wsUserRole="'roleX'; user : user; negate: true">Should be visible (7/7)</div>
+    <div *wsUserRole="'roleB'; user : user; negate: true">Should not be visible</div>
     <div *wsUserRole="'roleB';">This is probably visible since it only shows if the logged in user does not have the
         un-existing role 'roleB'
     </div>

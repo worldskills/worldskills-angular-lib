@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
+import { RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, Router } from '@angular/router';
 import { User } from './models/user';
 import { GenericUtil } from '../common/util/generic.util';
 import { AuthGuardAccess } from './models/auth-guard-access';
@@ -12,7 +12,7 @@ import { RETURN_URL_KEY, USER_CURRENT_KEY } from './constants';
 @Injectable({
   providedIn: 'root'
 })
-export class GuardService implements CanActivate {
+export class GuardService  {
 
     private config: AppConfig;
 

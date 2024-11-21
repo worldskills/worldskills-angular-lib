@@ -101,18 +101,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "worldskills-angular-lib-tester:build"
+            "buildTarget": "worldskills-angular-lib-tester:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "worldskills-angular-lib-tester:build:production"
+              "buildTarget": "worldskills-angular-lib-tester:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "worldskills-angular-lib-tester:build"
+            "buildTarget": "worldskills-angular-lib-tester:build"
           }
         },
         "test": {

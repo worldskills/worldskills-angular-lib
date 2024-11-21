@@ -138,7 +138,7 @@ export class AppComponent {
             this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, true);
         });
 
-        this.isLoggedIn = false;
+        // this.isLoggedIn = false;
         this.dropDownMenuItems = [
             { label: 'Sample', url: '/authorized', hidden: false, requireLogin: false, requiredRoles: [] }
         ];
@@ -495,36 +495,6 @@ export class AppComponent {
 
     onSelectValid(valid: boolean): void {
         console.log('is select search length valid', valid);
-    }
-
-    get fakeUser(): User {
-        return {
-            first_name: 'John',
-            last_name: 'Doe',
-            roles: [
-                {
-                    name: 'roleA',
-                    apply_per_entity: true,
-                    ws_entity: { id: 1 },
-                    ws_entity_ids: [1, 2],
-                    role_application: { application_code: 100 },
-                },
-                {
-                    name: 'roleB',
-                    apply_per_entity: true,
-                    ws_entity: { id: 1 },
-                    ws_entity_ids: [1, 2],
-                    role_application: { application_code: 100 },
-                },
-                {
-                    name: 'roleC',
-                    apply_per_entity: true,
-                    ws_entity: { id: 2 },
-                    ws_entity_ids: [1, 2],
-                    role_application: { application_code: 200 },
-                }
-            ]
-        } as Partial<User> as User;
     }
 
 }

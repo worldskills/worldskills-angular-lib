@@ -6,9 +6,9 @@
 export const environment = {
   production: false,
   apiHttpPattern: ['api.worldskills.show', 'localhost:8080'],
-  apiBaseUrl: 'http://localhost:8081', // port number may need changing ddependding onn your setup
+  apiBaseUrl: 'http://localhost:8080', // port number may need changing ddependding onn your setup
   authUrl: 'http://localhost:50300/oauth/authorize',
-  clientId: '7221138f6772',
+  clientId: '6321532f6771',
   redirectUrl: 'http://localhost:4200/home'
 };
 
