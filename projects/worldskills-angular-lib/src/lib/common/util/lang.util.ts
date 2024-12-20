@@ -9,6 +9,7 @@ export class LangUtil {
             {code: 'de', name: 'German', alt: []},
             {code: 'fr', name: 'French', alt: []},
             {code: 'fi', name: 'Finnish', alt: []},
+            {code: 'it', name: 'Italian', alt: []},
             {code: 'ru_RU', name: 'Russian', alt: []},
             {code: 'tt_RU', name: 'Tatar', alt: []},
           ];
