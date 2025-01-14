@@ -57,6 +57,7 @@
 
 ## 11.4
 
+* 11.4.9 Add Italian to getDefaultLanguages
 * 11.4.8 FIX: lib version not picking up
 * 11.4.7 FIX poll variable
 * 11.4.6 FIX view permissions on Open/Close buttons + translation support
