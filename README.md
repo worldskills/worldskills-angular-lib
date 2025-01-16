@@ -1,6 +1,7 @@
 # WorldSkills Angular Library
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
+if you plan to upgrade other apps to a newer version of angular, please use the [Angular Update Guide](https://angular.dev/update-guide)
 
 ## Changelog
 
