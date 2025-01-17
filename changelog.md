@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.2 update ngx-translate
 * 14.0.1 update bootstrap
 * 14.0.0 Update to angular 18
 
