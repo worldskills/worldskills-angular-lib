@@ -14,8 +14,6 @@ import { fi } from './fi.json';
 import { Subject } from 'rxjs';
 import { User } from '../auth/models/user';
 import { de } from './de.json';
-import { ReturnStatement } from '@angular/compiler';
-import { hasClassName } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Injectable({
   providedIn: 'root'

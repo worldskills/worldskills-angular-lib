@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.1 update bootstrap
 * 14.0.0 Update to angular 18
 
 ## 13.2
