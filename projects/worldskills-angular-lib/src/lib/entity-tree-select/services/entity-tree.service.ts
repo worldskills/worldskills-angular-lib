@@ -5,6 +5,7 @@ import {WorldskillsAngularLibService} from '../../worldskills-angular-lib.servic
 import {EntityFetchParams} from '../models/entity-tree-fetch-params';
 import {EntityTreeListView} from '../../auth/models/entity-tree-list-view';
 import {share} from 'rxjs/operators';
+import { CacheStorageService } from '../../cache/services/cache-storage.service';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import {share} from 'rxjs/operators';
 })
 export class EntityTreeService {
 
-    constructor(protected wsi: WorldskillsAngularLibService, protected http: HttpClient) {
+    constructor(private cache: CacheStorageService, protected wsi: WorldskillsAngularLibService, protected http: HttpClient) {
         this.wsi.serviceConfigSubject.subscribe(
             next => {
                 this.endpoint = next.apiEndpoint + '/auth/ws_entities';
@@ -39,6 +40,7 @@ export class EntityTreeService {
             a.sort === b.sort
         );
     }
+
 
     public clearCache(params: EntityFetchParams = null): void {
         if (params === null) {
@@ -68,7 +70,8 @@ export class EntityTreeService {
         }
     }
 
-    public list(params: EntityFetchParams = {}): Observable<EntityTreeListView> {
+    public list(params: EntityFetchParams = {}, legacyCaching = true): Observable<EntityTreeListView> {
+
         let httpParams = new HttpParams();
         if (params.limit !== undefined) {
             httpParams = httpParams.set('limit', params.limit.toString());
@@ -95,11 +98,20 @@ export class EntityTreeService {
             httpParams = httpParams.set('sort', params.sort.toString());
         }
         const observable = this.http.get<EntityTreeListView>(this.endpoint, {params: httpParams}).pipe(share());
-        const cacheEntry = this.subjects.find(cE => EntityTreeService.equals(cE.params, params));
-        if (cacheEntry) {
-            observable.subscribe(value => cacheEntry.subject.next(value));
+        if (legacyCaching) {
+            const cacheEntry = this.subjects.find(cE => EntityTreeService.equals(cE.params, params));
+            if (cacheEntry) {
+                observable.subscribe(value => cacheEntry.subject.next(value));
+            }
         }
         observable.subscribe(value => this.subject.next(value));
         return observable;
+    }
+
+    public listCached(params: EntityFetchParams = {}, cacheTime = 5 * 60 * 1000): Observable<EntityTreeListView> {
+       const key = `EntityTreeService-list?${JSON.stringify(params)}`;
+       const observable = this.cache.fetchObservable(() => this.list(params), key, new Date(Date.now() + cacheTime));
+       observable.subscribe(value => this.subject.next(value));
+       return observable;
     }
 }

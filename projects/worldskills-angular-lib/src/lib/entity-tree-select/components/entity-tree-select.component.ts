@@ -62,6 +62,10 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
     @Input() showControls = true;
     /** whether to use api caching or not, caching is done per query request object, see EntityTreeService for more details */
     @Input() cache = true;
+    /** implement the cache style for the entity tree. legacy = no changes; any other value uses the modern strategy */
+    @Input() cacheStyle = 'legacy';
+    /** time before cachce needs to be refreshed */
+    @Input() cacheTimerMS =  5 * 60 * 1000;
     /** if the tree is expanded by default */
     @Input() defaultExpand = false;
     private expandedSearch: Array<number> = [];
@@ -212,7 +216,13 @@ export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, 
         if (this.cache === false) {
             observable = this.entityTreeService.list(this.queryParams);
         } else {
-            observable = this.entityTreeService.getCachedSubject(this.queryParams);
+            if (this.cacheStyle == 'legacy')
+            {
+                observable = this.entityTreeService.getCachedSubject(this.queryParams);
+
+            } else {
+                observable = this.entityTreeService.listCached(this.queryParams, this.cacheTimerMS);
+            }
         }
 
         this.writeValueSubscription = combineLatest([
