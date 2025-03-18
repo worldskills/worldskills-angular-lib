@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.4 update fonts: replace frutiger with inter
 * 14.0.3 implemen new caching strategy for entity tree component (legacy active by default). add `[cacheStyle]` param with any value other than `legacy` to activate teh new caching.
 * 14.0.3 add a caching service that supports session and local cache storages
 * 14.0.2 update ngx-translate
