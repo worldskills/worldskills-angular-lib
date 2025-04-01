@@ -155,4 +155,5 @@ export const translateConfig = TranslateModule.forChild({
         NgSelectModule,
         translateConfig], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class WorldskillsAngularLibModule {
+    
 }
