@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ENVIRONMENT_INITIALIZER, EnvironmentProviders, inject, makeEnvironmentProviders, ModuleWithProviders, NgModule } from '@angular/core';
 import { WorldskillsAngularLibComponent } from './worldskills-angular-lib.component';
 import { AlertComponent } from './alerts/alert/alert.component';
 import { AlertsComponent } from './alerts/alerts/alerts.component';
@@ -50,6 +50,8 @@ import { PanelRowActionsComponent } from './awards/components/panel-row-actions/
 import {
     RecipientAwardCertificateFormComponent
 } from './awards/components/recipient-award-certificate-form/recipient-award-certificate-form.component';
+import { WorldskillsAngularLibService } from './worldskills-angular-lib.service';
+import { CommonModule } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
@@ -148,12 +150,19 @@ export const translateConfig = TranslateModule.forChild({
         ModalComponent,
         PanelRowActionsComponent,
         RecipientAwardCertificateFormComponent
-    ], imports: [BrowserModule,
+    ], imports: [CommonModule,
         FormsModule,
         RouterModule,
         NgbModule,
         NgSelectModule,
         translateConfig], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class WorldskillsAngularLibModule {
-    
+    public static forRoot(environment: any): ModuleWithProviders<WorldskillsAngularLibModule> {
+        return {
+            ngModule: WorldskillsAngularLibModule,
+            providers: [
+                { provide: 'environment', useValue: environment }
+            ]
+        };
+    }
 }

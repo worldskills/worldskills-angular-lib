@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.6 make the lib compatible with standalone components
 * 14.0.5 remove WiW from footer
 * 14.0.4 update fonts: replace frutiger with inter
 * 14.0.3 implemen new caching strategy for entity tree component (legacy active by default). add `[cacheStyle]` param with any value other than `legacy` to activate teh new caching.
