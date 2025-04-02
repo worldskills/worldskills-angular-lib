@@ -1,11 +1,13 @@
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { WorldskillsAngularLibModule, WorldskillsAngularLibService, WsiTranslateService } from 'worldskills-angular-lib';
+import { TranslateModule } from '@ngx-translate/core';
+import { LangUtil, WorldskillsAngularLibModule, WorldskillsAngularLibService, WsiTranslateService } from 'worldskills-angular-lib';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, WorldskillsAngularLibModule],
+  imports: [AsyncPipe, RouterOutlet, TranslateModule, WorldskillsAngularLibModule],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -21,11 +23,16 @@ export class AppComponent {
     this.wsiTranslator.onLangChanged.subscribe(code => {
       console.log('Language changed to: ', code);
     });
-    this.wsiTranslator.translator.setDefaultLang('en');
-     this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
-      console.log(values);
-      });
+    // this.wsiTranslator.translator.setDefaultLang('en');  
 
+    // console.log(this.wsiTranslator.availableLanguages['en']);
+
+
+    this.wsiTranslator.translator.get('en').subscribe(
+      (res: string) => {
+        console.log('en', res);
+      }
+    );
   }
 
   configureLib(): void {

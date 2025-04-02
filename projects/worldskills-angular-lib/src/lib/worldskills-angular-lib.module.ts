@@ -50,8 +50,9 @@ import { PanelRowActionsComponent } from './awards/components/panel-row-actions/
 import {
     RecipientAwardCertificateFormComponent
 } from './awards/components/recipient-award-certificate-form/recipient-award-certificate-form.component';
-import { WorldskillsAngularLibService } from './worldskills-angular-lib.service';
 import { CommonModule } from '@angular/common';
+import { WsiTranslateService } from '../public-api';
+import { WSTranslate } from './i18n/ws-translate-pipe';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, '/assets/i18n/lazy-loaded/', '.json');
@@ -107,7 +108,8 @@ export const translateConfig = TranslateModule.forChild({
         WsSpinnerComponent,
         ModalComponent,
         PanelRowActionsComponent,
-        RecipientAwardCertificateFormComponent
+        RecipientAwardCertificateFormComponent,
+        WSTranslate
     ],
     exports: [
         WorldskillsAngularLibComponent,
@@ -149,7 +151,9 @@ export const translateConfig = TranslateModule.forChild({
         WsSpinnerComponent,
         ModalComponent,
         PanelRowActionsComponent,
-        RecipientAwardCertificateFormComponent
+        RecipientAwardCertificateFormComponent,
+        TranslateModule,
+        WSTranslate,
     ], imports: [CommonModule,
         FormsModule,
         RouterModule,
@@ -161,6 +165,7 @@ export class WorldskillsAngularLibModule {
         return {
             ngModule: WorldskillsAngularLibModule,
             providers: [
+                provideHttpClient(withInterceptorsFromDi()),
                 { provide: 'environment', useValue: environment }
             ]
         };

@@ -164,6 +164,7 @@
             ],
             "tsConfig": "projects/worldskills-angular-lib-tester-standalone/tsconfig.app.json",
             "assets": [
+              "projects/worldskills-angular-lib-tester-standalone/src/assets",
               {
                 "glob": "**/*",
                 "input": "projects/worldskills-angular-lib-tester-standalone/public"
@@ -172,7 +173,10 @@
             "styles": [
               "projects/worldskills-angular-lib-tester-standalone/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.slim.js",
+              "node_modules/@worldskills/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
           },
           "configurations": {
             "production": {

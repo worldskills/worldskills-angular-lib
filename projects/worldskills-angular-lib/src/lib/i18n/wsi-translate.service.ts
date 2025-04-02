@@ -19,7 +19,7 @@ import { de } from './de.json';
   providedIn: 'root'
 })
 export class WsiTranslateService {
-  private availableLanguages = { ar_AE, en, de, fr, fi, pt_BR, ru_RU, tt_RU, zh_CN };
+  public availableLanguages = { ar_AE, en, de, fr, fi, pt_BR, ru_RU, tt_RU, zh_CN };
 
   // a fallback change event as lazy loaded events may not produce the default on-lang-changed
   // will be fixed inn future angular versions
@@ -61,6 +61,7 @@ export class WsiTranslateService {
     }
 
     this.translator.setTranslation(code, lang, true);
+
     if (current !== code)
     {
       this.onLangChanged.next(this.getSelectedLanguage());

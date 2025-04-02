@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.7 implement wsTranslate pipe to support standalone cmoponents
 * 14.0.6 make the lib compatible with standalone components
 * 14.0.5 remove WiW from footer
 * 14.0.4 update fonts: replace frutiger with inter
