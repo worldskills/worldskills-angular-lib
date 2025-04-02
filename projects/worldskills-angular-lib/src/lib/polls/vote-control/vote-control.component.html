@@ -3,13 +3,13 @@
 <ng-template #voteControlDefaultTitleTemplate>
   {{ poll.title.text }}
   <br />
-  <small class="text-muted">{{ 'polls.created.by' | translate }}: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
+  <small class="text-muted">{{ 'polls.created.by' | wsTranslate | async }}: {{ poll.createdBy.firstName }} {{ poll.createdBy.lastName }}</small>
 </ng-template>
 <ng-template #voteControlDefaultFooterTemplate>
-  <small class="text-muted"><strong>{{ 'polls.status' | translate }}:</strong> {{ state }} </small>&nbsp;|&nbsp;
+  <small class="text-muted"><strong>{{ 'polls.status' | wsTranslate | async }}:</strong> {{ state }} </small>&nbsp;|&nbsp;
   <span *ngIf="!useDateRange()">
     <span *ngIf="poll.start">
-      {{ poll.start | date: dateFormat }} {{ 'polls.to' | translate }} {{ poll.expiry | date: dateFormat }}
+      {{ poll.start | date: dateFormat }} {{ 'polls.to' | wsTranslate | async }} {{ poll.expiry | date: dateFormat }}
     </span>
   </span>
   <span *ngIf="useDateRange()">
@@ -23,15 +23,15 @@
 </ng-template>
 <ng-template #optionsDefaultTemplate>
   <div *ngIf="voted.hasVoted">
-    <em>{{ 'polls.messages.voted' | translate }}</em>
+    <em>{{ 'polls.messages.voted' | wsTranslate | async }}</em>
     <div *ngIf="voted.abstained">
-      <strong>{{ 'polls.messages.abstained' | translate }}</strong>
+      <strong>{{ 'polls.messages.abstained' | wsTranslate | async }}</strong>
     </div>
     <div *ngIf="voted.anonymous">
-      <strong>{{ 'polls.messages.anon' | translate }}</strong>
+      <strong>{{ 'polls.messages.anon' | wsTranslate | async }}</strong>
     </div>
     <div *ngIf="!voted.abstained && !voted.anonymous">
-      <strong>{{ 'polls.messages.choices' | translate }}</strong>
+      <strong>{{ 'polls.messages.choices' | wsTranslate | async }}</strong>
       <ol>
         <li *ngFor="let entry of voted.votes">
           {{ getVoteText(entry) }}
@@ -57,17 +57,17 @@
 
 <ng-template #controlBarLeftDefaultTemplate>
   <button [disabled]="hasVotesSelected()" *ngIf="showVoteButton()" class="btn btn-success" href="#"
-    (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; {{ 'polls.buttons.vote' | translate }}</button>&nbsp;
+    (click)="vote(); false;"><i class="fa fa-check"></i>&nbsp; {{ 'polls.buttons.vote' | wsTranslate | async }}</button>&nbsp;
   <button *ngIf="showAbstainButton()" class="btn btn-warning" href="#" (click)="abstain(); false;"><i
-      class="fa fa-ban"></i>&nbsp; {{ 'polls.buttons.abstain' | translate }}</button>&nbsp;
+      class="fa fa-ban"></i>&nbsp; {{ 'polls.buttons.abstain' | wsTranslate | async }}</button>&nbsp;
   <button *ngIf="showClearVoteButton()" class="btn btn-warning" href="#" (click)="unvote(); false;"><i
-      class="fa fa-close"></i>&nbsp; {{ 'polls.buttons.clear.vote' | translate }}</button>&nbsp;
+      class="fa fa-close"></i>&nbsp; {{ 'polls.buttons.clear.vote' | wsTranslate | async }}</button>&nbsp;
   <button *ngIf="viewResultsState() && state === 'running'" class="btn btn-primary" href="#"
-    (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; {{ 'polls.buttons.view.results' | translate }}</button>&nbsp;
+    (click)="changeView('result'); false;"><i class="fa fa-area-chart"></i>&nbsp; {{ 'polls.buttons.view.results' | wsTranslate | async }}</button>&nbsp;
   <button *ngIf="view === 'result' && state === 'running'" class="btn btn-primary" href="#"
-    (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; {{ 'polls.buttons.view.choices' | translate }}</button>&nbsp;
+    (click)="changeView('question'); false;"><i class="fa fa-question-circle"></i>&nbsp; {{ 'polls.buttons.view.choices' | wsTranslate | async }}</button>&nbsp;
   <span *ngIf="!isWhiteListed()" class="vote-not-allowed">
-    {{ 'polls.vote_note_allowed' | translate }}
+    {{ 'polls.vote_note_allowed' | wsTranslate | async }}
   </span>
 </ng-template>
 
@@ -80,25 +80,25 @@
     </button>
     <div class="dropdown-menu">
       <a *ngIf="view === 'result' && showExportButton" (click)="export(); false;" class="dropdown-item" href="#">
-        <i class="fa fa-download"></i>&nbsp;{{ 'polls.buttons.export.results' | translate }}
+        <i class="fa fa-download"></i>&nbsp;{{ 'polls.buttons.export.results' | wsTranslate | async }}
       </a>
       <a *ngIf="showResetButton" (click)="resetClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-refresh"></i>&nbsp;{{ 'polls.buttons.reset' | translate }}
+        <i class="fa fa-refresh"></i>&nbsp;{{ 'polls.buttons.reset' | wsTranslate | async }}
       </a>
       <a *ngIf="showExtendButton" (click)="extendClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-arrows-h"></i>&nbsp;{{ 'polls.buttons.extend' | translate }}
+        <i class="fa fa-arrows-h"></i>&nbsp;{{ 'polls.buttons.extend' | wsTranslate | async }}
       </a>
       <a *ngIf="showEditButton" (click)="editClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-edit"></i>&nbsp;{{ 'polls.buttons.edit' | translate }}
+        <i class="fa fa-edit"></i>&nbsp;{{ 'polls.buttons.edit' | wsTranslate | async }}
       </a>
       <a *ngIf="showDeleteButton" (click)="deleteClick(poll); false;" class="dropdown-item" href="#">
-        <i class="fa fa-trash"></i>&nbsp;{{ 'polls.buttons.delete' | translate }}
+        <i class="fa fa-trash"></i>&nbsp;{{ 'polls.buttons.delete' | wsTranslate | async }}
       </a>
       <a *ngIf="showOpenButton && state != 'running'" class="dropdown-item" href="#" (click)="openClick(poll); false;">
-        <i class="fa fa-play"></i>&nbsp;{{ 'polls.buttons.open' | translate }}
+        <i class="fa fa-play"></i>&nbsp;{{ 'polls.buttons.open' | wsTranslate | async }}
       </a>
       <a *ngIf="showCloseButton && state == 'running'" class="dropdown-item" href="#" (click)="closeClick(poll); false;">
-          <i class="fa fa-stop"></i>&nbsp;{{ 'polls.buttons.close' | translate }}
+          <i class="fa fa-stop"></i>&nbsp;{{ 'polls.buttons.close' | wsTranslate | async }}
       </a>
     </div>
   </div>

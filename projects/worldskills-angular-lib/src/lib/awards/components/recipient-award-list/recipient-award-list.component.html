@@ -14,10 +14,10 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th class="border-top-0">{{'award' | translate}}</th>
-                    <th class="border-top-0">{{'presented_at' | translate}}</th>
-                    <th class="border-top-0">{{'public_extra_information' | translate}}</th>
-                    <th class="border-top-0">{{'action' | translate}}</th>
+                    <th class="border-top-0">{{'award' | wsTranslate | async}}</th>
+                    <th class="border-top-0">{{'presented_at' | wsTranslate | async}}</th>
+                    <th class="border-top-0">{{'public_extra_information' | wsTranslate | async}}</th>
+                    <th class="border-top-0">{{'action' | wsTranslate | async}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,7 @@
                             </tr>
                             <tr class="p-0 m-0 border-0">
                                 <td colspan="4" class="p-0 m-0 border-0 text-right"><p
-                                        class="text-muted small">{{'last_updated' | translate}}
+                                        class="text-muted small">{{'last_updated' | wsTranslate | async}}
                                     : {{ra.last_updated | date: 'long'}}</p></td>
                             </tr>
                         </ng-container>
@@ -48,7 +48,7 @@
                     <ng-template #recipientAwardsEmpty>
                         <tr>
                             <!-- no awards on the list-->
-                            <td colspan="5">{{'no_awards_on_the_list' | translate}}</td>
+                            <td colspan="5">{{'no_awards_on_the_list' | wsTranslate | async}}</td>
                         </tr>
                     </ng-template>
                 </ng-container>
@@ -64,7 +64,7 @@
                 </tbody>
             </table>
 
-            <a (click)="addAward = true" [routerLink]="[]" *ngIf="canCreate">+ {{'add_award' | translate}}</a>
+            <a (click)="addAward = true" [routerLink]="[]" *ngIf="canCreate">+ {{'add_award' | wsTranslate | async}}</a>
         </div>
     </div>
 </div>
@@ -72,8 +72,8 @@
 <ws-modal [open]="addAward || !!editRecipientAward" (onClose)="closeModal()"
           [options]="{ size: 'lg' }">
     <ng-container header>
-        <h4 *ngIf="addAward">{{'add_new_award' | translate}}</h4>
-        <h4 *ngIf="!!editRecipientAward">{{'edit_award' | translate}} - {{editRecipientAward.award.name.text}}</h4>
+        <h4 *ngIf="addAward">{{'add_new_award' | wsTranslate | async}}</h4>
+        <h4 *ngIf="!!editRecipientAward">{{'edit_award' | wsTranslate | async}} - {{editRecipientAward.award.name.text}}</h4>
     </ng-container>
 
     <ng-container body>

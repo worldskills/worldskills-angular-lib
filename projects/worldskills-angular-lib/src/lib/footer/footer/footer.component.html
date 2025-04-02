@@ -1,15 +1,15 @@
 <ng-template #col1DefaultTemplate>
-  <h1><a href="https://worldskills.org/internal/" target="_blank">{{ 'footer.links.my.worldskills' | translate }}</a>
+  <h1><a href="https://worldskills.org/internal/" target="_blank">{{ 'footer.links.my.worldskills' | wsTranslate | async }}</a>
   </h1>
   <ul>
-    <li><a href="https://glossary.worldskills.org/" target="_blank">{{ 'footer.links.glossary' | translate }}</a></li>
+    <li><a href="https://glossary.worldskills.org/" target="_blank">{{ 'footer.links.glossary' | wsTranslate | async }}</a></li>
     <li><a href="https://registrations.worldskills.org/"
-        target="_blank">{{ 'footer.links.registrations' | translate }}</a></li>
-    <li><a href="https://forums.worldskills.org/" target="_blank">{{ 'footer.links.forums' | translate }}</a></li>
-    <li><a href="https://il.worldskills.org/" target="_blank">{{ 'footer.links.infrastructure.lists' | translate }}</a>
+        target="_blank">{{ 'footer.links.registrations' | wsTranslate | async }}</a></li>
+    <li><a href="https://forums.worldskills.org/" target="_blank">{{ 'footer.links.forums' | wsTranslate | async }}</a></li>
+    <li><a href="https://il.worldskills.org/" target="_blank">{{ 'footer.links.infrastructure.lists' | wsTranslate | async }}</a>
     </li>
     <li><a href="https://skill-management.worldskills.org/"
-        target="_blank">{{ 'footer.links.skill.management' | translate }}</a></li>
+        target="_blank">{{ 'footer.links.skill.management' | wsTranslate | async }}</a></li>
   </ul>
 </ng-template>
 <ng-template #col6DefaultTemplate>
@@ -48,13 +48,13 @@
     <div class="ws-page-footer-row pb-3">
       <div class="ws-page-footer-col-lg">
         <ul class="list-inline mt-2">
-          <li class="list-inline-item">© {{date | date:'yyyy'}} {{ 'footer.copyright.wsi' | translate }}</li>
+          <li class="list-inline-item">© {{date | date:'yyyy'}} {{ 'footer.copyright.wsi' | wsTranslate | async }}</li>
           <li class="list-inline-item"><a href="https://worldskills.org/site/privacy/"
-              target="_blank">{{ 'footer.copyright.privacy' | translate }}</a></li>
+              target="_blank">{{ 'footer.copyright.privacy' | wsTranslate | async }}</a></li>
           <li class="list-inline-item"><a href="https://worldskills.org/site/terms/"
-              target="_blank">{{ 'footer.copyright.terms' | translate }}</a></li>
+              target="_blank">{{ 'footer.copyright.terms' | wsTranslate | async }}</a></li>
           <li class="list-inline-item"><a href="https://worldskills.org/site/contact/"
-              target="_blank">{{ 'footer.copyright.contact' | translate }}</a></li>
+              target="_blank">{{ 'footer.copyright.contact' | wsTranslate | async }}</a></li>
         </ul>
       </div>
       <div class="ws-page-footer-col-lg">
@@ -62,7 +62,7 @@
           <div class="btn-group btn-group-sm dropup">
             <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              {{ 'footer.translation.language' | translate }}
+              {{ 'footer.translation.language' | wsTranslate | async }}
             </button>
             <div class="dropdown-menu dropdown-menu-right">
               <a *ngFor="let language of getLanguages()" (click)="changeLanguage(language); false;"
@@ -71,7 +71,7 @@
               </a>
               <div class="dropdown-divider"></div>
               <a (click)="$event.preventDefault(); languagePrompt();" class="dropdown-item" href="#">
-                {{ 'footer.translation.missing' | translate }}
+                {{ 'footer.translation.missing' | wsTranslate | async }}
               </a>
             </div>
           </div>

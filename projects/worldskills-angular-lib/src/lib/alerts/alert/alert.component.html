@@ -4,7 +4,7 @@
   </button>
   <div class="pull-right">
     <button *ngIf="canClose() && closeStyle === 'button'" (click)="dismiss()" type="button" class="btn btn-sm btn-danger" data-dismiss="alert" aria-label="Close">
-      {{ 'dialogue.close' | translate }}
+      {{ 'dialogue.close' | wsTranslate | async }}
     </button>
   </div>
 </ng-template>

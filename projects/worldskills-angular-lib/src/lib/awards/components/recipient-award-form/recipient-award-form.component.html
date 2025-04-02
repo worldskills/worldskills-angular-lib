@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row my-1">
             <div class="col-4 text-right font-weight-bold">
-                <label for="award">{{'award' | translate}}</label>
+                <label for="award">{{'award' | wsTranslate | async}}</label>
             </div>
             <div class="col-8">
                 <ng-select id="award"
@@ -20,7 +20,7 @@
         </div>
         <div class="row my-1">
             <div class="col-4 text-right font-weight-bold">
-                <label for="presentedAt">{{'presented_at' | translate}}</label>
+                <label for="presentedAt">{{'presented_at' | wsTranslate | async}}</label>
             </div>
             <div class="col-8">
                 <input type="number" class="form-control" name="presentedAt" id="presentedAt"
@@ -29,33 +29,33 @@
         </div>
         <div class="row my-1">
             <div class="col-4 text-right font-weight-bold">
-                <label for="extraInformation">{{'extra_information' | translate}}</label>
+                <label for="extraInformation">{{'extra_information' | wsTranslate | async}}</label>
             </div>
             <div class="col-8">
                 <textarea class="form-control"
                           name="extraInformation" id="extraInformation"
                           rows="4"
-                          placeholder="{{'extra_information' | translate}}"
+                          placeholder="{{'extra_information' | wsTranslate | async}}"
                           [ngModel]="recipientAward ? recipientAward.extra_information : null">
                 </textarea>
             </div>
         </div>
         <div class="row my-1">
             <div class="col-4 text-right font-weight-bold">
-                <label for="publicExtraInformation">{{'public_extra_information' | translate}}</label>
+                <label for="publicExtraInformation">{{'public_extra_information' | wsTranslate | async}}</label>
             </div>
             <div class="col-8">
                 <textarea class="form-control"
                           name="publicExtraInformation" id="publicExtraInformation"
                           rows="4"
-                          placeholder="{{'public_extra_information' | translate}}"
+                          placeholder="{{'public_extra_information' | wsTranslate | async}}"
                           [ngModel]="recipientAward ? recipientAward.public_extra_information : null">
                 </textarea>
             </div>
         </div>
 
         <ng-container *ngIf="certificateEnabled && (selectedAward?.has_certificate || recipientAward?.award?.has_certificate)">
-            <h4>{{'certificates' | translate | titlecase}}</h4>
+            <h4>{{'certificates' | wsTranslate | async | titlecase}}</h4>
             <ws-recipient-award-certificate-form (certificatesEmitter)="certificatesEmitReceiver($event)"
                                                  [certificates]="certificates"></ws-recipient-award-certificate-form>
         </ng-container>
@@ -63,9 +63,9 @@
     <div class="row">
         <div class="col-12 text-right">
             <button type="button" class="btn btn-warning btn-sm"
-                    (click)="cancel.emit()">{{'cancel' | translate}}</button>
+                    (click)="cancel.emit()">{{'cancel' | wsTranslate | async}}</button>
             <button type="submit"
-                    class="btn btn-success btn-sm ml-1">{{'save' | translate}}</button>
+                    class="btn btn-success btn-sm ml-1">{{'save' | wsTranslate | async}}</button>
         </div>
     </div>
 </form>

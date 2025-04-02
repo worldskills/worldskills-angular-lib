@@ -29,11 +29,11 @@
                     {{ currentUser.last_name }}</a>
                 <div class="dropdown-divider"></div>
                 <a *ngFor="let item of dropDownMenuItems | wsMenuAccessFilter: isLoggedIn: userRoles()" class="dropdown-item" [routerLink]="item.params ? [item.url, item.params] : [item.url]">{{ item.label }}</a>
-                <a class="dropdown-item" href="#" (click)="logout(); false;">{{ 'auth.logout' | translate }}</a>
+                <a class="dropdown-item" href="#" (click)="logout(); false;">{{ 'auth.logout' | wsTranslate | async }}</a>
             </div>
         </div>
         <a class="btn btn-light btn-sm ml-2 wsi-login" (click)="login(); false;"
-           *ngIf="showLoginButton()">{{ 'auth.login' | translate }}</a>
+           *ngIf="showLoginButton()">{{ 'auth.login' | wsTranslate | async }}</a>
     </div>
 </ng-template>
 

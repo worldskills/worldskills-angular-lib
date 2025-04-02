@@ -28,7 +28,6 @@ export class WSTranslate implements PipeTransform {
   }
 
   getValue(obj: any, key: string[]): any {
-    console.log("getValue", obj, key);
     if (obj === null || obj === undefined) {
       return null;
     }
