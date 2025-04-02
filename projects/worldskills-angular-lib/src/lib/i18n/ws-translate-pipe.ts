@@ -18,8 +18,9 @@ export class WSTranslate implements PipeTransform {
     const lang = this.wsiTranslate.getCurrentOrDefaultCode();
     this.wsiTranslate.init(lang);
     const obj = this.wsiTranslate.availableLanguages[lang];
+    const flat = this.flatten(obj);
 
-    const value = this.getValue(obj, peices);
+    const value = flat[key];
     if (value === null || value === undefined) {
       return this.wsiTranslate.translator.get(key);
     } else {
@@ -27,19 +28,22 @@ export class WSTranslate implements PipeTransform {
     }
   }
 
-  getValue(obj: any, key: string[]): any {
+  flatten(obj: any): any {
     if (obj === null || obj === undefined) {
       return null;
     }
-    if (key.length === 1) {
-      const value = obj[key[0]];
-      if (value === null || value === undefined) {
-        return null;
+    const result: any = {};
+    Object.keys(obj).forEach((key) => {
+      if (typeof obj[key] === "object") {
+        const flatObject = this.flatten(obj[key]);
+        Object.keys(flatObject).forEach((flatKey) => {
+          result[`${key}.${flatKey}`] = flatObject[flatKey];
+        });
       } else {
-        return value;
+        result[key] = obj[key];
       }
-    } else {
-      return this.getValue(obj[key[0]], key.slice(1));
-    }
+    });
+    return result;
   }
+
 }
