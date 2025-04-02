@@ -1,7 +1,6 @@
 # WorldSkills Angular Library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
-if you plan to upgrade other apps to a newer version of angular, please use the [Angular Update Guide](https://angular.dev/update-guide)
+This project is library of common functionality that supports the development of WorldSkills applications.
 
 ## Changelog
 
@@ -18,7 +17,7 @@ VALUES
 
 ## Usage examples
 
-Examples of how library components work can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/master/usage.md).
+Examples of how library components work can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/main/usage.md).
 
 ## Development server
 
@@ -83,6 +82,19 @@ add the following import statement into your app.module.ts
 ensure the following modules are within the `import: { ... }` section of your app.module.ts  
 
 ```TypeScript
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
+
+export const appTranslationConfig = TranslateModule.forRoot({
+  loader: {
+    provide: TranslateLoader,
+    useFactory: HttpLoaderFactory,
+    deps: [HttpClient],
+  },
+  isolate: true, // isolate property is the key point to remember/
+});
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +106,7 @@ ensure the following modules are within the `import: { ... }` section of your ap
     HttpClientModule,
     OAuthModule.forRoot(),
     RouterModule.forRoot(appRoutes, routerOptions),
+    appTranslationConfig,
     WorldskillsAngularLibModule,
     NgbModule,
     NgSelectModule
@@ -104,6 +117,35 @@ ensure the following modules are within the `import: { ... }` section of your ap
 })
 export class AppModule {
 }
+```
+
+for Standalone apps, you do not have an AppModule, you need to do this in the `appConfig` instead
+ensure the following modules are within the `importProvidersFrom: { ... }` section of your app.config.ts  
+
+```TypeScript
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
+
+export const appTranslationConfig = TranslateModule.forRoot({
+  loader: {
+    provide: TranslateLoader,
+    useFactory: HttpLoaderFactory,
+    deps: [HttpClient],
+  },
+  isolate: true, // isolate property is the key point to remember/
+});
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    importProvidersFrom(
+      appTranslationConfig,
+      WorldskillsAngularLibModule.forRoot({})
+    ),
+  ],
+};
 ```
 
 ### configure the module
