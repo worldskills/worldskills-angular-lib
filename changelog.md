@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.10 implement`dependsOn`in polls
 * 14.0.9 wsTranslate caters for complex keys
 * 14.0.8 implement wsTranslate internally
 * 14.0.7 implement wsTranslate pipe to support standalone cmoponents

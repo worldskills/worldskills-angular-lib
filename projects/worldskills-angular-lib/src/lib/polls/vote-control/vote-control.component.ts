@@ -30,6 +30,7 @@ export class VoteControlComponent implements OnInit {
   @Input() poll: Poll;
   @Input() results: Result[];
   @Input() voted: Vote;
+  @Input() votedDependsOn: Vote;
   @Input() tracks: Track[];
   @Input() confirmBeforeVote: boolean;
   @Input() confirmBeforeAbstain: boolean;
@@ -121,7 +122,10 @@ export class VoteControlComponent implements OnInit {
     if (this.voted.hasVoted) {
       alert('You have already voted');
     } else {
-
+      if (this.poll.dependsOn && this.votedDependsOn && !this.votedDependsOn.hasVoted) {
+        alert(`You must vote on the poll "${this.poll.dependsOn.title.text}" before you can vote on this poll.`);
+        return;
+      }
       if (this.confirmBeforeVote) {
         const voteSelections = [];
         this.selection.forEach(selected => {
@@ -143,6 +147,10 @@ export class VoteControlComponent implements OnInit {
     if (this.voted.hasVoted) {
       alert('You have already voted');
     } else {
+       if (this.poll.dependsOn && this.votedDependsOn && !this.votedDependsOn.hasVoted) {
+        alert(`You must vote on the poll "${this.poll.dependsOn.title.text}" before you can vote on this poll.`);
+        return;
+      }
       if (this.confirmBeforeAbstain) {
         if (confirm(`Are you sure you wish to abstain from voting ?`)) {
           this.abstainSelected.emit();

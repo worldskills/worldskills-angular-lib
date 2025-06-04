@@ -30,4 +30,5 @@ export interface Poll {
   userVote?: Vote;
   listId?: number;
   allowedVoters?: Person[];
+  dependsOn?: Poll
 }
