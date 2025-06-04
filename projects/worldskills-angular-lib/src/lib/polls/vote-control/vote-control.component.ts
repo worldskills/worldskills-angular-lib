@@ -9,6 +9,7 @@ import { OptionHandler } from '../models/optionHandler';
 import { toDate } from '../../common/helpers/date.helper';
 import { Track } from '../models/track';
 import { WSIDateFormat } from '../../date/wsi-date-format';
+import { WsiToastService } from '../../alerts/wsi-toast.service';
 
 @Component({
   selector: 'ws-vote-control',
@@ -17,6 +18,7 @@ import { WSIDateFormat } from '../../date/wsi-date-format';
 })
 export class VoteControlComponent implements OnInit {
   @Input() personId; // required for WhiteList polls
+  @Input() useToastNotifications: boolean
   // button flags
   @Input() showEditButton: boolean;
   @Input() showExtendButton: boolean;
@@ -74,7 +76,7 @@ export class VoteControlComponent implements OnInit {
   selection: VoteEntry[];
   dateFormat: string;
 
-  constructor() { }
+  constructor(private toasts: WsiToastService) { }
 
 
   ngOnInit(): void {
@@ -114,16 +116,43 @@ export class VoteControlComponent implements OnInit {
     }
   }
 
+  notifyInfo(message: string): void {
+    if (this.useToastNotifications) {
+     this.toasts.showStandard(message);
+    } else {
+      // Fallback to alert if toast notifications are not used
+      alert(message);
+    }
+  }
+
+  notifySuccess(title: string, message: string): void {
+    if (this.useToastNotifications) {
+     this.toasts.showSuccess(title, message);
+    } else {
+      // Fallback to alert if toast notifications are not used
+      alert(message);
+    }
+  }
+
+   notifyError(title: string, message: string): void {
+    if (this.useToastNotifications) {
+     this.toasts.showError(title, message);
+    } else {
+      // Fallback to alert if toast notifications are not used
+      alert(message);
+    }
+  }
+
   selected(model: VoteEntry[]): void {
     this.selection = model;
   }
 
   vote(): void {
     if (this.voted.hasVoted) {
-      alert('You have already voted');
+      this.notifyInfo('You have already voted');
     } else {
       if (this.poll.dependsOn && this.votedDependsOn && !this.votedDependsOn.hasVoted) {
-        alert(`You must vote on the poll "${this.poll.dependsOn.title.text}" before you can vote on this poll.`);
+        this.notifyError('Error', `You must vote on the poll "${this.poll.dependsOn.title.text}" before you can vote on this poll.`);
         return;
       }
       if (this.confirmBeforeVote) {
@@ -145,10 +174,10 @@ export class VoteControlComponent implements OnInit {
 
   abstain(): void {
     if (this.voted.hasVoted) {
-      alert('You have already voted');
+      this.notifyInfo('You have already voted');
     } else {
        if (this.poll.dependsOn && this.votedDependsOn && !this.votedDependsOn.hasVoted) {
-        alert(`You must vote on the poll "${this.poll.dependsOn.title.text}" before you can vote on this poll.`);
+        this.notifyError('Error', `You must vote on the poll "${this.poll.dependsOn.title.text}" before you can vote on this poll.`);
         return;
       }
       if (this.confirmBeforeAbstain) {
