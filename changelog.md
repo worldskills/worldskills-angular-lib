@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.12 implement `wsFilter` pipe to filter array of objects based on key or predicate. 
 * 14.0.11 extend toast notifications + implement toast notifiations on the vote control
 * 14.0.10 implement`dependsOn`in polls
 * 14.0.9 wsTranslate caters for complex keys
@@ -9,7 +10,7 @@
 * 14.0.6 make the lib compatible with standalone components
 * 14.0.5 remove WiW from footer
 * 14.0.4 update fonts: replace frutiger with inter
-* 14.0.3 implemen new caching strategy for entity tree component (legacy active by default). add `[cacheStyle]` param with any value other than `legacy` to activate teh new caching.
+* 14.0.3 implement new caching strategy for entity tree component (legacy active by default). add `[cacheStyle]` param with any value other than `legacy` to activate teh new caching.
 * 14.0.3 add a caching service that supports session and local cache storages
 * 14.0.2 update ngx-translate
 * 14.0.1 update bootstrap
@@ -54,7 +55,7 @@
 * upgrade libraries to more modern versions
 
 ## 11.6
-* 11.6.0 Add sentry as a dependany and include a sentry helper method
+* 11.6.0 Add sentry as a dependency and include a sentry helper method
 
 ## 11.5
 * 11.5.12 FIX Vote controller not refreshing

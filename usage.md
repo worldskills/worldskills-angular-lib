@@ -179,6 +179,85 @@ The footer component has been made with 6 columns that can be overriden when nee
   <ws-datetime-picker [(ngModel)]="dateTime" (change)="dateTimeChange($event)"></ws-datetime-picker>
 ```
 
+## Filtering Data with `wsFilter` Pipe
+
+The `wsFilter` pipe is a versatile tool for filtering arrays in Angular templates.
+It supports two modes: **search by string across specific keys** and **filter by custom predicate**.
+
+### 1. Filter by Search Term (with Keys)
+
+Use this form when you want to filter a list by a string value across one or more object properties.
+
+#### Syntax
+
+```html
+{{ items | wsFilter: searchTerm : ['key1', 'key2', ...] }}
+```
+
+#### Example
+
+```typescript
+items = [
+  { name: 'Alice', role: 'Admin' },
+  { name: 'Bob', role: 'User' },
+  { name: 'Charlie', role: 'Moderator' },
+];
+searchTerm = 'a';
+```
+
+```html
+<li *ngFor="let user of items | wsFilter: searchTerm : ['name', 'role']">
+  {{ user.name }} – {{ user.role }}
+</li>
+```
+
+**Result:**
+
+* Displays `Alice` and `Charlie` because the letter **a** appears in either `name` or `role`.
+
+---
+
+### 2. Filter by Custom Predicate
+
+If you need more complex filtering logic, pass a predicate function.
+
+#### Syntax
+
+```html
+{{ items | wsFilter: predicateFn }}
+```
+
+#### Example
+
+```typescript
+items = [
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 30 },
+  { name: 'Charlie', age: 22 },
+];
+
+isAdult = (user: { name: string; age: number }) => user.age >= 25;
+```
+
+```html
+<li *ngFor="let user of items | wsFilter: isAdult">
+  {{ user.name }} ({{ user.age }})
+</li>
+```
+
+**Result:**
+
+* Displays `Alice` and `Bob` because they meet the condition `age >= 25`.
+
+---
+
+### Notes
+
+* When using the search mode, ensure you pass the `keys` array to specify which fields to search.
+* The pipe is **pure**, so it won’t recalculate unless the array or arguments change.
+* If `items` is `null`, empty, or the filter argument is falsy, the original array is returned unmodified.
+
+
 ## To be continued
 
 As we touch more parts of the library more documentation would be added.
