@@ -16,6 +16,7 @@ export * from './lib/common/models/pair';
 /*
   Shared Pipes
 */
+export * from './lib/common/pipes/filter.pipe'
 export * from './lib/common/pipes/date-sort.pipe';
 export * from './lib/common/pipes/relative-date.pipe';
 
