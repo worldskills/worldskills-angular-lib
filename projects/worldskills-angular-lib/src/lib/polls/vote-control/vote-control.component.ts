@@ -27,6 +27,7 @@ export class VoteControlComponent implements OnInit {
   @Input() showExportButton: boolean;
   @Input() showOpenButton: boolean;
   @Input() showCloseButton: boolean;
+  @Input() showCustomView: boolean;
 
   // input models
   @Input() poll: Poll;
@@ -53,6 +54,7 @@ export class VoteControlComponent implements OnInit {
   @Input() titleTemplate: TemplateRef<any>;
   @Input() footerTemplate: TemplateRef<any>;
   @Input() questionTemplate: TemplateRef<any>;
+  @Input() customViewTemplate: TemplateRef<any>;
 
   // events
   @Output() edit: EventEmitter<Poll> = new EventEmitter();

@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.0.14 custom view template for votes control
 * 14.0.13 fixed typo in vote control
 * 14.0.12 implement `wsFilter` pipe to filter array of objects based on key or predicate. 
 * 14.0.11 extend toast notifications + implement toast notifiations on the vote control

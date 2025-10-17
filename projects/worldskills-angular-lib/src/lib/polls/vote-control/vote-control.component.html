@@ -113,19 +113,22 @@
       <ng-container *ngTemplateOutlet="questionTemplate ? questionTemplate : voteControlDefaultQuestionTemplate">
       </ng-container>
     </div>
-    <div class="card-text" *ngIf="view === 'question'">
+    <div class="card-text" *ngIf="view === 'question' && !showCustomView">
       <ng-container *ngTemplateOutlet="beforeOptionsTemplate ? beforeOptionsTemplate : voteControlEmptyTemplate">
       </ng-container>
       <ng-container *ngTemplateOutlet="optionsTemplate ? optionsTemplate : optionsDefaultTemplate"></ng-container>
       <ng-container *ngTemplateOutlet="afterOptionsTemplate ? afterOptionsTemplate : voteControlEmptyTemplate">
       </ng-container>
     </div>
-    <div class="card-text" *ngIf="view === 'result'">
+    <div class="card-text" *ngIf="view === 'result' && !showCustomView">
       <ng-container *ngTemplateOutlet="beforeResultTemplate ? beforeResultTemplate : voteControlEmptyTemplate">
       </ng-container>
       <ng-container *ngTemplateOutlet="resultTemplate ? resultTemplate : resultDefaultTemplate"></ng-container>
       <ng-container *ngTemplateOutlet="afterResultTemplate ? afterResultTemplate : voteControlEmptyTemplate">
       </ng-container>
+    </div>
+    <div class="card-text" *ngIf="showCustomView">
+      <ng-container *ngTemplateOutlet="customViewTemplate"></ng-container>
     </div>
     <hr />
 
