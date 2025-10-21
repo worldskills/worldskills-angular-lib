@@ -2,6 +2,13 @@
 
 This project is library of common functionality that supports the development of WorldSkills applications.
 
+## Versioning guidelines
+The versioning is divided into 3 parts. MAJOR, MINOR, and PATCH.
+
+- The Major version is incremented when a breaking change occurs (in this case the library is not backward compatible)
+- the Minor version is incremented when we add new functionality in a backward compatible manor.
+- The PATCH version is incremented when we perform bug fixes, and the changes are backward comptible.
+
 ## Changelog
 
 Notable changes can be viewed [here](https://github.com/worldskills/worldskills-angular-lib/blob/master/changelog.md).
