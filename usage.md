@@ -257,6 +257,24 @@ isAdult = (user: { name: string; age: number }) => user.age >= 25;
 * The pipe is **pure**, so it won’t recalculate unless the array or arguments change.
 * If `items` is `null`, empty, or the filter argument is falsy, the original array is returned unmodified.
 
+## Copy To Clipboard
+
+```Typescript
+// Async usage with modern API
+const success = await ClipboardUtil.copyTextToClipboard('Hello World!');
+if (success) {
+  console.log('Text copied successfully!');
+}
+
+// Copy from input element
+const inputElement = document.getElementById('myInput') as HTMLInputElement;
+const success = await ClipboardUtil.copyInputToClipboard(inputElement);
+
+// Check API support
+if (ClipboardUtil.isClipboardAPISupported()) {
+  console.log('Modern clipboard API is available');
+}
+```
 
 ## To be continued
 
