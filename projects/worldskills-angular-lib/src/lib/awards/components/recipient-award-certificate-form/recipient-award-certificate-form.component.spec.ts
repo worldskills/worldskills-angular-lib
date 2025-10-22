@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecipientAwardCertificateFormComponent } from './recipient-award-certificate-form.component';
+import { WSTranslate } from 'worldskills-angular-lib';
 
 describe('PersonAwardCertificateFormComponent', () => {
   let component: RecipientAwardCertificateFormComponent;
@@ -8,7 +9,7 @@ describe('PersonAwardCertificateFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecipientAwardCertificateFormComponent ]
+      declarations: [ RecipientAwardCertificateFormComponent, WSTranslate]
     })
     .compileComponents();
   });

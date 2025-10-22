@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EntityTreeSelectComponent } from './entity-tree-select.component';
 
@@ -6,7 +6,7 @@ describe('EntityTreeSelectComponent', () => {
   let component: EntityTreeSelectComponent;
   let fixture: ComponentFixture<EntityTreeSelectComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ EntityTreeSelectComponent ]
     })

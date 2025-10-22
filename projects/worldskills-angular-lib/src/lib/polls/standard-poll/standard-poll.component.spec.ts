@@ -1,14 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StandardPollComponent } from './standard-poll.component';
+import { SortPipe } from 'projects/worldskills-angular-lib/src/public-api';
 
 describe('StandardPollComponent', () => {
   let component: StandardPollComponent;
   let fixture: ComponentFixture<StandardPollComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ StandardPollComponent ]
+      declarations: [ StandardPollComponent, SortPipe ]
     })
     .compileComponents();
   }));

@@ -1,14 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResourceThumbnailComponent } from './resource-thumbnail.component';
+import { FileSizePipe } from '../file-size.pipe';
 
 describe('FileThumbnailViewComponent', () => {
   let component: ResourceThumbnailComponent;
   let fixture: ComponentFixture<ResourceThumbnailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ ResourceThumbnailComponent ]
+      declarations: [ ResourceThumbnailComponent, FileSizePipe ]
     })
     .compileComponents();
   }));

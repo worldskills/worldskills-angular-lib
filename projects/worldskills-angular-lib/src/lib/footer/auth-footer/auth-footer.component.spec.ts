@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthFooterComponent } from './auth-footer.component';
 
@@ -6,7 +6,7 @@ describe('AuthFooterComponent', () => {
   let component: AuthFooterComponent;
   let fixture: ComponentFixture<AuthFooterComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ AuthFooterComponent ]
     })

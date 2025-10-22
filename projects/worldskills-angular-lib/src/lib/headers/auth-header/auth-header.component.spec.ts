@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthHeaderComponent } from './auth-header.component';
 
@@ -6,7 +6,7 @@ describe('AuthHeaderComponent', () => {
   let component: AuthHeaderComponent;
   let fixture: ComponentFixture<AuthHeaderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ AuthHeaderComponent ]
     })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RelativeDateDemoComponent } from './relative-date-demo.component';
 
@@ -6,7 +6,7 @@ describe('RelativeDateDemoComponent', () => {
   let component: RelativeDateDemoComponent;
   let fixture: ComponentFixture<RelativeDateDemoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ RelativeDateDemoComponent ]
     })

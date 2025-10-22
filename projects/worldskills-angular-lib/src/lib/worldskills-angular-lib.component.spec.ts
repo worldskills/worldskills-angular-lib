@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WorldskillsAngularLibComponent } from './worldskills-angular-lib.component';
 
@@ -6,7 +6,7 @@ describe('WorldskillsAngularLibComponent', () => {
   let component: WorldskillsAngularLibComponent;
   let fixture: ComponentFixture<WorldskillsAngularLibComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ WorldskillsAngularLibComponent ]
     })

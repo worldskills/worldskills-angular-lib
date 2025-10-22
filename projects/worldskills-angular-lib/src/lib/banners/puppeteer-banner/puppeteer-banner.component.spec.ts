@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PuppeteerBannerComponent } from './puppeteer-banner.component';
 
@@ -6,7 +6,7 @@ describe('PuppeteerBannerComponent', () => {
   let component: PuppeteerBannerComponent;
   let fixture: ComponentFixture<PuppeteerBannerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ PuppeteerBannerComponent ]
     })

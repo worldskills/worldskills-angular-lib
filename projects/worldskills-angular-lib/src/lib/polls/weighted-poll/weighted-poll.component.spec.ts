@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WeightedPollComponent } from './weighted-poll.component';
 
@@ -6,7 +6,7 @@ describe('WeightedPollComponent', () => {
   let component: WeightedPollComponent;
   let fixture: ComponentFixture<WeightedPollComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ WeightedPollComponent ]
     })

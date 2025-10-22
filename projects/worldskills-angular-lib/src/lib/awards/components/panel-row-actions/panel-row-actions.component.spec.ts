@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PanelRowActionsComponent} from './panel-row-actions.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -9,7 +9,7 @@ describe('PanelRowActionsComponent', () => {
   let component: PanelRowActionsComponent;
   let fixture: ComponentFixture<PanelRowActionsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
     declarations: [PanelRowActionsComponent],
     imports: [RouterTestingModule],

@@ -3,8 +3,7 @@
 This project is library of common functionality that supports the development of WorldSkills applications.
 
 ## Versioning guidelines
-The versioning is divided into 3 parts. MAJOR, MINOR, and PATCH.
-
+The versioning is divided into 3 parts. MAJOR, MINOR, and PATCH.  
 - The Major version is incremented when a breaking change occurs (in this case the library is not backward compatible)
 - the Minor version is incremented when we add new functionality in a backward compatible manor.
 - The PATCH version is incremented when we perform bug fixes, and the changes are backward comptible.
@@ -73,7 +72,7 @@ once you've set up a new angular application install the following libraries:
 `npm i popper.js`  
 `npm i angular-font-awesome`  
 `npm i ng-select`  
-`npm i @worldskills/bootstrap`
+`npm i @worldskills/bootstrap`  
 `npm i @worldskills/worldskills-angular-lib`
 
 ### Styling
