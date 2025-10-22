@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MultiselectPollComponent } from './multiselect-poll.component';
+import { SortPipe } from 'worldskills-angular-lib';
 
 describe('MultiselectPollComponent', () => {
   let component: MultiselectPollComponent;
@@ -8,7 +9,7 @@ describe('MultiselectPollComponent', () => {
 
   beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ MultiselectPollComponent ]
+      declarations: [ MultiselectPollComponent, SortPipe ]
     })
     .compileComponents();
   }));
@@ -16,6 +17,13 @@ describe('MultiselectPollComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MultiselectPollComponent);
     component = fixture.componentInstance;
+    component.initialSelection = [];
+    component.voted = {
+      hasVoted: false,
+      votes: [],
+      anonymous: false,
+      abstained: false
+    };
     component.poll = {
       id: 1,
       entity: null,
