@@ -11,8 +11,8 @@ describe('NgAuthService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-    imports: [RouterTestingModule, OAuthService, NgbModule],
-    providers: [OAuthLogger, UrlHelperService, provideHttpClient(withInterceptorsFromDi())]
+    imports: [RouterTestingModule, NgbModule],
+    providers: [OAuthLogger, OAuthService, DateTimeProvider, UrlHelperService, provideHttpClient(withInterceptorsFromDi())]
 });
         service = TestBed.inject(NgAuthService);
     });
