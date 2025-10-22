@@ -276,6 +276,34 @@ if (ClipboardUtil.isClipboardAPISupported()) {
 }
 ```
 
+## Array util
+```Typescript
+// Modern deduplication
+const unique = ArrayUtil.dedupePrimitive([1, 2, 2, 3, 1]); // [1, 2, 3]
+
+// Object deduplication by key
+const users = [{id: 1, name: 'John'}, {id: 2, name: 'Jane'}, {id: 1, name: 'John'}];
+const uniqueUsers = ArrayUtil.dedupeByKey(users, user => user.id);
+
+// Recursive flattening
+const nested = [{id: 1, children: [{id: 2, children: [{id: 3}]}]}];
+const flat = ArrayUtil.flatten(nested, true);
+
+// Chunking
+const chunks = ArrayUtil.chunk([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
+
+// Grouping
+const grouped = ArrayUtil.groupBy(users, user => user.department);
+
+// Array operations
+const common = ArrayUtil.intersection([1, 2, 3], [2, 3, 4]); // [2, 3]
+const diff = ArrayUtil.difference([1, 2, 3], [2, 3, 4]); // [1]
+
+// Safe operations
+const element = ArrayUtil.safeGet(arr, 100); // undefined if out of bounds
+const moved = ArrayUtil.move([1, 2, 3], 0, 2); // [2, 3, 1]
+```
+
 ## To be continued
 
 As we touch more parts of the library more documentation would be added.

@@ -1,6 +1,7 @@
 # Changelog
 
 ## 14.0
+* 14.2.0 update Array Util
 * 14.1.0 Copy to clipboard functionality
 * 14.0.14 custom view template for votes control
 * 14.0.13 fixed typo in vote control
