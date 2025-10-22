@@ -304,6 +304,37 @@ const element = ArrayUtil.safeGet(arr, 100); // undefined if out of bounds
 const moved = ArrayUtil.move([1, 2, 3], 0, 2); // [2, 3, 1]
 ```
 
+## Orginal Util
+```TypeScript
+// Basic usage
+OrdinalUtil.toOrdinal(1)    // "1st"
+OrdinalUtil.toOrdinal(22)   // "22nd" 
+OrdinalUtil.toOrdinal(103)  // "103rd"
+OrdinalUtil.toOrdinal(11)   // "11th" (special case)
+
+// Advanced options
+OrdinalUtil.toOrdinal(-5, { absoluteValue: true })  // "5th"
+OrdinalUtil.toOrdinal(3, { includeNumber: false })  // "rd"
+
+// Get just the suffix
+OrdinalUtil.getOrdinalSuffix(21)  // "st"
+OrdinalUtil.getOrdinalSuffix(42)  // "nd"
+
+// Array processing
+OrdinalUtil.toOrdinalArray([1, 2, 3])  // ["1st", "2nd", "3rd"]
+
+// Validation and parsing
+OrdinalUtil.isOrdinal("1st")     // true
+OrdinalUtil.isOrdinal("invalid") // false
+OrdinalUtil.parseOrdinal("22nd") // 22
+
+// Generate ranges
+OrdinalUtil.getOrdinalRange(1, 5)  // ["1st", "2nd", "3rd", "4th", "5th"]
+
+// Backward compatibility (deprecated)
+OrdinalUtil.applyDefault(1)  // "1st" (works but deprecated)
+```
+
 ## To be continued
 
 As we touch more parts of the library more documentation would be added.
