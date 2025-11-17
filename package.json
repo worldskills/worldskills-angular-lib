@@ -25,7 +25,7 @@
     "@angular/platform-browser-dynamic": "^19.2.15",
     "@angular/router": "^19.2.15",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
-    "@ng-select/ng-select": "^10.0.3",
+    "@ng-select/ng-select": "^14.9.0",
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
     "@popperjs/core": "^2.11.6",
