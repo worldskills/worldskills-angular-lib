@@ -63,7 +63,7 @@ export class AppComponent {
     @ViewChild('i18nTextForm') i18nTextForm: NgForm;
 
     // wsSelect
-    @ViewChild('form', { static: true }) form: NgForm;
+    // @ViewChild('form', { static: true }) form: NgForm;
     selectChange1 = '';
     wsSelectChange1 = '';
     selectChange2 = '';
@@ -173,7 +173,7 @@ export class AppComponent {
             return observable;
         };
         this.pollInit();
-        this.form.ngSubmit.emit();
+        // this.form.ngSubmit.emit();
     }
 
     modalDemo(name: string, title: string, body: string): void {

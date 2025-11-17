@@ -30,7 +30,7 @@
     "@ngx-translate/http-loader": "^16.0.1",
     "@popperjs/core": "^2.11.6",
     "@sentry/browser": "^7.32.0",
-    "@types/ws": "^8.5.4",
+    "@types/ws": "^8.18.1",
     "@worldskills/bootstrap": "^4.10.1",
     "angular-oauth2-oidc": "^15.0.1",
     "barrelsby": "^2.2.0",
