@@ -20,7 +20,8 @@ export interface RecipientAwardRequest {
 @Component({
     selector: 'ws-recipient-award-form',
     templateUrl: './recipient-award-form.component.html',
-    styleUrls: ['./recipient-award-form.component.css']
+    styleUrls: ['./recipient-award-form.component.css'],
+    standalone: false
 })
 export class RecipientAwardFormComponent implements OnInit {
 

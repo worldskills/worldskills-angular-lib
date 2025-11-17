@@ -11,7 +11,8 @@ import { WsiTranslateService } from '../../i18n/wsi-translate.service';
 @Component({
     selector: 'ws-auth-footer',
     templateUrl: './auth-footer.component.html',
-    styleUrls: ['./auth-footer.component.css']
+    styleUrls: ['./auth-footer.component.css'],
+    standalone: false
 })
 export class AuthFooterComponent implements OnInit {
     date;

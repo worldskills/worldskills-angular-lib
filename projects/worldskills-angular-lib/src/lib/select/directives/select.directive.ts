@@ -26,7 +26,8 @@ import {DEFAULT_MIN_CHARACTERS, SelectAsyncHandler} from '../classes/select-asyn
 export type EntryReader<T = any, U = any> = string | Array<string> | ((obj: T) => U);
 
 @Directive({
-    selector: '[wsSelect]'
+    selector: '[wsSelect]',
+    standalone: false
 })
 export class SelectDirective implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 

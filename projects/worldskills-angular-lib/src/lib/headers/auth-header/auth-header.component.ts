@@ -7,7 +7,8 @@ import {NgAuthService} from '../../auth/ng-auth.service';
 @Component({
     selector: 'ws-auth-header',
     templateUrl: './auth-header.component.html',
-    styleUrls: ['./auth-header.component.css']
+    styleUrls: ['./auth-header.component.css'],
+    standalone: false
 })
 export class AuthHeaderComponent implements OnInit {
 

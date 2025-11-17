@@ -4,7 +4,8 @@ import { RelativeDateProcessor } from '../processors/relative-date/relative-date
 import { DefaultRelativeDateProccessor } from '../processors/relative-date/default-relative-date-processor';
 // based of: http://www.angulartutorial.net/2017/10/how-to-show-date-is-today-or-yesterday.html
 @Pipe({
-  name: 'relativeDate',
+    name: 'relativeDate',
+    standalone: false
 })
 export class RelativeDatePipe implements PipeTransform {
   /**

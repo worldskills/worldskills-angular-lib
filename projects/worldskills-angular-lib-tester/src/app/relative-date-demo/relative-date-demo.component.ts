@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RelativeDateProc } from '../relative-date-proc';
 @Component({
-  selector: 'app-relative-date-demo',
-  templateUrl: './relative-date-demo.component.html',
-  styleUrls: ['./relative-date-demo.component.css']
+    selector: 'app-relative-date-demo',
+    templateUrl: './relative-date-demo.component.html',
+    styleUrls: ['./relative-date-demo.component.css'],
+    standalone: false
 })
 export class RelativeDateDemoComponent implements OnInit {
 

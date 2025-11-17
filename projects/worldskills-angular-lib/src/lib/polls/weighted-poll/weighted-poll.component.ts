@@ -5,9 +5,10 @@ import { VoteEntry } from '../models/vote-entry';
 import { OptionHandler } from '../models/optionHandler';
 
 @Component({
-  selector: 'ws-weighted-poll',
-  templateUrl: './weighted-poll.component.html',
-  styleUrls: ['./weighted-poll.component.css']
+    selector: 'ws-weighted-poll',
+    templateUrl: './weighted-poll.component.html',
+    styleUrls: ['./weighted-poll.component.css'],
+    standalone: false
 })
 export class WeightedPollComponent implements OnInit {
   @Input() poll: Poll;

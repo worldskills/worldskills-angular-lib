@@ -6,9 +6,10 @@ import { Option } from '../models/option';
 import { OptionHandler } from '../models/optionHandler';
 
 @Component({
-  selector: 'ws-standard-poll',
-  templateUrl: './standard-poll.component.html',
-  styleUrls: ['./standard-poll.component.css']
+    selector: 'ws-standard-poll',
+    templateUrl: './standard-poll.component.html',
+    styleUrls: ['./standard-poll.component.css'],
+    standalone: false
 })
 export class StandardPollComponent implements OnInit {
 

@@ -4,7 +4,8 @@ import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstr
 @Component({
     selector: 'ws-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.css']
+    styleUrls: ['./modal.component.css'],
+    standalone: false
 })
 export class ModalComponent implements OnChanges {
 

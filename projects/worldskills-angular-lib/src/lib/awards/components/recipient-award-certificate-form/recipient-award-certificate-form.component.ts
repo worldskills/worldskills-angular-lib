@@ -6,7 +6,8 @@ import { RecipientAwardCertificate, RecipientAwardCertificateType } from '../../
 @Component({
     selector: 'ws-recipient-award-certificate-form',
     templateUrl: './recipient-award-certificate-form.component.html',
-    styleUrls: ['./recipient-award-certificate-form.component.css']
+    styleUrls: ['./recipient-award-certificate-form.component.css'],
+    standalone: false
 })
 export class RecipientAwardCertificateFormComponent implements OnInit {
 

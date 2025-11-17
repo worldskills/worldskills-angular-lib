@@ -3,9 +3,10 @@ import {TranslateService} from '@ngx-translate/core';
 import {combineLatest, of} from 'rxjs';
 
 @Component({
-  selector: 'ws-panel-row-actions',
-  templateUrl: './panel-row-actions.component.html',
-  styleUrls: ['./panel-row-actions.component.css']
+    selector: 'ws-panel-row-actions',
+    templateUrl: './panel-row-actions.component.html',
+    styleUrls: ['./panel-row-actions.component.css'],
+    standalone: false
 })
 export class PanelRowActionsComponent implements OnInit {
 

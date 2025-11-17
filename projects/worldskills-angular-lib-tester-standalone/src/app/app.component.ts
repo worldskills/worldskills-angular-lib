@@ -5,12 +5,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LangUtil, WorldskillsAngularLibModule, WorldskillsAngularLibService, WsiTranslateService } from 'worldskills-angular-lib';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [AsyncPipe, RouterOutlet, TranslateModule, WorldskillsAngularLibModule],
-  providers: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+    selector: 'app-root',
+    imports: [AsyncPipe, RouterOutlet, TranslateModule, WorldskillsAngularLibModule],
+    providers: [],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'worldskills-angular-lib-tester-standalone';

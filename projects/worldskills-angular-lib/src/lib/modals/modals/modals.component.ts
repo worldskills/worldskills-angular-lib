@@ -5,9 +5,10 @@ import { WsiModalService } from '../wsi-modal.service';
   If required thesse modals caan be exended to include angular template
 */
 @Component({
-  selector: 'ws-modals',
-  templateUrl: './modals.component.html',
-  styleUrls: ['./modals.component.css']
+    selector: 'ws-modals',
+    templateUrl: './modals.component.html',
+    styleUrls: ['./modals.component.css'],
+    standalone: false
 })
 export class ModalsComponent implements OnInit {
 

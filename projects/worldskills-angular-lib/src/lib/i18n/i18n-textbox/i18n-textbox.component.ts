@@ -5,9 +5,10 @@ import { GenericUtil } from '../../common/util/generic.util';
 import { Language } from '../language';
 
 @Component({
-  selector: 'ws-i18n-textbox',
-  templateUrl: './i18n-textbox.component.html',
-  styleUrls: ['./i18n-textbox.component.css']
+    selector: 'ws-i18n-textbox',
+    templateUrl: './i18n-textbox.component.html',
+    styleUrls: ['./i18n-textbox.component.css'],
+    standalone: false
 })
 export class I18nTextboxComponent implements OnInit {
 

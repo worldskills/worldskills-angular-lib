@@ -5,6 +5,7 @@ import {NgAuthService} from '../../auth/ng-auth.service';
 
 @Directive({
     selector: '[wsUserRole]',
+    standalone: false
 })
 export class UserRoleDirective implements OnInit {
 

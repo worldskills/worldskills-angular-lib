@@ -6,7 +6,8 @@ import { GenericUtil } from '../../../../worldskills-angular-lib/src/lib/common/
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
 

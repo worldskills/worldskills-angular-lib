@@ -6,14 +6,15 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'ws-i18n-text',
-  templateUrl: './i18n-text.component.html',
-  styleUrls: ['./i18n-text.component.css'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => I18nTextComponent),
-    multi: true,
-  }],
+    selector: 'ws-i18n-text',
+    templateUrl: './i18n-text.component.html',
+    styleUrls: ['./i18n-text.component.css'],
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => I18nTextComponent),
+            multi: true,
+        }],
+    standalone: false
 })
 export class I18nTextComponent implements OnInit, ControlValueAccessor {
 

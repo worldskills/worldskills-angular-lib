@@ -6,9 +6,10 @@ import { LangUtil } from '../../common/util/lang.util';
 import { Language } from '../language';
 
 @Component({
-  selector: 'ws-i18n-textarea',
-  templateUrl: './i18n-textarea.component.html',
-  styleUrls: ['./i18n-textarea.component.css']
+    selector: 'ws-i18n-textarea',
+    templateUrl: './i18n-textarea.component.html',
+    styleUrls: ['./i18n-textarea.component.css'],
+    standalone: false
 })
 export class I18nTextareaComponent implements OnInit {
 

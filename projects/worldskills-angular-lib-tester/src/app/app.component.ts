@@ -27,7 +27,8 @@ import { WsiModalService } from '../../../worldskills-angular-lib/src/lib/modals
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent {
     title = 'worldskills-angular-lib-tester';

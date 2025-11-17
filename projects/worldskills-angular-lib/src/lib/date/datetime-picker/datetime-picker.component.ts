@@ -7,17 +7,18 @@ import { Datetime } from '../datetime';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-struct';
 
 @Component({
-  selector: 'ws-datetime-picker',
-  templateUrl: './datetime-picker.component.html',
-  styleUrls: ['./datetime-picker.component.css'],
-  providers: [
-    DatePipe,
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DatetimePickerComponent),
-      multi: true
-    }
-  ]
+    selector: 'ws-datetime-picker',
+    templateUrl: './datetime-picker.component.html',
+    styleUrls: ['./datetime-picker.component.css'],
+    providers: [
+        DatePipe,
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DatetimePickerComponent),
+            multi: true
+        }
+    ],
+    standalone: false
 })
 export class DatetimePickerComponent implements ControlValueAccessor {
 

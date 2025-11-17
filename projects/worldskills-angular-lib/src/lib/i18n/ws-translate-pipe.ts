@@ -4,7 +4,8 @@ import { map } from "rxjs/operators";
 import { BehaviorSubject, of, Subject } from "rxjs";
 
 @Pipe({
-  name: "wsTranslate",
+    name: "wsTranslate",
+    standalone: false
 })
 export class WSTranslate implements PipeTransform {
   constructor(public wsiTranslate: WsiTranslateService) {}

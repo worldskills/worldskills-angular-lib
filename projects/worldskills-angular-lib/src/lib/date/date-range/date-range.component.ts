@@ -5,16 +5,17 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DateRange } from '../date-range';
 
 @Component({
-  selector: 'ws-date-range',
-  templateUrl: './date-range.component.html',
-  styleUrls: ['./date-range.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DateRangeComponent),
-      multi: true
-    }
-  ]
+    selector: 'ws-date-range',
+    templateUrl: './date-range.component.html',
+    styleUrls: ['./date-range.component.css'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DateRangeComponent),
+            multi: true
+        }
+    ],
+    standalone: false
 })
 export class DateRangeComponent implements ControlValueAccessor  {
 

@@ -40,11 +40,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/worldskills-angular-lib-tester",
+            "outputPath": {
+              "base": "dist/worldskills-angular-lib-tester"
+            },
             "index": "projects/worldskills-angular-lib-tester/src/index.html",
-            "main": "projects/worldskills-angular-lib-tester/src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.app.json",
             "aot": true,
@@ -66,7 +67,8 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.js",
               "node_modules/@worldskills/bootstrap/dist/js/bootstrap.bundle.js"
-            ]
+            ],
+            "browser": "projects/worldskills-angular-lib-tester/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -81,8 +83,6 @@
               "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
