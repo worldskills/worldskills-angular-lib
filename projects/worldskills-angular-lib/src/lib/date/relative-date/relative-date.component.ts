@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { formatDate } from '../../common/helpers/date.helper';
 
 @Component({
-  selector: 'ws-relative-date',
-  templateUrl: './relative-date.component.html',
-  styleUrls: ['./relative-date.component.css']
+    selector: 'ws-relative-date',
+    templateUrl: './relative-date.component.html',
+    styleUrls: ['./relative-date.component.css'],
+    standalone: false
 })
 export class RelativeDateComponent implements OnInit {
 

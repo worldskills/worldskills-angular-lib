@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ws-worldskills-angular-lib',
-  template: `
+    selector: 'ws-worldskills-angular-lib',
+    template: `
     <p>
       worldskills-angular-lib works!
     </p>
   `,
-  styles: [
-  ]
+    styles: [],
+    standalone: false
 })
 export class WorldskillsAngularLibComponent implements OnInit {
 

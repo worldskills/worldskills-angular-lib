@@ -12,9 +12,10 @@ import { WSIDateFormat } from '../../date/wsi-date-format';
 import { WsiToastService } from '../../alerts/wsi-toast.service';
 
 @Component({
-  selector: 'ws-vote-control',
-  templateUrl: './vote-control.component.html',
-  styleUrls: ['./vote-control.component.css']
+    selector: 'ws-vote-control',
+    templateUrl: './vote-control.component.html',
+    styleUrls: ['./vote-control.component.css'],
+    standalone: false
 })
 export class VoteControlComponent implements OnInit {
   @Input() personId; // required for WhiteList polls

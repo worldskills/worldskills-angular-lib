@@ -8,9 +8,10 @@ import { LangUtil } from '../../common/util/lang.util';
 import { WsiTranslateService } from '../../i18n/wsi-translate.service';
 
 @Component({
-  selector: 'ws-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+    selector: 'ws-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.css'],
+    standalone: false
 })
 export class FooterComponent implements OnInit {
   date;

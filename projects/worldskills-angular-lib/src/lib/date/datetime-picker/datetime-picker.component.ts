@@ -1,23 +1,24 @@
 import { Component, Input, HostBinding, ViewChild, Output, EventEmitter, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { NgbDate, NgbPopover, NgbPopoverConfig, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbDateStruct, NgbPopover, NgbPopoverConfig, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { toDate } from '../../common/helpers/date.helper';
 import { Datetime } from '../datetime';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-struct';
+
 
 @Component({
-  selector: 'ws-datetime-picker',
-  templateUrl: './datetime-picker.component.html',
-  styleUrls: ['./datetime-picker.component.css'],
-  providers: [
-    DatePipe,
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DatetimePickerComponent),
-      multi: true
-    }
-  ]
+    selector: 'ws-datetime-picker',
+    templateUrl: './datetime-picker.component.html',
+    styleUrls: ['./datetime-picker.component.css'],
+    providers: [
+        DatePipe,
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DatetimePickerComponent),
+            multi: true
+        }
+    ],
+    standalone: false
 })
 export class DatetimePickerComponent implements ControlValueAccessor {
 

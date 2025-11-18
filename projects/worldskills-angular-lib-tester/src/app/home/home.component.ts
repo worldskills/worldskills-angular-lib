@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import { RedirectEventHandler } from '../../../../worldskills-angular-lib/src/lib/auth/handlers/redirect-event.handler';
 import { GenericUtil } from '../../../../worldskills-angular-lib/src/lib/common/util/generic.util';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
 

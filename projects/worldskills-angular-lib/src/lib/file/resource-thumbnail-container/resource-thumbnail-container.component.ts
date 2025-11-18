@@ -11,7 +11,8 @@ import { WsComponent } from '../../common/components/ws.component';
 @Component({
     selector: 'ws-resource-thumbnail-container',
     templateUrl: './resource-thumbnail-container.component.html',
-    styleUrls: ['./resource-thumbnail-container.component.css']
+    styleUrls: ['./resource-thumbnail-container.component.css'],
+    standalone: false
 })
 export class ResourceThumbnailContainerComponent extends WsComponent implements OnInit {
 

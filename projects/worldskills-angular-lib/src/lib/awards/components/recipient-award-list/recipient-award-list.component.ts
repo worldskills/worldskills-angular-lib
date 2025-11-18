@@ -8,7 +8,8 @@ import { PersonAward } from '../../models/person-award';
 @Component({
     selector: 'ws-recipient-award-list',
     templateUrl: './recipient-award-list.component.html',
-    styleUrls: ['./recipient-award-list.component.css']
+    styleUrls: ['./recipient-award-list.component.css'],
+    standalone: false
 })
 export class RecipientAwardListComponent implements OnInit {
 

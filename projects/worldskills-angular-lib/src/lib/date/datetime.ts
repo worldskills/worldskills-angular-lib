@@ -1,5 +1,5 @@
 import { NgbTimeStruct, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export interface NgbDatetimeStruct extends NgbDateStruct, NgbTimeStruct { }
 

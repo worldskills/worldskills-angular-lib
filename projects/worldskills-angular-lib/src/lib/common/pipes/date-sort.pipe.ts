@@ -1,6 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 @Pipe ({
-   name : 'wsSort'
+    name: 'wsSort',
+    standalone: false
 })
 export class SortPipe implements PipeTransform {
    transform(items, direction?, property?): any[] {

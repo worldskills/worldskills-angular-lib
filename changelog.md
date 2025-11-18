@@ -1,5 +1,8 @@
 # Changelog
 
+## 15.0
+* 15.0.0 Angular 20
+
 ## 14.0
 * 14.2.0 Improve Ordinal Util
 * 14.2.0 update Array Util

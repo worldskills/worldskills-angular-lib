@@ -7,9 +7,10 @@ import { ArrayUtil } from '../../common/util/array.util';
 import { GenericUtil } from '../../common/util/generic.util';
 
 @Component({
-  selector: 'ws-breadcrumbs',
-  templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.css']
+    selector: 'ws-breadcrumbs',
+    templateUrl: './breadcrumbs.component.html',
+    styleUrls: ['./breadcrumbs.component.css'],
+    standalone: false
 })
 export class BreadcrumbsComponent implements OnInit {
   @Input() showHomeItem: boolean;

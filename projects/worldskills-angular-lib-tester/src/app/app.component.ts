@@ -27,7 +27,8 @@ import { WsiModalService } from '../../../worldskills-angular-lib/src/lib/modals
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent {
     title = 'worldskills-angular-lib-tester';
@@ -62,7 +63,7 @@ export class AppComponent {
     @ViewChild('i18nTextForm') i18nTextForm: NgForm;
 
     // wsSelect
-    @ViewChild('form', { static: true }) form: NgForm;
+    // @ViewChild('form', { static: true }) form: NgForm;
     selectChange1 = '';
     wsSelectChange1 = '';
     selectChange2 = '';
@@ -133,7 +134,7 @@ export class AppComponent {
             // window.location.reload();
         });
 
-        this.wsiTranslator.translator.setDefaultLang('en');
+        this.wsiTranslator.translator.setFallbackLang('en');
         this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
             this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, true);
         });
@@ -172,7 +173,7 @@ export class AppComponent {
             return observable;
         };
         this.pollInit();
-        this.form.ngSubmit.emit();
+        // this.form.ngSubmit.emit();
     }
 
     modalDemo(name: string, title: string, body: string): void {

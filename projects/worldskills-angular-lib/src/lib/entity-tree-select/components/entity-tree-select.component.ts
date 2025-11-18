@@ -38,7 +38,8 @@ function isTreeEntity(obj: any): obj is TreeEntity {
             useExisting: forwardRef(() => EntityTreeSelectComponent),
             multi: true
         }
-    ]
+    ],
+    standalone: false
 })
 export class EntityTreeSelectComponent implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
 

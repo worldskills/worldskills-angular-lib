@@ -13,7 +13,8 @@ export interface ResourceThumbnail {
 @Component({
     selector: 'ws-resource-thumbnail',
     templateUrl: './resource-thumbnail.component.html',
-    styleUrls: ['./resource-thumbnail.component.css']
+    styleUrls: ['./resource-thumbnail.component.css'],
+    standalone: false
 })
 export class ResourceThumbnailComponent implements OnInit {
 

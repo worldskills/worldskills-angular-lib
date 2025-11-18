@@ -5,9 +5,10 @@ import { VoteEntry } from '../models/vote-entry';
 import { OptionHandler } from '../models/optionHandler';
 
 @Component({
-  selector: 'ws-multiselect-poll',
-  templateUrl: './multiselect-poll.component.html',
-  styleUrls: ['./multiselect-poll.component.css']
+    selector: 'ws-multiselect-poll',
+    templateUrl: './multiselect-poll.component.html',
+    styleUrls: ['./multiselect-poll.component.css'],
+    standalone: false
 })
 export class MultiselectPollComponent implements OnInit {
 

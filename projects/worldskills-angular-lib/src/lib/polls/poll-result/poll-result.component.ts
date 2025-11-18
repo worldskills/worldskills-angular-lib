@@ -8,9 +8,10 @@ import { OrdinalUtil } from '../../common/util/ordinal.util';
 import { OptionResultView } from '../models/option-result-view';
 
 @Component({
-  selector: 'ws-poll-result',
-  templateUrl: './poll-result.component.html',
-  styleUrls: ['./poll-result.component.css']
+    selector: 'ws-poll-result',
+    templateUrl: './poll-result.component.html',
+    styleUrls: ['./poll-result.component.css'],
+    standalone: false
 })
 export class PollResultComponent implements OnInit {
 
