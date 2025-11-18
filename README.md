@@ -89,16 +89,14 @@ add the following import statement into your app.module.ts
 ensure the following modules are within the `import: { ... }` section of your app.module.ts  
 
 ```TypeScript
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
-}
 
 export const appTranslationConfig = TranslateModule.forRoot({
-  loader: {
-    provide: TranslateLoader,
-    useFactory: HttpLoaderFactory,
-    deps: [HttpClient],
-  },
+  loader: provideTranslateHttpLoader({
+    prefix: "/assets/i18n/",
+    suffix: ".json",
+    enforceLoading: true,
+    useHttpBackend: true,
+  }),
   isolate: true, // isolate property is the key point to remember/
 });
 
