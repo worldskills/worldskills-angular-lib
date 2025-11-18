@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RelativeDateProc } from '../relative-date-proc';
+
 @Component({
     selector: 'app-relative-date-demo',
     templateUrl: './relative-date-demo.component.html',
@@ -8,7 +8,7 @@ import { RelativeDateProc } from '../relative-date-proc';
 })
 export class RelativeDateDemoComponent implements OnInit {
 
-  format = 'HH:mm, d MMM y';
+  dateFormat = 'HH:mm, d MMM y';
   constructor() { }
 
   ngOnInit(): void {

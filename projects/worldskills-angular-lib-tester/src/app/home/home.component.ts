@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import { RedirectEventHandler } from '../../../../worldskills-angular-lib/src/lib/auth/handlers/redirect-event.handler';
 import { GenericUtil } from '../../../../worldskills-angular-lib/src/lib/common/util/generic.util';
 
