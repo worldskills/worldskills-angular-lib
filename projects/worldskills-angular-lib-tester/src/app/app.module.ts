@@ -27,7 +27,7 @@ import { SubpageOneComponent } from "./subpage-one/subpage-one.component";
 import { SubpageTwoComponent } from "./subpage-two/subpage-two.component";
 import { RelativeDateDemoComponent } from "./relative-date-demo/relative-date-demo.component";
 import { DatePipe } from "@angular/common";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { provideTranslateHttpLoader, TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AlertsContainerComponent } from "projects/worldskills-angular-lib-tester/src/app/examples/alerts-container/alerts-container.component";
 
@@ -114,16 +114,14 @@ const appRoutes: Routes = [
   { path: "**", redirectTo: "home" },
 ];
 
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
-}
 
 export const appTranslationConfig = TranslateModule.forRoot({
-  loader: {
-    provide: TranslateLoader,
-    useFactory: HttpLoaderFactory,
-    deps: [HttpClient],
-  },
+  loader: provideTranslateHttpLoader({
+    prefix: "/assets/i18n/",
+    suffix: ".json",
+    enforceLoading: true,
+    useHttpBackend: true,
+  }),
   isolate: true, // isolate property is the key point to remember/
 });
 

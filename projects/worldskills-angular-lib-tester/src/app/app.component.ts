@@ -134,7 +134,7 @@ export class AppComponent {
             // window.location.reload();
         });
 
-        this.wsiTranslator.translator.setDefaultLang('en');
+        this.wsiTranslator.translator.setFallbackLang('en');
         this.wsiTranslator.translator.get(['alert_title', 'alert_msg']).subscribe(values => {
             this.alerts.setAlert('test', AlertType.info, values.alert_title, values.alert_msg, true);
         });

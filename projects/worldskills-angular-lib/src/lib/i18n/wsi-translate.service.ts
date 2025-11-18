@@ -28,7 +28,7 @@ export class WsiTranslateService {
   constructor(public translator: TranslateService) {
     this.onLangChanged = new Subject();
     const lang = this.getSelectedLanguage();
-    this.translator.setDefaultLang(LangUtil.getDefaultLanguage().code);
+    this.translator.setFallbackLang(LangUtil.getDefaultLanguage().code);
     this.translator.use(lang.code).subscribe(
       next => {},
       error => {
