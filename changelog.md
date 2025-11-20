@@ -1,6 +1,7 @@
 # Changelog
 
 ## 15.0
+* 15.0.1 FIX: update ngx-translate peer deps (should be 17.0.0)
 * 15.0.0 Angular 20
 
 ## 14.0
