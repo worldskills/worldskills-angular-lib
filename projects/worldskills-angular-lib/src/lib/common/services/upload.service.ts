@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpEvent, HttpRequest, HttpProgressEvent, HttpResponse, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpEvent, HttpRequest, HttpProgressEvent, HttpResponse, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class UploadService {
     request: HttpRequest<FormData>,
     onProgress: (progress: HttpProgressEvent) => void,
     onComplete: (response: HttpResponse<T>) => void,
-    onError?: (error: any) => void,
+    onError?: (error: HttpErrorResponse) => void,
   ): void {
 
     this.http.request(request).subscribe(
@@ -37,7 +37,7 @@ export class UploadService {
             break;
         }
       },
-      (error) => {
+      (error: HttpErrorResponse) => {
         if (onError) {
           onError(error);
         }
