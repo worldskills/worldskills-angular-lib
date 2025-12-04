@@ -21,18 +21,27 @@ export class UploadService {
   // event specific classes: https://angular.io/api/common/http/HttpEvent#description
   public listen<T>(
     request: HttpRequest<FormData>,
-    progress: (progress: HttpProgressEvent) => void,
-    complete: (response: HttpResponse<T>) => void): void {
+    onProgress: (progress: HttpProgressEvent) => void,
+    onComplete: (response: HttpResponse<T>) => void,
+    onError?: (error: any) => void,
+  ): void {
 
-    this.http.request(request).subscribe((event: HttpEvent<T>) => {
-      switch (event.type) {
-        case HttpEventType.UploadProgress:
-          progress(event as HttpProgressEvent);
-          break;
-        case HttpEventType.Response:
-          complete(event as HttpResponse<T>);
-          break;
+    this.http.request(request).subscribe(
+      (event: HttpEvent<T>) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            onProgress(event as HttpProgressEvent);
+            break;
+          case HttpEventType.Response:
+            onComplete(event as HttpResponse<T>);
+            break;
+        }
+      },
+      (error) => {
+        if (onError) {
+          onError(error);
+        }
       }
-    });
+    );
   }
 }
