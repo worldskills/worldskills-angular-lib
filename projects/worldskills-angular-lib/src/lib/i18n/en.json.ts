@@ -20,6 +20,7 @@ export const en = {
         links: {
             forums: 'Forums',
             glossary: 'Glossary',
+            horizon: 'Horizon',
             'infrastructure.lists': 'Infrastructure Lists',
             'my.worldskills': 'myWorldSkills',
             registrations: 'Registrations',
