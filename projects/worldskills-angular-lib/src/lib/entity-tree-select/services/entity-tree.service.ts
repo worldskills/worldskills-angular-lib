@@ -3,9 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {WorldskillsAngularLibService} from '../../worldskills-angular-lib.service';
 import {EntityFetchParams} from '../models/entity-tree-fetch-params';
-import {EntityTreeListView} from '../../auth/models/entity-tree-list-view';
 import {share} from 'rxjs/operators';
 import { CacheStorageService } from '../../cache/services/cache-storage.service';
+import { EntityTreeListView } from 'worldskills-ng-auth';
 
 
 @Injectable({

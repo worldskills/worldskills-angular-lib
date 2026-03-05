@@ -1,8 +1,8 @@
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { User } from '../models/user';
-import { NgAuthService } from '../ng-auth.service';
+import { NgAuthService } from '../services/ng-auth.service';
 import { Observable } from 'rxjs';
-import { RouterUtil } from '../../common/util/router.util';
+import { RouterUtil } from '../util/router.util';
 import { Injectable } from '@angular/core';
 import { RETURN_URL_KEY } from '../constants';
 

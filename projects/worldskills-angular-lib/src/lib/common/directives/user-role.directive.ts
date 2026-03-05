@@ -1,7 +1,6 @@
 import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {UserRoleUtil} from '../util/user-role.util';
-import {User} from '../../auth/models/user';
-import {NgAuthService} from '../../auth/ng-auth.service';
+import { NgAuthService, User } from 'worldskills-ng-auth';
 
 @Directive({
     selector: '[wsUserRole]',

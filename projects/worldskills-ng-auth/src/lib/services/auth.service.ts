@@ -1,28 +1,27 @@
-import { Injectable } from '@angular/core';
-import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from './models/user';
-import { UserList } from './models/user-list';
-import { GetUsersParams } from './models/get-user-params';
-import { HttpUtil } from '../common/util/http.util';
+import { User } from '../models/user';
+import { UserList } from '../models/user-list';
+import { GetUsersParams } from '../models/get-user-params';
+import { HttpUtil } from '../util/http.util';
 import { share } from 'rxjs/operators';
-import { GenericUtil } from '../common/util/generic.util';
+import { GenericUtil } from '..//util/generic.util';
+import { LIBRARY_CONFIG } from '../auth-lib-config';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private config = inject(LIBRARY_CONFIG);
+  private http = inject(HttpClient);
   protected appCode: number[];
   protected endpoint: string;
 
-  constructor(protected wsi: WorldskillsAngularLibService, protected http: HttpClient) {
-    this.wsi.serviceConfigSubject.subscribe(
-      next => {
-        this.appCode = next.appCode;
-        this.endpoint = next.apiEndpoint + '/auth';
-      }
-    );
+  constructor() {
+    this.appCode = this.config.api?.appCode || [];
+    this.endpoint = this.config.api?.apiEndpoint + '/auth' || '';
   }
 
   public getLoggedInUser(showCollapsedChildRoles: boolean = false): Observable<User> {

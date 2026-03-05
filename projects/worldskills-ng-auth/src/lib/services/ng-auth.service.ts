@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { User } from './models/user';
-import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
+import { User } from '../models/user';
 import { AuthService } from './auth.service';
 import { share } from 'rxjs/operators';
-import { USER_CURRENT_KEY } from './constants';
+import { USER_CURRENT_KEY } from '../constants';
+import { LIBRARY_CONFIG } from '../auth-lib-config';
 
 // TODO: This class can be cleanup up and optimized
 // TODO: Generate auth state
@@ -13,22 +13,17 @@ import { USER_CURRENT_KEY } from './constants';
     providedIn: 'root'
 })
 export class NgAuthService {
+    private config = inject(LIBRARY_CONFIG);
+    private oAuthService = inject(OAuthService);
+    private authService = inject(AuthService);
     currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-    constructor(private wsi: WorldskillsAngularLibService, private oAuthService: OAuthService, public authService: AuthService) {
-        combineLatest([
-            this.wsi.authConfigSubject,
-            this.wsi.serviceConfigSubject
-        ])
-        .subscribe(
-            ([next]) => {
-                this.oAuthService.configure(next);
-                const user = JSON.parse(sessionStorage.getItem(USER_CURRENT_KEY));
-                this.currentUser.next(user);
-                this.oAuthService.setStorage(sessionStorage);
-                this.oAuthService.tryLogin();
-            }
-        );
+    constructor() {
+        this.oAuthService.configure(this.config.auth);
+        const user = JSON.parse(sessionStorage.getItem(USER_CURRENT_KEY));
+        this.currentUser.next(user);
+        this.oAuthService.setStorage(sessionStorage);
+        this.oAuthService.tryLogin();
     }
 
     public keepAlive(): Observable<any> {

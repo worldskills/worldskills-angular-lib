@@ -6,7 +6,6 @@ import { from } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { OptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/optionHandler';
 import { DefaultOptionHandler } from '../../../worldskills-angular-lib/src/lib/polls/models/defaultOptionHandler';
-import { User } from '../../../worldskills-angular-lib/src/lib/auth/models/user';
 import { MenuItem } from '../../../worldskills-angular-lib/src/lib/headers/menu-item';
 import { Poll } from '../../../worldskills-angular-lib/src/lib/polls/models/poll';
 import { Result } from '../../../worldskills-angular-lib/src/lib/polls/models/result';
@@ -22,6 +21,7 @@ import { WsiTranslateService } from '../../../worldskills-angular-lib/src/lib/i1
 import { I18nText } from 'projects/worldskills-angular-lib/src/lib/common/models/i18n-text';
 import { WsiToastService } from '../../../worldskills-angular-lib/src/lib/alerts/wsi-toast.service';
 import { WsiModalService } from '../../../worldskills-angular-lib/src/lib/modals/wsi-modal.service';
+import { User } from 'worldskills-ng-auth';
 
 // TODO: Cleanup, Each demo should be in its' own componennt
 @Component({
@@ -290,6 +290,9 @@ export class AppComponent {
         });
     }
 
+    configureAuthLib(): void {
+
+    }
 
     pollInit(): void {
         this.pollOptionHandler = new DefaultOptionHandler();

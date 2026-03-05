@@ -22,7 +22,6 @@ import { AnotherPageComponent } from "./another-page/another-page.component";
 import { AnotherRouteComponent } from "./another-route/another-route.component";
 import { NestedPageComponent } from "./nested-page/nested-page.component";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { GuardService } from "../../../worldskills-angular-lib/src/lib/auth/guard.service";
 import { SubpageOneComponent } from "./subpage-one/subpage-one.component";
 import { SubpageTwoComponent } from "./subpage-two/subpage-two.component";
 import { RelativeDateDemoComponent } from "./relative-date-demo/relative-date-demo.component";
@@ -30,6 +29,9 @@ import { DatePipe } from "@angular/common";
 import { provideTranslateHttpLoader, TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AlertsContainerComponent } from "projects/worldskills-angular-lib-tester/src/app/examples/alerts-container/alerts-container.component";
+import { GuardService } from "worldskills-ng-auth";
+import { provideLibraryConfig } from "worldskills-ng-auth";
+import { environment } from "../environments/environment";
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -153,6 +155,23 @@ export const appTranslationConfig = TranslateModule.forRoot({
     { provide: HTTP_INTERCEPTORS, useClass: WsHttpInterceptor, multi: true },
     DatePipe,
     provideHttpClient(withInterceptorsFromDi()),
+    provideLibraryConfig({
+      enableLogging: true,
+      auth: {
+        loginUrl: environment.authUrl,
+        clientId: environment.clientId,
+        redirectUri: environment.redirectUrl,
+        userinfoEndpoint: `${environment.apiBaseUrl}/users/loggedIn?show_child_roles=false&app_code=500`,
+        oidc: false
+      },
+      api: {
+        appCode: [500],
+        apiEndpoint: environment.apiBaseUrl
+      },
+      app: {
+        notAuthorizedRoute: ['/not-authorized']
+      }
+    }),
   ],
 })
 export class AppModule {}

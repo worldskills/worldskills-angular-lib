@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { NgAuthService } from '../ng-auth.service';
+import { NgAuthService } from '../services/ng-auth.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';

@@ -85,24 +85,6 @@ export * from './lib/worldskills-angular-lib.service';
 export * from './lib/alerts/alert/alert.component';
 export * from './lib/alerts/toast/toast.component';
 export * from './lib/alerts//wsi-toast.service';
-/*
-  Auth
-*/
-export * from './lib/auth/constants';
-export * from './lib/auth/handlers/redirect.handler';
-export * from './lib/auth/handlers/redirect-event.handler';
-export * from './lib/auth/models/auth-guard-access';
-export * from './lib/auth/models/entity-tree-view';
-export * from './lib/auth/models/entity-tree-view';
-export * from './lib/auth/models/get-user-params';
-export * from './lib/auth/models/role-application';
-export * from './lib/auth/models/role';
-export * from './lib/auth/models/user-list';
-export * from './lib/auth/models/user';
-export * from './lib/auth/models/ws-entity';
-export * from './lib/auth/guard.service';
-export * from './lib/auth/auth.service';
-export * from './lib/auth/ng-auth.service';
 
 /*
     Awards

@@ -1,4 +1,4 @@
-# Changelog
+# Changelog WorldSkills-angular-lib
 
 ## 15.0
 * 15.1.1 scripts to compile language files automatically

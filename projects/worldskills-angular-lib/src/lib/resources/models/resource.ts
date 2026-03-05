@@ -1,9 +1,9 @@
 import { I18nText } from '../../common/models/i18n-text';
-import { WsEntityModel } from '../../auth/models/ws-entity';
 import { Link } from '../../common/models/link';
 import { Version } from './version';
 import { ResourceType } from './resource-type';
 import { ResourceMetadata } from './resource-metadata';
+import { WsEntityModel } from 'worldskills-ng-auth';
 
 export interface Resource {
   id: number;

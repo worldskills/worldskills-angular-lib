@@ -10,7 +10,10 @@
     "e2e": "ng e2e",
     "ws_build_lib": "ng build worldskills-angular-lib --configuration production",
     "ws_npm_pack": "cd dist/worldskills-angular-lib && npm pack",
-    "ws_package": "npm run ws_build_lib && npm run ws_npm_pack"
+    "ws_package": "npm run ws_build_lib && npm run ws_npm_pack",
+    "auth_build_lib": "ng build worldskills-ng-auth --configuration production",
+    "auth_npm_pack": "cd dist/worldskills-ng-auth && npm pack",
+    "auth_package": "npm run auth_build_lib && npm run auth_npm_pack"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +51,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^20.3.10",
+    "@angular/build": "^20.3.10",
     "@angular/cli": "^20.3.10",
     "@angular/compiler-cli": "^20.3.12",
     "@types/jasmine": "^5.1.12",

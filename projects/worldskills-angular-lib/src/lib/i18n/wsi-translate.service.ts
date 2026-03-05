@@ -12,8 +12,8 @@ import { tt_RU } from './tt_RU.json';
 import { zh_CN } from './zh_CN.json';
 import { fi } from './fi.json';
 import { Subject } from 'rxjs';
-import { User } from '../auth/models/user';
 import { de } from './de.json';
+import { User } from 'worldskills-ng-auth';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { EntityTreeView } from '../../auth/models/entity-tree-view';
+import { EntityTreeView } from "worldskills-ng-auth";
 
 export type TreeEntity =
   Omit<EntityTreeView, 'children'>

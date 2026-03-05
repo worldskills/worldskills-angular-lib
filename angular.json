@@ -270,6 +270,36 @@
           }
         }
       }
+    },
+    "worldskills-ng-auth": {
+      "projectType": "library",
+      "root": "projects/worldskills-ng-auth",
+      "sourceRoot": "projects/worldskills-ng-auth/src",
+      "prefix": "ws-ng-auth",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/worldskills-ng-auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/worldskills-ng-auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/worldskills-ng-auth/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {

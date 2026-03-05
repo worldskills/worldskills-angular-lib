@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from '../menu-item';
-import { User } from '../../auth/models/user';
 import { GenericUtil } from '../../common/util/generic.util';
+import { User } from 'worldskills-ng-auth';
 
 @Component({
     selector: 'ws-header',

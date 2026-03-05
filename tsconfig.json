@@ -22,9 +22,21 @@
       "worldskills-angular-lib": [
         "dist/worldskills-angular-lib/worldskills-angular-lib",
         "dist/worldskills-angular-lib",
-        "projects/worldskills-angular-lib/src/public_api.ts"
+        "projects/worldskills-angular-lib/src/public-api.ts"
+      ],
+      "worldskills-ng-auth": [
+        "dist/worldskills-ng-auth/worldskills-ng-auth",
+        "dist/worldskills-ng-auth",
+        "./projects/worldskills-ng-auth/src/public-api.ts"
+      ],
+      "worldskills-ng-auth/*": [
+        "./projects/worldskills-ng-auth/src/*"
       ]
+      
     },
     "useDefineForClassFields": false
-  }
+  },
+  "references": [
+
+  ]
 }

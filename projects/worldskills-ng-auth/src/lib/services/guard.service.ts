@@ -1,28 +1,21 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, Router } from '@angular/router';
-import { User } from './models/user';
-import { GenericUtil } from '../common/util/generic.util';
-import { AuthGuardAccess } from './models/auth-guard-access';
+import { User } from '../models/user';
+import { GenericUtil } from '../util/generic.util';
+import { AuthGuardAccess } from '../models/auth-guard-access';
 import { Observable } from 'rxjs';
-import { WorldskillsAngularLibService } from '../worldskills-angular-lib.service';
-import { AppConfig } from '../config/app.config';
 import { NgAuthService } from './ng-auth.service';
-import { RETURN_URL_KEY, USER_CURRENT_KEY } from './constants';
+import { RETURN_URL_KEY, USER_CURRENT_KEY } from '../constants';
+import { LIBRARY_CONFIG } from '../auth-lib-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuardService  {
-
-    private config: AppConfig;
-
-  constructor(
-      private ngAuthService: NgAuthService,
-      private wsi: WorldskillsAngularLibService,
-      private router: Router,
-  ) {
-      this.wsi.appConfigSubject.subscribe(config => (this.config = config));
-  }
+  private config = inject(LIBRARY_CONFIG);
+  private ngAuthService = inject(NgAuthService);
+  private router = inject(Router);
+  constructor() {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -52,7 +45,7 @@ export class GuardService  {
           url: state.url
         };
         sessionStorage.setItem('error', JSON.stringify(error));
-        this.router.navigate(this.config.notAuthorizedRoute, { replaceUrl: true });
+        this.router.navigate(this.config.app.notAuthorizedRoute, { replaceUrl: true });
       }
 
       return accessible;

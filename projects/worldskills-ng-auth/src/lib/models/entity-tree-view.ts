@@ -1,8 +1,11 @@
-import { I18nText } from '../../common/models/i18n-text';
 
 export class EntityTreeView {
   id: number;
-  name: I18nText;
+  name: {
+      lang_code: string;
+      text: string;
+      translations?: Map<string, string>;
+  };
   // tslint:disable-next-line:variable-name
   parent_id: number;
   children: Array<EntityTreeView>;
@@ -14,3 +17,5 @@ export class EntityTreeView {
     this.children = obj && obj.children || [];
   }
 }
+
+

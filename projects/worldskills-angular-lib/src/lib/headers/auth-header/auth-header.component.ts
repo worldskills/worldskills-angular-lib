@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {MenuItem} from '../menu-item';
-import {User} from '../../auth/models/user';
-import {NgAuthService} from '../../auth/ng-auth.service';
+import { NgAuthService, User } from 'worldskills-ng-auth';
 
 @Component({
     selector: 'ws-auth-header',
