@@ -1,0 +1,54 @@
+<ng-template #appNameDefaultTemplate>
+    <div class="flex align-items-center">
+        <a routerLink="/" class="flex align-items-center gap-2 text-white no-underline">
+            <ws-wordmark></ws-wordmark>
+            <span>{{ appName }}</span>
+        </a>
+    </div>
+</ng-template>
+
+<ng-template #menuDefaultTemplate>
+    <p-menubar [model]="menubarItems" [global]="false" styleClass="border-none bg-pink-600">
+        <ng-template pTemplate="end">
+            <div class="flex align-items-center gap-3">
+                <p-menu #userMenu [model]="dropdownItems" [popup]="true" *ngIf="showMenu()"></p-menu>
+                <button pButton pRipple 
+                        type="button" 
+                        [label]="getInitials()" 
+                        class="p-button-rounded p-button-text"
+                        (click)="userMenu.toggle($event)"
+                        *ngIf="showMenu()">
+                </button>
+                <button pButton pRipple
+                        type="button"
+                        [label]="'auth.login'"
+                        class="p-button-sm p-button-outlined"
+                        (click)="login()"
+                        *ngIf="showLoginButton()">
+                </button>
+            </div>
+        </ng-template>
+    </p-menubar>
+</ng-template>
+
+<ng-template #subMenuDefaultTemplate>
+    <div class="ws-submenu-container">
+        <p-menu [model]="getSubMenuItems(getActiveParentMenu()) | wsMenuAccessFilter: isLoggedIn: userRoles()"
+                [global]="false"
+                styleClass="w-full">
+        </p-menu>
+    </div>
+</ng-template>
+
+<div class="ws-navbar-main bg-pink-600">
+    <div class="container">
+        <ng-container *ngTemplateOutlet="appNameTemplate ? appNameTemplate : appNameDefaultTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="menuTemplate ? menuTemplate : menuDefaultTemplate"></ng-container>
+    </div>
+</div>
+
+<div class="ws-navbar-sub" *ngIf="hasSubMenuItems(getActiveParentMenu())">
+    <div class="container">
+        <ng-container *ngTemplateOutlet="subMenuTemplate ? subMenuTemplate : subMenuDefaultTemplate"></ng-container>
+    </div>
+</div>

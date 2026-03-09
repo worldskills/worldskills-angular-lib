@@ -31,12 +31,31 @@
       ],
       "worldskills-ng-auth/*": [
         "./projects/worldskills-ng-auth/src/*"
+      ],
+      "worldskills-ng-ui": [
+        "dist/worldskills-ng-ui/worldskills-ng-ui",
+        "dist/worldskills-ng-ui",
+        "projects/worldskills-ng-ui/src/public-api.ts"
+      ],
+      "worldskills-ng-ui/*": [
+        "./projects/worldskills-ng-ui/src/*"
       ]
       
     },
     "useDefineForClassFields": false
   },
   "references": [
-
+    {
+      "path": "./projects/worldskills-ng-tester/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/worldskills-ng-tester/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/worldskills-ng-tester-prime/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/worldskills-ng-tester-prime/tsconfig.spec.json"
+    }
   ]
 }

@@ -1,0 +1,54 @@
+<div class="p-6 bg-surface-0 dark:bg-surface-950 rounded-xl shadow-xl max-w-2xl mx-auto mt-10">
+
+  <h2 class="text-2xl font-semibold text-surface-900 dark:text-surface-0 mb-6">
+    PrimeNG + Tailwind Test
+  </h2>
+
+  <!-- Button with ripple + severity + Tailwind overrides -->
+  <div class="flex flex-wrap gap-4 mb-8">
+    <p-button 
+      label="Primary" 
+      severity="primary" 
+      icon="pi pi-check" 
+      [raised]="true"
+      class="p-button-raised"
+    ></p-button>
+
+    <p-button 
+      label="Success" 
+      severity="success" 
+      icon="pi pi-thumbs-up" 
+      [outlined]="true"
+    ></p-button>
+
+    <p-button 
+      label="Danger" 
+      severity="danger" 
+      icon="pi pi-times" 
+      [rounded]="true"
+    ></p-button>
+
+    <p-button 
+      label="Info (ripple)" 
+      severity="info" 
+      pRipple
+    ></p-button>
+  </div>
+
+  <!-- Simple Input + Toggle for dark mode test -->
+  <div class="flex flex-col gap-4">
+    <span class="p-input-icon-left w-full max-w-sm">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" placeholder="Search..." class="w-full" />
+    </span>
+
+    <p-togglebutton 
+      [(ngModel)]="darkMode" 
+      onLabel="Dark" 
+      offLabel="Light" 
+      styleClass="w-32"
+      (onChange)="toggleDarkMode()"
+    ></p-togglebutton>
+  </div>
+
+</div>

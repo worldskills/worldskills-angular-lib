@@ -300,6 +300,220 @@
           }
         }
       }
+    },
+    "worldskills-ng-ui": {
+      "projectType": "library",
+      "root": "projects/worldskills-ng-ui",
+      "sourceRoot": "projects/worldskills-ng-ui/src",
+      "prefix": "ws-ng-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/worldskills-ng-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/worldskills-ng-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/worldskills-ng-ui/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "worldskills-ng-tester": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/worldskills-ng-tester",
+      "sourceRoot": "projects/worldskills-ng-tester/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/worldskills-ng-tester/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/worldskills-ng-tester/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/worldskills-ng-tester/public"
+              }
+            ],
+            "styles": [
+              "projects/worldskills-ng-tester/src/styles.scss",
+              "node_modules/primeicons/primeicons.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "worldskills-ng-tester:build:production"
+            },
+            "development": {
+              "buildTarget": "worldskills-ng-tester:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/worldskills-ng-tester/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/worldskills-ng-tester/public"
+              }
+            ],
+            "styles": [
+              "projects/worldskills-ng-tester/src/styles.scss"
+            ]
+          }
+        }
+      }
+    },
+    "worldskills-ng-tester-prime": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/worldskills-ng-tester-prime",
+      "sourceRoot": "projects/worldskills-ng-tester-prime/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/worldskills-ng-tester-prime/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/worldskills-ng-tester-prime/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/worldskills-ng-tester-prime/public"
+              }
+            ],
+            "styles": [
+              "projects/worldskills-ng-tester-prime/src/styles.scss",
+              "node_modules/primeicons/primeicons.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "worldskills-ng-tester-prime:build:production"
+            },
+            "development": {
+              "buildTarget": "worldskills-ng-tester-prime:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/worldskills-ng-tester-prime/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/worldskills-ng-tester-prime/public"
+              }
+            ],
+            "styles": [
+              "projects/worldskills-ng-tester-prime/src/styles.scss"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {
