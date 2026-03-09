@@ -18,7 +18,7 @@
           <span>{{translation.value}}</span>
         </button>
         <div role="separator" class="dropdown-divider"></div>
-        <button type="button" ngbDropdownItem (click)="editAllTranslations(contentTranslations)">{{'edit_all_translations' | translate}}</button>
+        <button type="button" ngbDropdownItem (click)="editAllTranslations(contentTranslations)">{{'edit_all_translations' | wsTranslate | async}}</button>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
 
 <ng-template #contentTranslations let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{'translations' | translate}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{'translations' | wsTranslate | async}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -60,7 +60,7 @@
             (click)="deleteTranslation(translation.key)"
              *ngIf="numTranslations() > 1"
           >
-            {{'remove' | translate}}
+            {{'remove' | wsTranslate | async}}
           </button>
         </div>
       </div>
@@ -68,7 +68,7 @@
     <div class="row mt-4 mb-3">
       <div class="offset-1 col-9">
     <div ngbDropdown>
-      <button class="btn btn-outline-success btn-sm" ngbDropdownToggle>{{'add_translation' | translate}}</button>
+      <button class="btn btn-outline-success btn-sm" ngbDropdownToggle>{{'add_translation' | wsTranslate | async}}</button>
       <div ngbDropdownMenu>
         <button *ngFor="let language of getLanguages()" ngbDropdownItem (click)="addTranslation(language.code)" class="text-uppercase">{{language.code}}</button>
       </div>
