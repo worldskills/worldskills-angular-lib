@@ -1,6 +1,7 @@
 # Changelog
 
 ## 15.0
+* 15.1.2 Use lib translations for i18ntext component
 * 15.1.1 scripts to compile language files automatically
 * 15.1.1 footer update: registrations is now Horizon
 * 15.1.0 Add error event to the upload service
