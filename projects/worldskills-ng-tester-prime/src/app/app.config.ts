@@ -2,15 +2,23 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeng/themes/aura';   // ← this is the correct import (JS module)
-import { WorldSkillsPreset, WorldSkillsPTPreset } from 'worldskills-ng-ui';
+import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations } from 'worldskills-ng-ui';
 import { provideRouter } from '@angular/router';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimationsAsync(),
+    provideHttpClient(),
+    ...provideTranslateService({ lang: 'en', extend: true }),
+    ...provideTranslateHttpLoader(),
+    provideWsNgUiTranslations(),
     providePrimeNG({
       pt: WorldSkillsPTPreset,
       theme: {

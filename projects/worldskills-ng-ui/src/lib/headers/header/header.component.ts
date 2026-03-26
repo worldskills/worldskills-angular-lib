@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, TemplateRef, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { User } from 'worldskills-ng-auth';
 import { GenericUtil } from '../../../lib/common/util/generic.util';
@@ -10,18 +10,21 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { WordmarkComponent } from '../../logos/wordmark/wordmark.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ws-ng-ui-header',
   imports: [
     CommonModule, MenuAccessPipe, NgTemplateOutlet,
     ButtonModule, MenuModule, MenubarModule,
-    RouterModule, WordmarkComponent,
+    RouterModule, WordmarkComponent, TranslatePipe,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnChanges {
+
+    private readonly translate = inject(TranslateService, { optional: true });
 
     @Input() appName: string;
     @Input() public isLoggedIn: boolean;
@@ -84,7 +87,7 @@ export class HeaderComponent implements OnChanges {
             ...(this.dropDownMenuItems ?? [])
                 .filter(i => this.isMenuItemVisible(i))
                 .map(i => ({ label: i.label, routerLink: i.url })),
-            { label: 'Logout', command: () => this.logout() }
+            { label: this.translate?.instant('ws_ui.header.logout') ?? 'Logout', command: () => this.logout() }
         ];
     }
 

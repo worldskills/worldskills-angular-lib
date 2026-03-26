@@ -17,7 +17,7 @@
                     <button class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white text-[#3d0e61] text-sm font-bold cursor-pointer border-0 hover:bg-white/90" (click)="userMenu.toggle($event)">{{ getInitials() }}</button>
                 }
                 @if (showLoginButton()) {
-                    <button class="bg-white text-[#3d0e61] border-0 rounded-md py-0.5 px-2 text-base font-semibold cursor-pointer ml-3 hover:bg-white/90" (click)="login()">Login</button>
+                    <button class="bg-white text-[#3d0e61] border-0 rounded-md py-0.5 px-2 text-base font-semibold cursor-pointer ml-3 hover:bg-white/90" (click)="login()">{{ 'ws_ui.header.login' | translate }}</button>
                 }
             </div>
         </ng-template>

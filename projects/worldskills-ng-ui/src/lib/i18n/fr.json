@@ -1,0 +1,8 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Connexion",
+            "logout": "Déconnexion"
+        }
+    }
+}

@@ -42,7 +42,8 @@
       ]
       
     },
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "resolveJsonModule": true
   },
   "references": [
     {

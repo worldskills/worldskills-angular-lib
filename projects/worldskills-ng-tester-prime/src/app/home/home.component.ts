@@ -2,10 +2,11 @@ import { Component } from "@angular/core";
 import { HeaderComponent } from "worldskills-ng-ui";
 import type { MenuItem } from "worldskills-ng-ui";
 import { User } from "worldskills-ng-auth";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-home",
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, TranslatePipe],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
 })

@@ -1,0 +1,8 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Entrar",
+            "logout": "Sair"
+        }
+    }
+}
