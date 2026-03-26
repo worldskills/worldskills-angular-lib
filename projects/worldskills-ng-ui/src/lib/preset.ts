@@ -169,7 +169,7 @@ export const WorldSkillsPreset = definePreset(Aura, {
         padding: '1.5rem 0',
       },
     },
-    confirmpopup: {
+confirmpopup: {
       root: {
         gutter: '0px',
       },

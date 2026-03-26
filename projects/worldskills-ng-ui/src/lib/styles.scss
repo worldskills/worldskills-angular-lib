@@ -1,12 +1,7 @@
 @use 'primeicons/primeicons.css';
 @use 'tailwindcss';
 @plugin 'tailwindcss-primeui';
-
-// Optional: force PrimeNG css layer order
 @layer tailwind, primeng;
-
-// If you want a specific preset (optional)
-@use '@primeng/themes/aura/aura.css';   // or lara, material, etc.
 
 
 :root {

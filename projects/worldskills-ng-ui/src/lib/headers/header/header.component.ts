@@ -1,23 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { ActivatedRoute, provideRouter, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnChanges, Output, TemplateRef } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { User } from 'worldskills-ng-auth';
 import { GenericUtil } from '../../../lib/common/util/generic.util';
 import { MenuItem } from '../menu-item';
+import { MenuItem as PrimeMenuItem } from 'primeng/api';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { MenuAccessPipe } from '../menu-access.pipe';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule} from 'primeng/menu';
-import { MenubarModule} from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
+import { MenubarModule } from 'primeng/menubar';
+import { WordmarkComponent } from '../../logos/wordmark/wordmark.component';
 
 @Component({
   selector: 'ws-ng-ui-header',
   imports: [
-    CommonModule, MenuAccessPipe, NgTemplateOutlet, ButtonModule, MenuModule, MenubarModule,
-    ],
+    CommonModule, MenuAccessPipe, NgTemplateOutlet,
+    ButtonModule, MenuModule, MenubarModule,
+    RouterModule, WordmarkComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnChanges {
 
     @Input() appName: string;
     @Input() public isLoggedIn: boolean;
@@ -32,7 +36,7 @@ export class HeaderComponent implements OnInit {
     @Output() public logoutClick: EventEmitter<any> = new EventEmitter();
     @Output() public loginClick: EventEmitter<any> = new EventEmitter();
 
-    constructor(private router: Router, private route: ActivatedRoute) {
+    constructor(private router: Router) {
         this.appName = 'Application';
         this.isLoggedIn = false;
         this.showLoginAndLogoutButtons = false;
@@ -41,26 +45,57 @@ export class HeaderComponent implements OnInit {
         this.currentUser = null;
     }
 
-    // tslint:disable-next-line:use-life-cycle-interface typedef
-    ngOnInit() {
+    private isMenuItemVisible(item: MenuItem): boolean {
+        if (!item || item.hidden) {
+            return false;
+        }
+        if (item.requireLogin && !this.isLoggedIn) {
+            return false;
+        }
+        if (!item.requiredRoles || item.requiredRoles.length === 0) {
+            return true;
+        }
+        const roles = this.userRoles();
+        return item.requiredRoles.some(role => roles.includes(role));
     }
 
-    // tslint:disable-next-line:use-lifecycle-interface typedef
-    ngOnChanges() {
+    menubarItems: PrimeMenuItem[] = [];
+
+    ngOnChanges(): void {
+        this.menubarItems = (this.menuItems ?? [])
+            .filter(item => this.isMenuItemVisible(item))
+            .map(item => ({
+                label: item.label,
+                routerLink: item.url,
+                queryParams: item.params,
+                items: item.subMenuItems
+                    ?.filter(s => this.isMenuItemVisible(s))
+                    .map(s => ({ label: s.label, routerLink: s.url, queryParams: s.params }))
+            }));
+    }
+
+    get dropdownItems(): PrimeMenuItem[] {
+        const name = this.currentUser
+            ? `${this.currentUser.first_name} ${this.currentUser.last_name}`
+            : '';
+        return [
+            { label: name, disabled: true },
+            { separator: true },
+            ...(this.dropDownMenuItems ?? [])
+                .filter(i => this.isMenuItemVisible(i))
+                .map(i => ({ label: i.label, routerLink: i.url })),
+            { label: 'Logout', command: () => this.logout() }
+        ];
     }
 
     userRoles(): string[] {
         if (this.currentUser === undefined || this.currentUser === null) {
             return [];
         }
-
         if (this.currentUser.roles === undefined || this.currentUser.roles === null) {
             return [];
         }
-
-        return this.currentUser.roles.map(item => {
-            return item.name;
-        });
+        return this.currentUser.roles.map(item => item.name);
     }
 
     isRouteActive(item: MenuItem): boolean {
@@ -70,8 +105,6 @@ export class HeaderComponent implements OnInit {
     getActiveParentMenu(): MenuItem {
         let parent = this.menuItems.find(item => item.url === this.router.url);
         if (GenericUtil.isNullOrUndefined(parent)) {
-
-            // get the parent of the active child item.
             const parents = this.menuItems.filter(item => !GenericUtil.isNullOrUndefined(item.subMenuItems));
             parents.forEach(item => {
                 if (GenericUtil.isNullOrUndefined(parent)) {
@@ -82,7 +115,6 @@ export class HeaderComponent implements OnInit {
                 }
             });
         }
-
         return parent;
     }
 
@@ -90,7 +122,6 @@ export class HeaderComponent implements OnInit {
         if (GenericUtil.isNullOrUndefined(item)) {
             return false;
         }
-
         return !GenericUtil.isNullOrUndefined(item.subMenuItems);
     }
 
@@ -98,11 +129,9 @@ export class HeaderComponent implements OnInit {
         if (GenericUtil.isNullOrUndefined(item)) {
             return [];
         }
-
         if (GenericUtil.isNullOrUndefined(item.subMenuItems)) {
             return [];
         }
-
         return item.subMenuItems;
     }
 
@@ -118,14 +147,12 @@ export class HeaderComponent implements OnInit {
         let s = '';
         if (this.currentUser) {
             if (this.currentUser.first_name) {
-                s = this.currentUser.first_name.substr(0, 1);
+                s = this.currentUser.first_name.substring(0, 1);
             }
-
             if (this.currentUser.last_name) {
-                s += this.currentUser.last_name.substr(0, 1);
+                s += this.currentUser.last_name.substring(0, 1);
             }
         }
-
         return s.toUpperCase();
     }
 
@@ -135,6 +162,25 @@ export class HeaderComponent implements OnInit {
 
     showLoginButton(): boolean {
         return this.showLoginAndLogoutButtons ? !this.isLoggedIn || GenericUtil.isNullOrUndefined(this.currentUser) : false;
-
     }
+
+    readonly menubarPT = {
+        start: { class: 'flex-1 flex items-center p-2' },
+        submenu: {
+            class: 'min-w-[10rem]',
+            style: {
+                '--ws-menubar-item-color': '#3d0e61',
+                '--ws-menubar-item-focus-color': '#3d0e61',
+                '--ws-menubar-item-active-color': '#3d0e61',
+                '--ws-menubar-item-focus-background': 'rgba(61, 14, 97, 0.05)',
+                '--ws-menubar-item-active-background': 'rgba(61, 14, 97, 0.1)',
+            }
+        },
+    };
+
+    readonly userMenuPT = {
+        root: { class: 'min-w-[180px]' },
+        itemContent: { class: 'px-4 py-2' },
+        separator: { class: 'border-t border-gray-200 my-1' },
+    };
 }
