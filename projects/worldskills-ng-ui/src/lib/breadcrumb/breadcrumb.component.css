@@ -1,0 +1,19 @@
+.ws-breadcrumb-link {
+  color: var(--p-primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ws-breadcrumb-link:hover {
+  color: var(--p-primary-hover-color);
+  text-decoration: underline;
+}
+
+.ws-breadcrumb-separator {
+  color: var(--p-text-muted-color);
+}
+
+.ws-breadcrumb-current {
+  color: var(--p-text-muted-color);
+  font-weight: 500;
+}

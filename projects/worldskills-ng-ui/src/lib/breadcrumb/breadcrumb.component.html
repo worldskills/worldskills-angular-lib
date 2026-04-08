@@ -1,0 +1,26 @@
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap items-center gap-1 py-2 text-sm">
+
+    <!-- Home -->
+    <li>
+      <a [href]="homeRoute" (click)="navigate(homeRoute, $event)"
+         class="ws-breadcrumb-link flex items-center gap-1.5">
+        <i class="pi pi-home text-xs"></i>
+        <span>{{ homeLabel }}</span>
+      </a>
+    </li>
+
+    @for (crumb of items$ | async; track crumb.key; let last = $last) {
+      <li class="flex items-center gap-1">
+        <i class="pi pi-chevron-right text-xs ws-breadcrumb-separator"></i>
+        @if (!last) {
+          <a [href]="crumb.url" (click)="navigate(crumb.url, $event)"
+             class="ws-breadcrumb-link">{{ crumb.label }}</a>
+        } @else {
+          <span class="ws-breadcrumb-current">{{ crumb.label }}</span>
+        }
+      </li>
+    }
+
+  </ol>
+</nav>

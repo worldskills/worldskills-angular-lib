@@ -41,3 +41,8 @@ export * from './lib/banners/staging-banner/staging-banner.component';
 export * from './lib/tree-select/tree-select-node';
 export * from './lib/tree-select/tree-select.component';
 
+// breadcrumb
+export * from './lib/breadcrumb/breadcrumb.model';
+export * from './lib/breadcrumb/breadcrumb.service';
+export * from './lib/breadcrumb/breadcrumb.component';
+
