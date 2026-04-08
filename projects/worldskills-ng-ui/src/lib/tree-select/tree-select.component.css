@@ -1,0 +1,63 @@
+/* Trigger — matches p-select appearance */
+.ws-tree-trigger {
+  border: 1px solid var(--p-select-border-color);
+  border-radius: var(--p-rounded-md);
+  background: var(--p-select-background);
+  min-height: 2.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.ws-tree-trigger:hover {
+  border-color: var(--p-select-hover-border-color);
+}
+
+.ws-tree-trigger--open {
+  border-color: var(--p-select-focus-border-color);
+  box-shadow: var(--p-focus-ring-shadow);
+}
+
+.ws-tree-trigger__label {
+  color: var(--p-select-color);
+}
+
+.ws-tree-trigger__label--placeholder {
+  color: var(--p-select-placeholder-color);
+}
+
+.ws-tree-trigger__icons {
+  color: var(--p-select-dropdown-icon-color);
+}
+
+.ws-tree-trigger__clear:hover {
+  color: var(--p-text-color);
+}
+
+/* Panel */
+.ws-tree-panel {
+  background: var(--p-select-overlay-background);
+  border: 1px solid var(--p-select-overlay-border-color);
+  border-radius: var(--p-rounded-md);
+  box-shadow: var(--p-select-overlay-shadow);
+}
+
+.ws-tree-panel__divider {
+  border-color: var(--p-content-border-color);
+}
+
+/* Empty state */
+.ws-tree-empty {
+  color: var(--p-text-muted-color);
+}
+
+/* Strip p-tree's own border, padding, and background so it sits flush inside our panel */
+:host ::ng-deep .ws-p-tree.p-tree {
+  border: none;
+  border-radius: 0;
+  padding: 0.25rem 0;
+  background: transparent;
+}
+
+:host ::ng-deep .ws-p-tree .p-tree-wrapper {
+  overflow: visible;
+}

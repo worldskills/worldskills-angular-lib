@@ -1,0 +1,82 @@
+<div class="ws-tree-select relative">
+
+  <!-- Trigger — mirrors p-select appearance -->
+  <div class="ws-tree-trigger flex items-center cursor-pointer"
+       [class.ws-tree-trigger--open]="isOpen"
+       (click)="toggle()">
+    <span class="flex-1 px-3 py-2 text-sm truncate ws-tree-trigger__label"
+          [class.ws-tree-trigger__label--placeholder]="!triggerLabel">
+      {{ triggerLabel || placeholder }}
+    </span>
+    <span class="flex items-center gap-2 px-3 ws-tree-trigger__icons">
+      @if (triggerLabel) {
+        <i class="pi pi-times text-xs ws-tree-trigger__clear"
+           (click)="$event.stopPropagation(); clear()"></i>
+      }
+      <i class="pi text-xs transition-transform duration-200"
+         [class.pi-chevron-down]="!isOpen"
+         [class.pi-chevron-up]="isOpen"></i>
+    </span>
+  </div>
+
+  <!-- Dropdown panel -->
+  @if (isOpen) {
+    <div class="ws-tree-panel absolute top-full left-0 right-0 z-50 mt-1">
+
+      <!-- Fuzzy search -->
+      <div class="p-2 border-b ws-tree-panel__divider">
+        <p-iconfield class="w-full">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+            pInputText
+            type="text"
+            class="w-full text-sm"
+            placeholder="Search..."
+            [value]="term"
+            (input)="onTermChange($any($event.target).value)"
+            autofocus />
+        </p-iconfield>
+      </div>
+
+      <!-- Tree via p-tree -->
+      <div class="tree-body">
+        @if (loading) {
+          <div class="flex justify-center py-6">
+            <p-progressspinner styleClass="w-8 h-8" />
+          </div>
+        } @else if (displayNodes.length === 0) {
+          <p class="text-center text-sm py-4 ws-tree-empty">No results found</p>
+        } @else {
+          <p-tree
+            [value]="displayNodes"
+            [selectionMode]="selectionMode"
+            [selection]="selection"
+            (selectionChange)="onSelectionChange($event)"
+            [filter]="false"
+            [virtualScroll]="virtualScroll"
+            [virtualScrollItemSize]="virtualScrollItemSize"
+            scrollHeight="288px"
+            styleClass="ws-p-tree">
+
+            <ng-template pTemplate="default" let-node>
+              @if (nodeTemplate) {
+                <ng-container *ngTemplateOutlet="nodeTemplate; context: {
+                  $implicit: node.data,
+                  selected: selectionMode === 'single' ? selection === node : $any(selection)?.includes(node),
+                  selectable: node.selectable !== false
+                }"></ng-container>
+              } @else {
+                <span class="text-sm">{{ node.label }}</span>
+              }
+            </ng-template>
+
+          </p-tree>
+        }
+      </div>
+
+    </div>
+  }
+
+</div>

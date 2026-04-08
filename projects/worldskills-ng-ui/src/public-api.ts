@@ -37,3 +37,7 @@ export * from './lib/spinner/spinner.component';
 export * from './lib/banners/puppeteer-banner/puppeteer-banner.component';
 export * from './lib/banners/staging-banner/staging-banner.component';
 
+// tree-select
+export * from './lib/tree-select/tree-select-node';
+export * from './lib/tree-select/tree-select.component';
+
