@@ -47,7 +47,7 @@
     "moment": "^2.29.1",
     "ng-select": "^1.0.2",
     "primeicons": "^7.0.0",
-    "primeng": "^21.1.3",
+    "primeng": "^20.4.0",
     "routing": "^0.0.2",
     "rxjs": "~6.5.5",
     "tailwindcss-primeui": "^0.6.1",

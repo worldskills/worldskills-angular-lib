@@ -3,6 +3,19 @@
         "header": {
             "login": "Kirjaudu sisään",
             "logout": "Kirjaudu ulos"
+        },
+        "footer": {
+            "link_my_worldskills": "Oma profiili",
+            "link_glossary": "Sanasto",
+            "link_forums": "Foorumi",
+            "link_infrastructure_lists": "Infralistat",
+            "link_skill_management": "Lajien hallinta",
+            "copyright_wsi": "WorldSkills International",
+            "copyright_privacy": "Tietosuojakäytäntö",
+            "copyright_terms": "Käyttöehdot",
+            "copyright_contact": "Yhteystiedot",
+            "language": "Kieli",
+            "missing_translation": "Puuttuuko käännös?"
         }
     }
 }

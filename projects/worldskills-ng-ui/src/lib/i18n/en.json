@@ -3,6 +3,20 @@
         "header": {
             "login": "Login",
             "logout": "Logout"
+        },
+        "footer": {
+            "link_my_worldskills": "myWorldSkills",
+            "link_glossary": "Glossary",
+            "link_horizon": "Horizon",
+            "link_forums": "Forums",
+            "link_infrastructure_lists": "Infrastructure Lists",
+            "link_skill_management": "Skill Management",
+            "copyright_wsi": "WorldSkills International",
+            "copyright_privacy": "Privacy",
+            "copyright_terms": "Terms",
+            "copyright_contact": "Contact",
+            "language": "Language",
+            "missing_translation": "Missing Translation?"
         }
     }
 }

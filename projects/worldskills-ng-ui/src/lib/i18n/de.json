@@ -3,6 +3,18 @@
         "header": {
             "login": "Anmelden",
             "logout": "Abmelden"
+        },
+        "footer": {
+            "link_my_worldskills": "myWorldSkills",
+            "link_glossary": "Glossar",
+            "link_forums": "Foren",
+            "link_infrastructure_lists": "Infrastruktur-Listen",
+            "copyright_wsi": "WorldSkills International",
+            "copyright_privacy": "Datenschutz",
+            "copyright_terms": "Bestimmungen",
+            "copyright_contact": "Kontakt",
+            "language": "Sprache",
+            "missing_translation": "Fehlende Übersetzung?"
         }
     }
 }

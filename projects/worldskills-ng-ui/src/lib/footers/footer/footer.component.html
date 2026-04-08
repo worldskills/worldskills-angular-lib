@@ -1,0 +1,61 @@
+<ng-template #col1DefaultTemplate>
+  <h2 class="text-base font-bold mb-4">
+    <a href="https://worldskills.org/internal/" target="_blank" class="text-white no-underline hover:text-white/80">
+      {{ 'ws_ui.footer.link_my_worldskills' | translate }}
+    </a>
+  </h2>
+  <ul class="list-none p-0 m-0 flex flex-col gap-2">
+    <li><a href="https://glossary.worldskills.org/" target="_blank" class="text-white/70 no-underline hover:text-white text-sm">{{ 'ws_ui.footer.link_glossary' | translate }}</a></li>
+    <li><a href="https://registrations.worldskills.org/" target="_blank" class="text-white/70 no-underline hover:text-white text-sm">{{ 'ws_ui.footer.link_horizon' | translate }}</a></li>
+    <li><a href="https://forums.worldskills.org/" target="_blank" class="text-white/70 no-underline hover:text-white text-sm">{{ 'ws_ui.footer.link_forums' | translate }}</a></li>
+    <li><a href="https://il.worldskills.org/" target="_blank" class="text-white/70 no-underline hover:text-white text-sm">{{ 'ws_ui.footer.link_infrastructure_lists' | translate }}</a></li>
+    <li><a href="https://skill-management.worldskills.org/" target="_blank" class="text-white/70 no-underline hover:text-white text-sm">{{ 'ws_ui.footer.link_skill_management' | translate }}</a></li>
+  </ul>
+</ng-template>
+
+<ng-template #col6DefaultTemplate>
+  <div class="flex justify-end">
+    <a href="https://worldskills.org/" target="_blank">
+      <ws-ng-ui-logo mode="default"></ws-ng-ui-logo>
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #colDefaultTemplate></ng-template>
+
+<footer class="ws-footer">
+  <div class="max-w-screen-xl mx-auto px-6 pt-10 pb-4">
+
+    <!-- 6-column content row -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
+      <div><ng-container *ngTemplateOutlet="col1Template ?? col1DefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col2Template ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col3Template ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col4Template ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col5Template ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col6Template ?? col6DefaultTemplate" /></div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/20 pt-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/70">
+        <span>© {{ date | date:'yyyy' }} {{ 'ws_ui.footer.copyright_wsi' | translate }}</span>
+        <a href="https://worldskills.org/site/privacy/" target="_blank" class="text-white/70 no-underline hover:text-white">{{ 'ws_ui.footer.copyright_privacy' | translate }}</a>
+        <a href="https://worldskills.org/site/terms/" target="_blank" class="text-white/70 no-underline hover:text-white">{{ 'ws_ui.footer.copyright_terms' | translate }}</a>
+        <a href="https://worldskills.org/site/contact/" target="_blank" class="text-white/70 no-underline hover:text-white">{{ 'ws_ui.footer.copyright_contact' | translate }}</a>
+      </div>
+
+      <p-select
+        [options]="getLanguages()"
+        [(ngModel)]="selectedLanguage"
+        optionLabel="name"
+        dataKey="code"
+        (onChange)="changeLanguage($event.value)"
+        [placeholder]="'ws_ui.footer.language' | translate"
+        appendTo="body"
+        styleClass="ws-footer-lang-select"
+        [pt]="langSelectPT" />
+    </div>
+
+  </div>
+</footer>

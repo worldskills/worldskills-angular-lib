@@ -1,0 +1,22 @@
+:host {
+    display: block;
+}
+
+.ws-footer {
+    background-color: #0d2240;
+    color: #ffffff;
+}
+
+:host ::ng-deep .ws-footer-lang-select .p-select {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+:host ::ng-deep .ws-footer-lang-select .p-select-label {
+    color: #ffffff;
+}
+
+:host ::ng-deep .ws-footer-lang-select .p-select-dropdown {
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -1,1 +1,8 @@
+<ws-ng-ui-header [appName]="appName" [isLoggedIn]="isLoggedIn" [showLoginAndLogoutButtons]="showLoginAndLogoutButtons"
+    [menuItems]="menuItems" [dropDownMenuItems]="dropDownMenuItems" [currentUser]="currentUser" [linkTitle]="linkTitle"
+    (loginClick)="login()" (logoutClick)="logout()">
+</ws-ng-ui-header>
+
 <router-outlet></router-outlet>
+
+<ws-ng-ui-footer [isLoggedIn]="isLoggedIn" [currentUser]="currentUser" (loginClick)="login()" (loginClick)="logout()"></ws-ng-ui-footer>

@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeng/themes/aura';   // ← this is the correct import (JS module)
-import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations } from 'worldskills-ng-ui';
+import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations, provideWsNgUi } from 'worldskills-ng-ui';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -19,12 +19,15 @@ export const appConfig: ApplicationConfig = {
     ...provideTranslateService({ lang: 'en', extend: true }),
     ...provideTranslateHttpLoader(),
     provideWsNgUiTranslations(),
+    provideWsNgUi({
+      enableLogging: true,
+    }),
     providePrimeNG({
       pt: WorldSkillsPTPreset,
       theme: {
         preset: WorldSkillsPreset,                    // ← Aura, Lara, Nora, Material, etc.
         options: {
-          prefix: 'ws',                   
+          prefix: 'ws', // required by worldskills-ng-ui — do not change
           darkModeSelector: '.dark',    // or '.dark', 'media', etc.
           cssLayer: {
             name: 'primeng',
