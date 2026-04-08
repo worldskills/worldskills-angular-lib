@@ -1,0 +1,12 @@
+@if (currentUser && currentUser.puppeteer) {
+  <div class="w-full bg-pink-600 text-white px-4 py-2.5">
+    <div class="max-w-screen-xl mx-auto flex items-center justify-center gap-2 text-sm font-medium text-center flex-wrap">
+      <i class="pi pi-eye text-base shrink-0"></i>
+      <span>
+        <span class="font-semibold">{{ currentUser.puppeteer.first_name }} {{ currentUser.puppeteer.last_name }}</span>
+        logged in as
+        <span class="font-semibold">{{ currentUser.first_name }} {{ currentUser.last_name }}</span>
+      </span>
+    </div>
+  </div>
+}

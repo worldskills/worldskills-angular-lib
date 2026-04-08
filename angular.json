@@ -493,6 +493,45 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+        "build-webpack": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "index": "projects/worldskills-ng-tester-prime/src/index.html",
+            "main": "projects/worldskills-ng-tester-prime/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "projects/worldskills-ng-tester-prime/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              { "glob": "**/*", "input": "projects/worldskills-ng-tester-prime/public" }
+            ],
+            "styles": [],
+            "outputPath": "dist/worldskills-ng-tester-prime-webpack"
+          },
+          "configurations": {
+            "development": { "optimization": false, "sourceMap": true }
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "worldskills-ng-tester-prime:build-webpack:development",
+            "tsConfig": ".storybook/tsconfig.json",
+            "port": 6006,
+            "compodoc": false,
+            "styles": [".storybook/storybook.css"]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "worldskills-ng-tester-prime:build-webpack:development",
+            "outputDir": "dist/storybook",
+            "compodoc": false,
+            "styles": [".storybook/storybook.css"]
+          }
+        },
         "test": {
           "builder": "@angular/build:karma",
           "options": {

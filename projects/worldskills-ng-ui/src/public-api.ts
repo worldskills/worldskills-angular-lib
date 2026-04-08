@@ -30,3 +30,10 @@ export * from './lib/logos/wordmark/wordmark.component';
 // footers
 export * from './lib/footers/footer/footer.component';
 
+// spinner
+export * from './lib/spinner/spinner.component';
+
+// banners
+export * from './lib/banners/puppeteer-banner/puppeteer-banner.component';
+export * from './lib/banners/staging-banner/staging-banner.component';
+

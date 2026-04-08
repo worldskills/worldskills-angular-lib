@@ -4,6 +4,9 @@
             "login": "Login",
             "logout": "Logout"
         },
+        "spinner": {
+            "loading": "Loading..."
+        },
         "footer": {
             "link_my_worldskills": "myWorldSkills",
             "link_glossary": "Glossary",
