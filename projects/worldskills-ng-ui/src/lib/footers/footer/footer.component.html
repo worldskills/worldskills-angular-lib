@@ -14,7 +14,7 @@
 </ng-template>
 
 <ng-template #col6DefaultTemplate>
-  <div class="flex justify-end">
+  <div class="flex justify-center md:justify-end">
     <a href="https://worldskills.org/" target="_blank">
       <ws-ng-ui-logo mode="default"></ws-ng-ui-logo>
     </a>
@@ -24,20 +24,20 @@
 <ng-template #colDefaultTemplate></ng-template>
 
 <footer class="ws-footer">
-  <div class="max-w-screen-xl mx-auto px-6 pt-10 pb-4">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 pt-10 pb-4">
 
-    <!-- 6-column content row -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
+    <!-- Content columns: single col on mobile, 2 on sm, 3 on md, 6 on lg -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
       <div><ng-container *ngTemplateOutlet="col1Template ?? col1DefaultTemplate" /></div>
       <div><ng-container *ngTemplateOutlet="col2Template ?? colDefaultTemplate" /></div>
       <div><ng-container *ngTemplateOutlet="col3Template ?? colDefaultTemplate" /></div>
       <div><ng-container *ngTemplateOutlet="col4Template ?? colDefaultTemplate" /></div>
       <div><ng-container *ngTemplateOutlet="col5Template ?? colDefaultTemplate" /></div>
-      <div><ng-container *ngTemplateOutlet="col6Template ?? col6DefaultTemplate" /></div>
+      <div class="sm:col-span-2 md:col-span-1"><ng-container *ngTemplateOutlet="col6Template ?? col6DefaultTemplate" /></div>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="border-t border-white/20 pt-4 flex flex-wrap items-center justify-between gap-4">
+    <!-- Bottom bar: stacks on mobile, side-by-side on sm+ -->
+    <div class="border-t border-white/20 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/70">
         <span>© {{ date | date:'yyyy' }} {{ 'ws_ui.footer.copyright_wsi' | translate }}</span>
         <a href="https://worldskills.org/site/privacy/" target="_blank" class="text-white/70 no-underline hover:text-white">{{ 'ws_ui.footer.copyright_privacy' | translate }}</a>

@@ -37,6 +37,14 @@
     padding: 0.5rem 1rem;
 }
 
+/* Mobile expanded panel — match the purple header background so white text stays visible */
+:host ::ng-deep .p-menubar-mobile-active .p-menubar-root-list {
+    background-color: #3d0e61;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 /* Name header — readable grey, not interactive */
 :host ::ng-deep .ws-user-menu .p-menu-item[data-p-disabled="true"],
 :host ::ng-deep .ws-user-menu .p-menu-item-disabled {
