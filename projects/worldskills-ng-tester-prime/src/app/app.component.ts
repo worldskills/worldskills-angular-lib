@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent, HeaderComponent, WsToastComponent } from '@worldskills/ng-ui';
-import type { MenuItem } from "worldskills-ng-ui";
-import { User } from "worldskills-ng-auth";
+import type { MenuItem } from "@worldskills/ng-ui";
+import { User } from "@worldskills/ng-auth";
 
 @Component({
   selector: 'app-root',

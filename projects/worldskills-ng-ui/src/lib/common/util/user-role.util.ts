@@ -1,4 +1,4 @@
-import { User } from "worldskills-ng-auth";
+import { User } from "@worldskills/ng-auth";
 
 export class UserRoleUtil {
   static userHasRoles(

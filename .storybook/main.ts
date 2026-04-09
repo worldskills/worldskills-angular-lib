@@ -17,7 +17,8 @@ const config: StorybookConfig = {
     config.resolve = config.resolve ?? {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      'worldskills-ng-auth': path.resolve(process.cwd(), 'dist/worldskills-ng-auth/fesm2022/worldskills-ng-auth.mjs'),
+      '@worldskills/ng-auth': path.resolve(process.cwd(), 'projects/worldskills-ng-auth/src/public-api.ts'),
+      '@worldskills/ng-ui': path.resolve(process.cwd(), 'projects/worldskills-ng-ui/src/public-api.ts'),
     };
     return config;
   },
