@@ -9,6 +9,10 @@ export * from './lib/preset';
 export * from './lib/ui-lib-config';
 export * from './lib/ui-lib-provider';
 
+// interceptors
+export * from './lib/interceptors/ws-http.interceptor';
+export * from './lib/interceptors/ws-http.encoder';
+
 // common
 export * from './lib/common/util/lang.util';
 export * from './lib/common/util/generic.util';
@@ -55,6 +59,10 @@ export * from './lib/dialog/confirm.service';
 export * from './lib/alert/alert.service';
 export * from './lib/alert/alert.component';
 export * from './lib/alert/toast.component';
+
+// i18n controls
+export * from './lib/i18n-controls/i18n-input/i18n-input.component';
+export * from './lib/i18n-controls/i18n-textarea/i18n-textarea.component';
 
 // date
 export * from './lib/date/relative-date/relative-date.pipe';

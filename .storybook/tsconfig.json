@@ -7,9 +7,11 @@
   "include": [
     "../projects/worldskills-ng-tester-prime/src/**/*.stories.ts",
     "../projects/worldskills-ng-tester-prime/src/**/*.stories.mdx",
+    "../projects/worldskills-ng-ui/src/**/*.ts",
     "./**/*.ts"
   ],
   "exclude": [
-    "../node_modules"
+    "../node_modules",
+    "../projects/**/*.spec.ts"
   ]
 }

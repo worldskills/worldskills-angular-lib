@@ -527,6 +527,7 @@
           "options": {
             "configDir": ".storybook",
             "browserTarget": "worldskills-ng-tester-prime:build-webpack:development",
+            "tsConfig": ".storybook/tsconfig.json",
             "outputDir": "dist/storybook",
             "compodoc": false,
             "styles": [".storybook/storybook.css"]

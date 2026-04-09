@@ -1,0 +1,29 @@
+<div class="flex w-full">
+  <input
+    pInputText
+    type="text"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [(ngModel)]="currentText"
+    (ngModelChange)="onTextChange($event)"
+    (blur)="onBlur()"
+    class="flex-1 min-w-0 rounded-r-none border-r-0" />
+  <p-select
+    [options]="langOptions"
+    [(ngModel)]="currentCode"
+    (ngModelChange)="onLangChange($event)"
+    [disabled]="disableLangChange || disabled"
+    optionLabel="label"
+    optionValue="value"
+    styleClass="rounded-l-none shrink-0 w-36">
+    <ng-template #selectedItem let-opt>
+      <span class="text-xs font-semibold uppercase tracking-wide">{{ opt.value }}</span>
+    </ng-template>
+    <ng-template #item let-opt>
+      <div class="flex items-center gap-2">
+        <span class="font-mono text-xs uppercase w-12 shrink-0">{{ opt.value }}</span>
+        <span class="text-sm text-gray-600">{{ opt.label }}</span>
+      </div>
+    </ng-template>
+  </p-select>
+</div>
