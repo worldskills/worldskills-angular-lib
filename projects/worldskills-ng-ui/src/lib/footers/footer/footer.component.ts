@@ -37,6 +37,7 @@ export class FooterComponent implements OnInit {
 
   @Output() logoutClick: EventEmitter<any> = new EventEmitter();
   @Output() loginClick: EventEmitter<any> = new EventEmitter();
+  @Output() languageChange = new EventEmitter<Language>();
 
   supportEmail?: string;
 
@@ -72,6 +73,7 @@ export class FooterComponent implements OnInit {
   changeLanguage(model: Language): void {
     this.selectedLanguage = model;
     this.ngxTranslate.use(model.code);
+    this.languageChange.emit(model);
   }
 
   isLanguageSelected(model: Language): boolean {
