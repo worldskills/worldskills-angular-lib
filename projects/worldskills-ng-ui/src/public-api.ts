@@ -13,14 +13,33 @@ export * from './lib/ui-lib-provider';
 export * from './lib/interceptors/ws-http.interceptor';
 export * from './lib/interceptors/ws-http.encoder';
 
-// common
-export * from './lib/common/util/lang.util';
-export * from './lib/common/util/generic.util';
+// common — models
+export * from './lib/common/models/api-error';
 export * from './lib/common/models/i18n-text';
 export * from './lib/common/models/language';
-export * from './lib/common/models/ws-entity';
 export * from './lib/common/models/link';
 export * from './lib/common/models/pair';
+export * from './lib/common/models/ws-entity';
+
+// common — utils
+export * from './lib/common/util/array.util';
+export * from './lib/common/util/clipboard-util';
+export * from './lib/common/util/date.util';
+export * from './lib/common/util/error-util';
+export * from './lib/common/util/generic.util';
+export * from './lib/common/util/html.util';
+export * from './lib/common/util/http.util';
+export * from './lib/common/util/i18n.util';
+export * from './lib/common/util/lang.util';
+export * from './lib/common/util/object.util';
+export * from './lib/common/util/router.util';
+
+// common — pipes
+export * from './lib/common/pipes/filter.pipe';
+export * from './lib/common/pipes/date-sort.pipe';
+
+// common — services
+export * from './lib/common/services/upload.service';
 
 // i18n
 export * from './lib/i18n/translations';
