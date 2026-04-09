@@ -19,14 +19,24 @@ export const wsHttpInterceptor: HttpInterceptorFn = (req, next) => {
   if (!config) return next(req);
 
   const encoderPatterns = config.encoderUriPatterns ?? [];
-  const includeLanguageParam = config.includeLanguageParam ?? false;
 
-  if (includeLanguageParam) {
+  if (config.includeLanguageParam) {
     const lang = sessionStorage.getItem('lang') ?? 'en';
     req = req.clone({
       params: req.params.set('l', lang),
       headers: req.headers.set('Accept-Language', lang),
     });
+  }
+
+  if (config.includeAuthToken) {
+    const excludePatterns = config.excludeAuthTokenPatterns ?? [];
+    const isExcluded = excludePatterns.some(pattern => req.url.match(pattern));
+    if (!isExcluded) {
+      const token = sessionStorage.getItem('access_token');
+      if (token) {
+        req = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
+      }
+    }
   }
 
   if (encoderPatterns.some(pattern => req.url.match(pattern))) {

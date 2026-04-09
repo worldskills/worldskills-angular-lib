@@ -19,6 +19,16 @@ export interface HttpInterceptorConfig {
   includeLanguageParam?: boolean;
   /** URL patterns (regex strings) whose query params should be re-encoded with encodeURIComponent. */
   encoderUriPatterns?: string[];
+  /**
+   * Append Authorization: Bearer <token> header to all requests.
+   * Reads the token from sessionStorage key 'access_token' (set by angular-oauth2-oidc).
+   */
+  includeAuthToken?: boolean;
+  /**
+   * URL patterns (regex strings) that should NOT receive the Authorization header,
+   * even when includeAuthToken is true. Useful for third-party or public endpoints.
+   */
+  excludeAuthTokenPatterns?: string[];
 }
 
 export interface UiLibConfig {
