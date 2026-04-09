@@ -65,6 +65,28 @@
                 "9": "9.",
                 "10": "10."
             }
+        },
+        "awards": {
+            "title": "Auszeichnungen & Anerkennung",
+            "award": "Auszeichnung",
+            "presented_at": "Verliehen im Jahr",
+            "public_extra_information": "Öffentliche Informationen",
+            "extra_information": "Zusätzliche Informationen",
+            "action": "Aktion",
+            "last_updated": "Zuletzt aktualisiert",
+            "no_awards": "Keine Auszeichnungen in der Liste.",
+            "add_award": "Auszeichnung hinzufügen",
+            "add_new_award": "Neue Auszeichnung hinzufügen",
+            "edit_award": "Auszeichnung bearbeiten",
+            "cancel": "Abbrechen",
+            "save": "Speichern",
+            "certificates": "Zertifikate",
+            "add_certificate": "Zertifikat hinzufügen",
+            "certificate_unique_id": "Eindeutige Zertifikat-ID",
+            "certificate_dropbox_path": "Dropbox-Pfad",
+            "certificate_type": "Zertifikatstyp",
+            "generate_id": "Neue ID generieren",
+            "delete_confirm": "Sind Sie sicher, dass Sie diese Auszeichnung löschen möchten?"
         }
     }
 }

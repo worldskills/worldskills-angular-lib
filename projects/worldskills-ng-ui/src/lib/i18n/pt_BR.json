@@ -66,6 +66,28 @@
                 "9": "9º",
                 "10": "10º"
             }
+        },
+        "awards": {
+            "title": "Prêmios e Reconhecimento",
+            "award": "Prêmio",
+            "presented_at": "Apresentado em",
+            "public_extra_information": "Informação pública",
+            "extra_information": "Informação extra",
+            "action": "Ação",
+            "last_updated": "Última atualização",
+            "no_awards": "Nenhum prêmio na lista.",
+            "add_award": "Adicionar prêmio",
+            "add_new_award": "Adicionar novo prêmio",
+            "edit_award": "Editar prêmio",
+            "cancel": "Cancelar",
+            "save": "Salvar",
+            "certificates": "Certificados",
+            "add_certificate": "Adicionar certificado",
+            "certificate_unique_id": "ID único do certificado",
+            "certificate_dropbox_path": "Caminho no Dropbox",
+            "certificate_type": "Tipo de certificado",
+            "generate_id": "Gerar novo ID",
+            "delete_confirm": "Tem certeza que deseja excluir este prêmio?"
         }
     }
 }

@@ -53,6 +53,28 @@
                 "9": "九",
                 "10": "十"
             }
+        },
+        "awards": {
+            "title": "奖项与荣誉",
+            "award": "奖项",
+            "presented_at": "授予年份",
+            "public_extra_information": "公开信息",
+            "extra_information": "附加信息",
+            "action": "操作",
+            "last_updated": "最后更新",
+            "no_awards": "列表中无奖项。",
+            "add_award": "添加奖项",
+            "add_new_award": "新增奖项",
+            "edit_award": "编辑奖项",
+            "cancel": "取消",
+            "save": "保存",
+            "certificates": "证书",
+            "add_certificate": "添加证书",
+            "certificate_unique_id": "证书唯一编号",
+            "certificate_dropbox_path": "Dropbox 路径",
+            "certificate_type": "证书类型",
+            "generate_id": "生成新编号",
+            "delete_confirm": "您确定要删除此奖项吗？"
         }
     }
 }

@@ -1,0 +1,99 @@
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { PersonAward } from '../models/person-award';
+import { MemberAward } from '../models/member-award';
+import { OrganizationAward } from '../models/organization-award';
+import { RecipientAwardRequest } from '../recipient-award-form/recipient-award-form.component';
+import { RecipientAwardFormComponent } from '../recipient-award-form/recipient-award-form.component';
+import { WsConfirmService } from '../../dialog/confirm.service';
+
+type RecipientAward = PersonAward | MemberAward | OrganizationAward;
+
+@Component({
+  selector: 'ws-ng-ui-recipient-award-list',
+  standalone: true,
+  imports: [
+    DatePipe,
+    TranslatePipe,
+    ButtonModule,
+    TableModule,
+    DialogModule,
+    RecipientAwardFormComponent,
+  ],
+  providers: [DatePipe],
+  templateUrl: './recipient-award-list.component.html',
+})
+export class RecipientAwardListComponent {
+  @Input() recipientAwards: RecipientAward[] = [];
+  @Input() canCreate = false;
+  @Input() canUpdate = false;
+  @Input() canDelete = false;
+  @Input() certificateEnabled = false;
+
+  @Output() create = new EventEmitter<RecipientAwardRequest>();
+  @Output() update = new EventEmitter<RecipientAwardRequest>();
+  @Output() delete = new EventEmitter<RecipientAwardRequest>();
+
+  private confirmService = inject(WsConfirmService);
+  private translate = inject(TranslateService);
+
+  dialogVisible = false;
+  selectedAward: RecipientAward | null = null;
+  isEditMode = false;
+
+  openCreateDialog(): void {
+    this.selectedAward = null;
+    this.isEditMode = false;
+    this.dialogVisible = true;
+  }
+
+  openEditDialog(award: RecipientAward): void {
+    this.selectedAward = award;
+    this.isEditMode = true;
+    this.dialogVisible = true;
+  }
+
+  closeDialog(): void {
+    this.dialogVisible = false;
+    this.selectedAward = null;
+  }
+
+  onFormSave(request: RecipientAwardRequest): void {
+    if (this.isEditMode) {
+      this.update.emit(request);
+    } else {
+      this.create.emit(request);
+    }
+    this.closeDialog();
+  }
+
+  onFormCancel(): void {
+    this.closeDialog();
+  }
+
+  async onDelete(award: RecipientAward): Promise<void> {
+    const confirmed = await this.confirmService.danger({
+      message: this.translate.instant('ws_ui.awards.delete_confirm'),
+    });
+    if (!confirmed) return;
+
+    const request: RecipientAwardRequest = {
+      id: award.id,
+      award: award.award,
+      presented_at: award.presented_at,
+      extra_information: award.extra_information,
+      public_extra_information: (award as PersonAward).public_extra_information,
+      certificates: award.certificates,
+    };
+    this.delete.emit(request);
+  }
+
+  get dialogTitle(): string {
+    const key = this.isEditMode ? 'ws_ui.awards.edit_award' : 'ws_ui.awards.add_new_award';
+    return this.translate.instant(key);
+  }
+}

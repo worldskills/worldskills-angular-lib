@@ -90,6 +90,28 @@
                 "9": "9th",
                 "10": "10th"
             }
+        },
+        "awards": {
+            "title": "Awards & Recognition",
+            "award": "Award",
+            "presented_at": "Presented At",
+            "public_extra_information": "Public Information",
+            "extra_information": "Extra Information",
+            "action": "Action",
+            "last_updated": "Last Updated",
+            "no_awards": "No awards on the list.",
+            "add_award": "Add Award",
+            "add_new_award": "Add New Award",
+            "edit_award": "Edit Award",
+            "cancel": "Cancel",
+            "save": "Save",
+            "certificates": "Certificates",
+            "add_certificate": "Add Certificate",
+            "certificate_unique_id": "Certificate Unique ID",
+            "certificate_dropbox_path": "Dropbox Path",
+            "certificate_type": "Certificate Type",
+            "generate_id": "Generate New ID",
+            "delete_confirm": "Are you sure you want to delete this award?"
         }
     }
 }

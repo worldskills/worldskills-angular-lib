@@ -53,6 +53,28 @@
                 "9": "9e",
                 "10": "10e"
             }
+        },
+        "awards": {
+            "title": "Prix & Reconnaissances",
+            "award": "Prix",
+            "presented_at": "Remis en",
+            "public_extra_information": "Informations publiques",
+            "extra_information": "Informations supplémentaires",
+            "action": "Action",
+            "last_updated": "Dernière mise à jour",
+            "no_awards": "Aucun prix dans la liste.",
+            "add_award": "Ajouter un prix",
+            "add_new_award": "Ajouter un nouveau prix",
+            "edit_award": "Modifier le prix",
+            "cancel": "Annuler",
+            "save": "Enregistrer",
+            "certificates": "Certificats",
+            "add_certificate": "Ajouter un certificat",
+            "certificate_unique_id": "Identifiant unique du certificat",
+            "certificate_dropbox_path": "Chemin Dropbox",
+            "certificate_type": "Type de certificat",
+            "generate_id": "Générer un nouvel identifiant",
+            "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce prix ?"
         }
     }
 }

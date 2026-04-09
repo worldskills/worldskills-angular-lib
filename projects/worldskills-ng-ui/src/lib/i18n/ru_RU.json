@@ -53,6 +53,28 @@
                 "9": "9-й",
                 "10": "10-й"
             }
+        },
+        "awards": {
+            "title": "Награды и признание",
+            "award": "Награда",
+            "presented_at": "Год вручения",
+            "public_extra_information": "Публичная информация",
+            "extra_information": "Дополнительная информация",
+            "action": "Действие",
+            "last_updated": "Последнее обновление",
+            "no_awards": "В списке нет наград.",
+            "add_award": "Добавить награду",
+            "add_new_award": "Добавить новую награду",
+            "edit_award": "Редактировать награду",
+            "cancel": "Отмена",
+            "save": "Сохранить",
+            "certificates": "Сертификаты",
+            "add_certificate": "Добавить сертификат",
+            "certificate_unique_id": "Уникальный ID сертификата",
+            "certificate_dropbox_path": "Путь в Dropbox",
+            "certificate_type": "Тип сертификата",
+            "generate_id": "Сгенерировать новый ID",
+            "delete_confirm": "Вы уверены, что хотите удалить эту награду?"
         }
     }
 }

@@ -53,6 +53,28 @@
                 "9": "التاسع",
                 "10": "العاشر"
             }
+        },
+        "awards": {
+            "title": "الجوائز والتكريم",
+            "award": "جائزة",
+            "presented_at": "سنة التسليم",
+            "public_extra_information": "معلومات عامة",
+            "extra_information": "معلومات إضافية",
+            "action": "إجراء",
+            "last_updated": "آخر تحديث",
+            "no_awards": "لا توجد جوائز في القائمة.",
+            "add_award": "إضافة جائزة",
+            "add_new_award": "إضافة جائزة جديدة",
+            "edit_award": "تعديل الجائزة",
+            "cancel": "إلغاء",
+            "save": "حفظ",
+            "certificates": "الشهادات",
+            "add_certificate": "إضافة شهادة",
+            "certificate_unique_id": "المعرف الفريد للشهادة",
+            "certificate_dropbox_path": "مسار Dropbox",
+            "certificate_type": "نوع الشهادة",
+            "generate_id": "توليد معرف جديد",
+            "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذه الجائزة؟"
         }
     }
 }

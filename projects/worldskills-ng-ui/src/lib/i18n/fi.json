@@ -66,6 +66,28 @@
                 "9": "9.",
                 "10": "10."
             }
+        },
+        "awards": {
+            "title": "Palkinnot ja tunnustukset",
+            "award": "Palkinto",
+            "presented_at": "Myönnetty vuonna",
+            "public_extra_information": "Julkiset tiedot",
+            "extra_information": "Lisätiedot",
+            "action": "Toiminto",
+            "last_updated": "Viimeksi päivitetty",
+            "no_awards": "Ei palkintoja listalla.",
+            "add_award": "Lisää palkinto",
+            "add_new_award": "Lisää uusi palkinto",
+            "edit_award": "Muokkaa palkintoa",
+            "cancel": "Peruuta",
+            "save": "Tallenna",
+            "certificates": "Todistukset",
+            "add_certificate": "Lisää todistus",
+            "certificate_unique_id": "Todistuksen yksilöllinen tunnus",
+            "certificate_dropbox_path": "Dropbox-polku",
+            "certificate_type": "Todistustyyppi",
+            "generate_id": "Luo uusi tunnus",
+            "delete_confirm": "Haluatteko varmasti poistaa tämän palkinnon?"
         }
     }
 }

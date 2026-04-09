@@ -19,6 +19,8 @@ export * from './lib/common/util/generic.util';
 export * from './lib/common/models/i18n-text';
 export * from './lib/common/models/language';
 export * from './lib/common/models/ws-entity';
+export * from './lib/common/models/link';
+export * from './lib/common/models/pair';
 
 // i18n
 export * from './lib/i18n/translations';
@@ -69,8 +71,6 @@ export * from './lib/i18n-controls/i18n-textarea/i18n-textarea.component';
 export * from './lib/date/relative-date/relative-date.pipe';
 
 // resources
-export * from './lib/resources/models/link';
-export * from './lib/resources/models/pair';
 export * from './lib/resources/models/storage-type';
 export * from './lib/resources/models/resource-metadata-info';
 export * from './lib/resources/models/resource-type-metadata';
@@ -88,6 +88,17 @@ export * from './lib/resources/models/resource-upload';
 export * from './lib/resources/resource.service';
 export * from './lib/resources/resource-thumbnail/resource-thumbnail.component';
 export * from './lib/resources/resource-thumbnail-container/resource-thumbnail-container.component';
+
+// awards
+export * from './lib/awards/models/award';
+export * from './lib/awards/models/recipient-award-certificate';
+export * from './lib/awards/models/person-award';
+export * from './lib/awards/models/member-award';
+export * from './lib/awards/models/organization-award';
+export * from './lib/awards/award.service';
+export * from './lib/awards/recipient-award-certificate-form/recipient-award-certificate-form.component';
+export * from './lib/awards/recipient-award-form/recipient-award-form.component';
+export * from './lib/awards/recipient-award-list/recipient-award-list.component';
 
 // polls
 export * from './lib/polls/models/abstain';

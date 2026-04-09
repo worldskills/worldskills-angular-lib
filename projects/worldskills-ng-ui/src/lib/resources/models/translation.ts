@@ -1,5 +1,5 @@
-import { Link } from './link';
-import { Pair } from './pair';
+import { Link } from '../../common/models/link';
+import { Pair } from '../../common/models/pair';
 import { StorageType } from './storage-type';
 
 export interface Translation {

@@ -1,4 +1,4 @@
-import { Pair } from './pair';
+import { Pair } from '../../common/models/pair';
 
 export interface TranslationCreate {
   version: number;
