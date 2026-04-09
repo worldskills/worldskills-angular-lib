@@ -67,3 +67,25 @@ export * from './lib/i18n-controls/i18n-textarea/i18n-textarea.component';
 // date
 export * from './lib/date/relative-date/relative-date.pipe';
 
+// resources
+export * from './lib/resources/models/link';
+export * from './lib/resources/models/pair';
+export * from './lib/resources/models/ws-entity';
+export * from './lib/resources/models/storage-type';
+export * from './lib/resources/models/resource-metadata-info';
+export * from './lib/resources/models/resource-type-metadata';
+export * from './lib/resources/models/resource-type';
+export * from './lib/resources/models/resource-metadata';
+export * from './lib/resources/models/resource-metadata-update';
+export * from './lib/resources/models/translation-create';
+export * from './lib/resources/models/translation';
+export * from './lib/resources/models/version-create';
+export * from './lib/resources/models/version';
+export * from './lib/resources/models/resource';
+export * from './lib/resources/models/resource-container';
+export * from './lib/resources/models/resource-search';
+export * from './lib/resources/models/resource-upload';
+export * from './lib/resources/resource.service';
+export * from './lib/resources/resource-thumbnail/resource-thumbnail.component';
+export * from './lib/resources/resource-thumbnail-container/resource-thumbnail-container.component';
+
