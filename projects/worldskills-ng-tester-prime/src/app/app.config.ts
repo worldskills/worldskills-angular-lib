@@ -1,4 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeng/themes/aura';   // ← this is the correct import (JS module)
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     ...provideTranslateService({ lang: 'en', extend: true }),
     ...provideTranslateHttpLoader(),
     provideWsNgUiTranslations(),
+    MessageService,
     provideWsNgUi({
       enableLogging: true,
     }),

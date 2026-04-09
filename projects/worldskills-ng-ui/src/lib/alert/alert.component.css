@@ -1,0 +1,9 @@
+/* Ensure the message fills its container and wraps on small screens */
+:host ::ng-deep .ws-alert.p-message {
+  display: flex;
+  width: 100%;
+}
+
+:host ::ng-deep .ws-alert .p-message-text {
+  word-break: break-word;
+}

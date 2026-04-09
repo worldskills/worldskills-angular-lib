@@ -1,3 +1,29 @@
+<div class="max-w-screen-xl mx-auto px-4 py-8">
 
+  <h1 class="text-2xl font-semibold mb-2">WorldSkills UI — Component Tester</h1>
+  <p class="text-gray-500 mb-8">Use this app to test library components outside of Storybook.</p>
 
-{{ 'home.testing_home' | translate }}
+  <!-- Inline alerts -->
+  <section class="mb-8">
+    <h2 class="text-lg font-medium mb-3">Inline Alerts</h2>
+    <div class="flex flex-col gap-3">
+      <ws-ng-ui-alert severity="success" message="The competition was published successfully." />
+      <ws-ng-ui-alert severity="info" message="Results will be available after the closing ceremony." />
+      <ws-ng-ui-alert severity="warn" message="This environment is connected to staging data." [closable]="true" />
+      <ws-ng-ui-alert severity="error" message="Failed to load competition data. Please refresh." [closable]="true" />
+    </div>
+  </section>
+
+  <!-- Toast triggers -->
+  <section>
+    <h2 class="text-lg font-medium mb-3">Toast Notifications</h2>
+    <div class="flex flex-wrap gap-3">
+      <p-button label="Success" severity="success" (onClick)="showSuccess()" />
+      <p-button label="Info"    severity="info"    (onClick)="showInfo()" />
+      <p-button label="Warning" severity="warn"    (onClick)="showWarn()" />
+      <p-button label="Error"   severity="danger"  (onClick)="showError()" />
+      <p-button label="Sticky"  severity="secondary" (onClick)="showSticky()" />
+    </div>
+  </section>
+
+</div>

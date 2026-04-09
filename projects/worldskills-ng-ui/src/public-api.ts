@@ -51,3 +51,8 @@ export * from './lib/dialog/dialog.component';
 export * from './lib/dialog/confirm.component';
 export * from './lib/dialog/confirm.service';
 
+// alerts
+export * from './lib/alert/alert.service';
+export * from './lib/alert/alert.component';
+export * from './lib/alert/toast.component';
+
