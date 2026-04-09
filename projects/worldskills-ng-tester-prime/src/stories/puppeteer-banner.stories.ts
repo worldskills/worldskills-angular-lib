@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { PuppeteerBannerComponent } from 'worldskills-ng-ui';
+import { PuppeteerBannerComponent } from '@worldskills/ng-ui';
 
 const meta: Meta<PuppeteerBannerComponent> = {
   title: 'WorldSkills UI / Banners / Puppeteer Banner',

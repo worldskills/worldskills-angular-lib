@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { SpinnerComponent } from 'worldskills-ng-ui';
+import { SpinnerComponent } from '@worldskills/ng-ui';
 
 const meta: Meta<SpinnerComponent> = {
   title: 'WorldSkills UI / Spinner',

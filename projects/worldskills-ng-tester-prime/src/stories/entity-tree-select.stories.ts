@@ -5,7 +5,7 @@ import {
   TreeSelectNode,
   UI_LIBRARY_CONFIG,
   provideWsNgUiTranslations,
-} from 'worldskills-ng-ui';
+} from '@worldskills/ng-ui';
 
 // ── Mock data ─────────────────────────────────────────────────────────────────
 const MOCK_NODES: TreeSelectNode[] = [

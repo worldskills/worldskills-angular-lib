@@ -2,7 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { I18nText, WsI18nInputComponent, WsI18nTextareaComponent } from 'worldskills-ng-ui';
+import { I18nText, WsI18nInputComponent, WsI18nTextareaComponent } from '@worldskills/ng-ui';
 
 const SAMPLE_TEXTS: I18nText[] = [
   { lang_code: 'en', text: 'Hello World' },

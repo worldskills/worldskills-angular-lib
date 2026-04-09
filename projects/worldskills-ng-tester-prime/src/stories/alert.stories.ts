@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { WsAlertComponent, WsToastComponent, WsAlertService } from 'worldskills-ng-ui';
+import { WsAlertComponent, WsToastComponent, WsAlertService } from '@worldskills/ng-ui';
 
 // ── Wrapper for toast stories ─────────────────────────────────────────────────
 

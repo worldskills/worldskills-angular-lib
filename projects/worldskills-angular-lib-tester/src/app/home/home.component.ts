@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { GenericUtil } from '../../../../worldskills-angular-lib/src/lib/common/util/generic.util';
-import { RedirectEventHandler } from 'worldskills-ng-auth';
+import { RedirectEventHandler } from '@worldskills/ng-auth';
 
 @Component({
     selector: 'app-home',

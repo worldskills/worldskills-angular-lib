@@ -13,7 +13,7 @@ import { zh_CN } from './zh_CN.json';
 import { fi } from './fi.json';
 import { Subject } from 'rxjs';
 import { de } from './de.json';
-import { User } from 'worldskills-ng-auth';
+import { User } from '@worldskills/ng-auth';
 
 @Injectable({
   providedIn: 'root'

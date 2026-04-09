@@ -6,7 +6,7 @@ import {
   ResourceThumbnailContainerComponent,
   ResourceThumbnail,
   provideWsNgUi,
-} from 'worldskills-ng-ui';
+} from '@worldskills/ng-ui';
 
 const SAMPLE_RESOURCES: ResourceThumbnail[] = [
   {
@@ -104,7 +104,7 @@ provideHttpClient(withInterceptors([wsHttpInterceptor])),
 Convert a \`Resource[]\` from the API to \`ResourceThumbnail[]\`:
 
 \`\`\`ts
-import { Resource, ResourceThumbnail } from 'worldskills-ng-ui';
+import { Resource, ResourceThumbnail } from '@worldskills/ng-ui';
 
 function toThumbnail(r: Resource): ResourceThumbnail {
   const latest = r.versions.at(-1)?.translations.at(-1);

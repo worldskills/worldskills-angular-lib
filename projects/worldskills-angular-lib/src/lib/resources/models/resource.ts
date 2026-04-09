@@ -3,7 +3,7 @@ import { Link } from '../../common/models/link';
 import { Version } from './version';
 import { ResourceType } from './resource-type';
 import { ResourceMetadata } from './resource-metadata';
-import { WsEntityModel } from 'worldskills-ng-auth';
+import { WsEntityModel } from '@worldskills/ng-auth';
 
 export interface Resource {
   id: number;

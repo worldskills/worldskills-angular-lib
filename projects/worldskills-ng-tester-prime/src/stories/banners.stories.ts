@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { StagingBannerComponent } from 'worldskills-ng-ui';
+import { StagingBannerComponent } from '@worldskills/ng-ui';
 
 const meta: Meta<StagingBannerComponent> = {
   title: 'WorldSkills UI / Banners / Staging Banner',

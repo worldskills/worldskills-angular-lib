@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component, Input } from '@angular/core';
-import { RelativeDatePipe } from 'worldskills-ng-ui';
+import { RelativeDatePipe } from '@worldskills/ng-ui';
 
 @Component({
   selector: 'story-relative-date',

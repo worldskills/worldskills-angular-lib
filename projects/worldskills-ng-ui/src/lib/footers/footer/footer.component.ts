@@ -3,7 +3,7 @@ import { NgTemplateOutlet, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GenericUtil } from '../../common/util/generic.util';
 import { LangUtil } from '../../common/util/lang.util';
-import { User } from 'worldskills-ng-auth';
+import { User } from '@worldskills/ng-auth';
 import { Language } from '../../common/models/language';
 import { UI_LIBRARY_CONFIG } from '../../ui-lib-config';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';

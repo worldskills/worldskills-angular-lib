@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { FooterComponent } from 'worldskills-ng-ui';
+import { FooterComponent } from '@worldskills/ng-ui';
 
 const meta: Meta<FooterComponent> = {
   title: 'WorldSkills UI / Footer',

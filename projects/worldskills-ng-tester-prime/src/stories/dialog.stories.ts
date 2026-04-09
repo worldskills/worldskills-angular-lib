@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component, Input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { WsDialogComponent, WsConfirmComponent, WsConfirmService } from 'worldskills-ng-ui';
+import { WsDialogComponent, WsConfirmComponent, WsConfirmService } from '@worldskills/ng-ui';
 
 // ── Wrapper for content dialog stories ───────────────────────────────────────
 

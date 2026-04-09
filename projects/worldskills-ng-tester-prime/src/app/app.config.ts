@@ -3,12 +3,12 @@ import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeng/themes/aura';   // ← this is the correct import (JS module)
-import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations, provideWsNgUi } from 'worldskills-ng-ui';
+import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations, provideWsNgUi } from '@worldskills/ng-ui';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { wsHttpInterceptor } from 'worldskills-ng-ui';
+import { wsHttpInterceptor } from '@worldskills/ng-ui';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {

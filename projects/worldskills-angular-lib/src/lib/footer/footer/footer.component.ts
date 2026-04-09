@@ -5,7 +5,7 @@ import { MISSING_LANGUAGE_MESSAGE } from '../footer.const';
 import { WorldskillsAngularLibService } from '../../worldskills-angular-lib.service';
 import { LangUtil } from '../../common/util/lang.util';
 import { WsiTranslateService } from '../../i18n/wsi-translate.service';
-import { User } from 'worldskills-ng-auth';
+import { User } from '@worldskills/ng-auth';
 
 @Component({
     selector: 'ws-footer',

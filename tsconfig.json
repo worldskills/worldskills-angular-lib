@@ -24,20 +24,20 @@
         "dist/worldskills-angular-lib",
         "projects/worldskills-angular-lib/src/public-api.ts"
       ],
-      "worldskills-ng-auth": [
+      "@worldskills/ng-auth": [
         "dist/worldskills-ng-auth/worldskills-ng-auth",
         "dist/worldskills-ng-auth",
         "./projects/worldskills-ng-auth/src/public-api.ts"
       ],
-      "worldskills-ng-auth/*": [
+      "@worldskills/ng-auth/*": [
         "./projects/worldskills-ng-auth/src/*"
       ],
-      "worldskills-ng-ui": [
+      "@worldskills/ng-ui": [
         "dist/worldskills-ng-ui/worldskills-ng-ui",
         "dist/worldskills-ng-ui",
         "projects/worldskills-ng-ui/src/public-api.ts"
       ],
-      "worldskills-ng-ui/*": [
+      "@worldskills/ng-ui/*": [
         "./projects/worldskills-ng-ui/src/*"
       ]
       

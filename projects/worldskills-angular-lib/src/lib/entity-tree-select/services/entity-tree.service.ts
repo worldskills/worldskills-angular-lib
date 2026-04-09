@@ -5,7 +5,7 @@ import {WorldskillsAngularLibService} from '../../worldskills-angular-lib.servic
 import {EntityFetchParams} from '../models/entity-tree-fetch-params';
 import {share} from 'rxjs/operators';
 import { CacheStorageService } from '../../cache/services/cache-storage.service';
-import { EntityTreeListView } from 'worldskills-ng-auth';
+import { EntityTreeListView } from '@worldskills/ng-auth';
 
 
 @Injectable({

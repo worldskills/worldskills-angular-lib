@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { WsAlertComponent, WsAlertService, EntityTreeSelectComponent, EntityService } from 'worldskills-ng-ui';
+import { WsAlertComponent, WsAlertService, EntityTreeSelectComponent, EntityService } from '@worldskills/ng-ui';
 
 @Component({
   selector: 'app-home',

@@ -7,7 +7,7 @@ import {
   Poll, Vote, PollResult, Track,
   DefaultOptionHandler,
   provideWsNgUi,
-} from 'worldskills-ng-ui';
+} from '@worldskills/ng-ui';
 
 const BASE_POLL: Poll = {
   id: 1,

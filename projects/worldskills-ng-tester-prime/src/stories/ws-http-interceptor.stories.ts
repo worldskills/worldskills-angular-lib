@@ -100,7 +100,7 @@ URL parameters for configured routes. Register it alongside \`provideWsNgUi()\`:
 \`\`\`ts
 // app.config.ts
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideWsNgUi, wsHttpInterceptor } from 'worldskills-ng-ui';
+import { provideWsNgUi, wsHttpInterceptor } from '@worldskills/ng-ui';
 
 export const appConfig: ApplicationConfig = {
   providers: [

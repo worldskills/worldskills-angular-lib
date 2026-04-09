@@ -16,50 +16,64 @@ Notable changes can be viewed in the [changelog](https://github.com/worldskills/
 
 ## Building the libraries
 
-This monorepo contains two publishable libraries. Build them in order since `worldskills-ng-ui` is a peer of `worldskills-ng-auth`.
+This monorepo contains two publishable libraries. Both are scoped to the `@worldskills` npm organisation.
 
-### worldskills-ng-ui
+| Library | npm package | Description |
+|---------|-------------|-------------|
+| `worldskills-ng-ui` | `@worldskills/ng-ui` | Shared UI components built with PrimeNG + Tailwind |
+| `worldskills-ng-auth` | `@worldskills/ng-auth` | Auth providers and guards using `angular-oauth2-oidc` |
 
-Contains shared UI components (header, footer, spinner, etc.) built with PrimeNG and Tailwind.
+Build artifacts are written to `dist/`.
 
-```bash
-ng build worldskills-ng-ui
-```
+### @worldskills/ng-ui
 
-### worldskills-ng-auth
-
-Contains authentication providers and guards that depend on `angular-oauth2-oidc`.
-
-```bash
-ng build worldskills-ng-auth
-```
-
-### Build both
+Runs the translation compiler first, then builds the library:
 
 ```bash
 npm run ws_build_lib
 ```
 
-Build artifacts are written to the `dist/` directory.
-
-### Packaging & publishing
+Or build without regenerating translations:
 
 ```bash
-# Create a .tgz package
-npm run ws_npm_pack
-
-# Build + package in one step
-npm run ws_package
+ng build worldskills-ng-ui --configuration production
 ```
 
-After building, publish from the dist folder:
+### @worldskills/ng-auth
 
 ```bash
-cd dist/worldskills-ng-ui   # or worldskills-ng-auth
-npm publish
+npm run auth_build_lib
 ```
 
-Packages are published to [npmjs](https://www.npmjs.com/) under the WorldSkills organisation.
+Or directly:
+
+```bash
+ng build worldskills-ng-auth --configuration production
+```
+
+### Publishing to npm
+
+Both libraries have a `publishConfig` that targets the public npm registry and the `@worldskills` org automatically — no extra flags required.
+
+Make sure you are logged in first:
+
+```bash
+npm login
+```
+
+Then build and publish each library:
+
+```bash
+# @worldskills/ng-ui
+npm run ws_build_lib
+npm publish dist/worldskills-ng-ui
+
+# @worldskills/ng-auth
+npm run auth_build_lib
+npm publish dist/worldskills-ng-auth
+```
+
+Bump the `version` field in the library's `projects/<lib>/package.json` before publishing each release.
 
 ---
 

@@ -21,7 +21,7 @@ import { WsiTranslateService } from '../../../worldskills-angular-lib/src/lib/i1
 import { I18nText } from 'projects/worldskills-angular-lib/src/lib/common/models/i18n-text';
 import { WsiToastService } from '../../../worldskills-angular-lib/src/lib/alerts/wsi-toast.service';
 import { WsiModalService } from '../../../worldskills-angular-lib/src/lib/modals/wsi-modal.service';
-import { User } from 'worldskills-ng-auth';
+import { User } from '@worldskills/ng-auth';
 
 // TODO: Cleanup, Each demo should be in its' own componennt
 @Component({

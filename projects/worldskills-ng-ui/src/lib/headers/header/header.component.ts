@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, TemplateRef, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { User } from 'worldskills-ng-auth';
+import { User } from '@worldskills/ng-auth';
 import { GenericUtil } from '../../../lib/common/util/generic.util';
 import { MenuItem } from '../menu-item';
 import { MenuItem as PrimeMenuItem } from 'primeng/api';

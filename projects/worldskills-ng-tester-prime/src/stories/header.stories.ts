@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { HeaderComponent, MenuItem } from 'worldskills-ng-ui';
+import { HeaderComponent, MenuItem } from '@worldskills/ng-ui';
 import { provideRouter } from '@angular/router';
 import { applicationConfig } from '@storybook/angular';
 

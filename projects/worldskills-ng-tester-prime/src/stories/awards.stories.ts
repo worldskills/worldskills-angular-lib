@@ -7,8 +7,8 @@ import {
   PersonAward,
   RecipientAwardCertificateType,
   provideWsNgUi,
-} from 'worldskills-ng-ui';
-import { provideWsNgUiTranslations } from 'worldskills-ng-ui';
+} from '@worldskills/ng-ui';
+import { provideWsNgUiTranslations } from '@worldskills/ng-ui';
 
 const MOCK_AWARD_WSI = {
   id: 1,

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from 'worldskills-ng-auth';
+import { User } from '@worldskills/ng-auth';
 
 @Component({
   selector: 'ws-ng-ui-puppeteer-banner',

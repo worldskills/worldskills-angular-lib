@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BreadcrumbComponent, Breadcrumb } from 'worldskills-ng-ui';
+import { BreadcrumbComponent, Breadcrumb } from '@worldskills/ng-ui';
 
 const meta: Meta<BreadcrumbComponent> = {
   title: 'WorldSkills UI / Breadcrumb',

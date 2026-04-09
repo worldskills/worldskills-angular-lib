@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TreeSelectComponent, TreeSelectNode } from 'worldskills-ng-ui';
+import { TreeSelectComponent, TreeSelectNode } from '@worldskills/ng-ui';
 
 const meta: Meta<TreeSelectComponent> = {
   title: 'WorldSkills UI / Tree Select',
