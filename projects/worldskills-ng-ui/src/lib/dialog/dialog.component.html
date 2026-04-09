@@ -1,0 +1,20 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="title"
+  [modal]="true"
+  [closable]="closable"
+  [dismissableMask]="dismissible"
+  [style]="{ width: width, 'max-width': '95vw' }"
+  [breakpoints]="{ '640px': '95vw' }"
+  styleClass="ws-dialog"
+  (onHide)="onHide()">
+
+  <ng-content />
+
+  @if (footerTemplate) {
+    <ng-template pTemplate="footer">
+      <ng-container *ngTemplateOutlet="footerTemplate" />
+    </ng-template>
+  }
+
+</p-dialog>

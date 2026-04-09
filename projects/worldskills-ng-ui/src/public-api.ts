@@ -46,3 +46,8 @@ export * from './lib/breadcrumb/breadcrumb.model';
 export * from './lib/breadcrumb/breadcrumb.service';
 export * from './lib/breadcrumb/breadcrumb.component';
 
+// dialog
+export * from './lib/dialog/dialog.component';
+export * from './lib/dialog/confirm.component';
+export * from './lib/dialog/confirm.service';
+

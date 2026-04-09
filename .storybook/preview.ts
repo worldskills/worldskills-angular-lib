@@ -3,6 +3,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import { provideHttpClient } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
+import { ConfirmationService } from 'primeng/api';
 import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations, provideWsNgUi } from 'worldskills-ng-ui';
 
 const preview: Preview = {
@@ -14,6 +15,7 @@ const preview: Preview = {
         ...provideTranslateService({ lang: 'en', extend: true }),
         provideWsNgUiTranslations(),
         provideWsNgUi({ enableLogging: false }),
+        ConfirmationService,
         providePrimeNG({
           pt: WorldSkillsPTPreset,
           theme: {

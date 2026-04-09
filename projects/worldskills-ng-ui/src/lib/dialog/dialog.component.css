@@ -1,0 +1,7 @@
+/* Ensure footer buttons are right-aligned and wrap on mobile */
+:host ::ng-deep .ws-dialog .p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
