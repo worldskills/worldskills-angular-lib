@@ -75,6 +75,9 @@
             "certificate_type": "证书类型",
             "generate_id": "生成新编号",
             "delete_confirm": "您确定要删除此奖项吗？"
+        },
+        "entity_tree_select": {
+            "placeholder": "选择实体..."
         }
     }
 }

@@ -87,6 +87,9 @@
             "certificate_type": "Zertifikatstyp",
             "generate_id": "Neue ID generieren",
             "delete_confirm": "Sind Sie sicher, dass Sie diese Auszeichnung löschen möchten?"
+        },
+        "entity_tree_select": {
+            "placeholder": "Entität auswählen..."
         }
     }
 }

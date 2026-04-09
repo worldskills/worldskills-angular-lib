@@ -1,4 +1,4 @@
-<div class="ws-tree-select relative">
+<div class="ws-tree-select relative" [class.z-10]="isOpen">
 
   <!-- Trigger — mirrors p-select appearance -->
   <div class="ws-tree-trigger flex items-center cursor-pointer"
@@ -21,7 +21,11 @@
 
   <!-- Dropdown panel -->
   @if (isOpen) {
-    <div class="ws-tree-panel absolute top-full left-0 right-0 z-50 mt-1">
+    <div class="ws-tree-panel absolute top-full left-0 right-0 z-50 mt-1"
+         [style.background]="'var(--p-select-overlay-background, white)'"
+         [style.border]="'1px solid var(--p-select-overlay-border-color)'"
+         [style.boxShadow]="'var(--p-select-overlay-shadow)'"
+         [style.borderRadius]="'var(--p-rounded-md)'">
 
       <!-- Fuzzy search -->
       <div class="p-2 border-b ws-tree-panel__divider">

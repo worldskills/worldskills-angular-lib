@@ -88,6 +88,9 @@
             "certificate_type": "Tipo de certificado",
             "generate_id": "Gerar novo ID",
             "delete_confirm": "Tem certeza que deseja excluir este prêmio?"
+        },
+        "entity_tree_select": {
+            "placeholder": "Selecionar entidade..."
         }
     }
 }

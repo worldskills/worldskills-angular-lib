@@ -88,6 +88,9 @@
             "certificate_type": "Todistustyyppi",
             "generate_id": "Luo uusi tunnus",
             "delete_confirm": "Haluatteko varmasti poistaa tämän palkinnon?"
+        },
+        "entity_tree_select": {
+            "placeholder": "Valitse entiteetti..."
         }
     }
 }

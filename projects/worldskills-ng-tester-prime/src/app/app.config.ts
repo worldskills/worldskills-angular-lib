@@ -7,7 +7,8 @@ import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations, prov
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { wsHttpInterceptor } from 'worldskills-ng-ui';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -16,13 +17,15 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimationsAsync(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([wsHttpInterceptor])),
     ...provideTranslateService({ lang: 'en', extend: true }),
     ...provideTranslateHttpLoader(),
     provideWsNgUiTranslations(),
     MessageService,
     provideWsNgUi({
       enableLogging: true,
+      api: { apiEndpoint: 'https://api.worldskills.show', appCode: [] },
+      http: { includeAuthToken: true },
     }),
     providePrimeNG({
       pt: WorldSkillsPTPreset,

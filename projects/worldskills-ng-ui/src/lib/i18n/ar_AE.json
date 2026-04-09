@@ -75,6 +75,9 @@
             "certificate_type": "نوع الشهادة",
             "generate_id": "توليد معرف جديد",
             "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذه الجائزة؟"
+        },
+        "entity_tree_select": {
+            "placeholder": "اختر كياناً..."
         }
     }
 }

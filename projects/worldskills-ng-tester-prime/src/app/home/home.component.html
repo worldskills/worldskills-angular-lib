@@ -14,6 +14,31 @@
     </div>
   </section>
 
+  <!-- Entity Tree Select -->
+  <section class="mb-8">
+    <h2 class="text-lg font-medium mb-3">Entity Tree Select</h2>
+
+    <div class="flex gap-2 items-center max-w-lg mb-4">
+      <input pInputText type="password" [(ngModel)]="accessToken"
+             placeholder="Paste access token..."
+             class="flex-1 text-sm" />
+      <p-button label="Load" icon="pi pi-refresh" (onClick)="applyToken()" />
+    </div>
+
+    @if (entitySelectVisible) {
+      <div class="flex flex-col gap-4 max-w-sm">
+        <div>
+          <p class="text-sm text-gray-500 mb-1">Self-loading (live API)</p>
+          <ws-ng-ui-entity-tree-select [virtualScroll]="true" />
+        </div>
+        <div>
+          <p class="text-sm text-gray-500 mb-1">Multi-select (live API)</p>
+          <ws-ng-ui-entity-tree-select selectionMode="multiple" [virtualScroll]="true" />
+        </div>
+      </div>
+    }
+  </section>
+
   <!-- Toast triggers -->
   <section>
     <h2 class="text-lg font-medium mb-3">Toast Notifications</h2>

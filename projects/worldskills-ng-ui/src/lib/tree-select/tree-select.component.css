@@ -33,12 +33,10 @@
   color: var(--p-text-color);
 }
 
-/* Panel */
+/* Panel — background/border/shadow applied via [style] bindings in template
+   to guarantee they override any stacking context issues */
 .ws-tree-panel {
-  background: var(--p-select-overlay-background);
-  border: 1px solid var(--p-select-overlay-border-color);
-  border-radius: var(--p-rounded-md);
-  box-shadow: var(--p-select-overlay-shadow);
+  overflow: hidden;
 }
 
 .ws-tree-panel__divider {

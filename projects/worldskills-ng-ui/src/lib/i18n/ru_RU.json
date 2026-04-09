@@ -75,6 +75,9 @@
             "certificate_type": "Тип сертификата",
             "generate_id": "Сгенерировать новый ID",
             "delete_confirm": "Вы уверены, что хотите удалить эту награду?"
+        },
+        "entity_tree_select": {
+            "placeholder": "Выберите объект..."
         }
     }
 }

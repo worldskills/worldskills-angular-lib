@@ -75,6 +75,9 @@
             "certificate_type": "Type de certificat",
             "generate_id": "Générer un nouvel identifiant",
             "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce prix ?"
+        },
+        "entity_tree_select": {
+            "placeholder": "Sélectionner une entité..."
         }
     }
 }

@@ -48,6 +48,10 @@ export * from './lib/banners/staging-banner/staging-banner.component';
 export * from './lib/tree-select/tree-select-node';
 export * from './lib/tree-select/tree-select.component';
 
+// entity-tree-select
+export * from './lib/entity-tree-select/entity.service';
+export * from './lib/entity-tree-select/entity-tree-select.component';
+
 // breadcrumb
 export * from './lib/breadcrumb/breadcrumb.model';
 export * from './lib/breadcrumb/breadcrumb.service';

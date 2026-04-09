@@ -112,6 +112,9 @@
             "certificate_type": "Certificate Type",
             "generate_id": "Generate New ID",
             "delete_confirm": "Are you sure you want to delete this award?"
+        },
+        "entity_tree_select": {
+            "placeholder": "Select entity..."
         }
     }
 }
