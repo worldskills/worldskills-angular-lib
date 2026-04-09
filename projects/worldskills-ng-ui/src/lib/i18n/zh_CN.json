@@ -3,6 +3,56 @@
         "header": {
             "login": "登录",
             "logout": "退出"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "由 {{firstName}} {{lastName}} 创建",
+                "abstained": "您已弃权。",
+                "voted_anonymous": "您的投票已匿名记录。",
+                "voted_for": "您投票支持：",
+                "vote": "投票",
+                "abstain": "弃权",
+                "clear_vote": "清除投票",
+                "view_results": "查看结果",
+                "view_question": "查看问题",
+                "not_permitted": "您无权参与此投票。",
+                "manage": "管理",
+                "status": "状态",
+                "already_voted": "您已经投票了。",
+                "must_vote_on": "您必须先对《{{title}}》进行投票。",
+                "confirm_vote": "您确定要投票支持：{{labels}}吗？",
+                "confirm_abstain": "您确定要弃权吗？",
+                "menu_export": "导出结果",
+                "menu_reset": "重置",
+                "menu_extend": "延长",
+                "menu_edit": "编辑",
+                "menu_delete": "删除",
+                "menu_open": "开放",
+                "menu_close": "关闭"
+            },
+            "result": {
+                "pts": "分",
+                "votes": "票",
+                "no_results": "暂无结果。"
+            },
+            "weighted": {
+                "placeholder": "第{{ordinal}}选择（{{points}}分）"
+            },
+            "multiselect": {
+                "placeholder": "第{{ordinal}}选择"
+            },
+            "ordinal": {
+                "1": "一",
+                "2": "二",
+                "3": "三",
+                "4": "四",
+                "5": "五",
+                "6": "六",
+                "7": "七",
+                "8": "八",
+                "9": "九",
+                "10": "十"
+            }
         }
     }
 }

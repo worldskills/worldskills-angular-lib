@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-3">
+  @for (rank of ranks; track rank) {
+    <div>
+      <p-select
+        [options]="optionsFor(rank)"
+        [(ngModel)]="selections[rank]"
+        [disabled]="voted.hasVoted"
+        [placeholder]="placeholderFor(rank)"
+        optionLabel="label"
+        optionValue="value"
+        optionDisabled="disabled"
+        styleClass="w-full"
+        (onChange)="onChange($event.value, rank)"
+      />
+    </div>
+  }
+</div>

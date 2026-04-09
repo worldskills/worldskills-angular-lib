@@ -1,6 +1,7 @@
 import { I18nText } from '../../common/models/i18n-text';
 
-export interface WsEntity {
+export interface PollOption {
   id: number;
-  name: I18nText;
+  text: I18nText;
+  deleted: boolean;
 }

@@ -1,6 +1,6 @@
 import { I18nText } from '../../common/models/i18n-text';
 import { Link } from './link';
-import { WsEntity } from './ws-entity';
+import { WsEntity } from '../../common/models/ws-entity';
 import { ResourceType } from './resource-type';
 import { ResourceMetadata } from './resource-metadata';
 import { Version } from './version';

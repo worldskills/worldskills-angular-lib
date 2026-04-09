@@ -3,6 +3,56 @@
         "header": {
             "login": "Connexion",
             "logout": "Déconnexion"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Créé par {{firstName}} {{lastName}}",
+                "abstained": "Vous vous êtes abstenu de ce vote.",
+                "voted_anonymous": "Votre vote a été enregistré anonymement.",
+                "voted_for": "Vous avez voté pour :",
+                "vote": "Voter",
+                "abstain": "S'abstenir",
+                "clear_vote": "Effacer le vote",
+                "view_results": "Voir les résultats",
+                "view_question": "Voir la question",
+                "not_permitted": "Vous n'êtes pas autorisé à voter sur ce sondage.",
+                "manage": "Gérer",
+                "status": "Statut",
+                "already_voted": "Vous avez déjà voté.",
+                "must_vote_on": "Vous devez voter sur \"{{title}}\" avant de voter sur ce sondage.",
+                "confirm_vote": "Êtes-vous sûr de vouloir voter pour : {{labels}} ?",
+                "confirm_abstain": "Êtes-vous sûr de vouloir vous abstenir ?",
+                "menu_export": "Exporter les résultats",
+                "menu_reset": "Réinitialiser",
+                "menu_extend": "Prolonger",
+                "menu_edit": "Modifier",
+                "menu_delete": "Supprimer",
+                "menu_open": "Ouvrir",
+                "menu_close": "Fermer"
+            },
+            "result": {
+                "pts": "pts",
+                "votes": "votes",
+                "no_results": "Aucun résultat pour l'instant."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} sélection ({{points}} pts)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} sélection"
+            },
+            "ordinal": {
+                "1": "1er",
+                "2": "2e",
+                "3": "3e",
+                "4": "4e",
+                "5": "5e",
+                "6": "6e",
+                "7": "7e",
+                "8": "8e",
+                "9": "9e",
+                "10": "10e"
+            }
         }
     }
 }

@@ -3,6 +3,56 @@
         "header": {
             "login": "Войти",
             "logout": "Выйти"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Создал {{firstName}} {{lastName}}",
+                "abstained": "Вы воздержались от голосования.",
+                "voted_anonymous": "Ваш голос записан анонимно.",
+                "voted_for": "Вы проголосовали за:",
+                "vote": "Голосовать",
+                "abstain": "Воздержаться",
+                "clear_vote": "Сбросить голос",
+                "view_results": "Просмотр результатов",
+                "view_question": "Просмотр вопроса",
+                "not_permitted": "Вы не можете голосовать в этом опросе.",
+                "manage": "Управление",
+                "status": "Статус",
+                "already_voted": "Вы уже проголосовали.",
+                "must_vote_on": "Сначала проголосуйте в опросе «{{title}}».",
+                "confirm_vote": "Вы уверены, что хотите проголосовать за: {{labels}}?",
+                "confirm_abstain": "Вы уверены, что хотите воздержаться?",
+                "menu_export": "Экспорт результатов",
+                "menu_reset": "Сбросить",
+                "menu_extend": "Продлить",
+                "menu_edit": "Изменить",
+                "menu_delete": "Удалить",
+                "menu_open": "Открыть",
+                "menu_close": "Закрыть"
+            },
+            "result": {
+                "pts": "очк.",
+                "votes": "голосов",
+                "no_results": "Результатов пока нет."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} выбор ({{points}} очк.)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} выбор"
+            },
+            "ordinal": {
+                "1": "1-й",
+                "2": "2-й",
+                "3": "3-й",
+                "4": "4-й",
+                "5": "5-й",
+                "6": "6-й",
+                "7": "7-й",
+                "8": "8-й",
+                "9": "9-й",
+                "10": "10-й"
+            }
         }
     }
 }

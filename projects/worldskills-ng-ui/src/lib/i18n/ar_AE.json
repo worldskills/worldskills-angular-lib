@@ -3,6 +3,56 @@
         "header": {
             "login": "تسجيل الدخول",
             "logout": "تسجيل الخروج"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "أنشأه {{firstName}} {{lastName}}",
+                "abstained": "لقد امتنعت عن التصويت.",
+                "voted_anonymous": "تم تسجيل صوتك بشكل مجهول.",
+                "voted_for": "لقد صوّتت لصالح:",
+                "vote": "تصويت",
+                "abstain": "امتناع",
+                "clear_vote": "مسح التصويت",
+                "view_results": "عرض النتائج",
+                "view_question": "عرض السؤال",
+                "not_permitted": "غير مصرح لك بالتصويت في هذا الاستطلاع.",
+                "manage": "إدارة",
+                "status": "الحالة",
+                "already_voted": "لقد صوّتت بالفعل.",
+                "must_vote_on": "يجب عليك التصويت على \"{{title}}\" قبل التصويت على هذا الاستطلاع.",
+                "confirm_vote": "هل أنت متأكد من التصويت لصالح: {{labels}}؟",
+                "confirm_abstain": "هل أنت متأكد من رغبتك في الامتناع عن التصويت؟",
+                "menu_export": "تصدير النتائج",
+                "menu_reset": "إعادة تعيين",
+                "menu_extend": "تمديد",
+                "menu_edit": "تعديل",
+                "menu_delete": "حذف",
+                "menu_open": "فتح",
+                "menu_close": "إغلاق"
+            },
+            "result": {
+                "pts": "نقطة",
+                "votes": "أصوات",
+                "no_results": "لا توجد نتائج بعد."
+            },
+            "weighted": {
+                "placeholder": "الاختيار {{ordinal}} ({{points}} نقطة)"
+            },
+            "multiselect": {
+                "placeholder": "الاختيار {{ordinal}}"
+            },
+            "ordinal": {
+                "1": "الأول",
+                "2": "الثاني",
+                "3": "الثالث",
+                "4": "الرابع",
+                "5": "الخامس",
+                "6": "السادس",
+                "7": "السابع",
+                "8": "الثامن",
+                "9": "التاسع",
+                "10": "العاشر"
+            }
         }
     }
 }

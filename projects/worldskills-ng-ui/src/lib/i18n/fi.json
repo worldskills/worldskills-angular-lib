@@ -16,6 +16,56 @@
             "copyright_contact": "Yhteystiedot",
             "language": "Kieli",
             "missing_translation": "Puuttuuko käännös?"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Luonut {{firstName}} {{lastName}}",
+                "abstained": "Pidätteitte äänenne.",
+                "voted_anonymous": "Äänenne kirjattiin anonyymisti.",
+                "voted_for": "Äänestitte:",
+                "vote": "Äänestä",
+                "abstain": "Pidättäydy",
+                "clear_vote": "Tyhjennä ääni",
+                "view_results": "Näytä tulokset",
+                "view_question": "Näytä kysymys",
+                "not_permitted": "Teillä ei ole äänioikeutta tässä äänestyksessä.",
+                "manage": "Hallinnoi",
+                "status": "Tila",
+                "already_voted": "Olette jo äänestäneet.",
+                "must_vote_on": "Teidän täytyy ensin äänestää kyselyssä \"{{title}}\".",
+                "confirm_vote": "Haluatteko varmasti äänestää: {{labels}}?",
+                "confirm_abstain": "Haluatteko varmasti pidättäytyä?",
+                "menu_export": "Vie tulokset",
+                "menu_reset": "Nollaa",
+                "menu_extend": "Pidennä",
+                "menu_edit": "Muokkaa",
+                "menu_delete": "Poista",
+                "menu_open": "Avaa",
+                "menu_close": "Sulje"
+            },
+            "result": {
+                "pts": "pist.",
+                "votes": "ääntä",
+                "no_results": "Ei vielä tuloksia."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} valinta ({{points}} pist.)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} valinta"
+            },
+            "ordinal": {
+                "1": "1.",
+                "2": "2.",
+                "3": "3.",
+                "4": "4.",
+                "5": "5.",
+                "6": "6.",
+                "7": "7.",
+                "8": "8.",
+                "9": "9.",
+                "10": "10."
+            }
         }
     }
 }

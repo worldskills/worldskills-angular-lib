@@ -15,6 +15,56 @@
             "copyright_contact": "Kontakt",
             "language": "Sprache",
             "missing_translation": "Fehlende Übersetzung?"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Erstellt von {{firstName}} {{lastName}}",
+                "abstained": "Sie haben sich enthalten.",
+                "voted_anonymous": "Ihre Stimme wurde anonym erfasst.",
+                "voted_for": "Sie haben gestimmt für:",
+                "vote": "Abstimmen",
+                "abstain": "Enthalten",
+                "clear_vote": "Stimme löschen",
+                "view_results": "Ergebnisse anzeigen",
+                "view_question": "Frage anzeigen",
+                "not_permitted": "Sie sind nicht berechtigt, an dieser Abstimmung teilzunehmen.",
+                "manage": "Verwalten",
+                "status": "Status",
+                "already_voted": "Sie haben bereits abgestimmt.",
+                "must_vote_on": "Sie müssen zuerst über \"{{title}}\" abstimmen.",
+                "confirm_vote": "Möchten Sie wirklich für {{labels}} stimmen?",
+                "confirm_abstain": "Möchten Sie sich wirklich enthalten?",
+                "menu_export": "Ergebnisse exportieren",
+                "menu_reset": "Zurücksetzen",
+                "menu_extend": "Verlängern",
+                "menu_edit": "Bearbeiten",
+                "menu_delete": "Löschen",
+                "menu_open": "Öffnen",
+                "menu_close": "Schließen"
+            },
+            "result": {
+                "pts": "Pkt.",
+                "votes": "Stimmen",
+                "no_results": "Noch keine Ergebnisse."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} Auswahl ({{points}} Pkt.)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} Auswahl"
+            },
+            "ordinal": {
+                "1": "1.",
+                "2": "2.",
+                "3": "3.",
+                "4": "4.",
+                "5": "5.",
+                "6": "6.",
+                "7": "7.",
+                "8": "8.",
+                "9": "9.",
+                "10": "10."
+            }
         }
     }
 }

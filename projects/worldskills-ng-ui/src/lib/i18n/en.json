@@ -40,6 +40,56 @@
             "in_n_days": "in {{count}} days",
             "in_a_week": "in a week",
             "in_n_weeks": "in {{count}} weeks"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Created by {{firstName}} {{lastName}}",
+                "abstained": "You abstained from this vote.",
+                "voted_anonymous": "Your vote was recorded anonymously.",
+                "voted_for": "You voted for:",
+                "vote": "Vote",
+                "abstain": "Abstain",
+                "clear_vote": "Clear vote",
+                "view_results": "View results",
+                "view_question": "View question",
+                "not_permitted": "You are not permitted to vote on this poll.",
+                "manage": "Manage",
+                "status": "Status",
+                "already_voted": "You have already voted.",
+                "must_vote_on": "You must vote on \"{{title}}\" before voting on this poll.",
+                "confirm_vote": "Are you sure you want to vote for: {{labels}}?",
+                "confirm_abstain": "Are you sure you wish to abstain from voting?",
+                "menu_export": "Export results",
+                "menu_reset": "Reset",
+                "menu_extend": "Extend",
+                "menu_edit": "Edit",
+                "menu_delete": "Delete",
+                "menu_open": "Open",
+                "menu_close": "Close"
+            },
+            "result": {
+                "pts": "pts",
+                "votes": "votes",
+                "no_results": "No results yet."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} selection ({{points}} pts)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} selection"
+            },
+            "ordinal": {
+                "1": "1st",
+                "2": "2nd",
+                "3": "3rd",
+                "4": "4th",
+                "5": "5th",
+                "6": "6th",
+                "7": "7th",
+                "8": "8th",
+                "9": "9th",
+                "10": "10th"
+            }
         }
     }
 }

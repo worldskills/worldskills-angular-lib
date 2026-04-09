@@ -16,6 +16,56 @@
             "copyright_contact": "Contato",
             "language": "Idioma",
             "missing_translation": "Tradução Ausente?"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Criado por {{firstName}} {{lastName}}",
+                "abstained": "Você se absteve desta votação.",
+                "voted_anonymous": "Seu voto foi registrado anonimamente.",
+                "voted_for": "Você votou em:",
+                "vote": "Votar",
+                "abstain": "Abster-se",
+                "clear_vote": "Limpar voto",
+                "view_results": "Ver resultados",
+                "view_question": "Ver questão",
+                "not_permitted": "Você não tem permissão para votar nesta enquete.",
+                "manage": "Gerenciar",
+                "status": "Status",
+                "already_voted": "Você já votou.",
+                "must_vote_on": "Você deve votar em \"{{title}}\" antes de votar nesta enquete.",
+                "confirm_vote": "Tem certeza que deseja votar em: {{labels}}?",
+                "confirm_abstain": "Tem certeza que deseja se abster?",
+                "menu_export": "Exportar resultados",
+                "menu_reset": "Redefinir",
+                "menu_extend": "Estender",
+                "menu_edit": "Editar",
+                "menu_delete": "Excluir",
+                "menu_open": "Abrir",
+                "menu_close": "Fechar"
+            },
+            "result": {
+                "pts": "pts",
+                "votes": "votos",
+                "no_results": "Ainda não há resultados."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} seleção ({{points}} pts)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} seleção"
+            },
+            "ordinal": {
+                "1": "1º",
+                "2": "2º",
+                "3": "3º",
+                "4": "4º",
+                "5": "5º",
+                "6": "6º",
+                "7": "7º",
+                "8": "8º",
+                "9": "9º",
+                "10": "10º"
+            }
         }
     }
 }

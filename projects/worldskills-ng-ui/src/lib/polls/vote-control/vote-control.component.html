@@ -1,0 +1,174 @@
+<div class="rounded-xl border border-surface-200 bg-surface-0 shadow-sm overflow-hidden">
+
+  <!-- Header -->
+  <div class="px-5 py-4 border-b border-surface-200 bg-surface-50">
+    @if (titleTemplate) {
+      <ng-container [ngTemplateOutlet]="titleTemplate" />
+    } @else {
+      <h3 class="font-semibold text-color text-base leading-snug">{{ poll.title.text }}</h3>
+      <p class="text-xs text-color-secondary mt-0.5">
+        {{ 'ws_ui.polls.vote_control.created_by' | translate: { firstName: poll.createdBy.firstName, lastName: poll.createdBy.lastName } }}
+      </p>
+    }
+  </div>
+
+  <!-- Body -->
+  <div class="px-5 py-4 flex flex-col gap-4">
+
+    <!-- Question -->
+    <div class="text-sm text-color font-medium">
+      @if (questionTemplate) {
+        <ng-container [ngTemplateOutlet]="questionTemplate" />
+      } @else {
+        {{ poll.question.text }}
+      }
+    </div>
+
+    <!-- Options / Results / Custom view -->
+    @if (showCustomView && customViewTemplate) {
+      <ng-container [ngTemplateOutlet]="customViewTemplate" />
+
+    } @else if (view === 'question') {
+      <ng-container [ngTemplateOutlet]="beforeOptionsTemplate ?? null" />
+
+      @if (optionsTemplate) {
+        <ng-container [ngTemplateOutlet]="optionsTemplate" />
+      } @else {
+        <!-- Voted state -->
+        @if (voted.hasVoted) {
+          <div class="rounded-lg bg-surface-50 border border-surface-200 px-4 py-3 text-sm flex flex-col gap-1">
+            <span class="text-green-700 font-medium flex items-center gap-1.5">
+              <i class="pi pi-check-circle text-base"></i>
+              @if (voted.abstained) { {{ 'ws_ui.polls.vote_control.abstained' | translate }} }
+              @else if (voted.anonymous) { {{ 'ws_ui.polls.vote_control.voted_anonymous' | translate }} }
+              @else { {{ 'ws_ui.polls.vote_control.voted_for' | translate }} }
+            </span>
+            @if (!voted.abstained && !voted.anonymous) {
+              <ol class="list-decimal list-inside text-color-secondary mt-1 space-y-0.5">
+                @for (entry of voted.votes; track entry.rank) {
+                  <li>{{ getVoteText(entry) }}</li>
+                }
+              </ol>
+            }
+          </div>
+        }
+
+        <!-- Poll inputs -->
+        @if (!voted.hasVoted) {
+          @if (poll.type === 'standard') {
+            <ws-ng-ui-standard-poll
+              [poll]="poll" [voted]="voted" [initialSelection]="selection"
+              [optionHandler]="optionHandler" (optionSelected)="onSelectionChange($event)" />
+          }
+          @if (poll.type === 'weighted') {
+            <ws-ng-ui-weighted-poll
+              [poll]="poll" [voted]="voted" [initialSelection]="selection"
+              [optionHandler]="optionHandler" (optionSelected)="onSelectionChange($event)" />
+          }
+          @if (poll.type === 'multiselect') {
+            <ws-ng-ui-multiselect-poll
+              [poll]="poll" [voted]="voted" [initialSelection]="selection"
+              [optionHandler]="optionHandler" (optionSelected)="onSelectionChange($event)" />
+          }
+        }
+      }
+
+      <ng-container [ngTemplateOutlet]="afterOptionsTemplate ?? null" />
+
+    } @else {
+      <!-- Results view -->
+      <ng-container [ngTemplateOutlet]="beforeResultTemplate ?? null" />
+
+      @if (resultTemplate) {
+        <ng-container [ngTemplateOutlet]="resultTemplate" />
+      } @else {
+        <ws-ng-ui-poll-result
+          [poll]="poll" [results]="results" [tracks]="tracks"
+          [canSeeWhoVoted]="canSeeWhoVoted()" />
+      }
+
+      <ng-container [ngTemplateOutlet]="afterResultTemplate ?? null" />
+    }
+
+    <!-- Action bar -->
+    <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-surface-100">
+
+      <!-- Left: voting actions -->
+      <div class="flex flex-wrap gap-2">
+        @if (showVoteButton()) {
+          <p-button
+            [label]="'ws_ui.polls.vote_control.vote' | translate"
+            icon="pi pi-check"
+            severity="success"
+            [disabled]="hasNoVoteSelected()"
+            (onClick)="vote()"
+          />
+        }
+        @if (showAbstainButton()) {
+          <p-button
+            [label]="'ws_ui.polls.vote_control.abstain' | translate"
+            icon="pi pi-ban"
+            severity="warn"
+            (onClick)="abstain()"
+          />
+        }
+        @if (showClearVoteButton()) {
+          <p-button
+            [label]="'ws_ui.polls.vote_control.clear_vote' | translate"
+            icon="pi pi-times"
+            severity="secondary"
+            (onClick)="unvote()"
+          />
+        }
+        @if (showResultsButton()) {
+          <p-button
+            [label]="'ws_ui.polls.vote_control.view_results' | translate"
+            icon="pi pi-chart-bar"
+            severity="secondary"
+            (onClick)="changeView('result')"
+          />
+        }
+        @if (view === 'result' && state === 'running') {
+          <p-button
+            [label]="'ws_ui.polls.vote_control.view_question' | translate"
+            icon="pi pi-list"
+            severity="secondary"
+            (onClick)="changeView('question')"
+          />
+        }
+        @if (!isWhitelisted()) {
+          <span class="text-xs text-orange-600 font-medium flex items-center gap-1">
+            <i class="pi pi-exclamation-triangle"></i> {{ 'ws_ui.polls.vote_control.not_permitted' | translate }}
+          </span>
+        }
+      </div>
+
+      <!-- Right: manage menu -->
+      @if (manageItems.length > 0) {
+        <div>
+          <p-menu #manageMenu [popup]="true" [model]="manageItems" />
+          <p-button
+            [label]="'ws_ui.polls.vote_control.manage' | translate"
+            icon="pi pi-cog"
+            severity="secondary"
+            [text]="true"
+            (onClick)="manageMenu.toggle($event)"
+          />
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="px-5 py-2.5 border-t border-surface-200 bg-surface-50 text-xs text-color-secondary flex flex-wrap gap-x-3 gap-y-1 items-center">
+    @if (footerTemplate) {
+      <ng-container [ngTemplateOutlet]="footerTemplate" />
+    } @else {
+      <span><strong>{{ 'ws_ui.polls.vote_control.status' | translate }}:</strong> {{ state }}</span>
+      @if (poll.start) {
+        <span>{{ dateRange }}</span>
+      }
+    }
+  </div>
+
+</div>

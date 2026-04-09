@@ -18,6 +18,7 @@ export * from './lib/common/util/lang.util';
 export * from './lib/common/util/generic.util';
 export * from './lib/common/models/i18n-text';
 export * from './lib/common/models/language';
+export * from './lib/common/models/ws-entity';
 
 // i18n
 export * from './lib/i18n/translations';
@@ -70,7 +71,6 @@ export * from './lib/date/relative-date/relative-date.pipe';
 // resources
 export * from './lib/resources/models/link';
 export * from './lib/resources/models/pair';
-export * from './lib/resources/models/ws-entity';
 export * from './lib/resources/models/storage-type';
 export * from './lib/resources/models/resource-metadata-info';
 export * from './lib/resources/models/resource-type-metadata';
@@ -89,3 +89,26 @@ export * from './lib/resources/resource.service';
 export * from './lib/resources/resource-thumbnail/resource-thumbnail.component';
 export * from './lib/resources/resource-thumbnail-container/resource-thumbnail-container.component';
 
+// polls
+export * from './lib/polls/models/abstain';
+export * from './lib/polls/models/created-by';
+export * from './lib/polls/models/entity-path-item';
+export * from './lib/polls/models/entity-path';
+export * from './lib/polls/models/person';
+export * from './lib/polls/models/person-position';
+export * from './lib/polls/models/option';
+export * from './lib/polls/models/option-result-view';
+export * from './lib/polls/models/vote-entry';
+export * from './lib/polls/models/vote';
+export * from './lib/polls/models/result';
+export * from './lib/polls/models/track';
+export * from './lib/polls/models/poll';
+export * from './lib/polls/models/poll-list';
+export * from './lib/polls/models/page';
+export * from './lib/polls/models/option-handler';
+export * from './lib/polls/models/default-option-handler';
+export * from './lib/polls/standard-poll/standard-poll.component';
+export * from './lib/polls/weighted-poll/weighted-poll.component';
+export * from './lib/polls/multiselect-poll/multiselect-poll.component';
+export * from './lib/polls/poll-result/poll-result.component';
+export * from './lib/polls/vote-control/vote-control.component';
