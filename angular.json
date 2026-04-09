@@ -3,274 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "worldskills-angular-lib": {
-      "projectType": "library",
-      "root": "projects/worldskills-angular-lib",
-      "sourceRoot": "projects/worldskills-angular-lib/src",
-      "prefix": "ws",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.json",
-            "project": "projects/worldskills-angular-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/worldskills-angular-lib/tsconfig.lib.prod.json"
-            }
-          },
-          "vendorSourceMap": true
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/worldskills-angular-lib/src/test.ts",
-            "tsConfig": "projects/worldskills-angular-lib/tsconfig.spec.json"
-          }
-        }
-      }
-    },
-    "worldskills-angular-lib-tester": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "projects/worldskills-angular-lib-tester",
-      "sourceRoot": "projects/worldskills-angular-lib-tester/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": {
-              "base": "dist/worldskills-angular-lib-tester"
-            },
-            "index": "projects/worldskills-angular-lib-tester/src/index.html",
-            "polyfills": ["zone.js"],
-            "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "./node_modules/worldskills-angular-lib/assets",
-                "output": "/assets/"
-              },
-              "projects/worldskills-angular-lib-tester/src/favicon.ico",
-              "projects/worldskills-angular-lib-tester/src/assets"
-            ],
-            "styles": [
-              "projects/worldskills-angular-lib-tester/src/styles.css",
-              "node_modules/@worldskills/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.css",
-              "projects/worldskills-angular-lib/assets/styles/index.css"
-            ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.slim.js",
-              "node_modules/@worldskills/bootstrap/dist/js/bootstrap.bundle.js"
-            ],
-            "browser": "projects/worldskills-angular-lib-tester/src/main.ts"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/worldskills-angular-lib-tester/src/environments/environment.ts",
-                  "with": "projects/worldskills-angular-lib-tester/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "10mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "12kb",
-                  "maximumError": "20kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "worldskills-angular-lib-tester:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "worldskills-angular-lib-tester:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "worldskills-angular-lib-tester:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/worldskills-angular-lib-tester/src/test.ts",
-            "polyfills": ["zone.js"],
-            "tsConfig": "projects/worldskills-angular-lib-tester/tsconfig.spec.json",
-            "karmaConfig": "projects/worldskills-angular-lib-tester/karma.conf.js",
-            "assets": [
-              "projects/worldskills-angular-lib-tester/src/favicon.ico",
-              "projects/worldskills-angular-lib-tester/src/assets"
-            ],
-            "styles": [
-              "projects/worldskills-angular-lib-tester/src/styles.css"
-            ],
-            "scripts": []
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/worldskills-angular-lib-tester/e2e/protractor.conf.js",
-            "devServerTarget": "worldskills-angular-lib-tester:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "worldskills-angular-lib-tester:serve:production"
-            }
-          }
-        }
-      }
-    },
-    "worldskills-angular-lib-tester-standalone": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "projects/worldskills-angular-lib-tester-standalone",
-      "sourceRoot": "projects/worldskills-angular-lib-tester-standalone/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": "dist/worldskills-angular-lib-tester-standalone",
-            "index": "projects/worldskills-angular-lib-tester-standalone/src/index.html",
-            "browser": "projects/worldskills-angular-lib-tester-standalone/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "projects/worldskills-angular-lib-tester-standalone/tsconfig.app.json",
-            "assets": [
-              "projects/worldskills-angular-lib-tester-standalone/src/assets",
-              {
-                "glob": "**/*",
-                "input": "projects/worldskills-angular-lib-tester-standalone/public"
-              }
-            ],
-            "styles": [
-              "projects/worldskills-angular-lib-tester-standalone/src/styles.css"
-            ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.slim.js",
-              "node_modules/@worldskills/bootstrap/dist/js/bootstrap.bundle.js"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "worldskills-angular-lib-tester-standalone:build:production"
-            },
-            "development": {
-              "buildTarget": "worldskills-angular-lib-tester-standalone:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "projects/worldskills-angular-lib-tester-standalone/tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/worldskills-angular-lib-tester-standalone/public"
-              }
-            ],
-            "styles": [
-              "projects/worldskills-angular-lib-tester-standalone/src/styles.css"
-            ],
-            "scripts": []
-          }
-        }
-      }
-    },
-    "my-lib": {
-      "projectType": "library",
-      "root": "projects/my-lib",
-      "sourceRoot": "projects/my-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/my-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/my-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/my-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/my-lib/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
     "worldskills-ng-auth": {
       "projectType": "library",
       "root": "projects/worldskills-ng-auth",
@@ -326,98 +58,6 @@
             "polyfills": [
               "zone.js",
               "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
-    "worldskills-ng-tester": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/worldskills-ng-tester",
-      "sourceRoot": "projects/worldskills-ng-tester/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:application",
-          "options": {
-            "browser": "projects/worldskills-ng-tester/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "projects/worldskills-ng-tester/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/worldskills-ng-tester/public"
-              }
-            ],
-            "styles": [
-              "projects/worldskills-ng-tester/src/styles.scss",
-              "node_modules/primeicons/primeicons.css"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "worldskills-ng-tester:build:production"
-            },
-            "development": {
-              "buildTarget": "worldskills-ng-tester:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "projects/worldskills-ng-tester/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/worldskills-ng-tester/public"
-              }
-            ],
-            "styles": [
-              "projects/worldskills-ng-tester/src/styles.scss"
             ]
           }
         }
@@ -498,17 +138,25 @@
           "options": {
             "index": "projects/worldskills-ng-tester-prime/src/index.html",
             "main": "projects/worldskills-ng-tester-prime/src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/worldskills-ng-tester-prime/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              { "glob": "**/*", "input": "projects/worldskills-ng-tester-prime/public" }
+              {
+                "glob": "**/*",
+                "input": "projects/worldskills-ng-tester-prime/public"
+              }
             ],
             "styles": [],
             "outputPath": "dist/worldskills-ng-tester-prime-webpack"
           },
           "configurations": {
-            "development": { "optimization": false, "sourceMap": true }
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
           }
         },
         "storybook": {
@@ -519,7 +167,9 @@
             "tsConfig": ".storybook/tsconfig.json",
             "port": 6006,
             "compodoc": false,
-            "styles": [".storybook/storybook.css"]
+            "styles": [
+              ".storybook/storybook.css"
+            ]
           }
         },
         "build-storybook": {
@@ -530,7 +180,9 @@
             "tsConfig": ".storybook/tsconfig.json",
             "outputDir": "dist/storybook",
             "compodoc": false,
-            "styles": [".storybook/storybook.css"]
+            "styles": [
+              ".storybook/storybook.css"
+            ]
           }
         },
         "test": {

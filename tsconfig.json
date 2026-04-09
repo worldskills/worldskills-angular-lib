@@ -16,14 +16,6 @@
       "dom"
     ],
     "paths": {
-      "my-lib": [
-        "./dist/my-lib"
-      ],
-      "worldskills-angular-lib": [
-        "dist/worldskills-angular-lib/worldskills-angular-lib",
-        "dist/worldskills-angular-lib",
-        "projects/worldskills-angular-lib/src/public-api.ts"
-      ],
       "@worldskills/ng-auth": [
         "dist/worldskills-ng-auth/worldskills-ng-auth",
         "dist/worldskills-ng-auth",
@@ -40,18 +32,11 @@
       "@worldskills/ng-ui/*": [
         "./projects/worldskills-ng-ui/src/*"
       ]
-      
     },
     "useDefineForClassFields": false,
     "resolveJsonModule": true
   },
   "references": [
-    {
-      "path": "./projects/worldskills-ng-tester/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/worldskills-ng-tester/tsconfig.spec.json"
-    },
     {
       "path": "./projects/worldskills-ng-tester-prime/tsconfig.app.json"
     },
