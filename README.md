@@ -7,6 +7,11 @@ This monorepo contains two Angular libraries that support the development of Wor
 | `worldskills-ng-ui` | `@worldskills/ng-ui` | Shared UI components built with PrimeNG + Tailwind |
 | `worldskills-ng-auth` | `@worldskills/ng-auth` | Auth providers and guards using `angular-oauth2-oidc` |
 
+The two libraries are intentionally separate:
+
+- **`@worldskills/ng-auth`** is a lightweight, stable package. Third-party applications that only need WorldSkills authentication can install it without pulling in any UI dependencies. It is expected to change only when upgrading Angular or addressing a security issue.
+- **`@worldskills/ng-ui`** can iterate freely on components, translations, and styles without triggering an auth release. Consumers can pin each library to its own version independently.
+
 ## Versioning guidelines
 
 The versioning is divided into 3 parts: MAJOR, MINOR, and PATCH.
@@ -64,11 +69,11 @@ Then build and publish each library:
 ```bash
 # @worldskills/ng-ui
 npm run ws_build_lib
-npm publish dist/worldskills-ng-ui
+npm publish ./dist/worldskills-ng-ui
 
 # @worldskills/ng-auth
 npm run auth_build_lib
-npm publish dist/worldskills-ng-auth
+npm publish ./dist/worldskills-ng-auth
 ```
 
 Bump the `version` field in `projects/worldskills-ng-ui/package.json` or `projects/worldskills-ng-auth/package.json` before publishing each release.
