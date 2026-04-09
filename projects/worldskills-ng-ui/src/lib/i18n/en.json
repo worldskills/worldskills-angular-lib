@@ -20,6 +20,26 @@
             "copyright_contact": "Contact",
             "language": "Language",
             "missing_translation": "Missing Translation?"
+        },
+        "relative_date": {
+            "just_now": "just now",
+            "minute_ago": "a minute ago",
+            "minutes_ago": "{{count}} minutes ago",
+            "hour_ago": "an hour ago",
+            "hours_ago": "{{count}} hours ago",
+            "yesterday": "yesterday",
+            "days_ago": "{{count}} days ago",
+            "week_ago": "a week ago",
+            "weeks_ago": "{{count}} weeks ago",
+            "soon": "soon",
+            "in_a_minute": "in a minute",
+            "in_n_minutes": "in {{count}} minutes",
+            "in_an_hour": "in an hour",
+            "in_n_hours": "in {{count}} hours",
+            "tomorrow": "tomorrow",
+            "in_n_days": "in {{count}} days",
+            "in_a_week": "in a week",
+            "in_n_weeks": "in {{count}} weeks"
         }
     }
 }

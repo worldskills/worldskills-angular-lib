@@ -56,3 +56,6 @@ export * from './lib/alert/alert.service';
 export * from './lib/alert/alert.component';
 export * from './lib/alert/toast.component';
 
+// date
+export * from './lib/date/relative-date/relative-date.pipe';
+
