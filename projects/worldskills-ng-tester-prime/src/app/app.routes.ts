@@ -17,6 +17,11 @@ export const routes: Routes = [
     data: { breadcrumb: 'Home' }
   },
   {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
+    data: { breadcrumb: 'Dashboard' }
+  },
+  {
     path: 'about',
     loadComponent: () => import('./about/about.component').then(m => m.AboutComponent),
     data: { breadcrumb: 'About' }

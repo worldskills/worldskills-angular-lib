@@ -30,6 +30,13 @@ export class AppComponent {
       requiredRoles: [],
     },
     {
+      label: "Dashboard",
+      url: "/dashboard",
+      hidden: false,
+      requireLogin: false,
+      requiredRoles: [],
+    },
+    {
       label: "About",
       url: "/about",
       hidden: false,

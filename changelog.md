@@ -2,6 +2,11 @@
 
 ## @worldskills/ng-ui
 
+### 1.5.1 — Dialog & Alert Polish
+- Dialog: added header/content padding (`1.25rem 1.5rem`), subtle header-content separator border
+- Dialog: disabled auto-focus on close button (`focusOnShow: false`)
+- Alert: added 5px horizontal padding to message text, close button right-aligned via `margin-left: auto`
+
 ### 1.5.0 — Data Table Component
 - New `WsDataTableComponent` with virtual scroll, inline editing, modal editing, and delete confirmation
 - Global search bar and per-column filters (text, numeric, date)
