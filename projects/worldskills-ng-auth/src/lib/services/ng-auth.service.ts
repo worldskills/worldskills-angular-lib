@@ -1,14 +1,18 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
-import { share } from 'rxjs/operators';
-import { USER_CURRENT_KEY } from '../constants';
+import { catchError, share, tap } from 'rxjs/operators';
+import {
+    OAUTH_ACCESS_TOKEN_KEY,
+    OAUTH_ACCESS_TOKEN_STORED_AT_KEY,
+    OAUTH_NONCE_KEY,
+    OAUTH_TOKEN_KEY,
+    USER_CURRENT_KEY,
+} from '../constants';
 import { LIBRARY_CONFIG } from '../auth-lib-config';
 
-// TODO: This class can be cleanup up and optimized
-// TODO: Generate auth state
 @Injectable({
     providedIn: 'root'
 })
@@ -16,24 +20,31 @@ export class NgAuthService {
     private config = inject(LIBRARY_CONFIG);
     private oAuthService = inject(OAuthService);
     private authService = inject(AuthService);
-    currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+
+    private _currentUser = new BehaviorSubject<User>(null);
+    readonly currentUser$ = this._currentUser.asObservable();
+
+    get currentUser(): User {
+        return this._currentUser.value;
+    }
+
+    /** Resolves once the OIDC token (if present in the URL hash) has been processed. */
+    readonly ready: Promise<void>;
 
     constructor() {
         this.oAuthService.configure(this.config.auth);
         const user = JSON.parse(sessionStorage.getItem(USER_CURRENT_KEY));
-        this.currentUser.next(user);
+        this._currentUser.next(user);
         this.oAuthService.setStorage(sessionStorage);
-        this.oAuthService.tryLogin();
+        this.ready = this.oAuthService.tryLogin({
+            disableNonceCheck: true,
+            disableOAuth2StateCheck: true,
+        }).then(() => {});
     }
 
     public keepAlive(): Observable<any> {
         const observable = this.authService.ping().pipe(share());
-        observable.subscribe(
-            error => {
-                console.log(error);
-                this.logout();
-            }
-        );
+        observable.subscribe({ error: () => this.logout() });
         return observable;
     }
 
@@ -41,21 +52,20 @@ export class NgAuthService {
         return this.oAuthService.hasValidAccessToken();
     }
 
-    public getLoggedInUser(showChildRoles: boolean = false): Observable<User> {
-        const observable = this.authService.getLoggedInUser(showChildRoles).pipe(share());
-        observable.subscribe(
-            next => {
-                if (next != null) {
-                    sessionStorage.setItem(USER_CURRENT_KEY, JSON.stringify(next));
-                    this.currentUser.next(next);
+    public getLoggedInUser(showCollapsedChildRoles: boolean = true): Observable<User> {
+        return this.authService.getLoggedInUser(showCollapsedChildRoles).pipe(
+            tap(user => {
+                if (user != null) {
+                    sessionStorage.setItem(USER_CURRENT_KEY, JSON.stringify(user));
+                    this._currentUser.next(user);
                 }
-            },
-            () => {
-                this.currentUser.next(null);
-            },
+            }),
+            catchError(() => {
+                this._currentUser.next(null);
+                return EMPTY;
+            }),
+            share()
         );
-
-        return observable;
     }
 
     public login(): void {
@@ -64,21 +74,20 @@ export class NgAuthService {
 
     public logout(): Observable<any> {
         const observable = this.authService.logout().pipe(share());
-        observable.subscribe(
-            () => this.clearSession(),
-            () => this.clearSession(),
-            () => {}
-        );
+        observable.subscribe({
+            next: () => this.clearSession(),
+            error: () => this.clearSession(),
+        });
         return observable;
     }
 
     public clearSession(): void {
-        sessionStorage.removeItem('nonce');
+        sessionStorage.removeItem(OAUTH_NONCE_KEY);
+        sessionStorage.removeItem(OAUTH_ACCESS_TOKEN_KEY);
+        sessionStorage.removeItem(OAUTH_ACCESS_TOKEN_STORED_AT_KEY);
+        sessionStorage.removeItem(OAUTH_TOKEN_KEY);
         sessionStorage.removeItem(USER_CURRENT_KEY);
-        sessionStorage.removeItem('access_token_stored_at');
-        sessionStorage.removeItem('access_token');
-        sessionStorage.removeItem('token');
         this.oAuthService.logOut();
-        this.currentUser.next(null);
+        this._currentUser.next(null);
     }
 }

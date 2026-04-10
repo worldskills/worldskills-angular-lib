@@ -1,48 +1,44 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Role } from '@worldskills/ng-auth';
 import { MenuItem } from './menu-item';
 
-@Pipe ({
+@Pipe({
     name: 'wsMenuAccessFilter',
     standalone: true
 })
 export class MenuAccessPipe implements PipeTransform {
-   transform(items: MenuItem[], isLoggedIn: boolean, roles: string[]): MenuItem[] {
+   transform(items: MenuItem[], isLoggedIn: boolean, roles: Role[]): MenuItem[] {
      if (items === null || items === undefined) {
        return [];
      }
 
      return items.filter(item => {
-      // item doesn't exist, don't display it
       if (item === undefined || item === null) {
         return false;
       }
 
-      // item is meant to be hidden
       if (item.hidden) {
         return false;
       }
 
-      // item requires a logged in user
-      if (item.requireLogin && ! isLoggedIn) {
+      if (item.requireLogin && !isLoggedIn) {
         return false;
       }
 
-      // item doesn not require role permissions
       if (item.requiredRoles.length === 0) {
         return true;
       }
 
-      // item requires role permissions
-      let show = false;
-      for (const roleName of item.requiredRoles) {
-        show = roles.findIndex(userRoleName => userRoleName === roleName) !== -1;
-
-        if (show) {
-          break;
+      return item.requiredRoles.some(required => {
+        if (typeof required === 'string') {
+          return roles.some(r => r.name === required);
         }
-      }
-
-      return show;
+        return roles.some(r => {
+          if (r.name !== required.name) return false;
+          if (required.entityId === null) return r.ws_entity == null;
+          return r.ws_entity?.id === required.entityId || r.ws_entity_ids?.includes(required.entityId);
+        });
+      });
      });
    }
 }

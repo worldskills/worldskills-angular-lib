@@ -1,12 +1,14 @@
 import { inject } from '@angular/core';
-import { HttpInterceptorFn, HttpParams } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn, HttpParams } from '@angular/common/http';
 import { UI_LIBRARY_CONFIG } from '../ui-lib-config';
 import { WsHttpEncoder } from './ws-http.encoder';
+import { tap } from 'rxjs/operators';
 
 /**
  * Functional HTTP interceptor that:
  * - Appends `?l=<lang>` and `Accept-Language` header when `http.includeLanguageParam` is enabled.
  * - Re-encodes query params with `encodeURIComponent` for URLs matching `http.encoderUriPatterns`.
+ * - Clears the session on 401 responses from the configured API endpoint.
  *
  * Register in your app:
  * ```ts
@@ -14,7 +16,8 @@ import { WsHttpEncoder } from './ws-http.encoder';
  * ```
  */
 export const wsHttpInterceptor: HttpInterceptorFn = (req, next) => {
-  const config = inject(UI_LIBRARY_CONFIG).http;
+  const libConfig = inject(UI_LIBRARY_CONFIG);
+  const config = libConfig.http;
 
   if (!config) return next(req);
 
@@ -44,5 +47,19 @@ export const wsHttpInterceptor: HttpInterceptorFn = (req, next) => {
     req = req.clone({ params });
   }
 
-  return next(req);
+  const apiEndpoint = libConfig.api?.apiEndpoint;
+
+  return next(req).pipe(
+    tap({
+      error: (err: HttpErrorResponse) => {
+        if (err.status === 401 && apiEndpoint && req.url.startsWith(apiEndpoint)) {
+          sessionStorage.removeItem('access_token');
+          sessionStorage.removeItem('access_token_stored_at');
+          sessionStorage.removeItem('token');
+          sessionStorage.removeItem('nonce');
+          sessionStorage.removeItem('user.current');
+        }
+      }
+    })
+  );
 };

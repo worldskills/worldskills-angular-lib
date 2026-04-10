@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { FooterComponent, HeaderComponent, WsToastComponent } from '@worldskills/ng-ui';
 import type { MenuItem } from "@worldskills/ng-ui";
-import { User } from "@worldskills/ng-auth";
+import { NgAuthService, RedirectHandler, User } from "@worldskills/ng-auth";
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, FooterComponent, HeaderComponent, WsToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [
-    // provideRouter(routeConfig) // This provides ActivatedRoute and other router services
-  ]
 })
 export class AppComponent {
+  private ngAuthService = inject(NgAuthService);
+  private redirectHandler = inject(RedirectHandler);
+  private router = inject(Router);
+
   appName = "Tester";
-  isLoggedIn = false;
+  isLoggedIn = signal(false);
   showLoginAndLogoutButtons = true;
+  currentUser = signal<User>(null);
+  linkTitle = true;
+
   menuItems: MenuItem[] = [
     {
       label: "Home",
@@ -49,23 +53,56 @@ export class AppComponent {
       url: "/admin",
       hidden: false,
       requireLogin: true,
-      requiredRoles: ["admin"],
+      requiredRoles: ["Admin"],
       subMenuItems: [
-        { label: "Users", url: "/admin/users", hidden: false, requireLogin: true, requiredRoles: ["admin"] },
-        { label: "Logs", url: "/admin/logs", hidden: false, requireLogin: true, requiredRoles: ["admin"] },
+        { label: "Users", url: "/admin/users", hidden: false, requireLogin: true, requiredRoles: ["Admin"] },
+        { label: "Logs", url: "/admin/logs", hidden: false, requireLogin: true, requiredRoles: ["Admin"] },
       ],
+    },
+    {
+      label: "Secret",
+      url: "/secret",
+      hidden: false,
+      requireLogin: true,
+      requiredRoles: ["SuperSecretRole"],
+    },
+    {
+      label: "Not Authorized",
+      url: "/not-authorized",
+      hidden: false,
+      requireLogin: false,
+      requiredRoles: [],
     },
   ];
   dropDownMenuItems = [];
-  currentUser: User = null;
-  linkTitle = true;
+
+  constructor() {
+    this.ngAuthService.currentUser$.subscribe(user => {
+      this.currentUser.set(user);
+      this.isLoggedIn.set(this.ngAuthService.isLoggedIn());
+    });
+
+    // Wait for OIDC to process any token in the URL hash after redirect
+    this.ngAuthService.ready.then(() => {
+      this.isLoggedIn.set(this.ngAuthService.isLoggedIn());
+      if (this.ngAuthService.isLoggedIn()) {
+        this.ngAuthService.getLoggedInUser().subscribe();
+        // Only process redirect if returning from OIDC (returnUrl in sessionStorage)
+        if (sessionStorage.getItem('returnUrl')) {
+          this.redirectHandler.handle({ defaultRoute: ['/home'] });
+        }
+      }
+    });
+  }
 
   login() {
-    this.isLoggedIn = true;
-    this.currentUser = { first_name: "John", last_name: "Doe", roles: [{ name: "admin" }] } as User;
+    this.redirectHandler.saveReturnUrl();
+    this.ngAuthService.login();
   }
+
   logout() {
-    this.isLoggedIn = false;
-    this.currentUser = null;
+    this.ngAuthService.logout().subscribe(() => {
+      this.router.navigate(['/home']);
+    });
   }
 }

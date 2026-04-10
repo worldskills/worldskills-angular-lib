@@ -2,14 +2,17 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import Aura from '@primeng/themes/aura';   // ← this is the correct import (JS module)
+// Aura removed — using WorldSkillsPreset instead
 import { WorldSkillsPreset, WorldSkillsPTPreset, provideWsNgUiTranslations, provideWsNgUi } from '@worldskills/ng-ui';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { wsHttpInterceptor } from '@worldskills/ng-ui';
+import { provideLibraryConfig } from '@worldskills/ng-auth';
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { routes } from './app.routes';
+import { appConfig as wsAppConfig, serviceConfig, oAuthConfig } from './app.settings';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,9 +25,15 @@ export const appConfig: ApplicationConfig = {
     ...provideTranslateHttpLoader(),
     provideWsNgUiTranslations(),
     MessageService,
+    provideLibraryConfig({
+      auth: oAuthConfig,
+      api: serviceConfig,
+      app: wsAppConfig,
+    }),
+    provideOAuthClient(),
     provideWsNgUi({
       enableLogging: true,
-      api: { apiEndpoint: 'https://api.worldskills.show', appCode: [] },
+      api: { apiEndpoint: serviceConfig.apiEndpoint, appCode: serviceConfig.appCode },
       http: { includeAuthToken: true },
     }),
     providePrimeNG({

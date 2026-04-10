@@ -1,6 +1,6 @@
 import { Component, TemplateRef, computed, inject, input, output } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { User } from '@worldskills/ng-auth';
+import { Role, User } from '@worldskills/ng-auth';
 import { GenericUtil } from '../../../lib/common/util/generic.util';
 import { MenuItem } from '../menu-item';
 import { MenuItem as PrimeMenuItem } from 'primeng/api';
@@ -44,10 +44,10 @@ export class HeaderComponent {
   loginClick = output<void>();
 
   // ── Computed ──────────────────────────────────────────────────────────────
-  userRoles = computed<string[]>(() => {
+  userRoles = computed<Role[]>(() => {
     const user = this.currentUser();
     if (!user?.roles) return [];
-    return user.roles.map(r => r.name);
+    return user.roles;
   });
 
   menubarItems = computed<PrimeMenuItem[]>(() =>
@@ -145,7 +145,16 @@ export class HeaderComponent {
     if (!item || item.hidden) return false;
     if (item.requireLogin && !this.isLoggedIn()) return false;
     if (!item.requiredRoles?.length) return true;
-    const roles = this.userRoles();
-    return item.requiredRoles.some(role => roles.includes(role));
+    const userRoles = this.userRoles();
+    return item.requiredRoles.some(required => {
+      if (typeof required === 'string') {
+        return userRoles.some(r => r.name === required);
+      }
+      return userRoles.some(r => {
+        if (r.name !== required.name) return false;
+        if (required.entityId === null) return r.ws_entity == null;
+        return r.ws_entity?.id === required.entityId || r.ws_entity_ids?.includes(required.entityId);
+      });
+    });
   }
 }

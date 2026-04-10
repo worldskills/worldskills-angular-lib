@@ -2,6 +2,18 @@
 
 ## @worldskills/ng-ui
 
+### 1.2.0 — Role-based Menu Access & 401 Handling
+
+**Menu access control**
+- `MenuItem.requiredRoles` now accepts `MenuRole[]` — supports plain strings (unchanged), `{ name, entityId: null }` for blanket roles only, and `{ name, entityId: number }` for entity-specific roles
+- Entity checks match against both `ws_entity.id` and collapsed `ws_entity_ids[]`
+- New exported types: `MenuRole`, `MenuRoleRequirement`
+
+**HTTP interceptor**
+- `wsHttpInterceptor` now detects 401 responses from the configured `api.apiEndpoint` and clears the stale session (access token, nonce, user)
+
+---
+
 ### 1.1.0 — Signal Migration & i18n Polish
 > Full migration to Angular signal inputs/outputs across all library components. No breaking changes for template consumers.
 
@@ -46,6 +58,31 @@
 ---
 
 ## @worldskills/ng-auth
+
+### 3.0.0 — Service Overhaul & Async Guard
+
+**Breaking changes**
+- `NgAuthService.currentUser` is no longer a public `BehaviorSubject` — use `currentUser$` (observable) or `currentUser` (getter for current value)
+- `GuardService.canActivate` is now async — awaits `NgAuthService.ready` before checking auth state
+- `getLoggedInUser()` default changed to `showCollapsedChildRoles: true`
+
+**Service improvements**
+- `NgAuthService`: exposed `ready: Promise<void>` — resolves once `tryLogin()` finishes processing the OIDC token from the URL hash
+- `NgAuthService.keepAlive()`: fixed broken error handling (was logging out on success)
+- `NgAuthService.getLoggedInUser()`: refactored to use `tap()`/`catchError()` instead of dual-subscribe anti-pattern
+- `NgAuthService.logout()`: fixed subscribe callback to use object form
+- `NgAuthService.clearSession()`: magic strings replaced with named constants
+- `AuthService`: fixed `endpoint` construction producing `"undefined/auth"` when `apiEndpoint` is missing
+- `AuthService`: simplified `app_code` param building, `deleteRoleWithEntity` uses `HttpParams` instead of string concatenation
+- `AuthService`: removed redundant `share()` from `getLoggedInUser`
+
+**Guard improvements**
+- `GuardService`: uses `isLoggedIn()` (token check) for authentication, fetches user profile if needed before role check
+- `GuardService`: returns `UrlTree` for not-authorized redirect instead of imperative `router.navigate()`
+- `GuardService`: returns `true` (not `false`) when no roles are defined on a route
+- `tryLogin()` called with `disableNonceCheck` and `disableOAuth2StateCheck` for custom OAuth2 servers
+
+---
 
 ### 2.0.0 — Redirect Handler Consolidation
 > `RedirectEventHandler` has been removed. Migrate to `RedirectHandler`.
