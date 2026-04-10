@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { DatePickerModule } from 'primeng/datepicker';
-import { WsAlertComponent, WsDialogComponent, PollResultComponent } from '@worldskills/ng-ui';
+import { WsAlertComponent, WsAnnouncementComponent, WsDialogComponent, PollResultComponent } from '@worldskills/ng-ui';
 import type { Poll, PollResult } from '@worldskills/ng-ui';
 
 interface Notification {
@@ -18,8 +18,17 @@ interface Notification {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, FormsModule, DatePickerModule, WsAlertComponent, WsDialogComponent, PollResultComponent],
+  imports: [RouterLink, FormsModule, DatePickerModule, WsAlertComponent, WsAnnouncementComponent, WsDialogComponent, PollResultComponent],
   template: `
+    <!-- Announcement -->
+    <div class="mb-6">
+      <ws-ng-ui-announcement
+        severity="info"
+        title="CIS Tablet Marking — EuroSkills 2025"
+        [message]="announcementHtml"
+      />
+    </div>
+
     <!-- Alerts -->
     <div class="flex flex-col gap-3 mb-6">
       <ws-ng-ui-alert severity="warn" message="Votes API response time is degraded. The team is investigating." [closable]="true" />
@@ -251,6 +260,30 @@ interface Notification {
   `,
 })
 export class DashboardComponent {
+  announcementHtml = `
+    <p>Dear Experts,</p>
+    <p>As tablet marking will be used at EuroSkills 2025, we recognise that some new experts may benefit from practicing with the CIS system in advance. To support this, <strong>you are now welcome to familiarise yourself with the CIS Tablet User Interface at any time</strong>, using your mobile phone or tablet.</p>
+    <p>🎬 We recommend watching this short video introduction to tablet marking before you begin:<br>
+    <a href="https://www.youtube.com/watch?v=SbfFnhvodc" target="_blank">https://www.youtube.com/watch?v=SbfFnhvodc</a></p>
+    <p><strong>📋 Instructions for Using CIS in Tablet Mode</strong></p>
+    <p>⚠️ <strong>Important:</strong> The system is designed for use on tablets or mobile phones only. It is <strong>not compatible</strong> with laptops or desktop computers.</p>
+    <ol>
+      <li>Open this link in your mobile/tablet browser: <a href="https://cis-test.worldskills.org/es2025_test/login" target="_blank">https://cis-test.worldskills.org/es2025_test/login</a></li>
+      <li>Log in using the credentials below:
+        <ul>
+          <li>Username: <strong>ItexN</strong></li>
+          <li>Password: <strong>ItexN</strong></li>
+        </ul>
+      </li>
+      <li>You'll find <strong>7 competitors</strong> in the system. You may assess one or all of them.</li>
+      <li>There are <strong>10 aspects</strong> to assess — 9 measurement aspects including 1 with choice-based calculation, 7 with true/false calculation, 1 with no calculation; and 1 judgment aspect.</li>
+      <li>All aspects are located under <strong>Day 1</strong>, within the same sub-criteria.</li>
+      <li>Please remember to add <strong>comments</strong> to each aspect.</li>
+      <li>You may upload up to <strong>4 photos</strong> per competitor.</li>
+      <li>When finished, remember to <strong>log out</strong>.</li>
+    </ol>
+  `;
+
   stats = [
     { label: 'Competitors', value: '1,247', icon: 'pi pi-users', color: '#0E779F', bgColor: 'rgba(14, 119, 159, 0.1)', trend: '+12%', trendUp: true },
     { label: 'Skills', value: '62', icon: 'pi pi-wrench', color: '#009e4f', bgColor: 'rgba(0, 158, 79, 0.1)', trend: '+3', trendUp: true },

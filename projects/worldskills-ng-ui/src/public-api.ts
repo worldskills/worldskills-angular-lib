@@ -89,6 +89,7 @@ export * from './lib/data-table/data-table.model';
 // alerts
 export * from './lib/alert/alert.service';
 export * from './lib/alert/alert.component';
+export * from './lib/alert/announcement.component';
 export * from './lib/alert/toast.component';
 
 // i18n controls
