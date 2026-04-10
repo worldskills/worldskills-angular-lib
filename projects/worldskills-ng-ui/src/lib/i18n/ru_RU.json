@@ -74,10 +74,23 @@
             "certificate_dropbox_path": "Путь в Dropbox",
             "certificate_type": "Тип сертификата",
             "generate_id": "Сгенерировать новый ID",
-            "delete_confirm": "Вы уверены, что хотите удалить эту награду?"
+            "delete_confirm": "Вы уверены, что хотите удалить эту награду?",
+            "certificate_type_digital": "Цифровой",
+            "certificate_type_print": "Печатный"
         },
         "entity_tree_select": {
             "placeholder": "Выберите объект..."
+        },
+        "tree_select": {
+            "search": "Поиск...",
+            "no_results": "Результаты не найдены"
+        },
+        "resources": {
+            "download": "Скачать",
+            "download_all": "Скачать всё",
+            "zipping": "Архивирование...",
+            "download_error": "Не удалось скачать ресурсы. Пожалуйста, попробуйте снова.",
+            "no_resources": "Нет ресурсов."
         }
     }
 }

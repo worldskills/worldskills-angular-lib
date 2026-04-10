@@ -28,12 +28,12 @@
 
     <!-- Content columns: single col on mobile, 2 on sm, 3 on md, 6 on lg -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
-      <div><ng-container *ngTemplateOutlet="col1Template ?? col1DefaultTemplate" /></div>
-      <div><ng-container *ngTemplateOutlet="col2Template ?? colDefaultTemplate" /></div>
-      <div><ng-container *ngTemplateOutlet="col3Template ?? colDefaultTemplate" /></div>
-      <div><ng-container *ngTemplateOutlet="col4Template ?? colDefaultTemplate" /></div>
-      <div><ng-container *ngTemplateOutlet="col5Template ?? colDefaultTemplate" /></div>
-      <div class="sm:col-span-2 md:col-span-1"><ng-container *ngTemplateOutlet="col6Template ?? col6DefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col1Template() ?? col1DefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col2Template() ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col3Template() ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col4Template() ?? colDefaultTemplate" /></div>
+      <div><ng-container *ngTemplateOutlet="col5Template() ?? colDefaultTemplate" /></div>
+      <div class="sm:col-span-2 md:col-span-1"><ng-container *ngTemplateOutlet="col6Template() ?? col6DefaultTemplate" /></div>
     </div>
 
     <!-- Bottom bar: stacks on mobile, side-by-side on sm+ -->
@@ -46,8 +46,8 @@
       </div>
 
       <p-select
-        [options]="getLanguages()"
-        [(ngModel)]="selectedLanguage"
+        [options]="languages"
+        [ngModel]="selectedLanguage()"
         optionLabel="name"
         dataKey="code"
         (onChange)="changeLanguage($event.value)"

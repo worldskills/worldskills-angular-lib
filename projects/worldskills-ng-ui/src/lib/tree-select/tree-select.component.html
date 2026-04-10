@@ -1,26 +1,26 @@
-<div class="ws-tree-select relative" [class.z-10]="isOpen">
+<div class="ws-tree-select relative" [class.z-10]="isOpen()">
 
   <!-- Trigger — mirrors p-select appearance -->
   <div class="ws-tree-trigger flex items-center cursor-pointer"
-       [class.ws-tree-trigger--open]="isOpen"
+       [class.ws-tree-trigger--open]="isOpen()"
        (click)="toggle()">
     <span class="flex-1 px-3 py-2 text-sm truncate ws-tree-trigger__label"
-          [class.ws-tree-trigger__label--placeholder]="!triggerLabel">
-      {{ triggerLabel || placeholder }}
+          [class.ws-tree-trigger__label--placeholder]="!triggerLabel()">
+      {{ triggerLabel() || placeholder() }}
     </span>
     <span class="flex items-center gap-2 px-3 ws-tree-trigger__icons">
-      @if (triggerLabel) {
+      @if (triggerLabel()) {
         <i class="pi pi-times text-xs ws-tree-trigger__clear"
            (click)="$event.stopPropagation(); clear()"></i>
       }
       <i class="pi text-xs transition-transform duration-200"
-         [class.pi-chevron-down]="!isOpen"
-         [class.pi-chevron-up]="isOpen"></i>
+         [class.pi-chevron-down]="!isOpen()"
+         [class.pi-chevron-up]="isOpen()"></i>
     </span>
   </div>
 
   <!-- Dropdown panel -->
-  @if (isOpen) {
+  @if (isOpen()) {
     <div class="ws-tree-panel absolute top-full left-0 right-0 z-50 mt-1"
          [style.background]="'var(--p-select-overlay-background, white)'"
          [style.border]="'1px solid var(--p-select-overlay-border-color)'"
@@ -37,8 +37,8 @@
             pInputText
             type="text"
             class="w-full text-sm"
-            placeholder="Search..."
-            [value]="term"
+            [placeholder]="'ws_ui.tree_select.search' | translate"
+            [value]="term()"
             (input)="onTermChange($any($event.target).value)"
             autofocus />
         </p-iconfield>
@@ -46,21 +46,21 @@
 
       <!-- Tree via p-tree -->
       <div class="tree-body">
-        @if (loading) {
+        @if (loading()) {
           <div class="flex justify-center py-6">
             <p-progressspinner styleClass="w-8 h-8" />
           </div>
-        } @else if (displayNodes.length === 0) {
-          <p class="text-center text-sm py-4 ws-tree-empty">No results found</p>
+        } @else if (displayNodes().length === 0) {
+          <p class="text-center text-sm py-4 ws-tree-empty">{{ 'ws_ui.tree_select.no_results' | translate }}</p>
         } @else {
           <p-tree
-            [value]="displayNodes"
-            [selectionMode]="selectionMode"
-            [selection]="selection"
+            [value]="displayNodes()"
+            [selectionMode]="selectionMode()"
+            [selection]="selection()"
             (selectionChange)="onSelectionChange($event)"
             [filter]="false"
-            [virtualScroll]="virtualScroll"
-            [virtualScrollItemSize]="virtualScrollItemSize"
+            [virtualScroll]="virtualScroll()"
+            [virtualScrollItemSize]="virtualScrollItemSize()"
             scrollHeight="288px"
             styleClass="ws-p-tree">
 
@@ -68,7 +68,7 @@
               @if (nodeTemplate) {
                 <ng-container *ngTemplateOutlet="nodeTemplate; context: {
                   $implicit: node.data,
-                  selected: selectionMode === 'single' ? selection === node : $any(selection)?.includes(node),
+                  selected: selectionMode() === 'single' ? selection() === node : $any(selection())?.includes(node),
                   selectable: node.selectable !== false
                 }"></ng-container>
               } @else {

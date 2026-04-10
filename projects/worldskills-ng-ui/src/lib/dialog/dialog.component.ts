@@ -1,4 +1,4 @@
-import { Component, ContentChild, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { Component, ContentChild, input, model, TemplateRef } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -13,23 +13,22 @@ import { ButtonModule } from 'primeng/button';
 export class WsDialogComponent {
 
   /** Controls dialog visibility — supports two-way binding: [(visible)] */
-  @Input() visible = false;
-  @Output() visibleChange = new EventEmitter<boolean>();
+  visible = model(false);
 
   /** Dialog title shown in the header. */
-  @Input() title = '';
+  title = input('');
 
   /**
    * Dialog width. Tailwind breakpoints are applied automatically for mobile.
    * Defaults to 32rem (512px).
    */
-  @Input() width = '32rem';
+  width = input('32rem');
 
   /** When true the dialog closes when the backdrop is clicked. */
-  @Input() dismissible = true;
+  dismissible = input(true);
 
   /** When true a close button is shown in the header. */
-  @Input() closable = true;
+  closable = input(true);
 
   /**
    * Optional footer template — provide via:
@@ -38,7 +37,6 @@ export class WsDialogComponent {
   @ContentChild('wsDialogFooter') footerTemplate: TemplateRef<unknown> | null = null;
 
   onHide() {
-    this.visible = false;
-    this.visibleChange.emit(false);
+    this.visible.set(false);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -14,50 +14,46 @@ import { OptionResultView } from '../models/option-result-view';
   imports: [TooltipModule, ProgressBarModule, TranslatePipe],
   templateUrl: './poll-result.component.html',
 })
-export class PollResultComponent implements OnInit, OnChanges {
-  @Input({ required: true }) poll!: Poll;
-  @Input({ required: true }) results!: PollResult[];
-  @Input() tracks: Track[] = [];
-  @Input() canSeeWhoVoted = false;
+export class PollResultComponent {
 
-  optionResults: OptionResultView[] = [];
-  max = 0;
+  // ── Inputs ────────────────────────────────────────────────────────────────
 
-  ngOnInit(): void { this.init(); }
-  ngOnChanges(): void { this.init(); }
+  poll = input.required<Poll>();
+  results = input.required<PollResult[]>();
+  tracks = input<Track[]>([]);
+  canSeeWhoVoted = input(false);
 
-  init(): void {
-    if (!this.results || !this.poll?.options) return;
-    this.max = this.results.reduce((sum, r) => sum + r.points, 0);
-    this.optionResults = [...this.poll.options]
+  // ── Derived state ─────────────────────────────────────────────────────────
+
+  max = computed(() => this.results().reduce((sum, r) => sum + r.points, 0));
+
+  optionResults = computed<OptionResultView[]>(() => {
+    const poll = this.poll();
+    const results = this.results();
+    if (!results || !poll?.options) return [];
+    return [...poll.options]
       .sort((a, b) => a.id - b.id)
       .map(option => ({
         ...option,
-        votes: this.countVotes(option),
-        points: this.countPoints(option),
+        votes: results.find(r => r.option.id === option.id)?.count ?? 0,
+        points: results
+          .filter(r => r.option.id === option.id)
+          .reduce((sum, r) => sum + r.points, 0),
       }))
       .sort((a, b) => b.points - a.points);
-  }
+  });
 
-  countVotes(option: PollOption): number {
-    const result = this.results.find(r => r.option.id === option.id);
-    return result?.count ?? 0;
-  }
-
-  countPoints(option: PollOption): number {
-    return this.results
-      .filter(r => r.option.id === option.id)
-      .reduce((sum, r) => sum + r.points, 0);
-  }
+  // ── Helpers ───────────────────────────────────────────────────────────────
 
   progressValue(option: OptionResultView): number {
-    if (this.max === 0) return 0;
-    return Math.round((option.points / this.max) * 100);
+    const m = this.max();
+    if (m === 0) return 0;
+    return Math.round((option.points / m) * 100);
   }
 
   getVoters(option: PollOption): Track[] {
-    if (!this.tracks || this.poll.anonymousVoting) return [];
-    return this.tracks.filter(t => t.option.id === option.id);
+    if (!this.tracks().length || this.poll().anonymousVoting) return [];
+    return this.tracks().filter(t => t.option.id === option.id);
   }
 
   getVoterLabel(track: Track): string {
@@ -79,7 +75,7 @@ export class PollResultComponent implements OnInit, OnChanges {
   }
 
   showVoteIndex(): boolean {
-    return this.poll.type === 'weighted' || this.poll.type === 'multiselect';
+    return this.poll().type === 'weighted' || this.poll().type === 'multiselect';
   }
 
   private ordinal(n: number): string {

@@ -87,10 +87,23 @@
             "certificate_dropbox_path": "Caminho no Dropbox",
             "certificate_type": "Tipo de certificado",
             "generate_id": "Gerar novo ID",
-            "delete_confirm": "Tem certeza que deseja excluir este prêmio?"
+            "delete_confirm": "Tem certeza que deseja excluir este prêmio?",
+            "certificate_type_digital": "Digital",
+            "certificate_type_print": "Impresso"
         },
         "entity_tree_select": {
             "placeholder": "Selecionar entidade..."
+        },
+        "tree_select": {
+            "search": "Pesquisar...",
+            "no_results": "Nenhum resultado encontrado"
+        },
+        "resources": {
+            "download": "Baixar",
+            "download_all": "Baixar tudo",
+            "zipping": "Compactando...",
+            "download_error": "Falha ao baixar recursos. Por favor, tente novamente.",
+            "no_resources": "Sem recursos."
         }
     }
 }

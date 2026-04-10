@@ -3,7 +3,7 @@
   <!-- Header row -->
   <div class="flex flex-wrap items-center justify-between gap-3">
     <h3 class="font-semibold text-color text-base">{{ 'ws_ui.awards.title' | translate }}</h3>
-    @if (canCreate) {
+    @if (canCreate()) {
       <p-button
         [label]="'ws_ui.awards.add_award' | translate"
         icon="pi pi-plus"
@@ -17,7 +17,7 @@
   <!-- Table -->
   <div class="rounded-xl border border-surface-200 bg-surface-0 overflow-hidden shadow-sm">
     <p-table
-      [value]="recipientAwards"
+      [value]="recipientAwards()"
       [responsiveLayout]="'scroll'"
       styleClass="w-full"
     >
@@ -35,7 +35,7 @@
           <th class="px-4 py-3 text-left text-xs font-semibold text-color-secondary uppercase tracking-wide hidden lg:table-cell">
             {{ 'ws_ui.awards.last_updated' | translate }}
           </th>
-          @if (canUpdate || canDelete) {
+          @if (canUpdate() || canDelete()) {
             <th class="px-4 py-3 text-right text-xs font-semibold text-color-secondary uppercase tracking-wide">
               {{ 'ws_ui.awards.action' | translate }}
             </th>
@@ -57,10 +57,10 @@
           <td class="px-4 py-3 text-sm text-color-secondary hidden lg:table-cell">
             {{ award.last_updated | date:'mediumDate' }}
           </td>
-          @if (canUpdate || canDelete) {
+          @if (canUpdate() || canDelete()) {
             <td class="px-4 py-3 text-right">
               <div class="flex gap-1 justify-end">
-                @if (canUpdate) {
+                @if (canUpdate()) {
                   <p-button
                     icon="pi pi-pencil"
                     severity="secondary"
@@ -69,7 +69,7 @@
                     (onClick)="openEditDialog(award)"
                   />
                 }
-                @if (canDelete) {
+                @if (canDelete()) {
                   <p-button
                     icon="pi pi-trash"
                     severity="danger"
@@ -86,7 +86,7 @@
 
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td [attr.colspan]="(canUpdate || canDelete) ? 5 : 4" class="px-4 py-8 text-center text-sm text-color-secondary italic">
+          <td [attr.colspan]="(canUpdate() || canDelete()) ? 5 : 4" class="px-4 py-8 text-center text-sm text-color-secondary italic">
             {{ 'ws_ui.awards.no_awards' | translate }}
           </td>
         </tr>
@@ -98,17 +98,18 @@
 
 <!-- Create / Edit Dialog -->
 <p-dialog
-  [(visible)]="dialogVisible"
-  [header]="dialogTitle"
+  [visible]="dialogVisible()"
+  (visibleChange)="dialogVisible.set($event)"
+  [header]="dialogTitle()"
   [modal]="true"
   [closable]="true"
   [style]="{ width: '560px', 'max-width': '95vw' }"
   (onHide)="closeDialog()"
 >
   <ws-ng-ui-recipient-award-form
-    [recipientAward]="selectedAward"
-    [certificateEnabled]="certificateEnabled"
-    [certificates]="selectedAward?.certificates ?? []"
+    [recipientAward]="selectedAward()"
+    [certificateEnabled]="certificateEnabled()"
+    [certificates]="selectedAward()?.certificates ?? []"
     (save)="onFormSave($event)"
     (cancel)="onFormCancel()"
   />

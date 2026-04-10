@@ -1,7 +1,6 @@
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { Component, computed, inject, input } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { Breadcrumb } from './breadcrumb.model';
 import { BreadcrumbService } from './breadcrumb.service';
 
@@ -10,38 +9,27 @@ import { BreadcrumbService } from './breadcrumb.service';
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.css'],
   standalone: true,
-  imports: [AsyncPipe],
 })
-export class BreadcrumbComponent implements OnInit, OnChanges {
+export class BreadcrumbComponent {
 
   /** Label for the home item. Defaults to 'Home'. */
-  @Input() homeLabel = 'Home';
+  homeLabel = input('Home');
 
   /** URL for the home item. Defaults to '/'. */
-  @Input() homeRoute = '/';
+  homeRoute = input('/');
 
   /**
    * Optional static override — when provided the router-derived breadcrumbs
    * are ignored. Useful for Storybook stories, unit tests, or server-rendered pages.
    */
-  @Input() crumbs: Breadcrumb[] | null = null;
+  crumbs = input<Breadcrumb[] | null>(null);
 
-  items$: Observable<Breadcrumb[]>;
-
-  // Optional — absent in Storybook / test environments without a router outlet.
   private router = inject(Router, { optional: true });
+  private breadcrumbService = inject(BreadcrumbService);
 
-  constructor(private breadcrumbService: BreadcrumbService) {}
+  private serviceCrumbs = toSignal(this.breadcrumbService.breadcrumbs$, { initialValue: [] });
 
-  ngOnInit() {
-    this.items$ = this.buildItems$();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['crumbs']) {
-      this.items$ = this.buildItems$();
-    }
-  }
+  items = computed<Breadcrumb[]>(() => this.crumbs() ?? this.serviceCrumbs());
 
   navigate(url: string, event: Event) {
     event.preventDefault();
@@ -50,11 +38,5 @@ export class BreadcrumbComponent implements OnInit, OnChanges {
     } else {
       window.location.href = url;
     }
-  }
-
-  private buildItems$(): Observable<Breadcrumb[]> {
-    return this.crumbs != null
-      ? of(this.crumbs)
-      : this.breadcrumbService.breadcrumbs$;
   }
 }

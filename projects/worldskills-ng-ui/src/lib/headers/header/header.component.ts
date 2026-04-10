@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, Output, TemplateRef, inject } from '@angular/core';
+import { Component, TemplateRef, computed, inject, input, output } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '@worldskills/ng-auth';
 import { GenericUtil } from '../../../lib/common/util/generic.util';
 import { MenuItem } from '../menu-item';
 import { MenuItem as PrimeMenuItem } from 'primeng/api';
-import { CommonModule, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { MenuAccessPipe } from '../menu-access.pipe';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
@@ -15,175 +15,137 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'ws-ng-ui-header',
   imports: [
-    CommonModule, MenuAccessPipe, NgTemplateOutlet,
+    MenuAccessPipe, NgTemplateOutlet,
     ButtonModule, MenuModule, MenubarModule,
     RouterModule, WordmarkComponent, TranslatePipe,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnChanges {
+export class HeaderComponent {
 
-    private readonly translate = inject(TranslateService, { optional: true });
+  private readonly translate = inject(TranslateService, { optional: true });
+  private readonly router = inject(Router);
 
-    @Input() appName: string;
-    @Input() public isLoggedIn: boolean;
-    @Input() public showLoginAndLogoutButtons: boolean;
-    @Input() menuItems: Array<MenuItem>;
-    @Input() dropDownMenuItems: Array<MenuItem>;
-    @Input() currentUser: User;
-    @Input() linkTitle: boolean;
-    @Input() appNameTemplate: TemplateRef<any>;
-    @Input() menuTemplate: TemplateRef<any>;
-    @Input() subMenuTemplate: TemplateRef<any>;
-    @Output() public logoutClick: EventEmitter<any> = new EventEmitter();
-    @Output() public loginClick: EventEmitter<any> = new EventEmitter();
+  // ── Inputs ────────────────────────────────────────────────────────────────
+  appName = input<string>('Application');
+  isLoggedIn = input<boolean>(false);
+  showLoginAndLogoutButtons = input<boolean>(false);
+  menuItems = input<MenuItem[]>([]);
+  dropDownMenuItems = input<MenuItem[]>([]);
+  currentUser = input<User | null>(null);
+  linkTitle = input<boolean>(false);
+  appNameTemplate = input<TemplateRef<unknown> | null>(null);
+  menuTemplate = input<TemplateRef<unknown> | null>(null);
+  subMenuTemplate = input<TemplateRef<unknown> | null>(null);
 
-    constructor(private router: Router) {
-        this.appName = 'Application';
-        this.isLoggedIn = false;
-        this.showLoginAndLogoutButtons = false;
-        this.menuItems = [];
-        this.dropDownMenuItems = [];
-        this.currentUser = null;
+  // ── Outputs ───────────────────────────────────────────────────────────────
+  logoutClick = output<void>();
+  loginClick = output<void>();
+
+  // ── Computed ──────────────────────────────────────────────────────────────
+  userRoles = computed<string[]>(() => {
+    const user = this.currentUser();
+    if (!user?.roles) return [];
+    return user.roles.map(r => r.name);
+  });
+
+  menubarItems = computed<PrimeMenuItem[]>(() =>
+    (this.menuItems() ?? [])
+      .filter(item => this.isMenuItemVisible(item))
+      .map(item => ({
+        label: item.label,
+        routerLink: item.url,
+        queryParams: item.params,
+        items: item.subMenuItems
+          ?.filter(s => this.isMenuItemVisible(s))
+          .map(s => ({ label: s.label, routerLink: s.url, queryParams: s.params })),
+      }))
+  );
+
+  dropdownItems = computed<PrimeMenuItem[]>(() => {
+    const user = this.currentUser();
+    const name = user ? `${user.first_name} ${user.last_name}` : '';
+    return [
+      { label: name, disabled: true },
+      { separator: true },
+      ...(this.dropDownMenuItems() ?? [])
+        .filter(i => this.isMenuItemVisible(i))
+        .map(i => ({ label: i.label, routerLink: i.url })),
+      { label: this.translate?.instant('ws_ui.header.logout') ?? 'Logout', command: () => this.logoutClick.emit() },
+    ];
+  });
+
+  initials = computed<string>(() => {
+    const user = this.currentUser();
+    if (!user) return '';
+    return `${user.first_name?.substring(0, 1) ?? ''}${user.last_name?.substring(0, 1) ?? ''}`.toUpperCase();
+  });
+
+  showMenu = computed<boolean>(() =>
+    this.showLoginAndLogoutButtons() ? this.isLoggedIn() || !GenericUtil.isNullOrUndefined(this.currentUser()) : false
+  );
+
+  showLoginButton = computed<boolean>(() =>
+    this.showLoginAndLogoutButtons() ? !this.isLoggedIn() || GenericUtil.isNullOrUndefined(this.currentUser()) : false
+  );
+
+  activeParentMenu = computed<MenuItem | undefined>(() => {
+    const items = this.menuItems();
+    let parent = items.find(item => item.url === this.router.url);
+    if (GenericUtil.isNullOrUndefined(parent)) {
+      items.filter(item => !GenericUtil.isNullOrUndefined(item.subMenuItems))
+        .forEach(item => {
+          if (GenericUtil.isNullOrUndefined(parent)) {
+            const match = item.subMenuItems.find(sub => sub.url === this.router.url);
+            if (!GenericUtil.isNullOrUndefined(match)) parent = item;
+          }
+        });
     }
+    return parent;
+  });
 
-    private isMenuItemVisible(item: MenuItem): boolean {
-        if (!item || item.hidden) {
-            return false;
-        }
-        if (item.requireLogin && !this.isLoggedIn) {
-            return false;
-        }
-        if (!item.requiredRoles || item.requiredRoles.length === 0) {
-            return true;
-        }
-        const roles = this.userRoles();
-        return item.requiredRoles.some(role => roles.includes(role));
-    }
+  hasSubMenu = computed<boolean>(() => !GenericUtil.isNullOrUndefined(this.activeParentMenu()?.subMenuItems));
 
-    menubarItems: PrimeMenuItem[] = [];
+  subMenuItems = computed<MenuItem[]>(() => this.activeParentMenu()?.subMenuItems ?? []);
 
-    ngOnChanges(): void {
-        this.menubarItems = (this.menuItems ?? [])
-            .filter(item => this.isMenuItemVisible(item))
-            .map(item => ({
-                label: item.label,
-                routerLink: item.url,
-                queryParams: item.params,
-                items: item.subMenuItems
-                    ?.filter(s => this.isMenuItemVisible(s))
-                    .map(s => ({ label: s.label, routerLink: s.url, queryParams: s.params }))
-            }));
-    }
+  // ── Methods ───────────────────────────────────────────────────────────────
 
-    get dropdownItems(): PrimeMenuItem[] {
-        const name = this.currentUser
-            ? `${this.currentUser.first_name} ${this.currentUser.last_name}`
-            : '';
-        return [
-            { label: name, disabled: true },
-            { separator: true },
-            ...(this.dropDownMenuItems ?? [])
-                .filter(i => this.isMenuItemVisible(i))
-                .map(i => ({ label: i.label, routerLink: i.url })),
-            { label: this.translate?.instant('ws_ui.header.logout') ?? 'Logout', command: () => this.logout() }
-        ];
-    }
+  isRouteActive(item: MenuItem): boolean {
+    return item.url === this.router.url || item?.subMenuItems?.some(sub => sub.url === this.router.url);
+  }
 
-    userRoles(): string[] {
-        if (this.currentUser === undefined || this.currentUser === null) {
-            return [];
-        }
-        if (this.currentUser.roles === undefined || this.currentUser.roles === null) {
-            return [];
-        }
-        return this.currentUser.roles.map(item => item.name);
-    }
+  login(): void {
+    this.loginClick.emit();
+  }
 
-    isRouteActive(item: MenuItem): boolean {
-        return item.url === this.router.url || item?.subMenuItems?.some(subItem => subItem.url === this.router.url);
-    }
+  // ── Pass-through templates ─────────────────────────────────────────────────
 
-    getActiveParentMenu(): MenuItem {
-        let parent = this.menuItems.find(item => item.url === this.router.url);
-        if (GenericUtil.isNullOrUndefined(parent)) {
-            const parents = this.menuItems.filter(item => !GenericUtil.isNullOrUndefined(item.subMenuItems));
-            parents.forEach(item => {
-                if (GenericUtil.isNullOrUndefined(parent)) {
-                    const match = item.subMenuItems.find(subItem => subItem.url === this.router.url);
-                    if (!GenericUtil.isNullOrUndefined(match)) {
-                        parent = item;
-                    }
-                }
-            });
-        }
-        return parent;
-    }
+  readonly menubarPT = {
+    start: { class: 'flex-1 flex items-center p-2' },
+    submenu: {
+      class: 'min-w-[10rem]',
+      style: {
+        '--ws-menubar-item-color': '#3d0e61',
+        '--ws-menubar-item-focus-color': '#3d0e61',
+        '--ws-menubar-item-active-color': '#3d0e61',
+        '--ws-menubar-item-focus-background': 'rgba(61, 14, 97, 0.05)',
+        '--ws-menubar-item-active-background': 'rgba(61, 14, 97, 0.1)',
+      }
+    },
+  };
 
-    hasSubMenuItems(item: MenuItem): boolean {
-        if (GenericUtil.isNullOrUndefined(item)) {
-            return false;
-        }
-        return !GenericUtil.isNullOrUndefined(item.subMenuItems);
-    }
+  readonly userMenuPT = {
+    root: { class: 'min-w-[180px]' },
+    itemContent: { class: 'px-4 py-2' },
+    separator: { class: 'border-t border-gray-200 my-1' },
+  };
 
-    getSubMenuItems(item: MenuItem): MenuItem[] {
-        if (GenericUtil.isNullOrUndefined(item)) {
-            return [];
-        }
-        if (GenericUtil.isNullOrUndefined(item.subMenuItems)) {
-            return [];
-        }
-        return item.subMenuItems;
-    }
-
-    login(): void {
-        this.loginClick.emit();
-    }
-
-    logout(): void {
-        this.logoutClick.emit();
-    }
-
-    getInitials(): string {
-        let s = '';
-        if (this.currentUser) {
-            if (this.currentUser.first_name) {
-                s = this.currentUser.first_name.substring(0, 1);
-            }
-            if (this.currentUser.last_name) {
-                s += this.currentUser.last_name.substring(0, 1);
-            }
-        }
-        return s.toUpperCase();
-    }
-
-    showMenu(): boolean {
-        return this.showLoginAndLogoutButtons ? this.isLoggedIn || !GenericUtil.isNullOrUndefined(this.currentUser) : false;
-    }
-
-    showLoginButton(): boolean {
-        return this.showLoginAndLogoutButtons ? !this.isLoggedIn || GenericUtil.isNullOrUndefined(this.currentUser) : false;
-    }
-
-    readonly menubarPT = {
-        start: { class: 'flex-1 flex items-center p-2' },
-        submenu: {
-            class: 'min-w-[10rem]',
-            style: {
-                '--ws-menubar-item-color': '#3d0e61',
-                '--ws-menubar-item-focus-color': '#3d0e61',
-                '--ws-menubar-item-active-color': '#3d0e61',
-                '--ws-menubar-item-focus-background': 'rgba(61, 14, 97, 0.05)',
-                '--ws-menubar-item-active-background': 'rgba(61, 14, 97, 0.1)',
-            }
-        },
-    };
-
-    readonly userMenuPT = {
-        root: { class: 'min-w-[180px]' },
-        itemContent: { class: 'px-4 py-2' },
-        separator: { class: 'border-t border-gray-200 my-1' },
-    };
+  private isMenuItemVisible(item: MenuItem): boolean {
+    if (!item || item.hidden) return false;
+    if (item.requireLogin && !this.isLoggedIn()) return false;
+    if (!item.requiredRoles?.length) return true;
+    const roles = this.userRoles();
+    return item.requiredRoles.some(role => roles.includes(role));
+  }
 }

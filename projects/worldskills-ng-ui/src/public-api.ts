@@ -24,6 +24,7 @@ export * from './lib/common/models/ws-entity';
 // common — utils
 export * from './lib/common/util/array.util';
 export * from './lib/common/util/clipboard-util';
+export * from './lib/common/util/file.util';
 export * from './lib/common/util/date.util';
 export * from './lib/common/util/error-util';
 export * from './lib/common/util/generic.util';

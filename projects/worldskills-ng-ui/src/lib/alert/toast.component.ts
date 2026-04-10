@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 
 /**
@@ -17,8 +17,8 @@ import { ToastModule } from 'primeng/toast';
   selector: 'ws-ng-ui-toast',
   template: `
     <p-toast
-      [key]="key || undefined"
-      [position]="position"
+      [key]="key() || undefined"
+      [position]="position()"
       [baseZIndex]="1100"
       styleClass="ws-toast" />
   `,
@@ -29,8 +29,8 @@ import { ToastModule } from 'primeng/toast';
 export class WsToastComponent {
 
   /** Match the key used in WsAlertService options to target this instance. */
-  @Input() key = '';
+  key = input('');
 
   /** Toast position on screen. */
-  @Input() position: 'top-right' | 'top-left' | 'top-center' | 'bottom-right' | 'bottom-left' | 'bottom-center' | 'center' = 'top-right';
+  position = input<'top-right' | 'top-left' | 'top-center' | 'bottom-right' | 'bottom-left' | 'bottom-center' | 'center'>('top-right');
 }

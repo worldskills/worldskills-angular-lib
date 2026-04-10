@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MessageModule } from 'primeng/message';
 import { AlertSeverity } from './alert.service';
 
@@ -12,10 +12,10 @@ import { AlertSeverity } from './alert.service';
   selector: 'ws-ng-ui-alert',
   template: `
     <p-message
-      [severity]="severity"
+      [severity]="severity()"
       styleClass="w-full ws-alert"
-      [closable]="closable">
-      {{ message }}
+      [closable]="closable()">
+      {{ message() }}
     </p-message>
   `,
   styleUrls: ['./alert.component.css'],
@@ -24,7 +24,7 @@ import { AlertSeverity } from './alert.service';
 })
 export class WsAlertComponent {
 
-  @Input() severity: AlertSeverity = 'info';
-  @Input() message = '';
-  @Input() closable = false;
+  severity = input<AlertSeverity>('info');
+  message = input('');
+  closable = input(false);
 }

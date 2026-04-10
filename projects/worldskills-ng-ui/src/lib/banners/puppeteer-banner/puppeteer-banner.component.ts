@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { User } from '@worldskills/ng-auth';
 
 @Component({
@@ -8,5 +8,5 @@ import { User } from '@worldskills/ng-auth';
   standalone: true,
 })
 export class PuppeteerBannerComponent {
-  @Input() currentUser: User;
+  currentUser = input<User | null>(null);
 }

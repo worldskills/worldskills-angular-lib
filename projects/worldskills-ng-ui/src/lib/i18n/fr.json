@@ -74,10 +74,23 @@
             "certificate_dropbox_path": "Chemin Dropbox",
             "certificate_type": "Type de certificat",
             "generate_id": "Générer un nouvel identifiant",
-            "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce prix ?"
+            "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce prix ?",
+            "certificate_type_digital": "Numérique",
+            "certificate_type_print": "Imprimé"
         },
         "entity_tree_select": {
             "placeholder": "Sélectionner une entité..."
+        },
+        "tree_select": {
+            "search": "Rechercher...",
+            "no_results": "Aucun résultat trouvé"
+        },
+        "resources": {
+            "download": "Télécharger",
+            "download_all": "Tout télécharger",
+            "zipping": "Compression...",
+            "download_error": "Échec du téléchargement des ressources. Veuillez réessayer.",
+            "no_resources": "Aucune ressource."
         }
     }
 }

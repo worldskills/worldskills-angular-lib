@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges, inject } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,34 +14,45 @@ import { OptionHandler } from '../models/option-handler';
   imports: [SelectModule, FormsModule],
   templateUrl: './multiselect-poll.component.html',
 })
-export class MultiselectPollComponent implements OnInit, OnChanges {
+export class MultiselectPollComponent {
+
+  // ── Inputs ────────────────────────────────────────────────────────────────
+
+  poll = input.required<Poll>();
+  voted = input.required<Vote>();
+  optionHandler = input.required<OptionHandler>();
+  initialSelection = input<VoteEntry[]>([]);
+
+  // ── Outputs ───────────────────────────────────────────────────────────────
+
+  optionSelected = output<VoteEntry[]>();
+
+  // ── State ─────────────────────────────────────────────────────────────────
+
+  ranks = signal<number[]>([]);
+  selections = signal<string[]>([]);
+
+  sortedOptions = computed<PollOption[]>(() =>
+    [...(this.poll()?.options ?? [])].sort((a, b) => a.id - b.id)
+  );
+
   private translate = inject(TranslateService);
-  @Input({ required: true }) poll!: Poll;
-  @Input({ required: true }) voted!: Vote;
-  @Input() initialSelection: VoteEntry[] = [];
-  @Input({ required: true }) optionHandler!: OptionHandler;
-  @Output() optionSelected = new EventEmitter<VoteEntry[]>();
 
-  selections: string[] = [];
-  ranks: number[] = [];
-
-  get sortedOptions(): PollOption[] {
-    return [...(this.poll?.options ?? [])].sort((a, b) => a.id - b.id);
-  }
-
-  ngOnInit(): void { this.init(); }
-  ngOnChanges(): void { this.init(); }
-
-  init(): void {
-    this.ranks = Array.from({ length: this.poll.numberOfSelections }, (_, i) => i);
-    this.selections = this.ranks.map(i => {
-      const found = this.initialSelection.find(x => x.rank === i + 1);
-      return found ? String(found.optionId) : '0';
+  constructor() {
+    effect(() => {
+      const poll = this.poll();
+      const initial = this.initialSelection();
+      const r = Array.from({ length: poll.numberOfSelections }, (_, i) => i);
+      this.ranks.set(r);
+      this.selections.set(r.map(i => {
+        const found = initial.find(x => x.rank === i + 1);
+        return found ? String(found.optionId) : '0';
+      }));
     });
   }
 
   optionsFor(rankIndex: number): { label: string; value: string; disabled: boolean }[] {
-    return this.sortedOptions.map(o => ({
+    return this.sortedOptions().map(o => ({
       label: o.text.text,
       value: String(o.id),
       disabled: this.isAlreadySelected(String(o.id), rankIndex),
@@ -49,24 +60,25 @@ export class MultiselectPollComponent implements OnInit, OnChanges {
   }
 
   isAlreadySelected(optionId: string, excludeIndex: number): boolean {
-    return this.selections.some((s, i) => i !== excludeIndex && s === optionId);
+    return this.selections().some((s, i) => i !== excludeIndex && s === optionId);
   }
 
   onChange(newValue: string, index: number): void {
-    this.selections = this.optionHandler.onOptionSelect(this.poll.type, this.selections, newValue, index) as string[];
+    const updated = this.optionHandler().onOptionSelect(this.poll().type, this.selections(), newValue, index) as string[];
+    this.selections.set(updated);
     if (newValue === '0') {
       this.optionSelected.emit([]);
       return;
     }
     if (this.hasAllSelected()) {
       this.optionSelected.emit(
-        this.selections.map((id, i) => ({ rank: i + 1, optionId: Number(id) }))
+        this.selections().map((id, i) => ({ rank: i + 1, optionId: Number(id) }))
       );
     }
   }
 
   hasAllSelected(): boolean {
-    return this.selections.every(s => s !== '0');
+    return this.selections().every(s => s !== '0');
   }
 
   placeholderFor(rankIndex: number): string {

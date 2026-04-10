@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, effect, inject, input, signal } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
@@ -8,40 +8,48 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     styleUrls: ['./spinner.component.css'],
     imports: [ProgressSpinnerModule, TranslatePipe],
 })
-export class SpinnerComponent implements OnInit, OnDestroy {
-    private translate = inject(TranslateService);
+export class SpinnerComponent {
+
+    // ── Inputs ────────────────────────────────────────────────────────────────
 
     /** Single static message. Ignored when `messages` is provided. */
-    @Input() message?: string;
+    message = input<string | undefined>(undefined);
 
     /** Array of messages to cycle through. Takes priority over `message`. */
-    @Input() messages?: string[];
+    messages = input<string[] | undefined>(undefined);
 
     /** Milliseconds between message changes. Defaults to 2500. */
-    @Input() interval = 2500;
+    interval = input(2500);
 
-    currentMessage: string;
+    // ── State ─────────────────────────────────────────────────────────────────
 
-    private _index = 0;
-    private _timer: ReturnType<typeof setInterval>;
+    currentMessage = signal('');
 
-    ngOnInit() {
-        this.currentMessage = this._resolveMessage();
+    private translate = inject(TranslateService);
 
-        if (this.messages?.length > 1) {
-            this._timer = setInterval(() => {
-                this._index = (this._index + 1) % this.messages.length;
-                this.currentMessage = this.messages[this._index];
-            }, this.interval);
-        }
+    constructor() {
+        effect((onCleanup) => {
+            const messages = this.messages();
+            const interval = this.interval();
+
+            this.currentMessage.set(this.resolveMessage());
+
+            if (!messages || messages.length <= 1) return;
+
+            let index = 0;
+            const timer = setInterval(() => {
+                index = (index + 1) % messages.length;
+                this.currentMessage.set(messages[index]);
+            }, interval);
+
+            onCleanup(() => clearInterval(timer));
+        });
     }
 
-    ngOnDestroy() {
-        clearInterval(this._timer);
-    }
-
-    private _resolveMessage(): string {
-        if (this.messages?.length) return this.messages[0];
-        return this.message ?? this.translate.instant('ws_ui.spinner.loading');
+    private resolveMessage(): string {
+        const messages = this.messages();
+        const message = this.message();
+        if (messages?.length) return messages[0];
+        return message ?? this.translate.instant('ws_ui.spinner.loading');
     }
 }

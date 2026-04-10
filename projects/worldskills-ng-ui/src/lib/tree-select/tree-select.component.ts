@@ -1,25 +1,28 @@
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  HostListener,
-  ElementRef,
+  computed,
   ContentChild,
+  effect,
+  ElementRef,
+  HostListener,
+  inject,
+  input,
+  model,
+  output,
+  signal,
   TemplateRef,
+  untracked,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgTemplateOutlet } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { TreeSelectNode } from './tree-select-node';
 
@@ -30,43 +33,42 @@ export type TreeSelectMode = 'single' | 'multiple' | 'checkbox';
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.css'],
   standalone: true,
-  imports: [NgTemplateOutlet, InputTextModule, IconFieldModule, InputIconModule, ProgressSpinnerModule, TreeModule],
+  imports: [NgTemplateOutlet, TranslatePipe, InputTextModule, IconFieldModule, InputIconModule, ProgressSpinnerModule, TreeModule],
 })
-export class TreeSelectComponent implements OnInit, OnChanges, OnDestroy {
+export class TreeSelectComponent {
+
+  // ── Inputs ────────────────────────────────────────────────────────────────
 
   /** Flat or nested list of nodes to display. */
-  @Input() items: TreeSelectNode[] = [];
+  items = input<TreeSelectNode[]>([]);
 
   /** Selected id for single mode — supports two-way binding: [(selectedId)] */
-  @Input() selectedId: number | string | null = null;
+  selectedId = model<number | string | null>(null);
 
   /** Selected ids for multiple / checkbox mode — supports two-way binding: [(selectedIds)] */
-  @Input() selectedIds: (number | string)[] = [];
+  selectedIds = model<(number | string)[]>([]);
 
-  @Input() placeholder = 'Select...';
-  @Input() loading = false;
-  @Input() selectionMode: TreeSelectMode = 'single';
+  placeholder = input('Select...');
+  loading = input(false);
+  selectionMode = input<TreeSelectMode>('single');
 
   /** Enable virtual scrolling for large trees. */
-  @Input() virtualScroll = false;
+  virtualScroll = input(false);
 
   /** Row height in px used by virtual scroll (should match your node height). */
-  @Input() virtualScrollItemSize = 32;
+  virtualScrollItemSize = input(32);
 
-  /** Emits selected id for two-way binding in single mode. */
-  @Output() selectedIdChange = new EventEmitter<number | string | null>();
-
-  /** Emits selected ids for two-way binding in multiple / checkbox mode. */
-  @Output() selectedIdsChange = new EventEmitter<(number | string)[]>();
+  // ── Outputs ───────────────────────────────────────────────────────────────
+  // selectedIdChange / selectedIdsChange are emitted automatically by model()
 
   /** Emits the full TreeSelectNode on single selection. */
-  @Output() nodeSelect = new EventEmitter<TreeSelectNode>();
+  nodeSelect = output<TreeSelectNode>();
 
   /** Emits all selected TreeSelectNodes on multi selection. */
-  @Output() nodesSelect = new EventEmitter<TreeSelectNode[]>();
+  nodesSelect = output<TreeSelectNode[]>();
 
   /** Emits when the selection is cleared. */
-  @Output() nodeClear = new EventEmitter<void>();
+  nodeClear = output<void>();
 
   /**
    * Optional node label template. Context: { $implicit: TreeSelectNode, selected: boolean, selectable: boolean }
@@ -80,50 +82,59 @@ export class TreeSelectComponent implements OnInit, OnChanges, OnDestroy {
    */
   @ContentChild('wsTreeNode') nodeTemplate: TemplateRef<unknown> | null = null;
 
-  allNodes: TreeNode[] = [];
-  displayNodes: TreeNode[] = [];
-  selection: TreeNode | TreeNode[] | null = null;
-  isOpen = false;
-  term = '';
-  triggerLabel: string | null = null;
+  // ── State ─────────────────────────────────────────────────────────────────
 
+  allNodes = computed(() => this.toTreeNodes(this.items()));
+  displayNodes = signal<TreeNode[]>([]);
+  selection = signal<TreeNode | TreeNode[] | null>(null);
+  isOpen = signal(false);
+  term = signal('');
+  triggerLabel = signal<string | null>(null);
+
+  private el = inject(ElementRef);
   private searchTerm$ = new Subject<string>();
-  private searchSub: Subscription;
 
-  constructor(private el: ElementRef) {}
+  constructor() {
+    // Search debounce — takeUntilDestroyed replaces OnDestroy
+    this.searchTerm$.pipe(
+      debounceTime(150),
+      distinctUntilChanged(),
+      takeUntilDestroyed(),
+    ).subscribe(value => {
+      this.term.set(value);
+      const nodes = this.allNodes();
+      this.displayNodes.set(value
+        ? this.filterTree(nodes, value.toLowerCase().split(/\s+/).filter(t => t))
+        : nodes);
+    });
+
+    // When items change: reset displayNodes and re-resolve selection
+    effect(() => {
+      const nodes = this.allNodes(); // tracks items() via computed
+      untracked(() => {
+        this.term.set('');
+        this.displayNodes.set(nodes);
+        this.resolveSelection();
+      });
+    });
+
+    // When selectedId/selectedIds change from parent: re-resolve selection
+    effect(() => {
+      this.selectedId(); // track
+      this.selectedIds(); // track
+      untracked(() => {
+        if (this.allNodes().length > 0) {
+          this.resolveSelection();
+        }
+      });
+    });
+  }
 
   @HostListener('document:click', ['$event.target'])
   onDocumentClick(target: HTMLElement) {
     if (!this.el.nativeElement.contains(target)) {
-      this.isOpen = false;
+      this.isOpen.set(false);
     }
-  }
-
-  ngOnInit() {
-    this.searchSub = this.searchTerm$.pipe(
-      debounceTime(150),
-      distinctUntilChanged(),
-    ).subscribe(value => {
-      this.term = value;
-      this.displayNodes = value
-        ? this.filterTree(this.allNodes, value.toLowerCase().split(/\s+/).filter(t => t))
-        : this.allNodes;
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['items']) {
-      this.allNodes = this.toTreeNodes(this.items ?? []);
-      this.displayNodes = this.allNodes;
-      this.resolveSelection();
-    }
-    if ((changes['selectedId'] || changes['selectedIds']) && this.allNodes.length > 0) {
-      this.resolveSelection();
-    }
-  }
-
-  ngOnDestroy() {
-    this.searchSub?.unsubscribe();
   }
 
   // ── Conversion ────────────────────────────────────────────────────────────
@@ -142,56 +153,56 @@ export class TreeSelectComponent implements OnInit, OnChanges, OnDestroy {
 
   // ── Selection ─────────────────────────────────────────────────────────────
 
-  resolveSelection() {
-    if (this.selectionMode === 'single') {
-      if (this.selectedId == null) {
-        this.selection = null;
-        this.triggerLabel = null;
+  resolveSelection(): void {
+    const nodes = this.allNodes();
+    if (this.selectionMode() === 'single') {
+      const id = this.selectedId();
+      if (id == null) {
+        this.selection.set(null);
+        this.triggerLabel.set(null);
         return;
       }
-      const found = this.findByKey(this.allNodes, String(this.selectedId));
-      this.selection = found ?? null;
-      this.triggerLabel = found?.label ?? null;
+      const found = this.findByKey(nodes, String(id));
+      this.selection.set(found ?? null);
+      this.triggerLabel.set(found?.label ?? null);
     } else {
-      const keys = (this.selectedIds ?? []).map(String);
+      const keys = (this.selectedIds() ?? []).map(String);
       if (!keys.length) {
-        this.selection = [];
-        this.triggerLabel = null;
+        this.selection.set([]);
+        this.triggerLabel.set(null);
         return;
       }
-      const nodes = keys.map(k => this.findByKey(this.allNodes, k)).filter(Boolean) as TreeNode[];
-      this.selection = nodes;
-      this.triggerLabel = this.buildMultiLabel(nodes);
+      const found = keys.map(k => this.findByKey(nodes, k)).filter(Boolean) as TreeNode[];
+      this.selection.set(found);
+      this.triggerLabel.set(this.buildMultiLabel(found));
     }
   }
 
   onSelectionChange(event: TreeNode | TreeNode[]) {
-    this.selection = event;
+    this.selection.set(event);
 
-    if (this.selectionMode === 'single') {
+    if (this.selectionMode() === 'single') {
       const node = event as TreeNode;
-      this.selectedId = node?.data?.id ?? null;
-      this.triggerLabel = node?.label ?? null;
-      this.isOpen = false;
-      this.selectedIdChange.emit(this.selectedId);
+      const id = node?.data?.id ?? null;
+      this.selectedId.set(id); // model() emits selectedIdChange to parent
+      this.triggerLabel.set(node?.label ?? null);
+      this.isOpen.set(false);
       if (node?.data) { this.nodeSelect.emit(node.data as TreeSelectNode); }
     } else {
       const nodes = (event as TreeNode[]) ?? [];
-      this.selectedIds = nodes.map(n => n.data?.id).filter(id => id != null);
-      this.triggerLabel = this.buildMultiLabel(nodes);
-      this.selectedIdsChange.emit(this.selectedIds);
+      const ids = nodes.map(n => n.data?.id).filter(id => id != null);
+      this.selectedIds.set(ids); // model() emits selectedIdsChange to parent
+      this.triggerLabel.set(this.buildMultiLabel(nodes));
       this.nodesSelect.emit(nodes.map(n => n.data as TreeSelectNode).filter(Boolean));
     }
   }
 
   clear() {
-    this.selectedId = null;
-    this.selectedIds = [];
-    this.selection = this.selectionMode === 'single' ? null : [];
-    this.triggerLabel = null;
-    this.isOpen = false;
-    this.selectedIdChange.emit(null);
-    this.selectedIdsChange.emit([]);
+    this.selectedId.set(null);
+    this.selectedIds.set([]);
+    this.selection.set(this.selectionMode() === 'single' ? null : []);
+    this.triggerLabel.set(null);
+    this.isOpen.set(false);
     this.nodeClear.emit();
   }
 
@@ -217,8 +228,8 @@ export class TreeSelectComponent implements OnInit, OnChanges, OnDestroy {
   // ── Helpers ───────────────────────────────────────────────────────────────
 
   toggle() {
-    this.isOpen = !this.isOpen;
-    if (this.isOpen) {
+    this.isOpen.update(v => !v);
+    if (this.isOpen()) {
       setTimeout(() => this.scrollToSelected(), 0);
     }
   }
@@ -230,10 +241,6 @@ export class TreeSelectComponent implements OnInit, OnChanges, OnDestroy {
       const offset = selected.offsetTop - panel.clientHeight / 2 + selected.offsetHeight / 2;
       panel.scrollTop = offset;
     }
-  }
-
-  isMultiMode(): boolean {
-    return this.selectionMode !== 'single';
   }
 
   private findByKey(nodes: TreeNode[], key: string): TreeNode | null {

@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, computed, forwardRef, input, signal, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
 import { SelectModule } from 'primeng/select';
@@ -19,73 +19,69 @@ import { I18nLangOption } from '../i18n-input/i18n-input.component';
     },
   ],
 })
-export class WsI18nTextareaComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class WsI18nTextareaComponent implements ControlValueAccessor, OnInit {
 
-  @Input() placeholder = '';
-  @Input() disabled = false;
-  @Input() disableLangChange = false;
-  @Input() rows = 4;
+  // ── Inputs ────────────────────────────────────────────────────────────────
+  placeholder = input('');
+  disableLangChange = input(false);
+  rows = input(4);
 
-  value: I18nText[] = [];
-  currentCode = LangUtil.getDefaultLanguage().code;
-  currentText = '';
-  langOptions: I18nLangOption[] = [];
+  // ── State ─────────────────────────────────────────────────────────────────
+  // disabled is a signal (not input) because setDisabledState() also writes to it
+  disabled = signal(false);
 
-  private onChange = (_: I18nText[]) => {};
-  private onTouched = () => {};
+  value = signal<I18nText[]>([]);
+  currentCode = signal(LangUtil.getDefaultLanguage().code);
+  currentText = signal('');
 
-  ngOnInit(): void {
-    const stored = sessionStorage.getItem('lang');
-    if (stored) this.currentCode = stored;
-    this.refresh();
-  }
-
-  ngOnChanges(): void {
-    this.refresh();
-  }
-
-  private refresh(): void {
-    if (!this.value?.length) return;
-
+  langOptions = computed<I18nLangOption[]>(() => {
     const langs = LangUtil.getDefaultLanguages();
-    this.langOptions = this.value.map(t => {
+    return this.value().map(t => {
       const lang = langs.find(l => l.code === t.lang_code);
       return { value: t.lang_code, label: lang?.name ?? t.lang_code };
     });
+  });
 
-    if (!this.value.find(t => t.lang_code === this.currentCode)) {
-      this.currentCode = this.value[0].lang_code;
-    }
+  private cvaOnChange = (_: I18nText[]) => {};
+  private cvaOnTouched = () => {};
 
-    this.loadText();
+  ngOnInit(): void {
+    const stored = sessionStorage.getItem('lang');
+    if (stored) this.currentCode.set(stored);
+    this.syncText();
   }
 
-  private loadText(): void {
-    this.currentText = this.value.find(t => t.lang_code === this.currentCode)?.text ?? '';
+  private syncText(): void {
+    const val = this.value();
+    if (!val.length) return;
+    if (!val.find(t => t.lang_code === this.currentCode())) {
+      this.currentCode.set(val[0].lang_code);
+    }
+    this.currentText.set(val.find(t => t.lang_code === this.currentCode())?.text ?? '');
   }
 
   onLangChange(code: string): void {
-    this.currentCode = code;
-    this.loadText();
+    this.currentCode.set(code);
+    this.currentText.set(this.value().find(t => t.lang_code === code)?.text ?? '');
   }
 
   onTextChange(text: string): void {
-    const entry = this.value.find(t => t.lang_code === this.currentCode);
+    const entry = this.value().find(t => t.lang_code === this.currentCode());
     if (entry) {
       entry.text = text;
-      this.onChange([...this.value]);
+      this.cvaOnChange([...this.value()]);
     }
   }
 
-  onBlur(): void { this.onTouched(); }
+  onBlur(): void { this.cvaOnTouched(); }
 
-  // ControlValueAccessor
+  // ── ControlValueAccessor ──────────────────────────────────────────────────
   writeValue(value: I18nText[] | null): void {
-    this.value = value ?? [];
-    this.refresh();
+    this.value.set(value ?? []);
+    this.syncText();
   }
 
-  registerOnChange(fn: (_: I18nText[]) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
-  setDisabledState(disabled: boolean): void { this.disabled = disabled; }
+  registerOnChange(fn: (_: I18nText[]) => void): void { this.cvaOnChange = fn; }
+  registerOnTouched(fn: () => void): void { this.cvaOnTouched = fn; }
+  setDisabledState(disabled: boolean): void { this.disabled.set(disabled); }
 }

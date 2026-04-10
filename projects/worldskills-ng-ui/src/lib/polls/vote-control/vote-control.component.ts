@@ -1,6 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter,
-  OnInit, OnChanges, TemplateRef, inject
+  Component, computed, effect, inject, input, output, signal, TemplateRef,
 } from '@angular/core';
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -27,7 +26,7 @@ type PollState = 'running' | 'not-started' | 'expired';
   selector: 'ws-ng-ui-vote-control',
   standalone: true,
   imports: [
-    DatePipe, NgTemplateOutlet, TranslatePipe,
+    NgTemplateOutlet, TranslatePipe,
     ButtonModule, MenuModule,
     StandardPollComponent, WeightedPollComponent,
     MultiselectPollComponent, PollResultComponent,
@@ -35,97 +34,100 @@ type PollState = 'running' | 'not-started' | 'expired';
   providers: [DatePipe],
   templateUrl: './vote-control.component.html',
 })
-export class VoteControlComponent implements OnInit, OnChanges {
+export class VoteControlComponent {
+
+  // ── Inputs ────────────────────────────────────────────────────────────────
+
   // Voting context
-  @Input() personId: number | null = null;
+  personId = input<number | null>(null);
 
   // Manage button visibility
-  @Input() showEditButton = false;
-  @Input() showExtendButton = false;
-  @Input() showResetButton = false;
-  @Input() showDeleteButton = false;
-  @Input() showExportButton = false;
-  @Input() showOpenButton = false;
-  @Input() showCloseButton = false;
-  @Input() showCustomView = false;
+  showEditButton = input(false);
+  showExtendButton = input(false);
+  showResetButton = input(false);
+  showDeleteButton = input(false);
+  showExportButton = input(false);
+  showOpenButton = input(false);
+  showCloseButton = input(false);
+  showCustomView = input(false);
 
   // Data
-  @Input({ required: true }) poll!: Poll;
-  @Input() results: PollResult[] = [];
-  @Input() voted: Vote = { hasVoted: false, votes: [], anonymous: false, abstained: false };
-  @Input() votedDependsOn: Vote | null = null;
-  @Input() tracks: Track[] = [];
+  poll = input.required<Poll>();
+  results = input<PollResult[]>([]);
+  voted = input<Vote>({ hasVoted: false, votes: [], anonymous: false, abstained: false });
+  votedDependsOn = input<Vote | null>(null);
+  tracks = input<Track[]>([]);
 
   // Behaviour
-  @Input() confirmBeforeVote = false;
-  @Input() confirmBeforeAbstain = false;
-  @Input() optionHandler: OptionHandler = new DefaultOptionHandler();
-  @Input() isOwner = false;
+  confirmBeforeVote = input(false);
+  confirmBeforeAbstain = input(false);
+  optionHandler = input<OptionHandler>(new DefaultOptionHandler());
+  isOwner = input(false);
 
   // Template overrides
-  @Input() titleTemplate: TemplateRef<unknown> | null = null;
-  @Input() questionTemplate: TemplateRef<unknown> | null = null;
-  @Input() beforeOptionsTemplate: TemplateRef<unknown> | null = null;
-  @Input() optionsTemplate: TemplateRef<unknown> | null = null;
-  @Input() afterOptionsTemplate: TemplateRef<unknown> | null = null;
-  @Input() beforeResultTemplate: TemplateRef<unknown> | null = null;
-  @Input() resultTemplate: TemplateRef<unknown> | null = null;
-  @Input() afterResultTemplate: TemplateRef<unknown> | null = null;
-  @Input() footerTemplate: TemplateRef<unknown> | null = null;
-  @Input() customViewTemplate: TemplateRef<unknown> | null = null;
+  titleTemplate = input<TemplateRef<unknown> | null>(null);
+  questionTemplate = input<TemplateRef<unknown> | null>(null);
+  beforeOptionsTemplate = input<TemplateRef<unknown> | null>(null);
+  optionsTemplate = input<TemplateRef<unknown> | null>(null);
+  afterOptionsTemplate = input<TemplateRef<unknown> | null>(null);
+  beforeResultTemplate = input<TemplateRef<unknown> | null>(null);
+  resultTemplate = input<TemplateRef<unknown> | null>(null);
+  afterResultTemplate = input<TemplateRef<unknown> | null>(null);
+  footerTemplate = input<TemplateRef<unknown> | null>(null);
+  customViewTemplate = input<TemplateRef<unknown> | null>(null);
 
-  // Events
-  @Output() edit = new EventEmitter<Poll>();
-  @Output() extend = new EventEmitter<Poll>();
-  @Output() reset = new EventEmitter<Poll>();
-  @Output() delete = new EventEmitter<Poll>();
-  @Output() openClicked = new EventEmitter<Poll>();
-  @Output() closeClicked = new EventEmitter<Poll>();
-  @Output() voteSelected = new EventEmitter<VoteEntry[]>();
-  @Output() abstainSelected = new EventEmitter<void>();
-  @Output() voteRemoved = new EventEmitter<void>();
-  @Output() exportClicked = new EventEmitter<void>();
-  @Output() viewChange = new EventEmitter<'question' | 'result'>();
+  // ── Outputs ───────────────────────────────────────────────────────────────
 
-  private alertService = inject(WsAlertService);
-  private confirmService = inject(WsConfirmService);
-  private datePipe = inject(DatePipe);
-  private translate = inject(TranslateService);
+  edit = output<Poll>();
+  extend = output<Poll>();
+  reset = output<Poll>();
+  delete = output<Poll>();
+  openClicked = output<Poll>();
+  closeClicked = output<Poll>();
+  voteSelected = output<VoteEntry[]>();
+  abstainSelected = output<void>();
+  voteRemoved = output<void>();
+  exportClicked = output<void>();
+  viewChange = output<'question' | 'result'>();
 
-  view: 'question' | 'result' = 'question';
-  state: PollState = 'running';
-  selection: VoteEntry[] = [];
+  // ── State ─────────────────────────────────────────────────────────────────
 
-  get manageItems(): MenuItem[] {
+  view = signal<'question' | 'result'>('question');
+  state = signal<PollState>('running');
+  selection = signal<VoteEntry[]>([]);
+
+  manageItems = computed<MenuItem[]>(() => {
     const t = (key: string) => this.translate.instant(`ws_ui.polls.vote_control.${key}`);
+    const poll = this.poll();
     const items: MenuItem[] = [];
-    if (this.showExportButton && this.view === 'result') {
+    if (this.showExportButton() && this.view() === 'result') {
       items.push({ label: t('menu_export'), icon: 'pi pi-download', command: () => this.exportClicked.emit() });
     }
-    if (this.showResetButton) {
-      items.push({ label: t('menu_reset'), icon: 'pi pi-refresh', command: () => this.reset.emit(this.poll) });
+    if (this.showResetButton()) {
+      items.push({ label: t('menu_reset'), icon: 'pi pi-refresh', command: () => this.reset.emit(poll) });
     }
-    if (this.showExtendButton) {
-      items.push({ label: t('menu_extend'), icon: 'pi pi-calendar-plus', command: () => this.extend.emit(this.poll) });
+    if (this.showExtendButton()) {
+      items.push({ label: t('menu_extend'), icon: 'pi pi-calendar-plus', command: () => this.extend.emit(poll) });
     }
-    if (this.showEditButton) {
-      items.push({ label: t('menu_edit'), icon: 'pi pi-pencil', command: () => this.edit.emit(this.poll) });
+    if (this.showEditButton()) {
+      items.push({ label: t('menu_edit'), icon: 'pi pi-pencil', command: () => this.edit.emit(poll) });
     }
-    if (this.showDeleteButton) {
-      items.push({ label: t('menu_delete'), icon: 'pi pi-trash', command: () => this.delete.emit(this.poll) });
+    if (this.showDeleteButton()) {
+      items.push({ label: t('menu_delete'), icon: 'pi pi-trash', command: () => this.delete.emit(poll) });
     }
-    if (this.showOpenButton && this.state !== 'running') {
-      items.push({ label: t('menu_open'), icon: 'pi pi-play', command: () => this.openClicked.emit(this.poll) });
+    if (this.showOpenButton() && this.state() !== 'running') {
+      items.push({ label: t('menu_open'), icon: 'pi pi-play', command: () => this.openClicked.emit(poll) });
     }
-    if (this.showCloseButton && this.state === 'running') {
-      items.push({ label: t('menu_close'), icon: 'pi pi-stop', command: () => this.closeClicked.emit(this.poll) });
+    if (this.showCloseButton() && this.state() === 'running') {
+      items.push({ label: t('menu_close'), icon: 'pi pi-stop', command: () => this.closeClicked.emit(poll) });
     }
     return items;
-  }
+  });
 
-  get dateRange(): string {
-    const start = new Date(this.poll.start);
-    const expiry = new Date(this.poll.expiry);
+  dateRange = computed<string>(() => {
+    const poll = this.poll();
+    const start = new Date(poll.start);
+    const expiry = new Date(poll.expiry);
     const fmt = 'd MMM yyyy';
     const sameMonthYear =
       start.getMonth() === expiry.getMonth() &&
@@ -134,51 +136,59 @@ export class VoteControlComponent implements OnInit, OnChanges {
       return `${this.datePipe.transform(start, 'd')}–${this.datePipe.transform(expiry, fmt)}`;
     }
     return `${this.datePipe.transform(start, fmt)} – ${this.datePipe.transform(expiry, fmt)}`;
-  }
+  });
 
-  ngOnInit(): void { this.init(); }
-  ngOnChanges(): void { this.init(); }
+  private alertService = inject(WsAlertService);
+  private confirmService = inject(WsConfirmService);
+  private datePipe = inject(DatePipe);
+  private translate = inject(TranslateService);
 
-  init(): void {
-    if (!this.poll || !this.voted) return;
-    this.selection = this.voted.votes ?? [];
-    this.calculateState();
+  constructor() {
+    effect(() => {
+      const poll = this.poll();
+      const voted = this.voted();
+      if (!poll || !voted) return;
+      this.selection.set(voted.votes ?? []);
+      this.calculateState();
+    });
   }
 
   calculateState(): void {
     const now = new Date();
-    const start = new Date(this.poll.start);
-    const expiry = new Date(this.poll.expiry);
+    const start = new Date(this.poll().start);
+    const expiry = new Date(this.poll().expiry);
 
     if (now < start) {
-      this.state = 'not-started';
-      this.view = 'result';
+      this.state.set('not-started');
+      this.view.set('result');
     } else if (now > expiry) {
-      this.state = 'expired';
-      this.view = 'result';
+      this.state.set('expired');
+      this.view.set('result');
     } else {
-      this.state = 'running';
+      this.state.set('running');
     }
   }
 
   onSelectionChange(entries: VoteEntry[]): void {
-    this.selection = entries;
+    this.selection.set(entries);
   }
 
   async vote(): Promise<void> {
-    if (this.voted.hasVoted) {
+    if (this.voted().hasVoted) {
       this.alertService.info(this.translate.instant('ws_ui.polls.vote_control.already_voted'));
       return;
     }
-    if (this.poll.dependsOn && this.votedDependsOn && !this.votedDependsOn.hasVoted) {
+    const poll = this.poll();
+    const votedDependsOn = this.votedDependsOn();
+    if (poll.dependsOn && votedDependsOn && !votedDependsOn.hasVoted) {
       this.alertService.warn(
-        this.translate.instant('ws_ui.polls.vote_control.must_vote_on', { title: this.poll.dependsOn.title.text })
+        this.translate.instant('ws_ui.polls.vote_control.must_vote_on', { title: poll.dependsOn.title.text })
       );
       return;
     }
-    if (this.confirmBeforeVote) {
-      const labels = this.selection
-        .map(e => this.poll.options.find(o => o.id === Number(e.optionId))?.text.text)
+    if (this.confirmBeforeVote()) {
+      const labels = this.selection()
+        .map(e => poll.options.find(o => o.id === Number(e.optionId))?.text.text)
         .filter(Boolean)
         .join(', ');
       const confirmed = await this.confirmService.confirm({
@@ -187,21 +197,23 @@ export class VoteControlComponent implements OnInit, OnChanges {
       });
       if (!confirmed) return;
     }
-    this.voteSelected.emit(this.selection);
+    this.voteSelected.emit(this.selection());
   }
 
   async abstain(): Promise<void> {
-    if (this.voted.hasVoted) {
+    if (this.voted().hasVoted) {
       this.alertService.info(this.translate.instant('ws_ui.polls.vote_control.already_voted'));
       return;
     }
-    if (this.poll.dependsOn && this.votedDependsOn && !this.votedDependsOn.hasVoted) {
+    const poll = this.poll();
+    const votedDependsOn = this.votedDependsOn();
+    if (poll.dependsOn && votedDependsOn && !votedDependsOn.hasVoted) {
       this.alertService.warn(
-        this.translate.instant('ws_ui.polls.vote_control.must_vote_on', { title: this.poll.dependsOn.title.text })
+        this.translate.instant('ws_ui.polls.vote_control.must_vote_on', { title: poll.dependsOn.title.text })
       );
       return;
     }
-    if (this.confirmBeforeAbstain) {
+    if (this.confirmBeforeAbstain()) {
       const confirmed = await this.confirmService.confirm({
         message: this.translate.instant('ws_ui.polls.vote_control.confirm_abstain'),
         acceptLabel: this.translate.instant('ws_ui.polls.vote_control.abstain'),
@@ -216,43 +228,46 @@ export class VoteControlComponent implements OnInit, OnChanges {
   }
 
   changeView(view: 'question' | 'result'): void {
-    this.view = view;
+    this.view.set(view);
     this.viewChange.emit(view);
   }
 
   showVoteButton(): boolean {
-    return this.isWhitelisted() && !this.voted.hasVoted && this.view === 'question' && this.state === 'running';
+    return this.isWhitelisted() && !this.voted().hasVoted && this.view() === 'question' && this.state() === 'running';
   }
 
   showAbstainButton(): boolean {
-    return this.isWhitelisted() && !this.voted.hasVoted && this.poll.allowingAbstain && this.view === 'question' && this.state === 'running';
+    return this.isWhitelisted() && !this.voted().hasVoted && this.poll().allowingAbstain && this.view() === 'question' && this.state() === 'running';
   }
 
   showClearVoteButton(): boolean {
-    return this.voted.hasVoted && this.poll.allowingReVote && this.view === 'question' && this.state === 'running';
+    return this.voted().hasVoted && this.poll().allowingReVote && this.view() === 'question' && this.state() === 'running';
   }
 
   showResultsButton(): boolean {
-    if (this.view === 'result' || !this.poll) return false;
-    if (this.poll.anonymousResults) return this.isOwner;
-    if (this.isOwner) return true;
-    return this.poll.showingResults || new Date() > new Date(this.poll.expiry);
+    if (this.view() === 'result' || !this.poll()) return false;
+    const poll = this.poll();
+    if (poll.anonymousResults) return this.isOwner();
+    if (this.isOwner()) return true;
+    return poll.showingResults || new Date() > new Date(poll.expiry);
   }
 
   hasNoVoteSelected(): boolean {
-    return !this.selection || this.selection.length === 0;
+    return !this.selection() || this.selection().length === 0;
   }
 
   canSeeWhoVoted(): boolean {
-    return this.poll ? (this.poll.anonymousResults ? this.isOwner : true) : false;
+    const poll = this.poll();
+    return poll ? (poll.anonymousResults ? this.isOwner() : true) : false;
   }
 
   isWhitelisted(): boolean {
-    if (!this.poll.whitelist) return true;
-    return (this.poll.allowedVoters ?? []).some(v => v.id === this.personId);
+    const poll = this.poll();
+    if (!poll.whitelist) return true;
+    return (poll.allowedVoters ?? []).some(v => v.id === this.personId());
   }
 
   getVoteText(entry: VoteEntry): string {
-    return this.poll.options.find(o => o.id === Number(entry.optionId))?.text.text ?? '';
+    return this.poll().options.find(o => o.id === Number(entry.optionId))?.text.text ?? '';
   }
 }

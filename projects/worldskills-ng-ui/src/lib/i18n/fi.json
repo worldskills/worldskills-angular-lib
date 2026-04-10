@@ -87,10 +87,23 @@
             "certificate_dropbox_path": "Dropbox-polku",
             "certificate_type": "Todistustyyppi",
             "generate_id": "Luo uusi tunnus",
-            "delete_confirm": "Haluatteko varmasti poistaa tämän palkinnon?"
+            "delete_confirm": "Haluatteko varmasti poistaa tämän palkinnon?",
+            "certificate_type_digital": "Digitaalinen",
+            "certificate_type_print": "Painettu"
         },
         "entity_tree_select": {
             "placeholder": "Valitse entiteetti..."
+        },
+        "tree_select": {
+            "search": "Hae...",
+            "no_results": "Ei tuloksia"
+        },
+        "resources": {
+            "download": "Lataa",
+            "download_all": "Lataa kaikki",
+            "zipping": "Pakataan...",
+            "download_error": "Resurssien lataus epäonnistui. Yritä uudelleen.",
+            "no_resources": "Ei resursseja."
         }
     }
 }

@@ -1,6 +1,8 @@
-import { Component, inject, Input, OnDestroy } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ResourceService } from '../resource.service';
 import { WsAlertService } from '../../alert/alert.service';
@@ -9,41 +11,48 @@ import { ResourceThumbnailComponent, ResourceThumbnail } from '../resource-thumb
 @Component({
   selector: 'ws-ng-ui-resource-thumbnail-container',
   standalone: true,
-  imports: [ButtonModule, ResourceThumbnailComponent],
+  imports: [ButtonModule, TranslatePipe, ResourceThumbnailComponent],
   providers: [DatePipe],
   templateUrl: './resource-thumbnail-container.component.html',
 })
-export class ResourceThumbnailContainerComponent implements OnDestroy {
-  @Input() title = '';
-  @Input() resources: ResourceThumbnail[] = [];
+export class ResourceThumbnailContainerComponent {
 
-  isZippingFiles = false;
+  // ── Inputs ────────────────────────────────────────────────────────────────
+
+  title = input('');
+  resources = input<ResourceThumbnail[]>([]);
+
+  // ── State ─────────────────────────────────────────────────────────────────
+
+  isZippingFiles = signal(false);
+
+  downloadableResources = computed(() => this.resources().filter(r => !!r.downloadLink));
+
+  downloadAllLabel = computed(() =>
+    this.translate.instant(this.isZippingFiles() ? 'ws_ui.resources.zipping' : 'ws_ui.resources.download_all')
+  );
 
   private resourceService = inject(ResourceService);
   private alertService = inject(WsAlertService);
   private datePipe = inject(DatePipe);
-  private sub: Subscription | null = null;
-
-  get downloadableResources(): ResourceThumbnail[] {
-    return this.resources.filter(r => !!r.downloadLink);
-  }
-
-  get downloadAllLabel(): string {
-    return this.isZippingFiles ? 'Zipping...' : 'Download all';
-  }
+  private translate = inject(TranslateService);
+  private destroyRef = inject(DestroyRef);
+  private downloadSub?: Subscription;
 
   downloadAll(): void {
-    this.isZippingFiles = true;
-    this.sub = this.resourceService
-      .downloadResources(this.resources.map(r => r.resource_id))
+    this.isZippingFiles.set(true);
+    this.downloadSub?.unsubscribe();
+    this.downloadSub = this.resourceService
+      .downloadResources(this.resources().map(r => r.resource_id))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (buffer) => {
           this.triggerDownload(buffer);
-          this.isZippingFiles = false;
+          this.isZippingFiles.set(false);
         },
         error: () => {
-          this.isZippingFiles = false;
-          this.alertService.error('Failed to download resources. Please try again.');
+          this.isZippingFiles.set(false);
+          this.alertService.error(this.translate.instant('ws_ui.resources.download_error'));
         },
       });
   }
@@ -58,9 +67,5 @@ export class ResourceThumbnailContainerComponent implements OnDestroy {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  }
-
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe();
   }
 }

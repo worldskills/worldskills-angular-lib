@@ -2,12 +2,12 @@
 
   <!-- Header -->
   <div class="px-5 py-4 border-b border-surface-200 bg-surface-50">
-    @if (titleTemplate) {
-      <ng-container [ngTemplateOutlet]="titleTemplate" />
+    @if (titleTemplate()) {
+      <ng-container [ngTemplateOutlet]="titleTemplate()" />
     } @else {
-      <h3 class="font-semibold text-color text-base leading-snug">{{ poll.title.text }}</h3>
+      <h3 class="font-semibold text-color text-base leading-snug">{{ poll().title.text }}</h3>
       <p class="text-xs text-color-secondary mt-0.5">
-        {{ 'ws_ui.polls.vote_control.created_by' | translate: { firstName: poll.createdBy.firstName, lastName: poll.createdBy.lastName } }}
+        {{ 'ws_ui.polls.vote_control.created_by' | translate: { firstName: poll().createdBy.firstName, lastName: poll().createdBy.lastName } }}
       </p>
     }
   </div>
@@ -17,35 +17,35 @@
 
     <!-- Question -->
     <div class="text-sm text-color font-medium">
-      @if (questionTemplate) {
-        <ng-container [ngTemplateOutlet]="questionTemplate" />
+      @if (questionTemplate()) {
+        <ng-container [ngTemplateOutlet]="questionTemplate()" />
       } @else {
-        {{ poll.question.text }}
+        {{ poll().question.text }}
       }
     </div>
 
     <!-- Options / Results / Custom view -->
-    @if (showCustomView && customViewTemplate) {
-      <ng-container [ngTemplateOutlet]="customViewTemplate" />
+    @if (showCustomView() && customViewTemplate()) {
+      <ng-container [ngTemplateOutlet]="customViewTemplate()" />
 
-    } @else if (view === 'question') {
-      <ng-container [ngTemplateOutlet]="beforeOptionsTemplate ?? null" />
+    } @else if (view() === 'question') {
+      <ng-container [ngTemplateOutlet]="beforeOptionsTemplate() ?? null" />
 
-      @if (optionsTemplate) {
-        <ng-container [ngTemplateOutlet]="optionsTemplate" />
+      @if (optionsTemplate()) {
+        <ng-container [ngTemplateOutlet]="optionsTemplate()" />
       } @else {
         <!-- Voted state -->
-        @if (voted.hasVoted) {
+        @if (voted().hasVoted) {
           <div class="rounded-lg bg-surface-50 border border-surface-200 px-4 py-3 text-sm flex flex-col gap-1">
             <span class="text-green-700 font-medium flex items-center gap-1.5">
               <i class="pi pi-check-circle text-base"></i>
-              @if (voted.abstained) { {{ 'ws_ui.polls.vote_control.abstained' | translate }} }
-              @else if (voted.anonymous) { {{ 'ws_ui.polls.vote_control.voted_anonymous' | translate }} }
+              @if (voted().abstained) { {{ 'ws_ui.polls.vote_control.abstained' | translate }} }
+              @else if (voted().anonymous) { {{ 'ws_ui.polls.vote_control.voted_anonymous' | translate }} }
               @else { {{ 'ws_ui.polls.vote_control.voted_for' | translate }} }
             </span>
-            @if (!voted.abstained && !voted.anonymous) {
+            @if (!voted().abstained && !voted().anonymous) {
               <ol class="list-decimal list-inside text-color-secondary mt-1 space-y-0.5">
-                @for (entry of voted.votes; track entry.rank) {
+                @for (entry of voted().votes; track entry.rank) {
                   <li>{{ getVoteText(entry) }}</li>
                 }
               </ol>
@@ -54,40 +54,40 @@
         }
 
         <!-- Poll inputs -->
-        @if (!voted.hasVoted) {
-          @if (poll.type === 'standard') {
+        @if (!voted().hasVoted) {
+          @if (poll().type === 'standard') {
             <ws-ng-ui-standard-poll
-              [poll]="poll" [voted]="voted" [initialSelection]="selection"
-              [optionHandler]="optionHandler" (optionSelected)="onSelectionChange($event)" />
+              [poll]="poll()" [voted]="voted()" [initialSelection]="selection()"
+              [optionHandler]="optionHandler()" (optionSelected)="onSelectionChange($event)" />
           }
-          @if (poll.type === 'weighted') {
+          @if (poll().type === 'weighted') {
             <ws-ng-ui-weighted-poll
-              [poll]="poll" [voted]="voted" [initialSelection]="selection"
-              [optionHandler]="optionHandler" (optionSelected)="onSelectionChange($event)" />
+              [poll]="poll()" [voted]="voted()" [initialSelection]="selection()"
+              [optionHandler]="optionHandler()" (optionSelected)="onSelectionChange($event)" />
           }
-          @if (poll.type === 'multiselect') {
+          @if (poll().type === 'multiselect') {
             <ws-ng-ui-multiselect-poll
-              [poll]="poll" [voted]="voted" [initialSelection]="selection"
-              [optionHandler]="optionHandler" (optionSelected)="onSelectionChange($event)" />
+              [poll]="poll()" [voted]="voted()" [initialSelection]="selection()"
+              [optionHandler]="optionHandler()" (optionSelected)="onSelectionChange($event)" />
           }
         }
       }
 
-      <ng-container [ngTemplateOutlet]="afterOptionsTemplate ?? null" />
+      <ng-container [ngTemplateOutlet]="afterOptionsTemplate() ?? null" />
 
     } @else {
       <!-- Results view -->
-      <ng-container [ngTemplateOutlet]="beforeResultTemplate ?? null" />
+      <ng-container [ngTemplateOutlet]="beforeResultTemplate() ?? null" />
 
-      @if (resultTemplate) {
-        <ng-container [ngTemplateOutlet]="resultTemplate" />
+      @if (resultTemplate()) {
+        <ng-container [ngTemplateOutlet]="resultTemplate()" />
       } @else {
         <ws-ng-ui-poll-result
-          [poll]="poll" [results]="results" [tracks]="tracks"
+          [poll]="poll()" [results]="results()" [tracks]="tracks()"
           [canSeeWhoVoted]="canSeeWhoVoted()" />
       }
 
-      <ng-container [ngTemplateOutlet]="afterResultTemplate ?? null" />
+      <ng-container [ngTemplateOutlet]="afterResultTemplate() ?? null" />
     }
 
     <!-- Action bar -->
@@ -128,7 +128,7 @@
             (onClick)="changeView('result')"
           />
         }
-        @if (view === 'result' && state === 'running') {
+        @if (view() === 'result' && state() === 'running') {
           <p-button
             [label]="'ws_ui.polls.vote_control.view_question' | translate"
             icon="pi pi-list"
@@ -144,9 +144,9 @@
       </div>
 
       <!-- Right: manage menu -->
-      @if (manageItems.length > 0) {
+      @if (manageItems().length > 0) {
         <div>
-          <p-menu #manageMenu [popup]="true" [model]="manageItems" />
+          <p-menu #manageMenu [popup]="true" [model]="manageItems()" />
           <p-button
             [label]="'ws_ui.polls.vote_control.manage' | translate"
             icon="pi pi-cog"
@@ -161,12 +161,12 @@
 
   <!-- Footer -->
   <div class="px-5 py-2.5 border-t border-surface-200 bg-surface-50 text-xs text-color-secondary flex flex-wrap gap-x-3 gap-y-1 items-center">
-    @if (footerTemplate) {
-      <ng-container [ngTemplateOutlet]="footerTemplate" />
+    @if (footerTemplate()) {
+      <ng-container [ngTemplateOutlet]="footerTemplate()" />
     } @else {
-      <span><strong>{{ 'ws_ui.polls.vote_control.status' | translate }}:</strong> {{ state }}</span>
-      @if (poll.start) {
-        <span>{{ dateRange }}</span>
+      <span><strong>{{ 'ws_ui.polls.vote_control.status' | translate }}:</strong> {{ state() }}</span>
+      @if (poll().start) {
+        <span>{{ dateRange() }}</span>
       }
     }
   </div>

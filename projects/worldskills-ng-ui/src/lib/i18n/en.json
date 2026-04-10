@@ -111,10 +111,23 @@
             "certificate_dropbox_path": "Dropbox Path",
             "certificate_type": "Certificate Type",
             "generate_id": "Generate New ID",
-            "delete_confirm": "Are you sure you want to delete this award?"
+            "delete_confirm": "Are you sure you want to delete this award?",
+            "certificate_type_digital": "Digital",
+            "certificate_type_print": "Print"
         },
         "entity_tree_select": {
             "placeholder": "Select entity..."
+        },
+        "tree_select": {
+            "search": "Search...",
+            "no_results": "No results found"
+        },
+        "resources": {
+            "download": "Download",
+            "download_all": "Download all",
+            "zipping": "Zipping...",
+            "download_error": "Failed to download resources. Please try again.",
+            "no_resources": "No resources."
         }
     }
 }

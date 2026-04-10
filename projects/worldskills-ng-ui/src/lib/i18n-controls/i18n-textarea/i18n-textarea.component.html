@@ -1,10 +1,10 @@
 <div class="flex flex-col w-full gap-1">
   <div class="flex justify-end">
     <p-select
-      [options]="langOptions"
-      [(ngModel)]="currentCode"
+      [options]="langOptions()"
+      [ngModel]="currentCode()"
       (ngModelChange)="onLangChange($event)"
-      [disabled]="disableLangChange || disabled"
+      [disabled]="disableLangChange() || disabled()"
       optionLabel="label"
       optionValue="value"
       styleClass="w-36">
@@ -21,10 +21,10 @@
   </div>
   <textarea
     pTextarea
-    [placeholder]="placeholder"
-    [disabled]="disabled"
-    [rows]="rows"
-    [(ngModel)]="currentText"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [rows]="rows()"
+    [ngModel]="currentText()"
     (ngModelChange)="onTextChange($event)"
     (blur)="onBlur()"
     class="w-full resize-y">

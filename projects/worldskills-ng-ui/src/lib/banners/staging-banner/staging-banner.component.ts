@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'ws-ng-ui-staging-banner',
@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   standalone: true,
 })
 export class StagingBannerComponent {
-  @Input() message: string = 'This is the staging environment. Changes in this environment might get overwritten.';
+  message = input('This is the staging environment. Changes in this environment might get overwritten.');
 }

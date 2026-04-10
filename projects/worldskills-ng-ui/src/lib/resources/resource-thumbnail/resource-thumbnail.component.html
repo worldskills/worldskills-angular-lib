@@ -3,32 +3,32 @@
   <!-- Thumbnail image -->
   <div class="relative bg-surface-100 flex items-center justify-center aspect-square overflow-hidden">
     <img
-      [src]="thumbnailSrc"
-      [alt]="resource.filename"
+      [src]="thumbnailSrc()"
+      [alt]="resource().filename"
       class="object-contain w-full h-full transition-opacity group-hover:opacity-80"
       (error)="$any($event.target).src = 'assets/images/default-thumbnail.png'"
     />
-    <span [class]="fileIcon + ' absolute bottom-2 right-2 text-white text-lg bg-black/40 rounded-full p-1'"></span>
+    <span [class]="fileIcon() + ' absolute bottom-2 right-2 text-white text-lg bg-black/40 rounded-full p-1'"></span>
   </div>
 
   <!-- Footer -->
   <div class="flex flex-col gap-1 px-3 py-2">
-    <p class="text-xs font-semibold text-color truncate" [title]="resource.filename">
-      {{ resource.filename }}
+    <p class="text-xs font-semibold text-color truncate" [title]="resource().filename">
+      {{ resource().filename }}
     </p>
 
-    @if (formattedSize) {
-      <p class="text-xs text-color-secondary">{{ formattedSize }}</p>
+    @if (formattedSize()) {
+      <p class="text-xs text-color-secondary">{{ formattedSize() }}</p>
     }
 
-    @if (resource.downloadLink) {
+    @if (resource().downloadLink) {
       <p-button
-        label="Download"
+        [label]="'ws_ui.resources.download' | translate"
         icon="pi pi-download"
         [link]="true"
         size="small"
         class="-ml-3 mt-0.5"
-        [attr.href]="resource.downloadLink"
+        [attr.href]="resource().downloadLink"
         (onClick)="openDownload()"
       />
     }

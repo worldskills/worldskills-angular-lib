@@ -7,7 +7,7 @@
     </label>
     <p-select
       formControlName="award"
-      [options]="awardGroups"
+      [options]="awardGroups()"
       optionLabel="name.text"
       optionGroupLabel="label"
       optionGroupChildren="items"
@@ -57,10 +57,10 @@
   </div>
 
   <!-- Certificates section -->
-  @if (certificateEnabled) {
+  @if (certificateEnabled()) {
     <div class="rounded-lg border border-surface-200 bg-surface-50 p-4">
       <ws-ng-ui-recipient-award-certificate-form
-        [certificates]="localCertificates"
+        [certificates]="localCertificates()"
         (certificatesChange)="onCertificatesChange($event)"
       />
     </div>

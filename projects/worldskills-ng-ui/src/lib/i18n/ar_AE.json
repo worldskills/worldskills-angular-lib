@@ -74,10 +74,23 @@
             "certificate_dropbox_path": "مسار Dropbox",
             "certificate_type": "نوع الشهادة",
             "generate_id": "توليد معرف جديد",
-            "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذه الجائزة؟"
+            "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذه الجائزة؟",
+            "certificate_type_digital": "رقمي",
+            "certificate_type_print": "مطبوع"
         },
         "entity_tree_select": {
             "placeholder": "اختر كياناً..."
+        },
+        "tree_select": {
+            "search": "بحث...",
+            "no_results": "لا توجد نتائج"
+        },
+        "resources": {
+            "download": "تنزيل",
+            "download_all": "تنزيل الكل",
+            "zipping": "جارٍ الضغط...",
+            "download_error": "فشل تنزيل الملفات. يرجى المحاولة مرة أخرى.",
+            "no_resources": "لا توجد موارد."
         }
     }
 }

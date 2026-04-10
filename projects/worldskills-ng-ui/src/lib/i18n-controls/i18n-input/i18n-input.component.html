@@ -2,17 +2,17 @@
   <input
     pInputText
     type="text"
-    [placeholder]="placeholder"
-    [disabled]="disabled"
-    [(ngModel)]="currentText"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [ngModel]="currentText()"
     (ngModelChange)="onTextChange($event)"
     (blur)="onBlur()"
     class="flex-1 min-w-0 rounded-r-none border-r-0" />
   <p-select
-    [options]="langOptions"
-    [(ngModel)]="currentCode"
+    [options]="langOptions()"
+    [ngModel]="currentCode()"
     (ngModelChange)="onLangChange($event)"
-    [disabled]="disableLangChange || disabled"
+    [disabled]="disableLangChange() || disabled()"
     optionLabel="label"
     optionValue="value"
     styleClass="rounded-l-none shrink-0 w-36">

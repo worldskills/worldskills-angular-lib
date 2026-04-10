@@ -1,10 +1,10 @@
 <p-dialog
   [(visible)]="visible"
-  [header]="title"
+  [header]="title()"
   [modal]="true"
-  [closable]="closable"
-  [dismissableMask]="dismissible"
-  [style]="{ width: width, 'max-width': '95vw' }"
+  [closable]="closable()"
+  [dismissableMask]="dismissible()"
+  [style]="{ width: width(), 'max-width': '95vw' }"
   [breakpoints]="{ '640px': '95vw' }"
   styleClass="ws-dialog"
   (onHide)="onHide()">

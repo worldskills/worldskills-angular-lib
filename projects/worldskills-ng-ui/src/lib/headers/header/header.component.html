@@ -1,20 +1,20 @@
 <ng-template #appNameDefaultTemplate>
     <a routerLink="/" class="inline-flex items-center gap-2 text-white no-underline">
         <ws-ng-ui-wordmark />
-        <span class="font-semibold">{{ appName }}</span>
+        <span class="font-semibold">{{ appName() }}</span>
     </a>
 </ng-template>
 
 <ng-template #menuDefaultTemplate>
-    <p-menubar [model]="menubarItems" [pt]="menubarPT">
+    <p-menubar [model]="menubarItems()" [pt]="menubarPT">
         <ng-template pTemplate="start">
-            <ng-container *ngTemplateOutlet="appNameTemplate ?? appNameDefaultTemplate" />
+            <ng-container *ngTemplateOutlet="appNameTemplate() ?? appNameDefaultTemplate" />
         </ng-template>
         <ng-template pTemplate="end">
             <div class="flex items-center gap-3">
                 @if (showMenu()) {
-                    <p-menu #userMenu [model]="dropdownItems" [popup]="true" styleClass="ws-user-menu" [pt]="userMenuPT" />
-                    <button class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white text-[#3d0e61] text-sm font-bold cursor-pointer border-0 hover:bg-white/90" (click)="userMenu.toggle($event)">{{ getInitials() }}</button>
+                    <p-menu #userMenu [model]="dropdownItems()" [popup]="true" styleClass="ws-user-menu" [pt]="userMenuPT" />
+                    <button class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white text-[#3d0e61] text-sm font-bold cursor-pointer border-0 hover:bg-white/90" (click)="userMenu.toggle($event)">{{ initials() }}</button>
                 }
                 @if (showLoginButton()) {
                     <button class="bg-white text-[#3d0e61] border-0 rounded-md py-0.5 px-2 text-base font-semibold cursor-pointer ml-3 hover:bg-white/90" (click)="login()">{{ 'ws_ui.header.login' | translate }}</button>
@@ -26,7 +26,7 @@
 
 <ng-template #subMenuDefaultTemplate>
     <div class="ws-submenu-container">
-        <p-menu [model]="getSubMenuItems(getActiveParentMenu()) | wsMenuAccessFilter: isLoggedIn: userRoles()"
+        <p-menu [model]="subMenuItems() | wsMenuAccessFilter: isLoggedIn(): userRoles()"
                 [global]="false"
                 styleClass="w-full">
         </p-menu>
@@ -34,13 +34,13 @@
 </ng-template>
 
 <div class="ws-header">
-    <ng-container *ngTemplateOutlet="menuTemplate ?? menuDefaultTemplate" />
+    <ng-container *ngTemplateOutlet="menuTemplate() ?? menuDefaultTemplate" />
 </div>
 
-@if (hasSubMenuItems(getActiveParentMenu())) {
+@if (hasSubMenu()) {
     <div class="ws-navbar-sub hidden md:block">
         <div class="max-w-screen-xl mx-auto px-4">
-            <ng-container *ngTemplateOutlet="subMenuTemplate ?? subMenuDefaultTemplate" />
+            <ng-container *ngTemplateOutlet="subMenuTemplate() ?? subMenuDefaultTemplate" />
         </div>
     </div>
 }

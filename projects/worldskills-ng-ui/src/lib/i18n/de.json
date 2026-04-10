@@ -86,10 +86,23 @@
             "certificate_dropbox_path": "Dropbox-Pfad",
             "certificate_type": "Zertifikatstyp",
             "generate_id": "Neue ID generieren",
-            "delete_confirm": "Sind Sie sicher, dass Sie diese Auszeichnung löschen möchten?"
+            "delete_confirm": "Sind Sie sicher, dass Sie diese Auszeichnung löschen möchten?",
+            "certificate_type_digital": "Digital",
+            "certificate_type_print": "Druck"
         },
         "entity_tree_select": {
             "placeholder": "Entität auswählen..."
+        },
+        "tree_select": {
+            "search": "Suchen...",
+            "no_results": "Keine Ergebnisse gefunden"
+        },
+        "resources": {
+            "download": "Herunterladen",
+            "download_all": "Alle herunterladen",
+            "zipping": "Wird komprimiert...",
+            "download_error": "Download fehlgeschlagen. Bitte versuchen Sie es erneut.",
+            "no_resources": "Keine Ressourcen."
         }
     }
 }
