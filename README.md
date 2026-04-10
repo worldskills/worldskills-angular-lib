@@ -111,7 +111,7 @@ Story files live in `projects/worldskills-ng-tester-prime/src/stories/`. Create 
 The `worldskills-ng-tester-prime` app is used to test components in a real Angular application context (outside Storybook).
 
 ```bash
-ng serve
+ng serve worldskills-ng-tester-prime
 ```
 
 Navigate to `http://localhost:4200/`.

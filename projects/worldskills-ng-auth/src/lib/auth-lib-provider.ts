@@ -2,7 +2,7 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { AuthLibConfig,LIBRARY_CONFIG } from './auth-lib-config';
 
-export function provideLibraryConfig(config: AuthLibConfig): EnvironmentProviders {
+export function provideWsNgAuth(config: AuthLibConfig): EnvironmentProviders {
   return makeEnvironmentProviders([
     {
       provide: LIBRARY_CONFIG,

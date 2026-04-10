@@ -9,7 +9,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { wsHttpInterceptor } from '@worldskills/ng-ui';
-import { provideLibraryConfig } from '@worldskills/ng-auth';
+import { provideWsNgAuth } from '@worldskills/ng-auth';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { routes } from './app.routes';
 import { appConfig as wsAppConfig, serviceConfig, oAuthConfig } from './app.settings';
@@ -25,7 +25,7 @@ export const appConfig: ApplicationConfig = {
     ...provideTranslateHttpLoader(),
     provideWsNgUiTranslations(),
     MessageService,
-    provideLibraryConfig({
+    provideWsNgAuth({
       auth: oAuthConfig,
       api: serviceConfig,
       app: wsAppConfig,

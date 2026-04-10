@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from '../models/user';
@@ -20,6 +20,7 @@ export class NgAuthService {
     private config = inject(LIBRARY_CONFIG);
     private oAuthService = inject(OAuthService);
     private authService = inject(AuthService);
+    private ngZone = inject(NgZone);
 
     private _currentUser = new BehaviorSubject<User>(null);
     readonly currentUser$ = this._currentUser.asObservable();
@@ -40,6 +41,8 @@ export class NgAuthService {
             disableNonceCheck: true,
             disableOAuth2StateCheck: true,
         }).then(() => {});
+
+        this.listenForVisibilityChange();
     }
 
     public keepAlive(): Observable<any> {
@@ -89,5 +92,19 @@ export class NgAuthService {
         sessionStorage.removeItem(USER_CURRENT_KEY);
         this.oAuthService.logOut();
         this._currentUser.next(null);
+    }
+
+    private listenForVisibilityChange(): void {
+        // Run outside Angular zone to avoid triggering change detection on every visibility event
+        this.ngZone.runOutsideAngular(() => {
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && this.isLoggedIn()) {
+                    // Ping the server to verify the session is still valid.
+                    // If it returns a 401, the HTTP interceptor clears the session.
+                    // Run the subscription inside the zone so the UI updates.
+                    this.ngZone.run(() => this.keepAlive());
+                }
+            });
+        });
     }
 }

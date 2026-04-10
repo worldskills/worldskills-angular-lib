@@ -59,6 +59,17 @@
 
 ## @worldskills/ng-auth
 
+### 3.1.0 — Session Validation & Provider Rename
+
+**Session validation**
+- `NgAuthService` now listens for `visibilitychange` events — when the user returns to the tab, `ping()` verifies the server-side session is still valid
+- If the session has expired, the 401 interceptor clears the stale token and `keepAlive()` triggers `logout()`, updating the UI to logged-out state
+
+**Renamed provider**
+- `provideLibraryConfig()` renamed to `provideWsNgAuth()` for consistency with `provideWsNgUi()`
+
+---
+
 ### 3.0.0 — Service Overhaul & Async Guard
 
 **Breaking changes**
