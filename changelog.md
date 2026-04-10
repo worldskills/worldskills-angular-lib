@@ -2,6 +2,29 @@
 
 ## @worldskills/ng-ui
 
+### 1.4.0 — Navigation & UX Polish
+
+**Header**
+- Removed dropdown flyouts from top-level menu items — sub-items now live exclusively in the horizontal sub-menu bar
+- Sub-menu bar styled as a lighter purple (`#5a1a8a`) extension of the header for visual continuity
+- Active menu indicator now reactive — tracks route changes via signal, updates immediately on navigation
+- Active sub-menu item highlighted with white bottom border and bold text
+- Hidden and role-gated sub-menu items now properly filtered via `isMenuItemVisible`
+
+**Breadcrumb**
+- Link color updated to `--blue` (`#0E779F`) with `--blue-dark` (`#003764`) on hover for better contrast
+- Separator chevrons lightened with reduced opacity
+- Current (last) breadcrumb item uses `font-weight: 600` and darker color
+- Added `focus-visible` outline for keyboard navigation accessibility
+
+**Footer**
+- Links now use info blue (`#00BBE6`) on the dark background for better visibility
+
+**Typography**
+- All headings (`h1`–`h6`) now use Inria Serif, the WorldSkills brand serif font
+
+---
+
 ### 1.3.1 — Header Menu Spacing
 
 - Added 5px horizontal padding to top-level menu items for better visual spacing

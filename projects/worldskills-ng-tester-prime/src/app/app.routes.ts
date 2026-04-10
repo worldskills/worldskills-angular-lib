@@ -1,4 +1,3 @@
-// projects/.../src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { GuardService, AuthGuardAccess } from '@worldskills/ng-auth';
 
@@ -12,19 +11,70 @@ const secretRoles: AuthGuardAccess[] = [
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
+    data: { breadcrumb: 'Home' }
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./about/about.component').then(m => m.AboutComponent),
+    data: { breadcrumb: 'About' }
+  },
+  {
+    path: 'settings',
+    data: { breadcrumb: 'Settings' },
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent),
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./settings/profile/profile.component').then(m => m.ProfileComponent),
+        data: { breadcrumb: 'Profile' }
+      },
+      {
+        path: 'preferences',
+        loadComponent: () => import('./settings/preferences/preferences.component').then(m => m.PreferencesComponent),
+        data: { breadcrumb: 'Preferences' }
+      },
+    ]
+  },
+  {
+    path: 'admin',
+    data: { breadcrumb: 'Admin' },
+    canActivate: [GuardService],
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent),
+        data: { roles: adminRoles }
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./admin/users/users.component').then(m => m.UsersComponent),
+        canActivate: [GuardService],
+        data: { breadcrumb: 'Users', roles: adminRoles }
+      },
+      {
+        path: 'logs',
+        loadComponent: () => import('./admin/logs/logs.component').then(m => m.LogsComponent),
+        canActivate: [GuardService],
+        data: { breadcrumb: 'Logs', roles: adminRoles }
+      },
+    ]
+  },
   {
     path: 'secret',
     loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
     canActivate: [GuardService],
-    data: { roles: secretRoles }
+    data: { breadcrumb: 'Secret', roles: secretRoles }
   },
   {
-    path: 'admin/logs',
-    loadComponent: () => import('./admin/logs/logs.component').then(m => m.LogsComponent),
-    canActivate: [GuardService],
-    data: { roles: adminRoles }
+    path: 'not-authorized',
+    loadComponent: () => import('./not-authorized/not-authorized.component').then(m => m.NotAuthorizedComponent),
+    data: { breadcrumb: 'Not Authorized' }
   },
-  { path: 'not-authorized', loadComponent: () => import('./not-authorized/not-authorized.component').then(m => m.NotAuthorizedComponent) },
   { path: '**', redirectTo: '/home' }
 ];

@@ -26,7 +26,7 @@
 
 <ng-template #subMenuDefaultTemplate>
     <div class="ws-submenu-container">
-        <p-menu [model]="subMenuItems() | wsMenuAccessFilter: isLoggedIn(): userRoles()"
+        <p-menu [model]="subMenuItems()"
                 [global]="false"
                 styleClass="w-full">
         </p-menu>

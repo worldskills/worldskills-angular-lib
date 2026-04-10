@@ -1,5 +1,7 @@
-import { Component, TemplateRef, computed, inject, input, output } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, TemplateRef, computed, inject, input, output, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs/operators';
 import { Role, User } from '@worldskills/ng-auth';
 import { GenericUtil } from '../../../lib/common/util/generic.util';
 import { MenuItem } from '../menu-item';
@@ -26,6 +28,16 @@ export class HeaderComponent {
 
   private readonly translate = inject(TranslateService, { optional: true });
   private readonly router = inject(Router);
+
+  /** Reactive current URL — updates on every navigation. */
+  private readonly currentUrl = signal(this.router.url);
+
+  constructor() {
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      takeUntilDestroyed(),
+    ).subscribe((e: NavigationEnd) => this.currentUrl.set(e.urlAfterRedirects));
+  }
 
   // ── Inputs ────────────────────────────────────────────────────────────────
   appName = input<string>('Application');
@@ -57,9 +69,7 @@ export class HeaderComponent {
         label: item.label,
         routerLink: item.url,
         queryParams: item.params,
-        items: item.subMenuItems
-          ?.filter(s => this.isMenuItemVisible(s))
-          .map(s => ({ label: s.label, routerLink: s.url, queryParams: s.params })),
+        styleClass: this.isRouteActive(item) ? 'ws-menubar-active' : '',
       }))
   );
 
@@ -91,13 +101,14 @@ export class HeaderComponent {
   );
 
   activeParentMenu = computed<MenuItem | undefined>(() => {
+    const url = this.currentUrl();
     const items = this.menuItems();
-    let parent = items.find(item => item.url === this.router.url);
+    let parent = items.find(item => item.url === url);
     if (GenericUtil.isNullOrUndefined(parent)) {
       items.filter(item => !GenericUtil.isNullOrUndefined(item.subMenuItems))
         .forEach(item => {
           if (GenericUtil.isNullOrUndefined(parent)) {
-            const match = item.subMenuItems.find(sub => sub.url === this.router.url);
+            const match = item.subMenuItems.find(sub => sub.url === url);
             if (!GenericUtil.isNullOrUndefined(match)) parent = item;
           }
         });
@@ -107,12 +118,22 @@ export class HeaderComponent {
 
   hasSubMenu = computed<boolean>(() => !GenericUtil.isNullOrUndefined(this.activeParentMenu()?.subMenuItems));
 
-  subMenuItems = computed<MenuItem[]>(() => this.activeParentMenu()?.subMenuItems ?? []);
+  subMenuItems = computed<PrimeMenuItem[]>(() =>
+    (this.activeParentMenu()?.subMenuItems ?? [])
+      .filter(item => this.isMenuItemVisible(item))
+      .map(item => ({
+        label: item.label,
+        routerLink: item.url,
+        queryParams: item.params,
+        styleClass: item.url === this.currentUrl() ? 'ws-submenu-active' : '',
+      }))
+  );
 
   // ── Methods ───────────────────────────────────────────────────────────────
 
   isRouteActive(item: MenuItem): boolean {
-    return item.url === this.router.url || item?.subMenuItems?.some(sub => sub.url === this.router.url);
+    const url = this.currentUrl();
+    return item.url === url || item?.subMenuItems?.some(sub => sub.url === url);
   }
 
   login(): void {

@@ -1,19 +1,26 @@
 .ws-breadcrumb-link {
-  color: var(--p-primary-color);
+  color: var(--blue, #0E779F);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .ws-breadcrumb-link:hover {
-  color: var(--p-primary-hover-color);
+  color: var(--blue-dark, #003764);
   text-decoration: underline;
 }
 
+.ws-breadcrumb-link:focus-visible {
+  outline: 2px solid var(--blue, #0E779F);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .ws-breadcrumb-separator {
-  color: var(--p-text-muted-color);
+  color: var(--secondary, #878787);
+  opacity: 0.6;
 }
 
 .ws-breadcrumb-current {
-  color: var(--p-text-muted-color);
-  font-weight: 500;
+  color: var(--dark, #434343);
+  font-weight: 600;
 }

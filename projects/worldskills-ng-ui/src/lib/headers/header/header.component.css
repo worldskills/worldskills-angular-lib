@@ -36,6 +36,59 @@
     );
 }
 
+/* Active menu item — bottom border indicator */
+:host ::ng-deep .ws-menubar-active > .p-menubar-item-content {
+    border-bottom: 2px solid #ffffff;
+}
+
+/* Focus styles for keyboard navigation */
+:host ::ng-deep .p-menubar-item-content:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: -2px;
+    border-radius: 4px;
+}
+
+/* Sub-menu bar — horizontal layout below header */
+.ws-navbar-sub {
+    background-color: #5a1a8a;
+    border-bottom: none;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-item-content {
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s, background-color 0.2s;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-item-content .p-menu-item-label {
+    color: inherit;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-item-content:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Active sub-menu item — bold with bottom border */
+:host ::ng-deep .ws-submenu-active > .p-menu-item-content {
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    background: transparent !important;
+}
+
 /* Submenu item padding — match user dropdown */
 :host ::ng-deep .p-menubar-submenu .p-menubar-item-content {
     padding: 0.5rem 1rem;

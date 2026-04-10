@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { FooterComponent, HeaderComponent, WsToastComponent } from '@worldskills/ng-ui';
+import { BreadcrumbComponent, FooterComponent, HeaderComponent, WsToastComponent } from '@worldskills/ng-ui';
 import type { MenuItem } from "@worldskills/ng-ui";
 import { NgAuthService, RedirectHandler, User } from "@worldskills/ng-auth";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, HeaderComponent, WsToastComponent],
+  imports: [RouterOutlet, FooterComponent, HeaderComponent, BreadcrumbComponent, WsToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -69,7 +69,7 @@ export class AppComponent {
     {
       label: "Not Authorized",
       url: "/not-authorized",
-      hidden: false,
+      hidden: true,
       requireLogin: false,
       requiredRoles: [],
     },
