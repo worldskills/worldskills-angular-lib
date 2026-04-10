@@ -2,6 +2,12 @@
 
 ## @worldskills/ng-ui
 
+### 1.3.1 — Header Menu Spacing
+
+- Added 5px horizontal padding to top-level menu items for better visual spacing
+
+---
+
 ### 1.3.0 — Brand Fonts & Header Layout
 
 **Typography**

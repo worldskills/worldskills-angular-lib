@@ -123,6 +123,7 @@ export class HeaderComponent {
 
   readonly menubarPT = {
     start: { class: 'flex-1 flex items-center p-2' },
+    itemContent: { style: { 'padding-left': '5px', 'padding-right': '5px' } },
     submenu: {
       class: 'min-w-[10rem]',
       style: {
