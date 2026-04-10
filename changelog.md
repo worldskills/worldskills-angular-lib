@@ -2,36 +2,40 @@
 
 ## @worldskills/ng-ui
 
-### 1.5.1 — Dialog & Alert Polish
-- Dialog: added header/content padding (`1.25rem 1.5rem`), subtle header-content separator border
-- Dialog: disabled auto-focus on close button (`focusOnShow: false`)
-- Alert: added 5px horizontal padding to message text, close button right-aligned via `margin-left: auto`
+### 1.5.0 — Data Table, Announcements, Navigation & Bug Fixes
 
-### 1.5.0 — Data Table Component
-- New `WsDataTableComponent` with virtual scroll, inline editing, modal editing, and delete confirmation
-- Global search bar and per-column filters (text, numeric, date)
-- Lazy mode for server-side filtering, sorting, and pagination via `(lazyLoad)` event
-- Configurable via `WsColumn` interface: `filterable`, `filterType`, `editable`, `editType`, `sortable`
-- Custom `deleteMessage` function input for contextual delete confirmations
-- Exported `WsColumn`, `WsEditMode`, `WsLazyLoadEvent` types
+**New components**
+- `WsDataTableComponent` — virtual scroll, inline/modal editing, delete confirmation, global + per-column filters, lazy mode for server-side sort/filter/pagination
+- `WsAnnouncementComponent` — long-form alert with HTML support, truncation with gradient fade, "Read more" toggle, close button, 4 severity variants
 
-### 1.4.1
-- Fixed tree select search icon/placeholder misalignment
-
-### 1.4.0 — Navigation & UX Polish
+**Navigation & layout**
 - Header: removed dropdown flyouts, sub-items render in horizontal sub-menu bar (lighter purple)
-- Header: active menu indicator now reactive via signal, sub-menu active state with bottom border
-- Breadcrumb: improved link contrast (`--blue`/`--blue-dark`), lighter separators, bold current item, focus-visible outlines
+- Header: active menu indicator reactive via signal, sub-menu active state with bottom border
+- Header: content constrained to `max-w-screen-xl`, full-width purple background, menu item spacing
+- Breadcrumb: improved link contrast, lighter separators, bold current item, focus-visible outlines
 - Footer: links use info blue on dark background
-- Typography: headings use Inria Serif
 
-### 1.3.1
-- Added 5px horizontal padding to top-level menu items
+**Typography & fonts**
+- Added `fonts.css` (Inter + Inria Serif) and `theme.css` (Tailwind `@theme` overrides)
+- Headings use Inria Serif, body uses Inter
 
-### 1.3.0 — Brand Fonts & Header Layout
-- Added `fonts.css` (Inter + Inria Serif) and `theme.css` (Tailwind `@theme` overrides) — client apps import these for font control
-- Header content constrained to `max-w-screen-xl` with full-width purple background
-- App name sized to match wordmark
+**Dialog & alert polish**
+- Dialog: header/content padding, header-content separator, disabled auto-focus on close button
+- Alert: horizontal padding, close button right-aligned
+- Tree select: search icon/placeholder alignment, `aria-label` for accessibility
+
+**Bug fixes & hardening**
+- `ChangeDetectionStrategy.OnPush` added to all 27 components
+- Footer: replaced browser `alert()` with `WsAlertService.info()` toast
+- UploadService: `listen()` now returns `Subscription` for caller cleanup
+- Interceptor: dispatches `ws-session-expired` event on 401 for immediate UI updates
+- Header: null-safe user name in dropdown
+- Data table: `onRowEditCancel` now correctly reverts row to original values
+- Spinner: guards against `interval <= 0`
+- i18n input/textarea: validates sessionStorage lang against known language codes
+- Poll components: replaced unsafe `as string[]` cast with `.map(String)`
+- Clipboard util: dev-mode warning for deprecated `execCommand` fallback
+- Removed `!important` from header CSS via higher-specificity selector
 
 ### 1.2.0 — Role-based Menu Access & 401 Handling
 - `MenuItem.requiredRoles` extended with `MenuRole` type: supports plain strings, blanket roles (`entityId: null`), and entity-specific roles
