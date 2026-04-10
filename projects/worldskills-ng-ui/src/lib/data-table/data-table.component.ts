@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output, signal, TemplateRef } from '@angular/core';
+import { Component, computed, inject, input, output, signal, TemplateRef , ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgTemplateOutlet } from '@angular/common';
 import { TableModule, TableLazyLoadEvent } from 'primeng/table';
@@ -13,6 +13,7 @@ import { WsColumn, WsEditMode, WsLazyLoadEvent } from './data-table.model';
 import { WsConfirmService } from '../dialog/confirm.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-data-table',
   standalone: true,
   imports: [
@@ -119,11 +120,10 @@ export class WsDataTableComponent {
     this.editingCopy.set(null);
   }
 
-  onRowEditCancel(row: any, index: number): void {
+  onRowEditCancel(row: any, _index: number): void {
     const copy = this.editingCopy();
     if (copy) {
-      const rows = [...this.rows()];
-      rows[index] = copy;
+      Object.assign(row, copy);
     }
     this.editingCopy.set(null);
   }

@@ -82,11 +82,12 @@
 }
 
 /* Active sub-menu item — bold with bottom border */
-:host ::ng-deep .ws-submenu-active > .p-menu-item-content {
+:host ::ng-deep .ws-submenu-container .ws-submenu-active > .p-menu-item-content,
+:host ::ng-deep .ws-submenu-container .ws-submenu-active > .p-menu-item-content:hover {
     border-bottom: 2px solid #ffffff;
     color: #ffffff;
     font-weight: 600;
-    background: transparent !important;
+    background: transparent;
 }
 
 /* Submenu item padding — match user dropdown */

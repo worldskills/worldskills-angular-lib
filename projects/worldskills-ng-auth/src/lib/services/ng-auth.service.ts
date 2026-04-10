@@ -43,6 +43,7 @@ export class NgAuthService {
         }).then(() => {});
 
         this.listenForVisibilityChange();
+        this.listenForSessionExpiry();
     }
 
     public keepAlive(): Observable<any> {
@@ -104,6 +105,18 @@ export class NgAuthService {
                     // Run the subscription inside the zone so the UI updates.
                     this.ngZone.run(() => this.keepAlive());
                 }
+            });
+        });
+    }
+
+    private listenForSessionExpiry(): void {
+        // The HTTP interceptor dispatches 'ws-session-expired' on 401 from the API.
+        // Clear auth state immediately so the UI updates without waiting for a ping.
+        this.ngZone.runOutsideAngular(() => {
+            window.addEventListener('ws-session-expired', () => {
+                this.ngZone.run(() => {
+                    this._currentUser.next(null);
+                });
             });
         });
     }

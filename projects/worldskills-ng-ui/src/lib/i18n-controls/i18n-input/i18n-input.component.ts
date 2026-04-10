@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input, signal, OnInit } from '@angular/core';
+import { Component, computed, forwardRef, input, signal, OnInit , ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
@@ -11,6 +11,7 @@ export interface I18nLangOption {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-i18n-input',
   templateUrl: './i18n-input.component.html',
   standalone: true,
@@ -50,7 +51,9 @@ export class WsI18nInputComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit(): void {
     const stored = sessionStorage.getItem('lang');
-    if (stored) this.currentCode.set(stored);
+    if (stored && LangUtil.getDefaultLanguages().some(l => l.code === stored)) {
+      this.currentCode.set(stored);
+    }
     this.syncText();
   }
 

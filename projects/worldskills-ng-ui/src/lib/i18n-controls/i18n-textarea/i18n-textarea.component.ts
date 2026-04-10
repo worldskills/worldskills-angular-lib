@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input, signal, OnInit } from '@angular/core';
+import { Component, computed, forwardRef, input, signal, OnInit , ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
 import { SelectModule } from 'primeng/select';
@@ -7,6 +7,7 @@ import { LangUtil } from '../../common/util/lang.util';
 import { I18nLangOption } from '../i18n-input/i18n-input.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-i18n-textarea',
   templateUrl: './i18n-textarea.component.html',
   standalone: true,
@@ -47,7 +48,9 @@ export class WsI18nTextareaComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit(): void {
     const stored = sessionStorage.getItem('lang');
-    if (stored) this.currentCode.set(stored);
+    if (stored && LangUtil.getDefaultLanguages().some(l => l.code === stored)) {
+      this.currentCode.set(stored);
+    }
     this.syncText();
   }
 

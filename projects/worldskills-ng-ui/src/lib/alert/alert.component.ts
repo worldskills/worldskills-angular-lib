@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input , ChangeDetectionStrategy } from '@angular/core';
 import { MessageModule } from 'primeng/message';
 import { AlertSeverity } from './alert.service';
 
@@ -9,6 +9,7 @@ import { AlertSeverity } from './alert.service';
  *   <ws-ng-ui-alert severity="warn" title="Heads up" message="This is a warning." />
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-alert',
   template: `
     <p-message

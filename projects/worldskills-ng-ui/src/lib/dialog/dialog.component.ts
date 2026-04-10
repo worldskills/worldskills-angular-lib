@@ -1,9 +1,10 @@
-import { Component, ContentChild, input, model, TemplateRef } from '@angular/core';
+import { Component, ContentChild, input, model, TemplateRef , ChangeDetectionStrategy } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css'],

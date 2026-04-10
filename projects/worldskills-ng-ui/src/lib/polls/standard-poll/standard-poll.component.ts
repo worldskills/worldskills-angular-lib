@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, output, signal } from '@angular/core';
+import { Component, computed, effect, input, output, signal , ChangeDetectionStrategy } from '@angular/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
 import { Poll } from '../models/poll';
@@ -8,6 +8,7 @@ import { PollOption } from '../models/option';
 import { OptionHandler } from '../models/option-handler';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-standard-poll',
   standalone: true,
   imports: [RadioButtonModule, FormsModule],

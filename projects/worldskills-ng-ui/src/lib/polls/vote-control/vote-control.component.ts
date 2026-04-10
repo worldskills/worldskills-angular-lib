@@ -1,5 +1,5 @@
 import {
-  Component, computed, effect, inject, input, output, signal, TemplateRef,
+  ChangeDetectionStrategy, Component, computed, effect, inject, input, output, signal, TemplateRef,
 } from '@angular/core';
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -23,6 +23,7 @@ import { PollResultComponent } from '../poll-result/poll-result.component';
 type PollState = 'running' | 'not-started' | 'expired';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-vote-control',
   standalone: true,
   imports: [

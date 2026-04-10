@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpEvent, HttpRequest, HttpProgressEvent, HttpResponse, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +18,18 @@ export class UploadService {
     return new HttpRequest(method, url, data, options);
   }
 
-  // Full list of events: https://angular.io/api/common/http/HttpEventType
-  // event specific classes: https://angular.io/api/common/http/HttpEvent#description
+  /**
+   * Returns the Subscription so the caller can unsubscribe if needed.
+   */
   public listen<T>(
     request: HttpRequest<FormData>,
     onProgress: (progress: HttpProgressEvent) => void,
     onComplete: (response: HttpResponse<T>) => void,
     onError?: (error: HttpErrorResponse) => void,
-  ): void {
+  ): Subscription {
 
-    this.http.request(request).subscribe(
-      (event: HttpEvent<T>) => {
+    return this.http.request(request).subscribe({
+      next: (event: HttpEvent<T>) => {
         switch (event.type) {
           case HttpEventType.UploadProgress:
             onProgress(event as HttpProgressEvent);
@@ -37,11 +39,11 @@ export class UploadService {
             break;
         }
       },
-      (error: HttpErrorResponse) => {
+      error: (error: HttpErrorResponse) => {
         if (onError) {
           onError(error);
         }
       }
-    );
+    });
   }
 }

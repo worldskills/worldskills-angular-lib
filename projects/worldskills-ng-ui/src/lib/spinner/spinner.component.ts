@@ -1,8 +1,9 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, input, signal , ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ws-ng-ui-spinner',
     templateUrl: './spinner.component.html',
     styleUrls: ['./spinner.component.css'],
@@ -34,7 +35,7 @@ export class SpinnerComponent {
 
             this.currentMessage.set(this.resolveMessage());
 
-            if (!messages || messages.length <= 1) return;
+            if (!messages || messages.length <= 1 || interval <= 0) return;
 
             let index = 0;
             const timer = setInterval(() => {

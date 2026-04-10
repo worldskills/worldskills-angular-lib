@@ -58,6 +58,7 @@ export const wsHttpInterceptor: HttpInterceptorFn = (req, next) => {
           sessionStorage.removeItem('token');
           sessionStorage.removeItem('nonce');
           sessionStorage.removeItem('user.current');
+          window.dispatchEvent(new CustomEvent('ws-session-expired'));
         }
       }
     })

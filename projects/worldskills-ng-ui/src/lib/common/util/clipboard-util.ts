@@ -20,8 +20,12 @@ export class ClipboardUtil {
     return !!(navigator.clipboard && window.isSecureContext);
   }
 
+  /** @deprecated execCommand('copy') is deprecated. This fallback is used only in non-secure (HTTP) contexts. */
   private static execCommandFallback(value: string): boolean {
     try {
+      if (typeof ngDevMode === 'undefined' || ngDevMode) {
+        console.warn('ClipboardUtil: using deprecated execCommand fallback. Serve over HTTPS for Clipboard API support.');
+      }
       const textarea = document.createElement('textarea');
       textarea.value = value;
       textarea.style.cssText = 'position:fixed;left:-999999px;top:-999999px;opacity:0';

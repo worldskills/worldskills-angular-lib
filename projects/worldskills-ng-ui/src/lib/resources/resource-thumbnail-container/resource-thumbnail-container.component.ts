@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, signal , ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -9,6 +9,7 @@ import { WsAlertService } from '../../alert/alert.service';
 import { ResourceThumbnailComponent, ResourceThumbnail } from '../resource-thumbnail/resource-thumbnail.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-resource-thumbnail-container',
   standalone: true,
   imports: [ButtonModule, TranslatePipe, ResourceThumbnailComponent],

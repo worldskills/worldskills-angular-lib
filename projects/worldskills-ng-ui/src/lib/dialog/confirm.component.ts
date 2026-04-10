@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , ChangeDetectionStrategy } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 /**
@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
  *   providers: [ConfirmationService]
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-confirm',
   template: `<p-confirmDialog styleClass="ws-confirm-dialog" />`,
   styleUrls: ['./confirm.component.css'],

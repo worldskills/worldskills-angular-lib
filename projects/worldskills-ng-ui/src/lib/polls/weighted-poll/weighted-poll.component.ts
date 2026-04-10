@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal , ChangeDetectionStrategy } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { PollOption } from '../models/option';
 import { OptionHandler } from '../models/option-handler';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-weighted-poll',
   standalone: true,
   imports: [SelectModule, FormsModule],
@@ -64,7 +65,7 @@ export class WeightedPollComponent {
   }
 
   onChange(newValue: string, index: number): void {
-    const updated = this.optionHandler().onOptionSelect(this.poll().type, this.selections(), newValue, index) as string[];
+    const updated = this.optionHandler().onOptionSelect(this.poll().type, this.selections(), newValue, index).map(String);
     this.selections.set(updated);
     if (newValue === '0') {
       this.optionSelected.emit([]);

@@ -12,6 +12,7 @@ import {
   signal,
   TemplateRef,
   untracked,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgTemplateOutlet } from '@angular/common';
@@ -29,6 +30,7 @@ import { TreeSelectNode } from './tree-select-node';
 export type TreeSelectMode = 'single' | 'multiple' | 'checkbox';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-tree-select',
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.css'],

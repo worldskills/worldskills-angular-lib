@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal , ChangeDetectionStrategy } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -14,6 +14,7 @@ import { WsConfirmService } from '../../dialog/confirm.service';
 type RecipientAward = PersonAward | MemberAward | OrganizationAward;
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-recipient-award-list',
   standalone: true,
   imports: [

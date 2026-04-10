@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input , ChangeDetectionStrategy } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FileUtil } from '../../common/util/file.util';
@@ -13,6 +13,7 @@ export interface ResourceThumbnail {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-resource-thumbnail',
   standalone: true,
   imports: [ButtonModule, TranslatePipe],

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input , ChangeDetectionStrategy } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 
 /**
@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
  * Use [key] to target a specific toast instance (e.g. page-level vs global).
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-toast',
   template: `
     <p-toast

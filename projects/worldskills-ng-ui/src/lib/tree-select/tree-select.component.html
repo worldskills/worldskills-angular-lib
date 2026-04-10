@@ -38,6 +38,8 @@
             type="text"
             class="w-full text-sm"
             style="padding-left: 2.5rem"
+            aria-label="Search"
+            role="searchbox"
             [placeholder]="'ws_ui.tree_select.search' | translate"
             [value]="term()"
             (input)="onTermChange($any($event.target).value)"

@@ -1,4 +1,4 @@
-import { Component, TemplateRef, computed, inject, input, output, signal } from '@angular/core';
+import { Component, TemplateRef, computed, inject, input, output, signal , ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
@@ -15,6 +15,7 @@ import { WordmarkComponent } from '../../logos/wordmark/wordmark.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-header',
   imports: [
     MenuAccessPipe, NgTemplateOutlet,

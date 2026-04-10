@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input , ChangeDetectionStrategy } from '@angular/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { Track } from '../models/track';
 import { OptionResultView } from '../models/option-result-view';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-poll-result',
   standalone: true,
   imports: [TooltipModule, ProgressBarModule, TranslatePipe],

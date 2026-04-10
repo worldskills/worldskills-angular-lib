@@ -1,5 +1,5 @@
 import {
-  Component, DestroyRef, effect, forwardRef, inject, input, model, output, signal,
+  ChangeDetectionStrategy, Component, DestroyRef, effect, forwardRef, inject, input, model, output, signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { TreeSelectNode } from '../tree-select/tree-select-node';
 import { EntityService } from './entity.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-entity-tree-select',
   standalone: true,
   imports: [TreeSelectComponent, TranslatePipe],

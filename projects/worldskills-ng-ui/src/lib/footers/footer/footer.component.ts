@@ -1,4 +1,4 @@
-import { Component, input, output, TemplateRef, inject, signal } from '@angular/core';
+import { Component, input, output, TemplateRef, inject, signal , ChangeDetectionStrategy } from '@angular/core';
 import { NgTemplateOutlet, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LangUtil } from '../../common/util/lang.util';
@@ -8,10 +8,12 @@ import { UI_LIBRARY_CONFIG } from '../../ui-lib-config';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LogoComponent } from '../../logos/logo/logo.component';
 import { SelectModule } from 'primeng/select';
+import { WsAlertService } from '../../alert/alert.service';
 
 export const MISSING_LANGUAGE_MESSAGE = (email: string) => `Please email us at WorldSkills (${email}) if you are able to help us translate our interface into your language.`;
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ws-ng-ui-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css'],
@@ -20,6 +22,7 @@ export const MISSING_LANGUAGE_MESSAGE = (email: string) => `Please email us at W
 export class FooterComponent {
   private config = inject(UI_LIBRARY_CONFIG);
   private ngxTranslate = inject(TranslateService);
+  private alertService = inject(WsAlertService);
 
   // ── Inputs ────────────────────────────────────────────────────────────────
   isLoggedIn = input<boolean>(false);
@@ -63,6 +66,6 @@ export class FooterComponent {
   }
 
   languagePrompt(): void {
-    alert(MISSING_LANGUAGE_MESSAGE(this.supportEmail));
+    this.alertService.info(MISSING_LANGUAGE_MESSAGE(this.supportEmail));
   }
 }

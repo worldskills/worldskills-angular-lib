@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject, model , ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -7,6 +7,7 @@ import { SelectModule } from 'primeng/select';
 import { RecipientAwardCertificate, RecipientAwardCertificateType } from '../models/recipient-award-certificate';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ws-ng-ui-recipient-award-certificate-form',
   standalone: true,
   imports: [FormsModule, TranslatePipe, ButtonModule, InputTextModule, SelectModule],
