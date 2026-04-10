@@ -2,6 +2,21 @@
 
 ## @worldskills/ng-ui
 
+### 1.3.0 — Brand Fonts & Header Layout
+
+**Typography**
+- Added `fonts.css` with `@font-face` declarations for Inter (sans-serif, 18 variants) and Inria Serif (serif, 6 variants), loaded from `worldskills.org`
+- Added `theme.css` with Tailwind `@theme` overrides: `--font-sans` → Inter, `--font-serif` → Inria Serif
+- Updated `styles.scss` base `html`/`body` font-family to Inter with FrutigerLTW04 fallback
+- Client apps import `fonts.css` and `theme.css` in their own `styles.scss` for full control
+
+**Header**
+- Header content now constrained to `max-w-screen-xl` with `mx-auto` centering, matching the footer layout
+- Purple background extends full width; content is centered within the max-width container
+- App name font size increased to `text-xl` to match the wordmark
+
+---
+
 ### 1.2.0 — Role-based Menu Access & 401 Handling
 
 **Menu access control**

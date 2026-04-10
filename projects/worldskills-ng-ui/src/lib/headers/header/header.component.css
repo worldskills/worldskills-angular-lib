@@ -2,17 +2,21 @@
     display: block;
 
     /* Scope menubar design tokens to this header only */
-    --ws-menubar-background: #3d0e61;
+    --ws-menubar-background: transparent;
     --ws-menubar-border-color: transparent;
     --ws-menubar-border-radius: 0;
     --ws-menubar-color: #ffffff;
-    --ws-menubar-padding: 0.5rem 1rem;
+    --ws-menubar-padding: 0.5rem 0;
     --ws-menubar-item-color: #ffffff;
     --ws-menubar-item-focus-color: #ffffff;
     --ws-menubar-item-active-color: #ffffff;
     --ws-menubar-item-focus-background: rgba(255, 255, 255, 0.1);
     --ws-menubar-item-active-background: rgba(255, 255, 255, 0.15);
 
+}
+
+.ws-header {
+    background-color: #3d0e61;
 }
 
 /* Rainbow ribbon — WorldSkills brand colours */

@@ -92,6 +92,21 @@ export class AppComponent {
           this.redirectHandler.handle({ defaultRoute: ['/home'] });
         }
       }
+
+      // To auto-login on app load (redirect to OIDC if not authenticated),
+      // replace the above block with:
+      //
+      // this.redirectHandler.handle({ defaultRoute: ['/home'] });
+      // if (this.ngAuthService.isLoggedIn()) {
+      //   this.ngAuthService.getLoggedInUser().subscribe();
+      // }
+      //
+      // For apps that need a custom landing page resolved from an API:
+      //
+      // this.redirectHandler.handle({
+      //   defaultRoute: ['/home'],
+      //   resolveLandingPage: () => this.myService.getUserLandingPage(),
+      // });
     });
   }
 

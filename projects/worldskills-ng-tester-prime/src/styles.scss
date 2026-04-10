@@ -1,5 +1,7 @@
 @use "tailwindcss";
 @use "primeicons/primeicons.css";
+@import "../../worldskills-ng-ui/src/lib/styles/fonts.css";
+@import "../../worldskills-ng-ui/src/lib/styles/theme.css";
 @source "../../worldskills-ng-ui/src";
 @layer tailwind-base, primeng, tailwind-utilities;
 @plugin 'tailwindcss-primeui';

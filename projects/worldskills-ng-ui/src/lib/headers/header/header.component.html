@@ -1,7 +1,7 @@
 <ng-template #appNameDefaultTemplate>
     <a routerLink="/" class="inline-flex items-center gap-2 text-white no-underline">
         <ws-ng-ui-wordmark />
-        <span class="font-semibold">{{ appName() }}</span>
+        <span class="font-semibold text-xl">{{ appName() }}</span>
     </a>
 </ng-template>
 
@@ -34,7 +34,9 @@
 </ng-template>
 
 <div class="ws-header">
-    <ng-container *ngTemplateOutlet="menuTemplate() ?? menuDefaultTemplate" />
+    <div class="max-w-screen-xl mx-auto px-4">
+        <ng-container *ngTemplateOutlet="menuTemplate() ?? menuDefaultTemplate" />
+    </div>
 </div>
 
 @if (hasSubMenu()) {
