@@ -74,7 +74,9 @@ export class AppComponent {
       requiredRoles: [],
     },
   ];
-  dropDownMenuItems = [];
+  dropDownMenuItems: MenuItem[] = [
+    { label: "Profile", url: "/profile", hidden: false, requireLogin: true, requiredRoles: [] },
+  ];
 
   constructor() {
     this.ngAuthService.currentUser$.subscribe(user => {

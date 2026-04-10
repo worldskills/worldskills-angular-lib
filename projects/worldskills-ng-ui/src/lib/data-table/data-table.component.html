@@ -1,0 +1,189 @@
+<!-- Toolbar -->
+<div class="flex justify-between items-center mb-3 gap-3">
+  @if (hasAnyFilter()) {
+    <p-iconfield iconPosition="left" class="flex-1 max-w-sm">
+      <p-inputicon><i class="pi pi-search"></i></p-inputicon>
+      <input
+        pInputText
+        type="text"
+        class="w-full text-sm"
+        style="padding-left: 2.5rem"
+        [placeholder]="globalFilterPlaceholder()"
+        [value]="globalFilterValue()"
+        (input)="onGlobalFilter(dt, $any($event.target).value)" />
+    </p-iconfield>
+  }
+  <div class="flex gap-2">
+    @if (globalFilterValue()) {
+      <p-button icon="pi pi-filter-slash" label="Clear" severity="secondary" size="small" (onClick)="clearGlobalFilter(dt)" />
+    }
+    @if (showAdd()) {
+      <p-button icon="pi pi-plus" label="Add" severity="primary" size="small" (onClick)="onAdd()" />
+    }
+  </div>
+</div>
+
+<!-- Data Table -->
+<p-table
+  #dt
+  [value]="rows()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [virtualScroll]="true"
+  [virtualScrollItemSize]="virtualRowHeight()"
+  [totalRecords]="resolvedTotal()"
+  [editMode]="editMode() === 'inline' ? 'row' : 'cell'"
+  [lazy]="lazy()"
+  [globalFilterFields]="resolvedGlobalFilterFields()"
+  (onLazyLoad)="lazy() ? onLazyLoad($event) : null"
+  styleClass="p-datatable-sm"
+  [tableStyle]="{ 'min-width': '50rem' }">
+
+  <!-- Header -->
+  <ng-template pTemplate="header">
+    <tr>
+      @for (col of columns(); track col.field) {
+        <th [style.width]="col.width ?? 'auto'" [pSortableColumn]="col.sortable && sortable() ? col.field : null">
+          {{ col.header }}
+          @if (col.sortable && sortable()) {
+            <p-sortIcon [field]="col.field" />
+          }
+        </th>
+      }
+      @if (editMode() !== 'none' || showDelete() || actionsTemplate()) {
+        <th style="width: 8rem; text-align: center">Actions</th>
+      }
+    </tr>
+
+    <!-- Column filter row -->
+    @if (filterable()) {
+      <tr>
+        @for (col of columns(); track col.field) {
+          <th>
+            @if (col.filterable) {
+              @switch (col.filterType ?? 'text') {
+                @case ('numeric') {
+                  <p-columnFilter [field]="col.field" matchMode="equals" [showMenu]="false">
+                    <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
+                      <input pInputText type="number" class="w-full text-sm" [ngModel]="value" (ngModelChange)="filterCallback($event)" placeholder="Filter..." />
+                    </ng-template>
+                  </p-columnFilter>
+                }
+                @case ('date') {
+                  <p-columnFilter [field]="col.field" matchMode="dateIs" [showMenu]="false">
+                    <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
+                      <p-datepicker [ngModel]="value" (ngModelChange)="filterCallback($event)" dateFormat="yy-mm-dd" appendTo="body" placeholder="Filter..." styleClass="w-full" />
+                    </ng-template>
+                  </p-columnFilter>
+                }
+                @default {
+                  <p-columnFilter [field]="col.field" matchMode="contains" [showMenu]="false">
+                    <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
+                      <input pInputText type="text" class="w-full text-sm" [ngModel]="value" (ngModelChange)="filterCallback($event)" placeholder="Filter..." />
+                    </ng-template>
+                  </p-columnFilter>
+                }
+              }
+            }
+          </th>
+        }
+        @if (editMode() !== 'none' || showDelete() || actionsTemplate()) {
+          <th></th>
+        }
+      </tr>
+    }
+  </ng-template>
+
+  <!-- Body -->
+  <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="editMode() === 'inline' ? row : null">
+      @for (col of columns(); track col.field) {
+        <td>
+          @if (editMode() === 'inline' && col.editable) {
+            <p-cellEditor>
+              <ng-template pTemplate="output">{{ row[col.field] }}</ng-template>
+              <ng-template pTemplate="input">
+                @switch (col.editType ?? 'text') {
+                  @case ('number') {
+                    <input pInputText type="number" [(ngModel)]="row[col.field]" class="w-full text-sm" />
+                  }
+                  @case ('date') {
+                    <p-datepicker [(ngModel)]="row[col.field]" dateFormat="yy-mm-dd" appendTo="body" />
+                  }
+                  @default {
+                    <input pInputText type="text" [(ngModel)]="row[col.field]" class="w-full text-sm" />
+                  }
+                }
+              </ng-template>
+            </p-cellEditor>
+          } @else {
+            {{ row[col.field] }}
+          }
+        </td>
+      }
+
+      <!-- Actions column -->
+      @if (editMode() !== 'none' || showDelete() || actionsTemplate()) {
+        <td class="text-center">
+          <div class="flex justify-center gap-1">
+            @if (editMode() === 'inline') {
+              @if (!editing) {
+                <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info" size="small" pInitEditableRow (click)="onRowEditInit(row)" />
+              } @else {
+                <p-button icon="pi pi-check" [rounded]="true" [text]="true" severity="success" size="small" pSaveEditableRow (click)="onRowEditSave(row)" />
+                <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="danger" size="small" pCancelEditableRow (click)="onRowEditCancel(row, ri)" />
+              }
+            }
+            @if (editMode() === 'modal') {
+              <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info" size="small" (onClick)="openModal(row)" />
+            }
+            @if (showDelete()) {
+              <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" size="small" (onClick)="onDelete(row)" />
+            }
+            @if (actionsTemplate()) {
+              <ng-container *ngTemplateOutlet="actionsTemplate(); context: { $implicit: row }" />
+            }
+          </div>
+        </td>
+      }
+    </tr>
+  </ng-template>
+
+  <!-- Empty state -->
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td [attr.colspan]="columns().length + (editMode() !== 'none' || showDelete() || actionsTemplate() ? 1 : 0)" class="text-center py-8 text-gray-400">
+        No records found.
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- Modal edit dialog -->
+@if (editMode() === 'modal' && editingRow()) {
+  <ws-ng-ui-dialog [(visible)]="modalVisible" [title]="modalTitle()" width="30rem" (visibleChange)="!$event && cancelModal()">
+    <div class="flex flex-col gap-4">
+      @for (col of editableColumns(); track col.field) {
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">{{ col.header }}</label>
+          @switch (col.editType ?? 'text') {
+            @case ('number') {
+              <input pInputText type="number" [(ngModel)]="editingRow()[col.field]" class="w-full" />
+            }
+            @case ('date') {
+              <p-datepicker [(ngModel)]="editingRow()[col.field]" dateFormat="yy-mm-dd" appendTo="body" styleClass="w-full" />
+            }
+            @default {
+              <input pInputText type="text" [(ngModel)]="editingRow()[col.field]" class="w-full" />
+            }
+          }
+        </div>
+      }
+    </div>
+
+    <ng-template #wsDialogFooter>
+      <p-button label="Cancel" severity="secondary" (onClick)="cancelModal()" />
+      <p-button label="Save" (onClick)="saveModal()" />
+    </ng-template>
+  </ws-ng-ui-dialog>
+}

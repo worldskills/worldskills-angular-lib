@@ -72,6 +72,12 @@ export const routes: Routes = [
     data: { breadcrumb: 'Secret', roles: secretRoles }
   },
   {
+    path: 'profile',
+    loadComponent: () => import('./profile/profile.component').then(m => m.UserProfileComponent),
+    canActivate: [GuardService],
+    data: { breadcrumb: 'Profile' }
+  },
+  {
     path: 'not-authorized',
     loadComponent: () => import('./not-authorized/not-authorized.component').then(m => m.NotAuthorizedComponent),
     data: { breadcrumb: 'Not Authorized' }

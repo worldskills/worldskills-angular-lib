@@ -29,7 +29,7 @@
 
       <!-- Fuzzy search -->
       <div class="p-2 border-b ws-tree-panel__divider">
-        <p-iconfield class="w-full">
+        <p-iconfield class="w-full" iconPosition="left">
           <p-inputicon>
             <i class="pi pi-search"></i>
           </p-inputicon>
@@ -37,6 +37,7 @@
             pInputText
             type="text"
             class="w-full text-sm"
+            style="padding-left: 2.5rem"
             [placeholder]="'ws_ui.tree_select.search' | translate"
             [value]="term()"
             (input)="onTermChange($any($event.target).value)"

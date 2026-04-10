@@ -48,6 +48,12 @@
   color: var(--p-text-muted-color);
 }
 
+/* Align search icon vertically with input text */
+:host ::ng-deep p-iconfield .p-inputicon {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 /* Strip p-tree's own border, padding, and background so it sits flush inside our panel */
 :host ::ng-deep .ws-p-tree.p-tree {
   border: none;

@@ -82,6 +82,10 @@ export * from './lib/dialog/dialog.component';
 export * from './lib/dialog/confirm.component';
 export * from './lib/dialog/confirm.service';
 
+// data table
+export * from './lib/data-table/data-table.component';
+export * from './lib/data-table/data-table.model';
+
 // alerts
 export * from './lib/alert/alert.service';
 export * from './lib/alert/alert.component';
