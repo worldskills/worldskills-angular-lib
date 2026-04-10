@@ -14,7 +14,6 @@ export * from './lib/services/guard.service';
 
 // handlers
 export * from './lib/handlers/redirect.handler';
-export * from './lib/handlers/redirect-event.handler';
 
 // models
 export * from './lib/models/api-error';

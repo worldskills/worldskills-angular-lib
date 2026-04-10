@@ -47,6 +47,19 @@
 
 ## @worldskills/ng-auth
 
+### 2.0.0 — Redirect Handler Consolidation
+> `RedirectEventHandler` has been removed. Migrate to `RedirectHandler`.
+
+**Breaking changes**
+- `RedirectEventHandler` is no longer exported — replace all usages with `RedirectHandler`
+
+**New API on `RedirectHandler`**
+- `handle(options?: LoginRedirectOptions)` — single entry point covering: unauthenticated (triggers OIDC login), returnUrl in sessionStorage (navigates there after redirect), optional async `resolveLandingPage` callback for apps that query an API to determine the landing page, and a `defaultRoute` fallback
+- `saveReturnUrl(url?: string)` — stores the current (or given) URL in sessionStorage before triggering login; used by custom guards or manual login flows that sit outside `GuardService`
+- `LoginRedirectOptions` interface exported for typed consumer configuration
+
+---
+
 ### 1.0.0 — The Big Bang
 > First public release. Authentication providers and guards for WorldSkills Angular applications.
 
