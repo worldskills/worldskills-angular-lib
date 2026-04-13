@@ -2,6 +2,11 @@
 
 ## @worldskills/ng-ui
 
+### 1.6.1 — Sub-menu Alignment Fix
+
+**Fixed**
+- Header sub-menu items are now right-aligned to match the end of the main navigation menu
+
 ### 1.6.0 — Brand Colors & Preset Separation
 
 **Brand colors**
