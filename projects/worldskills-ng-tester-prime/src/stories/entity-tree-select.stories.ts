@@ -58,7 +58,7 @@ const MOCK_NODES: TreeSelectNode[] = [
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 const meta: Meta<EntityTreeSelectComponent> = {
-  title: 'Entity Tree Select',
+  title: 'WorldSkills UI / Entity Tree Select',
   component: EntityTreeSelectComponent,
   decorators: [
     applicationConfig({
