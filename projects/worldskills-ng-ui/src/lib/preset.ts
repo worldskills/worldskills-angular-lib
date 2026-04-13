@@ -2,6 +2,21 @@ import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
 import { GlobalPassThrough } from 'primeng/config';
 
+import { datatable } from './preset/datatable';
+import { treetable } from './preset/treetable';
+import { button } from './preset/button';
+import { card } from './preset/card';
+import { message } from './preset/message';
+import { fieldset } from './preset/fieldset';
+import { panel } from './preset/panel';
+import { inputtext } from './preset/inputtext';
+import { treeselect } from './preset/treeselect';
+import { iftalabel } from './preset/iftalabel';
+import { select } from './preset/select';
+import { tooltip } from './preset/tooltip';
+import { tabs } from './preset/tabs';
+import { confirmpopup } from './preset/confirmpopup';
+
 export const WorldSkillsPTPreset: GlobalPassThrough = {
   table: {
     tableContainer: {
@@ -291,108 +306,19 @@ export const WorldSkillsPreset = definePreset(Aura, {
     },
   },
   components: {
-    datatable: {
-      bodyCell: {
-        padding: '0.7rem 1rem',
-      },
-      headerCell: {
-        hoverBackground: 'transparent',
-        selectedBackground: 'transparent',
-      },
-    },
-    treetable: {
-      bodyCell: {
-        padding: '0.7rem 1rem',
-      },
-    },
-    button: {
-      root: {
-        borderRadius: '0.1rem',
-        paddingY: '0.675rem',
-        paddingX: '0.975rem',
-        label: {
-          fontWeight: 'bold',
-        },
-
-        lg: {
-          paddingY: '1.2rem',
-          paddingX: '0.975rem',
-        },
-
-        sm: {
-          paddingY: '0.375rem',
-          paddingX: '0.375rem',
-        },
-      },
-
-      css: () => `
-        i {
-          line-height: 12px !important;
-        }
-      `,
-    },
-    card: {
-      title: {
-        fontWeight: '600',
-      },
-      css: ({ dt }) => `
-        .p-card {
-          border-color: ${dt('gray.200')};
-        }
-      `,
-    },
-    message: {
-      root: {
-        borderRadius: '0.2rem',
-      },
-    },
-    fieldset: {
-      root: {
-        borderRadius: '0.2rem',
-      },
-    },
-    panel: {
-      root: {
-        borderRadius: '0.2rem',
-      },
-    },
-    inputtext: {
-      root: {
-        paddingY: '0.375rem',
-        borderRadius: '0.1rem',
-      },
-    },
-    treeselect: {
-      root: {
-        paddingY: '0.375rem',
-        borderRadius: '0.1rem',
-      },
-    },
-    iftalabel: {
-      input: {
-        paddingTop: '1rem',
-      },
-    },
-    select: {
-      root: {
-        paddingY: '0.375rem',
-        borderRadius: '0.1rem',
-      },
-    },
-    tooltip: {
-      root: {
-        padding: '0.2rem 0.6rem',
-      },
-    },
-    tabs: {
-      tabpanel: {
-        padding: '1.5rem 0',
-      },
-    },
-confirmpopup: {
-      root: {
-        gutter: '0px',
-      },
-    },
+    datatable,
+    treetable,
+    button,
+    card,
+    message,
+    fieldset,
+    panel,
+    inputtext,
+    treeselect,
+    iftalabel,
+    select,
+    tooltip,
+    tabs,
+    confirmpopup,
   },
 });
