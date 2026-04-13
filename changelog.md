@@ -2,6 +2,22 @@
 
 ## @worldskills/ng-ui
 
+### 1.6.0 — Brand Colors & Preset Separation
+
+**Brand colors**
+- Added full WorldSkills brand color palette as PrimeNG primitive tokens (50–950 shades): `ws-blue`, `ws-blue-dark`, `ws-cyan`, `ws-teal`, `ws-purple`, `ws-pink`, `ws-orange`, `ws-yellow`, `ws-red`, `ws-green`, `ws-gray`
+- Added semantic color mappings: primary → ws-blue, info → ws-cyan, success → ws-green, warn → ws-yellow, danger → ws-red
+- Added form field invalid state tokens (border + placeholder colors)
+
+**Preset restructure**
+- Separated component design tokens into individual files under `preset/` (button, card, datatable, etc.)
+- Uses explicit named imports to ensure compatibility with ng-packagr library bundling
+
+**PT additions**
+- Dialog: default width `35rem`
+- Fieldset: legend inline-block with fit-content width, label font size `1rem`
+- Card: surface background color
+
 ### 1.5.0 — Data Table, Announcements, Navigation & Bug Fixes
 
 **New components**
