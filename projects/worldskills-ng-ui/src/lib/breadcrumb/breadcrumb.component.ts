@@ -13,6 +13,9 @@ import { BreadcrumbService } from './breadcrumb.service';
 })
 export class BreadcrumbComponent {
 
+  /** Whether to show the home item. Defaults to true. */
+  showHome = input(true);
+
   /** Label for the home item. Defaults to 'Home'. */
   homeLabel = input('Home');
 

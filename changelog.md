@@ -2,7 +2,10 @@
 
 ## @worldskills/ng-ui
 
-### 1.6.1 — Sub-menu Alignment Fix
+### 1.7.0 — Breadcrumb & Sub-menu Improvements
+
+**New**
+- Breadcrumb: added `showHome` input to optionally hide the Home route (defaults to `true`)
 
 **Fixed**
 - Header sub-menu items are now right-aligned to match the end of the main navigation menu
