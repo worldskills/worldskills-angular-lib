@@ -1,4 +1,7 @@
 export const card = {
+  root: {
+    background: '{gray.50}',
+  },
   title: {
     fontWeight: '600',
   },

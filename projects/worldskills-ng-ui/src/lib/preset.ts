@@ -53,6 +53,27 @@ export const WorldSkillsPTPreset: GlobalPassThrough = {
         borderStyle: 'solid',
         boxShadow: 'none',
         borderRadius: '0.2rem',
+        background: '{surface.100}',
+      },
+    },
+  },
+  fieldset: {
+    legend: {
+      style: {
+        display: 'inline-block',
+        width: 'fit-content',
+      },
+    },
+    legendLabel: {
+      style: {
+        fontSize: '1rem',
+      },
+    },
+  },
+  dialog: {
+    root: {
+      style: {
+        width: '35rem',
       },
     },
   },
