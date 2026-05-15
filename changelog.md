@@ -2,6 +2,12 @@
 
 ## @worldskills/ng-ui
 
+### 1.8.3 — Button Colour & Pink Palette Fix
+
+**Fixed**
+- Button preset: default `pButton` now renders in `ws-pink` (the WS brand action colour) instead of `ws-blue`. Added full `colorScheme` token coverage (background, hover, active, border, text, focus-ring) for both light and dark modes. Consuming apps no longer need `::ng-deep` or `!important` overrides to get the correct primary button colour.
+- `ws-pink` palette: corrected the primitive colour scale. Previous scale was inverted and used `#AC0D56` as the 500 base. Now uses `#D51067` as 500, aligning with the `--pink` CSS custom property in `theme.css`, with proper tints at 50–400 and shades at 600–950.
+
 ### 1.8.2 — Design Token Export Fix
 
 **Fixed**

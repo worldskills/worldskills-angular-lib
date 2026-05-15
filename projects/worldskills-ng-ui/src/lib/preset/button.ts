@@ -18,6 +18,47 @@ export const button = {
     },
   },
 
+  colorScheme: {
+    light: {
+      root: {
+        primary: {
+          background: '{ws-pink.500}',
+          hoverBackground: '{ws-pink.600}',
+          activeBackground: '{ws-pink.700}',
+          borderColor: '{ws-pink.500}',
+          hoverBorderColor: '{ws-pink.600}',
+          activeBorderColor: '{ws-pink.700}',
+          color: '#ffffff',
+          hoverColor: '#ffffff',
+          activeColor: '#ffffff',
+          focusRing: {
+            color: '{ws-pink.500}',
+            shadow: 'none',
+          },
+        },
+      },
+    },
+    dark: {
+      root: {
+        primary: {
+          background: '{ws-pink.500}',
+          hoverBackground: '{ws-pink.600}',
+          activeBackground: '{ws-pink.700}',
+          borderColor: '{ws-pink.500}',
+          hoverBorderColor: '{ws-pink.600}',
+          activeBorderColor: '{ws-pink.700}',
+          color: '#ffffff',
+          hoverColor: '#ffffff',
+          activeColor: '#ffffff',
+          focusRing: {
+            color: '{ws-pink.500}',
+            shadow: 'none',
+          },
+        },
+      },
+    },
+  },
+
   css: () => `
     i {
       line-height: 12px !important;
