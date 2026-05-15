@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/ng-ui",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -13,5 +13,9 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "exports": {
+    "./styles/fonts.css": "./styles/fonts.css",
+    "./styles/theme.css": "./styles/theme.css"
+  },
+  "sideEffects": ["*.css", "**/*.css"]
 }

@@ -2,6 +2,15 @@
 
 ## @worldskills/ng-ui
 
+### 1.8.0 — Angular 20 & Style Assets
+
+**Angular 20**
+- Updated peer dependencies to Angular `^20.3.0`
+
+**Style assets**
+- `fonts.css` and `theme.css` are now included in the published package
+- Import via subpath exports: `@worldskills/ng-ui/styles/fonts.css` and `@worldskills/ng-ui/styles/theme.css`
+
 ### 1.7.0 — Breadcrumb & Sub-menu Improvements
 
 **New**
