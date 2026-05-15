@@ -7,8 +7,10 @@ import { AuthConfig } from 'angular-oauth2-oidc';
 export interface AuthLibConfig {
   enableLogging?: boolean;
   auth?: AuthConfig;
-  api?: ServiceConfig
+  api?: ServiceConfig;
   app?: AppConfig;
+  /** Trigger `OAuthService.initCodeFlow()` on any 401 response. Opt-in; defaults to false. */
+  autoRedirectOn401?: boolean;
 }
 
 export const LIBRARY_CONFIG = new InjectionToken<AuthLibConfig>(

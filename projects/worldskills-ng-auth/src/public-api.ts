@@ -12,6 +12,9 @@ export * from './lib/services/ng-auth.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/guard.service';
 
+// interceptors
+export * from './lib/interceptors/ws-auth.interceptor';
+
 // handlers
 export * from './lib/handlers/redirect.handler';
 

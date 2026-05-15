@@ -108,6 +108,12 @@
 
 ## @worldskills/ng-auth
 
+### 3.2.0 — 401 Auth Interceptor
+
+**New**
+- `wsAuthInterceptor` — functional HTTP interceptor that calls `OAuthService.initCodeFlow()` on any 401 response. Opt-in: only active when `autoRedirectOn401: true` is set in `provideWsNgAuth()`. Register via `provideHttpClient(withInterceptors([wsAuthInterceptor]))`.
+- `AuthLibConfig.autoRedirectOn401` — new config flag (defaults to `false`). Set to `true` to enable the redirect behaviour.
+
 ### 3.1.0 — Session Validation & Provider Rename
 - Auto-validates session on tab visibility change via `ping()`
 - `provideLibraryConfig()` renamed to `provideWsNgAuth()`
