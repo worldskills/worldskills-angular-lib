@@ -2,6 +2,11 @@
 
 ## @worldskills/ng-ui
 
+### 1.8.2 — Design Token Export Fix
+
+**Fixed**
+- `styles/theme.css`: added `:root` custom property block so CSS design tokens (`--pink`, `--primary`, `--blue-dark`, etc.) are available to consuming apps that import the theme stylesheet
+
 ### 1.8.1 — Header Title Alignment Fix
 
 **Fixed**

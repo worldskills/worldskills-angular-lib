@@ -2,3 +2,36 @@
   --font-sans: Inter, "FrutigerLTW04", Frutiger, Arial, sans-serif;
   --font-serif: "Inria Serif", serif;
 }
+
+:root {
+  --blue: #0E779F;
+  --indigo: #362D79;
+  --purple: #4A0D66;
+  --pink: #D51067;
+  --red: #dc3545;
+  --orange: #F15122;
+  --yellow: #FEE300;
+  --green: #28a745;
+  --teal: #8AE2D1;
+  --cyan: #00BBE6;
+  --white: #fff;
+  --gray: #707070;
+  --gray-dark: #434343;
+  --blue-dark: #003764;
+  --primary: #0E779F;
+  --secondary: #878787;
+  --success: #28a745;
+  --info: #00BBE6;
+  --warning: #FEE300;
+  --danger: #dc3545;
+  --light: #f7f7f7;
+  --dark: #434343;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: Inter, "FrutigerLTW04", Frutiger, Arial, sans-serif;
+  --font-family-serif: "Inria Serif", serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
