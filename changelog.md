@@ -2,6 +2,11 @@
 
 ## @worldskills/ng-ui
 
+### 1.8.4 — Tree Select Chevron Alignment Fix
+
+**Fixed**
+- Tree select: expand chevron no longer floats vertically centred when a node label wraps to multiple lines. Added `align-items: flex-start` to `.p-tree-node-content` so the chevron anchors to the top of the row.
+
 ### 1.8.3 — Button Colour & Pink Palette Fix
 
 **Fixed**

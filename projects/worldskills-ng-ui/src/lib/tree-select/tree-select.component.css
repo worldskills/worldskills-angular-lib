@@ -62,6 +62,11 @@
   background: transparent;
 }
 
+/* Anchor the toggle chevron to the top when a node label wraps to multiple lines */
+:host ::ng-deep .ws-p-tree .p-tree-node-content {
+  align-items: flex-start;
+}
+
 :host ::ng-deep .ws-p-tree .p-tree-wrapper {
   overflow: visible;
 }
