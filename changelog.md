@@ -2,6 +2,11 @@
 
 ## @worldskills/ng-ui
 
+### 1.8.1 — Header Title Alignment Fix
+
+**Fixed**
+- Header: corrected vertical alignment of the application title text relative to the WorldSkills wordmark
+
 ### 1.8.0 — Angular 20 & Style Assets
 
 **Angular 20**
