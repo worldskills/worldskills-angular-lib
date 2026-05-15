@@ -108,11 +108,17 @@
 
 ## @worldskills/ng-auth
 
+### 3.2.1 — 401 Interceptor Exclusion Patterns
+
+**New**
+- `AuthLibConfig.redirectOn401ExcludePatterns` — optional list of URL string or `RegExp` patterns exempt from the 401 redirect even when `autoRedirectOn401` is true. Useful for public endpoints or third-party APIs that legitimately return 401.
+
 ### 3.2.0 — 401 Auth Interceptor
 
 **New**
 - `wsAuthInterceptor` — functional HTTP interceptor that calls `OAuthService.initCodeFlow()` on any 401 response. Opt-in: only active when `autoRedirectOn401: true` is set in `provideWsNgAuth()`. Register via `provideHttpClient(withInterceptors([wsAuthInterceptor]))`.
 - `AuthLibConfig.autoRedirectOn401` — new config flag (defaults to `false`). Set to `true` to enable the redirect behaviour.
+- `AuthLibConfig.redirectOn401ExcludePatterns` — optional list of URL string or `RegExp` patterns exempt from the 401 redirect. Useful for public endpoints or third-party APIs that legitimately return 401.
 
 ### 3.1.0 — Session Validation & Provider Rename
 - Auto-validates session on tab visibility change via `ping()`

@@ -11,6 +11,8 @@ export interface AuthLibConfig {
   app?: AppConfig;
   /** Trigger `OAuthService.initCodeFlow()` on any 401 response. Opt-in; defaults to false. */
   autoRedirectOn401?: boolean;
+  /** URL patterns exempt from the 401 redirect even when `autoRedirectOn401` is true. */
+  redirectOn401ExcludePatterns?: (string | RegExp)[];
 }
 
 export const LIBRARY_CONFIG = new InjectionToken<AuthLibConfig>(
