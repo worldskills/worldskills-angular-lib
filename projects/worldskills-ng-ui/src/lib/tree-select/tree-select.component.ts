@@ -237,12 +237,8 @@ export class TreeSelectComponent {
   }
 
   scrollToSelected() {
-    const panel = this.el.nativeElement.querySelector('.tree-body');
     const selected = this.el.nativeElement.querySelector('.p-tree-node-selected');
-    if (panel && selected) {
-      const offset = selected.offsetTop - panel.clientHeight / 2 + selected.offsetHeight / 2;
-      panel.scrollTop = offset;
-    }
+    selected?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
   }
 
   private findByKey(nodes: TreeNode[], key: string): TreeNode | null {
