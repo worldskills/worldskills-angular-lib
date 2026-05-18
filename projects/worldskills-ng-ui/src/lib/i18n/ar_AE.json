@@ -91,6 +91,34 @@
             "zipping": "جارٍ الضغط...",
             "download_error": "فشل تنزيل الملفات. يرجى المحاولة مرة أخرى.",
             "no_resources": "لا توجد موارد."
+        },
+        "relative_date": {
+            "just_now": "الآن",
+            "minute_ago": "منذ دقيقة",
+            "minutes_ago": "منذ {{count}} دقائق",
+            "hour_ago": "منذ ساعة",
+            "hours_ago": "منذ {{count}} ساعات",
+            "yesterday": "أمس",
+            "days_ago": "منذ {{count}} أيام",
+            "week_ago": "منذ أسبوع",
+            "weeks_ago": "منذ {{count}} أسابيع",
+            "month_ago": "منذ شهر",
+            "months_ago": "منذ {{count}} أشهر",
+            "year_ago": "منذ عام",
+            "years_ago": "منذ {{count}} أعوام",
+            "soon": "قريباً",
+            "in_a_minute": "خلال دقيقة",
+            "in_n_minutes": "خلال {{count}} دقائق",
+            "in_an_hour": "خلال ساعة",
+            "in_n_hours": "خلال {{count}} ساعات",
+            "tomorrow": "غداً",
+            "in_n_days": "خلال {{count}} أيام",
+            "in_a_week": "خلال أسبوع",
+            "in_n_weeks": "خلال {{count}} أسابيع",
+            "in_a_month": "خلال شهر",
+            "in_n_months": "خلال {{count}} أشهر",
+            "in_a_year": "خلال عام",
+            "in_n_years": "خلال {{count}} أعوام"
         }
     }
 }

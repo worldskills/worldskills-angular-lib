@@ -2,6 +2,13 @@
 
 ## @worldskills/ng-ui
 
+### 1.8.6 — Relative Date Pipe: Months & Years
+
+**Improved**
+- `wsRelativeDate` pipe now covers months and years before falling back to a formatted date: `month_ago` / `months_ago` (30–364 days), `year_ago` / `years_ago` (365+ days), and matching future branches
+- Default `thresholdInDays` changed from `30` to `Infinity` — the pipe always returns a relative label unless a threshold is explicitly passed
+- Added full `relative_date` translation block to all 7 non-English locales (ar_AE, de, fi, fr, pt_BR, ru_RU, zh_CN) — these were previously absent, causing keys to fall through untranslated
+
 ### 1.8.5 — Tree Select Scroll-to-Selected Fix
 - **Fixed** Tree select: opening the dropdown now scrolls to the selected node using native `scrollIntoView` (previous implementation targeted the wrong scroll container and had no effect)
 

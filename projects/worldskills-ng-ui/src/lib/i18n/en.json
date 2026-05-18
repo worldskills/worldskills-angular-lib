@@ -31,6 +31,10 @@
             "days_ago": "{{count}} days ago",
             "week_ago": "a week ago",
             "weeks_ago": "{{count}} weeks ago",
+            "month_ago": "a month ago",
+            "months_ago": "{{count}} months ago",
+            "year_ago": "a year ago",
+            "years_ago": "{{count}} years ago",
             "soon": "soon",
             "in_a_minute": "in a minute",
             "in_n_minutes": "in {{count}} minutes",
@@ -39,7 +43,11 @@
             "tomorrow": "tomorrow",
             "in_n_days": "in {{count}} days",
             "in_a_week": "in a week",
-            "in_n_weeks": "in {{count}} weeks"
+            "in_n_weeks": "in {{count}} weeks",
+            "in_a_month": "in a month",
+            "in_n_months": "in {{count}} months",
+            "in_a_year": "in a year",
+            "in_n_years": "in {{count}} years"
         },
         "polls": {
             "vote_control": {

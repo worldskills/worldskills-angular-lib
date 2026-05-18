@@ -103,6 +103,34 @@
             "zipping": "Wird komprimiert...",
             "download_error": "Download fehlgeschlagen. Bitte versuchen Sie es erneut.",
             "no_resources": "Keine Ressourcen."
+        },
+        "relative_date": {
+            "just_now": "gerade eben",
+            "minute_ago": "vor einer Minute",
+            "minutes_ago": "vor {{count}} Minuten",
+            "hour_ago": "vor einer Stunde",
+            "hours_ago": "vor {{count}} Stunden",
+            "yesterday": "gestern",
+            "days_ago": "vor {{count}} Tagen",
+            "week_ago": "vor einer Woche",
+            "weeks_ago": "vor {{count}} Wochen",
+            "month_ago": "vor einem Monat",
+            "months_ago": "vor {{count}} Monaten",
+            "year_ago": "vor einem Jahr",
+            "years_ago": "vor {{count}} Jahren",
+            "soon": "bald",
+            "in_a_minute": "in einer Minute",
+            "in_n_minutes": "in {{count}} Minuten",
+            "in_an_hour": "in einer Stunde",
+            "in_n_hours": "in {{count}} Stunden",
+            "tomorrow": "morgen",
+            "in_n_days": "in {{count}} Tagen",
+            "in_a_week": "in einer Woche",
+            "in_n_weeks": "in {{count}} Wochen",
+            "in_a_month": "in einem Monat",
+            "in_n_months": "in {{count}} Monaten",
+            "in_a_year": "in einem Jahr",
+            "in_n_years": "in {{count}} Jahren"
         }
     }
 }

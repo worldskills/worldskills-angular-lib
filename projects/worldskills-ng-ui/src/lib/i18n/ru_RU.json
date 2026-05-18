@@ -91,6 +91,34 @@
             "zipping": "Архивирование...",
             "download_error": "Не удалось скачать ресурсы. Пожалуйста, попробуйте снова.",
             "no_resources": "Нет ресурсов."
+        },
+        "relative_date": {
+            "just_now": "только что",
+            "minute_ago": "минуту назад",
+            "minutes_ago": "{{count}} минут назад",
+            "hour_ago": "час назад",
+            "hours_ago": "{{count}} часов назад",
+            "yesterday": "вчера",
+            "days_ago": "{{count}} дней назад",
+            "week_ago": "неделю назад",
+            "weeks_ago": "{{count}} недель назад",
+            "month_ago": "месяц назад",
+            "months_ago": "{{count}} месяцев назад",
+            "year_ago": "год назад",
+            "years_ago": "{{count}} лет назад",
+            "soon": "скоро",
+            "in_a_minute": "через минуту",
+            "in_n_minutes": "через {{count}} минут",
+            "in_an_hour": "через час",
+            "in_n_hours": "через {{count}} часов",
+            "tomorrow": "завтра",
+            "in_n_days": "через {{count}} дней",
+            "in_a_week": "через неделю",
+            "in_n_weeks": "через {{count}} недель",
+            "in_a_month": "через месяц",
+            "in_n_months": "через {{count}} месяцев",
+            "in_a_year": "через год",
+            "in_n_years": "через {{count}} лет"
         }
     }
 }

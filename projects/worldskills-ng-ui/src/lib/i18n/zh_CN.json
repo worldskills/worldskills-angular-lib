@@ -91,6 +91,34 @@
             "zipping": "正在压缩...",
             "download_error": "下载资源失败，请重试。",
             "no_resources": "暂无资源。"
+        },
+        "relative_date": {
+            "just_now": "刚刚",
+            "minute_ago": "1分钟前",
+            "minutes_ago": "{{count}}分钟前",
+            "hour_ago": "1小时前",
+            "hours_ago": "{{count}}小时前",
+            "yesterday": "昨天",
+            "days_ago": "{{count}}天前",
+            "week_ago": "1周前",
+            "weeks_ago": "{{count}}周前",
+            "month_ago": "1个月前",
+            "months_ago": "{{count}}个月前",
+            "year_ago": "1年前",
+            "years_ago": "{{count}}年前",
+            "soon": "即将",
+            "in_a_minute": "1分钟后",
+            "in_n_minutes": "{{count}}分钟后",
+            "in_an_hour": "1小时后",
+            "in_n_hours": "{{count}}小时后",
+            "tomorrow": "明天",
+            "in_n_days": "{{count}}天后",
+            "in_a_week": "1周后",
+            "in_n_weeks": "{{count}}周后",
+            "in_a_month": "1个月后",
+            "in_n_months": "{{count}}个月后",
+            "in_a_year": "1年后",
+            "in_n_years": "{{count}}年后"
         }
     }
 }

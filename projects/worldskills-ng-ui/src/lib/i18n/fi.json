@@ -104,6 +104,34 @@
             "zipping": "Pakataan...",
             "download_error": "Resurssien lataus epäonnistui. Yritä uudelleen.",
             "no_resources": "Ei resursseja."
+        },
+        "relative_date": {
+            "just_now": "juuri nyt",
+            "minute_ago": "minuutti sitten",
+            "minutes_ago": "{{count}} minuuttia sitten",
+            "hour_ago": "tunti sitten",
+            "hours_ago": "{{count}} tuntia sitten",
+            "yesterday": "eilen",
+            "days_ago": "{{count}} päivää sitten",
+            "week_ago": "viikko sitten",
+            "weeks_ago": "{{count}} viikkoa sitten",
+            "month_ago": "kuukausi sitten",
+            "months_ago": "{{count}} kuukautta sitten",
+            "year_ago": "vuosi sitten",
+            "years_ago": "{{count}} vuotta sitten",
+            "soon": "pian",
+            "in_a_minute": "minuutin kuluttua",
+            "in_n_minutes": "{{count}} minuutin kuluttua",
+            "in_an_hour": "tunnin kuluttua",
+            "in_n_hours": "{{count}} tunnin kuluttua",
+            "tomorrow": "huomenna",
+            "in_n_days": "{{count}} päivän kuluttua",
+            "in_a_week": "viikon kuluttua",
+            "in_n_weeks": "{{count}} viikon kuluttua",
+            "in_a_month": "kuukauden kuluttua",
+            "in_n_months": "{{count}} kuukauden kuluttua",
+            "in_a_year": "vuoden kuluttua",
+            "in_n_years": "{{count}} vuoden kuluttua"
         }
     }
 }

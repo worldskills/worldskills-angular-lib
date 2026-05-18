@@ -16,7 +16,7 @@ export class RelativeDatePipe implements PipeTransform {
     date: Date | string | null | undefined,
     format = 'mediumDate',
     locale = 'en',
-    thresholdInDays = 30,
+    thresholdInDays = Infinity,
   ): string {
     if (!date) return '';
 
@@ -36,30 +36,40 @@ export class RelativeDatePipe implements PipeTransform {
     const diffMinutes = Math.floor(diffSeconds / 60);
     const diffHours = Math.floor(diffSeconds / 3600);
     const diffWeeks = Math.ceil(diffDays / 7);
+    const diffMonths = Math.floor(diffDays / 30);
+    const diffYears = Math.floor(diffDays / 365);
 
     const t = (key: string, params?: object) =>
       this.translate.instant(`ws_ui.relative_date.${key}`, params);
 
     if (isPast) {
-      if (diffSeconds < 60)  return t('just_now');
-      if (diffSeconds < 120) return t('minute_ago');
+      if (diffSeconds < 60)   return t('just_now');
+      if (diffSeconds < 120)  return t('minute_ago');
       if (diffSeconds < 3600) return t('minutes_ago', { count: diffMinutes });
       if (diffSeconds < 7200) return t('hour_ago');
       if (diffSeconds < 86400) return t('hours_ago', { count: diffHours });
       if (diffDays === 1) return t('yesterday');
       if (diffDays < 7)   return t('days_ago', { count: diffDays });
       if (diffDays === 7) return t('week_ago');
-      return t('weeks_ago', { count: diffWeeks });
+      if (diffDays < 30)  return t('weeks_ago', { count: diffWeeks });
+      if (diffMonths === 1) return t('month_ago');
+      if (diffMonths < 12)  return t('months_ago', { count: diffMonths });
+      if (diffYears === 1)  return t('year_ago');
+      return t('years_ago', { count: diffYears });
     } else {
-      if (diffSeconds < 60)  return t('soon');
-      if (diffSeconds < 120) return t('in_a_minute');
+      if (diffSeconds < 60)   return t('soon');
+      if (diffSeconds < 120)  return t('in_a_minute');
       if (diffSeconds < 3600) return t('in_n_minutes', { count: diffMinutes });
       if (diffSeconds < 7200) return t('in_an_hour');
       if (diffSeconds < 86400) return t('in_n_hours', { count: diffHours });
       if (diffDays === 1) return t('tomorrow');
       if (diffDays < 7)   return t('in_n_days', { count: diffDays });
       if (diffDays === 7) return t('in_a_week');
-      return t('in_n_weeks', { count: diffWeeks });
+      if (diffDays < 30)  return t('in_n_weeks', { count: diffWeeks });
+      if (diffMonths === 1) return t('in_a_month');
+      if (diffMonths < 12)  return t('in_n_months', { count: diffMonths });
+      if (diffYears === 1)  return t('in_a_year');
+      return t('in_n_years', { count: diffYears });
     }
   }
 }
