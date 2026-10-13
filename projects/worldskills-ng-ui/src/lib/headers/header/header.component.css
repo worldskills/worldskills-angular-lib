@@ -19,20 +19,21 @@
     background-color: #3d0e61;
 }
 
-/* Rainbow ribbon — WorldSkills brand colours */
+/* Brand stripe — matches worldskills.org .ws-navbar-stripe */
 .ws-header::before {
     content: '';
     display: block;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(
         to right,
-        #e2001a 0%,
-        #f39200 16.6%,
-        #ffe500 33.2%,
-        #009e4f 49.8%,
-        #009ee0 66.4%,
-        #7a2182 83%,
-        #e2001a 100%
+        #72d0eb 0 12.5%,
+        #0084ad 12.5% 25%,
+        #003764 25% 37.5%,
+        #4a0d66 37.5% 50%,
+        #d51067 50% 62.5%,
+        #ff6c0c 62.5% 75%,
+        #fee300 75% 87.5%,
+        #8ae2d1 87.5% 100%
     );
 }
 
