@@ -55,6 +55,10 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/worldskills-ng-ui/tsconfig.spec.json",
+            "include": [
+              "**/*.spec.ts",
+              "../sentry/**/*.spec.ts"
+            ],
             "polyfills": [
               "zone.js",
               "zone.js/testing"

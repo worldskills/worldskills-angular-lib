@@ -119,6 +119,13 @@
             "in_n_months": "خلال {{count}} أشهر",
             "in_a_year": "خلال عام",
             "in_n_years": "خلال {{count}} أعوام"
+        },
+        "search_select": {
+            "placeholder": "اكتب للبحث...",
+            "no_results": "لا توجد نتائج"
+        },
+        "page_header": {
+            "back": "رجوع"
         }
     }
 }

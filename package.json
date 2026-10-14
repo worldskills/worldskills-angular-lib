@@ -60,6 +60,7 @@
     "@angular/build": "^20.3.10",
     "@angular/cli": "^20.3.10",
     "@angular/compiler-cli": "^20.3.12",
+    "@sentry/angular": "10.75.3",
     "@storybook/angular": "^9.1.20",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/jasmine": "^5.1.12",

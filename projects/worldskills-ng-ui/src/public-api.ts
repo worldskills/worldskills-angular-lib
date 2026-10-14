@@ -94,6 +94,12 @@ export * from './lib/alert/alert.component';
 export * from './lib/alert/announcement.component';
 export * from './lib/alert/toast.component';
 
+// search select
+export * from './lib/search-select/search-select.component';
+
+// page header
+export * from './lib/page-header/page-header.component';
+
 // i18n controls
 export * from './lib/i18n-controls/i18n-input/i18n-input.component';
 export * from './lib/i18n-controls/i18n-textarea/i18n-textarea.component';

@@ -132,6 +132,13 @@
             "in_n_months": "{{count}} kuukauden kuluttua",
             "in_a_year": "vuoden kuluttua",
             "in_n_years": "{{count}} vuoden kuluttua"
+        },
+        "search_select": {
+            "placeholder": "Kirjoita hakeaksesi...",
+            "no_results": "Ei tuloksia"
+        },
+        "page_header": {
+            "back": "Takaisin"
         }
     }
 }

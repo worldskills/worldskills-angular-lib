@@ -1,0 +1,27 @@
+<header class="mb-6">
+  @if (backLink()) {
+    <a [routerLink]="backLink()" class="inline-flex items-center gap-2 mb-3 text-sm text-primary hover:underline">
+      <i class="pi pi-arrow-left text-xs"></i>
+      {{ backLabel() ?? ('ws_ui.page_header.back' | translate) }}
+    </a>
+  }
+
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div class="flex items-start gap-4 min-w-0">
+      <ng-content select="[wsPageHeaderMedia]" />
+      <div class="min-w-0">
+        <h1 class="text-2xl font-semibold leading-tight break-words">{{ title() }}</h1>
+        @if (subtitle()) {
+          <p class="mt-1 text-muted-color">{{ subtitle() }}</p>
+        }
+        <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-color empty:hidden">
+          <ng-content />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2 shrink-0 empty:hidden">
+      <ng-content select="[wsPageHeaderActions]" />
+    </div>
+  </div>
+</header>

@@ -16,31 +16,26 @@ A step-by-step guide to integrating the WorldSkills UI library into your Angular
 
 ```bash
 npm install @worldskills/ng-ui @worldskills/ng-auth
-npm install primeng @primeng/themes primeicons
+npm install primeng @primeuix/themes primeicons
 npm install @ngx-translate/core @ngx-translate/http-loader
 npm install angular-oauth2-oidc
-npm install tailwindcss tailwindcss-primeui
+npm install tailwindcss @tailwindcss/postcss tailwindcss-primeui
 ```
 
 ---
 
 ## 2. Configure Tailwind CSS
 
-Create or update your `tailwind.config.js`:
+The library uses Tailwind CSS v4, which is configured in CSS (see step 3). There is no `tailwind.config.js`.
 
-```js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{html,ts,scss,css}",
-  ],
-  plugins: [
-    require('tailwindcss-primeui')
-  ],
-  corePlugins: {
-    preflight: false  // disable to avoid conflicts with PrimeNG
+Create `.postcssrc.json` in the project root so the Angular build runs Tailwind:
+
+```json
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
   }
-};
+}
 ```
 
 ---
@@ -54,11 +49,14 @@ In your `src/styles.scss`:
 @use "primeicons/primeicons.css";
 @import "@worldskills/ng-ui/styles/fonts.css";
 @import "@worldskills/ng-ui/styles/theme.css";
+@source "../node_modules/@worldskills/ng-ui";
 @layer tailwind-base, primeng, tailwind-utilities;
 @plugin 'tailwindcss-primeui';
 ```
 
 > **Important:** The `@layer` order ensures PrimeNG styles sit between Tailwind's base and utilities, so Tailwind utility classes can override PrimeNG when needed.
+
+> **Important:** The `@source` line makes Tailwind scan the library's templates. Without it, utility classes used only inside library components (header, footer, page header, tree select, …) are not generated and those components render unstyled. The path is relative to `styles.scss`.
 
 ---
 
@@ -103,7 +101,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 
 import {
@@ -140,7 +138,8 @@ export const appConfig: ApplicationConfig = {
     }),
 
     // WorldSkills UI
-    MessageService,
+    MessageService,          // required by WsAlertService / ws-ng-ui-toast
+    ConfirmationService,     // required by WsConfirmService / ws-ng-ui-confirm
     provideWsNgUi({
       enableLogging: true,
       api: {
@@ -308,17 +307,21 @@ this.alerts.error('Connection failed.');
 
 ### Confirm dialog
 
+All methods return a Promise. `confirm`, `yesNo` and `danger` resolve to `true` when accepted.
+
 ```ts
 import { WsConfirmService } from '@worldskills/ng-ui';
 
-constructor(private confirm: WsConfirmService) {}
+private confirm = inject(WsConfirmService);
 
-this.confirm.show('Are you sure?', () => {
+if (await this.confirm.danger({ message: 'Delete this address?' })) {
   // confirmed
-});
+}
+
+await this.confirm.alert('Saved.');
 ```
 
-Add the confirm component to your template:
+Add the confirm component to your app shell (once):
 
 ```html
 <ws-ng-ui-confirm />
@@ -343,15 +346,57 @@ Add the confirm component to your template:
 
 ### Breadcrumbs
 
+Breadcrumbs are built from the router. Add a `breadcrumb` to each route's `data`:
+
 ```ts
-import { WsBreadcrumbService } from '@worldskills/ng-ui';
+{
+  path: 'competitions',
+  data: { breadcrumb: 'Competitions' },
+  children: [
+    { path: ':id', component: CompetitionComponent, data: { breadcrumb: { key: 'competition', label: 'Loading...' } } },
+  ],
+}
+```
 
-constructor(private breadcrumb: WsBreadcrumbService) {}
+Replace a label once the data has loaded:
 
-this.breadcrumb.set([
-  { label: 'Competitions', url: '/competitions' },
-  { label: 'Lyon 2024' },
-]);
+```ts
+import { BreadcrumbService } from '@worldskills/ng-ui';
+
+private breadcrumbs = inject(BreadcrumbService);
+
+this.breadcrumbs.replaceLabel('competition', 'Lyon 2024');
+```
+
+### Page header
+
+```html
+<ws-ng-ui-page-header title="Members" subtitle="All WorldSkills members" backLink="/">
+  <p-button wsPageHeaderActions label="New member" icon="pi pi-plus" />
+</ws-ng-ui-page-header>
+```
+
+### Search select (server-side lookup)
+
+```ts
+searchCountries: WsSearchFn<Country> = term => this.countryService.search(term);
+```
+
+```html
+<ws-ng-ui-search-select formControlName="country" [search]="searchCountries" optionLabel="name.text" />
+```
+
+### Role-based content and route guards (`@worldskills/ng-auth`)
+
+```html
+<button *wsHasRole="['Admin', 'EditMember']; appCode: 800">Add</button>
+<button *wsHasRole="'EditMember'; appCode: 800; entity: member.id">Edit</button>
+```
+
+```ts
+import { roleGuard } from '@worldskills/ng-auth';
+
+{ path: 'admin', canActivate: [roleGuard([{ appCode: 800, name: 'Admin' }])], loadComponent: ... }
 ```
 
 ---
@@ -395,7 +440,51 @@ Use in Tailwind: `text-primary-500`, `bg-surface-100`, etc. (via `tailwindcss-pr
 
 ---
 
-## 10. Session & Auth Notes
+## 10. Error Tracking (Sentry)
+
+WorldSkills apps report errors to Sentry through the optional `@worldskills/ng-ui/sentry` entry point.
+
+```bash
+npm install @sentry/angular
+```
+
+Add the DSN and settings to each environment file (the DSN is not a secret — it ends up in the browser bundle):
+
+```ts
+sentry: { dsn: 'https://…@….ingest.sentry.io/…', environment: 'staging', enabled: true },
+```
+
+Register it in `app.config.ts`:
+
+```ts
+import { provideWsSentry, wsSentryHttpInterceptor } from '@worldskills/ng-ui/sentry';
+
+provideHttpClient(withInterceptors([wsHttpInterceptor, wsSentryHttpInterceptor])),
+provideWsSentry({ ...environment.sentry, release: environment.version }),
+```
+
+What is reported:
+
+- **Unhandled errors** (Angular `ErrorHandler`)
+- **Unexpected API failures** — 5xx and network errors. 401/403/404 and validation errors are not reported. Use `ignoreUrlPatterns` for endpoints that should never be reported.
+- Events carry the WorldSkills **user id only** — no names or email addresses. Query strings are stripped from URLs and breadcrumbs, and request/response bodies are never sent.
+
+Report an error you handle yourself:
+
+```ts
+import { WsSentryService } from '@worldskills/ng-ui/sentry';
+
+private sentry = inject(WsSentryService);
+
+this.sentry.captureApiError(error, { method: 'PUT', action: 'save-address' });
+this.sentry.captureException(error, { section: 'membership' });
+```
+
+Set `enabled: false` locally — nothing is initialised and the interceptor does nothing.
+
+---
+
+## 11. Session & Auth Notes
 
 - Server sessions expire after **15 minutes** of inactivity (this is cross-app).
 - There are no refresh tokens. A ping endpoint is available to extend the session.

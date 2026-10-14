@@ -119,6 +119,13 @@
             "in_n_months": "{{count}}个月后",
             "in_a_year": "1年后",
             "in_n_years": "{{count}}年后"
+        },
+        "search_select": {
+            "placeholder": "输入以搜索...",
+            "no_results": "未找到结果"
+        },
+        "page_header": {
+            "back": "返回"
         }
     }
 }

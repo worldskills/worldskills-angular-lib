@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree, Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { GenericUtil } from '../util/generic.util';
 import { AuthGuardAccess } from '../models/auth-guard-access';
 import { NgAuthService } from './ng-auth.service';
@@ -14,9 +15,18 @@ export class GuardService {
   private ngAuthService = inject(NgAuthService);
   private router = inject(Router);
 
-  async canActivate(
+  canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+      return this.checkAccess(next.data['roles'] as AuthGuardAccess[], state);
+  }
+
+  /**
+   * Starts the login flow when the user is not logged in.
+   * When roles are given, the user needs at least one of them, otherwise
+   * they are sent to `app.notAuthorizedRoute`. Shared by `canActivate` and `roleGuard`.
+   */
+  async checkAccess(roles: AuthGuardAccess[] | null | undefined, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
       await this.ngAuthService.ready;
 
       if (!this.ngAuthService.isLoggedIn()) {
@@ -25,14 +35,12 @@ export class GuardService {
 
       let user = this.ngAuthService.currentUser;
       if (user == null) {
-        user = await this.ngAuthService.getLoggedInUser().toPromise();
+        user = await firstValueFrom(this.ngAuthService.getLoggedInUser(), { defaultValue: null });
       }
 
       if (user == null) {
         return this.login(state);
       }
-
-      const roles = next.data.roles as AuthGuardAccess[];
 
       if (GenericUtil.isNullOrUndefined(roles)) {
         return true;

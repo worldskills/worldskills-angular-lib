@@ -6,11 +6,21 @@
 export * from './lib/worldskills-ng-auth';
 export * from './lib/auth-lib-config';
 export * from './lib/auth-lib-provider';
+export * from './lib/constants';
 
 // services
 export * from './lib/services/ng-auth.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/guard.service';
+
+// guards
+export * from './lib/guards/role.guard';
+
+// directives
+export * from './lib/directives/has-role.directive';
+
+// util
+export * from './lib/util/role.util';
 
 // interceptors
 export * from './lib/interceptors/ws-auth.interceptor';

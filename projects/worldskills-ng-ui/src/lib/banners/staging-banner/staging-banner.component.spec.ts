@@ -8,7 +8,7 @@ describe('StagingBannerComponent', () => {
 
   beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ StagingBannerComponent ]
+      imports: [StagingBannerComponent]
     })
     .compileComponents();
   }));

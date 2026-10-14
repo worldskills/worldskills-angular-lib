@@ -1,25 +1,21 @@
-import {  ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideTranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 
 import { FooterComponent } from './footer.component';
-import { NgAuthService, WsiTranslateService } from 'worldskills-angular-lib';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateLoader, TranslateStore } from '@ngx-translate/core';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
-  beforeEach((() => {
-    TestBed.configureTestingModule({
-      imports: [NgbModule],
-      declarations: [ FooterComponent ],
-      providers: [WsiTranslateService, OAuthService, NgAuthService, TranslateStore, TranslateLoader]    
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FooterComponent],
+      providers: [provideNoopAnimations(), provideTranslateService({ lang: 'en' }), MessageService],
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

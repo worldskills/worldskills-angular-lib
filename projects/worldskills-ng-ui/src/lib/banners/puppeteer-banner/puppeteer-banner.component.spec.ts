@@ -8,7 +8,7 @@ describe('PuppeteerBannerComponent', () => {
 
   beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ PuppeteerBannerComponent ]
+      imports: [PuppeteerBannerComponent]
     })
     .compileComponents();
   }));

@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/ng-ui",
-  "version": "1.8.6",
+  "version": "1.9.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -8,7 +8,19 @@
   "peerDependencies": {
     "@angular/common": "^20.3.0",
     "@angular/core": "^20.3.0",
-    "@ngx-translate/core": ">=17.0.0"
+    "@angular/forms": "^20.3.0",
+    "@angular/router": "^20.3.0",
+    "@ngx-translate/core": ">=17.0.0",
+    "@primeuix/themes": "^2.0.0",
+    "@sentry/angular": "^10.0.0 || ^11.0.0",
+    "@worldskills/ng-auth": "^3.2.0",
+    "primeng": "^20.4.0",
+    "rxjs": "^7.4.0"
+  },
+  "peerDependenciesMeta": {
+    "@sentry/angular": {
+      "optional": true
+    }
   },
   "dependencies": {
     "tslib": "^2.3.0"

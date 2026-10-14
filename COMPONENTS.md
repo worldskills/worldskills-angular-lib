@@ -8,7 +8,8 @@ Before creating a new component, check this catalogue. In most cases you should 
 |-----------|----------|---------|
 | Header | `ws-ng-ui-header` | App header with nav menu, user dropdown, login/logout. Supports sub-menus, custom templates. |
 | Footer | `ws-ng-ui-footer` | App footer with language selector, login/logout, 6 customisable column templates. |
-| Breadcrumb | `ws-ng-ui-breadcrumb` | Breadcrumb trail with router integration. Use `BreadcrumbService` to set crumbs programmatically. |
+| Breadcrumb | `ws-ng-ui-breadcrumb` | Breadcrumb trail built from route `data.breadcrumb`. Use `BreadcrumbService.replaceLabel()` for dynamic labels. |
+| Page Header | `ws-ng-ui-page-header` | Page title bar: back link, title (h1), subtitle, details and slots for media (`[wsPageHeaderMedia]`) and actions (`[wsPageHeaderActions]`). |
 | Logo | `ws-ng-ui-logo` | WorldSkills logo. |
 | Wordmark | `ws-ng-ui-wordmark` | WorldSkills wordmark. |
 
@@ -42,6 +43,7 @@ Before creating a new component, check this catalogue. In most cases you should 
 |-----------|----------|---------|
 | Tree Select | `ws-ng-ui-tree-select` | Generic hierarchical tree selector with search and virtual scroll. |
 | Entity Tree Select | `ws-ng-ui-entity-tree-select` | Tree select pre-wired for WorldSkills organisational entities. Extends Tree Select. |
+| Search Select | `ws-ng-ui-search-select` | Select whose options are searched on the server as the user types (single or multiple). Form-compatible (ControlValueAccessor). |
 | I18n Input | `ws-ng-ui-i18n-input` | Text input with language selector for multi-language values. Form-compatible (ControlValueAccessor). |
 | I18n Textarea | `ws-ng-ui-i18n-textarea` | Textarea version of I18n Input. |
 
@@ -77,6 +79,7 @@ Before creating a new component, check this catalogue. In most cases you should 
 | `WsAlertService` | Push toast notifications: `success()`, `info()`, `warn()`, `error()`. |
 | `WsConfirmService` | Confirmation dialogs: `confirm()`, `yesNo()`, `danger()`, `alert()`. |
 | `BreadcrumbService` | Programmatic breadcrumb management. |
+| `WsSentryService` | Error reporting to Sentry: `captureApiError()`, `captureException()`. From `@worldskills/ng-ui/sentry` (optional entry point; set up with `provideWsSentry()` + `wsSentryHttpInterceptor`). Don't import `@sentry/*` directly in apps. |
 | `ResourceService` | Resource CRUD, search, upload, batch download. |
 | `AwardService` | Fetch award lists and details. |
 | `EntityService` | Fetch organisational entity tree (cached). |
@@ -90,5 +93,8 @@ Before creating a new component, check this catalogue. In most cases you should 
 - **Need a data table?** Use `ws-ng-ui-data-table` — it supports read-only, inline edit, modal edit, and lazy loading. Only create a new table component if the use case is fundamentally different (e.g. a pivot table).
 - **Need a tree/hierarchy selector?** Use `ws-ng-ui-tree-select` or `ws-ng-ui-entity-tree-select`. Extend if you need custom node rendering.
 - **Need multi-language input?** Use `ws-ng-ui-i18n-input` or `ws-ng-ui-i18n-textarea`.
+- **Need a lookup against the API (countries, people, organisations…)?** Use `ws-ng-ui-search-select` with a `search` function. For a fixed, local list use PrimeNG `p-select` directly.
+- **Need a page title with actions?** Use `ws-ng-ui-page-header`.
+- **Need to show/hide content or guard a route by role?** Use `*wsHasRole` and `roleGuard()` from `@worldskills/ng-auth` (ng-ui must not import them — ng-ui depends on ng-auth, never the other way round).
 
 If an existing component almost fits but needs a new feature, **extend it with a new input/option** rather than creating a parallel component.

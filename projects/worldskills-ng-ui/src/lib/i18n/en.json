@@ -136,6 +136,13 @@
             "zipping": "Zipping...",
             "download_error": "Failed to download resources. Please try again.",
             "no_resources": "No resources."
+        },
+        "search_select": {
+            "placeholder": "Type to search...",
+            "no_results": "No results found"
+        },
+        "page_header": {
+            "back": "Back"
         }
     }
 }

@@ -2,6 +2,30 @@
 
 ## @worldskills/ng-ui
 
+### 1.9.0 — Search Select, Page Header & Packaging Fixes
+
+**New**
+- `ws-ng-ui-search-select` (`WsSearchSelectComponent`) — server-side search select wrapping PrimeNG AutoComplete. Replaces `[wsSelect]` + ng-select from worldskills-angular-lib. ControlValueAccessor, single or multiple, cancels stale requests, `WsSearchFn<T>` type exported
+- `ws-ng-ui-page-header` (`WsPageHeaderComponent`) — page title bar with back link, subtitle, details and media/actions slots
+- Translations `ws_ui.search_select.*` and `ws_ui.page_header.back` in all 8 locales
+- Storybook stories: Search Select, Page Header
+
+**New — `@worldskills/ng-ui/sentry` (optional entry point)**
+- `provideWsSentry({ dsn, environment, release?, enabled?, debug?, ignoreUrlPatterns? })` — initialises Sentry, reports unhandled errors via Angular's `ErrorHandler`, tags events with the WorldSkills user id only (no names/emails), strips query strings from breadcrumbs. No performance tracing
+- `wsSentryHttpInterceptor` — reports unexpected API failures (5xx, network errors); 4xx are not reported. Events are grouped by method + path (ids normalised) + status and never include request/response bodies or query strings
+- `WsSentryService` — `captureApiError()`, `captureException()`, `setUserId()`
+- Requires `@sentry/angular` (optional peer dependency — only apps importing `@worldskills/ng-ui/sentry` need it)
+
+**Breaking**
+- `ErrorUtil.captureAPIError` removed from the main entry point (and with it the hard dependency on `@sentry/browser`). Use `WsSentryService.captureApiError()` from `@worldskills/ng-ui/sentry`
+
+**Fixed**
+- `ErrorUtil.getErrorMsg` returned the default message when the API sent a user message (and vice versa). It now returns the API `user_msg` when present
+- `ErrorUtil.hasApiError` now returns a boolean
+- Declared missing peer dependencies: `primeng`, `@primeuix/themes`, `@worldskills/ng-auth`, `@angular/forms`, `@angular/router`, `rxjs`
+- Unit test suite compiles and runs again (footer, header and banner specs updated for standalone components); `ng test` also runs the `sentry` entry point specs
+- `GETTING_STARTED.md`: Tailwind v4 setup (PostCSS, no `tailwind.config.js`), `@source` line for library templates, `ConfirmationService` provider, real `WsConfirmService` and `BreadcrumbService` APIs, docs for the new components and ng-auth role directive/guard
+
 ### 1.8.6 — Relative Date Pipe: Months & Years
 
 **Improved**
@@ -61,6 +85,15 @@
 ---
 
 ## @worldskills/ng-auth
+
+### 3.3.0 — Role Directive & Functional Guard
+- **New** `*wsHasRole` structural directive (`HasRoleDirective`) — replaces `*wsUserRole` from worldskills-angular-lib. Inputs: roles, `appCode`, `entity`, `all`, `negate`. Signal-based; content is removed again when the user loses the role
+- **New** `roleGuard(roles?)` functional `CanActivateFn` — falls back to route `data.roles` when called without arguments
+- **New** `hasRoles(user, options)` role check utility (same semantics as ng-ui `UserRoleUtil`)
+- **New** `GuardService.checkAccess(roles, state)` — shared logic behind `canActivate` and `roleGuard`
+- **New** Constants exported (`RETURN_URL_KEY`, `USER_CURRENT_KEY`, …)
+- **Fixed** `GuardService` no longer uses the deprecated `toPromise()`
+- Added `@angular/router` to peer dependencies
 
 ### 3.2.1 — 401 Interceptor Exclusion Patterns
 - **New** `AuthLibConfig.redirectOn401ExcludePatterns` — URL string or `RegExp` patterns exempt from the 401 redirect even when `autoRedirectOn401: true`

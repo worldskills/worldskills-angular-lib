@@ -119,6 +119,13 @@
             "in_n_months": "через {{count}} месяцев",
             "in_a_year": "через год",
             "in_n_years": "через {{count}} лет"
+        },
+        "search_select": {
+            "placeholder": "Начните вводить для поиска...",
+            "no_results": "Результаты не найдены"
+        },
+        "page_header": {
+            "back": "Назад"
         }
     }
 }

@@ -131,6 +131,13 @@
             "in_n_months": "in {{count}} Monaten",
             "in_a_year": "in einem Jahr",
             "in_n_years": "in {{count}} Jahren"
+        },
+        "search_select": {
+            "placeholder": "Zum Suchen tippen...",
+            "no_results": "Keine Ergebnisse gefunden"
+        },
+        "page_header": {
+            "back": "Zurück"
         }
     }
 }

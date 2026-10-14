@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/ng-auth",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -8,6 +8,7 @@
   "peerDependencies": {
     "@angular/common": "^20.3.0",
     "@angular/core": "^20.3.0",
+    "@angular/router": "^20.3.0",
     "angular-oauth2-oidc": ">=17.0.0"
   },
   "dependencies": {
