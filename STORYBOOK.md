@@ -181,13 +181,16 @@ See `alert.stories.ts` and `data-table.stories.ts` for examples of thorough docs
 | `footer.stories.ts` | Footer | Standard footer |
 | `alert.stories.ts` | Alerts | Inline (4 severities) + toast notifications |
 | `announcement.stories.ts` | Announcement | Long-form alerts with HTML, truncation |
-| `data-table.stories.ts` | Data Table | Read-only, inline edit, modal edit, lazy loading |
+| `data-table.stories.ts` | Tables / Data Table | Read-only, inline edit, modal edit, lazy loading |
+| `tables.stories.ts` | Tables / Table Helpers | `p-table` built from `WsTableColumn` helpers: columns settings, filters, local sort, directives |
 | `dialog.stories.ts` | Dialog | Dialog + confirm dialog |
 | `spinner.stories.ts` | Spinner | Loading spinner |
 | `breadcrumb.stories.ts` | Breadcrumb | Breadcrumb navigation |
 | `banners.stories.ts` | Banners | Staging banner |
 | `puppeteer-banner.stories.ts` | Puppeteer Banner | Print/export banner |
 | `i18n-controls.stories.ts` | I18n Controls | I18n input + textarea |
+| `i18n-text.stories.ts` | I18n Text | Single line, multiline, empty, autocomplete |
+| `i18n-editor.stories.ts` | I18n Editor | `wsI18n` plugin on p-editor, default + custom toolbar |
 | `tree-select.stories.ts` | Tree Select | Tree select component |
 | `entity-tree-select.stories.ts` | Entity Tree Select | Entity-aware tree select |
 | `relative-date.stories.ts` | Relative Date | Date pipe |

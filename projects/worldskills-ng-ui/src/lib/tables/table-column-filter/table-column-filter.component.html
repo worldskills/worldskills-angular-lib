@@ -1,0 +1,49 @@
+<p-columnFilter
+  [field]="field()"
+  [matchMode]="type() === 'text' ? 'contains' : 'equals'"
+  display="menu"
+  [pt]="filterPt"
+  [showMatchModes]="false"
+  [showOperator]="false"
+  [showAddButton]="false"
+  [showApplyButton]="false"
+  [showClearButton]="false"
+  [showButtons]="false"
+>
+  <ng-template #filter let-value let-filter="filterCallback">
+    @switch (type()) {
+      @case ('select') {
+        <p-select
+          [ngModel]="value"
+          [options]="options()"
+          [optionLabel]="optionLabel()"
+          optionValue="id"
+          [filter]="true"
+          [showClear]="true"
+          class="w-64"
+          [ariaLabel]="label()"
+          (onChange)="filter($event.value ?? null)"
+        />
+      }
+      @case ('tree') {
+        <p-tree-select [ngModel]="value" [options]="asTreeNodes(options())" [filter]="true" [showClear]="true" class="w-64" (onNodeSelect)="filter($event.node)" (onClear)="filter(null)" />
+      }
+      @case ('checkbox') {
+        <div class="flex items-center gap-2">
+          <p-checkbox [inputId]="'filter_' + field()" [binary]="true" [ngModel]="!!value" (onChange)="filter($event.checked || null)" />
+          <label [for]="'filter_' + field()">{{ checkboxLabel() }}</label>
+        </div>
+      }
+      @default {
+        <p-iconfield class="w-64">
+          <input pInputText type="text" class="w-full" [ngModel]="value" (ngModelChange)="filter($event || null)" [attr.aria-label]="label()" />
+          @if (value) {
+            <p-inputicon>
+              <i class="pi pi-times cursor-pointer" role="button" tabindex="0" [attr.aria-label]="'ws_ui.tables.clear' | translate" (click)="filter(null)" (keydown.enter)="filter(null)"></i>
+            </p-inputicon>
+          }
+        </p-iconfield>
+      }
+    }
+  </ng-template>
+</p-columnFilter>

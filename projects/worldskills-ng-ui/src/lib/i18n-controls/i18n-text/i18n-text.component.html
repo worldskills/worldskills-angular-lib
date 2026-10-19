@@ -1,0 +1,92 @@
+<div class="relative">
+  <p-inputgroup>
+    @if (multiline()) {
+      <textarea
+        pTextarea
+        (blur)="onBlur()"
+        (input)="onInput($event)"
+        [attr.dir]="dir()"
+        [autoResize]="!supportsFieldSizing && autoResize()"
+        [class.field-sizing-content]="supportsFieldSizing && autoResize()"
+        [disabled]="disabled()"
+        [id]="inputId()"
+        [invalid]="invalid()"
+        [name]="name()"
+        [placeholder]="placeholder()"
+        [readonly]="readonly()"
+        [required]="required()"
+        [rows]="rows()"
+        [value]="value()"
+        [variant]="variant()"
+        [fluid]="fluid()"
+      ></textarea>
+    } @else {
+      <input
+        pInputText
+        type="text"
+        (blur)="onBlur()"
+        (input)="onInput($event)"
+        (keydown)="onKeydown($event)"
+        [attr.autocomplete]="autocomplete() || null"
+        [attr.autofocus]="autofocus() ? '' : null"
+        [attr.dir]="dir()"
+        [attr.maxlength]="maxlength()"
+        [attr.minlength]="minlength()"
+        [attr.pattern]="pattern()"
+        [attr.role]="autocompleteEnabled() ? 'combobox' : null"
+        [attr.aria-autocomplete]="autocompleteEnabled() ? 'list' : null"
+        [attr.aria-expanded]="autocompleteEnabled() ? suggestionsVisible() : null"
+        [attr.aria-controls]="autocompleteEnabled() && suggestionsVisible() ? listboxId() : null"
+        [attr.aria-activedescendant]="activeDescendant()"
+        [disabled]="disabled()"
+        [fluid]="fluid()"
+        [id]="inputId()"
+        [invalid]="invalid()"
+        [name]="name()"
+        [placeholder]="placeholder()"
+        [readonly]="readonly()"
+        [required]="required()"
+        [value]="value()"
+        [variant]="variant()"
+      />
+    }
+    <p-inputgroup-addon [style.align-items]="multiline() ? 'flex-start' : null">
+      <ws-ng-ui-i18n-translations-menu
+        [translations]="translations()"
+        (translationsChange)="onTranslationsSaved($event)"
+        [selectedLang]="selectedLangCode()"
+        (selectedLangChange)="onLanguageChange($event)"
+        [availableLanguages]="availableLanguages()"
+        [language]="language()"
+        [disabled]="disabled()"
+        [draftRows]="multiline() ? 3 : 1"
+        [placeholder]="placeholder()"
+      />
+    </p-inputgroup-addon>
+  </p-inputgroup>
+
+  @if (suggestionsVisible()) {
+    <ul
+      [id]="listboxId()"
+      role="listbox"
+      class="absolute left-0 right-0 top-full z-10 mt-1 max-h-60 overflow-auto rounded-md border border-surface bg-surface-0 py-1 shadow-lg"
+    >
+      @for (suggestion of suggestions(); track $index) {
+        <li
+          #suggestionOptionItem
+          [id]="optionId($index)"
+          role="option"
+          [attr.aria-selected]="$index === activeIndex()"
+          [attr.dir]="dir()"
+          (mousedown)="$event.preventDefault()"
+          (click)="selectSuggestion(suggestion)"
+          (mouseenter)="activeIndex.set($index)"
+          class="cursor-pointer px-3 py-2 text-sm"
+          [class.bg-surface-100]="$index === activeIndex()"
+        >
+          {{ suggestion }}
+        </li>
+      }
+    </ul>
+  }
+</div>

@@ -126,6 +126,23 @@
         },
         "page_header": {
             "back": "رجوع"
+        },
+        "i18n_controls": {
+            "manage_translations": "إدارة الترجمات",
+            "available_translations": "الترجمات المتاحة",
+            "add_edit_translations": "إضافة/تعديل الترجمات",
+            "dialog_description": "عدّل النص لكل لغة أدناه. استخدم \"إضافة ترجمة\" لتوفير ترجمة للغة لا تحتوي على ترجمة بعد.",
+            "add_translation": "إضافة ترجمة",
+            "cancel": "إلغاء",
+            "save": "حفظ",
+            "remove": "إزالة {{label}}",
+            "empty": "لم تتم إضافة أي ترجمات بعد",
+            "empty_helper": "استخدم \"إضافة ترجمة\" أدناه لإضافة الترجمات"
+        },
+        "tables": {
+            "columns": "الأعمدة",
+            "reset": "إعادة تعيين",
+            "clear": "مسح"
         }
     }
 }

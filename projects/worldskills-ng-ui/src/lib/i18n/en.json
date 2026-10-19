@@ -143,6 +143,23 @@
         },
         "page_header": {
             "back": "Back"
+        },
+        "i18n_controls": {
+            "manage_translations": "Manage translations",
+            "available_translations": "Available Translations",
+            "add_edit_translations": "Add/Edit Translations",
+            "dialog_description": "Edit the text for each language below. Use \"Add Translation\" to provide a translation for a language that doesn't have one yet.",
+            "add_translation": "Add Translation",
+            "cancel": "Cancel",
+            "save": "Save",
+            "remove": "Remove {{label}}",
+            "empty": "No translations have been added yet",
+            "empty_helper": "Use \"Add Translation\" below to add translations"
+        },
+        "tables": {
+            "columns": "Columns",
+            "reset": "Reset",
+            "clear": "Clear"
         }
     }
 }

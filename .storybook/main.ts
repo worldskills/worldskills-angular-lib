@@ -14,6 +14,7 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@worldskills/ng-auth': path.resolve(process.cwd(), 'projects/worldskills-ng-auth/src/public-api.ts'),
+      '@worldskills/ng-ui/editor': path.resolve(process.cwd(), 'projects/worldskills-ng-ui/editor/src/public-api.ts'),
       '@worldskills/ng-ui': path.resolve(process.cwd(), 'projects/worldskills-ng-ui/src/public-api.ts'),
     };
     return config;

@@ -138,6 +138,23 @@
         },
         "page_header": {
             "back": "Zurück"
+        },
+        "i18n_controls": {
+            "manage_translations": "Übersetzungen verwalten",
+            "available_translations": "Verfügbare Übersetzungen",
+            "add_edit_translations": "Übersetzungen hinzufügen/bearbeiten",
+            "dialog_description": "Bearbeiten Sie unten den Text für jede Sprache. Verwenden Sie „Übersetzung hinzufügen“, um eine Übersetzung für eine Sprache ohne Übersetzung anzulegen.",
+            "add_translation": "Übersetzung hinzufügen",
+            "cancel": "Abbrechen",
+            "save": "Speichern",
+            "remove": "{{label}} entfernen",
+            "empty": "Es wurden noch keine Übersetzungen hinzugefügt",
+            "empty_helper": "Verwenden Sie unten „Übersetzung hinzufügen“, um Übersetzungen hinzuzufügen"
+        },
+        "tables": {
+            "columns": "Spalten",
+            "reset": "Zurücksetzen",
+            "clear": "Leeren"
         }
     }
 }

@@ -19,4 +19,8 @@ export class LangUtil {
     static getDefaultLanguage(): Language {
         return {code: 'en', name: 'English', alt: []};
     }
+
+    static getDirection(code: string | null | undefined): 'rtl' | 'ltr' {
+        return /^(ar|he|fa|ur)(_|$)/.test(code ?? '') ? 'rtl' : 'ltr';
+    }
 }

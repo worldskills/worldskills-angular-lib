@@ -36,6 +36,18 @@ Before creating a new component, check this catalogue. In most cases you should 
 | Component | Selector | Purpose |
 |-----------|----------|---------|
 | Data Table | `ws-ng-ui-data-table` | Full-featured table: virtual scroll, sort, filter, inline/modal editing, lazy loading, add/delete. |
+| Table Column | `td[wsTableColumn]` | Building block for your own `p-table` from a `WsTableColumn[]`: cell from `row[key]`, `textRenderer` or `#renderer` template, optional 3-line clamp. |
+| Table Header Column | `th[wsTableHeaderColumn]` | Header cell for a `WsTableColumn`: title, sort (wired on the th, combines with `pFrozenColumn`), tooltip, projected filter. |
+| Table Column Filter | `ws-ng-ui-table-column-filter` | Header menu filter (text/select/tree/checkbox) applied on change, for lazy `p-table`. `filterValue()` reads it from the filter event. |
+| Table Columns Settings | `ws-ng-ui-table-columns-settings` | Show/hide columns multi-select, persisted per `tableKey` via `WsColumnsVisibilityService`. |
+| Table Sort Icon | `ws-ng-ui-table-sort-icon` | Sort icon for headers with custom sort state. `initializeLocalTableSort()` sorts with the columns' compare functions. |
+
+## Directives
+
+| Directive | Selector | Purpose |
+|-----------|----------|---------|
+| Close on resize | `p-menu[wsCloseOnResize]` | Hides a popup menu when the window resizes. |
+| Table responsive size | `p-table[wsResponsiveSize]` | `size="small"` below 1024px. |
 
 ## Selection & Input
 
@@ -46,6 +58,9 @@ Before creating a new component, check this catalogue. In most cases you should 
 | Search Select | `ws-ng-ui-search-select` | Select whose options are searched on the server as the user types (single or multiple). Form-compatible (ControlValueAccessor). |
 | I18n Input | `ws-ng-ui-i18n-input` | Text input with language selector for multi-language values. Form-compatible (ControlValueAccessor). |
 | I18n Textarea | `ws-ng-ui-i18n-textarea` | Textarea version of I18n Input. |
+| I18n Text | `ws-ng-ui-i18n-text` | Input/textarea (`multiline`) bound to a single `I18nText` with `translations` map. Language menu, add/edit translations dialog, optional autocomplete. Form-compatible (ControlValueAccessor). |
+| I18n Editor plugin | `p-editor[wsI18n]` | Directive for any existing PrimeNG `p-editor`: adds a language button to its toolbar and makes the form value an `I18nText` (HTML per language). From `@worldskills/ng-ui/editor` (optional entry point, requires `quill`). |
+| I18n Translations Menu | `ws-ng-ui-i18n-translations-menu` | Language button + menu + add/edit translations dialog used by I18n Text and the editor plugin. Reuse it for new i18n controls. |
 
 ## Resources
 
@@ -90,9 +105,9 @@ Before creating a new component, check this catalogue. In most cases you should 
 - **Need a notification?** Use `WsAlertService` (toast) or `ws-ng-ui-alert` (inline). Don't create a new notification component.
 - **Need a modal?** Use `ws-ng-ui-dialog`. Don't create a new modal wrapper.
 - **Need a confirmation prompt?** Use `WsConfirmService`. Don't build a custom confirm dialog.
-- **Need a data table?** Use `ws-ng-ui-data-table` — it supports read-only, inline edit, modal edit, and lazy loading. Only create a new table component if the use case is fundamentally different (e.g. a pivot table).
+- **Need a data table?** Use `ws-ng-ui-data-table` — it supports read-only, inline edit, modal edit, and lazy loading. Only create a new table component if the use case is fundamentally different (e.g. a pivot table). Writing your own `p-table` instead? Build it from the `WsTableColumn` helpers above.
 - **Need a tree/hierarchy selector?** Use `ws-ng-ui-tree-select` or `ws-ng-ui-entity-tree-select`. Extend if you need custom node rendering.
-- **Need multi-language input?** Use `ws-ng-ui-i18n-input` or `ws-ng-ui-i18n-textarea`.
+- **Need multi-language input?** Value is a single `I18nText` with `translations` → `ws-ng-ui-i18n-text` (plain) or `<p-editor wsI18n>` (rich text). Value is an `I18nText[]` array → `ws-ng-ui-i18n-input` or `ws-ng-ui-i18n-textarea`.
 - **Need a lookup against the API (countries, people, organisations…)?** Use `ws-ng-ui-search-select` with a `search` function. For a fixed, local list use PrimeNG `p-select` directly.
 - **Need a page title with actions?** Use `ws-ng-ui-page-header`.
 - **Need to show/hide content or guard a route by role?** Use `*wsHasRole` and `roleGuard()` from `@worldskills/ng-auth` (ng-ui must not import them — ng-ui depends on ng-auth, never the other way round).

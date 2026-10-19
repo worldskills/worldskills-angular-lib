@@ -20,6 +20,7 @@ npm install primeng @primeuix/themes primeicons
 npm install @ngx-translate/core @ngx-translate/http-loader
 npm install angular-oauth2-oidc
 npm install tailwindcss @tailwindcss/postcss tailwindcss-primeui
+npm install quill   # only if you use @worldskills/ng-ui/editor
 ```
 
 ---
@@ -384,6 +385,15 @@ searchCountries: WsSearchFn<Country> = term => this.countryService.search(term);
 
 ```html
 <ws-ng-ui-search-select formControlName="country" [search]="searchCountries" optionLabel="name.text" />
+```
+
+### Multi-language text (`I18nText` with `translations`)
+
+```html
+<ws-ng-ui-i18n-text formControlName="name" />
+<ws-ng-ui-i18n-text formControlName="summary" [multiline]="true" />
+<!-- rich text: import WsI18nEditorDirective from @worldskills/ng-ui/editor (needs quill) -->
+<p-editor wsI18n formControlName="body" />
 ```
 
 ### Role-based content and route guards (`@worldskills/ng-auth`)

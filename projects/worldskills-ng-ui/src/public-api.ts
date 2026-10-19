@@ -88,6 +88,19 @@ export * from './lib/dialog/confirm.service';
 export * from './lib/data-table/data-table.component';
 export * from './lib/data-table/data-table.model';
 
+// p-table helpers
+export * from './lib/tables/table-column';
+export * from './lib/tables/columns-visibility.service';
+export * from './lib/tables/table-column/table-column.component';
+export * from './lib/tables/table-header-column/table-header-column.component';
+export * from './lib/tables/sort-icon/sort-icon.component';
+export * from './lib/tables/table-column-filter/table-column-filter.component';
+export * from './lib/tables/table-columns-settings/table-columns-settings.component';
+
+// directives
+export * from './lib/directives/close-on-resize.directive';
+export * from './lib/directives/table-responsive-size.directive';
+
 // alerts
 export * from './lib/alert/alert.service';
 export * from './lib/alert/alert.component';
@@ -103,6 +116,8 @@ export * from './lib/page-header/page-header.component';
 // i18n controls
 export * from './lib/i18n-controls/i18n-input/i18n-input.component';
 export * from './lib/i18n-controls/i18n-textarea/i18n-textarea.component';
+export * from './lib/i18n-controls/i18n-text/i18n-text.component';
+export * from './lib/i18n-controls/i18n-translations-menu/i18n-translations-menu.component';
 
 // date
 export * from './lib/date/relative-date/relative-date.pipe';

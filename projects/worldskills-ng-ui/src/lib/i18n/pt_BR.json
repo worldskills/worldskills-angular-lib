@@ -139,6 +139,23 @@
         },
         "page_header": {
             "back": "Voltar"
+        },
+        "i18n_controls": {
+            "manage_translations": "Gerenciar traduções",
+            "available_translations": "Traduções disponíveis",
+            "add_edit_translations": "Adicionar/editar traduções",
+            "dialog_description": "Edite o texto de cada idioma abaixo. Use \"Adicionar tradução\" para fornecer uma tradução para um idioma que ainda não tenha uma.",
+            "add_translation": "Adicionar tradução",
+            "cancel": "Cancelar",
+            "save": "Salvar",
+            "remove": "Remover {{label}}",
+            "empty": "Nenhuma tradução foi adicionada ainda",
+            "empty_helper": "Use \"Adicionar tradução\" abaixo para adicionar traduções"
+        },
+        "tables": {
+            "columns": "Colunas",
+            "reset": "Redefinir",
+            "clear": "Limpar"
         }
     }
 }

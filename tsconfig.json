@@ -29,6 +29,9 @@
         "dist/worldskills-ng-ui",
         "projects/worldskills-ng-ui/src/public-api.ts"
       ],
+      "@worldskills/ng-ui/editor": [
+        "./projects/worldskills-ng-ui/editor/src/public-api.ts"
+      ],
       "@worldskills/ng-ui/*": [
         "./projects/worldskills-ng-ui/src/*"
       ]
