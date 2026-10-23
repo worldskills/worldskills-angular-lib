@@ -57,7 +57,8 @@
             "tsConfig": "projects/worldskills-ng-ui/tsconfig.spec.json",
             "include": [
               "**/*.spec.ts",
-              "../sentry/**/*.spec.ts"
+              "../sentry/**/*.spec.ts",
+              "../editor/**/*.spec.ts"
             ],
             "polyfills": [
               "zone.js",
@@ -175,7 +176,7 @@
             "port": 6006,
             "compodoc": false,
             "styles": [
-              ".storybook/storybook.css"
+              "projects/worldskills-ng-tester-prime/src/styles.scss"
             ]
           }
         },
@@ -188,7 +189,7 @@
             "outputDir": "dist/storybook",
             "compodoc": false,
             "styles": [
-              ".storybook/storybook.css"
+              "projects/worldskills-ng-tester-prime/src/styles.scss"
             ]
           }
         },

@@ -139,6 +139,27 @@
         },
         "page_header": {
             "back": "Takaisin"
+        },
+        "i18n_controls": {
+            "manage_translations": "Hallinnoi käännöksiä",
+            "available_translations": "Saatavilla olevat käännökset",
+            "add_edit_translations": "Lisää/muokkaa käännöksiä",
+            "dialog_description": "Muokkaa kunkin kielen tekstiä alla. Lisää käännös kielelle, jolla sitä ei vielä ole, valitsemalla ”Lisää käännös”.",
+            "add_translation": "Lisää käännös",
+            "cancel": "Peruuta",
+            "save": "Tallenna",
+            "remove": "Poista {{label}}",
+            "empty": "Käännöksiä ei ole vielä lisätty",
+            "empty_helper": "Lisää käännöksiä alla olevalla ”Lisää käännös” -painikkeella",
+            "required": "Pakollinen",
+            "missing": "Käännös puuttuu",
+            "missing_required": "Pakollisia käännöksiä puuttuu: {{languages}}",
+            "other_translations": "{{count}} muuta käännöstä"
+        },
+        "tables": {
+            "columns": "Sarakkeet",
+            "reset": "Palauta",
+            "clear": "Tyhjennä"
         }
     }
 }

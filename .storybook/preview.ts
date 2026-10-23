@@ -30,7 +30,8 @@ const preview: Preview = {
               darkModeSelector: '.dark',
               cssLayer: {
                 name: 'primeng',
-                order: 'tailwind-base, primeng, tailwind-utilities',
+                // Tailwind 4 layer names: PrimeNG above preflight, below utilities.
+                order: 'theme, base, primeng',
               },
               ripple: true,
             },

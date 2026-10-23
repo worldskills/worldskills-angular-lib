@@ -1,4 +1,6 @@
-import { Component, input, output, TemplateRef, inject, signal , ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, output, TemplateRef, inject, computed, ChangeDetectionStrategy } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { NgTemplateOutlet, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LangUtil } from '../../common/util/lang.util';
@@ -44,9 +46,12 @@ export class FooterComponent {
   readonly languages = LangUtil.getDefaultLanguages();
   readonly supportEmail = this.config.app?.supportEmailAddress;
 
-  selectedLanguage = signal<Language>(
-    this.languages.find(l => l.code === (this.ngxTranslate.getCurrentLang() ?? LangUtil.getDefaultLanguage().code))
-    ?? LangUtil.getDefaultLanguage()
+  // Follows the active language, including one restored from sessionStorage after a refresh.
+  private readonly currentLang = toSignal(this.ngxTranslate.onLangChange.pipe(map(e => e.lang)), {
+    initialValue: this.ngxTranslate.getCurrentLang(),
+  });
+  readonly selectedLanguage = computed(
+    () => this.languages.find(l => l.code === this.currentLang()) ?? LangUtil.getDefaultLanguage(),
   );
 
   readonly langSelectPT = {
@@ -60,7 +65,7 @@ export class FooterComponent {
   // ── Methods ───────────────────────────────────────────────────────────────
 
   changeLanguage(lang: Language): void {
-    this.selectedLanguage.set(lang);
+    sessionStorage.setItem('lang', lang.code);
     this.ngxTranslate.use(lang.code);
     this.languageChange.emit(lang);
   }

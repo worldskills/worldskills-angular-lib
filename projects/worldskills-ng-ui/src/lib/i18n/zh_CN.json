@@ -126,6 +126,27 @@
         },
         "page_header": {
             "back": "返回"
+        },
+        "i18n_controls": {
+            "manage_translations": "管理翻译",
+            "available_translations": "可用翻译",
+            "add_edit_translations": "添加/编辑翻译",
+            "dialog_description": "请在下方编辑每种语言的文本。使用“添加翻译”为尚无翻译的语言提供翻译。",
+            "add_translation": "添加翻译",
+            "cancel": "取消",
+            "save": "保存",
+            "remove": "移除 {{label}}",
+            "empty": "尚未添加任何翻译",
+            "empty_helper": "使用下方的“添加翻译”来添加翻译",
+            "required": "必填",
+            "missing": "缺少翻译",
+            "missing_required": "缺少必填翻译：{{languages}}",
+            "other_translations": "另有 {{count}} 个翻译"
+        },
+        "tables": {
+            "columns": "列",
+            "reset": "重置",
+            "clear": "清除"
         }
     }
 }

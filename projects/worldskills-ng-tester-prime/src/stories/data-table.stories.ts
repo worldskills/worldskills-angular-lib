@@ -154,7 +154,7 @@ class ModalEditTableComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta = {
-  title: 'WorldSkills UI / Data Table',
+  title: 'WorldSkills UI / Tables / Data Table',
   tags: ['autodocs'],
   decorators: [
     applicationConfig({ providers: [provideAnimations()] }),

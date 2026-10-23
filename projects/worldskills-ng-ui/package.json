@@ -15,10 +15,14 @@
     "@sentry/angular": "^10.0.0 || ^11.0.0",
     "@worldskills/ng-auth": "^3.2.0",
     "primeng": "^20.4.0",
+    "quill": "^2.0.0",
     "rxjs": "^7.4.0"
   },
   "peerDependenciesMeta": {
     "@sentry/angular": {
+      "optional": true
+    },
+    "quill": {
       "optional": true
     }
   },

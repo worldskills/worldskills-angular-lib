@@ -1,0 +1,25 @@
+<p-multi-select
+  display="chip"
+  [options]="columns()"
+  [ngModel]="shownColumns()"
+  optionLabel="headerText"
+  optionDisabled="pinned"
+  [displaySelectedLabel]="true"
+  placeholder=" "
+  size="small"
+  [autofocusFilter]="false"
+  [ariaLabel]="'ws_ui.tables.columns' | translate"
+  (onChange)="handleOnChange($event)"
+>
+  <ng-template #selecteditems>{{ 'ws_ui.tables.columns' | translate }}</ng-template>
+
+  <ng-template let-item #item>
+    {{ item.headerText() }}
+  </ng-template>
+
+  <ng-template #footer>
+    <div class="p-1 flex justify-end">
+      <p-button [label]="'ws_ui.tables.reset' | translate" icon="pi pi-times" severity="danger" [text]="true" size="small" (onClick)="handleOnReset()" />
+    </div>
+  </ng-template>
+</p-multi-select>

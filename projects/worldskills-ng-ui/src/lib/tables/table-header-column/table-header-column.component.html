@@ -1,0 +1,17 @@
+@let col = column();
+<!-- Icons wrap under the title in narrow columns instead of overflowing into the next one -->
+<div class="flex flex-row flex-wrap items-center gap-x-2 gap-y-1" [pTooltip]="col.headerTooltip ? col.headerTooltip() : undefined">
+  <span class="min-w-0 wrap-break-word">{{ col.headerText() }}</span>
+
+  <div class="flex flex-row gap-1 items-center shrink-0 empty:hidden">
+    @if (col.sortable) {
+      <p-sortIcon [field]="col.key" />
+    }
+
+    @if (col.headerTooltip) {
+      <i class="pi pi-info-circle text-[10px]! text-muted-color"></i>
+    }
+
+    <span class="ws-th-projected contents"><ng-content /></span>
+  </div>
+</div>
