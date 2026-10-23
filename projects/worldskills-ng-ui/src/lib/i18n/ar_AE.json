@@ -137,7 +137,11 @@
             "save": "حفظ",
             "remove": "إزالة {{label}}",
             "empty": "لم تتم إضافة أي ترجمات بعد",
-            "empty_helper": "استخدم \"إضافة ترجمة\" أدناه لإضافة الترجمات"
+            "empty_helper": "استخدم \"إضافة ترجمة\" أدناه لإضافة الترجمات",
+            "required": "مطلوب",
+            "missing": "الترجمة مفقودة",
+            "missing_required": "ترجمات مطلوبة مفقودة: {{languages}}",
+            "other_translations": "{{count}} ترجمة أخرى"
         },
         "tables": {
             "columns": "الأعمدة",

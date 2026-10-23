@@ -24,7 +24,7 @@ export const Default: Story = {
 
 export const LoggedIn: Story = {
   args: {
-    isLoggedIn: true,
+    isLoggedIn: false,
     currentUser: { first_name: 'Jane', last_name: 'Doe', roles: [] } as any,
   },
 };

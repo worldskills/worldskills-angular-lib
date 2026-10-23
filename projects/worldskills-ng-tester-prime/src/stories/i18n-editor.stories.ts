@@ -32,7 +32,7 @@ const SAMPLE: I18nText = {
           </ng-template>
         </p-editor>
       } @else {
-        <p-editor wsI18n [formControl]="control" [style]="{ height: '12rem' }" />
+        <p-editor wsI18n [formControl]="control" [requiredLanguages]="requiredLanguages()" [style]="{ height: '12rem' }" />
       }
       <pre class="text-xs text-gray-500 whitespace-pre-wrap">{{ control.value | json }}</pre>
     </div>
@@ -40,6 +40,7 @@ const SAMPLE: I18nText = {
 })
 class I18nEditorWrapperComponent {
   customToolbar = input(false);
+  requiredLanguages = input<string[]>([]);
   control = new FormControl<I18nText>(structuredClone(SAMPLE));
 }
 
@@ -53,6 +54,11 @@ export const Default: Story = {
 export const CustomToolbar: Story = {
   name: 'Custom toolbar',
   args: { customToolbar: true },
+};
+
+export const RequiredTranslations: Story = {
+  name: 'Required translations',
+  args: { customToolbar: false, requiredLanguages: ['en', 'de'] },
 };
 
 const meta: Meta<I18nEditorWrapperComponent> = {
@@ -79,17 +85,19 @@ import { WsI18nEditorDirective } from '@worldskills/ng-ui/editor'; // separate e
 
 - Needs \`ngModel\`, \`formControl\` or \`formControlName\` on the same \`p-editor\`.
 - \`lang_code\` stays the value's original language; edits to other languages go into \`translations\`.
-- Inputs: \`availableLanguages\`, \`language\` (otherwise follows the ngx-translate language).
+- Inputs: \`availableLanguages\`, \`language\` (otherwise follows the ngx-translate language),
+  \`requiredLanguages\` (highlighted and not removable; the language button warns when one is missing).
         `,
       },
     },
   },
   render: (args) => ({
     props: args,
-    template: `<story-i18n-editor [customToolbar]="customToolbar" />`,
+    template: `<story-i18n-editor [customToolbar]="customToolbar" [requiredLanguages]="requiredLanguages ?? []" />`,
   }),
   argTypes: {
     customToolbar: { control: 'boolean' },
+    requiredLanguages: { control: 'object' },
   },
 };
 

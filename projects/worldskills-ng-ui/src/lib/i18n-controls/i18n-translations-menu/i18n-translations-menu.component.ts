@@ -28,6 +28,7 @@ export interface WsI18nDraftRow {
   code: string;
   label: string;
   text: string;
+  required: boolean;
 }
 
 /** Context of the `#draft` template that replaces the dialog's default textarea. */
@@ -77,6 +78,8 @@ export class WsI18nTranslationsMenuComponent {
   /** Rows of the dialog's default textarea. */
   readonly draftRows = input(1);
   readonly placeholder = input('');
+  /** Language codes that must have a translation: always listed, highlighted, not removable. */
+  readonly requiredLanguages = input<string[]>([]);
 
   readonly draftTemplate = contentChild<TemplateRef<WsI18nDraftContext>>('draft');
 
@@ -90,6 +93,31 @@ export class WsI18nTranslationsMenuComponent {
   readonly drafts = signal<WsI18nDraftRow[]>([]);
   readonly supportsFieldSizing = typeof CSS !== 'undefined' && CSS.supports('field-sizing', 'content');
 
+  /** Filled-in translations other than the selected language. */
+  readonly otherCount = computed(() => {
+    const map = this.translations();
+    const selected = this.selectedLang();
+    return Object.keys(map).filter(code => code !== selected && this.hasText(map[code])).length;
+  });
+
+  readonly missingRequired = computed(() => {
+    const map = this.translations();
+    return this.requiredLanguages().filter(code => !this.hasText(map[code]));
+  });
+
+  readonly triggerTooltip = computed(() => {
+    this.serviceLang(); // re-translate on language change
+    const parts = [this.translate.instant('ws_ui.i18n_controls.manage_translations')];
+    if (this.otherCount()) {
+      parts.push(this.translate.instant('ws_ui.i18n_controls.other_translations', { count: this.otherCount() }));
+    }
+    if (this.missingRequired().length) {
+      const names = this.missingRequired().map(code => LangUtil.getName(code, this.availableLanguages()));
+      parts.push(this.translate.instant('ws_ui.i18n_controls.missing_required', { languages: names.join(', ') }));
+    }
+    return parts.join('. ');
+  });
+
   readonly addLangItems = computed<MenuItem[]>(() => {
     const present = new Set(this.drafts().map(r => r.code));
     return this.availableLanguages()
@@ -102,14 +130,17 @@ export class WsI18nTranslationsMenuComponent {
     this.serviceLang(); // re-translate labels on language change
     const map = this.translations();
     const selected = this.selectedLang();
+    const required = new Set(this.requiredLanguages());
+    const missingText = this.translate.instant('ws_ui.i18n_controls.missing');
 
     const translationItems: MenuItem[] = this.availableLanguages()
-      .filter(l => this.hasText(map[l.code]))
+      .filter(l => required.has(l.code) || this.hasText(map[l.code]))
       .map(l => {
-        const text = this.html() ? this.stripHtml(map[l.code]) : map[l.code];
+        const missing = !this.hasText(map[l.code]);
+        const text = missing ? missingText : this.html() ? this.stripHtml(map[l.code]) : map[l.code];
         return {
           label: `${l.code} ${text}`,
-          state: { code: l.code, text, active: l.code === selected },
+          state: { code: l.code, text, active: l.code === selected, required: required.has(l.code), missing },
           command: () => this.selectedLang.set(l.code),
         };
       });
@@ -143,10 +174,11 @@ export class WsI18nTranslationsMenuComponent {
 
   openDialog(): void {
     const map = this.translations();
+    const required = new Set(this.requiredLanguages());
     this.drafts.set(
       this.availableLanguages()
-        .filter(l => this.hasText(map[l.code]))
-        .map(l => ({ code: l.code, label: l.name ?? l.code, text: map[l.code] })),
+        .filter(l => required.has(l.code) || this.hasText(map[l.code]))
+        .map(l => ({ code: l.code, label: l.name ?? l.code, text: map[l.code] ?? '', required: required.has(l.code) })),
     );
     this.dialogVisible.set(true);
   }
@@ -160,7 +192,7 @@ export class WsI18nTranslationsMenuComponent {
   }
 
   addDraft(lang: Language): void {
-    this.drafts.update(rows => [...rows, { code: lang.code, label: lang.name ?? lang.code, text: '' }]);
+    this.drafts.update(rows => [...rows, { code: lang.code, label: lang.name ?? lang.code, text: '', required: false }]);
   }
 
   removeDraft(code: string): void {
@@ -178,7 +210,7 @@ export class WsI18nTranslationsMenuComponent {
     this.dialogVisible.set(false);
   }
 
-  private hasText(text: string | undefined): boolean {
+  protected hasText(text: string | undefined): boolean {
     return (this.html() ? this.stripHtml(text) : (text ?? '').trim()).length > 0;
   }
 

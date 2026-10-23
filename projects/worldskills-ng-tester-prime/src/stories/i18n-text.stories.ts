@@ -24,6 +24,7 @@ const CITIES = ['Lyon', 'Shanghai', 'Kazan', 'Helsinki', 'Abu Dhabi', 'São Paul
         [autoComplete]="autoComplete()"
         [suggestions]="suggestions()"
         (completeMethod)="search($event.query)"
+        [requiredLanguages]="requiredLanguages()"
         [fluid]="true"
         [(ngModel)]="value" />
       <pre class="text-xs text-gray-500">{{ value | json }}</pre>
@@ -35,6 +36,7 @@ class I18nTextWrapperComponent {
   multiline = input(false);
   autoComplete = input(false);
   empty = input(false);
+  requiredLanguages = input<string[]>([]);
   suggestions = signal<string[]>([]);
   value: I18nText | null = null;
 
@@ -67,6 +69,11 @@ export const Autocomplete: Story = {
   args: { placeholder: 'City…', multiline: false, autoComplete: true, empty: true },
 };
 
+export const RequiredTranslations: Story = {
+  name: 'Required translations',
+  args: { placeholder: 'Enter text…', multiline: false, autoComplete: false, empty: false, requiredLanguages: ['en', 'fr', 'zh_CN'] },
+};
+
 const meta: Meta<I18nTextWrapperComponent> = {
   title: 'WorldSkills UI / I18n Text',
   component: I18nTextWrapperComponent,
@@ -89,6 +96,9 @@ to add, edit or remove translations. Implements \`ControlValueAccessor\`.
 Emitted value: \`{ lang_code, text, translations }\` where \`lang_code\`/\`text\` is the language being edited.
 The edited language follows the ngx-translate current language unless \`[language]\` is set.
 
+The language button shows \`+N\` for other filled-in translations. \`[requiredLanguages]="['en', 'fr']"\` keeps those
+languages in the menu and dialog (highlighted, not removable), and shows a warning on the language button when one is missing.
+
 Need the old \`I18nText[]\` array shape? Use \`ws-ng-ui-i18n-input\` / \`ws-ng-ui-i18n-textarea\`.
         `,
       },
@@ -96,10 +106,11 @@ Need the old \`I18nText[]\` array shape? Use \`ws-ng-ui-i18n-input\` / \`ws-ng-u
   },
   render: (args) => ({
     props: args,
-    template: `<story-i18n-text [placeholder]="placeholder" [multiline]="multiline" [autoComplete]="autoComplete" [empty]="empty" />`,
+    template: `<story-i18n-text [placeholder]="placeholder" [multiline]="multiline" [autoComplete]="autoComplete" [empty]="empty" [requiredLanguages]="requiredLanguages ?? []" />`,
   }),
   argTypes: {
     placeholder: { control: 'text' },
+    requiredLanguages: { control: 'object' },
     multiline: { control: 'boolean' },
     autoComplete: { control: 'boolean' },
     empty: { control: 'boolean' },

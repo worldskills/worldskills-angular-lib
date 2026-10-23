@@ -150,7 +150,11 @@
             "save": "Tallenna",
             "remove": "Poista {{label}}",
             "empty": "Käännöksiä ei ole vielä lisätty",
-            "empty_helper": "Lisää käännöksiä alla olevalla ”Lisää käännös” -painikkeella"
+            "empty_helper": "Lisää käännöksiä alla olevalla ”Lisää käännös” -painikkeella",
+            "required": "Pakollinen",
+            "missing": "Käännös puuttuu",
+            "missing_required": "Pakollisia käännöksiä puuttuu: {{languages}}",
+            "other_translations": "{{count}} muuta käännöstä"
         },
         "tables": {
             "columns": "Sarakkeet",

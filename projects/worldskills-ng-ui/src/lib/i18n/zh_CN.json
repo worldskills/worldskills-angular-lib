@@ -137,7 +137,11 @@
             "save": "保存",
             "remove": "移除 {{label}}",
             "empty": "尚未添加任何翻译",
-            "empty_helper": "使用下方的“添加翻译”来添加翻译"
+            "empty_helper": "使用下方的“添加翻译”来添加翻译",
+            "required": "必填",
+            "missing": "缺少翻译",
+            "missing_required": "缺少必填翻译：{{languages}}",
+            "other_translations": "另有 {{count}} 个翻译"
         },
         "tables": {
             "columns": "列",

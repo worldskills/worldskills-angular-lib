@@ -20,6 +20,10 @@ export class LangUtil {
         return {code: 'en', name: 'English', alt: []};
     }
 
+    static getName(code: string, languages: Language[] = LangUtil.getDefaultLanguages()): string {
+        return languages.find(l => l.code === code)?.name ?? code;
+    }
+
     static getDirection(code: string | null | undefined): 'rtl' | 'ltr' {
         return /^(ar|he|fa|ur)(_|$)/.test(code ?? '') ? 'rtl' : 'ltr';
     }

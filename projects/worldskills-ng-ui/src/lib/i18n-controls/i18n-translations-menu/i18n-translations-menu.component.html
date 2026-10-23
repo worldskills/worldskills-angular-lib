@@ -8,12 +8,20 @@
   class="ws-i18n-trigger"
   type="button"
   aria-haspopup="true"
-  [attr.aria-label]="'ws_ui.i18n_controls.manage_translations' | translate"
-  [pTooltip]="'ws_ui.i18n_controls.manage_translations' | translate"
+  [attr.aria-label]="triggerTooltip()"
+  [pTooltip]="triggerTooltip()"
   tooltipPosition="bottom"
 >
   <i pButtonIcon class="pi pi-language"></i>
   <span pButtonLabel>{{ selectedLang() }}</span>
+  @if (otherCount()) {
+    <span aria-hidden="true" class="rounded-full bg-emphasis px-1.5 text-xs font-semibold leading-5">
+      +{{ otherCount() }}
+    </span>
+  }
+  @if (missingRequired().length) {
+    <i aria-hidden="true" class="pi pi-exclamation-circle text-orange-500"></i>
+  }
   <i pButtonIcon class="pi pi-chevron-down"></i>
 </button>
 
@@ -29,8 +37,17 @@
         <span class="p-menu-item-label">{{ item.label }}</span>
       } @else {
         <!-- inline style: fixed width so labels line up; wins over PrimeNG regardless of layer order -->
-        <p-tag [value]="item.state.code" severity="secondary" style="min-width: 3.75rem" />
-        <span [attr.dir]="getLanguageDirection(item.state.code)" class="p-menu-item-label line-clamp-2 min-w-0 flex-1 text-start">
+        <p-tag
+          [value]="item.state.required ? item.state.code + ' *' : item.state.code"
+          [severity]="item.state.missing ? 'warn' : item.state.required ? 'info' : 'secondary'"
+          style="min-width: 3.75rem"
+        />
+        <span
+          [attr.dir]="item.state.missing ? null : getLanguageDirection(item.state.code)"
+          [class.italic]="item.state.missing"
+          [class.text-orange-500]="item.state.missing"
+          class="p-menu-item-label line-clamp-2 min-w-0 flex-1 text-start"
+        >
           {{ item.state.text }}
         </span>
         @if (item.state.active) {
@@ -58,18 +75,25 @@
         <div class="flex flex-col gap-1.5">
           <div class="flex items-center justify-between gap-2">
             <label [for]="uid + '-' + row.code" class="flex items-center gap-2 text-sm font-semibold">
-              <p-tag [value]="row.code" severity="secondary" />
+              <p-tag [value]="row.code" [severity]="row.required ? 'info' : 'secondary'" />
               {{ row.label }}
+              @if (row.required) {
+                <span class="text-xs font-normal" [class.text-orange-500]="!hasText(row.text)" [class.text-muted-color]="hasText(row.text)">
+                  {{ 'ws_ui.i18n_controls.required' | translate }}
+                </span>
+              }
             </label>
-            <p-button
-              (onClick)="removeDraft(row.code)"
-              [attr.aria-label]="'ws_ui.i18n_controls.remove' | translate: { label: row.label }"
-              [rounded]="true"
-              [text]="true"
-              icon="pi pi-trash"
-              severity="danger"
-              type="button"
-            />
+            @if (!row.required) {
+              <p-button
+                (onClick)="removeDraft(row.code)"
+                [attr.aria-label]="'ws_ui.i18n_controls.remove' | translate: { label: row.label }"
+                [rounded]="true"
+                [text]="true"
+                icon="pi pi-trash"
+                severity="danger"
+                type="button"
+              />
+            }
           </div>
           <div [attr.dir]="getLanguageDirection(row.code)">
             @if (draftTemplate(); as tpl) {
@@ -81,6 +105,7 @@
                 [autoResize]="!supportsFieldSizing"
                 [class.field-sizing-content]="supportsFieldSizing"
                 [id]="uid + '-' + row.code"
+                [invalid]="row.required && !hasText(row.text)"
                 [placeholder]="placeholder()"
                 [rows]="draftRows()"
                 [value]="row.text"

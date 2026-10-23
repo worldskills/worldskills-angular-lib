@@ -149,7 +149,11 @@
             "save": "Speichern",
             "remove": "{{label}} entfernen",
             "empty": "Es wurden noch keine Übersetzungen hinzugefügt",
-            "empty_helper": "Verwenden Sie unten „Übersetzung hinzufügen“, um Übersetzungen hinzuzufügen"
+            "empty_helper": "Verwenden Sie unten „Übersetzung hinzufügen“, um Übersetzungen hinzuzufügen",
+            "required": "Erforderlich",
+            "missing": "Übersetzung fehlt",
+            "missing_required": "Fehlende erforderliche Übersetzungen: {{languages}}",
+            "other_translations": "{{count}} weitere Übersetzung(en)"
         },
         "tables": {
             "columns": "Spalten",

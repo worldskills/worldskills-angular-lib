@@ -36,6 +36,8 @@ export class WsI18nEditorDirective implements ControlValueAccessor {
   readonly availableLanguages = input<Language[]>(LangUtil.getDefaultLanguages());
   /** If provided, drives the selected language; otherwise the ngx-translate language does. */
   readonly language = input<Language | undefined>(undefined);
+  /** Language codes that must be translated: highlighted in the language menu and dialog. */
+  readonly requiredLanguages = input<string[]>([]);
 
   readonly translations = signal<Record<string, string>>({});
   readonly selectedLang = signal('');
@@ -158,6 +160,7 @@ export class WsI18nEditorDirective implements ControlValueAccessor {
       [availableLanguages]="plugin().availableLanguages()"
       [language]="plugin().language()"
       [disabled]="plugin().disabled()"
+      [requiredLanguages]="plugin().requiredLanguages()"
       [html]="true"
       size="small"
     >

@@ -4,7 +4,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { WsI18nTranslationsMenuComponent } from './i18n-translations-menu.component';
 
 describe('WsI18nTranslationsMenuComponent', () => {
-  function create(translations: Record<string, string>, html = false) {
+  function create(translations: Record<string, string>, html = false, requiredLanguages: string[] = []) {
     TestBed.configureTestingModule({
       imports: [WsI18nTranslationsMenuComponent],
       providers: [provideNoopAnimations(), provideTranslateService({ lang: 'en' })],
@@ -12,6 +12,7 @@ describe('WsI18nTranslationsMenuComponent', () => {
     const fixture = TestBed.createComponent(WsI18nTranslationsMenuComponent);
     fixture.componentRef.setInput('translations', translations);
     fixture.componentRef.setInput('html', html);
+    fixture.componentRef.setInput('requiredLanguages', requiredLanguages);
     fixture.detectChanges();
     return fixture.componentInstance;
   }
@@ -32,6 +33,21 @@ describe('WsI18nTranslationsMenuComponent', () => {
     component.saveDialog();
 
     expect(saved).toHaveBeenCalledWith({ en: 'Hello', fi: 'Hei' });
+  });
+
+  it('counts filled-in translations other than the selected one', () => {
+    const component = create({ en: 'Hello', fr: 'Bonjour', de: ' ' });
+    component.selectedLang.set('en');
+    expect(component.otherCount()).toBe(1);
+  });
+
+  it('lists missing required languages and opens them in the dialog', () => {
+    const component = create({ en: 'Hello' }, false, ['en', 'fr']);
+
+    expect(codes(component)).toEqual(['en', 'fr']);
+    expect(component.missingRequired()).toEqual(['fr']);
+    component.openDialog();
+    expect(component.drafts().map(r => [r.code, r.required])).toEqual([['en', true], ['fr', true]]);
   });
 
   it('treats empty HTML as no translation and previews plain text', () => {

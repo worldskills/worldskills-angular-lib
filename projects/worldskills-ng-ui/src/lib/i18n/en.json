@@ -154,7 +154,11 @@
             "save": "Save",
             "remove": "Remove {{label}}",
             "empty": "No translations have been added yet",
-            "empty_helper": "Use \"Add Translation\" below to add translations"
+            "empty_helper": "Use \"Add Translation\" below to add translations",
+            "required": "Required",
+            "missing": "Missing translation",
+            "missing_required": "Missing required translations: {{languages}}",
+            "other_translations": "{{count}} other translation(s)"
         },
         "tables": {
             "columns": "Columns",

@@ -58,8 +58,8 @@ Before creating a new component, check this catalogue. In most cases you should 
 | Search Select | `ws-ng-ui-search-select` | Select whose options are searched on the server as the user types (single or multiple). Form-compatible (ControlValueAccessor). |
 | I18n Input | `ws-ng-ui-i18n-input` | Text input with language selector for multi-language values. Form-compatible (ControlValueAccessor). |
 | I18n Textarea | `ws-ng-ui-i18n-textarea` | Textarea version of I18n Input. |
-| I18n Text | `ws-ng-ui-i18n-text` | Input/textarea (`multiline`) bound to a single `I18nText` with `translations` map. Language menu, add/edit translations dialog, optional autocomplete. Form-compatible (ControlValueAccessor). |
-| I18n Editor plugin | `p-editor[wsI18n]` | Directive for any existing PrimeNG `p-editor`: adds a language button to its toolbar and makes the form value an `I18nText` (HTML per language). From `@worldskills/ng-ui/editor` (optional entry point, requires `quill`). |
+| I18n Text | `ws-ng-ui-i18n-text` | Input/textarea (`multiline`) bound to a single `I18nText` with `translations` map. Language menu (`+N` other translations), add/edit translations dialog, optional autocomplete, `requiredLanguages` (highlighted, warning when missing). Form-compatible (ControlValueAccessor). |
+| I18n Editor plugin | `p-editor[wsI18n]` | Directive for any existing PrimeNG `p-editor`: adds a language button to its toolbar and makes the form value an `I18nText` (HTML per language). Supports `requiredLanguages`. From `@worldskills/ng-ui/editor` (optional entry point, requires `quill`). |
 | I18n Translations Menu | `ws-ng-ui-i18n-translations-menu` | Language button + menu + add/edit translations dialog used by I18n Text and the editor plugin. Reuse it for new i18n controls. |
 
 ## Resources

@@ -59,6 +59,8 @@ export class WsI18nTextComponent implements ControlValueAccessor {
   readonly multiline = input(false);
   readonly rows = input(3);
   readonly autoResize = input(true);
+  /** Language codes that must be translated: highlighted in the language menu and dialog. */
+  readonly requiredLanguages = input<string[]>([]);
 
   // If provided, drives the initial/selected language and is followed on change.
   // If not provided, the component follows the translate service's current language.

@@ -137,7 +137,11 @@
             "save": "Enregistrer",
             "remove": "Supprimer {{label}}",
             "empty": "Aucune traduction n'a encore été ajoutée",
-            "empty_helper": "Utilisez « Ajouter une traduction » ci-dessous pour ajouter des traductions"
+            "empty_helper": "Utilisez « Ajouter une traduction » ci-dessous pour ajouter des traductions",
+            "required": "Obligatoire",
+            "missing": "Traduction manquante",
+            "missing_required": "Traductions obligatoires manquantes : {{languages}}",
+            "other_translations": "{{count}} autre(s) traduction(s)"
         },
         "tables": {
             "columns": "Colonnes",
