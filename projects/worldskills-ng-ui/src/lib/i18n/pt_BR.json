@@ -139,6 +139,11 @@
         },
         "page_header": {
             "back": "Voltar"
+        },
+        "help": {
+            "title": "Ajuda desta página",
+            "open": "Ajuda: o que há nesta página",
+            "close": "Fechar ajuda"
         }
     }
 }

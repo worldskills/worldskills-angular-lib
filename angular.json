@@ -57,7 +57,8 @@
             "tsConfig": "projects/worldskills-ng-ui/tsconfig.spec.json",
             "include": [
               "**/*.spec.ts",
-              "../sentry/**/*.spec.ts"
+              "../sentry/**/*.spec.ts",
+              "../help/**/*.spec.ts"
             ],
             "polyfills": [
               "zone.js",

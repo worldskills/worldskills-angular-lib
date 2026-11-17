@@ -126,6 +126,11 @@
         },
         "page_header": {
             "back": "Retour"
+        },
+        "help": {
+            "title": "Aide pour cette page",
+            "open": "Aide : contenu de cette page",
+            "close": "Fermer l'aide"
         }
     }
 }

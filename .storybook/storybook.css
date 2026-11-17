@@ -1,1 +1,4 @@
-/* Styles are loaded via preview-head.html */
+/* Tailwind and PrimeIcons are loaded via preview-head.html */
+
+/* ng-ui brand tokens (--purple, --pink, …) and global rules (e.g. page help's body.ws-help-open) */
+@import "../projects/worldskills-ng-ui/src/lib/styles/theme.css";

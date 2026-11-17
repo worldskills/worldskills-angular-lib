@@ -9,6 +9,7 @@ Before creating a new component, check this catalogue. In most cases you should 
 | Header | `ws-ng-ui-header` | App header with nav menu, user dropdown, login/logout. Supports sub-menus, custom templates. |
 | Footer | `ws-ng-ui-footer` | App footer with language selector, login/logout, 6 customisable column templates. |
 | Breadcrumb | `ws-ng-ui-breadcrumb` | Breadcrumb trail built from route `data.breadcrumb`. Use `BreadcrumbService.replaceLabel()` for dynamic labels. |
+| Page Help | `ws-ng-ui-help-overlay` + `[wsHelp]` | Floating **?** that explains the page: numbered outlines and a side legend, texts from translations. From `@worldskills/ng-ui/help` (optional entry point; `provideWsHelp()`, `ws-help-check` for CI). Guide: `projects/worldskills-ng-ui/help/README.md`. |
 | Page Header | `ws-ng-ui-page-header` | Page title bar: back link, title (h1), subtitle, details and slots for media (`[wsPageHeaderMedia]`) and actions (`[wsPageHeaderActions]`). |
 | Logo | `ws-ng-ui-logo` | WorldSkills logo. |
 | Wordmark | `ws-ng-ui-wordmark` | WorldSkills wordmark. |
@@ -95,6 +96,7 @@ Before creating a new component, check this catalogue. In most cases you should 
 - **Need multi-language input?** Use `ws-ng-ui-i18n-input` or `ws-ng-ui-i18n-textarea`.
 - **Need a lookup against the API (countries, people, organisations…)?** Use `ws-ng-ui-search-select` with a `search` function. For a fixed, local list use PrimeNG `p-select` directly.
 - **Need a page title with actions?** Use `ws-ng-ui-page-header`.
+- **Need to explain a page to users?** Use page help (`@worldskills/ng-ui/help`) rather than tooltips or a separate help page; it stays in step with the code.
 - **Need to show/hide content or guard a route by role?** Use `*wsHasRole` and `roleGuard()` from `@worldskills/ng-auth` (ng-ui must not import them — ng-ui depends on ng-auth, never the other way round).
 
 If an existing component almost fits but needs a new feature, **extend it with a new input/option** rather than creating a parallel component.

@@ -1,0 +1,126 @@
+/*
+ * WorldSkills-branded help overlay. Deliberate custom styles (styling review): gradient
+ * borders with rounded corners and brand glows have no Tailwind/PrimeNG equivalent.
+ * Colours are ng-ui's brand tokens (theme.css), so a correction there carries over.
+ */
+
+/* the multicolour sweep used for outlines and the legend's top stripe */
+:host {
+  --help-brand-sweep:
+    var(--purple), var(--pink), var(--orange), var(--yellow), var(--teal),
+    var(--blue), var(--purple);
+}
+
+.help-backdrop {
+  background: color-mix(in srgb, var(--blue-dark) 22%, transparent);
+}
+
+/* gradient border with rounded corners: the gradient fills the box, the mask cuts out the inside */
+.help-ring {
+  padding: 2px;
+  border-radius: 10px;
+  background: conic-gradient(from 210deg, var(--help-brand-sweep));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: help-fade-in 200ms ease-out;
+  transition: padding 150ms ease-out;
+}
+
+.help-ring.active {
+  padding: 3px;
+}
+
+/* the glow sits on its own box: the ring's mask would clip a shadow */
+.help-glow {
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--purple) 12%, transparent),
+    0 8px 24px color-mix(in srgb, var(--purple) 18%, transparent);
+  animation: help-fade-in 200ms ease-out;
+  transition: box-shadow 150ms ease-out;
+}
+
+.help-glow.active {
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--pink) 18%, transparent),
+    0 10px 28px color-mix(in srgb, var(--pink) 25%, transparent);
+}
+
+.help-badge {
+  background: var(--purple);
+  color: var(--white);
+  box-shadow:
+    0 0 0 2px var(--white),
+    0 2px 6px color-mix(in srgb, var(--purple) 40%, transparent);
+  transition: background-color 150ms ease-out;
+}
+
+.help-badge.active {
+  background: var(--pink);
+}
+
+/* the legend: brand stripe on top, like the site header (a background layer, so it follows the
+   rounded corners and stays put while the legend scrolls). Its panel look is set here, not with
+   app utilities, so it doesn't depend on the app's Tailwind setup. */
+.help-legend {
+  background-color: var(--ws-surface-0, var(--white, #fff));
+  border-radius: var(--ws-content-border-radius, 8px);
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  background-image: linear-gradient(90deg, var(--help-brand-sweep));
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.help-legend-item {
+  border-radius: var(--ws-content-border-radius, 8px);
+  border-left: 3px solid transparent;
+  transition:
+    background-color 150ms ease-out,
+    border-color 150ms ease-out;
+}
+
+.help-legend-item.active {
+  background: color-mix(in srgb, var(--purple) 8%, transparent);
+  border-left-color: var(--pink);
+}
+
+/* the floating "?" in brand purple (component styles are unlayered, so they beat PrimeNG's) */
+.help-fab {
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--white);
+}
+
+.help-fab:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+}
+
+.help-muted {
+  color: var(--ws-text-muted-color, var(--gray, #707070));
+}
+
+@keyframes help-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .help-ring,
+  .help-glow,
+  .help-badge,
+  .help-legend-item {
+    animation: none;
+    transition: none;
+  }
+}

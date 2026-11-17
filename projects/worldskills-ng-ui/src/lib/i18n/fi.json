@@ -139,6 +139,11 @@
         },
         "page_header": {
             "back": "Takaisin"
+        },
+        "help": {
+            "title": "Tämän sivun ohje",
+            "open": "Ohje: mitä tällä sivulla on",
+            "close": "Sulje ohje"
         }
     }
 }

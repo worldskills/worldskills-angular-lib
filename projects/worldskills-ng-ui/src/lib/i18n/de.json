@@ -138,6 +138,11 @@
         },
         "page_header": {
             "back": "Zurück"
+        },
+        "help": {
+            "title": "Hilfe zu dieser Seite",
+            "open": "Hilfe: Was ist auf dieser Seite",
+            "close": "Hilfe schließen"
         }
     }
 }

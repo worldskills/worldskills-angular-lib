@@ -35,3 +35,17 @@
   --font-family-serif: "Inria Serif", serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
+/* Page help (@worldskills/ng-ui/help): while the legend is open, wide screens make room for it
+   (legend 20rem + 1rem offset + a gap) instead of covering the page. */
+@media (min-width: 64rem) {
+  body.ws-help-open {
+    padding-inline-end: 22rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition: padding-inline-end 200ms ease-out;
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@worldskills/ng-ui",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -21,6 +21,9 @@
     "@sentry/angular": {
       "optional": true
     }
+  },
+  "bin": {
+    "ws-help-check": "bin/ws-help-check.mjs"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -484,7 +484,30 @@ Set `enabled: false` locally — nothing is initialised and the interceptor does
 
 ---
 
-## 11. Session & Auth Notes
+## 11. Page Help (optional)
+
+A floating **?** that explains the current page: every help point is outlined with a number, and a
+legend at the side gives each title and description. Help is attached to the elements it describes,
+so it follows the page's permissions. The `ws-help-check` CLI fails CI when help drifts from the code.
+
+```ts
+// app.config.ts
+provideWsHelp({ pages: { reports: ['header', 'filters', 'results'] } }),
+// app.routes.ts
+{ path: 'reports', data: { help: 'reports' }, loadComponent: … },
+```
+```html
+<!-- app shell -->
+<ws-ng-ui-help-overlay />
+<!-- page -->
+<p-card wsHelp="filters">…</p-card>
+```
+
+Texts live in the app's translations under `help.<page>.<point>.title` / `.description`.
+The full guide, including CI setup and the checks, is in
+[`projects/worldskills-ng-ui/help/README.md`](projects/worldskills-ng-ui/help/README.md).
+
+## 12. Session & Auth Notes
 
 - Server sessions expire after **15 minutes** of inactivity (this is cross-app).
 - There are no refresh tokens. A ping endpoint is available to extend the session.

@@ -143,6 +143,11 @@
         },
         "page_header": {
             "back": "Back"
+        },
+        "help": {
+            "title": "Help for this page",
+            "open": "Help: what is on this page",
+            "close": "Close help"
         }
     }
 }

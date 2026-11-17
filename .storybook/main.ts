@@ -14,6 +14,8 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@worldskills/ng-auth': path.resolve(process.cwd(), 'projects/worldskills-ng-auth/src/public-api.ts'),
+      // entry points before the main package, which would otherwise match them as a prefix
+      '@worldskills/ng-ui/help': path.resolve(process.cwd(), 'projects/worldskills-ng-ui/help/src/public-api.ts'),
       '@worldskills/ng-ui': path.resolve(process.cwd(), 'projects/worldskills-ng-ui/src/public-api.ts'),
     };
     return config;

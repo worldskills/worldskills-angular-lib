@@ -2,6 +2,17 @@
 
 ## @worldskills/ng-ui
 
+### 1.10.0 — Page Help
+
+**New — `@worldskills/ng-ui/help` (optional entry point)**
+- `ws-ng-ui-help-overlay` (`WsHelpOverlayComponent`): a floating **?** that outlines every help point on the page with numbered badges and a legend at the side (the page slides over; nothing is covered). WorldSkills brand styling; respects reduced motion
+- `[wsHelp]` (`WsHelpDirective`): marks a section as a help point. Only rendered elements count, so help follows the page's permission checks
+- `provideWsHelp({ pages, textPrefix?, warnings? })` and `WsHelpService` (`open`, `toggle()`, `points`, `setPage()`)
+- Dev-mode console warnings: unknown or duplicate points, missing texts
+- `ws-help-check` CLI (package `bin`): fails lint/CI when routes, the pages file, `wsHelp` markers and the English texts drift apart
+- Translations `ws_ui.help.*` in all 8 locales; `body.ws-help-open` rule in `theme.css`
+- Storybook story: Page Help. Guide: `help/README.md`
+
 ### 1.9.0 — Search Select, Page Header & Packaging Fixes
 
 **New**
