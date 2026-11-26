@@ -5,6 +5,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { Subject, of, throwError } from 'rxjs';
 import { loadable } from './loadable';
 import { WsLoadableComponent } from './loadable.component';
+import { WsSkeletonListComponent } from './skeleton-list.component';
 
 describe('loadable()', () => {
   const create = <T>(factory: () => T) => TestBed.runInInjectionContext(factory);
@@ -102,5 +103,73 @@ describe('WsLoadableComponent', () => {
     fixture.detectChanges();
 
     expect(el.querySelector('#value')?.textContent).toBe('Austria');
+  });
+});
+
+@Component({
+  imports: [WsLoadableComponent, WsSkeletonListComponent],
+  template: `
+    <ws-ng-ui-loadable [state]="data.state()">
+      <ng-template #wsLoading><ws-ng-ui-skeleton-list [rows]="3" avatar="circle" [lines]="2" [meta]="true" /></ng-template>
+      <ng-template let-name><p id="value">{{ name }}</p></ng-template>
+    </ws-ng-ui-loadable>
+  `,
+})
+class SkeletonHostComponent {
+  response = new Subject<string>();
+  data = loadable(() => this.response);
+}
+
+describe('WsLoadableComponent with a loading template', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [provideNoopAnimations(), provideTranslateService({ lang: 'en' })] });
+  });
+
+  it('shows the loading template instead of the spinner, then the value', () => {
+    const fixture = TestBed.createComponent(SkeletonHostComponent);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+
+    expect(el.querySelector('ws-ng-ui-skeleton-list')).not.toBeNull();
+    expect(el.querySelector('ws-ng-ui-spinner')).toBeNull();
+    expect(el.querySelector('#value')).toBeNull();
+
+    fixture.componentInstance.response.next('Finland');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.data.state().status).toBe('loaded');
+
+    expect(el.querySelector('ws-ng-ui-skeleton-list')).toBeNull();
+    expect(el.querySelector('#value')?.textContent).toBe('Finland');
+  });
+});
+
+describe('WsSkeletonListComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [provideTranslateService({ lang: 'en' })] });
+  });
+
+  it('draws the rows with avatar, lines and tag, hidden from screen readers but announced as busy', () => {
+    const fixture = TestBed.createComponent(WsSkeletonListComponent);
+    fixture.componentRef.setInput('rows', 4);
+    fixture.componentRef.setInput('avatar', 'square');
+    fixture.componentRef.setInput('lines', 2);
+    fixture.componentRef.setInput('meta', true);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+
+    expect(el.getAttribute('aria-busy')).toBe('true');
+    expect(el.querySelector('ul')?.getAttribute('aria-hidden')).toBe('true');
+    expect(el.querySelectorAll('li').length).toBe(4);
+    // avatar + 2 lines + tag per row
+    expect(el.querySelectorAll('li:first-child p-skeleton').length).toBe(4);
+  });
+
+  it('leaves out the avatar and second line by default', () => {
+    const fixture = TestBed.createComponent(WsSkeletonListComponent);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+
+    expect(el.querySelectorAll('li').length).toBe(8);
+    expect(el.querySelectorAll('li:first-child p-skeleton').length).toBe(1);
   });
 });

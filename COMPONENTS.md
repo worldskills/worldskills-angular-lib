@@ -26,8 +26,9 @@ Before creating a new component, check this catalogue. In most cases you should 
 | Spinner | `ws-ng-ui-spinner` | Loading spinner with rotating messages. |
 | Staging Banner | `ws-ng-ui-staging-banner` | Warning banner for non-production environments. |
 | Puppeteer Banner | `ws-ng-ui-puppeteer-banner` | Banner for automated/puppeteer sessions. |
-| Loadable | `ws-ng-ui-loadable` + `loadable()` | Spinner while loading, an error with Try again when it failed, the projected template once loaded. `loadable()` gives the signal state, `reload()` and `refresh()`. |
+| Loadable | `ws-ng-ui-loadable` + `loadable()` | Spinner (or a `#wsLoading` template such as a skeleton) while loading, an error with Try again when it failed, the projected template once loaded. `loadable()` gives the signal state, `reload()` and `refresh()`. |
 | Load Error | `ws-ng-ui-load-error` | Inline "could not be loaded" with a Try again button, for a part of a page that failed. Built on Alert. |
+| Skeleton List | `ws-ng-ui-skeleton-list` | Placeholder rows shaped like a loading list (avatar, lines, tag). Pass it to Loadable as `#wsLoading` instead of the spinner. |
 | Empty State | `ws-ng-ui-empty-state` | Quiet "nothing here yet" message, optionally followed by an action. |
 
 ## Dialogs

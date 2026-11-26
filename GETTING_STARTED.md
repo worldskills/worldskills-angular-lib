@@ -353,6 +353,15 @@ awards = loadable(this.memberId, id => this.awardService.getMemberAwards(id));
 
 After a save, `awards.refresh()` reloads in the background and keeps the current value meanwhile.
 
+For lists, show their shape instead of the spinner (it feels faster on slower connections):
+
+```html
+<ws-ng-ui-loadable [state]="members.state()">
+  <ng-template #wsLoading><ws-ng-ui-skeleton-list avatar="circle" [lines]="2" /></ng-template>
+  <ng-template let-members>…</ng-template>
+</ws-ng-ui-loadable>
+```
+
 ### Forms in dialogs
 
 ```ts
