@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
+  computed,
   contentChild,
+  contentChildren,
   input,
   output,
 } from '@angular/core';
@@ -21,6 +23,16 @@ import { LoadState } from './loadable';
  *   <ng-template let-awards>…</ng-template>
  * </ws-ng-ui-loadable>
  * ```
+ *
+ * To show the shape of the content while it loads (e.g. `<ws-ng-ui-skeleton-list>`) instead of the
+ * spinner, add a `#wsLoading` template:
+ *
+ * ```html
+ * <ws-ng-ui-loadable [state]="members.state()">
+ *   <ng-template #wsLoading><ws-ng-ui-skeleton-list avatar="circle" /></ng-template>
+ *   <ng-template let-members>…</ng-template>
+ * </ws-ng-ui-loadable>
+ * ```
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,9 +43,13 @@ import { LoadState } from './loadable';
     @let s = state();
     @switch (s.status) {
       @case ('loading') {
-        <div role="status" [attr.aria-label]="'ws_ui.spinner.loading' | translate">
-          <ws-ng-ui-spinner [message]="loadingMessage()" />
-        </div>
+        @if (loadingTemplate(); as loadingTpl) {
+          <ng-container *ngTemplateOutlet="loadingTpl" />
+        } @else {
+          <div role="status" [attr.aria-label]="'ws_ui.spinner.loading' | translate">
+            <ws-ng-ui-spinner [message]="loadingMessage()" />
+          </div>
+        }
       }
       @case ('error') {
         <ws-ng-ui-load-error
@@ -66,6 +82,18 @@ export class WsLoadableComponent<T> {
   /** Emitted by the Try again button; usually calls the loadable's `reload()`. */
   retry = output<void>();
 
-  /** Rendered with the loaded value as `$implicit`. */
-  protected readonly content = contentChild(TemplateRef<{ $implicit: T }>);
+  /** Optional `#wsLoading` template, shown instead of the spinner while loading. */
+  protected readonly loadingTemplate = contentChild<TemplateRef<unknown>>('wsLoading');
+
+  private readonly templates = contentChildren(TemplateRef);
+
+  /**
+   * The template rendered with the loaded value as `$implicit`: the one that isn't `#wsLoading`.
+   * Each query gets its own TemplateRef object, so they're compared by their template node.
+   */
+  protected readonly content = computed(() => {
+    const loading = this.loadingTemplate()?.elementRef.nativeElement;
+    return this.templates().find(t => t.elementRef.nativeElement !== loading) as
+      TemplateRef<{ $implicit: T }> | undefined;
+  });
 }

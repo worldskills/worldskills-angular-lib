@@ -198,7 +198,7 @@ See `alert.stories.ts` and `data-table.stories.ts` for examples of thorough docs
 | `awards.stories.ts` | Awards | Award forms and lists |
 | `resource-thumbnail.stories.ts` | Resource Thumbnail | Image thumbnails |
 | `ws-http-interceptor.stories.ts` | HTTP Interceptor | Interceptor demo |
-| `loading.stories.ts` | Loading | `loadable()` + loadable (fail, retry, refresh), load error |
+| `loading.stories.ts` | Loading | `loadable()` + loadable (fail, retry, refresh), loadable with a skeleton, skeleton list, load error |
 | `field.stories.ts` | Field | Fields with hint, info and errors; add / edit dialog with `editDialog()` |
 | `layout.stories.ts` | Layout | Sections, icon actions, empty state, dashboard tiles |
 | `formatting-pipes.stories.ts` | Formatting Pipes | URL, phone, email and name pipes |

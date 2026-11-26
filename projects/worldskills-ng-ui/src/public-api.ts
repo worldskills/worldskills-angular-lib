@@ -105,6 +105,7 @@ export * from './lib/page-header/page-header.component';
 export * from './lib/loading/loadable';
 export * from './lib/loading/loadable.component';
 export * from './lib/loading/load-error.component';
+export * from './lib/loading/skeleton-list.component';
 
 // forms
 export * from './lib/forms/field.component';
