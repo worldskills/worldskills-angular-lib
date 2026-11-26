@@ -1,6 +1,6 @@
 <header class="mb-6">
   @if (backLink()) {
-    <a [routerLink]="backLink()" class="inline-flex items-center gap-2 mb-3 text-sm text-primary hover:underline">
+    <a [routerLink]="backLink()" [queryParams]="backQueryParams()" class="inline-flex items-center gap-2 mb-3 text-sm text-primary hover:underline">
       <i class="pi pi-arrow-left text-xs"></i>
       {{ backLabel() ?? ('ws_ui.page_header.back' | translate) }}
     </a>

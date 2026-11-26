@@ -1,36 +1,38 @@
 /* Trigger — matches p-select appearance */
 .ws-tree-trigger {
-  border: 1px solid var(--p-select-border-color);
-  border-radius: var(--p-rounded-md);
-  background: var(--p-select-background);
+  border: 1px solid var(--ws-select-border-color);
+  border-radius: var(--ws-select-border-radius);
+  background: var(--ws-select-background);
   min-height: 2.5rem;
+  font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   user-select: none;
 }
 
 .ws-tree-trigger:hover {
-  border-color: var(--p-select-hover-border-color);
+  border-color: var(--ws-select-hover-border-color);
 }
 
 .ws-tree-trigger--open {
-  border-color: var(--p-select-focus-border-color);
-  box-shadow: var(--p-focus-ring-shadow);
+  border-color: var(--ws-select-focus-border-color);
+  box-shadow: var(--ws-select-focus-ring-shadow);
 }
 
 .ws-tree-trigger__label {
-  color: var(--p-select-color);
+  color: var(--ws-select-color);
+  padding: var(--ws-select-padding-y) var(--ws-select-padding-x);
 }
 
 .ws-tree-trigger__label--placeholder {
-  color: var(--p-select-placeholder-color);
+  color: var(--ws-select-placeholder-color);
 }
 
 .ws-tree-trigger__icons {
-  color: var(--p-select-dropdown-icon-color);
+  color: var(--ws-select-dropdown-color);
 }
 
 .ws-tree-trigger__clear:hover {
-  color: var(--p-text-color);
+  color: var(--ws-text-color);
 }
 
 /* Panel — background/border/shadow applied via [style] bindings in template
@@ -40,12 +42,12 @@
 }
 
 .ws-tree-panel__divider {
-  border-color: var(--p-content-border-color);
+  border-color: var(--ws-content-border-color);
 }
 
 /* Empty state */
 .ws-tree-empty {
-  color: var(--p-text-muted-color);
+  color: var(--ws-text-muted-color);
 }
 
 /* Align search icon vertically with input text */

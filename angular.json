@@ -58,7 +58,8 @@
             "include": [
               "**/*.spec.ts",
               "../sentry/**/*.spec.ts",
-              "../help/**/*.spec.ts"
+              "../help/**/*.spec.ts",
+              "../editor/**/*.spec.ts"
             ],
             "polyfills": [
               "zone.js",

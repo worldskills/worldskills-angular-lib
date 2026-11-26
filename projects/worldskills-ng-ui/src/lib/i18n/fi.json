@@ -144,6 +144,55 @@
             "title": "Tämän sivun ohje",
             "open": "Ohje: mitä tällä sivulla on",
             "close": "Sulje ohje"
+        },
+        "actions": {
+            "save": "Tallenna",
+            "cancel": "Peruuta",
+            "delete": "Poista",
+            "ok": "OK",
+            "yes": "Kyllä",
+            "no": "Ei",
+            "confirm": "Vahvista",
+            "notice": "Ilmoitus",
+            "edit": "Muokkaa",
+            "end": "Lopeta",
+            "repair": "Korjaa",
+            "restore": "Palauta",
+            "retry": "Yritä uudelleen"
+        },
+        "load_error": {
+            "message": "Tietoja ei voitu ladata."
+        },
+        "field": {
+            "errors": {
+                "required": "Tämä kenttä on pakollinen.",
+                "email": "Anna kelvollinen sähköpostiosoite.",
+                "minlength": "Anna vähintään {{requiredLength}} merkkiä.",
+                "maxlength": "Anna enintään {{requiredLength}} merkkiä.",
+                "min": "Anna {{min}} tai enemmän.",
+                "max": "Anna {{max}} tai vähemmän.",
+                "pattern": "Arvo ei ole odotetussa muodossa.",
+                "invalid": "Tarkista tämä arvo."
+            }
+        },
+        "image_lightbox": {
+            "open": "Avaa {{name}} täysikokoisena",
+            "size": "{{width}} × {{height}} px · suhde {{ratio}} ({{decimal}})",
+            "standard": "Tasan {{ratio}}, tavallinen lipun mittasuhde.",
+            "near": "Lähellä suhdetta {{ratio}} ({{percent}} % poikkeama).",
+            "off": "{{percent}} % poikkeama lähimmästä tavallisesta mittasuhteesta ({{ratio}}): tarkista lipun koko."
+        },
+        "rich_text": {
+            "placeholder": "Kirjoita tähän…",
+            "bold": "Lihavointi",
+            "italic": "Kursiivi",
+            "underline": "Alleviivaus",
+            "bullets": "Luettelo",
+            "numbers": "Numeroitu luettelo",
+            "link": "Linkki",
+            "clean": "Poista muotoilu",
+            "show_more": "Näytä lisää",
+            "show_less": "Näytä vähemmän"
         }
     }
 }

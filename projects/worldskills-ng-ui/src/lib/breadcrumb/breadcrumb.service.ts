@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'; // ActivatedRoute used only in buildFromRoute param type
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
-import { Breadcrumb } from './breadcrumb.model';
+import { Breadcrumb, BreadcrumbTrail } from './breadcrumb.model';
 
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
 
   /** Live overrides map — key → replacement label. */
   private readonly overrides$ = new BehaviorSubject<Map<string, string>>(new Map());
+
+  /** The active trail and the page that set it. */
+  private readonly trail$ = new BehaviorSubject<{ owner: object; trail: BreadcrumbTrail } | null>(null);
 
   /**
    * Reactive breadcrumb list, rebuilt on every navigation and whenever
@@ -26,11 +29,35 @@ export class BreadcrumbService {
       map(() => this.buildFromRoute(this.router.routerState.root)),
     );
 
-    this.breadcrumbs$ = combineLatest([routeCrumbs$, this.overrides$]).pipe(
-      map(([crumbs, overrides]) =>
-        crumbs.map(c => ({ ...c, label: overrides.get(c.key) ?? c.label }))
+    this.breadcrumbs$ = combineLatest([routeCrumbs$, this.overrides$, this.trail$]).pipe(
+      map(([crumbs, overrides, active]) =>
+        applyTrail(crumbs, active?.trail).map(c => ({ ...c, label: overrides.get(c.key) ?? c.label }))
       ),
     );
+  }
+
+  /**
+   * Show the path the user clicked through instead of the route structure, e.g.
+   * Home › WorldSkills Europe › Austria instead of Home › Members › Austria.
+   *
+   * The trail replaces the route crumbs up to and including `trail.replaces`; route crumbs
+   * after it (e.g. a tab) stay. If the route has no crumb with that key, the route crumbs show.
+   *
+   * `owner` identifies the page that set it (usually the component, `this`); only that owner
+   * can clear it, so a page closing late can't clear the next page's trail.
+   *
+   *   this.breadcrumbService.setTrail(this, { replaces: 'member', crumbs: [...] });
+   *   inject(DestroyRef).onDestroy(() => this.breadcrumbService.clearTrail(this));
+   */
+  setTrail(owner: object, trail: BreadcrumbTrail): void {
+    this.trail$.next({ owner, trail });
+  }
+
+  /** Remove the trail set by `owner`. Does nothing if another page has set one since. */
+  clearTrail(owner: object): void {
+    if (this.trail$.value?.owner === owner) {
+      this.trail$.next(null);
+    }
   }
 
   /**
@@ -82,4 +109,12 @@ export class BreadcrumbService {
 
     return crumbs;
   }
+}
+
+/** Swaps the route crumbs up to `trail.replaces` for the trail's crumbs. */
+function applyTrail(routeCrumbs: Breadcrumb[], trail?: BreadcrumbTrail): Breadcrumb[] {
+  const index = trail ? routeCrumbs.findIndex(c => c.key === trail.replaces) : -1;
+  return trail && index >= 0
+    ? [...trail.crumbs, ...routeCrumbs.slice(index + 1)]
+    : routeCrumbs;
 }

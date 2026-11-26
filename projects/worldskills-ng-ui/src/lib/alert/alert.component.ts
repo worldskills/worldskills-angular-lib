@@ -7,6 +7,12 @@ import { AlertSeverity } from './alert.service';
  * For push notifications use WsAlertService + <ws-ng-ui-toast> instead.
  *
  *   <ws-ng-ui-alert severity="warn" title="Heads up" message="This is a warning." />
+ *
+ * Projected content (e.g. an action button) follows the message:
+ *
+ *   <ws-ng-ui-alert severity="warn" message="Could not load.">
+ *     <p-button label="Try again" size="small" [outlined]="true" (onClick)="reload()" />
+ *   </ws-ng-ui-alert>
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,7 +22,10 @@ import { AlertSeverity } from './alert.service';
       [severity]="severity()"
       styleClass="w-full ws-alert"
       [closable]="closable()">
-      {{ message() }}
+      <span class="flex flex-wrap items-center gap-3">
+        <span>{{ message() }}</span>
+        <ng-content />
+      </span>
     </p-message>
   `,
   styleUrls: ['./alert.component.css'],

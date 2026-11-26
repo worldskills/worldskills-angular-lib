@@ -1,0 +1,38 @@
+<button
+  type="button"
+  class="ws-lightbox-trigger block cursor-zoom-in rounded-border"
+  [attr.aria-label]="'ws_ui.image_lightbox.open' | translate: { name: alt() }"
+  (click)="open.set(true)">
+  <img [src]="src()" [alt]="alt()" [class]="imgClass()" />
+</button>
+
+<ws-ng-ui-dialog [visible]="open()" (visibleChange)="open.set($event)" [title]="alt()" width="64rem">
+  <div class="flex flex-col items-center gap-3">
+    <div class="ws-lightbox-checkerboard flex w-full justify-center rounded-border p-6">
+      <img [src]="src()" [alt]="alt()" class="max-h-[70vh] max-w-full border border-surface-200" (load)="measure($event)" />
+    </div>
+    @if (size(); as s) {
+      <p class="text-sm text-muted-color">
+        {{ 'ws_ui.image_lightbox.size' | translate: { width: s.width, height: s.height, ratio: s.ratio, decimal: s.decimal } }}
+      </p>
+      <!-- flags: the nearest standard proportion, and whether it's off -->
+      @if (nearest(); as n) {
+        @if (n.exact) {
+          <p class="text-sm text-muted-color">
+            <i class="pi pi-check-circle mr-1" aria-hidden="true"></i>
+            {{ 'ws_ui.image_lightbox.standard' | translate: { ratio: n.ratio } }}
+          </p>
+        } @else if (n.off) {
+          <p class="text-sm font-semibold" role="status">
+            <i class="pi pi-exclamation-triangle mr-1" aria-hidden="true"></i>
+            {{ 'ws_ui.image_lightbox.off' | translate: { ratio: n.ratio, percent: n.percent } }}
+          </p>
+        } @else {
+          <p class="text-sm text-muted-color">
+            {{ 'ws_ui.image_lightbox.near' | translate: { ratio: n.ratio, percent: n.percent } }}
+          </p>
+        }
+      }
+    }
+  </div>
+</ws-ng-ui-dialog>

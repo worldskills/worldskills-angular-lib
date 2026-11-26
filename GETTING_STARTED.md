@@ -327,6 +327,66 @@ Add the confirm component to your app shell (once):
 <ws-ng-ui-confirm />
 ```
 
+Button texts are translated. To give your own texts as translation keys, add `translate: true`:
+
+```ts
+await this.confirm.danger({ message: 'contacts.delete_confirm', params: { name }, translate: true });
+```
+
+### Loading data
+
+`loadable()` keeps a request's loading / loaded / error state in a signal; `ws-ng-ui-loadable` shows a
+spinner, the error with **Try again**, or your template with the value.
+
+```ts
+import { loadable } from '@worldskills/ng-ui';
+
+memberId = input.required<number>();
+awards = loadable(this.memberId, id => this.awardService.getMemberAwards(id));
+```
+
+```html
+<ws-ng-ui-loadable [state]="awards.state()" errorMessage="The awards could not be loaded." (retry)="awards.reload()">
+  <ng-template let-awards>…</ng-template>
+</ws-ng-ui-loadable>
+```
+
+After a save, `awards.refresh()` reloads in the background and keeps the current value meanwhile.
+
+### Forms in dialogs
+
+```ts
+dialog = editDialog<Website>();
+```
+
+```html
+<ws-ng-ui-dialog [visible]="dialog.visible()" (visibleChange)="!$event && dialog.close()"
+  [title]="dialog.isEdit() ? 'Edit website' : 'Add website'" formId="website-form" [saving]="saving()">
+  <form id="website-form" [formGroup]="form" (ngSubmit)="save()">
+    <ws-ng-ui-field label="URL" inputId="url" [control]="form.controls.url">
+      <input pInputText id="url" formControlName="url" />
+    </ws-ng-ui-field>
+  </form>
+</ws-ng-ui-dialog>
+```
+
+`formId` gives the dialog a Cancel / Save footer whose Save submits the form. `ws-ng-ui-field` adds the
+label (with `*` when required), an optional `hint` or `info` "i", and the first error once touched.
+
+### Detail page sections
+
+```html
+<ws-ng-ui-section heading="Websites">
+  <p-button wsSectionActions label="Add" icon="pi pi-plus" size="small" (onClick)="dialog.openAdd()" />
+  @for (site of sites; track site.id) {
+    <a [href]="site.url | wsExternalUrl">{{ site.url }}</a>
+    <ws-ng-ui-icon-action action="edit" (clicked)="dialog.openEdit(site)" />
+  } @empty {
+    <ws-ng-ui-empty-state text="No websites yet." />
+  }
+</ws-ng-ui-section>
+```
+
 ### Data table
 
 ```html
@@ -507,7 +567,52 @@ Texts live in the app's translations under `help.<page>.<point>.title` / `.descr
 The full guide, including CI setup and the checks, is in
 [`projects/worldskills-ng-ui/help/README.md`](projects/worldskills-ng-ui/help/README.md).
 
-## 12. Session & Auth Notes
+## 12. Feature Toggles and Autofill (optional)
+
+**Feature toggles** let you deploy a feature switched off and turn it on per environment. They only
+hide things in the UI; the API must still check access. Remove each toggle once its feature is live.
+
+```ts
+// environment.ts
+features: { merge: true, reviewTasks: false },
+
+// core/features.ts
+import { wsFeatures } from '@worldskills/ng-ui';
+export const features = wsFeatures(environment.features);
+
+// anywhere
+canMerge = features.isOn('merge');
+// routes
+{ path: 'merge', canActivate: [features.guard('merge', '/organizations')], loadComponent: … }
+```
+
+**No autofill:** admin apps edit other people's details, so browser and password-manager suggestions of
+the signed-in user's own name or email only get in the way. This turns them off on every text input
+(passwords excepted; add `data-allow-autofill` to an input to keep it):
+
+```ts
+providers: [provideWsNoAutofill(), …]
+```
+
+## 13. Rich Text (optional)
+
+A rich text editor with a small, fixed toolbar, and a view for its HTML, from the optional
+`@worldskills/ng-ui/editor` entry point:
+
+```bash
+npm install quill
+```
+
+```html
+<label id="notes-label">Notes</label>
+<ws-ng-ui-rich-text-editor formControlName="notes" labelId="notes-label" />
+
+<ws-ng-ui-rich-text-view [html]="membership.notes" />
+```
+
+Sanitise the HTML on the server to the formats in `WS_RICH_TEXT_FORMATS`.
+
+## 14. Session & Auth Notes
 
 - Server sessions expire after **15 minutes** of inactivity (this is cross-app).
 - There are no refresh tokens. A ping endpoint is available to extend the session.

@@ -148,6 +148,55 @@
             "title": "Help for this page",
             "open": "Help: what is on this page",
             "close": "Close help"
+        },
+        "actions": {
+            "save": "Save",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "ok": "OK",
+            "yes": "Yes",
+            "no": "No",
+            "confirm": "Confirm",
+            "notice": "Notice",
+            "edit": "Edit",
+            "end": "End",
+            "repair": "Fix",
+            "restore": "Restore",
+            "retry": "Try again"
+        },
+        "load_error": {
+            "message": "This could not be loaded."
+        },
+        "field": {
+            "errors": {
+                "required": "This field is required.",
+                "email": "Enter a valid email address.",
+                "minlength": "Enter at least {{requiredLength}} characters.",
+                "maxlength": "Enter at most {{requiredLength}} characters.",
+                "min": "Enter {{min}} or more.",
+                "max": "Enter {{max}} or less.",
+                "pattern": "This value is not in the expected format.",
+                "invalid": "Check this value."
+            }
+        },
+        "image_lightbox": {
+            "open": "Open {{name}} full size",
+            "size": "{{width}} × {{height}} px · ratio {{ratio}} ({{decimal}})",
+            "standard": "Exactly {{ratio}}, a standard flag proportion.",
+            "near": "Close to {{ratio}} ({{percent}}% off).",
+            "off": "{{percent}}% off the nearest standard proportion ({{ratio}}): check the flag's size."
+        },
+        "rich_text": {
+            "placeholder": "Write here…",
+            "bold": "Bold",
+            "italic": "Italic",
+            "underline": "Underline",
+            "bullets": "Bulleted list",
+            "numbers": "Numbered list",
+            "link": "Link",
+            "clean": "Clear formatting",
+            "show_more": "Show more",
+            "show_less": "Show less"
         }
     }
 }

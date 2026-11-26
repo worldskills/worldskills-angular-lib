@@ -44,6 +44,25 @@ this.competitionService.get(id).subscribe(c => {
 });
 \`\`\`
 
+### Click-following trails
+
+When a page can be reached along different paths (e.g. a member opened through its parent members),
+show the path the user took with \`BreadcrumbService.setTrail()\`. The trail replaces the route crumbs
+up to and including \`replaces\`; later crumbs (such as a tab) stay. Crumb URLs may include a query string.
+
+\`\`\`ts
+const breadcrumbs = inject(BreadcrumbService);
+breadcrumbs.setTrail(this, {
+  replaces: 'member',
+  crumbs: [
+    { key: 'via-2', label: 'WorldSkills Europe', url: '/member/2' },
+    { key: 'member', label: 'Austria', url: '/members/12?via=2' },
+  ],
+});
+// Only the page that set the trail clears it, so a late clean-up can't clear the next page's trail.
+inject(DestroyRef).onDestroy(() => breadcrumbs.clearTrail(this));
+\`\`\`
+
 ### Rendering
 
 Breadcrumbs are rendered using PrimeNG's \`p-breadcrumb\` component, so they
@@ -112,6 +131,20 @@ export const DynamicLabelResolved: Story = {
     homeLabel: 'Home',
     homeRoute: '/',
     crumbs: withReplacedLabel,
+  },
+};
+
+export const Trail: Story = {
+  name: 'Click-following trail',
+  args: {
+    homeLabel: 'Home',
+    homeRoute: '/',
+    crumbs: [
+      { key: 'via-1', label: 'WorldSkills International', url: '/member/1' },
+      { key: 'via-2', label: 'WorldSkills Europe', url: '/member/2?via=1' },
+      { key: 'member', label: 'Austria', url: '/members/12?via=1,2' },
+      { key: 'contacts', label: 'Contacts', url: '/members/12/contacts' },
+    ],
   },
 };
 

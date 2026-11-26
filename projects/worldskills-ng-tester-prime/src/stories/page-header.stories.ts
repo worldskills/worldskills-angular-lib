@@ -16,6 +16,7 @@ const meta: Meta<WsPageHeaderComponent> = {
     subtitle: { control: 'text' },
     backLink: { control: 'text' },
     backLabel: { control: 'text' },
+    backQueryParams: { control: 'object' },
   },
   parameters: {
     docs: {
@@ -36,6 +37,9 @@ Content slots:
   <p-button wsPageHeaderActions label="Edit" icon="pi pi-pencil" />
 </ws-ng-ui-page-header>
 \`\`\`
+
+\`backQueryParams\` adds query params to the back link, e.g. to return to a filtered list or keep
+the user's trail: \`[backQueryParams]="{ via: '1,2' }"\`.
         `,
       },
     },

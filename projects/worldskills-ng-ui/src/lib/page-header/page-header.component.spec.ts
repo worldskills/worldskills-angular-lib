@@ -55,4 +55,14 @@ describe('WsPageHeaderComponent', () => {
 
     expect(fixture.nativeElement.querySelector('a').textContent).toContain('All members');
   });
+
+  it('adds query params to the back link', () => {
+    const fixture = TestBed.createComponent(WsPageHeaderComponent);
+    fixture.componentRef.setInput('title', 'Austria');
+    fixture.componentRef.setInput('backLink', '/member/2');
+    fixture.componentRef.setInput('backQueryParams', { via: '1' });
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('a').getAttribute('href')).toBe('/member/2?via=1');
+  });
 });

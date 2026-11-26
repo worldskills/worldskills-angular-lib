@@ -131,6 +131,55 @@
             "title": "مساعدة لهذه الصفحة",
             "open": "مساعدة: محتوى هذه الصفحة",
             "close": "إغلاق المساعدة"
+        },
+        "actions": {
+            "save": "حفظ",
+            "cancel": "إلغاء",
+            "delete": "حذف",
+            "ok": "موافق",
+            "yes": "نعم",
+            "no": "لا",
+            "confirm": "تأكيد",
+            "notice": "تنبيه",
+            "edit": "تعديل",
+            "end": "إنهاء",
+            "repair": "إصلاح",
+            "restore": "استعادة",
+            "retry": "إعادة المحاولة"
+        },
+        "load_error": {
+            "message": "تعذّر التحميل."
+        },
+        "field": {
+            "errors": {
+                "required": "هذا الحقل مطلوب.",
+                "email": "أدخل بريدًا إلكترونيًا صالحًا.",
+                "minlength": "أدخل {{requiredLength}} أحرف على الأقل.",
+                "maxlength": "أدخل {{requiredLength}} أحرف على الأكثر.",
+                "min": "أدخل {{min}} أو أكثر.",
+                "max": "أدخل {{max}} أو أقل.",
+                "pattern": "هذه القيمة ليست بالتنسيق المتوقع.",
+                "invalid": "تحقق من هذه القيمة."
+            }
+        },
+        "image_lightbox": {
+            "open": "فتح {{name}} بالحجم الكامل",
+            "size": "{{width}} × {{height}} بكسل · النسبة {{ratio}} ({{decimal}})",
+            "standard": "بالضبط {{ratio}}، وهي نسبة علم قياسية.",
+            "near": "قريبة من {{ratio}} (فرق {{percent}}%).",
+            "off": "فرق {{percent}}% عن أقرب نسبة قياسية ({{ratio}}): تحقق من حجم العلم."
+        },
+        "rich_text": {
+            "placeholder": "اكتب هنا…",
+            "bold": "غامق",
+            "italic": "مائل",
+            "underline": "تسطير",
+            "bullets": "قائمة نقطية",
+            "numbers": "قائمة مرقمة",
+            "link": "رابط",
+            "clean": "مسح التنسيق",
+            "show_more": "عرض المزيد",
+            "show_less": "عرض أقل"
         }
     }
 }

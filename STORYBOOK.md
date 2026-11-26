@@ -21,10 +21,13 @@ Storybook's webpack config resolves these aliases directly to source (no build n
 
 ```ts
 '@worldskills/ng-ui'   → projects/worldskills-ng-ui/src/public-api.ts
+'@worldskills/ng-ui/help'   → projects/worldskills-ng-ui/help/src/public-api.ts
+'@worldskills/ng-ui/editor' → projects/worldskills-ng-ui/editor/src/public-api.ts
 '@worldskills/ng-auth'  → projects/worldskills-ng-auth/src/public-api.ts
 ```
 
-Always import library components from `@worldskills/ng-ui`, never from relative paths.
+Always import library components from `@worldskills/ng-ui` (or its entry points), never from relative paths.
+A new entry point needs its alias in `.storybook/main.ts` **before** `@worldskills/ng-ui`, and a path in the root `tsconfig.json`.
 
 ## Global Providers (preview.ts)
 
@@ -182,9 +185,9 @@ See `alert.stories.ts` and `data-table.stories.ts` for examples of thorough docs
 | `alert.stories.ts` | Alerts | Inline (4 severities) + toast notifications |
 | `announcement.stories.ts` | Announcement | Long-form alerts with HTML, truncation |
 | `data-table.stories.ts` | Data Table | Read-only, inline edit, modal edit, lazy loading |
-| `dialog.stories.ts` | Dialog | Dialog + confirm dialog |
+| `dialog.stories.ts` | Dialog | Content dialog, form dialog (`formId` footer), confirm dialogs |
 | `spinner.stories.ts` | Spinner | Loading spinner |
-| `breadcrumb.stories.ts` | Breadcrumb | Breadcrumb navigation |
+| `breadcrumb.stories.ts` | Breadcrumb | Breadcrumb navigation, click-following trail |
 | `banners.stories.ts` | Banners | Staging banner |
 | `puppeteer-banner.stories.ts` | Puppeteer Banner | Print/export banner |
 | `i18n-controls.stories.ts` | I18n Controls | I18n input + textarea |
@@ -195,6 +198,15 @@ See `alert.stories.ts` and `data-table.stories.ts` for examples of thorough docs
 | `awards.stories.ts` | Awards | Award forms and lists |
 | `resource-thumbnail.stories.ts` | Resource Thumbnail | Image thumbnails |
 | `ws-http-interceptor.stories.ts` | HTTP Interceptor | Interceptor demo |
+| `loading.stories.ts` | Loading | `loadable()` + loadable (fail, retry, refresh), load error |
+| `field.stories.ts` | Field | Fields with hint, info and errors; add / edit dialog with `editDialog()` |
+| `layout.stories.ts` | Layout | Sections, icon actions, empty state, dashboard tiles |
+| `formatting-pipes.stories.ts` | Formatting Pipes | URL, phone, email and name pipes |
+| `image-lightbox.stories.ts` | Image Lightbox | Flags (exact, near, off) and a logo |
+| `rich-text.stories.ts` | Rich Text | Editor and view (`@worldskills/ng-ui/editor`) |
+| `page-header.stories.ts` | Page Header | Title only, list page with actions, detail page with media |
+| `search-select.stories.ts` | Search Select | Server-side search select |
+| `help.stories.ts` | Page Help | Help overlay with numbered points |
 
 ## Checklist for New Stories
 

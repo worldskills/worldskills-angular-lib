@@ -143,6 +143,55 @@
             "title": "Hilfe zu dieser Seite",
             "open": "Hilfe: Was ist auf dieser Seite",
             "close": "Hilfe schließen"
+        },
+        "actions": {
+            "save": "Speichern",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "ok": "OK",
+            "yes": "Ja",
+            "no": "Nein",
+            "confirm": "Bestätigen",
+            "notice": "Hinweis",
+            "edit": "Bearbeiten",
+            "end": "Beenden",
+            "repair": "Beheben",
+            "restore": "Wiederherstellen",
+            "retry": "Erneut versuchen"
+        },
+        "load_error": {
+            "message": "Dies konnte nicht geladen werden."
+        },
+        "field": {
+            "errors": {
+                "required": "Dieses Feld ist erforderlich.",
+                "email": "Geben Sie eine gültige E-Mail-Adresse ein.",
+                "minlength": "Geben Sie mindestens {{requiredLength}} Zeichen ein.",
+                "maxlength": "Geben Sie höchstens {{requiredLength}} Zeichen ein.",
+                "min": "Geben Sie {{min}} oder mehr ein.",
+                "max": "Geben Sie {{max}} oder weniger ein.",
+                "pattern": "Dieser Wert hat nicht das erwartete Format.",
+                "invalid": "Prüfen Sie diesen Wert."
+            }
+        },
+        "image_lightbox": {
+            "open": "{{name}} in voller Größe öffnen",
+            "size": "{{width}} × {{height}} px · Verhältnis {{ratio}} ({{decimal}})",
+            "standard": "Genau {{ratio}}, ein übliches Flaggenformat.",
+            "near": "Nahe an {{ratio}} ({{percent}} % Abweichung).",
+            "off": "{{percent}} % Abweichung vom nächsten üblichen Format ({{ratio}}): Prüfen Sie die Größe der Flagge."
+        },
+        "rich_text": {
+            "placeholder": "Hier schreiben…",
+            "bold": "Fett",
+            "italic": "Kursiv",
+            "underline": "Unterstrichen",
+            "bullets": "Aufzählung",
+            "numbers": "Nummerierte Liste",
+            "link": "Link",
+            "clean": "Formatierung entfernen",
+            "show_more": "Mehr anzeigen",
+            "show_less": "Weniger anzeigen"
         }
     }
 }

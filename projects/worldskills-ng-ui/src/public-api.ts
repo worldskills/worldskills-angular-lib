@@ -40,6 +40,7 @@ export * from './lib/common/util/user-role.util';
 // common — pipes
 export * from './lib/common/pipes/filter.pipe';
 export * from './lib/common/pipes/date-sort.pipe';
+export * from './lib/common/pipes/formatting.pipes';
 
 // common — services
 export * from './lib/common/services/upload.service';
@@ -99,6 +100,28 @@ export * from './lib/search-select/search-select.component';
 
 // page header
 export * from './lib/page-header/page-header.component';
+
+// loading
+export * from './lib/loading/loadable';
+export * from './lib/loading/loadable.component';
+export * from './lib/loading/load-error.component';
+
+// forms
+export * from './lib/forms/field.component';
+export * from './lib/forms/edit-dialog';
+
+// layout
+export * from './lib/layout/section.component';
+export * from './lib/layout/empty-state.component';
+export * from './lib/layout/icon-action.component';
+export * from './lib/layout/tile.component';
+
+// image lightbox
+export * from './lib/image-lightbox/image-lightbox.component';
+
+// app setup
+export * from './lib/app/features';
+export * from './lib/app/no-autofill';
 
 // i18n controls
 export * from './lib/i18n-controls/i18n-input/i18n-input.component';

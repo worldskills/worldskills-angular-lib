@@ -1,6 +1,8 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 import { WsDialogComponent, WsConfirmComponent, WsConfirmService } from '@worldskills/ng-ui';
 
 // ── Wrapper for content dialog stories ───────────────────────────────────────
@@ -32,6 +34,53 @@ class DialogWrapperComponent {
   @Input() closable = true;
   @Input() showFooter = true;
   visible = false;
+}
+
+// ── Wrapper for the form dialog story ────────────────────────────────────────
+
+@Component({
+  selector: 'story-form-dialog-wrapper',
+  standalone: true,
+  imports: [WsDialogComponent, ButtonModule, ReactiveFormsModule, InputTextModule],
+  template: `
+    <p-button label="Add contact" icon="pi pi-plus" (onClick)="visible = true" />
+
+    <ws-ng-ui-dialog [(visible)]="visible" title="Add contact" formId="story-contact-form" [saving]="saving">
+      <form id="story-contact-form" [formGroup]="form" (ngSubmit)="save()" class="flex flex-col gap-2">
+        <label for="story-email" class="text-sm font-medium">Email</label>
+        <input pInputText id="story-email" formControlName="email" type="email" />
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <small class="text-red-600">Enter a valid email address.</small>
+        }
+      </form>
+    </ws-ng-ui-dialog>
+
+    @if (lastSaved) {
+      <p class="mt-3 text-sm text-gray-500">Saved: <strong>{{ lastSaved }}</strong></p>
+    }
+  `,
+})
+class FormDialogWrapperComponent {
+  visible = false;
+  saving = false;
+  lastSaved: string | null = null;
+  form = new FormGroup({
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+  });
+
+  save() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.saving = true;
+    setTimeout(() => {
+      this.saving = false;
+      this.lastSaved = this.form.value.email ?? null;
+      this.visible = false;
+      this.form.reset();
+    }, 800);
+  }
 }
 
 // ── Wrapper for confirm dialog stories ───────────────────────────────────────
@@ -113,6 +162,24 @@ A styled wrapper around PrimeNG's \`p-dialog\`. Use it declaratively with \`[(vi
 </ws-ng-ui-dialog>
 \`\`\`
 
+### Form dialogs
+
+For a dialog around a form, set \`formId\` instead of writing a footer. The dialog shows translated Cancel / Save buttons, and Save submits the form, so validation and \`(ngSubmit)\` run just as when pressing Enter. (A \`form\` attribute on \`p-button\` isn't passed on to its inner button, so don't rely on it.)
+
+\`\`\`html
+<ws-ng-ui-dialog [(visible)]="open" title="Add contact" formId="contact-form" [saving]="saving()">
+  <form id="contact-form" [formGroup]="form" (ngSubmit)="save()">…</form>
+</ws-ng-ui-dialog>
+\`\`\`
+
+| Input | Default | Purpose |
+|-------|---------|---------|
+| \`formId\` | — | Id of the projected form; turns the Cancel / Save footer on |
+| \`saving\` | \`false\` | Spinner on Save; Save is blocked |
+| \`saveDisabled\` | \`false\` | Disables Save |
+| \`saveLabel\` / \`cancelLabel\` | translated Save / Cancel | Button texts |
+| \`saveIcon\` | \`pi pi-check\` | Save icon |
+
 ## Confirmation dialogs — \`WsConfirmService\`
 
 Programmatic confirmation dialogs. Place \`<ws-ng-ui-confirm />\` once in your app shell, then inject \`WsConfirmService\` anywhere.
@@ -135,6 +202,13 @@ async delete() {
 | \`confirm(options)\` | OK / Cancel | \`Promise<boolean>\` |
 | \`yesNo(options)\` | Yes / No | \`Promise<boolean>\` |
 | \`danger(options)\` | Delete / Cancel (danger styled) | \`Promise<boolean>\` |
+
+Button texts are translated (\`ws_ui.actions.*\`), with English as the fallback.
+To pass your own texts as translation keys, set \`translate: true\` (and \`params\` if needed):
+
+\`\`\`ts
+await this.confirm.danger({ message: 'contacts.delete_confirm', params: { name }, translate: true });
+\`\`\`
         `,
       },
     },
@@ -165,6 +239,12 @@ export const ContentDialog: StoryObj<DialogWrapperComponent> = {
     closable: true,
     showFooter: true,
   },
+};
+
+export const FormDialog: StoryObj = {
+  name: 'Form Dialog',
+  decorators: [moduleMetadata({ imports: [FormDialogWrapperComponent] })],
+  render: () => ({ template: '<story-form-dialog-wrapper />' }),
 };
 
 export const ConfirmDialogs: StoryObj = {

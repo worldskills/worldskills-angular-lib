@@ -131,6 +131,55 @@
             "title": "本页帮助",
             "open": "帮助：本页内容",
             "close": "关闭帮助"
+        },
+        "actions": {
+            "save": "保存",
+            "cancel": "取消",
+            "delete": "删除",
+            "ok": "确定",
+            "yes": "是",
+            "no": "否",
+            "confirm": "确认",
+            "notice": "提示",
+            "edit": "编辑",
+            "end": "结束",
+            "repair": "修复",
+            "restore": "恢复",
+            "retry": "重试"
+        },
+        "load_error": {
+            "message": "无法加载。"
+        },
+        "field": {
+            "errors": {
+                "required": "此字段为必填项。",
+                "email": "请输入有效的电子邮件地址。",
+                "minlength": "请至少输入 {{requiredLength}} 个字符。",
+                "maxlength": "最多输入 {{requiredLength}} 个字符。",
+                "min": "请输入 {{min}} 或更大的值。",
+                "max": "请输入 {{max}} 或更小的值。",
+                "pattern": "此值格式不正确。",
+                "invalid": "请检查此值。"
+            }
+        },
+        "image_lightbox": {
+            "open": "以完整尺寸打开 {{name}}",
+            "size": "{{width}} × {{height}} 像素 · 比例 {{ratio}}（{{decimal}}）",
+            "standard": "正好是 {{ratio}}，标准旗帜比例。",
+            "near": "接近 {{ratio}}（相差 {{percent}}%）。",
+            "off": "与最接近的标准比例（{{ratio}}）相差 {{percent}}%：请检查旗帜尺寸。"
+        },
+        "rich_text": {
+            "placeholder": "在此输入…",
+            "bold": "粗体",
+            "italic": "斜体",
+            "underline": "下划线",
+            "bullets": "项目符号列表",
+            "numbers": "编号列表",
+            "link": "链接",
+            "clean": "清除格式",
+            "show_more": "显示更多",
+            "show_less": "收起"
         }
     }
 }

@@ -131,6 +131,55 @@
             "title": "Aide pour cette page",
             "open": "Aide : contenu de cette page",
             "close": "Fermer l'aide"
+        },
+        "actions": {
+            "save": "Enregistrer",
+            "cancel": "Annuler",
+            "delete": "Supprimer",
+            "ok": "OK",
+            "yes": "Oui",
+            "no": "Non",
+            "confirm": "Confirmer",
+            "notice": "Avis",
+            "edit": "Modifier",
+            "end": "Terminer",
+            "repair": "Corriger",
+            "restore": "Restaurer",
+            "retry": "Réessayer"
+        },
+        "load_error": {
+            "message": "Le chargement a échoué."
+        },
+        "field": {
+            "errors": {
+                "required": "Ce champ est obligatoire.",
+                "email": "Saisissez une adresse e-mail valide.",
+                "minlength": "Saisissez au moins {{requiredLength}} caractères.",
+                "maxlength": "Saisissez au plus {{requiredLength}} caractères.",
+                "min": "Saisissez {{min}} ou plus.",
+                "max": "Saisissez {{max}} ou moins.",
+                "pattern": "Cette valeur n'est pas au format attendu.",
+                "invalid": "Vérifiez cette valeur."
+            }
+        },
+        "image_lightbox": {
+            "open": "Ouvrir {{name}} en taille réelle",
+            "size": "{{width}} × {{height}} px · rapport {{ratio}} ({{decimal}})",
+            "standard": "Exactement {{ratio}}, une proportion de drapeau standard.",
+            "near": "Proche de {{ratio}} (écart de {{percent}} %).",
+            "off": "Écart de {{percent}} % par rapport à la proportion standard la plus proche ({{ratio}}) : vérifiez la taille du drapeau."
+        },
+        "rich_text": {
+            "placeholder": "Écrivez ici…",
+            "bold": "Gras",
+            "italic": "Italique",
+            "underline": "Souligné",
+            "bullets": "Liste à puces",
+            "numbers": "Liste numérotée",
+            "link": "Lien",
+            "clean": "Effacer la mise en forme",
+            "show_more": "Afficher plus",
+            "show_less": "Afficher moins"
         }
     }
 }

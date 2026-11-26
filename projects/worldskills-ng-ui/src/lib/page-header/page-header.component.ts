@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Params, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 /**
@@ -33,6 +33,9 @@ export class WsPageHeaderComponent {
 
   /** Router link for the back link. No back link is shown when omitted. */
   backLink = input<string | unknown[]>();
+
+  /** Query params for the back link, e.g. to keep the list's filters or the user's trail. */
+  backQueryParams = input<Params | null>();
 
   /** Back link text. Defaults to the translated "Back". */
   backLabel = input<string>();

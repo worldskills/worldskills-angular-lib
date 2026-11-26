@@ -144,6 +144,55 @@
             "title": "Ajuda desta página",
             "open": "Ajuda: o que há nesta página",
             "close": "Fechar ajuda"
+        },
+        "actions": {
+            "save": "Salvar",
+            "cancel": "Cancelar",
+            "delete": "Excluir",
+            "ok": "OK",
+            "yes": "Sim",
+            "no": "Não",
+            "confirm": "Confirmar",
+            "notice": "Aviso",
+            "edit": "Editar",
+            "end": "Encerrar",
+            "repair": "Corrigir",
+            "restore": "Restaurar",
+            "retry": "Tentar novamente"
+        },
+        "load_error": {
+            "message": "Não foi possível carregar."
+        },
+        "field": {
+            "errors": {
+                "required": "Este campo é obrigatório.",
+                "email": "Informe um e-mail válido.",
+                "minlength": "Informe pelo menos {{requiredLength}} caracteres.",
+                "maxlength": "Informe no máximo {{requiredLength}} caracteres.",
+                "min": "Informe {{min}} ou mais.",
+                "max": "Informe {{max}} ou menos.",
+                "pattern": "Este valor não está no formato esperado.",
+                "invalid": "Verifique este valor."
+            }
+        },
+        "image_lightbox": {
+            "open": "Abrir {{name}} em tamanho real",
+            "size": "{{width}} × {{height}} px · proporção {{ratio}} ({{decimal}})",
+            "standard": "Exatamente {{ratio}}, uma proporção padrão de bandeira.",
+            "near": "Próximo de {{ratio}} ({{percent}}% de diferença).",
+            "off": "{{percent}}% de diferença da proporção padrão mais próxima ({{ratio}}): verifique o tamanho da bandeira."
+        },
+        "rich_text": {
+            "placeholder": "Escreva aqui…",
+            "bold": "Negrito",
+            "italic": "Itálico",
+            "underline": "Sublinhado",
+            "bullets": "Lista com marcadores",
+            "numbers": "Lista numerada",
+            "link": "Link",
+            "clean": "Limpar formatação",
+            "show_more": "Mostrar mais",
+            "show_less": "Mostrar menos"
         }
     }
 }
