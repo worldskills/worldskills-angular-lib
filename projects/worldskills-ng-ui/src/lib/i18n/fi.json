@@ -1,0 +1,198 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Kirjaudu sisään",
+            "logout": "Kirjaudu ulos"
+        },
+        "footer": {
+            "link_my_worldskills": "Oma profiili",
+            "link_glossary": "Sanasto",
+            "link_forums": "Foorumi",
+            "link_infrastructure_lists": "Infralistat",
+            "link_skill_management": "Lajien hallinta",
+            "copyright_wsi": "WorldSkills International",
+            "copyright_privacy": "Tietosuojakäytäntö",
+            "copyright_terms": "Käyttöehdot",
+            "copyright_contact": "Yhteystiedot",
+            "language": "Kieli",
+            "missing_translation": "Puuttuuko käännös?"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Luonut {{firstName}} {{lastName}}",
+                "abstained": "Pidätteitte äänenne.",
+                "voted_anonymous": "Äänenne kirjattiin anonyymisti.",
+                "voted_for": "Äänestitte:",
+                "vote": "Äänestä",
+                "abstain": "Pidättäydy",
+                "clear_vote": "Tyhjennä ääni",
+                "view_results": "Näytä tulokset",
+                "view_question": "Näytä kysymys",
+                "not_permitted": "Teillä ei ole äänioikeutta tässä äänestyksessä.",
+                "manage": "Hallinnoi",
+                "status": "Tila",
+                "already_voted": "Olette jo äänestäneet.",
+                "must_vote_on": "Teidän täytyy ensin äänestää kyselyssä \"{{title}}\".",
+                "confirm_vote": "Haluatteko varmasti äänestää: {{labels}}?",
+                "confirm_abstain": "Haluatteko varmasti pidättäytyä?",
+                "menu_export": "Vie tulokset",
+                "menu_reset": "Nollaa",
+                "menu_extend": "Pidennä",
+                "menu_edit": "Muokkaa",
+                "menu_delete": "Poista",
+                "menu_open": "Avaa",
+                "menu_close": "Sulje"
+            },
+            "result": {
+                "pts": "pist.",
+                "votes": "ääntä",
+                "no_results": "Ei vielä tuloksia."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} valinta ({{points}} pist.)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} valinta"
+            },
+            "ordinal": {
+                "1": "1.",
+                "2": "2.",
+                "3": "3.",
+                "4": "4.",
+                "5": "5.",
+                "6": "6.",
+                "7": "7.",
+                "8": "8.",
+                "9": "9.",
+                "10": "10."
+            }
+        },
+        "awards": {
+            "title": "Palkinnot ja tunnustukset",
+            "award": "Palkinto",
+            "presented_at": "Myönnetty vuonna",
+            "public_extra_information": "Julkiset tiedot",
+            "extra_information": "Lisätiedot",
+            "action": "Toiminto",
+            "last_updated": "Viimeksi päivitetty",
+            "no_awards": "Ei palkintoja listalla.",
+            "add_award": "Lisää palkinto",
+            "add_new_award": "Lisää uusi palkinto",
+            "edit_award": "Muokkaa palkintoa",
+            "cancel": "Peruuta",
+            "save": "Tallenna",
+            "certificates": "Todistukset",
+            "add_certificate": "Lisää todistus",
+            "certificate_unique_id": "Todistuksen yksilöllinen tunnus",
+            "certificate_dropbox_path": "Dropbox-polku",
+            "certificate_type": "Todistustyyppi",
+            "generate_id": "Luo uusi tunnus",
+            "delete_confirm": "Haluatteko varmasti poistaa tämän palkinnon?",
+            "certificate_type_digital": "Digitaalinen",
+            "certificate_type_print": "Painettu"
+        },
+        "entity_tree_select": {
+            "placeholder": "Valitse entiteetti..."
+        },
+        "tree_select": {
+            "search": "Hae...",
+            "no_results": "Ei tuloksia"
+        },
+        "resources": {
+            "download": "Lataa",
+            "download_all": "Lataa kaikki",
+            "zipping": "Pakataan...",
+            "download_error": "Resurssien lataus epäonnistui. Yritä uudelleen.",
+            "no_resources": "Ei resursseja."
+        },
+        "relative_date": {
+            "just_now": "juuri nyt",
+            "minute_ago": "minuutti sitten",
+            "minutes_ago": "{{count}} minuuttia sitten",
+            "hour_ago": "tunti sitten",
+            "hours_ago": "{{count}} tuntia sitten",
+            "yesterday": "eilen",
+            "days_ago": "{{count}} päivää sitten",
+            "week_ago": "viikko sitten",
+            "weeks_ago": "{{count}} viikkoa sitten",
+            "month_ago": "kuukausi sitten",
+            "months_ago": "{{count}} kuukautta sitten",
+            "year_ago": "vuosi sitten",
+            "years_ago": "{{count}} vuotta sitten",
+            "soon": "pian",
+            "in_a_minute": "minuutin kuluttua",
+            "in_n_minutes": "{{count}} minuutin kuluttua",
+            "in_an_hour": "tunnin kuluttua",
+            "in_n_hours": "{{count}} tunnin kuluttua",
+            "tomorrow": "huomenna",
+            "in_n_days": "{{count}} päivän kuluttua",
+            "in_a_week": "viikon kuluttua",
+            "in_n_weeks": "{{count}} viikon kuluttua",
+            "in_a_month": "kuukauden kuluttua",
+            "in_n_months": "{{count}} kuukauden kuluttua",
+            "in_a_year": "vuoden kuluttua",
+            "in_n_years": "{{count}} vuoden kuluttua"
+        },
+        "search_select": {
+            "placeholder": "Kirjoita hakeaksesi...",
+            "no_results": "Ei tuloksia"
+        },
+        "page_header": {
+            "back": "Takaisin"
+        },
+        "help": {
+            "title": "Tämän sivun ohje",
+            "open": "Ohje: mitä tällä sivulla on",
+            "close": "Sulje ohje"
+        },
+        "actions": {
+            "save": "Tallenna",
+            "cancel": "Peruuta",
+            "delete": "Poista",
+            "ok": "OK",
+            "yes": "Kyllä",
+            "no": "Ei",
+            "confirm": "Vahvista",
+            "notice": "Ilmoitus",
+            "edit": "Muokkaa",
+            "end": "Lopeta",
+            "repair": "Korjaa",
+            "restore": "Palauta",
+            "retry": "Yritä uudelleen"
+        },
+        "load_error": {
+            "message": "Tietoja ei voitu ladata."
+        },
+        "field": {
+            "errors": {
+                "required": "Tämä kenttä on pakollinen.",
+                "email": "Anna kelvollinen sähköpostiosoite.",
+                "minlength": "Anna vähintään {{requiredLength}} merkkiä.",
+                "maxlength": "Anna enintään {{requiredLength}} merkkiä.",
+                "min": "Anna {{min}} tai enemmän.",
+                "max": "Anna {{max}} tai vähemmän.",
+                "pattern": "Arvo ei ole odotetussa muodossa.",
+                "invalid": "Tarkista tämä arvo."
+            }
+        },
+        "image_lightbox": {
+            "open": "Avaa {{name}} täysikokoisena",
+            "size": "{{width}} × {{height}} px · suhde {{ratio}} ({{decimal}})",
+            "standard": "Tasan {{ratio}}, tavallinen lipun mittasuhde.",
+            "near": "Lähellä suhdetta {{ratio}} ({{percent}} % poikkeama).",
+            "off": "{{percent}} % poikkeama lähimmästä tavallisesta mittasuhteesta ({{ratio}}): tarkista lipun koko."
+        },
+        "rich_text": {
+            "placeholder": "Kirjoita tähän…",
+            "bold": "Lihavointi",
+            "italic": "Kursiivi",
+            "underline": "Alleviivaus",
+            "bullets": "Luettelo",
+            "numbers": "Numeroitu luettelo",
+            "link": "Linkki",
+            "clean": "Poista muotoilu",
+            "show_more": "Näytä lisää",
+            "show_less": "Näytä vähemmän"
+        }
+    }
+}

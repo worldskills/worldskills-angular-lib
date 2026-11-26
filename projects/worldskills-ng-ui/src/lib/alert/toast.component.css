@@ -1,0 +1,8 @@
+/* Ensure toasts don't overflow on small screens */
+:host ::ng-deep .ws-toast {
+  max-width: min(24rem, 90vw);
+}
+
+:host ::ng-deep .ws-toast .p-toast-message-content {
+  align-items: flex-start;
+}

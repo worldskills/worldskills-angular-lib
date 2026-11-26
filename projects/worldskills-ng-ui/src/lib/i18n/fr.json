@@ -1,0 +1,185 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Connexion",
+            "logout": "Déconnexion"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Créé par {{firstName}} {{lastName}}",
+                "abstained": "Vous vous êtes abstenu de ce vote.",
+                "voted_anonymous": "Votre vote a été enregistré anonymement.",
+                "voted_for": "Vous avez voté pour :",
+                "vote": "Voter",
+                "abstain": "S'abstenir",
+                "clear_vote": "Effacer le vote",
+                "view_results": "Voir les résultats",
+                "view_question": "Voir la question",
+                "not_permitted": "Vous n'êtes pas autorisé à voter sur ce sondage.",
+                "manage": "Gérer",
+                "status": "Statut",
+                "already_voted": "Vous avez déjà voté.",
+                "must_vote_on": "Vous devez voter sur \"{{title}}\" avant de voter sur ce sondage.",
+                "confirm_vote": "Êtes-vous sûr de vouloir voter pour : {{labels}} ?",
+                "confirm_abstain": "Êtes-vous sûr de vouloir vous abstenir ?",
+                "menu_export": "Exporter les résultats",
+                "menu_reset": "Réinitialiser",
+                "menu_extend": "Prolonger",
+                "menu_edit": "Modifier",
+                "menu_delete": "Supprimer",
+                "menu_open": "Ouvrir",
+                "menu_close": "Fermer"
+            },
+            "result": {
+                "pts": "pts",
+                "votes": "votes",
+                "no_results": "Aucun résultat pour l'instant."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} sélection ({{points}} pts)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} sélection"
+            },
+            "ordinal": {
+                "1": "1er",
+                "2": "2e",
+                "3": "3e",
+                "4": "4e",
+                "5": "5e",
+                "6": "6e",
+                "7": "7e",
+                "8": "8e",
+                "9": "9e",
+                "10": "10e"
+            }
+        },
+        "awards": {
+            "title": "Prix & Reconnaissances",
+            "award": "Prix",
+            "presented_at": "Remis en",
+            "public_extra_information": "Informations publiques",
+            "extra_information": "Informations supplémentaires",
+            "action": "Action",
+            "last_updated": "Dernière mise à jour",
+            "no_awards": "Aucun prix dans la liste.",
+            "add_award": "Ajouter un prix",
+            "add_new_award": "Ajouter un nouveau prix",
+            "edit_award": "Modifier le prix",
+            "cancel": "Annuler",
+            "save": "Enregistrer",
+            "certificates": "Certificats",
+            "add_certificate": "Ajouter un certificat",
+            "certificate_unique_id": "Identifiant unique du certificat",
+            "certificate_dropbox_path": "Chemin Dropbox",
+            "certificate_type": "Type de certificat",
+            "generate_id": "Générer un nouvel identifiant",
+            "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce prix ?",
+            "certificate_type_digital": "Numérique",
+            "certificate_type_print": "Imprimé"
+        },
+        "entity_tree_select": {
+            "placeholder": "Sélectionner une entité..."
+        },
+        "tree_select": {
+            "search": "Rechercher...",
+            "no_results": "Aucun résultat trouvé"
+        },
+        "resources": {
+            "download": "Télécharger",
+            "download_all": "Tout télécharger",
+            "zipping": "Compression...",
+            "download_error": "Échec du téléchargement des ressources. Veuillez réessayer.",
+            "no_resources": "Aucune ressource."
+        },
+        "relative_date": {
+            "just_now": "à l'instant",
+            "minute_ago": "il y a une minute",
+            "minutes_ago": "il y a {{count}} minutes",
+            "hour_ago": "il y a une heure",
+            "hours_ago": "il y a {{count}} heures",
+            "yesterday": "hier",
+            "days_ago": "il y a {{count}} jours",
+            "week_ago": "il y a une semaine",
+            "weeks_ago": "il y a {{count}} semaines",
+            "month_ago": "il y a un mois",
+            "months_ago": "il y a {{count}} mois",
+            "year_ago": "il y a un an",
+            "years_ago": "il y a {{count}} ans",
+            "soon": "bientôt",
+            "in_a_minute": "dans une minute",
+            "in_n_minutes": "dans {{count}} minutes",
+            "in_an_hour": "dans une heure",
+            "in_n_hours": "dans {{count}} heures",
+            "tomorrow": "demain",
+            "in_n_days": "dans {{count}} jours",
+            "in_a_week": "dans une semaine",
+            "in_n_weeks": "dans {{count}} semaines",
+            "in_a_month": "dans un mois",
+            "in_n_months": "dans {{count}} mois",
+            "in_a_year": "dans un an",
+            "in_n_years": "dans {{count}} ans"
+        },
+        "search_select": {
+            "placeholder": "Tapez pour rechercher...",
+            "no_results": "Aucun résultat trouvé"
+        },
+        "page_header": {
+            "back": "Retour"
+        },
+        "help": {
+            "title": "Aide pour cette page",
+            "open": "Aide : contenu de cette page",
+            "close": "Fermer l'aide"
+        },
+        "actions": {
+            "save": "Enregistrer",
+            "cancel": "Annuler",
+            "delete": "Supprimer",
+            "ok": "OK",
+            "yes": "Oui",
+            "no": "Non",
+            "confirm": "Confirmer",
+            "notice": "Avis",
+            "edit": "Modifier",
+            "end": "Terminer",
+            "repair": "Corriger",
+            "restore": "Restaurer",
+            "retry": "Réessayer"
+        },
+        "load_error": {
+            "message": "Le chargement a échoué."
+        },
+        "field": {
+            "errors": {
+                "required": "Ce champ est obligatoire.",
+                "email": "Saisissez une adresse e-mail valide.",
+                "minlength": "Saisissez au moins {{requiredLength}} caractères.",
+                "maxlength": "Saisissez au plus {{requiredLength}} caractères.",
+                "min": "Saisissez {{min}} ou plus.",
+                "max": "Saisissez {{max}} ou moins.",
+                "pattern": "Cette valeur n'est pas au format attendu.",
+                "invalid": "Vérifiez cette valeur."
+            }
+        },
+        "image_lightbox": {
+            "open": "Ouvrir {{name}} en taille réelle",
+            "size": "{{width}} × {{height}} px · rapport {{ratio}} ({{decimal}})",
+            "standard": "Exactement {{ratio}}, une proportion de drapeau standard.",
+            "near": "Proche de {{ratio}} (écart de {{percent}} %).",
+            "off": "Écart de {{percent}} % par rapport à la proportion standard la plus proche ({{ratio}}) : vérifiez la taille du drapeau."
+        },
+        "rich_text": {
+            "placeholder": "Écrivez ici…",
+            "bold": "Gras",
+            "italic": "Italique",
+            "underline": "Souligné",
+            "bullets": "Liste à puces",
+            "numbers": "Liste numérotée",
+            "link": "Lien",
+            "clean": "Effacer la mise en forme",
+            "show_more": "Afficher plus",
+            "show_less": "Afficher moins"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="title()"
+  [modal]="true"
+  [closable]="closable()"
+  [dismissableMask]="dismissible()"
+  [style]="{ width: width(), 'max-width': '95vw' }"
+  [breakpoints]="{ '640px': '95vw' }"
+  [focusOnShow]="false"
+  styleClass="ws-dialog"
+  (onHide)="onHide()">
+
+  <ng-content />
+
+  @if (footerTemplate) {
+    <ng-template pTemplate="footer">
+      <ng-container *ngTemplateOutlet="footerTemplate" />
+    </ng-template>
+  } @else if (formId()) {
+    <ng-template pTemplate="footer">
+      <p-button
+        [label]="cancelLabel() ?? ('ws_ui.actions.cancel' | translate)"
+        severity="secondary"
+        [text]="true"
+        (onClick)="visible.set(false)" />
+      <p-button
+        [icon]="saveIcon()"
+        [label]="saveLabel() ?? ('ws_ui.actions.save' | translate)"
+        [loading]="saving()"
+        [disabled]="saveDisabled() || saving()"
+        (onClick)="submit()" />
+    </ng-template>
+  }
+
+</p-dialog>

@@ -1,0 +1,124 @@
+:host {
+    display: block;
+
+    /* Scope menubar design tokens to this header only */
+    --ws-menubar-background: transparent;
+    --ws-menubar-border-color: transparent;
+    --ws-menubar-border-radius: 0;
+    --ws-menubar-color: #ffffff;
+    --ws-menubar-padding: 0.5rem 0;
+    --ws-menubar-item-color: #ffffff;
+    --ws-menubar-item-focus-color: #ffffff;
+    --ws-menubar-item-active-color: #ffffff;
+    --ws-menubar-item-focus-background: rgba(255, 255, 255, 0.1);
+    --ws-menubar-item-active-background: rgba(255, 255, 255, 0.15);
+
+}
+
+.ws-header {
+    background-color: #3d0e61;
+}
+
+/* Brand stripe — matches worldskills.org .ws-navbar-stripe */
+.ws-header::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        #72d0eb 0 12.5%,
+        #0084ad 12.5% 25%,
+        #003764 25% 37.5%,
+        #4a0d66 37.5% 50%,
+        #d51067 50% 62.5%,
+        #ff6c0c 62.5% 75%,
+        #fee300 75% 87.5%,
+        #8ae2d1 87.5% 100%
+    );
+}
+
+/* Active menu item — bottom border indicator */
+:host ::ng-deep .ws-menubar-active > .p-menubar-item-content {
+    border-bottom: 2px solid #ffffff;
+}
+
+/* Focus styles for keyboard navigation */
+:host ::ng-deep .p-menubar-item-content:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: -2px;
+    border-radius: 4px;
+}
+
+/* Sub-menu bar — horizontal layout below header */
+.ws-navbar-sub {
+    background-color: #5a1a8a;
+    border-bottom: none;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 3rem;
+    gap: 0;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-item-content {
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s, background-color 0.2s;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-item-content .p-menu-item-label {
+    color: inherit;
+}
+
+:host ::ng-deep .ws-submenu-container .p-menu-item-content:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Active sub-menu item — bold with bottom border */
+:host ::ng-deep .ws-submenu-container .ws-submenu-active > .p-menu-item-content,
+:host ::ng-deep .ws-submenu-container .ws-submenu-active > .p-menu-item-content:hover {
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    background: transparent;
+}
+
+/* Submenu item padding — match user dropdown */
+:host ::ng-deep .p-menubar-submenu .p-menubar-item-content {
+    padding: 0.5rem 1rem;
+}
+
+/* Mobile expanded panel — match the purple header background so white text stays visible */
+:host ::ng-deep .p-menubar-mobile-active .p-menubar-root-list {
+    background-color: #3d0e61;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Name header — readable grey, not interactive */
+:host ::ng-deep .ws-user-menu .p-menu-item[data-p-disabled="true"],
+:host ::ng-deep .ws-user-menu .p-menu-item-disabled {
+    opacity: 1;
+    cursor: default;
+    padding: 0.5rem 1rem;
+}
+
+
+:host ::ng-deep .ws-user-menu .p-menu-item[data-p-disabled="true"] .p-menu-item-label,
+:host ::ng-deep .ws-user-menu .p-menu-item-disabled .p-menu-item-label {
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+

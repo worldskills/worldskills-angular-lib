@@ -1,0 +1,101 @@
+@if (help.open()) {
+  <!-- light backdrop: the page stays readable; clicking it closes, and the page still scrolls -->
+  <div
+    class="help-backdrop fixed inset-0 z-50"
+    (click)="close()"
+    aria-hidden="true"
+  >
+    @for (p of placed(); track p.id) {
+      <!-- outline and a small badge on the corner: marks the section without covering it -->
+      <div
+        class="help-glow pointer-events-none fixed"
+        [class.active]="active() === p.id"
+        [style.top.px]="p.top - 4"
+        [style.left.px]="p.left - 4"
+        [style.width.px]="p.width + 8"
+        [style.height.px]="p.height + 8"
+      ></div>
+      <div
+        class="help-ring pointer-events-none fixed"
+        [class.active]="active() === p.id"
+        [style.top.px]="p.top - 4"
+        [style.left.px]="p.left - 4"
+        [style.width.px]="p.width + 8"
+        [style.height.px]="p.height + 8"
+      ></div>
+      <span
+        class="help-badge fixed flex size-6 items-center justify-center rounded-full text-xs font-bold"
+        [class.active]="active() === p.id"
+        [style.top.px]="badgeTop(p)"
+        [style.left.px]="badgeLeft(p)"
+        (mouseenter)="active.set(p.id)"
+        (mouseleave)="active.set(null)"
+        >{{ p.number }}</span
+      >
+    }
+  </div>
+
+  <!-- the legend: every point's title and description at once, docked to the side -->
+  <aside
+    class="help-legend fixed bottom-4 right-4 top-4 z-50 flex w-80 max-w-[calc(100vw-2rem)] flex-col gap-3 overflow-y-auto p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ws-help-legend-title"
+  >
+    <div class="flex items-center justify-between gap-2">
+      <h2 id="ws-help-legend-title" class="font-semibold">
+        {{ "ws_ui.help.title" | translate }}
+      </h2>
+      <button
+        #closeButton
+        pButton
+        type="button"
+        icon="pi pi-times"
+        severity="secondary"
+        [text]="true"
+        [rounded]="true"
+        [ariaLabel]="'ws_ui.help.close' | translate"
+        (click)="close()"
+      ></button>
+    </div>
+    <ol class="flex flex-col gap-3">
+      @for (p of placed(); track p.id) {
+        <li
+          class="help-legend-item flex gap-3 p-2"
+          [class.active]="active() === p.id"
+          (mouseenter)="active.set(p.id)"
+          (mouseleave)="active.set(null)"
+        >
+          <span
+            class="help-badge flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+            [class.active]="active() === p.id"
+            aria-hidden="true"
+            >{{ p.number }}</span
+          >
+          <span class="flex flex-col gap-1 text-sm">
+            <strong>{{ help.textKey(p, "title") | translate }}</strong>
+            <span class="help-muted">{{
+              help.textKey(p, "description") | translate
+            }}</span>
+          </span>
+        </li>
+      }
+    </ol>
+  </aside>
+}
+
+@if (available() && !help.open()) {
+  <!-- PrimeNG buttons are position: relative, so the fixed position sits on a wrapper -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button
+      pButton
+      type="button"
+      class="help-fab"
+      icon="pi pi-question"
+      [rounded]="true"
+      [ariaLabel]="'ws_ui.help.open' | translate"
+      [title]="'ws_ui.help.open' | translate"
+      (click)="help.toggle()"
+    ></button>
+  </div>
+}

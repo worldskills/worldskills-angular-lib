@@ -1,0 +1,185 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "登录",
+            "logout": "退出"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "由 {{firstName}} {{lastName}} 创建",
+                "abstained": "您已弃权。",
+                "voted_anonymous": "您的投票已匿名记录。",
+                "voted_for": "您投票支持：",
+                "vote": "投票",
+                "abstain": "弃权",
+                "clear_vote": "清除投票",
+                "view_results": "查看结果",
+                "view_question": "查看问题",
+                "not_permitted": "您无权参与此投票。",
+                "manage": "管理",
+                "status": "状态",
+                "already_voted": "您已经投票了。",
+                "must_vote_on": "您必须先对《{{title}}》进行投票。",
+                "confirm_vote": "您确定要投票支持：{{labels}}吗？",
+                "confirm_abstain": "您确定要弃权吗？",
+                "menu_export": "导出结果",
+                "menu_reset": "重置",
+                "menu_extend": "延长",
+                "menu_edit": "编辑",
+                "menu_delete": "删除",
+                "menu_open": "开放",
+                "menu_close": "关闭"
+            },
+            "result": {
+                "pts": "分",
+                "votes": "票",
+                "no_results": "暂无结果。"
+            },
+            "weighted": {
+                "placeholder": "第{{ordinal}}选择（{{points}}分）"
+            },
+            "multiselect": {
+                "placeholder": "第{{ordinal}}选择"
+            },
+            "ordinal": {
+                "1": "一",
+                "2": "二",
+                "3": "三",
+                "4": "四",
+                "5": "五",
+                "6": "六",
+                "7": "七",
+                "8": "八",
+                "9": "九",
+                "10": "十"
+            }
+        },
+        "awards": {
+            "title": "奖项与荣誉",
+            "award": "奖项",
+            "presented_at": "授予年份",
+            "public_extra_information": "公开信息",
+            "extra_information": "附加信息",
+            "action": "操作",
+            "last_updated": "最后更新",
+            "no_awards": "列表中无奖项。",
+            "add_award": "添加奖项",
+            "add_new_award": "新增奖项",
+            "edit_award": "编辑奖项",
+            "cancel": "取消",
+            "save": "保存",
+            "certificates": "证书",
+            "add_certificate": "添加证书",
+            "certificate_unique_id": "证书唯一编号",
+            "certificate_dropbox_path": "Dropbox 路径",
+            "certificate_type": "证书类型",
+            "generate_id": "生成新编号",
+            "delete_confirm": "您确定要删除此奖项吗？",
+            "certificate_type_digital": "数字",
+            "certificate_type_print": "打印"
+        },
+        "entity_tree_select": {
+            "placeholder": "选择实体..."
+        },
+        "tree_select": {
+            "search": "搜索...",
+            "no_results": "未找到结果"
+        },
+        "resources": {
+            "download": "下载",
+            "download_all": "全部下载",
+            "zipping": "正在压缩...",
+            "download_error": "下载资源失败，请重试。",
+            "no_resources": "暂无资源。"
+        },
+        "relative_date": {
+            "just_now": "刚刚",
+            "minute_ago": "1分钟前",
+            "minutes_ago": "{{count}}分钟前",
+            "hour_ago": "1小时前",
+            "hours_ago": "{{count}}小时前",
+            "yesterday": "昨天",
+            "days_ago": "{{count}}天前",
+            "week_ago": "1周前",
+            "weeks_ago": "{{count}}周前",
+            "month_ago": "1个月前",
+            "months_ago": "{{count}}个月前",
+            "year_ago": "1年前",
+            "years_ago": "{{count}}年前",
+            "soon": "即将",
+            "in_a_minute": "1分钟后",
+            "in_n_minutes": "{{count}}分钟后",
+            "in_an_hour": "1小时后",
+            "in_n_hours": "{{count}}小时后",
+            "tomorrow": "明天",
+            "in_n_days": "{{count}}天后",
+            "in_a_week": "1周后",
+            "in_n_weeks": "{{count}}周后",
+            "in_a_month": "1个月后",
+            "in_n_months": "{{count}}个月后",
+            "in_a_year": "1年后",
+            "in_n_years": "{{count}}年后"
+        },
+        "search_select": {
+            "placeholder": "输入以搜索...",
+            "no_results": "未找到结果"
+        },
+        "page_header": {
+            "back": "返回"
+        },
+        "help": {
+            "title": "本页帮助",
+            "open": "帮助：本页内容",
+            "close": "关闭帮助"
+        },
+        "actions": {
+            "save": "保存",
+            "cancel": "取消",
+            "delete": "删除",
+            "ok": "确定",
+            "yes": "是",
+            "no": "否",
+            "confirm": "确认",
+            "notice": "提示",
+            "edit": "编辑",
+            "end": "结束",
+            "repair": "修复",
+            "restore": "恢复",
+            "retry": "重试"
+        },
+        "load_error": {
+            "message": "无法加载。"
+        },
+        "field": {
+            "errors": {
+                "required": "此字段为必填项。",
+                "email": "请输入有效的电子邮件地址。",
+                "minlength": "请至少输入 {{requiredLength}} 个字符。",
+                "maxlength": "最多输入 {{requiredLength}} 个字符。",
+                "min": "请输入 {{min}} 或更大的值。",
+                "max": "请输入 {{max}} 或更小的值。",
+                "pattern": "此值格式不正确。",
+                "invalid": "请检查此值。"
+            }
+        },
+        "image_lightbox": {
+            "open": "以完整尺寸打开 {{name}}",
+            "size": "{{width}} × {{height}} 像素 · 比例 {{ratio}}（{{decimal}}）",
+            "standard": "正好是 {{ratio}}，标准旗帜比例。",
+            "near": "接近 {{ratio}}（相差 {{percent}}%）。",
+            "off": "与最接近的标准比例（{{ratio}}）相差 {{percent}}%：请检查旗帜尺寸。"
+        },
+        "rich_text": {
+            "placeholder": "在此输入…",
+            "bold": "粗体",
+            "italic": "斜体",
+            "underline": "下划线",
+            "bullets": "项目符号列表",
+            "numbers": "编号列表",
+            "link": "链接",
+            "clean": "清除格式",
+            "show_more": "显示更多",
+            "show_less": "收起"
+        }
+    }
+}

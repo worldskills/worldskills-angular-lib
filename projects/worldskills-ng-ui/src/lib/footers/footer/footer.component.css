@@ -1,0 +1,32 @@
+:host {
+    display: block;
+}
+
+.ws-footer {
+    background-color: #0d2240;
+    color: #ffffff;
+}
+
+.ws-footer a:not(.text-white) {
+    color: var(--info, #00BBE6);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.ws-footer a:not(.text-white):hover {
+    color: #ffffff;
+}
+
+:host ::ng-deep .ws-footer-lang-select .p-select {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+:host ::ng-deep .ws-footer-lang-select .p-select-label {
+    color: #ffffff;
+}
+
+:host ::ng-deep .ws-footer-lang-select .p-select-dropdown {
+    color: rgba(255, 255, 255, 0.7);
+}

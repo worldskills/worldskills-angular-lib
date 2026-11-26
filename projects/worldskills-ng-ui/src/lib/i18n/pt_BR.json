@@ -1,0 +1,198 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Entrar",
+            "logout": "Sair"
+        },
+        "footer": {
+            "link_my_worldskills": "minhaWorldSkills",
+            "link_glossary": "Glossário",
+            "link_forums": "Fóruns",
+            "link_infrastructure_lists": "Listas de Infraestrutura",
+            "link_skill_management": "Gerenciamento de Habilidades",
+            "copyright_wsi": "WorldSkills Internacional",
+            "copyright_privacy": "Privacidade",
+            "copyright_terms": "Termos",
+            "copyright_contact": "Contato",
+            "language": "Idioma",
+            "missing_translation": "Tradução Ausente?"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Criado por {{firstName}} {{lastName}}",
+                "abstained": "Você se absteve desta votação.",
+                "voted_anonymous": "Seu voto foi registrado anonimamente.",
+                "voted_for": "Você votou em:",
+                "vote": "Votar",
+                "abstain": "Abster-se",
+                "clear_vote": "Limpar voto",
+                "view_results": "Ver resultados",
+                "view_question": "Ver questão",
+                "not_permitted": "Você não tem permissão para votar nesta enquete.",
+                "manage": "Gerenciar",
+                "status": "Status",
+                "already_voted": "Você já votou.",
+                "must_vote_on": "Você deve votar em \"{{title}}\" antes de votar nesta enquete.",
+                "confirm_vote": "Tem certeza que deseja votar em: {{labels}}?",
+                "confirm_abstain": "Tem certeza que deseja se abster?",
+                "menu_export": "Exportar resultados",
+                "menu_reset": "Redefinir",
+                "menu_extend": "Estender",
+                "menu_edit": "Editar",
+                "menu_delete": "Excluir",
+                "menu_open": "Abrir",
+                "menu_close": "Fechar"
+            },
+            "result": {
+                "pts": "pts",
+                "votes": "votos",
+                "no_results": "Ainda não há resultados."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} seleção ({{points}} pts)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} seleção"
+            },
+            "ordinal": {
+                "1": "1º",
+                "2": "2º",
+                "3": "3º",
+                "4": "4º",
+                "5": "5º",
+                "6": "6º",
+                "7": "7º",
+                "8": "8º",
+                "9": "9º",
+                "10": "10º"
+            }
+        },
+        "awards": {
+            "title": "Prêmios e Reconhecimento",
+            "award": "Prêmio",
+            "presented_at": "Apresentado em",
+            "public_extra_information": "Informação pública",
+            "extra_information": "Informação extra",
+            "action": "Ação",
+            "last_updated": "Última atualização",
+            "no_awards": "Nenhum prêmio na lista.",
+            "add_award": "Adicionar prêmio",
+            "add_new_award": "Adicionar novo prêmio",
+            "edit_award": "Editar prêmio",
+            "cancel": "Cancelar",
+            "save": "Salvar",
+            "certificates": "Certificados",
+            "add_certificate": "Adicionar certificado",
+            "certificate_unique_id": "ID único do certificado",
+            "certificate_dropbox_path": "Caminho no Dropbox",
+            "certificate_type": "Tipo de certificado",
+            "generate_id": "Gerar novo ID",
+            "delete_confirm": "Tem certeza que deseja excluir este prêmio?",
+            "certificate_type_digital": "Digital",
+            "certificate_type_print": "Impresso"
+        },
+        "entity_tree_select": {
+            "placeholder": "Selecionar entidade..."
+        },
+        "tree_select": {
+            "search": "Pesquisar...",
+            "no_results": "Nenhum resultado encontrado"
+        },
+        "resources": {
+            "download": "Baixar",
+            "download_all": "Baixar tudo",
+            "zipping": "Compactando...",
+            "download_error": "Falha ao baixar recursos. Por favor, tente novamente.",
+            "no_resources": "Sem recursos."
+        },
+        "relative_date": {
+            "just_now": "agora mesmo",
+            "minute_ago": "há um minuto",
+            "minutes_ago": "há {{count}} minutos",
+            "hour_ago": "há uma hora",
+            "hours_ago": "há {{count}} horas",
+            "yesterday": "ontem",
+            "days_ago": "há {{count}} dias",
+            "week_ago": "há uma semana",
+            "weeks_ago": "há {{count}} semanas",
+            "month_ago": "há um mês",
+            "months_ago": "há {{count}} meses",
+            "year_ago": "há um ano",
+            "years_ago": "há {{count}} anos",
+            "soon": "em breve",
+            "in_a_minute": "em um minuto",
+            "in_n_minutes": "em {{count}} minutos",
+            "in_an_hour": "em uma hora",
+            "in_n_hours": "em {{count}} horas",
+            "tomorrow": "amanhã",
+            "in_n_days": "em {{count}} dias",
+            "in_a_week": "em uma semana",
+            "in_n_weeks": "em {{count}} semanas",
+            "in_a_month": "em um mês",
+            "in_n_months": "em {{count}} meses",
+            "in_a_year": "em um ano",
+            "in_n_years": "em {{count}} anos"
+        },
+        "search_select": {
+            "placeholder": "Digite para pesquisar...",
+            "no_results": "Nenhum resultado encontrado"
+        },
+        "page_header": {
+            "back": "Voltar"
+        },
+        "help": {
+            "title": "Ajuda desta página",
+            "open": "Ajuda: o que há nesta página",
+            "close": "Fechar ajuda"
+        },
+        "actions": {
+            "save": "Salvar",
+            "cancel": "Cancelar",
+            "delete": "Excluir",
+            "ok": "OK",
+            "yes": "Sim",
+            "no": "Não",
+            "confirm": "Confirmar",
+            "notice": "Aviso",
+            "edit": "Editar",
+            "end": "Encerrar",
+            "repair": "Corrigir",
+            "restore": "Restaurar",
+            "retry": "Tentar novamente"
+        },
+        "load_error": {
+            "message": "Não foi possível carregar."
+        },
+        "field": {
+            "errors": {
+                "required": "Este campo é obrigatório.",
+                "email": "Informe um e-mail válido.",
+                "minlength": "Informe pelo menos {{requiredLength}} caracteres.",
+                "maxlength": "Informe no máximo {{requiredLength}} caracteres.",
+                "min": "Informe {{min}} ou mais.",
+                "max": "Informe {{max}} ou menos.",
+                "pattern": "Este valor não está no formato esperado.",
+                "invalid": "Verifique este valor."
+            }
+        },
+        "image_lightbox": {
+            "open": "Abrir {{name}} em tamanho real",
+            "size": "{{width}} × {{height}} px · proporção {{ratio}} ({{decimal}})",
+            "standard": "Exatamente {{ratio}}, uma proporção padrão de bandeira.",
+            "near": "Próximo de {{ratio}} ({{percent}}% de diferença).",
+            "off": "{{percent}}% de diferença da proporção padrão mais próxima ({{ratio}}): verifique o tamanho da bandeira."
+        },
+        "rich_text": {
+            "placeholder": "Escreva aqui…",
+            "bold": "Negrito",
+            "italic": "Itálico",
+            "underline": "Sublinhado",
+            "bullets": "Lista com marcadores",
+            "numbers": "Lista numerada",
+            "link": "Link",
+            "clean": "Limpar formatação",
+            "show_more": "Mostrar mais",
+            "show_less": "Mostrar menos"
+        }
+    }
+}

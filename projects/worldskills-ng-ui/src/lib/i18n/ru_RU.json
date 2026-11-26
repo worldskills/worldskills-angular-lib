@@ -1,0 +1,185 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Войти",
+            "logout": "Выйти"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Создал {{firstName}} {{lastName}}",
+                "abstained": "Вы воздержались от голосования.",
+                "voted_anonymous": "Ваш голос записан анонимно.",
+                "voted_for": "Вы проголосовали за:",
+                "vote": "Голосовать",
+                "abstain": "Воздержаться",
+                "clear_vote": "Сбросить голос",
+                "view_results": "Просмотр результатов",
+                "view_question": "Просмотр вопроса",
+                "not_permitted": "Вы не можете голосовать в этом опросе.",
+                "manage": "Управление",
+                "status": "Статус",
+                "already_voted": "Вы уже проголосовали.",
+                "must_vote_on": "Сначала проголосуйте в опросе «{{title}}».",
+                "confirm_vote": "Вы уверены, что хотите проголосовать за: {{labels}}?",
+                "confirm_abstain": "Вы уверены, что хотите воздержаться?",
+                "menu_export": "Экспорт результатов",
+                "menu_reset": "Сбросить",
+                "menu_extend": "Продлить",
+                "menu_edit": "Изменить",
+                "menu_delete": "Удалить",
+                "menu_open": "Открыть",
+                "menu_close": "Закрыть"
+            },
+            "result": {
+                "pts": "очк.",
+                "votes": "голосов",
+                "no_results": "Результатов пока нет."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} выбор ({{points}} очк.)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} выбор"
+            },
+            "ordinal": {
+                "1": "1-й",
+                "2": "2-й",
+                "3": "3-й",
+                "4": "4-й",
+                "5": "5-й",
+                "6": "6-й",
+                "7": "7-й",
+                "8": "8-й",
+                "9": "9-й",
+                "10": "10-й"
+            }
+        },
+        "awards": {
+            "title": "Награды и признание",
+            "award": "Награда",
+            "presented_at": "Год вручения",
+            "public_extra_information": "Публичная информация",
+            "extra_information": "Дополнительная информация",
+            "action": "Действие",
+            "last_updated": "Последнее обновление",
+            "no_awards": "В списке нет наград.",
+            "add_award": "Добавить награду",
+            "add_new_award": "Добавить новую награду",
+            "edit_award": "Редактировать награду",
+            "cancel": "Отмена",
+            "save": "Сохранить",
+            "certificates": "Сертификаты",
+            "add_certificate": "Добавить сертификат",
+            "certificate_unique_id": "Уникальный ID сертификата",
+            "certificate_dropbox_path": "Путь в Dropbox",
+            "certificate_type": "Тип сертификата",
+            "generate_id": "Сгенерировать новый ID",
+            "delete_confirm": "Вы уверены, что хотите удалить эту награду?",
+            "certificate_type_digital": "Цифровой",
+            "certificate_type_print": "Печатный"
+        },
+        "entity_tree_select": {
+            "placeholder": "Выберите объект..."
+        },
+        "tree_select": {
+            "search": "Поиск...",
+            "no_results": "Результаты не найдены"
+        },
+        "resources": {
+            "download": "Скачать",
+            "download_all": "Скачать всё",
+            "zipping": "Архивирование...",
+            "download_error": "Не удалось скачать ресурсы. Пожалуйста, попробуйте снова.",
+            "no_resources": "Нет ресурсов."
+        },
+        "relative_date": {
+            "just_now": "только что",
+            "minute_ago": "минуту назад",
+            "minutes_ago": "{{count}} минут назад",
+            "hour_ago": "час назад",
+            "hours_ago": "{{count}} часов назад",
+            "yesterday": "вчера",
+            "days_ago": "{{count}} дней назад",
+            "week_ago": "неделю назад",
+            "weeks_ago": "{{count}} недель назад",
+            "month_ago": "месяц назад",
+            "months_ago": "{{count}} месяцев назад",
+            "year_ago": "год назад",
+            "years_ago": "{{count}} лет назад",
+            "soon": "скоро",
+            "in_a_minute": "через минуту",
+            "in_n_minutes": "через {{count}} минут",
+            "in_an_hour": "через час",
+            "in_n_hours": "через {{count}} часов",
+            "tomorrow": "завтра",
+            "in_n_days": "через {{count}} дней",
+            "in_a_week": "через неделю",
+            "in_n_weeks": "через {{count}} недель",
+            "in_a_month": "через месяц",
+            "in_n_months": "через {{count}} месяцев",
+            "in_a_year": "через год",
+            "in_n_years": "через {{count}} лет"
+        },
+        "search_select": {
+            "placeholder": "Начните вводить для поиска...",
+            "no_results": "Результаты не найдены"
+        },
+        "page_header": {
+            "back": "Назад"
+        },
+        "help": {
+            "title": "Справка по этой странице",
+            "open": "Справка: что есть на этой странице",
+            "close": "Закрыть справку"
+        },
+        "actions": {
+            "save": "Сохранить",
+            "cancel": "Отмена",
+            "delete": "Удалить",
+            "ok": "OK",
+            "yes": "Да",
+            "no": "Нет",
+            "confirm": "Подтвердить",
+            "notice": "Уведомление",
+            "edit": "Изменить",
+            "end": "Завершить",
+            "repair": "Исправить",
+            "restore": "Восстановить",
+            "retry": "Повторить"
+        },
+        "load_error": {
+            "message": "Не удалось загрузить."
+        },
+        "field": {
+            "errors": {
+                "required": "Это поле обязательно.",
+                "email": "Введите действительный адрес электронной почты.",
+                "minlength": "Введите не менее {{requiredLength}} символов.",
+                "maxlength": "Введите не более {{requiredLength}} символов.",
+                "min": "Введите {{min}} или больше.",
+                "max": "Введите {{max}} или меньше.",
+                "pattern": "Значение имеет неверный формат.",
+                "invalid": "Проверьте это значение."
+            }
+        },
+        "image_lightbox": {
+            "open": "Открыть {{name}} в полном размере",
+            "size": "{{width}} × {{height}} px · соотношение {{ratio}} ({{decimal}})",
+            "standard": "Ровно {{ratio}}, стандартная пропорция флага.",
+            "near": "Близко к {{ratio}} (отклонение {{percent}}%).",
+            "off": "Отклонение {{percent}}% от ближайшей стандартной пропорции ({{ratio}}): проверьте размер флага."
+        },
+        "rich_text": {
+            "placeholder": "Введите текст…",
+            "bold": "Жирный",
+            "italic": "Курсив",
+            "underline": "Подчёркнутый",
+            "bullets": "Маркированный список",
+            "numbers": "Нумерованный список",
+            "link": "Ссылка",
+            "clean": "Очистить форматирование",
+            "show_more": "Показать больше",
+            "show_less": "Показать меньше"
+        }
+    }
+}

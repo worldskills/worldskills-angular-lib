@@ -1,0 +1,14 @@
+<ws-ng-ui-toast />
+<ws-ng-ui-header [appName]="appName" [isLoggedIn]="isLoggedIn()" [showLoginAndLogoutButtons]="showLoginAndLogoutButtons"
+    [menuItems]="menuItems" [dropDownMenuItems]="dropDownMenuItems" [currentUser]="currentUser()" [linkTitle]="linkTitle"
+    (loginClick)="login()" (logoutClick)="logout()">
+</ws-ng-ui-header>
+
+<main class="max-w-screen-xl mx-auto px-4 pb-8" style="min-height: calc(100vh - 200px)">
+  <ws-ng-ui-breadcrumb homeLabel="Home" homeRoute="/home" />
+  <div class="mt-4">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<ws-ng-ui-footer [isLoggedIn]="isLoggedIn()" [currentUser]="currentUser()" (loginClick)="login()" (logoutClick)="logout()"></ws-ng-ui-footer>

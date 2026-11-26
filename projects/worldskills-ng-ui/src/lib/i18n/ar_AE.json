@@ -1,0 +1,185 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "تسجيل الدخول",
+            "logout": "تسجيل الخروج"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "أنشأه {{firstName}} {{lastName}}",
+                "abstained": "لقد امتنعت عن التصويت.",
+                "voted_anonymous": "تم تسجيل صوتك بشكل مجهول.",
+                "voted_for": "لقد صوّتت لصالح:",
+                "vote": "تصويت",
+                "abstain": "امتناع",
+                "clear_vote": "مسح التصويت",
+                "view_results": "عرض النتائج",
+                "view_question": "عرض السؤال",
+                "not_permitted": "غير مصرح لك بالتصويت في هذا الاستطلاع.",
+                "manage": "إدارة",
+                "status": "الحالة",
+                "already_voted": "لقد صوّتت بالفعل.",
+                "must_vote_on": "يجب عليك التصويت على \"{{title}}\" قبل التصويت على هذا الاستطلاع.",
+                "confirm_vote": "هل أنت متأكد من التصويت لصالح: {{labels}}؟",
+                "confirm_abstain": "هل أنت متأكد من رغبتك في الامتناع عن التصويت؟",
+                "menu_export": "تصدير النتائج",
+                "menu_reset": "إعادة تعيين",
+                "menu_extend": "تمديد",
+                "menu_edit": "تعديل",
+                "menu_delete": "حذف",
+                "menu_open": "فتح",
+                "menu_close": "إغلاق"
+            },
+            "result": {
+                "pts": "نقطة",
+                "votes": "أصوات",
+                "no_results": "لا توجد نتائج بعد."
+            },
+            "weighted": {
+                "placeholder": "الاختيار {{ordinal}} ({{points}} نقطة)"
+            },
+            "multiselect": {
+                "placeholder": "الاختيار {{ordinal}}"
+            },
+            "ordinal": {
+                "1": "الأول",
+                "2": "الثاني",
+                "3": "الثالث",
+                "4": "الرابع",
+                "5": "الخامس",
+                "6": "السادس",
+                "7": "السابع",
+                "8": "الثامن",
+                "9": "التاسع",
+                "10": "العاشر"
+            }
+        },
+        "awards": {
+            "title": "الجوائز والتكريم",
+            "award": "جائزة",
+            "presented_at": "سنة التسليم",
+            "public_extra_information": "معلومات عامة",
+            "extra_information": "معلومات إضافية",
+            "action": "إجراء",
+            "last_updated": "آخر تحديث",
+            "no_awards": "لا توجد جوائز في القائمة.",
+            "add_award": "إضافة جائزة",
+            "add_new_award": "إضافة جائزة جديدة",
+            "edit_award": "تعديل الجائزة",
+            "cancel": "إلغاء",
+            "save": "حفظ",
+            "certificates": "الشهادات",
+            "add_certificate": "إضافة شهادة",
+            "certificate_unique_id": "المعرف الفريد للشهادة",
+            "certificate_dropbox_path": "مسار Dropbox",
+            "certificate_type": "نوع الشهادة",
+            "generate_id": "توليد معرف جديد",
+            "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذه الجائزة؟",
+            "certificate_type_digital": "رقمي",
+            "certificate_type_print": "مطبوع"
+        },
+        "entity_tree_select": {
+            "placeholder": "اختر كياناً..."
+        },
+        "tree_select": {
+            "search": "بحث...",
+            "no_results": "لا توجد نتائج"
+        },
+        "resources": {
+            "download": "تنزيل",
+            "download_all": "تنزيل الكل",
+            "zipping": "جارٍ الضغط...",
+            "download_error": "فشل تنزيل الملفات. يرجى المحاولة مرة أخرى.",
+            "no_resources": "لا توجد موارد."
+        },
+        "relative_date": {
+            "just_now": "الآن",
+            "minute_ago": "منذ دقيقة",
+            "minutes_ago": "منذ {{count}} دقائق",
+            "hour_ago": "منذ ساعة",
+            "hours_ago": "منذ {{count}} ساعات",
+            "yesterday": "أمس",
+            "days_ago": "منذ {{count}} أيام",
+            "week_ago": "منذ أسبوع",
+            "weeks_ago": "منذ {{count}} أسابيع",
+            "month_ago": "منذ شهر",
+            "months_ago": "منذ {{count}} أشهر",
+            "year_ago": "منذ عام",
+            "years_ago": "منذ {{count}} أعوام",
+            "soon": "قريباً",
+            "in_a_minute": "خلال دقيقة",
+            "in_n_minutes": "خلال {{count}} دقائق",
+            "in_an_hour": "خلال ساعة",
+            "in_n_hours": "خلال {{count}} ساعات",
+            "tomorrow": "غداً",
+            "in_n_days": "خلال {{count}} أيام",
+            "in_a_week": "خلال أسبوع",
+            "in_n_weeks": "خلال {{count}} أسابيع",
+            "in_a_month": "خلال شهر",
+            "in_n_months": "خلال {{count}} أشهر",
+            "in_a_year": "خلال عام",
+            "in_n_years": "خلال {{count}} أعوام"
+        },
+        "search_select": {
+            "placeholder": "اكتب للبحث...",
+            "no_results": "لا توجد نتائج"
+        },
+        "page_header": {
+            "back": "رجوع"
+        },
+        "help": {
+            "title": "مساعدة لهذه الصفحة",
+            "open": "مساعدة: محتوى هذه الصفحة",
+            "close": "إغلاق المساعدة"
+        },
+        "actions": {
+            "save": "حفظ",
+            "cancel": "إلغاء",
+            "delete": "حذف",
+            "ok": "موافق",
+            "yes": "نعم",
+            "no": "لا",
+            "confirm": "تأكيد",
+            "notice": "تنبيه",
+            "edit": "تعديل",
+            "end": "إنهاء",
+            "repair": "إصلاح",
+            "restore": "استعادة",
+            "retry": "إعادة المحاولة"
+        },
+        "load_error": {
+            "message": "تعذّر التحميل."
+        },
+        "field": {
+            "errors": {
+                "required": "هذا الحقل مطلوب.",
+                "email": "أدخل بريدًا إلكترونيًا صالحًا.",
+                "minlength": "أدخل {{requiredLength}} أحرف على الأقل.",
+                "maxlength": "أدخل {{requiredLength}} أحرف على الأكثر.",
+                "min": "أدخل {{min}} أو أكثر.",
+                "max": "أدخل {{max}} أو أقل.",
+                "pattern": "هذه القيمة ليست بالتنسيق المتوقع.",
+                "invalid": "تحقق من هذه القيمة."
+            }
+        },
+        "image_lightbox": {
+            "open": "فتح {{name}} بالحجم الكامل",
+            "size": "{{width}} × {{height}} بكسل · النسبة {{ratio}} ({{decimal}})",
+            "standard": "بالضبط {{ratio}}، وهي نسبة علم قياسية.",
+            "near": "قريبة من {{ratio}} (فرق {{percent}}%).",
+            "off": "فرق {{percent}}% عن أقرب نسبة قياسية ({{ratio}}): تحقق من حجم العلم."
+        },
+        "rich_text": {
+            "placeholder": "اكتب هنا…",
+            "bold": "غامق",
+            "italic": "مائل",
+            "underline": "تسطير",
+            "bullets": "قائمة نقطية",
+            "numbers": "قائمة مرقمة",
+            "link": "رابط",
+            "clean": "مسح التنسيق",
+            "show_more": "عرض المزيد",
+            "show_less": "عرض أقل"
+        }
+    }
+}

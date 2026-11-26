@@ -16,15 +16,40 @@
       "dom"
     ],
     "paths": {
-      "my-lib": [
-        "./dist/my-lib"
+      "@worldskills/ng-auth": [
+        "dist/worldskills-ng-auth/worldskills-ng-auth",
+        "dist/worldskills-ng-auth",
+        "./projects/worldskills-ng-auth/src/public-api.ts"
       ],
-      "worldskills-angular-lib": [
-        "dist/worldskills-angular-lib/worldskills-angular-lib",
-        "dist/worldskills-angular-lib",
-        "projects/worldskills-angular-lib/src/public_api.ts"
+      "@worldskills/ng-auth/*": [
+        "./projects/worldskills-ng-auth/src/*"
+      ],
+      "@worldskills/ng-ui": [
+        "dist/worldskills-ng-ui/worldskills-ng-ui",
+        "dist/worldskills-ng-ui",
+        "projects/worldskills-ng-ui/src/public-api.ts"
+      ],
+      "@worldskills/ng-ui/help": [
+        "dist/worldskills-ng-ui/help",
+        "./projects/worldskills-ng-ui/help/src/public-api.ts"
+      ],
+      "@worldskills/ng-ui/editor": [
+        "dist/worldskills-ng-ui/editor",
+        "./projects/worldskills-ng-ui/editor/src/public-api.ts"
+      ],
+      "@worldskills/ng-ui/*": [
+        "./projects/worldskills-ng-ui/src/*"
       ]
     },
-    "useDefineForClassFields": false
-  }
+    "useDefineForClassFields": false,
+    "resolveJsonModule": true
+  },
+  "references": [
+    {
+      "path": "./projects/worldskills-ng-tester-prime/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/worldskills-ng-tester-prime/tsconfig.spec.json"
+    }
+  ]
 }

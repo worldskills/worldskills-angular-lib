@@ -1,0 +1,197 @@
+{
+    "ws_ui": {
+        "header": {
+            "login": "Anmelden",
+            "logout": "Abmelden"
+        },
+        "footer": {
+            "link_my_worldskills": "myWorldSkills",
+            "link_glossary": "Glossar",
+            "link_forums": "Foren",
+            "link_infrastructure_lists": "Infrastruktur-Listen",
+            "copyright_wsi": "WorldSkills International",
+            "copyright_privacy": "Datenschutz",
+            "copyright_terms": "Bestimmungen",
+            "copyright_contact": "Kontakt",
+            "language": "Sprache",
+            "missing_translation": "Fehlende Übersetzung?"
+        },
+        "polls": {
+            "vote_control": {
+                "created_by": "Erstellt von {{firstName}} {{lastName}}",
+                "abstained": "Sie haben sich enthalten.",
+                "voted_anonymous": "Ihre Stimme wurde anonym erfasst.",
+                "voted_for": "Sie haben gestimmt für:",
+                "vote": "Abstimmen",
+                "abstain": "Enthalten",
+                "clear_vote": "Stimme löschen",
+                "view_results": "Ergebnisse anzeigen",
+                "view_question": "Frage anzeigen",
+                "not_permitted": "Sie sind nicht berechtigt, an dieser Abstimmung teilzunehmen.",
+                "manage": "Verwalten",
+                "status": "Status",
+                "already_voted": "Sie haben bereits abgestimmt.",
+                "must_vote_on": "Sie müssen zuerst über \"{{title}}\" abstimmen.",
+                "confirm_vote": "Möchten Sie wirklich für {{labels}} stimmen?",
+                "confirm_abstain": "Möchten Sie sich wirklich enthalten?",
+                "menu_export": "Ergebnisse exportieren",
+                "menu_reset": "Zurücksetzen",
+                "menu_extend": "Verlängern",
+                "menu_edit": "Bearbeiten",
+                "menu_delete": "Löschen",
+                "menu_open": "Öffnen",
+                "menu_close": "Schließen"
+            },
+            "result": {
+                "pts": "Pkt.",
+                "votes": "Stimmen",
+                "no_results": "Noch keine Ergebnisse."
+            },
+            "weighted": {
+                "placeholder": "{{ordinal}} Auswahl ({{points}} Pkt.)"
+            },
+            "multiselect": {
+                "placeholder": "{{ordinal}} Auswahl"
+            },
+            "ordinal": {
+                "1": "1.",
+                "2": "2.",
+                "3": "3.",
+                "4": "4.",
+                "5": "5.",
+                "6": "6.",
+                "7": "7.",
+                "8": "8.",
+                "9": "9.",
+                "10": "10."
+            }
+        },
+        "awards": {
+            "title": "Auszeichnungen & Anerkennung",
+            "award": "Auszeichnung",
+            "presented_at": "Verliehen im Jahr",
+            "public_extra_information": "Öffentliche Informationen",
+            "extra_information": "Zusätzliche Informationen",
+            "action": "Aktion",
+            "last_updated": "Zuletzt aktualisiert",
+            "no_awards": "Keine Auszeichnungen in der Liste.",
+            "add_award": "Auszeichnung hinzufügen",
+            "add_new_award": "Neue Auszeichnung hinzufügen",
+            "edit_award": "Auszeichnung bearbeiten",
+            "cancel": "Abbrechen",
+            "save": "Speichern",
+            "certificates": "Zertifikate",
+            "add_certificate": "Zertifikat hinzufügen",
+            "certificate_unique_id": "Eindeutige Zertifikat-ID",
+            "certificate_dropbox_path": "Dropbox-Pfad",
+            "certificate_type": "Zertifikatstyp",
+            "generate_id": "Neue ID generieren",
+            "delete_confirm": "Sind Sie sicher, dass Sie diese Auszeichnung löschen möchten?",
+            "certificate_type_digital": "Digital",
+            "certificate_type_print": "Druck"
+        },
+        "entity_tree_select": {
+            "placeholder": "Entität auswählen..."
+        },
+        "tree_select": {
+            "search": "Suchen...",
+            "no_results": "Keine Ergebnisse gefunden"
+        },
+        "resources": {
+            "download": "Herunterladen",
+            "download_all": "Alle herunterladen",
+            "zipping": "Wird komprimiert...",
+            "download_error": "Download fehlgeschlagen. Bitte versuchen Sie es erneut.",
+            "no_resources": "Keine Ressourcen."
+        },
+        "relative_date": {
+            "just_now": "gerade eben",
+            "minute_ago": "vor einer Minute",
+            "minutes_ago": "vor {{count}} Minuten",
+            "hour_ago": "vor einer Stunde",
+            "hours_ago": "vor {{count}} Stunden",
+            "yesterday": "gestern",
+            "days_ago": "vor {{count}} Tagen",
+            "week_ago": "vor einer Woche",
+            "weeks_ago": "vor {{count}} Wochen",
+            "month_ago": "vor einem Monat",
+            "months_ago": "vor {{count}} Monaten",
+            "year_ago": "vor einem Jahr",
+            "years_ago": "vor {{count}} Jahren",
+            "soon": "bald",
+            "in_a_minute": "in einer Minute",
+            "in_n_minutes": "in {{count}} Minuten",
+            "in_an_hour": "in einer Stunde",
+            "in_n_hours": "in {{count}} Stunden",
+            "tomorrow": "morgen",
+            "in_n_days": "in {{count}} Tagen",
+            "in_a_week": "in einer Woche",
+            "in_n_weeks": "in {{count}} Wochen",
+            "in_a_month": "in einem Monat",
+            "in_n_months": "in {{count}} Monaten",
+            "in_a_year": "in einem Jahr",
+            "in_n_years": "in {{count}} Jahren"
+        },
+        "search_select": {
+            "placeholder": "Zum Suchen tippen...",
+            "no_results": "Keine Ergebnisse gefunden"
+        },
+        "page_header": {
+            "back": "Zurück"
+        },
+        "help": {
+            "title": "Hilfe zu dieser Seite",
+            "open": "Hilfe: Was ist auf dieser Seite",
+            "close": "Hilfe schließen"
+        },
+        "actions": {
+            "save": "Speichern",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "ok": "OK",
+            "yes": "Ja",
+            "no": "Nein",
+            "confirm": "Bestätigen",
+            "notice": "Hinweis",
+            "edit": "Bearbeiten",
+            "end": "Beenden",
+            "repair": "Beheben",
+            "restore": "Wiederherstellen",
+            "retry": "Erneut versuchen"
+        },
+        "load_error": {
+            "message": "Dies konnte nicht geladen werden."
+        },
+        "field": {
+            "errors": {
+                "required": "Dieses Feld ist erforderlich.",
+                "email": "Geben Sie eine gültige E-Mail-Adresse ein.",
+                "minlength": "Geben Sie mindestens {{requiredLength}} Zeichen ein.",
+                "maxlength": "Geben Sie höchstens {{requiredLength}} Zeichen ein.",
+                "min": "Geben Sie {{min}} oder mehr ein.",
+                "max": "Geben Sie {{max}} oder weniger ein.",
+                "pattern": "Dieser Wert hat nicht das erwartete Format.",
+                "invalid": "Prüfen Sie diesen Wert."
+            }
+        },
+        "image_lightbox": {
+            "open": "{{name}} in voller Größe öffnen",
+            "size": "{{width}} × {{height}} px · Verhältnis {{ratio}} ({{decimal}})",
+            "standard": "Genau {{ratio}}, ein übliches Flaggenformat.",
+            "near": "Nahe an {{ratio}} ({{percent}} % Abweichung).",
+            "off": "{{percent}} % Abweichung vom nächsten üblichen Format ({{ratio}}): Prüfen Sie die Größe der Flagge."
+        },
+        "rich_text": {
+            "placeholder": "Hier schreiben…",
+            "bold": "Fett",
+            "italic": "Kursiv",
+            "underline": "Unterstrichen",
+            "bullets": "Aufzählung",
+            "numbers": "Nummerierte Liste",
+            "link": "Link",
+            "clean": "Formatierung entfernen",
+            "show_more": "Mehr anzeigen",
+            "show_less": "Weniger anzeigen"
+        }
+    }
+}

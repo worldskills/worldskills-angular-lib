@@ -1,0 +1,16 @@
+/* A checkerboard behind the image, so white flags and logos show their edges */
+.ws-lightbox-checkerboard {
+  background-color: var(--ws-surface-0, #fff);
+  background-image: conic-gradient(
+    var(--ws-surface-200, #e5e7eb) 25%,
+    transparent 0 50%,
+    var(--ws-surface-200, #e5e7eb) 0 75%,
+    transparent 0
+  );
+  background-size: 1.5rem 1.5rem;
+}
+
+.ws-lightbox-trigger:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
